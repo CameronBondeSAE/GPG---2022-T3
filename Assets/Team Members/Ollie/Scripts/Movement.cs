@@ -2,33 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
     private CharacterController characterController;
+    private Keyboard keyboard;
+    public float speed;
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        keyboard = InputSystem.GetDevice<Keyboard>();
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed)
         {
-            characterController.Move(Vector3.forward);
+            characterController.Move(Vector3.forward*speed);
         }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed)
         {
-            characterController.Move(Vector3.left);
+            characterController.Move(Vector3.left*speed);
         }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed)
         {
-            characterController.Move(Vector3.right);
+            characterController.Move(Vector3.right*speed);
         }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed)
         {
-            characterController.Move(Vector3.back);
+            characterController.Move(Vector3.back*speed);
         }
     }
 }
