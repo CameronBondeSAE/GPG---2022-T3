@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Item : MonoBehaviour, IPickupable
+public class Item : NetworkBehaviour, IPickupable
 {
     public Renderer renderer;
     public Transform parentTransform;
@@ -13,28 +14,49 @@ public class Item : MonoBehaviour, IPickupable
     // Start is called before the first frame update
     void Start()
     {
-        parentTransform = transform.parent.GetComponent<Transform>();
+        if (IsServer)
+        {
+            parentTransform = transform.parent.GetComponent<Transform>();
+            rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();
+        }
         renderer = parentTransform.GetComponentInChildren<Renderer>();
-        rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();
     }
     
     #region IPickupable Interface
 
     public void PickedUp(Transform newParentTransform)
     {
-        rigidbody.isKinematic = true;
-        renderer.enabled = false;
-        parentTransform.transform.position = newParentTransform.position;
-        parentTransform.parent = newParentTransform;
-        print("picked up");
+        if (IsServer)
+        {
+            rigidbody.isKinematic = true;
+            parentTransform.transform.position = newParentTransform.position;
+            parentTransform.parent = newParentTransform;
+            print("picked up");
+            PickUpViewClientRpc();
+        }
     }
 
     public void PutDown()
     {
+        if (IsServer)
+        {
+            rigidbody.isKinematic = false;
+            parentTransform.parent = null;
+            print("put down");
+            PutDownViewClientRpc();
+        }
+    }
+
+    [ClientRpc]
+    private void PickUpViewClientRpc()
+    {
+        renderer.enabled = false;
+    }
+
+    [ClientRpc]
+    private void PutDownViewClientRpc()
+    {
         renderer.enabled = true;
-        rigidbody.isKinematic = false;
-        parentTransform.parent = null;
-        print("put down");
     }
 
     #endregion

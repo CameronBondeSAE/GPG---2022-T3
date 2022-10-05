@@ -1,35 +1,32 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Interact : MonoBehaviour
+public class Interact : NetworkBehaviour
 {
     private GameObject objectNearby;
     private GameObject heldObject;
 
     private void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (IsLocalPlayer)
         {
-            InteractWith(objectNearby);
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                RequestInteractWithServerRpc();
+            }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    [ServerRpc]
+    private void RequestInteractWithServerRpc()
     {
-        if (other.GetComponent<IPickupable>() != null)
-        {
-            objectNearby = other.gameObject;
-        }
+        InteractWith(objectNearby);
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        objectNearby = null;
-    }
-
+    
     private void InteractWith(GameObject objectToInteract)
     {
         if (heldObject != null)
@@ -45,4 +42,21 @@ public class Interact : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (IsServer)
+        {
+            if (other.GetComponent<IPickupable>() != null)
+            {
+                objectNearby = other.gameObject;
+            }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (IsServer)
+        {
+            objectNearby = null;
+        }
+    }
 }
