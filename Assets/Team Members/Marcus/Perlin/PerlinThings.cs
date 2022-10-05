@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PerlinThings : MonoBehaviour
 {
+    public float zoom;
+    public float scale;
+    
     Vector3 brickPosition;
     public GameObject caveBrickPrefab;
     
@@ -12,16 +15,12 @@ public class PerlinThings : MonoBehaviour
     {
         for (int x = 0; x < 100; x++)
         {
-            brickPosition.x = x;
-            brickPosition.y = Mathf.PerlinNoise(Time.deltaTime * x,0) * 100;
-            
-            Instantiate(caveBrickPrefab, brickPosition, Quaternion.identity);
-
-            for (int i = 0; i < 100; i++)
+            for (int z = 0; z < 100; z++)
             {
-                brickPosition.x = i;
-                brickPosition.z = Mathf.PerlinNoise(Time.deltaTime * i, 0) * 100;
-
+                brickPosition.x = x;
+                brickPosition.y = Mathf.PerlinNoise(x * zoom,z * zoom) * scale;
+                brickPosition.z = z;
+                
                 Instantiate(caveBrickPrefab, brickPosition, Quaternion.identity);
             }
         }
