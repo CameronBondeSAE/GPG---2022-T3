@@ -9,7 +9,7 @@ public class Interact : MonoBehaviour
     private GameObject objectNearby;
     private GameObject heldObject;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
