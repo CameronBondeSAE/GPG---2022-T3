@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,43 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &187990458 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2186162749412115966, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2894150608836592111}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &187990460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187990458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d3e0f7b600aecf4aa160dd4e2bb8ed3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &708260682 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1772187740558265230, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2894150608836592111}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &708260685
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708260682}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &778119067
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,31 +604,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Item
-      objectReference: {fileID: 0}
-    - target: {fileID: 7679355482113810157, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8194975342747845458, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8194975342747845458, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8194975342747845458, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8194975342747845458, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

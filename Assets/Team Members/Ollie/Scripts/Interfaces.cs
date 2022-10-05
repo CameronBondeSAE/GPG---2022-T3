@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IPickupable
 {
-    void PickedUp();
+    void PickedUp(Transform parentTransform);
     void PutDown();
 }

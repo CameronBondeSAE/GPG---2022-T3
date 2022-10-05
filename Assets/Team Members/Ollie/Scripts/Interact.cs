@@ -6,22 +6,14 @@ using UnityEngine.InputSystem;
 
 public class Interact : MonoBehaviour
 {
-    private CapsuleCollider capsuleCollider;
-    private GameObject viableObject;
+    private GameObject objectNearby;
     private GameObject heldObject;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        capsuleCollider = GetComponentInParent<CapsuleCollider>();
-    }
-
-    // Update is called once per frame
     private void FixedUpdate()
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            InteractWith(viableObject);
+            InteractWith(objectNearby);
         }
     }
 
@@ -29,26 +21,27 @@ public class Interact : MonoBehaviour
     {
         if (other.GetComponent<IPickupable>() != null)
         {
-            viableObject = other.gameObject;
+            objectNearby = other.gameObject;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        viableObject = null;
+        objectNearby = null;
     }
 
-    private void InteractWith(GameObject gameObject)
+    private void InteractWith(GameObject objectToInteract)
     {
-        if (gameObject == null && heldObject != null)
+        if (heldObject != null)
         {
             heldObject.GetComponent<IPickupable>().PutDown();
+            heldObject = null;
         }
-        else if (gameObject == null && heldObject == null) return;
+        else if (objectToInteract == null) return;
         else
         {
-            gameObject.GetComponent<IPickupable>().PickedUp();
-            heldObject = gameObject;
+            objectToInteract.GetComponent<IPickupable>().PickedUp(transform);
+            heldObject = objectToInteract;
         }
     }
 
