@@ -9,7 +9,7 @@ public class Movement : NetworkBehaviour
 {
     private CharacterController characterController;
     private Keyboard keyboard;
-    public float speed;
+    public float moveSpeed;
     private Vector3 moveDirection;
 
     private void Start()
@@ -56,7 +56,12 @@ public class Movement : NetworkBehaviour
 
     private void MovePlayer()
     {
-        characterController.Move(moveDirection * speed);
+        characterController.Move(moveDirection * moveSpeed);
+        
+        if (moveDirection != Vector3.zero)
+        {
+            gameObject.transform.forward = moveDirection;
+        }
     }
 
     [ServerRpc]

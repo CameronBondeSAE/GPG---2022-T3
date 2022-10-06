@@ -6,4 +6,10 @@ public interface IPickupable
 {
     void PickedUp(Transform parentTransform);
     void PutDown();
+    bool isHeld { get; set; }
+}
+
+public interface IGoalItem
+{
+    
 }
