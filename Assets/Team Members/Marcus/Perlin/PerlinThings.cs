@@ -46,9 +46,9 @@ public class PerlinThings : MonoBehaviour
         zoom = Random.Range(0.01f, 0.2f);
         scale = Random.Range(1, 40);
         
-        for (int x = 0; x < 5; x++)
+        for (int x = 0; x < 100; x++)
         {
-            for (int z = 0; z < 5; z++)
+            for (int z = 0; z < 100; z++)
             {
                 brickPosition.x = x;
                 brickPosition.y = Mathf.PerlinNoise(x * zoom,z * zoom) * scale;
