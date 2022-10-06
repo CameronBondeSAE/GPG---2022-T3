@@ -1,55 +1,62 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Interact : MonoBehaviour
+public class Interact : NetworkBehaviour
 {
-    private CapsuleCollider capsuleCollider;
-    private GameObject viableObject;
+    private GameObject objectNearby;
     private GameObject heldObject;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        capsuleCollider = GetComponentInParent<CapsuleCollider>();
+        if (IsLocalPlayer)
+        {
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                RequestInteractWithServerRpc();
+            }
+        }
     }
 
-    // Update is called once per frame
-    private void FixedUpdate()
+    [ServerRpc]
+    private void RequestInteractWithServerRpc()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        InteractWith(objectNearby);
+    }
+    
+    private void InteractWith(GameObject objectToInteract)
+    {
+        if (heldObject != null)
         {
-            InteractWith(viableObject);
+            heldObject.GetComponent<IPickupable>().PutDown();
+            heldObject = null;
+        }
+        else if (objectToInteract == null) return;
+        else
+        {
+            objectToInteract.GetComponent<IPickupable>().PickedUp(transform);
+            heldObject = objectToInteract;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<IPickupable>() != null)
+        if (IsServer)
         {
-            viableObject = other.gameObject;
+            if (other.GetComponent<IPickupable>() != null)
+            {
+                objectNearby = other.gameObject;
+            }
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
-        viableObject = null;
-    }
-
-    private void InteractWith(GameObject gameObject)
-    {
-        if (gameObject == null && heldObject != null)
+        if (IsServer)
         {
-            heldObject.GetComponent<IPickupable>().PutDown();
-        }
-        else if (gameObject == null && heldObject == null) return;
-        else
-        {
-            gameObject.GetComponent<IPickupable>().PickedUp();
-            heldObject = gameObject;
+            objectNearby = null;
         }
     }
-
 }

@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Movement : MonoBehaviour
+public class Movement : NetworkBehaviour
 {
     private CharacterController characterController;
     private Keyboard keyboard;
     public float speed;
+    private Vector3 moveDirection;
 
     private void Start()
     {
@@ -18,21 +20,54 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed)
+        if (IsServer)
         {
-            characterController.Move(Vector3.forward*speed);
+            MovePlayer();
         }
-        if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed)
+        
+        if (IsClient)
         {
-            characterController.Move(Vector3.left*speed);
+            if (IsLocalPlayer)
+            {
+                if (!keyboard.anyKey.isPressed)
+                {
+                    RequestMoveCancelServerRpc();
+                }
+                
+                if (keyboard.wKey.isPressed || keyboard.upArrowKey.isPressed)
+                {
+                    RequestMoveServerRpc(Vector3.forward);
+                }
+                if (keyboard.aKey.isPressed || keyboard.leftArrowKey.isPressed)
+                {
+                    RequestMoveServerRpc(Vector3.left);
+                }
+                if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed)
+                {
+                    RequestMoveServerRpc(Vector3.right);
+                }
+                if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed)
+                {
+                    RequestMoveServerRpc(Vector3.back);
+                }
+            }
         }
-        if (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed)
-        {
-            characterController.Move(Vector3.right*speed);
-        }
-        if (keyboard.sKey.isPressed || keyboard.downArrowKey.isPressed)
-        {
-            characterController.Move(Vector3.back*speed);
-        }
+    }
+
+    private void MovePlayer()
+    {
+        characterController.Move(moveDirection * speed);
+    }
+
+    [ServerRpc]
+    private void RequestMoveServerRpc(Vector3 direction)
+    {
+        moveDirection = direction;
+    }
+
+    [ServerRpc]
+    private void RequestMoveCancelServerRpc()
+    {
+        moveDirection = Vector3.zero;
     }
 }
