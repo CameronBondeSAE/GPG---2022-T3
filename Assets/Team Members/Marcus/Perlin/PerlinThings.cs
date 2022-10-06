@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PerlinThings : MonoBehaviour
 {
@@ -10,6 +12,14 @@ public class PerlinThings : MonoBehaviour
     float updateTimer = 5f;
     Vector3 brickPosition;
     public GameObject caveBrickPrefab;
+
+    public delegate void OnTerrainUpdate();
+    public event OnTerrainUpdate UpdateEvent;
+
+    private void OnEnable()
+    {
+        UpdateEvent += ChangeTerrain;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +32,11 @@ public class PerlinThings : MonoBehaviour
     {
         updateTimer -= Time.deltaTime;
 
-      /*  if (updateTimer <= 0)
+        if (updateTimer <= 0)
         {
-            ChangeTerrain();
+            UpdateEvent?.Invoke();
             updateTimer = 5f;
-        }*/
+        }
     }
 
     void ChangeTerrain()
@@ -36,9 +46,9 @@ public class PerlinThings : MonoBehaviour
         zoom = Random.Range(0.01f, 0.2f);
         scale = Random.Range(1, 40);
         
-        for (int x = 0; x < 100; x++)
+        for (int x = 0; x < 5; x++)
         {
-            for (int z = 0; z < 100; z++)
+            for (int z = 0; z < 5; z++)
             {
                 brickPosition.x = x;
                 brickPosition.y = Mathf.PerlinNoise(x * zoom,z * zoom) * scale;
