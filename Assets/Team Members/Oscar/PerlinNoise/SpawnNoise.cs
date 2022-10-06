@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class SpawnNoise : MonoBehaviour
@@ -12,7 +13,7 @@ public class SpawnNoise : MonoBehaviour
 
     public int amount;
 
-    public float scale;
+    private float scale;
     private float zoomX;
     private float zoomZ;
 
@@ -21,12 +22,30 @@ public class SpawnNoise : MonoBehaviour
     private float x;
     private float y;
     private Vector3 prefabPosition;
-
+    
     private void Start()
     {
-        scale = Random.Range(1f,10f);
-        zoomX = Random.Range(0.05f, 0.1f);
-        zoomZ = Random.Range(0.05f, 0.1f);
+        spawnTerrain();
+    }
+
+    private void FixedUpdate()
+    {
+        if (InputSystem.GetDevice<Keyboard>().spaceKey.wasPressedThisFrame)
+        {
+            for (int cubes = 0; cubes < cubeLand.Count; cubes++)
+            {
+                Destroy(cubeLand[cubes].gameObject);
+            }
+            cubeLand.Clear();
+            spawnTerrain();
+        }
+    }
+
+    void spawnTerrain()
+    {
+        scale = Random.Range(2f,3f);
+        zoomX = Random.Range(0.1f, 0.2f);
+        zoomZ = Random.Range(0.1f, 0.2f);
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         for (int positionX = 0; positionX < amount; positionX++)
         { 
@@ -53,5 +72,4 @@ public class SpawnNoise : MonoBehaviour
             }
         }
     }
-
 }
