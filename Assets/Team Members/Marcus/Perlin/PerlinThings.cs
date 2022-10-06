@@ -7,12 +7,35 @@ public class PerlinThings : MonoBehaviour
     public float zoom;
     public float scale;
     
+    float updateTimer = 5f;
     Vector3 brickPosition;
     public GameObject caveBrickPrefab;
-    
+
     // Start is called before the first frame update
     void Start()
     {
+        ChangeTerrain();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        updateTimer -= Time.deltaTime;
+
+      /*  if (updateTimer <= 0)
+        {
+            ChangeTerrain();
+            updateTimer = 5f;
+        }*/
+    }
+
+    void ChangeTerrain()
+    {
+        print("making terrain");
+        
+        zoom = Random.Range(0.01f, 0.2f);
+        scale = Random.Range(1, 40);
+        
         for (int x = 0; x < 100; x++)
         {
             for (int z = 0; z < 100; z++)
@@ -24,11 +47,5 @@ public class PerlinThings : MonoBehaviour
                 Instantiate(caveBrickPrefab, brickPosition, Quaternion.identity);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
