@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnNoise : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class SpawnNoise : MonoBehaviour
     public int amount;
 
     public float scale;
-    public float zoom;
+    private float zoomX;
+    private float zoomZ;
 
     private float timer;
     private float interval = 1f;
@@ -22,20 +24,32 @@ public class SpawnNoise : MonoBehaviour
 
     private void Start()
     {
+        scale = Random.Range(1f,10f);
+        zoomX = Random.Range(0.05f, 0.1f);
+        zoomZ = Random.Range(0.05f, 0.1f);
+        print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         for (int positionX = 0; positionX < amount; positionX++)
         { 
             for (int positionZ = 0; positionZ < amount; positionZ++)
             {
                 for (int positionY = 0; positionY < amount; positionY++)
                 {
-                    prefabPosition.x = Mathf.PerlinNoise((positionZ * zoom), (positionZ * zoom)) * positionX;
-                    prefabPosition.y = Mathf.PerlinNoise((positionX * zoom), (positionZ * zoom)) * positionY;
-                    prefabPosition.z = Mathf.PerlinNoise((positionX * zoom), (positionY * zoom)) * positionZ;
-                    GameObject newCube = Instantiate(Prefab, prefabPosition, Quaternion.identity);
-                    cubeLand.Add(newCube.gameObject);
+                    float perlinValue = Mathf.PerlinNoise((positionX * zoomX), (positionZ * zoomZ));
+                    
+                    prefabPosition.x = positionX;
+                    prefabPosition.y = perlinValue * scale;
+                    prefabPosition.z = positionZ;
+                    
+                    
+                    if (perlinValue > .3)
+                    {
+                        if (perlinValue > .5)
+                        {
+                            GameObject newCube = Instantiate(Prefab, prefabPosition, Quaternion.identity);
+                            cubeLand.Add(newCube.gameObject);
+                        }
+                    }
                 }
-                
-                
             }
         }
     }
