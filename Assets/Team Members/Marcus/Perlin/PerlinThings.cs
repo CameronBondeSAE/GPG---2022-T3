@@ -13,13 +13,7 @@ public class PerlinThings : MonoBehaviour
     Vector3 brickPosition;
     public GameObject caveBrickPrefab;
 
-    public delegate void OnTerrainUpdate();
-    public event OnTerrainUpdate UpdateEvent;
-
-    private void OnEnable()
-    {
-        UpdateEvent += ChangeTerrain;
-    }
+    public List<GameObject> cubes;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +28,13 @@ public class PerlinThings : MonoBehaviour
 
         if (updateTimer <= 0)
         {
-            UpdateEvent?.Invoke();
+            foreach (GameObject cube in cubes)
+            {
+                Destroy(cube.gameObject);
+            }
+            cubes.Clear();
+            
+            ChangeTerrain();
             updateTimer = 5f;
         }
     }
@@ -46,15 +46,16 @@ public class PerlinThings : MonoBehaviour
         zoom = Random.Range(0.01f, 0.2f);
         scale = Random.Range(1, 40);
         
-        for (int x = 0; x < 5; x++)
+        for (int x = 0; x < 100; x++)
         {
-            for (int z = 0; z < 5; z++)
+            for (int z = 0; z < 100; z++)
             {
                 brickPosition.x = x;
                 brickPosition.y = Mathf.PerlinNoise(x * zoom,z * zoom) * scale;
                 brickPosition.z = z;
                 
-                Instantiate(caveBrickPrefab, brickPosition, Quaternion.identity);
+                GameObject go = Instantiate(caveBrickPrefab, brickPosition, Quaternion.identity);
+                cubes.Add(go);
             }
         }
     }
