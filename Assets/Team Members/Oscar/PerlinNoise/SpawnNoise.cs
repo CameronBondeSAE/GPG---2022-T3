@@ -44,8 +44,8 @@ public class SpawnNoise : MonoBehaviour
     void spawnTerrain()
     {
         scale = Random.Range(2f,3f);
-        zoomX = Random.Range(0.1f, 0.2f);
-        zoomZ = Random.Range(0.1f, 0.2f);
+        zoomX = Random.Range(0.1f, 0.3f);
+        zoomZ = Random.Range(0.1f, 0.3f);
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         for (int positionX = 0; positionX < amount; positionX++)
         { 
