@@ -340,6 +340,30 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
+--- !u!1 &1071268430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7664133430903414006, guid: ecca4527dc344bc468f4d3ca2a968f31,
+    type: 3}
+  m_PrefabInstance: {fileID: 7664133430448155244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1071268431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071268430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8738556d226184746b2f0cdc7dc57b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoom: 0.1
+  floorPrefab: {fileID: 8433662347367654271, guid: 0d0c60d10f636ce418c5444dcfb9e1c7,
+    type: 3}
+  wallPrefab: {fileID: 1029339241619491306, guid: 8e8eb3c426d52964695de5ad06452695,
+    type: 3}
+  bricks: []
 --- !u!1 &1959750927
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +641,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664133430903414007, guid: ecca4527dc344bc468f4d3ca2a968f31,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
