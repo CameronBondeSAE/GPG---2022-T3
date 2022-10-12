@@ -9,8 +9,8 @@ public class MarcusTerrain : MonoBehaviour
     float zoom;
     Vector2 randomOffset;
 
-    public Vector3 brickPosition;
-    public Vector3 floorPos;
+    Vector3 brickPosition;
+    Vector3 floorPos;
     
     public GameObject floorPrefab;
     public GameObject wallPrefab;
