@@ -42,11 +42,6 @@ public class PerlinScript : MonoBehaviour
 
     void SpawnTerrain()
     {
-        scale = Random.Range(10f, 20f);
-        zoomX = Random.Range(.1f, .3f);
-        zoomY = Random.Range(.1f, .3f);
-
-        
         for (int x = 0; x < cubeNum; x++)
         {
             for (int z = 0; z < cubeNum; z++)
@@ -60,9 +55,6 @@ public class PerlinScript : MonoBehaviour
                 {
                     GameObject go = Instantiate(cubePrefab, cubePos, Quaternion.identity) as GameObject;
                     go.transform.SetParent(parentObj.transform);
-                    
-                    
-                                 
                                  if (perlinNoise > .6f)
                                  {
                                      cubeRend = go.GetComponent<Renderer>();
@@ -74,13 +66,17 @@ public class PerlinScript : MonoBehaviour
                                      cubeRend = go.GetComponent<Renderer>();
                                      cubeRend.material.color = Color.black;
                                  }
-                                 
-                                 // for  
                 }
-
             }
         }
        
+    }
+
+    public void RandomiseValues()
+    {
+        scale = Random.Range(10f, 20f);
+        zoomX = Random.Range(.1f, .3f);
+        zoomY = Random.Range(.1f, .3f);
     }
     
     

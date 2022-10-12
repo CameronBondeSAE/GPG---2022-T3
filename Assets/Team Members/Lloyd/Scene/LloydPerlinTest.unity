@@ -495,7 +495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940948301}
-  - component: {fileID: 1940948300}
+  - component: {fileID: 1940948302}
   m_Layer: 0
   m_Name: PerlinScript
   m_TagString: Untagged
@@ -503,25 +503,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1940948300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940948299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 193fe02e4f032a24e9148db41241e267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cubePrefab: {fileID: 8830323646262685556, guid: ff8e89909a7e7234e96393bc6e54dace,
-    type: 3}
-  cubeNum: 50
-  zoomX: 0.25
-  zoomY: 0.25
-  scale: 0
-  parentObj: {fileID: 2061267182}
 --- !u!4 &1940948301
 Transform:
   m_ObjectHideFlags: 0
@@ -537,6 +518,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1940948302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940948299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee6e87410b55b441b7495415e5fc62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubePrefab: {fileID: 8830323646262685556, guid: c3d78f570187722418f95a344845f3eb,
+    type: 3}
+  cubeNum: 50
+  zoomX: 0
+  zoomY: 0
+  scale: 0
+  parentObj: {fileID: 2061267182}
 --- !u!1 &2061267182
 GameObject:
   m_ObjectHideFlags: 0
