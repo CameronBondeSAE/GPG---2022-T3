@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aaefdcdf-ecf0-4ecb-90b0-f8fc79c97588" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GPG---2022-T3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GPG---2022-T3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/LloydPerlinTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Team Members/Lloyd/LloydPerlinTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/PerlinScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Team Members/Lloyd/PerlinScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/HDRPUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
-    </list>
+    <list default="true" id="aaefdcdf-ecf0-4ecb-90b0-f8fc79c97588" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Team Members/Lloyd/CubeScript.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../GPG212_Lloyd/Assets/Scripts/UNIVERSAL/SoccerEventManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../GPG212_Lloyd/Assets/Scripts/UNIVERSAL/SoccerGameManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../GPG212_Lloyd/Assets/Scripts/UNIVERSAL/SoccerGameSFX.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -109,14 +94,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Team Members/Lloyd/PerlinScript.cs</url>
           <line>46</line>
-          <properties documentPath="C:\Users\102205\Documents\GPG---2022-T3\Assets\Team Members\Lloyd\PerlinScript.cs" initialLine="35" containingFunctionPresentation="method 'SpawnTerrain'">
-            <startOffsets>
-              <option value="1063" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1072" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="C:\Users\102205\Documents\GPG---2022-T3\Assets\Team Members\Lloyd\PerlinScript.cs" initialLine="35" containingFunctionPresentation="method 'SpawnTerrain'" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

@@ -7,9 +7,11 @@ public class MarcusTerrain : MonoBehaviour
     // Best mazes seem to come from 0.05 - 0.15
     // Larger zoom means tighter areas
     float zoom;
-    Vector3 randomOffset;
+    Vector2 randomOffset;
 
-    Vector3 brickPosition;
+    public Vector3 brickPosition;
+    public Vector3 floorPos;
+    
     public GameObject floorPrefab;
     public GameObject wallPrefab;
     
@@ -18,7 +20,7 @@ public class MarcusTerrain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateMaze();
+        RandomiseValues();
     }
 
     // Update is called once per frame
@@ -35,26 +37,33 @@ public class MarcusTerrain : MonoBehaviour
         }
         bricks.Clear();
         
-        GenerateMaze();
+        RandomiseValues();
     }
-    
-    void GenerateMaze()
+
+    void RandomiseValues()
     {
         zoom = Random.Range(0.08f, 0.12f);
         randomOffset.x = Random.Range(0, 1000);
-        randomOffset.z = Random.Range(0, 1000);
+        randomOffset.y = Random.Range(0, 1000);
         
+        GenerateMaze(zoom, randomOffset);
+    }
+    
+    void GenerateMaze(float step, Vector2 startPoint)
+    {
         for (int x = 0; x < 100; x++)
         {
             for (int z = 0; z < 100; z++)
             {
                 brickPosition.x = x;
-                brickPosition.y = Mathf.PerlinNoise((x + randomOffset.x) * zoom, (z + randomOffset.z) * zoom);
+                brickPosition.y = Mathf.PerlinNoise((x + startPoint.x) * step, (z + startPoint.y) * step);
                 brickPosition.z = z;
 
                 if (brickPosition.y < 0.5f)
                 {
-                    GameObject go = Instantiate(floorPrefab, brickPosition, Quaternion.identity);
+                    floorPos = new Vector3(brickPosition.x, 0, brickPosition.z);
+
+                    GameObject go = Instantiate(floorPrefab, floorPos, Quaternion.identity);
                     bricks.Add(go);
                 }
                 else

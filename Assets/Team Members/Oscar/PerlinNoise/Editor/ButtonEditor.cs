@@ -15,7 +15,9 @@ public class ButtonEditor : Editor
                 {
                         (target as SpawnNoise)?.ResetTheMap();
                 }
-                
-
+                if (GUILayout.Button("Items") && Application.isPlaying)
+                {
+                        (target as SpawnNoise)?.ItemLocation();
+                }
         }
 }
