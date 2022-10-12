@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8738556d226184746b2f0cdc7dc57b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brickPosition: {x: 0, y: 0, z: 0}
+  floorPos: {x: 0, y: 0, z: 0}
   floorPrefab: {fileID: 8433662347367654271, guid: 0d0c60d10f636ce418c5444dcfb9e1c7,
     type: 3}
   wallPrefab: {fileID: 1029339241619491306, guid: 8e8eb3c426d52964695de5ad06452695,
@@ -296,6 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickup: {fileID: 5922649274407099928, guid: e280177aa1e13884b870d1d4b665547a, type: 3}
+  perlin: {fileID: 335102095}
 --- !u!4 &2110890039
 Transform:
   m_ObjectHideFlags: 0
