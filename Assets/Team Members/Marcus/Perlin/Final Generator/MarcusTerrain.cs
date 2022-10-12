@@ -6,7 +6,7 @@ public class MarcusTerrain : MonoBehaviour
 {
     // Best mazes seem to come from 0.05 - 0.15
     // Larger zoom means tighter areas
-    public float zoom;
+    float zoom;
     Vector3 randomOffset;
 
     Vector3 brickPosition;
@@ -40,6 +40,7 @@ public class MarcusTerrain : MonoBehaviour
     
     void GenerateMaze()
     {
+        zoom = Random.Range(0.08f, 0.12f);
         randomOffset.x = Random.Range(0, 1000);
         randomOffset.z = Random.Range(0, 1000);
         
