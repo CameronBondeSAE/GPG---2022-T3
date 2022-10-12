@@ -17,6 +17,7 @@ namespace Alex
             rb = GetComponent<Rigidbody>();
 
             if (target != null)
+                //hacked up for now needs to be written better since this script will be used for multiple different targets
                 target = GameObject.Find("Target").transform;
         }
 

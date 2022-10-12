@@ -38,5 +38,6 @@ namespace Alex
         {
             rb.AddRelativeForce(0, 0, speed);
         }
+        
     }
 }
