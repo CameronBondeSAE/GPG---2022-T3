@@ -105,14 +105,4 @@ public class SpawnNoise : MonoBehaviour
         }
     }
 
-    public void ItemLocation()
-    {
-        
-    }
-    
-    
-    
-    
-    
-    
 }
