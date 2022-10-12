@@ -24,18 +24,20 @@ public class MarcusTerrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            foreach (GameObject item in bricks)
-            {
-                Destroy(item.gameObject);
-            }
-            bricks.Clear();
-            
-            GenerateMaze();
-        }
+        
     }
 
+    public void ClearPrevious()
+    {
+        foreach (GameObject item in bricks)
+        {
+            Destroy(item.gameObject);
+        }
+        bricks.Clear();
+        
+        GenerateMaze();
+    }
+    
     void GenerateMaze()
     {
         randomOffset.x = Random.Range(0, 1000);
