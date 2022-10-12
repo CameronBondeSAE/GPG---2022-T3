@@ -11,13 +11,25 @@ public class ButtonEditor : Editor
         {
                 base.OnInspectorGUI();
 
-                if (GUILayout.Button("Reset Map") && Application.isPlaying)
+                if (GUILayout.Button("Terrain Refresh") && Application.isPlaying)
                 {
                         (target as SpawnNoise)?.ResetTheMap();
                 }
-                if (GUILayout.Button("Items") && Application.isPlaying)
+
+        }
+}
+
+[CustomEditor(typeof(ItemAreaSpawner))]
+public class RaycastButton : Editor
+{
+        public override void OnInspectorGUI()
+        {
+                base.OnInspectorGUI();
+
+                if (GUILayout.Button("Raycast") && Application.isPlaying)
                 {
-                        (target as SpawnNoise)?.ItemLocation();
+                        (target as ItemAreaSpawner)?.SpreadItems();
                 }
+                
         }
 }
