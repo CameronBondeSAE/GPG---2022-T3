@@ -9,7 +9,8 @@ using Random = UnityEngine.Random;
 public class SpawnNoise : MonoBehaviour
 {
     public GameObject Prefab;
-    public List<GameObject> cubeLand = new List<GameObject>();
+    
+    private List<GameObject> cubeLand = new List<GameObject>();
 
     public int amount;
 
@@ -17,31 +18,29 @@ public class SpawnNoise : MonoBehaviour
     private float zoomX;
     private float zoomZ;
 
-    private float timer;
-    private float interval = 1f;
     private float x;
     private float y;
     private Vector3 prefabPosition;
     
-    private void Start()
+    GameObject CubeParent;
+
+    public void Start()
     {
+        CubeParent = new GameObject("CubeParent");
         spawnTerrain();
     }
 
-    private void FixedUpdate()
+    public void ResetTheMap()
     {
-        if (InputSystem.GetDevice<Keyboard>().spaceKey.wasPressedThisFrame)
+        for (int cubes = 0; cubes < cubeLand.Count; cubes++)
         {
-            for (int cubes = 0; cubes < cubeLand.Count; cubes++)
-            {
-                Destroy(cubeLand[cubes].gameObject);
-            }
-            cubeLand.Clear();
-            spawnTerrain();
+            Destroy(cubeLand[cubes].gameObject);
         }
+        cubeLand.Clear();
+        spawnTerrain();
     }
 
-    void spawnTerrain()
+    public void spawnTerrain()
     {
         scale = Random.Range(2f,3f);
         zoomX = Random.Range(0.1f, 0.3f);
@@ -59,17 +58,30 @@ public class SpawnNoise : MonoBehaviour
                     prefabPosition.y = perlinValue * scale;
                     prefabPosition.z = positionZ;
                     
-                    
                     if (perlinValue > .3)
                     {
                         if (perlinValue > .5)
                         {
                             GameObject newCube = Instantiate(Prefab, prefabPosition, Quaternion.identity);
+                            newCube.transform.SetParent(CubeParent.transform);
                             cubeLand.Add(newCube.gameObject);
+                            newCube.GetComponent<Renderer>().material.color = Color.black;
+                            if (perlinValue > .8)
+                            {
+                                newCube.GetComponent<Renderer>().material.color = Color.red;
+                            }
                         }
                     }
                 }
             }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
 }
