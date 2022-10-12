@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 public class Item : NetworkBehaviour, IPickupable, IGoalItem
 {
+    public NetworkManager networkManager;
     public Renderer renderer;
     public Transform parentTransform;
     public Rigidbody rigidbody;
@@ -14,8 +15,21 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
     //public BoxCollider boxCollider;
     public BoxCollider[] boxColliders;
     public bool isHeld { get; set; }
+    public bool locked { get; set; }
 
-    
+    private void Awake()
+    {
+        networkManager = NetworkManager.Singleton;
+        networkManager.OnServerStarted += SetUpItem;
+        networkManager.OnClientConnectedCallback += SetUpItemClient;
+    }
+
+    private void OnDisable()
+    {
+        networkManager.OnServerStarted -= SetUpItem;
+        networkManager.OnClientConnectedCallback -= SetUpItemClient;
+    }
+
     void OnGUI()
     {
         //can't use built-in Start because it's called before host/client's are set
@@ -26,7 +40,6 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
                 parentTransform = transform.parent.GetComponent<Transform>();
                 renderer = parentTransform.GetComponentInChildren<Renderer>();
                 rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();
-                //boxCollider = parentTransform.GetComponentInChildren<BoxCollider>();
                 boxColliders = parentTransform.GetComponentsInChildren<BoxCollider>();
                 isHeld = false;
                 SetupClientRpc();
@@ -34,10 +47,28 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
         }
     }
 
+    void SetUpItemClient(ulong clientId)
+    {
+        if(IsServer) SetupClientRpc();
+    }
+    void SetUpItem()
+    {
+        if (IsServer)
+        {
+            parentTransform = transform.parent.GetComponent<Transform>();
+            renderer = parentTransform.GetComponentInChildren<Renderer>();
+            rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();
+            boxColliders = parentTransform.GetComponentsInChildren<BoxCollider>();
+            isHeld = false;
+            locked = false;
+        }
+    }
+
     [ClientRpc]
     void SetupClientRpc()
     {
         isHeld = false;
+        locked = false;
         parentTransform = transform.parent.GetComponent<Transform>();
         renderer = parentTransform.GetComponentInChildren<Renderer>();
         rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();
@@ -49,7 +80,8 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
     {
         //can't send the transform via Rpc so storing it separately
         //unsure if wise for networking?
-        if (!isHeld)
+        
+        if (!isHeld && !locked)
         {
             tempParentTransform = newParentTransform;
             isHeld = true;
@@ -60,7 +92,6 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
             }
         }
     }
-
     public void PutDown()
     {
         tempParentTransform = null;
@@ -71,9 +102,7 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
             RequestPutDownServerRpc();
         }
     }
-
     
-
     [ServerRpc]
     void RequestPickUpServerRpc()
     {

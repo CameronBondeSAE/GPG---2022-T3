@@ -57,7 +57,9 @@ public class Movement : NetworkBehaviour
     private void MovePlayer()
     {
         characterController.Move(moveDirection * moveSpeed);
-        
+        //HACK charController doesn't have gravity and the above line is forcing it
+        characterController.transform.position = new Vector3(characterController.transform.position.x, 1, characterController.transform.position.z);
+
         if (moveDirection != Vector3.zero)
         {
             gameObject.transform.forward = moveDirection;

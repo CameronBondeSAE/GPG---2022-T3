@@ -7,6 +7,7 @@ public interface IPickupable
     void PickedUp(Transform parentTransform);
     void PutDown();
     bool isHeld { get; set; }
+    bool locked { get; set; }
 }
 
 public interface IGoalItem
