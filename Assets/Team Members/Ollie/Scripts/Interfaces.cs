@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public interface IPickupable
 {
@@ -11,6 +13,11 @@ public interface IPickupable
 }
 
 public interface IGoalItem
+{
+    
+}
+
+public interface ILateSync
 {
     
 }

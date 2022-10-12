@@ -5,23 +5,43 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+public enum ItemType
+{
+    Speed,
+    Power,
+    Defend,
+    Goal
+}
+
 public class Item : NetworkBehaviour, IPickupable, IGoalItem
 {
     public NetworkManager networkManager;
+    public NetworkVariable<Vector3> networkPosition;
     public Renderer renderer;
     public Transform parentTransform;
     public Rigidbody rigidbody;
+    private Vector3 tempPosition;
     private Transform tempParentTransform;
     //public BoxCollider boxCollider;
     public BoxCollider[] boxColliders;
     public bool isHeld { get; set; }
     public bool locked { get; set; }
+    public ItemType itemType;
 
     private void Awake()
     {
         networkManager = NetworkManager.Singleton;
         networkManager.OnServerStarted += SetUpItem;
         networkManager.OnClientConnectedCallback += SetUpItemClient;
+        networkPosition.OnValueChanged += OnValueChanged;
+    }
+
+    private void OnValueChanged(Vector3 previousValue, Vector3 newValue)
+    {
+        if (previousValue != newValue)
+        {
+            transform.parent.position = newValue;
+        }
     }
 
     private void OnDisable()
@@ -49,6 +69,7 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
 
     void SetUpItemClient(ulong clientId)
     {
+        tempPosition = transform.parent.position;
         if(IsServer) SetupClientRpc();
     }
     void SetUpItem()
@@ -61,6 +82,8 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
             boxColliders = parentTransform.GetComponentsInChildren<BoxCollider>();
             isHeld = false;
             locked = false;
+            
+            //itemType = random item number
         }
     }
 
@@ -69,6 +92,7 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
     {
         isHeld = false;
         locked = false;
+        transform.parent.position = tempPosition;
         parentTransform = transform.parent.GetComponent<Transform>();
         renderer = parentTransform.GetComponentInChildren<Renderer>();
         rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();

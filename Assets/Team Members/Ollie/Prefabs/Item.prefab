@@ -47,10 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead3f9b45b7ba2d4ba9082c449fa6835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  networkManager: {fileID: 0}
+  networkPosition:
+    m_InternalValue: {x: 0, y: 0, z: 0}
   renderer: {fileID: 0}
   parentTransform: {fileID: 0}
   rigidbody: {fileID: 0}
   boxColliders: []
+  itemType: 0
 --- !u!65 &708260685
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -116,6 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 707490151707609999}
   - component: {fileID: 187990460}
+  - component: {fileID: 1030358358859370405}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -166,6 +171,22 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &1030358358859370405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2186162749412115966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &5664373171482349627
 GameObject:
   m_ObjectHideFlags: 0
