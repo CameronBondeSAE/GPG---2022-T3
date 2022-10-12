@@ -580,7 +580,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
-  amount: 30
+  amount: 20
+  randomMap: 0
 --- !u!4 &2001188260
 Transform:
   m_ObjectHideFlags: 0

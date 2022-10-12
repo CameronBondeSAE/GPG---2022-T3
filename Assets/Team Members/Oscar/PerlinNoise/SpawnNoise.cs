@@ -14,20 +14,35 @@ public class SpawnNoise : MonoBehaviour
 
     public int amount;
 
-    private float scale;
+    private float scale = 3f;
     private float zoomX;
     private float zoomZ;
+    private float zoom;
 
+    public bool randomMap;
+    
     private float x;
     private float y;
     private Vector3 prefabPosition;
+
+    
+    private int item = 3;
     
     GameObject CubeParent;
 
     public void Start()
     {
         CubeParent = new GameObject("CubeParent");
-        spawnTerrain();
+        if (randomMap == true)
+        {
+            zoomX = Random.Range(0.1f, 0.3f);
+            zoomZ = Random.Range(0.1f, 0.3f);
+        }
+        else if (randomMap == false)
+        {
+            zoomX = 0.2f;
+            zoomZ = 0.2f;
+        }
     }
 
     public void ResetTheMap()
@@ -37,15 +52,28 @@ public class SpawnNoise : MonoBehaviour
             Destroy(cubeLand[cubes].gameObject);
         }
         cubeLand.Clear();
-        spawnTerrain();
+        spawner();
     }
 
-    public void spawnTerrain()
+    public void spawner()
     {
-        scale = Random.Range(2f,3f);
-        zoomX = Random.Range(0.1f, 0.3f);
-        zoomZ = Random.Range(0.1f, 0.3f);
+        if (randomMap == true)
+        {
+            zoomX = Random.Range(0.1f, 0.3f);
+            zoomZ = Random.Range(0.1f, 0.3f);
+            spawnRandomTerrain(zoomX, zoomZ, scale);
+        }
+        else if (randomMap == false)
+        {
+            
+            spawnRandomTerrain(zoomX, zoomZ, scale);
+        }
+    }
+    
+    public void spawnRandomTerrain(float zoomX, float zoomZ, float scale)
+    {
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
+        
         for (int positionX = 0; positionX < amount; positionX++)
         { 
             for (int positionZ = 0; positionZ < amount; positionZ++)
@@ -76,8 +104,11 @@ public class SpawnNoise : MonoBehaviour
             }
         }
     }
-    
-    
+
+    public void ItemLocation()
+    {
+        
+    }
     
     
     
