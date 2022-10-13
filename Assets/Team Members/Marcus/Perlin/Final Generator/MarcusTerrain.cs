@@ -1,21 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MarcusTerrain : MonoBehaviour
 {
     // Best mazes seem to come from 0.05 - 0.15
     // Larger zoom means tighter areas
+    public int amount;
     float zoom;
     Vector2 randomOffset;
 
-    public Vector3 brickPosition;
-    public Vector3 floorPos;
+    Vector3 itemPos;
+    Vector3 brickPosition;
+    Vector3 floorPos;
+
+    public GameObject pickup;
     
     public GameObject floorPrefab;
     public GameObject wallPrefab;
     
     public List<GameObject> bricks;
+    public List<GameObject> items;
     
     // Start is called before the first frame update
     void Start()
@@ -29,13 +36,20 @@ public class MarcusTerrain : MonoBehaviour
         
     }
 
-    public void ClearPrevious()
+    public void Clear()
     {
-        foreach (GameObject item in bricks)
+        // Clear the list of tiles before regeneration
+        foreach (GameObject tile in bricks)
         {
-            Destroy(item.gameObject);
+            Destroy(tile.gameObject);
         }
         bricks.Clear();
+        // Clear the list of items before regeneration
+        foreach (GameObject collectable in items)
+        {
+            Destroy(collectable.gameObject);
+        }
+        items.Clear();
         
         RandomiseValues();
     }
@@ -51,9 +65,9 @@ public class MarcusTerrain : MonoBehaviour
     
     void GenerateMaze(float step, Vector2 startPoint)
     {
-        for (int x = 0; x < 100; x++)
+        for (int x = 0; x < amount; x++)
         {
-            for (int z = 0; z < 100; z++)
+            for (int z = 0; z < amount; z++)
             {
                 brickPosition.x = x;
                 brickPosition.y = Mathf.PerlinNoise((x + startPoint.x) * step, (z + startPoint.y) * step);
@@ -65,6 +79,8 @@ public class MarcusTerrain : MonoBehaviour
 
                     GameObject go = Instantiate(floorPrefab, floorPos, Quaternion.identity);
                     bricks.Add(go);
+                    
+                    SpawnItems(x, z);
                 }
                 else
                 {
@@ -72,6 +88,18 @@ public class MarcusTerrain : MonoBehaviour
                     bricks.Add(go);
                 }
             }
+        }
+    }
+
+    void SpawnItems(float xValue, float zValue)
+    {
+        float itemZoom = 0.15f;
+        itemPos = new Vector3(xValue, 1f, zValue);
+        
+        if (Mathf.PerlinNoise(xValue * itemZoom, zValue * itemZoom) >= 0.7f)
+        {
+            GameObject item = Instantiate(pickup, itemPos, Quaternion.identity);
+            items.Add(item);
         }
     }
 }

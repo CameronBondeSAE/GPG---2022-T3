@@ -14,7 +14,8 @@ public class ItemAreaSpawner : MonoBehaviour
     public float itemZSpread = 10f;
 
     public int itemAmount = 4;
-    
+
+    public List<GameObject> itemList = new List<GameObject>();
     private GameObject itemParent;
 
     private void Start()
@@ -26,11 +27,12 @@ public class ItemAreaSpawner : MonoBehaviour
     {
         for (int items = 0; items < itemAmount; items++)
         {
+            
             Vector3 randPosition = new Vector3(Random.Range(-itemXSpread, itemXSpread),
                 Random.Range(-itemYSpread, itemYSpread), Random.Range(-itemZSpread, itemZSpread)) + transform.position;
             GameObject clone = Instantiate(itemToSpread, randPosition, quaternion.identity);
+            itemList.Add(clone.gameObject);
             clone.transform.SetParent(itemParent.transform);
-
         }
     }
 
