@@ -127,7 +127,7 @@ public class SpawnNoise : MonoBehaviour
     
     void SpawningTheItems(Vector3 prefabPosition)
     {
-        int SpawmTheItems = Random.Range(1, 20);
+        int SpawmTheItems = Random.Range(1, 50);
         if (SpawmTheItems == 1)
         {
             GameObject spawnedItem = Instantiate(item, prefabPosition, quaternion.identity);
@@ -141,7 +141,7 @@ public class SpawnNoise : MonoBehaviour
 
     void SpawnAIInTheMaze(Vector3 prefabPosition)
     {
-        int spawnTheAI = Random.Range(1, 50);
+        int spawnTheAI = Random.Range(1, 1000);
         if (spawnTheAI == 1)
         {
             GameObject spawnedAI = Instantiate(AISpawner, prefabPosition, quaternion.identity);
