@@ -8,6 +8,8 @@ namespace Alex
 
     public class Resource : MonoBehaviour
     {
+        public bool isPickedUp;
+        
         // Start is called before the first frame update
         void Start()
         {
