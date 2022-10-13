@@ -529,7 +529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 30
+  turnSpeed: 10
+  distance: 3
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,7 +576,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 500
+  turnSpeed: 50
+  distance: 3
 --- !u!1 &1794423254282566960
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +623,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: -400
+  turnSpeed: -40
+  distance: 3
 --- !u!1 &4539377846754210193
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,7 +729,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 500
+  turnSpeed: 50
+  distance: 1
 --- !u!1 &6654157507890702779
 GameObject:
   m_ObjectHideFlags: 0

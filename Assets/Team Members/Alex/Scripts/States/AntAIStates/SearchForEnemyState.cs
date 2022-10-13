@@ -7,16 +7,31 @@ namespace Alex
 
     public class SearchForEnemyState : AntAIState
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        // Reference to my main GameObject, so I can access all the normal code I have in there.
+        public GameObject owner;
 
+        public override void Create(GameObject aGameObject)
+        {
+            base.Create(aGameObject);
+
+            owner = aGameObject;
+        }
+        public override void Enter()
+        {
+            base.Enter();
+            Finish();
         }
 
-        // Update is called once per frame
-        void Update()
+        public override void Execute(float aDeltaTime, float aTimeScale)
         {
+            base.Execute(aDeltaTime, aTimeScale);
+            Finish();
+        }
 
+        public override void Exit()
+        {
+            base.Exit();
+            Finish();
         }
     }
 }
