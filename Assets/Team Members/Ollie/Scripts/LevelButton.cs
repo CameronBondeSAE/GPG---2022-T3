@@ -12,6 +12,7 @@ namespace Ollie
         public void SetSceneToLoad()
         {
             LobbyUIManager.instance.sceneToLoad = myLevel;
+            LobbyUIManager.instance.UpdateLevelSelectedText(myLevel);
         }
     }
 }

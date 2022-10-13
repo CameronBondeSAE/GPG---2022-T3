@@ -257,7 +257,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4824247768554085935}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -1688167838642821923}
+        m_TargetAssemblyTypeName: Ollie.LevelButton, Assembly-CSharp
+        m_MethodName: SetSceneToLoad
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72,
+          type: 3}
+        m_TargetAssemblyTypeName: Ollie.LobbyUIManager, Assembly-CSharp
+        m_MethodName: UpdateLevelSelectedText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-1688167838642821923
 MonoBehaviour:
   m_ObjectHideFlags: 0

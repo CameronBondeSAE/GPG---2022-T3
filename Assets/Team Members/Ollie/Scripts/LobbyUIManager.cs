@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UNET;
+using Unity.Netcode.Transports.UTP;
 using UnityEngine.UI;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -32,18 +33,20 @@ namespace Ollie
         [Header("Level Setup")]
         public List<Level> levels;
 
-        public GameObject levelsListPanel;
+        public GameObject levelHolder;
         public GameObject levelButtonPrefab;
 
+        [Header("Lobby UI Setup")]
         public GameObject lobbyUICanvas;
 
         public TMP_Text clientUI;
         public Button startButton;
         public Button lobbyButton;
         public TMP_InputField playerNameInputField;
-        public GameObject levelsUI;
+        public TMP_Text levelSelectedDisplayText;
+        public GameObject levelDisplayUI;
         public GameObject waitForHostBanner;
-        public GameObject playerListPanel;
+        public GameObject playerPanel;
         public GameObject clientLobbyUIPrefab;
 
         [Header("IP Canvas Setup")]
@@ -69,24 +72,42 @@ namespace Ollie
 
             if (!autoHost)
             {
-                //activate lobby canvas
-                //DEactivate ip canvas
+                lobbyUICanvas.SetActive(true);
+                ipAddressCanvas.SetActive(false);
 
                 foreach (Level level in levels)
                 {
-                    GameObject levelButton = Instantiate(levelButtonPrefab, levelsListPanel.transform);
+                    GameObject levelButton = Instantiate(levelButtonPrefab, levelHolder.transform);
                     levelButton.GetComponentInChildren<TMP_Text>().text = level.levelNameOnUI;
                     levelButton.GetComponent<LevelButton>().myLevel = level.level.name;
                 }
             }
+            else
+            {
+                //lobbyUICanvas.SetActive(false);
+            }
+        }
+
+        public void JoinGame()
+        {
+            NetworkManager.Singleton.StartClient();
+            SetUpClientUI();
+        }
+
+        void SetUpClientUI()
+        {
+            startButton.gameObject.SetActive(false);
+            lobbyUICanvas.SetActive(true);
+            ipAddressCanvas.SetActive(false);
+            levelDisplayUI.SetActive(false);
         }
         
         private void Awake()
         {
             if (!autoHost)
             {
-                //set up IP address canvas here
-                //disable lobby canvas
+                ipAddressCanvas.SetActive(true);
+                lobbyUICanvas.SetActive(false);
             }
 
             instance = this;
@@ -96,7 +117,7 @@ namespace Ollie
         {
             NetworkManager.Singleton.OnClientConnectedCallback += OnClientJoin;
 
-            serverIPInputField.text = NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress;
+            serverIPInputField.text = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address;
 
             if (autoHost)
             {
@@ -111,7 +132,7 @@ namespace Ollie
 
         public void OnNewServerIPAddress()
         {
-            NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = serverIPInputField.text;
+            NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = serverIPInputField.text;
         }
 
         public void StartGame()
@@ -123,6 +144,19 @@ namespace Ollie
             }
 
             NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManagerOnOnSceneEvent;
+
+            //use this to know when scene IS loaded
+            //NetworkManager.Singleton.SceneManager.OnLoadComplete += OnLevelLoaded;
+
+            //if this fails it will duplicate spawns of the player?
+            try
+            {
+                NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e,this);
+            }
         }
 
         private void SceneManagerOnOnSceneEvent(SceneEvent sceneEvent)
@@ -130,9 +164,16 @@ namespace Ollie
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManagerOnOnSceneEvent;
             Scene scene = sceneEvent.Scene;
             
-            //update ui
-            //disable lobby camera
-            //clientrpc an updated ui
+            lobbyCam.SetActive(false);
+            BroadcastLobbyUIStateClientRpc(true);
+        }
+
+        [ClientRpc]
+        private void BroadcastLobbyUIStateClientRpc(bool gameInProgress)
+        {
+            lobbyUICanvas.SetActive(!gameInProgress);
+            
+            //InGameLobbyUI(gameInProgress);
         }
         
         private void OnClientJoin(ulong clientId)
@@ -143,6 +184,33 @@ namespace Ollie
                 if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out client))
                 {
                     ClientInfo clientInfo = client.PlayerObject.GetComponent<ClientInfo>();
+                    clientInfo.Init((ulong) NetworkManager.Singleton.ConnectedClients.Count);
+
+                    GameObject uiRef = Instantiate(clientLobbyUIPrefab, playerPanel.transform);
+                    clientInfo.lobbyUIRef = uiRef;
+                    uiRef.GetComponent<TMP_Text>().text = clientInfo.ClientName.Value.ToString();
+                }
+                HandleLocalClient(clientId);
+            }
+            //else RequestClientNamesLobbyUIServerRpc(clientId);
+
+            if (clientId == NetworkManager.Singleton.LocalClientId)
+            {
+                myLocalClientId = clientId;
+            }
+
+        }
+
+        //this allows the HOST to have a myLocalClient value
+        void HandleLocalClient(ulong clientId)
+        {
+            NetworkClient temporaryClient;
+            if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out temporaryClient))
+            {
+                NetworkObject playerObject = temporaryClient.PlayerObject;
+                if (playerObject.IsLocalPlayer)
+                {
+                    myLocalClient = playerObject;
                 }
             }
         }
@@ -155,7 +223,7 @@ namespace Ollie
 
         void HandleClientNameChange()
         {
-            // Clear Lobby Names Client Rpc
+            ClearLobbyNamesClientRpc();
 
             foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
             {
@@ -164,16 +232,58 @@ namespace Ollie
         }
 
         [ClientRpc]
+        public void ClearLobbyNamesClientRpc()
+        {
+            foreach (Transform child in playerPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        [ClientRpc]
         public void SpawnClientLobbyUIClientRpc(string newName)
         {
-            SpawnClientLobbyUIClientRpc(newName);
+            SpawnClientLobbyUI(newName);
         }
 
         void SpawnClientLobbyUI(string clientName)
         {
-            // GameObject uiRef = Instantiate((clientLobbyUIPrefab, clientField.transform));
-            // uiRef.GetComponent<TMP_Text>().text = clientName;
-            // NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<ClientInfo>().lobbyUIRef = uiRef;
+            GameObject uiRef = Instantiate(clientLobbyUIPrefab, playerPanel.transform);
+            uiRef.GetComponent<TMP_Text>().text = clientName;
+            NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<ClientInfo>().lobbyUIRef = uiRef;
+        }
+
+        public void UpdateClientName()
+        {
+            if (IsServer)
+            {
+                if (myLocalClient != null)
+                {
+                    myLocalClient.GetComponent<ClientInfo>().ClientName.Value = playerNameInputField.text;
+                    HandleClientNameChange();
+                }
+                else
+                {
+                    print("No local client found");
+                }
+            }
+            else
+            {
+                RequestClientNameChangeServerRpc(myLocalClientId, playerNameInputField.text);
+            }
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        void RequestClientNameChangeServerRpc(ulong clientId, string name)
+        {
+            NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject.GetComponent<ClientInfo>().ClientName
+                .Value = name;
+            HandleClientNameChange();
+        }
+        
+        public void UpdateLevelSelectedText(string levelName)
+        {
+            levelSelectedDisplayText.text = levelName;
         }
     }
 }
