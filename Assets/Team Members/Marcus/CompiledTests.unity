@@ -152,13 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8738556d226184746b2f0cdc7dc57b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brickPosition: {x: 0, y: 0, z: 0}
-  floorPos: {x: 0, y: 0, z: 0}
+  amount: 100
+  pickup: {fileID: 5922649274407099928, guid: e280177aa1e13884b870d1d4b665547a, type: 3}
   floorPrefab: {fileID: 8433662347367654271, guid: 0d0c60d10f636ce418c5444dcfb9e1c7,
     type: 3}
   wallPrefab: {fileID: 1029339241619491306, guid: 8e8eb3c426d52964695de5ad06452695,
     type: 3}
   bricks: []
+  items: []
 --- !u!4 &335102096
 Transform:
   m_ObjectHideFlags: 0
@@ -268,52 +269,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &2110890037
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2110890039}
-  - component: {fileID: 2110890038}
-  m_Layer: 0
-  m_Name: Item Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2110890038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110890037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cde7340481121f4e843b5beda698847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickup: {fileID: 5922649274407099928, guid: e280177aa1e13884b870d1d4b665547a, type: 3}
-  perlin: {fileID: 335102095}
---- !u!4 &2110890039
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110890037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2126904716
 GameObject:
   m_ObjectHideFlags: 0

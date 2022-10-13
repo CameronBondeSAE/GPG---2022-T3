@@ -12,6 +12,7 @@ public class MarcusTerrain : MonoBehaviour
     float zoom;
     Vector2 randomOffset;
 
+    Vector3 itemPos;
     Vector3 brickPosition;
     Vector3 floorPos;
 
@@ -80,13 +81,13 @@ public class MarcusTerrain : MonoBehaviour
 
                     GameObject go = Instantiate(floorPrefab, floorPos, Quaternion.identity);
                     bricks.Add(go);
+                    
+                    SpawnItems(x, z);
                 }
                 else
                 {
                     GameObject go = Instantiate(wallPrefab, brickPosition, Quaternion.identity);
                     bricks.Add(go);
-                    
-                    SpawnItems(x, z);
                 }
             }
         }
@@ -94,9 +95,12 @@ public class MarcusTerrain : MonoBehaviour
 
     public void SpawnItems(float xValue, float zValue)
     {
-        if (Mathf.PerlinNoise(xValue, zValue) >= 0.7f)
+        itemPos = new Vector3(xValue, 1f, zValue);
+        
+        if (Mathf.PerlinNoise(xValue, zValue) >= 0.2f)
         {
-            Instantiate(pickup, brickPosition, Quaternion.identity);
+            GameObject item = Instantiate(pickup, itemPos, Quaternion.identity);
+            items.Add(item);
         }
     }
 }
