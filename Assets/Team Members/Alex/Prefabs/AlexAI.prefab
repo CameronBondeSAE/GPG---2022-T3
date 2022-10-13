@@ -176,7 +176,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Material: {fileID: 13400000, guid: f3562ef7a7724ec4db6a0bd6761a11e2, type: 2}
+  m_Material: {fileID: 13400000, guid: b501533e8223d4240b510d0556062039, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.56
@@ -393,7 +393,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 706897844201177466}
-  neighboursList: []
   force: 100
 --- !u!114 &8270060209491018145
 MonoBehaviour:
@@ -685,7 +684,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: []
-  collider: {fileID: 0}
 --- !u!1 &4751451178086046432
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +887,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: []
-  collider: {fileID: 0}
 --- !u!1 &7171377269161120188
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,4 +946,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: []
-  collider: {fileID: 0}
