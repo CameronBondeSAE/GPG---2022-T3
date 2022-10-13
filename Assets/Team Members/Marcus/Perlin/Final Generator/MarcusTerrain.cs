@@ -36,24 +36,22 @@ public class MarcusTerrain : MonoBehaviour
         
     }
 
-    public void ClearMaze()
+    public void Clear()
     {
+        // Clear the list of tiles before regeneration
         foreach (GameObject tile in bricks)
         {
             Destroy(tile.gameObject);
         }
         bricks.Clear();
-        
-        RandomiseValues();
-    }
-
-    public void ClearItems()
-    {
+        // Clear the list of items before regeneration
         foreach (GameObject collectable in items)
         {
             Destroy(collectable.gameObject);
         }
         items.Clear();
+        
+        RandomiseValues();
     }
 
     void RandomiseValues()
@@ -95,9 +93,10 @@ public class MarcusTerrain : MonoBehaviour
 
     public void SpawnItems(float xValue, float zValue)
     {
+        float itemZoom = 0.15f;
         itemPos = new Vector3(xValue, 1f, zValue);
         
-        if (Mathf.PerlinNoise(xValue, zValue) >= 0.2f)
+        if (Mathf.PerlinNoise(xValue * itemZoom, zValue * itemZoom) >= 0.7f)
         {
             GameObject item = Instantiate(pickup, itemPos, Quaternion.identity);
             items.Add(item);
