@@ -15,7 +15,7 @@ public class M_TerrainEditor : Editor
             (target as MarcusTerrain)?.ClearMaze();
         }
 
-        if (GUILayout.Button("Spawn items") && Application.isPlaying)
+        if (GUILayout.Button("Clear items") && Application.isPlaying)
         {
             (target as MarcusTerrain)?.ClearItems();
         }

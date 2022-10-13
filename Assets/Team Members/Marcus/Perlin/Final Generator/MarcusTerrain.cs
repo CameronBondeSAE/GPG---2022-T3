@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MarcusTerrain : MonoBehaviour
 {
     // Best mazes seem to come from 0.05 - 0.15
     // Larger zoom means tighter areas
+    public int amount;
     float zoom;
     Vector2 randomOffset;
 
@@ -24,7 +27,6 @@ public class MarcusTerrain : MonoBehaviour
     void Start()
     {
         RandomiseValues();
-        SpawnItems();
     }
 
     // Update is called once per frame
@@ -51,8 +53,6 @@ public class MarcusTerrain : MonoBehaviour
             Destroy(collectable.gameObject);
         }
         items.Clear();
-        
-        SpawnItems();
     }
 
     void RandomiseValues()
@@ -66,9 +66,9 @@ public class MarcusTerrain : MonoBehaviour
     
     void GenerateMaze(float step, Vector2 startPoint)
     {
-        for (int x = 0; x < 100; x++)
+        for (int x = 0; x < amount; x++)
         {
-            for (int z = 0; z < 100; z++)
+            for (int z = 0; z < amount; z++)
             {
                 brickPosition.x = x;
                 brickPosition.y = Mathf.PerlinNoise((x + startPoint.x) * step, (z + startPoint.y) * step);
@@ -86,14 +86,17 @@ public class MarcusTerrain : MonoBehaviour
                     GameObject go = Instantiate(wallPrefab, brickPosition, Quaternion.identity);
                     bricks.Add(go);
                     
-                    SpawnItems();
+                    SpawnItems(x, z);
                 }
             }
         }
     }
 
-    public void SpawnItems()
+    public void SpawnItems(float xValue, float zValue)
     {
-        
+        if (Mathf.PerlinNoise(xValue, zValue) >= 0.7f)
+        {
+            Instantiate(pickup, brickPosition, Quaternion.identity);
+        }
     }
 }
