@@ -34,8 +34,7 @@ public class MazeGen : MonoBehaviour
 	            Instantiate(itemPrefab, brickPosition, Quaternion.identity);
             }
 	        // Scale my brick
-	        
-	        Physics.box
+	        // TODO
         }
 
         // GameObject wall = Instantiate(caveBrickPrefab, new Vector3(size.x,0,0), Quaternion.identity);
