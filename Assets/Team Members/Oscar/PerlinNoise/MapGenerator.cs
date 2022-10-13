@@ -1,15 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using Luke;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class SpawnNoise : MonoBehaviour
+public class MapGenerator : MonoBehaviour
 {
+    public GameManager gameManager;
+    
     //all the spawned objects, and making them fit nicely in the hierarchy
     public GameObject cubePrefab;
     public GameObject item;
@@ -22,7 +20,6 @@ public class SpawnNoise : MonoBehaviour
     private List<GameObject> cubeLand = new List<GameObject>();
     private List<GameObject> ItemList = new List<GameObject>();
     private List<GameObject> AIList = new List<GameObject>();
-
 
     //Perlin noise values and required elements to spawn the maze.
     public int amount;
@@ -38,6 +35,12 @@ public class SpawnNoise : MonoBehaviour
     private float y;
     private Vector3 prefabPosition;
     public int cubeSize = 1;
+
+    private void OnEnable()
+    {
+        gameManager.OnGameStart += spawner;
+        gameManager.OnGameEnd += DeleteMap;
+    }
     
     public void Start()
     {
@@ -49,13 +52,13 @@ public class SpawnNoise : MonoBehaviour
         {
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            spawnRandomTerrain(zoomZ, zoomX, scale);
+            //spawnRandomTerrain(zoomZ, zoomX, scale);
         }
         else if (randomMap == false)
         {
             zoomX = 0.15f;
             zoomZ = 0.15f;
-            spawnRandomTerrain(zoomZ, zoomX, scale);
+            //spawnRandomTerrain(zoomZ, zoomX, scale);
         }
     }
 
@@ -71,6 +74,11 @@ public class SpawnNoise : MonoBehaviour
             Destroy(ItemList[items].gameObject);
         }
         ItemList.Clear();
+        for (int aliens = 0; aliens < AIList.Count; aliens++)
+        {
+            Destroy(AIList[aliens].gameObject);
+        }
+        AIList.Clear();
         spawner();
     }
 
@@ -127,7 +135,7 @@ public class SpawnNoise : MonoBehaviour
     
     void SpawningTheItems(Vector3 prefabPosition)
     {
-        int SpawmTheItems = Random.Range(1, 50);
+        int SpawmTheItems = Random.Range(1, 20);
         if (SpawmTheItems == 1)
         {
             GameObject spawnedItem = Instantiate(item, prefabPosition, quaternion.identity);
@@ -141,7 +149,7 @@ public class SpawnNoise : MonoBehaviour
 
     void SpawnAIInTheMaze(Vector3 prefabPosition)
     {
-        int spawnTheAI = Random.Range(1, 1000);
+        int spawnTheAI = Random.Range(1, 50);
         if (spawnTheAI == 1)
         {
             GameObject spawnedAI = Instantiate(AISpawner, prefabPosition, quaternion.identity);
@@ -151,4 +159,22 @@ public class SpawnNoise : MonoBehaviour
         }
     }
     
+    private void DeleteMap()
+    {
+        for (int cubes = 0; cubes < cubeLand.Count; cubes++)
+        {
+            Destroy(cubeLand[cubes].gameObject);
+        }
+        cubeLand.Clear();
+        for (int items = 0; items < ItemList.Count; items++)
+        {
+            Destroy(ItemList[items].gameObject);
+        }
+        ItemList.Clear();
+        for (int aliens = 0; aliens < AIList.Count; aliens++)
+        {
+            Destroy(AIList[aliens].gameObject);
+        }
+        AIList.Clear();
+    }
 }

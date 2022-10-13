@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(SpawnNoise))]
+[CustomEditor(typeof(MapGenerator))]
 public class ButtonEditor : Editor
 {
         public override void OnInspectorGUI()
@@ -13,7 +13,7 @@ public class ButtonEditor : Editor
 
                 if (GUILayout.Button("Terrain Refresh") && Application.isPlaying)
                 {
-                        (target as SpawnNoise)?.ResetTheMap();
+                        (target as MapGenerator)?.ResetTheMap();
                 }
 
         }
