@@ -34,6 +34,10 @@ public class RaycastItemAligner : MonoBehaviour
             {
                 Pick(hit.point,spawnRotation);
             }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 
