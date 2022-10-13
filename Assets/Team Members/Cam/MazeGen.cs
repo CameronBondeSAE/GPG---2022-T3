@@ -4,24 +4,51 @@ using UnityEngine;
 
 public class MazeGen : MonoBehaviour
 {
-    public Transform otherThing;
     public GameObject caveBrickPrefab;
+    public GameObject itemPrefab;
+    public int cubeSize = 1;
+    public Vector2 size;
+    public float scale = 0.01f;
+    public float perlinThreshold = 0.2f;
     
     // Start is called before the first frame update
     void Start()
     {
-        for (int x = 0; x < 100; x++)
+        for (int x = 0; x < size.x; x=x+cubeSize)
         {
-            Vector3 brickPosition;
+            Vector3 brickPosition = new Vector3();
+            float perlinNoise = Mathf.PerlinNoise(x*scale,0);
+
             brickPosition.x = x;
-            // brickPosition.y = // perin stuff
-                // Instantiate(caveBrickPrefab, brickPosition, Quaternion.identity);
+            brickPosition.y = perlinNoise;
+            brickPosition.z = 1f;
+
+            if (perlinNoise<perlinThreshold)
+            {
+	            Instantiate(caveBrickPrefab, brickPosition, Quaternion.identity);
+            }
+            else
+            {
+	            // Only if in a gap
+	            // Use Random.Range or Perlin again to determine density of items
+	            Instantiate(itemPrefab, brickPosition, Quaternion.identity);
+            }
+	        // Scale my brick
+	        
+	        Physics.box
         }
+
+        // GameObject wall = Instantiate(caveBrickPrefab, new Vector3(size.x,0,0), Quaternion.identity);
+        // wall.transform.localScale = new Vector3(size.x, cubeSize, cubeSize);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlaceItem()
     {
-        otherThing.position = new Vector3(0, Mathf.PerlinNoise(Time.time,0), 0);
+	    
+    }
+
+    public void PlaceWall()
+    {
+	    
     }
 }

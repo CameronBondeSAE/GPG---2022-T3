@@ -1,16 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class SpawnNoise : MonoBehaviour
 {
-    public GameObject Prefab;
+    public GameObject cubePrefab;
+    public GameObject ItemSpawner;
     
     private List<GameObject> cubeLand = new List<GameObject>();
+    private List<GameObject> ItemList = new List<GameObject>();
 
     public int amount;
 
@@ -24,24 +28,28 @@ public class SpawnNoise : MonoBehaviour
     private float x;
     private float y;
     private Vector3 prefabPosition;
-
+    public int cubeSize = 1;
     
     private int item = 3;
     
     GameObject CubeParent;
-
+    GameObject ItemParent;
+    
     public void Start()
     {
         CubeParent = new GameObject("CubeParent");
+        ItemParent = new GameObject("ItemParent");
         if (randomMap == true)
         {
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
+            spawnRandomTerrain(zoomZ, zoomX, scale);
         }
         else if (randomMap == false)
         {
-            zoomX = 0.2f;
-            zoomZ = 0.2f;
+            zoomX = 0.15f;
+            zoomZ = 0.15f;
+            spawnRandomTerrain(zoomZ, zoomX, scale);
         }
     }
 
@@ -52,6 +60,11 @@ public class SpawnNoise : MonoBehaviour
             Destroy(cubeLand[cubes].gameObject);
         }
         cubeLand.Clear();
+        for (int items = 0; items < ItemList.Count; items++)
+        {
+            Destroy(ItemList[items].gameObject);
+        }
+        ItemList.Clear();
         spawner();
     }
 
@@ -65,7 +78,6 @@ public class SpawnNoise : MonoBehaviour
         }
         else if (randomMap == false)
         {
-            
             spawnRandomTerrain(zoomX, zoomZ, scale);
         }
     }
@@ -74,35 +86,44 @@ public class SpawnNoise : MonoBehaviour
     {
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         
-        for (int positionX = 0; positionX < amount; positionX++)
+        for (int positionX = 0; positionX < amount; positionX=positionX+cubeSize)
         { 
-            for (int positionZ = 0; positionZ < amount; positionZ++)
+            for (int positionZ = 0; positionZ < amount; positionZ=positionZ+cubeSize)
             {
-                for (int positionY = 0; positionY < amount; positionY++)
+                float perlinValue = Mathf.PerlinNoise((positionX * zoomX), (positionZ * zoomZ));
+                
+                prefabPosition.x = positionX;
+                prefabPosition.y = perlinValue * scale;
+                prefabPosition.z = positionZ;
+                
+                if (perlinValue > .3)
                 {
-                    float perlinValue = Mathf.PerlinNoise((positionX * zoomX), (positionZ * zoomZ));
-                    
-                    prefabPosition.x = positionX;
-                    prefabPosition.y = perlinValue * scale;
-                    prefabPosition.z = positionZ;
-                    
-                    if (perlinValue > .3)
+                    if (perlinValue > .5)
                     {
-                        if (perlinValue > .5)
+                        GameObject newCube = Instantiate(cubePrefab, prefabPosition, Quaternion.identity);
+                        newCube.transform.SetParent(CubeParent.transform);
+                        cubeLand.Add(newCube.gameObject);
+                        newCube.GetComponent<Renderer>().material.color = Color.black;
+                        if (perlinValue > .8)
                         {
-                            GameObject newCube = Instantiate(Prefab, prefabPosition, Quaternion.identity);
-                            newCube.transform.SetParent(CubeParent.transform);
-                            cubeLand.Add(newCube.gameObject);
-                            newCube.GetComponent<Renderer>().material.color = Color.black;
-                            if (perlinValue > .8)
-                            {
-                                newCube.GetComponent<Renderer>().material.color = Color.red;
-                            }
+                            newCube.GetComponent<Renderer>().material.color = Color.red;
+                        }
+                    }
+                    else
+                    {
+                        int randomChance = Random.Range(1, 100);
+                        if (randomChance == 1)
+                        {
+                            GameObject spawnedItem = Instantiate(ItemSpawner, prefabPosition, quaternion.identity);
+                            
+                            spawnedItem.transform.SetParent(ItemParent.transform);
+                            ItemList.Add(spawnedItem.gameObject);
+                            
+                            spawnedItem.GetComponent<Renderer>().material.color = Color.blue;
                         }
                     }
                 }
             }
         }
     }
-
 }
