@@ -11,16 +11,20 @@ public class MarcusTerrain : MonoBehaviour
 
     Vector3 brickPosition;
     Vector3 floorPos;
+
+    public GameObject pickup;
     
     public GameObject floorPrefab;
     public GameObject wallPrefab;
     
     public List<GameObject> bricks;
+    public List<GameObject> items;
     
     // Start is called before the first frame update
     void Start()
     {
         RandomiseValues();
+        SpawnItems();
     }
 
     // Update is called once per frame
@@ -29,15 +33,26 @@ public class MarcusTerrain : MonoBehaviour
         
     }
 
-    public void ClearPrevious()
+    public void ClearMaze()
     {
-        foreach (GameObject item in bricks)
+        foreach (GameObject tile in bricks)
         {
-            Destroy(item.gameObject);
+            Destroy(tile.gameObject);
         }
         bricks.Clear();
         
         RandomiseValues();
+    }
+
+    public void ClearItems()
+    {
+        foreach (GameObject collectable in items)
+        {
+            Destroy(collectable.gameObject);
+        }
+        items.Clear();
+        
+        SpawnItems();
     }
 
     void RandomiseValues()
@@ -70,8 +85,15 @@ public class MarcusTerrain : MonoBehaviour
                 {
                     GameObject go = Instantiate(wallPrefab, brickPosition, Quaternion.identity);
                     bricks.Add(go);
+                    
+                    SpawnItems();
                 }
             }
         }
+    }
+
+    public void SpawnItems()
+    {
+        
     }
 }

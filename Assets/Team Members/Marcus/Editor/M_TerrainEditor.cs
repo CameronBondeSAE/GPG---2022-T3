@@ -12,7 +12,12 @@ public class M_TerrainEditor : Editor
 
         if (GUILayout.Button("Regenerate Terrain") && Application.isPlaying)
         {
-            (target as MarcusTerrain)?.ClearPrevious();
+            (target as MarcusTerrain)?.ClearMaze();
+        }
+
+        if (GUILayout.Button("Spawn items") && Application.isPlaying)
+        {
+            (target as MarcusTerrain)?.ClearItems();
         }
     }
 }
