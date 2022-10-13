@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 50
+  turnSpeed: 10
   distance: 1
 --- !u!1 &6654157507890702779
 GameObject:
