@@ -91,7 +91,7 @@ public class MarcusTerrain : MonoBehaviour
         }
     }
 
-    public void SpawnItems(float xValue, float zValue)
+    void SpawnItems(float xValue, float zValue)
     {
         float itemZoom = 0.15f;
         itemPos = new Vector3(xValue, 1f, zValue);
