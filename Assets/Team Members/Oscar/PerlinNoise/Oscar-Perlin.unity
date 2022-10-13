@@ -683,8 +683,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9,
     type: 3}
-  ItemSpawner: {fileID: 4410304689733740023, guid: 164388241dee9214a8ac1c3fbe7aec4d,
-    type: 3}
+  item: {fileID: 0}
+  AISpawner: {fileID: 0}
   amount: 100
   randomMap: 0
   cubeSize: 1

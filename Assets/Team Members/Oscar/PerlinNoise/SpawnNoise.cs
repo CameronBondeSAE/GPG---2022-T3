@@ -10,12 +10,21 @@ using Random = UnityEngine.Random;
 
 public class SpawnNoise : MonoBehaviour
 {
+    //all the spawned objects, and making them fit nicely in the hierarchy
     public GameObject cubePrefab;
-    public GameObject ItemSpawner;
+    public GameObject item;
+    public GameObject AISpawner;
+     
+    GameObject CubeParent; 
+    GameObject ItemParent;
+    GameObject AIParent;
     
     private List<GameObject> cubeLand = new List<GameObject>();
     private List<GameObject> ItemList = new List<GameObject>();
+    private List<GameObject> AIList = new List<GameObject>();
 
+
+    //Perlin noise values and required elements to spawn the maze.
     public int amount;
 
     private float scale = 3f;
@@ -30,15 +39,12 @@ public class SpawnNoise : MonoBehaviour
     private Vector3 prefabPosition;
     public int cubeSize = 1;
     
-    private int item = 3;
-    
-    GameObject CubeParent;
-    GameObject ItemParent;
-    
     public void Start()
     {
         CubeParent = new GameObject("CubeParent");
         ItemParent = new GameObject("ItemParent");
+        AIParent = new GameObject("AIParent");
+        
         if (randomMap == true)
         {
             zoomX = Random.Range(0.1f, 0.3f);
@@ -111,19 +117,38 @@ public class SpawnNoise : MonoBehaviour
                     }
                     else
                     {
-                        int randomChance = Random.Range(1, 100);
-                        if (randomChance == 1)
-                        {
-                            GameObject spawnedItem = Instantiate(ItemSpawner, prefabPosition, quaternion.identity);
-                            
-                            spawnedItem.transform.SetParent(ItemParent.transform);
-                            ItemList.Add(spawnedItem.gameObject);
-                            
-                            spawnedItem.GetComponent<Renderer>().material.color = Color.blue;
-                        }
+                        SpawningTheItems(prefabPosition);
+                        SpawnAIInTheMaze(prefabPosition);
                     }
                 }
             }
         }
     }
+    
+    void SpawningTheItems(Vector3 prefabPosition)
+    {
+        int SpawmTheItems = Random.Range(1, 20);
+        if (SpawmTheItems == 1)
+        {
+            GameObject spawnedItem = Instantiate(item, prefabPosition, quaternion.identity);
+            
+            spawnedItem.transform.SetParent(ItemParent.transform);
+            ItemList.Add(spawnedItem.gameObject);
+            
+            spawnedItem.GetComponent<Renderer>().material.color = Color.blue;
+        }
+    }
+
+    void SpawnAIInTheMaze(Vector3 prefabPosition)
+    {
+        int spawnTheAI = Random.Range(1, 50);
+        if (spawnTheAI == 1)
+        {
+            GameObject spawnedAI = Instantiate(AISpawner, prefabPosition, quaternion.identity);
+            
+            spawnedAI.transform.SetParent(AIParent.transform);
+            AIList.Add(spawnedAI.gameObject);
+        }
+    }
+    
 }
