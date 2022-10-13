@@ -110,7 +110,7 @@ Transform:
   - {fileID: 561430403378240219}
   - {fileID: 8555692990794580215}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1794423253392461858
 MeshFilter:
@@ -299,13 +299,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef6b0d8254239646bc7f59c7082b994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 30
+  turnSpeed: 5
+  distance: 1
 --- !u!114 &571341911324433146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +367,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 500
+  turnSpeed: 5
+  distance: 4
 --- !u!1 &1794423254282566960
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +414,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: -400
+  turnSpeed: -5
+  distance: 4
 --- !u!1 &4539377846754210193
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 500
+  turnSpeed: 50
+  distance: 1
 --- !u!1 &6654157507890702779
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,5 @@ namespace Alex
             if (collider.GetComponent<Energy>() != null)
                 neighbours.Remove(collider.gameObject);
         }
-
-
     }
 }

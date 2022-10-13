@@ -30,7 +30,7 @@ namespace Alex
             RaycastHit hitInfo;
 
 
-            if (Physics.Raycast(rb.transform.localPosition, transform.forward, out hitInfo, distance, 255))
+            if (Physics.Raycast(rb.transform.localPosition, transform.forward, out hitInfo, distance, 255, QueryTriggerInteraction.Ignore))
             {
                 Debug.DrawRay(rb.transform.localPosition, transform.forward * hitInfo.distance, Color.blue);
 
