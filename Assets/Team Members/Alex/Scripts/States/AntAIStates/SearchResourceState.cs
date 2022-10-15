@@ -23,8 +23,6 @@ namespace Alex
         {
             base.Enter();
 
-            target = FindObjectOfType<Resource>().gameObject;
-            
             Finish();
         }
 

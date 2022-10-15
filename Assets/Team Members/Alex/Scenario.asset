@@ -36,23 +36,17 @@ MonoBehaviour:
       name: movingToEnemy
     - id: 10
       name: isAttacking
-    - id: 11
-      name: isHunter
-    - id: 12
-      name: isGatherer
   actions:
   - name: Search Resource
     isDefault: 1
     state: {fileID: 2822014770511461438, guid: 4a8e44be4b0a68f468c0c300633a57b5, type: 3}
     cost: 0
-    position: {x: 653.6687, y: 42.546013}
+    position: {x: 646.6072, y: 44.46}
     pre:
     - id: 0
       value: 0
     - id: 2
       value: 0
-    - id: 12
-      value: 1
     post:
     - id: 0
       value: 1
@@ -114,12 +108,10 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 1145200663609262136, guid: a73c4891fd16c2c4bbe0117f3e15149e, type: 3}
     cost: 0
-    position: {x: 663.5829, y: 353.7239}
+    position: {x: 660.5829, y: 365.7239}
     pre:
     - id: 8
       value: 0
-    - id: 11
-      value: 1
     post:
     - id: 8
       value: 1
@@ -174,7 +166,7 @@ MonoBehaviour:
     - id: 6
       value: 1
   worldStates:
-  - position: {x: 207.02606, y: 636.56323}
+  - position: {x: 207.02606, y: 638.49}
     isAutoUpdate: 1
     list:
     - id: 0
@@ -185,21 +177,13 @@ MonoBehaviour:
       value: 0
     - id: 3
       value: 0
-    - id: 4
-      value: 0
     - id: 5
       value: 0
     - id: 7
       value: 0
     - id: 8
       value: 0
-    - id: 9
-      value: 0
     - id: 6
       value: 0
     - id: 10
       value: 0
-    - id: 11
-      value: 0
-    - id: 12
-      value: 1

@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 3196209236514557478}
   - component: {fileID: 571341911324433146}
   - component: {fileID: 5404456835436071769}
+  - component: {fileID: -478265464831815864}
   m_Layer: 0
   m_Name: AlienAI
   m_TagString: Untagged
@@ -300,7 +301,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef6b0d8254239646bc7f59c7082b994, type: 3}
   m_Name: 
@@ -335,6 +336,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51b9099fbbb1214ea37536a403ea909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTargets: []
+  resourceTargets: []
+  hasResource: 0
+  canAttack: 0
+  isAttacking: 0
+  enemyDead: 0
+  vision: {fileID: -478265464831815864}
+  rb: {fileID: 1794423253392461856}
+  collider: {fileID: 1794423253392461860}
+--- !u!114 &-478265464831815864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756aa0cffc9512340a290166c41507cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rays: 10
+  spacingScale: 1
+  resourcesInSight: []
+  otherPlayersInSight: []
+  currentTarget: {fileID: 0}
+  sensor: {fileID: 0}
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0

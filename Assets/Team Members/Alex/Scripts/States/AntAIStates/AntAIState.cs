@@ -7,16 +7,13 @@ namespace Alex
 
     public class AntAIState : Anthill.AI.AntAIState
     {
-        // Start is called before the first frame update
-        void Start()
+        protected Sensor sensor;
+
+        public override void Create(GameObject aGameObject)
         {
+            base.Create(aGameObject);
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            sensor = aGameObject.GetComponent<Sensor>();
         }
     }
 }
