@@ -7,9 +7,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/HQScript.cs" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -69,6 +66,7 @@
       <workItem from="1665017030248" duration="3062000" />
       <workItem from="1665020774639" duration="1331000" />
       <workItem from="1665616069002" duration="10028000" />
+      <workItem from="1665980234243" duration="6700000" />
     </task>
     <servers />
   </component>

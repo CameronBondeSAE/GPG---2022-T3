@@ -15,14 +15,9 @@ public class HQScript : MonoBehaviour
         Humans,
         Aliens
     };
-
     public HQType myHQType;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && (isActive))
-            ItemDeposited();
-    }
+    private Renderer rend;
 
     //tracks items deposited
     private int itemCount;
@@ -34,14 +29,30 @@ public class HQScript : MonoBehaviour
     //Neutral could be destroyed bases?
     private int HQInt;
     private string HQString;
-    
-    
-    private void Start()
-    {
+
+    private void Start(){
+        
         HQInt = (int)myHQType;
         HQString = myHQType.ToString();
         itemCount = 0;
         isActive = true;
+
+        rend = this.GetComponent<Renderer>();
+
+        if (HQInt == 1)
+            rend.material.color = Color.green;
+            
+        else if (HQInt == 2)
+            rend.material.color = Color.red;
+    }
+
+    private void OnCollisionEnter(Collision c)
+    {
+        CubeScript cubeScript = c.gameObject.GetComponent<CubeScript>();
+        
+        if((cubeScript != null) && ((c.gameObject.name != "Ground")) && ((c.gameObject.name != "Wall")))
+            cubeScript.KillSelf();
+
     }
 
     public void ItemDeposited()
@@ -87,5 +98,27 @@ public class HQScript : MonoBehaviour
         }
     }
     
+    
+    
+    //destroy self in event of terrain generation
+    private GameObject myself;
+    
+    
+    void OnEnable()
+    {
+        myself = this.GameObject();
+        EventManager.TerrainClearEvent += KillSelf;
+    }
+
+    void OnDisable()
+    {
+        EventManager.TerrainClearEvent -= KillSelf;
+    }
+
+    public void KillSelf()
+    {
+        Destroy(myself);
+    }
+
     
 }
