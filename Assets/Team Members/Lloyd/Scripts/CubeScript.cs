@@ -19,11 +19,11 @@ public class CubeScript : MonoBehaviour
         EventManager.TerrainClearEvent -= KillSelf;
     }
 
-    private void KillSelf()
+    public void KillSelf()
     {
         Destroy(myself);
     }
-    
-    
-    
+
+
+
 }

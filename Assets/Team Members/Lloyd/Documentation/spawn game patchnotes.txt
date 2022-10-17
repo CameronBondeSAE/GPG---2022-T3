@@ -1,0 +1,26 @@
+HOW TO USE LEVEL GENERATOR
+
+-- Num Cubes -- sets number of cubes to spawn, determines map size
+
+-- zoomX, zoomY -- adjusts perlin noise
+
+-- scale -- adjusts map height
+
+-- Walls Height -- adjusts how high the walls that encircle the level are
+
+-- Num Items -- controls how many items prefabs will spawn (needs to reset with each terrain generation)
+
+-- Randomise Values -- randomises zoomX, zoomY and scale
+
+-- Generate Terrain -- creates the level
+
+HQ patchnotes
+
+1.2
+
+-- Human HQ spawns dead center, colours self green
+-- Destroys all objects around it
+
+-- figure out more interesting ways to spawn Alien HQ (Distance from Human? use perlin noise?)
+
+-- Alien HQ spawns red

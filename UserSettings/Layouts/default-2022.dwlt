@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 516.8
     height: 416.40002
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 131
+  controlID: 18
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 30
+  controlID: 19
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 31
+  controlID: 20
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -368,22 +368,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Team Members/Lloyd
+    - Assets/Team Members/Lloyd/Prefabs/HQ
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Team Members/Lloyd
+  - Assets/Team Members/Lloyd/Prefabs/HQ
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\User\Documents\GPG---2022-T3
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 60}
-    m_SelectedIDs: ee7f0000
-    m_LastClickedID: 32750
-    m_ExpandedIDs: 00000000ec7f0000ee7f0000de800000ea800000fc80000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 88980000
+    m_LastClickedID: 39048
+    m_ExpandedIDs: 00000000448400004684000048840000588400006084000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -411,7 +411,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ec7f0000ee7f0000
+    m_ExpandedIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -436,21 +436,21 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 54810000
-    m_LastClickedInstanceID: 33108
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c62300003c870000a6890000
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c62300003c870000a689000092840000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: fire
-      m_OriginalName: fire
+      m_Name: Documentation
+      m_OriginalName: Documentation
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 35238
+      m_UserData: 39224
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -541,23 +541,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: eaadf3ff
-      m_LastClickedID: -807446
-      m_ExpandedIDs: aaf6ffff2efbffff
+      m_SelectedIDs: f2820000
+      m_LastClickedID: 33522
+      m_ExpandedIDs: 309c56ff8e985effd67575ffda7575ffd6c389ffdac389ff0e748eff56e49fffcc96a1ffa87ea2ff2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Plane
+        m_OriginalName: Plane
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 38640
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -601,8 +601,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -175.20001, y: -25.599976}
+      snapOffset: {x: -175.20001, y: -25.599976}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -623,7 +623,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 24.8}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -859,9 +859,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 16.677422, y: -36.48194, z: 1.9732723}
+    m_Target: {x: 30.920477, y: -57.486782, z: 102.438805}
     speed: 2
-    m_Value: {x: 16.677422, y: -36.48194, z: 1.9732723}
+    m_Value: {x: 30.920477, y: -57.486782, z: 102.438805}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -907,13 +907,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.11510743, y: 0.8396078, z: -0.49342108, w: -0.19587922}
+    m_Target: {x: -0.54490846, y: 0.037212938, z: -0.024204874, w: -0.8373375}
     speed: 2
-    m_Value: {x: -0.11555023, y: 0.84004194, z: -0.49198246, w: -0.1973096}
+    m_Value: {x: -0.5449003, y: 0.03721238, z: -0.024204511, w: -0.8373249}
   m_Size:
-    m_Target: 37.96908
+    m_Target: 113.7948
     speed: 2
-    m_Value: 37.96908
+    m_Value: 113.7948
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 515.8, y: 374.40002}
+  m_TargetSize: {x: 515.8, y: 322}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_PlayFocused: 0
   m_Gizmos: 0
   m_Stats: 0
-  m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_SelectedSizes: 02000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
@@ -995,8 +995,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -206.31999
     m_HBaseRangeMax: 206.31999
-    m_VBaseRangeMin: -149.76001
-    m_VBaseRangeMax: 149.76001
+    m_VBaseRangeMin: -128.8
+    m_VBaseRangeMax: 128.8
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
