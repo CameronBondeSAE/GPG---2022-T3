@@ -15,6 +15,8 @@ public class MarcusInput : MonoBehaviour
     private Rigidbody rb;
     public float speed;
 
+    public GameObject flames;
+
     private void OnEnable()
     {
         controller = new Teamgame();
@@ -22,6 +24,8 @@ public class MarcusInput : MonoBehaviour
 
         controller.Player.Move.performed += OnPlayerMove;
         controller.Player.Move.canceled += OnPlayerMove;
+
+        controller.Player.Throw.performed += OnPlayerThrow;
     }
 
     // Start is called before the first frame update
@@ -45,5 +49,13 @@ public class MarcusInput : MonoBehaviour
     private void OnPlayerMove(InputAction.CallbackContext input)
     {
         playerMove = input.ReadValue<Vector2>();
+    }
+
+    private void OnPlayerThrow(InputAction.CallbackContext input)
+    {
+        //I forgot this was a flame thrower
+        //I could use a particle effect with a trigger collider
+        //and somehow track the rotation of the player with the mouse
+        //and toggle the collision check when this event is performed and cancelled
     }
 }
