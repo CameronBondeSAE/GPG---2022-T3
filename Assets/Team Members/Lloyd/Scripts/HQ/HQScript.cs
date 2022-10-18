@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NodeCanvas.Tasks.Conditions;
 using Tanks;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class HQScript : MonoBehaviour
     };
     public HQType myHQType;
 
+    private GameObject myself;
+    
     private Renderer rend;
 
     //tracks items deposited
@@ -32,10 +35,11 @@ public class HQScript : MonoBehaviour
 
     private void Start(){
         
+        myself = this.GameObject();
+        
         HQInt = (int)myHQType;
         HQString = myHQType.ToString();
         itemCount = 0;
-        isActive = true;
 
         rend = this.GetComponent<Renderer>();
 
@@ -43,27 +47,31 @@ public class HQScript : MonoBehaviour
             rend.material.color = Color.green;
             
         else if (HQInt == 2)
-            rend.material.color = Color.red;
+            rend.material.color = Color.magenta;
+
+        isActive = true;
     }
 
     private void OnCollisionEnter(Collision c)
     {
         CubeScript cubeScript = c.gameObject.GetComponent<CubeScript>();
-        
-        if((cubeScript != null) && ((c.gameObject.name != "Ground")) && ((c.gameObject.name != "Wall")))
-            cubeScript.KillSelf();
 
+        if ((cubeScript != null) && ((c.gameObject.name != "Ground")) && ((c.gameObject.name != "Wall")))
+            cubeScript.KillSelf();
     }
 
     public void ItemDeposited()
     {
-        //should only go up if the person depositing is aligned (humans can't deposit at alien base & vice versa)
-        itemCount++;
-        
-        Debug.Log("Item deposited! "+HQString+" has "+itemCount+" items!");
-        
-        if (itemCount >= itemVictory)
-            GameOver();
+        if (isActive)
+        {
+            //should only go up if the person depositing is aligned (humans can't deposit at alien base & vice versa)
+            itemCount++;
+
+            Debug.Log("Item deposited! " + HQString + " has " + itemCount + " items!");
+
+            if (itemCount >= itemVictory)
+                GameOver();
+        }
     }
 
     private void GameOver()
@@ -82,6 +90,7 @@ public class HQScript : MonoBehaviour
         }
         
         Debug.Log("A stunning victory for the "+HQString+"!");
+        //Victory Event
     }
 
     public void SetTeam(int key)
@@ -99,14 +108,8 @@ public class HQScript : MonoBehaviour
     }
     
     
-    
-    //destroy self in event of terrain generation
-    private GameObject myself;
-    
-    
     void OnEnable()
     {
-        myself = this.GameObject();
         EventManager.TerrainClearEvent += KillSelf;
     }
 

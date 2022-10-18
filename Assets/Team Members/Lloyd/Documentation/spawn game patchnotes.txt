@@ -24,3 +24,9 @@ HQ patchnotes
 -- figure out more interesting ways to spawn Alien HQ (Distance from Human? use perlin noise?)
 
 -- Alien HQ spawns red
+
+1.3
+
+-- added for loops and lists for spawning items and HQ. Perlin noise now spawns vector 3 transforms, which are stored as a list, which are then looped through to spawn objects at their respective transforms (add to terrain later? also properly figure out list size constrictions and looping until it's done)
+
+-- successfully added logic for a minimum spawn distance between HQs :)
