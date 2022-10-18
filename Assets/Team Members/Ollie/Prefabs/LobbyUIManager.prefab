@@ -3449,8 +3449,7 @@ MonoBehaviour:
   - level: {fileID: 102900000, guid: bd68d9106512dc946a52fe5bf9e4339b, type: 3}
     levelNameOnUI: Blank Scene
   levelHolder: {fileID: 7837023427682337152}
-  levelButtonPrefab: {fileID: 4527488320937704448, guid: 6132f761d6c617045b04d4f91c191dbe,
-    type: 3}
+  levelButtonPrefab: {fileID: 4527488320937704448, guid: 6132f761d6c617045b04d4f91c191dbe, type: 3}
   lobbyUICanvas: {fileID: 1383001810}
   clientUI: {fileID: 0}
   startButton: {fileID: 944178262}
@@ -3460,8 +3459,7 @@ MonoBehaviour:
   levelDisplayUI: {fileID: 9179373847855768920}
   waitForHostBanner: {fileID: 0}
   playerPanel: {fileID: 1976447543}
-  clientLobbyUIPrefab: {fileID: 1804203013354047367, guid: bd6c16fb92c6524448cf3b350d4688cf,
-    type: 3}
+  clientLobbyUIPrefab: {fileID: 1804203013354047367, guid: bd6c16fb92c6524448cf3b350d4688cf, type: 3}
   ipAddressCanvas: {fileID: 483470732}
   serverIPInputField: {fileID: 251169626}
   playerPrefab: {fileID: 0}
