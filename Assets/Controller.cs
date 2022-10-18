@@ -82,7 +82,8 @@ public class Controller : MonoBehaviour
     public bool AtResource()
     {
         //return false;
-        return Vector3.Distance(vision.resourcesInSight[0].transform.position, rb.transform.position) < 0.2f;
+        return Vector3.Distance(resourceTargets[0].transform.position, rb.transform.position) < 0.2f;
+        
     }
 
     public bool HasResource()

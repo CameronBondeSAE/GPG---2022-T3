@@ -20,6 +20,7 @@ namespace Alex
 
         public override void Create(GameObject aGameObject)
         {
+            controller = aGameObject.GetComponent<Controller>();
             base.Create(aGameObject);
 
             owner = aGameObject;
@@ -36,7 +37,7 @@ namespace Alex
         {
             base.Execute(aDeltaTime, aTimeScale);
             
-            if (vision.resourcesInSight.Count >= 0 && vision.resourcesInSight != null) return;
+            if (vision.resourcesInSight.Count == 0 && vision.resourcesInSight != null) return;
             Vector3 forwards = transform.forward;
             Vector3 towardResource = vision.resourcesInSight[0].position - rb.transform.position;
             

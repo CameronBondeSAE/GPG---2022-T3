@@ -22,6 +22,7 @@ namespace Alex
             owner = aGameObject;
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
+            
         }
         public override void Enter()
         {
