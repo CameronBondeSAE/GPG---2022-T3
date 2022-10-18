@@ -11,34 +11,24 @@ namespace Alex
     {
         public bool isPickedUp;
         Rigidbody rb;
-        [SerializeField]
+        public Inventory inventory;
         Vision vision;
-
-        private Sensor sensor;
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
-            isPickedUp = false;
-        }
-        
-        /*
-        private void OnTriggerEnter(Collider other)
-        {
             
-            if(other.gameObject.CompareTag("Player"));
-            {
-                isPickedUp = true;
-                Destroy(gameObject);
-            }
+            rb = GetComponent<Rigidbody>();
+            //isPickedUp = false;
         }
-*/
+
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.layer == 9)
             {
-                isPickedUp = true;
+                inventory.resources += 1;
+                //isPickedUp = true;
                 Destroy(gameObject);
+                
             }
         }
 

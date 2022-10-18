@@ -11,6 +11,7 @@ namespace Alex
 
         // Reference to my main GameObject, so I can access all the normal code I have in there.
         public GameObject owner;
+        Vision vision;
 
         public override void Create(GameObject aGameObject)
         {
@@ -29,6 +30,8 @@ namespace Alex
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
+            //if (vision.resourcesInSight != null)
+                
             Finish();
         }
 

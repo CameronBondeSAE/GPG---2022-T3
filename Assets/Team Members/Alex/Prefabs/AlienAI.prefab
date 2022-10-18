@@ -84,6 +84,8 @@ GameObject:
   - component: {fileID: 571341911324433146}
   - component: {fileID: 5404456835436071769}
   - component: {fileID: -478265464831815864}
+  - component: {fileID: 5602566739967719583}
+  - component: {fileID: 1387461434300845896}
   m_Layer: 0
   m_Name: AlienAI
   m_TagString: Untagged
@@ -259,7 +261,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bbf0d2b0b43f8e49bd6f46990100a39, type: 3}
   m_Name: 
@@ -273,7 +275,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56c80a312bbd1db4a8760a6469642d08, type: 3}
   m_Name: 
@@ -287,7 +289,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15b4867bbe3f19440aad9c792f680787, type: 3}
   m_Name: 
@@ -336,15 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51b9099fbbb1214ea37536a403ea909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTargets: []
-  resourceTargets: []
-  hasResource: 0
-  canAttack: 0
-  isAttacking: 0
-  enemyDead: 0
-  vision: {fileID: -478265464831815864}
-  rb: {fileID: 1794423253392461856}
-  collider: {fileID: 1794423253392461860}
+  controller: {fileID: 1387461434300845896}
 --- !u!114 &-478265464831815864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +357,43 @@ MonoBehaviour:
   otherPlayersInSight: []
   currentTarget: {fileID: 0}
   sensor: {fileID: 0}
+--- !u!114 &5602566739967719583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de656f1aca463e4aa2153dacc54f3a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources: 0
+  capacityReached: 0
+--- !u!114 &1387461434300845896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e6d5ee52bfa864297d7812368a5fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTargets: []
+  resourceTargets: []
+  dropOffPoints: []
+  hasResource: 0
+  canAttack: 0
+  isAttacking: 0
+  enemyDead: 0
+  vision: {fileID: -478265464831815864}
+  rb: {fileID: 1794423253392461856}
+  collider: {fileID: 1794423253392461860}
+  inventory: {fileID: 5602566739967719583}
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0

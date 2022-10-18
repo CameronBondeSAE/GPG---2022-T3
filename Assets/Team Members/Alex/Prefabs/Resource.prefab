@@ -112,7 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPickedUp: 0
-  vision: {fileID: 0}
+  inventory: {fileID: 5602566739967719583, guid: fefbbf03fac3f534eb25555b7dfdb74c,
+    type: 3}
 --- !u!54 &406841744869549978
 Rigidbody:
   m_ObjectHideFlags: 0

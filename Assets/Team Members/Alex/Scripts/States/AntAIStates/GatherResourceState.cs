@@ -13,7 +13,7 @@ namespace Alex
 
         public float turnSpeed = 1;
         private Rigidbody rb;
-        private Resource resource;
+        Controller controller;
 
         public override void Create(GameObject aGameObject)
         {
@@ -37,7 +37,15 @@ namespace Alex
             //Vector3 myPosition = transform.position;
             //Vector3 targetPosition = vision.resourcesInSight[0].position;
 
-            sensor.GatherResource();
+            Vector3 myPosition = transform.position;
+            Vector3 targetPosition = vision.resourcesInSight[0].position;
+
+
+            if (Vector3.Distance(myPosition, targetPosition) < 0.2f)
+                controller.inventory.resources += 1;
+            vision.resourcesInSight.Remove(transform);
+            if (controller.inventory.capacityReached)
+                controller.hasResource = true;
             
                 
             

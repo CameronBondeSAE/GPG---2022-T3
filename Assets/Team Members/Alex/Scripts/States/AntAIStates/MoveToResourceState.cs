@@ -10,6 +10,9 @@ namespace Alex
         public GameObject owner;
         [SerializeField]
         Vision vision;
+        public float turnSpeed = 1;
+        Resource resource;
+        Controller controller;
 
         
 
@@ -33,17 +36,13 @@ namespace Alex
         {
             base.Execute(aDeltaTime, aTimeScale);
             
-            if (vision.resourcesInSight.Count == 0) return;
-            sensor.MoveToResource();
-            
-            /*
+            if (vision.resourcesInSight.Count >= 0 && vision.resourcesInSight != null) return;
             Vector3 forwards = transform.forward;
-            Vector3 towardResource = vision.resourcesInSight[0].position - rb.transform.position ;
-            float angle = Vector3.SignedAngle(forwards, towardResource, Vector3.up);
-            if (vision.resourcesInSight == null) ;
-            rb.AddTorque(new Vector3(0,angle * turnSpeed,0));
-            */
+            Vector3 towardResource = vision.resourcesInSight[0].position - rb.transform.position;
             
+            float angle = Vector3.SignedAngle(forwards, towardResource, Vector3.up);
+            rb.AddTorque(new Vector3(0, angle * controller.turnSpeed, 0));
+ 
             Finish();
         }
     }

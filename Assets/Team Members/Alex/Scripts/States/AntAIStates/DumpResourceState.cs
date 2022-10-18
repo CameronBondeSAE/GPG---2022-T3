@@ -25,6 +25,15 @@ namespace Alex
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
+         /*   if (hasResource)
+            {
+                Vector3 forwards = transform.forward;
+                Vector3 towardDropOffPoint = dropOffPoints[0].transform.position - rb.transform.position;
+                float angle = Vector3.SignedAngle(forwards, towardDropOffPoint, Vector3.up);
+                if (dropOffPoints == null) ;
+                rb.AddTorque(new Vector3(0, angle * turnSpeed, 0));
+            }
+         */   
             Finish();
         }
 
