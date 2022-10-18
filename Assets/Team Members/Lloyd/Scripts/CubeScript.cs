@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,11 +7,11 @@ using UnityEngine;
 public class CubeScript : MonoBehaviour
 {
     private GameObject myself;
-    
-    
+
     void OnEnable()
     {
         myself = this.GameObject();
+
         EventManager.TerrainClearEvent += KillSelf;
     }
 
@@ -19,11 +20,8 @@ public class CubeScript : MonoBehaviour
         EventManager.TerrainClearEvent -= KillSelf;
     }
 
-    private void KillSelf()
+    public void KillSelf()
     {
         Destroy(myself);
     }
-    
-    
-    
 }
