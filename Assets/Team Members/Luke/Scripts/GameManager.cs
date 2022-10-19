@@ -7,7 +7,7 @@ namespace Luke
 {
 public class GameManager : MonoBehaviour
 {
-	public static GameManager Singleton;
+	public static GameManager singleton;
 	
 	public event Action OnGameStart;
 	public event Action OnGameEnd;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
 	void Awake()
 	{
-		Singleton = this;
+		singleton = this;
 	}
 	
     // Start is called before the first frame update
