@@ -3458,6 +3458,8 @@ MonoBehaviour:
     levelNameOnUI: John's Level
   - level: {fileID: 102900000, guid: 7759905957c5f6d40be209d6bfc51f74, type: 3}
     levelNameOnUI: Cam's MazeGen Level
+  - level: {fileID: 102900000, guid: b7d0c809e3748604ab7cd3c9a01249b8, type: 3}
+    levelNameOnUI: Oscar's Level
   levelHolder: {fileID: 7837023427682337152}
   levelButtonPrefab: {fileID: 4527488320937704448, guid: 6132f761d6c617045b04d4f91c191dbe,
     type: 3}

@@ -14,4 +14,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Team Members/Ollie/Scenes/Base Scene.unity
     guid: ce42584e526b96a4b850e524f32a61bf
+  - enabled: 1
+    path: Assets/Team Members/Luke/Scenes/LukeTest.unity
+    guid: 72c88c35f6df17b4b9c5542bf36f9189
+  - enabled: 1
+    path: Assets/Team Members/Lloyd/Scene/LloydPerlinTest.unity
+    guid: f5848a0e1fed9db4384ae5c9ec95dd01
+  - enabled: 1
+    path: Assets/Team Members/Marcus/Perlin/PerlinTest.unity
+    guid: c95771f92ccbf364d88098be62fa0e9c
+  - enabled: 1
+    path: Assets/Team Members/John/John's Perlin Terrain.unity
+    guid: 43849588c6be19445b7e2fe685058378
+  - enabled: 1
+    path: Assets/Team Members/Cam/MazeGen.unity
+    guid: 7759905957c5f6d40be209d6bfc51f74
+  - enabled: 1
+    path: Assets/Team Members/Oscar/PerlinNoise/Oscar-Perlin.unity
+    guid: b7d0c809e3748604ab7cd3c9a01249b8
   m_configObjects: {}
