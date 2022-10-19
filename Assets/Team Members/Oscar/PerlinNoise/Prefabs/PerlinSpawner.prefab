@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60111928508bcc743beb5af1efc4ea6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
+  gameManager: {fileID: 8604443078459999940, guid: 952abc9d280211a4e96761a0295d83fa,
+    type: 3}
+  cubePrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9,
+    type: 3}
+  item: {fileID: 0}
+  AISpawner: {fileID: 0}
   amount: 50
   randomMap: 0
+  cubeSize: 1
