@@ -37,14 +37,10 @@ public class MapGenerator : MonoBehaviour
     private Vector3 prefabPosition;
     public int cubeSize = 1;
 
-    private void OnEnable()
+    public void Start()
     {
         gameManager.OnGameStart += Spawner;
         gameManager.OnGameEnd += DeleteMap;
-    }
-    
-    public void Start()
-    {
         
         CubeParent = new GameObject("CubeParent");
         BarrelParent = new GameObject("ItemParent");
@@ -56,12 +52,14 @@ public class MapGenerator : MonoBehaviour
             //randoms
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
+            spawnTerrain(zoomX,zoomZ);
         }
         else if (randomMap == false)
         {
             //standard averages
             zoomX = 0.15f;
             zoomZ = 0.15f;
+            spawnTerrain(zoomX,zoomZ);
         }
     }
 
@@ -91,15 +89,15 @@ public class MapGenerator : MonoBehaviour
         {
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            spawnTerrain(zoomX, zoomZ, scale);
+            spawnTerrain(zoomX, zoomZ);
         }
         else if (randomMap == false)
         {
-            spawnTerrain(zoomX, zoomZ, scale);
+            spawnTerrain(zoomX, zoomZ);
         }
     }
     
-    public void spawnTerrain(float zoomX, float zoomZ, float scale)
+    public void spawnTerrain(float zoomX, float zoomZ)
     {
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         
@@ -129,7 +127,7 @@ public class MapGenerator : MonoBehaviour
                     else
                     {
                         SpawningTheBarrels(prefabPosition);
-                        //SpawnAIInTheMaze(prefabPosition);     //not yet
+                        SpawnAIInTheMaze(prefabPosition);
                         SpawningTheItems(prefabPosition);
                     }
                 }
