@@ -52,14 +52,14 @@ public class MapGenerator : MonoBehaviour
             //randoms
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            spawnTerrain(zoomX,zoomZ);
+            //spawnTerrain(zoomX,zoomZ);
         }
         else if (randomMap == false)
         {
             //standard averages
             zoomX = 0.15f;
             zoomZ = 0.15f;
-            spawnTerrain(zoomX,zoomZ);
+            //spawnTerrain(zoomX,zoomZ);
         }
     }
 
