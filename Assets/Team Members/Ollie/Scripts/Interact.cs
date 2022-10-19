@@ -25,35 +25,28 @@ public class Interact : NetworkBehaviour
     [ServerRpc]
     private void RequestInteractWithServerRpc()
     {
-        Vector3 dropPoint = transform.position + transform.forward * 5;
+        Vector3 dropPoint = transform.position + transform.forward * 2;
         if (heldItems > 0 && heldObject != null)
         {
             heldItems--;
             heldObject.GetComponent<Item>().GetDropPointClientRpc(dropPoint);
-            StartCoroutine(ClientDelay());
+            heldObject.GetComponent<Item>().GetDroppedClientRpc();
         }
     }
 
-    //HACK: Occasionally the object shows up for a frame in it's original position
-    //before teleporting to it's correct position. WFS delay doesn't fix for some reason.
-    private IEnumerator ClientDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        heldObject.GetComponent<Item>().GetDroppedClientRpc();
-    }
-    
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (IsServer)
         {
             if (other.GetComponent<IPickupable>() != null)
             {
-                //objectNearby = other.gameObject;
-                other.transform.parent.gameObject.SetActive(false);
-                heldObject = other.gameObject;
-                heldItems++;
-                heldObject.GetComponent<Item>().GetPickedUpClientRpc();
+                if (!other.gameObject.GetComponent<Item>().locked)
+                {
+                    other.transform.parent.gameObject.SetActive(false);
+                    heldObject = other.gameObject;
+                    heldItems++;
+                    heldObject.GetComponent<Item>().GetPickedUpClientRpc();
+                }
             }
         }
     }

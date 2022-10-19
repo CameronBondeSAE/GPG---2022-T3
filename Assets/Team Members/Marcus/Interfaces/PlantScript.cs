@@ -11,11 +11,15 @@ public class PlantScript : MonoBehaviour, IFlammable
     private bool hasBurned = false;
     private float burnDuration;
 
+    private Renderer objColour;
+
     // Start is called before the first frame update
     void Start()
     {
         health.damagedEvent += FlowerHurty;
-        this.GetComponent<Renderer>().material.color = Color.green;
+        
+        objColour = this.GetComponent<Renderer>();
+        objColour.material.color = Color.green;
     }
 
     // Update is called once per frame
@@ -34,7 +38,7 @@ public class PlantScript : MonoBehaviour, IFlammable
         }
         else if (hasBurned)
         {
-            this.GetComponent<Renderer>().material.color = Color.black;
+            objColour.material.color = Color.black;
         }
     }
 

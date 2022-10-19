@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Tanks;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class MarcusTerrain : MonoBehaviour
 {
+    public bool randomness;
+    
     // Best mazes seem to come from 0.05 - 0.15
     // Larger zoom means tighter areas
     public int amount;
@@ -17,17 +20,26 @@ public class MarcusTerrain : MonoBehaviour
     Vector3 floorPos;
 
     public GameObject pickup;
+    public GameObject swarmer;
     
     public GameObject floorPrefab;
     public GameObject wallPrefab;
     
     public List<GameObject> bricks;
     public List<GameObject> items;
+    public List<GameObject> aliens;
     
     // Start is called before the first frame update
     void Start()
     {
-        RandomiseValues();
+        if (randomness)
+        {
+            RandomiseValues();
+        }
+        else
+        {
+            GenerateMaze(0.1f, new Vector2(500, 500));
+        }
     }
 
     // Update is called once per frame
@@ -50,8 +62,20 @@ public class MarcusTerrain : MonoBehaviour
             Destroy(collectable.gameObject);
         }
         items.Clear();
-        
-        RandomiseValues();
+        // Clear the current swarmer aliens
+        foreach (GameObject ai in aliens)
+        {
+            Destroy(ai.gameObject);
+        }
+
+        if (randomness)
+        {
+            RandomiseValues();
+        }
+        else
+        {
+            GenerateMaze(0.1f, new Vector2(500, 500));
+        }
     }
 
     void RandomiseValues()
@@ -100,6 +124,11 @@ public class MarcusTerrain : MonoBehaviour
         {
             GameObject item = Instantiate(pickup, itemPos, Quaternion.identity);
             items.Add(item);
+        }
+        else if (Mathf.PerlinNoise(xValue * itemZoom, zValue * itemZoom) <= 0.4f)
+        {
+            GameObject ai = Instantiate(swarmer, itemPos, Quaternion.identity);
+            aliens.Add(ai);
         }
     }
 }
