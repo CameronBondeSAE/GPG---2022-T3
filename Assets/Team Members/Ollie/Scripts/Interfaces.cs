@@ -6,7 +6,7 @@ using UnityEngine;
 
 public interface IPickupable
 {
-    void PickedUp(Transform parentTransform);
+    void PickedUp();
     void PutDown();
     bool isHeld { get; set; }
     bool locked { get; set; }

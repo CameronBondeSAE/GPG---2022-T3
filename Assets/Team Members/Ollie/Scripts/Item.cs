@@ -13,18 +13,18 @@ public enum ItemType
     Goal
 }
 
-public class Item : NetworkBehaviour, IGoalItem
+public class Item : NetworkBehaviour, IGoalItem, IPickupable
 {
     public NetworkManager networkManager;
     public NetworkVariable<Vector3> networkPosition;
     public Transform parentTransform;
     private Vector3 tempPosition;
     private Transform tempParentTransform;
-    //public BoxCollider boxCollider;
     public BoxCollider[] boxColliders;
-    public bool isHeld { get; set; }
-    public bool locked { get; set; }
+    
     public ItemType itemType;
+
+    #region SetUps
 
     private void Awake()
     {
@@ -33,26 +33,16 @@ public class Item : NetworkBehaviour, IGoalItem
         networkManager.OnClientConnectedCallback += SetUpItemClient;
         networkPosition.OnValueChanged += OnValueChanged;
     }
-
-    private void Start()
-    {
-        SetUpItem();
-    }
-
-    private void OnValueChanged(Vector3 previousValue, Vector3 newValue)
-    {
-        if (previousValue != newValue)
-        {
-            transform.parent.position = newValue;
-        }
-    }
-
     private void OnDisable()
     {
         networkManager.OnServerStarted -= SetUpItem;
         networkManager.OnClientConnectedCallback -= SetUpItemClient;
     }
-
+    
+    private void Start()
+    {
+        SetUpItem();
+    }
     void OnGUI()
     {
         //HACK: Was for forcing Item's variables to be set with a button
@@ -100,7 +90,22 @@ public class Item : NetworkBehaviour, IGoalItem
             parentTransform = transform.parent.GetComponent<Transform>();
         }
     }
+    
+    #endregion
 
+    #region Networking
+
+    private void OnValueChanged(Vector3 previousValue, Vector3 newValue)
+    {
+        if (previousValue != newValue)
+        {
+            transform.parent.position = newValue;
+        }
+    }
+    
+    //TODO: Implement some sort of cooldown so item can't be picked up again immediately
+    //Otherwise you can "drop" it into another player
+    //Or drop it on yourself and immediately pick it up
     [ClientRpc]
     public void GetDropPointClientRpc(Vector3 dropPoint)
     {
@@ -112,12 +117,40 @@ public class Item : NetworkBehaviour, IGoalItem
     [ClientRpc]
     public void GetDroppedClientRpc()
     {
-        parentTransform.gameObject.SetActive(true);
+        PutDown();
     }
 
     [ClientRpc]
     public void GetPickedUpClientRpc()
     {
+        PickedUp();
+    }
+    
+    #endregion
+    
+    #region IPickupable Interface
+    
+    public bool isHeld { get; set; }
+    public bool locked { get; set; }
+    public void PickedUp()
+    {
         parentTransform.gameObject.SetActive(false);
+    }
+
+    public void PutDown()
+    {
+        parentTransform.gameObject.SetActive(true);
+        StartCoroutine(ItemLockCooldown());
+    }
+    
+    #endregion
+    
+    //HACK: Occasionally the object shows up for a frame in it's original position
+    //before teleporting to it's correct position. WFS delay doesn't fix for some reason.
+    private IEnumerator ItemLockCooldown()
+    {
+        locked = true;
+        yield return new WaitForSeconds(1f);
+        locked = false;
     }
 }
