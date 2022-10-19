@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Tanks;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,12 +18,14 @@ public class MarcusTerrain : MonoBehaviour
     Vector3 floorPos;
 
     public GameObject pickup;
+    public GameObject swarmer;
     
     public GameObject floorPrefab;
     public GameObject wallPrefab;
     
     public List<GameObject> bricks;
     public List<GameObject> items;
+    public List<GameObject> aliens;
     
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,11 @@ public class MarcusTerrain : MonoBehaviour
             Destroy(collectable.gameObject);
         }
         items.Clear();
+        // Clear the current swarmer aliens
+        foreach (GameObject ai in aliens)
+        {
+            Destroy(ai.gameObject);
+        }
         
         RandomiseValues();
     }
@@ -100,6 +108,11 @@ public class MarcusTerrain : MonoBehaviour
         {
             GameObject item = Instantiate(pickup, itemPos, Quaternion.identity);
             items.Add(item);
+        }
+        else if (Mathf.PerlinNoise(xValue * itemZoom, zValue * itemZoom) <= 0.4f)
+        {
+            GameObject ai = Instantiate(swarmer, itemPos, Quaternion.identity);
+            aliens.Add(ai);
         }
     }
 }
