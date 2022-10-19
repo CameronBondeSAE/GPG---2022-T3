@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public class MarcusTerrain : MonoBehaviour
 {
+    public bool randomness;
+    
     // Best mazes seem to come from 0.05 - 0.15
     // Larger zoom means tighter areas
     public int amount;
@@ -30,7 +32,14 @@ public class MarcusTerrain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RandomiseValues();
+        if (randomness)
+        {
+            RandomiseValues();
+        }
+        else
+        {
+            GenerateMaze(0.1f, new Vector2(500, 500));
+        }
     }
 
     // Update is called once per frame
@@ -58,8 +67,15 @@ public class MarcusTerrain : MonoBehaviour
         {
             Destroy(ai.gameObject);
         }
-        
-        RandomiseValues();
+
+        if (randomness)
+        {
+            RandomiseValues();
+        }
+        else
+        {
+            GenerateMaze(0.1f, new Vector2(500, 500));
+        }
     }
 
     void RandomiseValues()
