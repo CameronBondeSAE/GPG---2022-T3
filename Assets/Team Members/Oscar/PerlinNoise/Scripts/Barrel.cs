@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barrel : MonoBehaviour, Flammable
+public class Barrel : MonoBehaviour, IFlammable
 {
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +14,11 @@ public class Barrel : MonoBehaviour, Flammable
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    public void SetOnFire()
     {
         
     }
