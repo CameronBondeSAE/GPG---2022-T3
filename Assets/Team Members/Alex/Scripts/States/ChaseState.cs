@@ -14,7 +14,7 @@ namespace Alex
 
         public void OnEnable()
         {
-            turnTowards.target = target.transform;
+            turnTowards.targetTransform = target.transform;
             turnTowards.enabled = true;
         }
         

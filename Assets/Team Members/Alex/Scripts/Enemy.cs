@@ -1,34 +1,29 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Alex
 {
-
-    public class Resource : MonoBehaviour
+    public class Enemy : MonoBehaviour
     {
-        
+
+
         Rigidbody rb;
         Vision vision;
         Inventory inventory;
 
         private void Awake()
         {
+            vision = GetComponent<Vision>();
             inventory = GetComponent<Inventory>();
             rb = GetComponent<Rigidbody>();
             //isPickedUp = false;
         }
-
+        
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.layer == 9)
             {
-                Inventory inventory = collision.gameObject.GetComponent<Inventory>();
-                inventory.resources += 1;
-                Vision vision = collision.gameObject.GetComponent<Vision>();
-                vision.resourcesInSight.Remove(transform);
                 Destroy(gameObject);
             }
         }

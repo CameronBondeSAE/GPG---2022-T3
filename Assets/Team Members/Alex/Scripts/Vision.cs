@@ -10,13 +10,15 @@ namespace Alex
         public int rays = 10;
         public float spacingScale = 1f;
         public List<Transform> resourcesInSight;
-        public List<Transform> otherPlayersInSight;
+        public List<Transform> enemyInSight;
+        public List<Transform> dropOffPointsFound;
         public GameObject currentTarget;
         public Sensor sensor;
         
 
         private void FixedUpdate()
         {
+            enemyInSight.Clear();
             resourcesInSight.Clear();
             for (int i = -rays; i < rays; i++)
             {
@@ -37,6 +39,26 @@ namespace Alex
                     if (!resourcesInSight.Contains(resource))
                     {
                         resourcesInSight.Add(resource);
+                    }
+                }
+                
+                if (HitInfo.collider.GetComponent<DropOffPoint>() != null)
+                {
+                    Transform resource = HitInfo.transform;
+
+                    if (!dropOffPointsFound.Contains(resource))
+                    {
+                        dropOffPointsFound.Add(resource);
+                    }
+                }
+
+                if (HitInfo.collider.GetComponent<Enemy>() != null)
+                {
+                    Transform enemy = HitInfo.transform;
+
+                    if (!enemyInSight.Contains(enemy))
+                    {
+                        enemyInSight.Add(enemy);
                     }
                 }
             }

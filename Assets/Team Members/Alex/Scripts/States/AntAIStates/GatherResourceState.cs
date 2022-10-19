@@ -20,6 +20,7 @@ namespace Alex
             base.Create(aGameObject);
 
             owner = aGameObject;
+            controller = aGameObject.GetComponent<Controller>();
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
             
@@ -38,19 +39,23 @@ namespace Alex
             //Vector3 myPosition = transform.position;
             //Vector3 targetPosition = vision.resourcesInSight[0].position;
 
-            Vector3 myPosition = transform.position;
-            Vector3 targetPosition = vision.resourcesInSight[0].position;
+            if (vision.resourcesInSight.Count > 0)
+            {
+                Vector3 myPosition = transform.position;
+                Vector3 targetPosition = vision.resourcesInSight[0].transform.position;
 
 
-            if (Vector3.Distance(myPosition, targetPosition) < 0.2f)
-                controller.inventory.resources += 1;
-            vision.resourcesInSight.Remove(transform);
-            if (controller.inventory.capacityReached)
-                controller.hasResource = true;
+                if (Vector3.Distance(myPosition, targetPosition) < 0.2f)
+                    controller.inventory.resources += 1;
+
+                if (controller.inventory.capacityReached)
+                    controller.hasResource = true;
+                Finish();
+            }
+
+
+
             
-                
-            
-            Finish();
         }
 
         public override void Exit()

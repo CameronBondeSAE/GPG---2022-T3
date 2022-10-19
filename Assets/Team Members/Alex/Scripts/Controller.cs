@@ -11,14 +11,15 @@ using UnityEngine.ProBuilder.MeshOperations;
 public class Controller : MonoBehaviour
 {
     public List<Target> enemyTargets;
-    public List<Resource> resourceTargets;
+    public List<Transform> resourceTargets;
     public List<DropOffPoint> dropOffPoints;
+    public List<Transform> enemies;
     public bool hasResource;
     public bool canAttack;
     public bool isAttacking;
     public bool enemyDead;
     [SerializeField]
-    Vision vision;
+    public Vision vision;
 
     public Rigidbody rb;
     public Collider collider;
@@ -28,38 +29,30 @@ public class Controller : MonoBehaviour
     public void Awake()
     {
         hasResource = false;
-        resourceTargets = FindObjectsOfType<Resource>().ToList();
+        vision = FindObjectOfType<Vision>();
         enemyTargets = FindObjectsOfType<Target>().ToList();
         dropOffPoints = FindObjectsOfType<DropOffPoint>().ToList();
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
-        resourceTargets = FindObjectsOfType<Resource>().ToList();
+        enemies = vision.enemyInSight;
+        resourceTargets = vision.resourcesInSight;
     }
 
     public bool CanSeeEnemy()
     {
-        foreach (Target visionTarget in enemyTargets)
-        {
-            RaycastHit RayHitInfo;
-
-            if (Physics.Linecast(transform.position, visionTarget.transform.position, out RayHitInfo, 255,
-                    QueryTriggerInteraction.Ignore))
-
-            {
-                if (RayHitInfo.transform == visionTarget)
-                    return true;
-            }
-        }
-
-        return false;
+        return enemies.Count > 0;
     }
 
 
     public bool CanAttack()
     {
-        return false;
+        if (vision.enemyInSight.Count > 0)
+        {
+            return Vector3.Distance(vision.enemyInSight[0].transform.position, rb.transform.position) < 0.2f;
+        }
+        else return false;
     }
 
     public bool IsAttacking()
@@ -82,8 +75,11 @@ public class Controller : MonoBehaviour
     public bool AtResource()
     {
         //return false;
-        return Vector3.Distance(resourceTargets[0].transform.position, rb.transform.position) < 0.2f;
-        
+        if (vision.resourcesInSight.Count > 0)
+        {
+            return Vector3.Distance(vision.resourcesInSight[0].transform.position, rb.transform.position) < 0.2f;
+        }
+        else return false;
     }
 
     public bool HasResource()
@@ -91,9 +87,13 @@ public class Controller : MonoBehaviour
         return inventory.capacityReached;
     }
 
-    public bool AtBase()
+    public bool AtDropOffPoint()
     {
-        return false;
+        if (vision.dropOffPointsFound.Count > 0)
+        {
+            return Vector3.Distance(vision.dropOffPointsFound[0].transform.position, rb.transform.position) < 0.2f;
+        }
+        else return false;
     }
 
     public bool ResourceCollected()

@@ -11,16 +11,15 @@ namespace Alex
         public GameObject owner;
         [SerializeField]
         Vision vision;
-
-        public float turnSpeed = 1;
-
-        private Rigidbody rb;
+        Rigidbody rb;
+        Controller controller;
 
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
 
             owner = aGameObject;
+            controller = aGameObject.GetComponent<Controller>();
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
         }
@@ -34,12 +33,13 @@ namespace Alex
         {
             base.Execute(aDeltaTime, aTimeScale);
             
-            if (vision.resourcesInSight.Count == 0) return;
-            Vector3 forwards = transform.forward;
-            Vector3 towardResource = vision.resourcesInSight[0].position - transform.position ;
-            float angle = Vector3.SignedAngle(forwards, towardResource, Vector3.up);
-            rb.AddTorque(new Vector3(0,angle * turnSpeed,0));
-            Finish();
+            if (vision.enemyInSight.Count == 0 && vision.enemyInSight != null) return;
+            if (vision.enemyInSight.Count > 0)
+            {
+                owner.GetComponent<TurnTowards>().targetPosition = vision.enemyInSight[0].transform.position;
+                //owner.GetComponent<TurnTowards>().targetTransform = vision.resourcesInSight[0].transform.position;
+                Finish();
+            }
         }
     }
 }

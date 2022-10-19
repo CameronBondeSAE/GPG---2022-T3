@@ -8,19 +8,21 @@ public class Inventory : MonoBehaviour
 {
     public int resources;
     public bool capacityReached;
-    private Sensor sensor;
+    Sensor sensor;
 
     private void Start()
     {
+        sensor = GetComponent<Sensor>();
         resources = 0;
     }
 
     public void Update()
     {
-        if (resources >= 10)
+        if (resources >= 5)
         {
+            resources = 5;
             capacityReached = true;
-            resources = 10;
+            //Debug.Log("Heading to drop off point");
         }
     } 
 }

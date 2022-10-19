@@ -20,10 +20,11 @@ namespace Alex
 
         public override void Create(GameObject aGameObject)
         {
-            controller = aGameObject.GetComponent<Controller>();
+            
             base.Create(aGameObject);
 
             owner = aGameObject;
+            controller = aGameObject.GetComponent<Controller>();
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
         }
@@ -36,15 +37,15 @@ namespace Alex
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
-            
+
             if (vision.resourcesInSight.Count == 0 && vision.resourcesInSight != null) return;
-            Vector3 forwards = transform.forward;
-            Vector3 towardResource = vision.resourcesInSight[0].position - rb.transform.position;
-            
-            float angle = Vector3.SignedAngle(forwards, towardResource, Vector3.up);
-            rb.AddTorque(new Vector3(0, angle * controller.turnSpeed, 0));
- 
-            Finish();
+            if (vision.resourcesInSight.Count > 0)
+            {
+                owner.GetComponent<TurnTowards>().targetPosition = vision.resourcesInSight[0].transform.position;
+                //owner.GetComponent<TurnTowards>().targetTransform = vision.resourcesInSight[0].transform.position;
+                Finish();
+            }
         }
     }
 }
+

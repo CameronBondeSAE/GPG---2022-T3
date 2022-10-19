@@ -14,7 +14,7 @@ namespace Alex
 
         public void OnEnable()
         {
-            turnTowards.target = food.transform;
+            turnTowards.targetTransform = food.transform;
             turnTowards.enabled = true;
             wonder.enabled = true;
         }

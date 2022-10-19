@@ -22,7 +22,7 @@ namespace Alex
             aWorldState.Set(Scenario.seeResource, controller.CanSeeResource());
             aWorldState.Set(Scenario.atResource, controller.AtResource());
             aWorldState.Set(Scenario.hasResource, controller.HasResource());
-            aWorldState.Set(Scenario.atBase, controller.AtBase());
+            aWorldState.Set(Scenario.atBase, controller.AtDropOffPoint());
             aWorldState.Set(Scenario.resourceCollected, controller.ResourceCollected());
 
             aWorldState.Set(Scenario.seeEnemy, controller.CanSeeEnemy());

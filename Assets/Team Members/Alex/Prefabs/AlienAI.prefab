@@ -58,7 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efeaf7902444d9943ab76c1ac377d497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 6849637853615865093, guid: dc85734c4cb468a4e8523dbc44110406, type: 3}
+  targetTransform: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
   turnSpeed: 0
 --- !u!1 &1794423253392461865
 GameObject:
@@ -86,7 +87,8 @@ GameObject:
   - component: {fileID: -478265464831815864}
   - component: {fileID: 5602566739967719583}
   - component: {fileID: 1387461434300845896}
-  m_Layer: 0
+  - component: {fileID: -5533211695306525179}
+  m_Layer: 9
   m_Name: AlienAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +219,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c247682035983d04690b73f6dfeab4d8, type: 3}
   m_Name: 
@@ -232,12 +234,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efeaf7902444d9943ab76c1ac377d497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 6849637853615865093, guid: dc85734c4cb468a4e8523dbc44110406, type: 3}
+  targetTransform: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
   turnSpeed: 10
 --- !u!114 &3167607737926146247
 MonoBehaviour:
@@ -354,7 +357,8 @@ MonoBehaviour:
   rays: 10
   spacingScale: 1
   resourcesInSight: []
-  otherPlayersInSight: []
+  enemyInSight: []
+  dropOffPointsFound: []
   currentTarget: {fileID: 0}
   sensor: {fileID: 0}
 --- !u!114 &5602566739967719583
@@ -386,6 +390,7 @@ MonoBehaviour:
   enemyTargets: []
   resourceTargets: []
   dropOffPoints: []
+  enemies: []
   hasResource: 0
   canAttack: 0
   isAttacking: 0
@@ -394,6 +399,36 @@ MonoBehaviour:
   rb: {fileID: 1794423253392461856}
   collider: {fileID: 1794423253392461860}
   inventory: {fileID: 5602566739967719583}
+  turnSpeed: 0
+--- !u!114 &-5533211695306525179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedExposedParameters: []
+  _boundGraphSerialization: 
+  _boundGraphObjectReferences: []
+  _boundGraphSource:
+    _version: 0
+    _category: 
+    _comments: 
+    _translation: {x: 0, y: 0}
+    _zoomFactor: 1
+  _firstActivation: 0
+  _enableAction: 0
+  _disableAction: 0
+  _lockBoundGraphPrefabOverrides: 1
+  _preInitializeSubGraphs: 0
+  _updateMode: 0
+  _graph: {fileID: 0}
+  _blackboard: {fileID: 0}
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0

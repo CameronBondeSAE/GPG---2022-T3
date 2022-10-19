@@ -6,7 +6,8 @@ namespace Alex
 {
     public class TurnTowards : MonoBehaviour
     {
-        public Transform target;
+        public Transform targetTransform;
+        public Vector3 targetPosition;
         public int turnSpeed;
 
         Rigidbody rb;
@@ -16,19 +17,24 @@ namespace Alex
         {
             rb = GetComponent<Rigidbody>();
 
-            if (target != null)
-                //hacked up for now needs to be written better since this script will be used for multiple different targets
-                target = GameObject.Find("Target").transform;
+            //if (target != null) 
+            //hacked up for now needs to be written better since this script will be used for multiple different targets
+            //target = GameObject.Find("Target").transform;
         }
 
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (target != null)
+            Vector3 point;
+            if (targetTransform != null)
             {
-                Vector3 point = transform.InverseTransformPoint(target.transform.position);
-                rb.AddRelativeTorque(0, point.x * turnSpeed, 0);
+                point = transform.InverseTransformPoint(targetTransform.transform.position);
             }
+            else
+            {
+                point = transform.InverseTransformPoint(targetPosition);
+            }
+            rb.AddRelativeTorque(0, point.x * turnSpeed, 0);
         }
     }
 }
