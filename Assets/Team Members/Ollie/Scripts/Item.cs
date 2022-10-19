@@ -13,13 +13,11 @@ public enum ItemType
     Goal
 }
 
-public class Item : NetworkBehaviour, IPickupable, IGoalItem
+public class Item : NetworkBehaviour, IGoalItem
 {
     public NetworkManager networkManager;
     public NetworkVariable<Vector3> networkPosition;
-    public Renderer renderer;
     public Transform parentTransform;
-    public Rigidbody rigidbody;
     private Vector3 tempPosition;
     private Transform tempParentTransform;
     //public BoxCollider boxCollider;
@@ -34,6 +32,11 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
         networkManager.OnServerStarted += SetUpItem;
         networkManager.OnClientConnectedCallback += SetUpItemClient;
         networkPosition.OnValueChanged += OnValueChanged;
+    }
+
+    private void Start()
+    {
+        SetUpItem();
     }
 
     private void OnValueChanged(Vector3 previousValue, Vector3 newValue)
@@ -52,8 +55,10 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
 
     void OnGUI()
     {
-        //can't use built-in Start because it's called before host/client's are set
-        if (GUILayout.Button("Start"))
+        //HACK: Was for forcing Item's variables to be set with a button
+        //wasn't working in start originally, but loading the scene has made this hack obsolete
+        
+        /*if (GUILayout.Button("Start"))
         {
             if (IsServer)
             {
@@ -64,7 +69,7 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
                 isHeld = false;
                 SetupClientRpc();
             }
-        }
+        }*/
     }
 
     void SetUpItemClient(ulong clientId)
@@ -77,94 +82,42 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
         if (IsServer)
         {
             parentTransform = transform.parent.GetComponent<Transform>();
-            renderer = parentTransform.GetComponentInChildren<Renderer>();
-            rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();
             boxColliders = parentTransform.GetComponentsInChildren<BoxCollider>();
             isHeld = false;
             locked = false;
-            
-            //itemType = random item number
+            SetupClientRpc();
         }
     }
 
     [ClientRpc]
     void SetupClientRpc()
     {
-        isHeld = false;
-        locked = false;
-        transform.parent.position = tempPosition;
-        parentTransform = transform.parent.GetComponent<Transform>();
-        renderer = parentTransform.GetComponentInChildren<Renderer>();
-        rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();
-    }
-    
-    #region IPickupable Interface
-
-    public void PickedUp(Transform newParentTransform)
-    {
-        //can't send the transform via Rpc so storing it separately
-        //unsure if wise for networking?
-        
-        if (!isHeld && !locked)
+        if (!IsServer)
         {
-            tempParentTransform = newParentTransform;
-            isHeld = true;
-        
-            if (IsClient)
-            {
-                RequestPickUpServerRpc();
-            }
+            isHeld = false;
+            locked = false;
+            transform.parent.position = tempPosition;
+            parentTransform = transform.parent.GetComponent<Transform>();
         }
-    }
-    public void PutDown()
-    {
-        tempParentTransform = null;
-        isHeld = false;
-        
-        if (IsClient)
-        {
-            RequestPutDownServerRpc();
-        }
-    }
-    
-    [ServerRpc]
-    void RequestPickUpServerRpc()
-    {
-        rigidbody.isKinematic = true;
-        parentTransform.transform.position = tempParentTransform.position + Vector3.forward;
-        parentTransform.parent = tempParentTransform;
-        //boxCollider.enabled = false;
-        foreach (BoxCollider collider in boxColliders)
-        {
-            collider.enabled = false;
-        }
-        PickUpViewClientRpc();
-    }
-
-    [ServerRpc (RequireOwnership = false)]
-    void RequestPutDownServerRpc()
-    {
-        rigidbody.isKinematic = false;
-        parentTransform.parent = null;
-        foreach (BoxCollider collider in boxColliders)
-        {
-            collider.enabled = true;
-        }
-        //boxCollider.enabled = true;
-        PutDownViewClientRpc();
     }
 
     [ClientRpc]
-    private void PickUpViewClientRpc()
+    public void GetDropPointClientRpc(Vector3 dropPoint)
     {
-        renderer.enabled = false;
+        parentTransform.position = dropPoint;
+    }
+
+    //HACK: Delay to reduce the likelihood of item becoming reactive in it's old pos
+    //then teleporting to new pos. Still happens occasionally unfortunately.
+    [ClientRpc]
+    public void GetDroppedClientRpc()
+    {
+        parentTransform.gameObject.SetActive(true);
     }
 
     [ClientRpc]
-    private void PutDownViewClientRpc()
+    public void GetPickedUpClientRpc()
     {
-        renderer.enabled = true;
+        parentTransform.gameObject.SetActive(false);
     }
-
-    #endregion
 }
