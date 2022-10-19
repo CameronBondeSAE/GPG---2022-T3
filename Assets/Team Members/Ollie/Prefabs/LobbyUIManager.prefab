@@ -3445,11 +3445,24 @@ MonoBehaviour:
   sceneToLoad: 
   levels:
   - level: {fileID: 102900000, guid: 66d500e134e870d4380d97cfddff309c, type: 3}
-    levelNameOnUI: Test Scene
+    levelNameOnUI: Ollie's Test Level
   - level: {fileID: 102900000, guid: bd68d9106512dc946a52fe5bf9e4339b, type: 3}
-    levelNameOnUI: Blank Scene
+    levelNameOnUI: Blank Level (ignore)
+  - level: {fileID: 102900000, guid: 72c88c35f6df17b4b9c5542bf36f9189, type: 3}
+    levelNameOnUI: Luke's Level
+  - level: {fileID: 102900000, guid: f5848a0e1fed9db4384ae5c9ec95dd01, type: 3}
+    levelNameOnUI: Lloyd's Level
+  - level: {fileID: 102900000, guid: c95771f92ccbf364d88098be62fa0e9c, type: 3}
+    levelNameOnUI: Marcus's Level
+  - level: {fileID: 102900000, guid: 43849588c6be19445b7e2fe685058378, type: 3}
+    levelNameOnUI: John's Level
+  - level: {fileID: 102900000, guid: 7759905957c5f6d40be209d6bfc51f74, type: 3}
+    levelNameOnUI: Cam's MazeGen Level
+  - level: {fileID: 102900000, guid: b7d0c809e3748604ab7cd3c9a01249b8, type: 3}
+    levelNameOnUI: Oscar's Level
   levelHolder: {fileID: 7837023427682337152}
-  levelButtonPrefab: {fileID: 4527488320937704448, guid: 6132f761d6c617045b04d4f91c191dbe, type: 3}
+  levelButtonPrefab: {fileID: 4527488320937704448, guid: 6132f761d6c617045b04d4f91c191dbe,
+    type: 3}
   lobbyUICanvas: {fileID: 1383001810}
   clientUI: {fileID: 0}
   startButton: {fileID: 944178262}
@@ -3459,11 +3472,13 @@ MonoBehaviour:
   levelDisplayUI: {fileID: 9179373847855768920}
   waitForHostBanner: {fileID: 0}
   playerPanel: {fileID: 1976447543}
-  clientLobbyUIPrefab: {fileID: 1804203013354047367, guid: bd6c16fb92c6524448cf3b350d4688cf, type: 3}
+  clientLobbyUIPrefab: {fileID: 1804203013354047367, guid: bd6c16fb92c6524448cf3b350d4688cf,
+    type: 3}
   ipAddressCanvas: {fileID: 483470732}
   serverIPInputField: {fileID: 251169626}
   playerPrefab: {fileID: 0}
   lobbyCam: {fileID: 0}
+  directionalLight: {fileID: 0}
 --- !u!114 &6011517664640636797
 MonoBehaviour:
   m_ObjectHideFlags: 0

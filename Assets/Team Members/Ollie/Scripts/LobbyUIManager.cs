@@ -58,6 +58,7 @@ namespace Ollie
         public GameObject playerPrefab;
 
         public GameObject lobbyCam;
+        public GameObject directionalLight;
         bool              inGame = false;
 
         ulong         myLocalClientId;
@@ -165,6 +166,7 @@ namespace Ollie
             Scene scene = sceneEvent.Scene;
             
             lobbyCam.SetActive(false);
+            directionalLight.SetActive(false);
             BroadcastLobbyUIStateClientRpc(true);
         }
 
@@ -172,7 +174,8 @@ namespace Ollie
         private void BroadcastLobbyUIStateClientRpc(bool gameInProgress)
         {
             lobbyUICanvas.SetActive(!gameInProgress);
-            
+            lobbyCam.SetActive(false);
+            directionalLight.SetActive(false);
             //InGameLobbyUI(gameInProgress);
         }
         

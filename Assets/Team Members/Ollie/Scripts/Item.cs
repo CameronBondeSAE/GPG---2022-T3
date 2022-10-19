@@ -13,20 +13,18 @@ public enum ItemType
     Goal
 }
 
-public class Item : NetworkBehaviour, IPickupable, IGoalItem
+public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
 {
     public NetworkManager networkManager;
     public NetworkVariable<Vector3> networkPosition;
-    public Renderer renderer;
     public Transform parentTransform;
-    public Rigidbody rigidbody;
     private Vector3 tempPosition;
     private Transform tempParentTransform;
-    //public BoxCollider boxCollider;
     public BoxCollider[] boxColliders;
-    public bool isHeld { get; set; }
-    public bool locked { get; set; }
+    
     public ItemType itemType;
+
+    #region SetUps
 
     private void Awake()
     {
@@ -35,25 +33,22 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
         networkManager.OnClientConnectedCallback += SetUpItemClient;
         networkPosition.OnValueChanged += OnValueChanged;
     }
-
-    private void OnValueChanged(Vector3 previousValue, Vector3 newValue)
-    {
-        if (previousValue != newValue)
-        {
-            transform.parent.position = newValue;
-        }
-    }
-
     private void OnDisable()
     {
         networkManager.OnServerStarted -= SetUpItem;
         networkManager.OnClientConnectedCallback -= SetUpItemClient;
     }
-
+    
+    private void Start()
+    {
+        SetUpItem();
+    }
     void OnGUI()
     {
-        //can't use built-in Start because it's called before host/client's are set
-        if (GUILayout.Button("Start"))
+        //HACK: Was for forcing Item's variables to be set with a button
+        //wasn't working in start originally, but loading the scene has made this hack obsolete
+        
+        /*if (GUILayout.Button("Start"))
         {
             if (IsServer)
             {
@@ -64,7 +59,7 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
                 isHeld = false;
                 SetupClientRpc();
             }
-        }
+        }*/
     }
 
     void SetUpItemClient(ulong clientId)
@@ -77,94 +72,90 @@ public class Item : NetworkBehaviour, IPickupable, IGoalItem
         if (IsServer)
         {
             parentTransform = transform.parent.GetComponent<Transform>();
-            renderer = parentTransform.GetComponentInChildren<Renderer>();
-            rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();
             boxColliders = parentTransform.GetComponentsInChildren<BoxCollider>();
             isHeld = false;
             locked = false;
-            
-            //itemType = random item number
+            SetupClientRpc();
         }
     }
 
     [ClientRpc]
     void SetupClientRpc()
     {
-        isHeld = false;
-        locked = false;
-        transform.parent.position = tempPosition;
-        parentTransform = transform.parent.GetComponent<Transform>();
-        renderer = parentTransform.GetComponentInChildren<Renderer>();
-        rigidbody = parentTransform.GetComponentInChildren<Rigidbody>();
+        if (!IsServer)
+        {
+            isHeld = false;
+            locked = false;
+            transform.parent.position = tempPosition;
+            parentTransform = transform.parent.GetComponent<Transform>();
+        }
     }
+    
+    #endregion
+
+    #region Networking
+
+    private void OnValueChanged(Vector3 previousValue, Vector3 newValue)
+    {
+        if (previousValue != newValue)
+        {
+            transform.parent.position = newValue;
+        }
+    }
+    
+    //TODO: Implement some sort of cooldown so item can't be picked up again immediately
+    //Otherwise you can "drop" it into another player
+    //Or drop it on yourself and immediately pick it up
+    [ClientRpc]
+    public void GetDropPointClientRpc(Vector3 dropPoint)
+    {
+        parentTransform.position = dropPoint;
+    }
+
+    //HACK: Delay to reduce the likelihood of item becoming reactive in it's old pos
+    //then teleporting to new pos. Still happens occasionally unfortunately.
+    [ClientRpc]
+    public void GetDroppedClientRpc()
+    {
+        PutDown();
+    }
+
+    [ClientRpc]
+    public void GetPickedUpClientRpc()
+    {
+        PickedUp();
+    }
+    
+    #endregion
     
     #region IPickupable Interface
-
-    public void PickedUp(Transform newParentTransform)
+    
+    public bool isHeld { get; set; }
+    public bool locked { get; set; }
+    public void PickedUp()
     {
-        //can't send the transform via Rpc so storing it separately
-        //unsure if wise for networking?
-        
-        if (!isHeld && !locked)
-        {
-            tempParentTransform = newParentTransform;
-            isHeld = true;
-        
-            if (IsClient)
-            {
-                RequestPickUpServerRpc();
-            }
-        }
+        parentTransform.gameObject.SetActive(false);
     }
+
     public void PutDown()
     {
-        tempParentTransform = null;
-        isHeld = false;
-        
-        if (IsClient)
-        {
-            RequestPutDownServerRpc();
-        }
+        parentTransform.gameObject.SetActive(true);
+        StartCoroutine(ItemLockCooldown());
     }
     
-    [ServerRpc]
-    void RequestPickUpServerRpc()
-    {
-        rigidbody.isKinematic = true;
-        parentTransform.transform.position = tempParentTransform.position + Vector3.forward;
-        parentTransform.parent = tempParentTransform;
-        //boxCollider.enabled = false;
-        foreach (BoxCollider collider in boxColliders)
-        {
-            collider.enabled = false;
-        }
-        PickUpViewClientRpc();
-    }
-
-    [ServerRpc (RequireOwnership = false)]
-    void RequestPutDownServerRpc()
-    {
-        rigidbody.isKinematic = false;
-        parentTransform.parent = null;
-        foreach (BoxCollider collider in boxColliders)
-        {
-            collider.enabled = true;
-        }
-        //boxCollider.enabled = true;
-        PutDownViewClientRpc();
-    }
-
-    [ClientRpc]
-    private void PickUpViewClientRpc()
-    {
-        renderer.enabled = false;
-    }
-
-    [ClientRpc]
-    private void PutDownViewClientRpc()
-    {
-        renderer.enabled = true;
-    }
-
     #endregion
+    
+    //HACK: Occasionally the object shows up for a frame in it's original position
+    //before teleporting to it's correct position. WFS delay doesn't fix for some reason.
+    private IEnumerator ItemLockCooldown()
+    {
+        locked = true;
+        yield return new WaitForSeconds(1f);
+        locked = false;
+    }
+
+    public void SetOnFire()
+    {
+	    
+    }
 }

@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Interact : NetworkBehaviour
 {
-    public GameObject objectNearby;
-    private GameObject heldObject;
+    public GameObject heldObject;
+    public int heldItems;
 
     private void Update()
     {
@@ -24,47 +25,29 @@ public class Interact : NetworkBehaviour
     [ServerRpc]
     private void RequestInteractWithServerRpc()
     {
-        InteractWith(objectNearby);
-    }
-    
-    private void InteractWith(GameObject objectToInteract)
-    {
-        if (heldObject != null && heldObject.GetComponent<IPickupable>().isHeld)
+        Vector3 dropPoint = transform.position + transform.forward * 2;
+        if (heldItems > 0 && heldObject != null)
         {
-            heldObject.GetComponent<IPickupable>().PutDown();
-            heldObject = null;
-        }
-        else if (objectToInteract == null) return;
-        else if (!objectToInteract.GetComponent<IPickupable>().isHeld)
-        {
-            objectToInteract.GetComponent<IPickupable>().PickedUp(transform);
-            heldObject = objectToInteract;
+            heldItems--;
+            heldObject.GetComponent<Item>().GetDropPointClientRpc(dropPoint);
+            heldObject.GetComponent<Item>().GetDroppedClientRpc();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (IsServer)
         {
             if (other.GetComponent<IPickupable>() != null)
             {
-                objectNearby = other.gameObject;
+                if (!other.gameObject.GetComponent<Item>().locked)
+                {
+                    other.transform.parent.gameObject.SetActive(false);
+                    heldObject = other.gameObject;
+                    heldItems++;
+                    heldObject.GetComponent<Item>().GetPickedUpClientRpc();
+                }
             }
-        }
-    }
-    
-    //currently Exit is not being called when Item's colliders are disabled
-    //so if two players are touching the same Item and one picks up and drops far away
-    //the other can teleport the item to them, no matter distance
-    //bueno = null :(
-    
-    //TODO: 
-    //rework this to be destroy item and re-instantiate it on PutDown
-    private void OnTriggerExit(Collider other)
-    {
-        if (IsServer)
-        {
-            objectNearby = null;
         }
     }
 }
