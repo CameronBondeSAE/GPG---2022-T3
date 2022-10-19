@@ -13,7 +13,7 @@ public enum ItemType
     Goal
 }
 
-public class Item : NetworkBehaviour, IGoalItem, IPickupable
+public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
 {
     public NetworkManager networkManager;
     public NetworkVariable<Vector3> networkPosition;
@@ -152,5 +152,10 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable
         locked = true;
         yield return new WaitForSeconds(1f);
         locked = false;
+    }
+
+    public void SetOnFire()
+    {
+	    
     }
 }
