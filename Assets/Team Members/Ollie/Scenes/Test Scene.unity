@@ -123,54 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &105052642 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4127929045178541483, guid: 89d062a10135d404ab90092f86f9cbce,
-    type: 3}
-  m_PrefabInstance: {fileID: 4127929045919921405}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &105052648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105052642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3013792794
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
---- !u!114 &105052649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105052642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  InLocalSpace: 0
-  Interpolate: 1
 --- !u!1 &778119067
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,41 +785,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1030358358859370405, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
+        type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3178830666
+      objectReference: {fileID: 0}
     - target: {fileID: 2186162749412115966, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
         type: 3}
       propertyPath: m_Name
       value: Item
       objectReference: {fileID: 0}
-    - target: {fileID: 4149667702949397987, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
+    - target: {fileID: 2894150608836592113, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
         type: 3}
-      propertyPath: m_Constraints
-      value: 122
+      propertyPath: GlobalObjectIdHash
+      value: 913457517
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ec874876f0bf47408ad0863e1c4ee5d, type: 3}
---- !u!1 &2894150608836592112 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2186162749412115966, guid: 2ec874876f0bf47408ad0863e1c4ee5d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2894150608836592111}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2894150608836592113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2894150608836592112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1801790845
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!1001 &4127929045919921405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -876,15 +811,9 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4127929045178541477, guid: 89d062a10135d404ab90092f86f9cbce,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 38.977848
-      objectReference: {fileID: 0}
-    - target: {fileID: 4127929045178541477, guid: 89d062a10135d404ab90092f86f9cbce,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 18.988918
+    - target: {fileID: 105052648, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2137243395
       objectReference: {fileID: 0}
     - target: {fileID: 4127929045178541478, guid: 89d062a10135d404ab90092f86f9cbce,
         type: 3}

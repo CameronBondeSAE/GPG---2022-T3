@@ -172,7 +172,7 @@ namespace Ollie
         private void BroadcastLobbyUIStateClientRpc(bool gameInProgress)
         {
             lobbyUICanvas.SetActive(!gameInProgress);
-            
+            lobbyCam.SetActive(false);
             //InGameLobbyUI(gameInProgress);
         }
         
