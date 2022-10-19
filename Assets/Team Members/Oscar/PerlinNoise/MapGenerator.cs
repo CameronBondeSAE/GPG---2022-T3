@@ -16,6 +16,7 @@ public class MapGenerator : MonoBehaviour
     GameObject CubeParent; 
     GameObject ItemParent;
     GameObject AIParent;
+    GameObject borderParent;
     
     private List<GameObject> cubeLand = new List<GameObject>();
     private List<GameObject> ItemList = new List<GameObject>();
@@ -38,27 +39,29 @@ public class MapGenerator : MonoBehaviour
 
     private void OnEnable()
     {
-        gameManager.OnGameStart += spawner;
+        gameManager.OnGameStart += Spawner;
         gameManager.OnGameEnd += DeleteMap;
     }
     
     public void Start()
     {
+        
         CubeParent = new GameObject("CubeParent");
         ItemParent = new GameObject("ItemParent");
         AIParent = new GameObject("AIParent");
+        borderParent = new GameObject("borderParent");
         
         if (randomMap == true)
         {
+            //randoms
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            //spawnRandomTerrain(zoomZ, zoomX, scale);
         }
         else if (randomMap == false)
         {
+            //standard averages
             zoomX = 0.15f;
             zoomZ = 0.15f;
-            //spawnRandomTerrain(zoomZ, zoomX, scale);
         }
     }
 
@@ -79,24 +82,24 @@ public class MapGenerator : MonoBehaviour
             Destroy(AIList[aliens].gameObject);
         }
         AIList.Clear();
-        spawner();
+        Spawner();
     }
 
-    public void spawner()
+    public void Spawner()
     {
         if (randomMap == true)
         {
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            spawnRandomTerrain(zoomX, zoomZ, scale);
+            spawnTerrain(zoomX, zoomZ, scale);
         }
         else if (randomMap == false)
         {
-            spawnRandomTerrain(zoomX, zoomZ, scale);
+            spawnTerrain(zoomX, zoomZ, scale);
         }
     }
     
-    public void spawnRandomTerrain(float zoomX, float zoomZ, float scale)
+    public void spawnTerrain(float zoomX, float zoomZ, float scale)
     {
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         
@@ -125,16 +128,23 @@ public class MapGenerator : MonoBehaviour
                     }
                     else
                     {
-                        SpawningTheItems(prefabPosition);
+                        SpawningTheBarrels(prefabPosition);
                         SpawnAIInTheMaze(prefabPosition);
+                        SpawningTheItems(prefabPosition);
                     }
                 }
             }
         }
+
+        SpawnWalls();
     }
+
     
-    void SpawningTheItems(Vector3 prefabPosition)
+
+    void SpawningTheBarrels(Vector3 prefabPosition)
     {
+        //use new perlin to create clusters of barrels
+        
         int SpawmTheItems = Random.Range(1, 20);
         if (SpawmTheItems == 1)
         {
@@ -149,6 +159,8 @@ public class MapGenerator : MonoBehaviour
 
     void SpawnAIInTheMaze(Vector3 prefabPosition)
     {
+        //create spawn location with new perlin then 
+        
         int spawnTheAI = Random.Range(1, 50);
         if (spawnTheAI == 1)
         {
@@ -157,6 +169,53 @@ public class MapGenerator : MonoBehaviour
             spawnedAI.transform.SetParent(AIParent.transform);
             AIList.Add(spawnedAI.gameObject);
         }
+    }
+    
+    void SpawnWalls()
+    {
+        GameObject firstWall = Instantiate(cubePrefab,
+            new Vector3(0, prefabPosition.y, prefabPosition.z - (amount / 2)), quaternion.identity);
+        firstWall.name = "firstWall";
+        firstWall.transform.localScale = new Vector3(1, prefabPosition.y * scale * 2, prefabPosition.z);
+        cubeLand.Add(firstWall.gameObject);
+        firstWall.GetComponent<Renderer>().material.color = Color.black;
+        firstWall.transform.SetParent(borderParent.transform);
+
+        
+        GameObject secondWall = Instantiate(cubePrefab,
+            new Vector3(prefabPosition.x / 2,prefabPosition.y,prefabPosition.z -.5f), Quaternion.identity);
+        secondWall.name = "secondWall";
+        secondWall.transform.localScale = new Vector3(prefabPosition.x,prefabPosition.y * scale * 2,1);
+        cubeLand.Add(secondWall.gameObject);
+        secondWall.GetComponent<Renderer>().material.color = Color.black;
+        secondWall.transform.SetParent(borderParent.transform);
+        
+        
+        GameObject thirdWall = Instantiate(cubePrefab,
+            new Vector3(prefabPosition.x + .5f, prefabPosition.y, prefabPosition.z / 2), quaternion.identity);
+        thirdWall.name = "thirdWall";
+        thirdWall.transform.localScale = new Vector3(1, prefabPosition.y * scale * 2, prefabPosition.z);
+        cubeLand.Add(thirdWall.gameObject);
+        thirdWall.GetComponent<Renderer>().material.color = Color.black;
+        thirdWall.transform.SetParent(borderParent.transform);
+        
+        
+        GameObject fourthWall = Instantiate(cubePrefab,
+            new Vector3(prefabPosition.x - (amount / 2), prefabPosition.y, 0), quaternion.identity);
+        fourthWall.name = "fourthWall";
+        fourthWall.transform.localScale = new Vector3(prefabPosition.x, prefabPosition.y * scale * 2, 1);
+        cubeLand.Add(fourthWall.gameObject);
+        fourthWall.GetComponent<Renderer>().material.color = Color.black;
+        fourthWall.transform.SetParent(borderParent.transform);
+        
+        
+        GameObject floor = Instantiate(cubePrefab,
+            new Vector3(prefabPosition.x - (amount / 2), 0, prefabPosition.z - (amount / 2)), quaternion.identity);
+        floor.name = "floor";
+        floor.transform.localScale = new Vector3(amount, 1, amount);
+        cubeLand.Add(floor.gameObject);
+        floor.GetComponent<Renderer>().material.color = Color.green;
+        floor.transform.SetParent(borderParent.transform);
     }
     
     private void DeleteMap()
@@ -177,4 +236,10 @@ public class MapGenerator : MonoBehaviour
         }
         AIList.Clear();
     }
+    private void SpawningTheItems(Vector3 prefabPosition)
+    {
+        
+    }
 }
+
+    
