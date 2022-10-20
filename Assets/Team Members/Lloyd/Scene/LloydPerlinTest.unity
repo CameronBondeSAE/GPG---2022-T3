@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -842,20 +842,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee6e87410b55b441b7495415e5fc62a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numCube: 250
+  numCube: 150
   zoomNoiseX: 0.14
   zoomNoiseY: 0.14
   scale: 6.0773754
   wallsHeight: 14
-  cubePrefab: {fileID: 8830323646262685556, guid: c3d78f570187722418f95a344845f3eb,
-    type: 3}
-  itemPrefab: {fileID: 7976933377232811398, guid: 406c51da39bb78842ab4efe6a060b6e1,
-    type: 3}
+  cubePrefab: {fileID: 8830323646262685556, guid: c3d78f570187722418f95a344845f3eb, type: 3}
+  itemPrefab: {fileID: 7976933377232811398, guid: 406c51da39bb78842ab4efe6a060b6e1, type: 3}
   itemVector3List: []
   itemNoiseX: 0.14
   itemNoiseY: 0.14
   minDist: 75
-  numItems: 1000
+  numItems: 2000
   HumanHQ: {fileID: 7884631281891504534, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
   numHumanHQ: 1
   AlienHQ: {fileID: 8749085813108591677, guid: 53bff0fc767e0d44eb20b10e130091f7, type: 3}
