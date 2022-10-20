@@ -276,8 +276,8 @@ MonoBehaviour:
     _version: 3.25
     _category: 
     _comments: 
-    _translation: {x: 156, y: 185}
-    _zoomFactor: 0.4999993
+    _translation: {x: 1001, y: 655}
+    _zoomFactor: 0.64386374
   _firstActivation: 0
   _enableAction: 0
   _disableAction: 0
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 3058932944301065794}
-  force: 150
+  force: 100
 --- !u!114 &8744244824783631288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 5477602151829979742}
-  force: 100
+  force: 5000
 --- !u!114 &2400830248132782960
 MonoBehaviour:
   m_ObjectHideFlags: 0

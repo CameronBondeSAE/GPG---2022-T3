@@ -37,26 +37,11 @@ MonoBehaviour:
     - id: 10
       name: isAttacking
   actions:
-  - name: Search Resource
-    isDefault: 0
-    state: {fileID: 2822014770511461438, guid: 4a8e44be4b0a68f468c0c300633a57b5, type: 3}
-    cost: 0
-    position: {x: 799.10376, y: 58.09201}
-    pre:
-    - id: 0
-      value: 0
-    - id: 2
-      value: 0
-    - id: 8
-      value: 0
-    post:
-    - id: 0
-      value: 1
   - name: Gather Resource
     isDefault: 0
     state: {fileID: 1493426894229047526, guid: 1f7f9e26fbe0ed743a9e467a2bac17aa, type: 3}
     cost: 0
-    position: {x: 1229.3497, y: 61.86503}
+    position: {x: 877.34973, y: 89.86503}
     pre:
     - id: 2
       value: 0
@@ -75,7 +60,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4016345892358988173, guid: 9a95d1fdac2bc8445bb6afe90c23ce5f, type: 3}
     cost: 0
-    position: {x: 1650.9386, y: 59.04908}
+    position: {x: 1329.9386, y: 92.04908}
     pre:
     - id: 2
       value: 1
@@ -92,7 +77,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 92025900423707080, guid: c8838a6a57e655c4fac71155cd4e186d, type: 3}
     cost: 0
-    position: {x: 1007.82117, y: 63.092026}
+    position: {x: 668.82117, y: 89.092026}
     pre:
     - id: 0
       value: 1
@@ -105,7 +90,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 8653921907090280506, guid: bb1d05f5173f35146925cc601b303855, type: 3}
     cost: 0
-    position: {x: 1434.8037, y: 68.957054}
+    position: {x: 1085.8037, y: 109.957054}
     pre:
     - id: 2
       value: 1
@@ -114,71 +99,28 @@ MonoBehaviour:
     post:
     - id: 3
       value: 1
-  - name: 'Search Enemy '
-    isDefault: 1
-    state: {fileID: 1145200663609262136, guid: a73c4891fd16c2c4bbe0117f3e15149e, type: 3}
-    cost: 0
-    position: {x: 413.12744, y: 332.884}
-    pre:
-    - id: 8
-      value: 0
-    post:
-    - id: 8
-      value: 1
   - name: Move to Enemy
-    isDefault: 0
+    isDefault: 1
     state: {fileID: 1885941748799611865, guid: 6f8b6c8c12e4ca74280020c331fcbbe0, type: 3}
     cost: 0
-    position: {x: 856.83704, y: 368.21497}
+    position: {x: 465.83704, y: 85.214966}
     pre:
     - id: 8
-      value: 1
-    post:
-    - id: 7
-      value: 1
-  - name: Attacking Enemy
-    isDefault: 0
-    state: {fileID: 3642673748501317516, guid: 3ef83d0a9cf18d64796a5fe4fccd0ce1, type: 3}
-    cost: 0
-    position: {x: 645.1655, y: 360.31903}
-    pre:
-    - id: 7
-      value: 1
-    - id: 8
-      value: 1
-    post:
-    - id: 10
-      value: 1
-  - name: Killing Enemy
-    isDefault: 0
-    state: {fileID: 3674260564771724555, guid: 6167e305aba98ac4d8583b134219bbda, type: 3}
-    cost: 0
-    position: {x: 1100.3928, y: 375.73007}
-    pre:
-    - id: 10
-      value: 1
-    - id: 7
       value: 1
     post:
     - id: 6
       value: 1
-    - id: 8
-      value: 0
   goals:
   - name: Gather Resources
-    isDefault: 0
+    isDefault: 1
     position: {x: 204.41046, y: 46}
     conditions:
     - id: 5
       value: 1
-  - name: Enemy Dead
-    isDefault: 1
-    position: {x: 215, y: 220}
-    conditions:
     - id: 6
       value: 1
   worldStates:
-  - position: {x: 207.02606, y: 638.49}
+  - position: {x: 213.02606, y: 360.49}
     isAutoUpdate: 1
     list:
     - id: 0
@@ -191,11 +133,7 @@ MonoBehaviour:
       value: 0
     - id: 5
       value: 0
-    - id: 7
-      value: 0
     - id: 8
       value: 0
     - id: 6
-      value: 0
-    - id: 10
       value: 0

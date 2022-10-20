@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 5602566739967719583}
   - component: {fileID: 1387461434300845896}
   - component: {fileID: -5533211695306525179}
+  - component: {fileID: -5664859693588689256}
   m_Layer: 9
   m_Name: AlienAI
   m_TagString: Untagged
@@ -270,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 706897844201177466}
-  force: 100
+  force: 50
 --- !u!114 &8270060209491018145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 3058932944301065794}
-  force: 150
+  force: 50
 --- !u!114 &8744244824783631288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 5477602151829979742}
-  force: 100
+  force: 1000
 --- !u!114 &3196209236514557478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,14 +414,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedExposedParameters: []
-  _boundGraphSerialization: 
+  _boundGraphSerialization: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":1105.791,"y":46.23977},"$type":"NodeCanvas.BehaviourTrees.Selector","$id":"0"},{"_tag":"Attack
+    Enemy ","_position":{"x":671.6319,"y":322.9402},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"1"},{"_condition":{"valueA":{"_name":"canSeeEnemy","_targetVariableID":"025476a4-e224-442d-87eb-58e8e7703142"},"valueB":{"_value":true},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"},"_position":{"x":333.6318,"y":441.9404},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"2"},{"_action":{"log":{"_value":"\"Following
+    enemy\""},"verboseMode":2,"$type":"NodeCanvas.Tasks.Actions.DebugLogText"},"_position":{"x":532.6319,"y":446.9404},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"3"},{"_tag":"Attack
+    Enemy ","_position":{"x":940.7015,"y":319.7385},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"4"},{"_condition":{"valueA":{"_name":"atEnemy","_targetVariableID":"cf2bae7f-cbc9-42da-9243-ddae988a430c"},"valueB":{"_value":true},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"},"_position":{"x":813.8607,"y":462.4349},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"5"},{"_action":{"log":{"_value":"Enemy
+    Dead"},"verboseMode":2,"$type":"NodeCanvas.Tasks.Actions.DebugLogText"},"_position":{"x":1000.159,"y":451.8649},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"6"},{"_tag":"Heading
+    to resource","_position":{"x":1403.682,"y":316.1047},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"7"},{"_condition":{"valueA":{"_name":"canSeeResource","_targetVariableID":"ee8aa513-4812-4f51-a7e0-4856a084d547"},"valueB":{"_value":true},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"},"_position":{"x":1229.682,"y":457.105},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"8"},{"_action":{"log":{"_value":"\"Going
+    to resource\""},"$type":"NodeCanvas.Tasks.Actions.DebugLogText"},"_position":{"x":1434.682,"y":457.105},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"9"},{"_tag":"Heading
+    to drop off point","_position":{"x":1869.331,"y":319.5838},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"10"},{"_condition":{"valueA":{"_name":"inventoryFull","_targetVariableID":"db0f13cb-889c-4bf5-a04d-1d8f1103d3b0"},"valueB":{"_value":true},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"},"_position":{"x":1707.033,"y":446.5786},"$type":"NodeCanvas.BehaviourTrees.ConditionNode","$id":"11"},{"_action":{"log":{"_value":"\"Heading
+    to drop off point\""},"$type":"NodeCanvas.Tasks.Actions.DebugLogText"},"_position":{"x":1948.331,"y":458.5839},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"12"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"11"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{"canSeeEnemy":{"_propertyPath":"Controller.canAttack","_name":"canSeeEnemy","_id":"025476a4-e224-442d-87eb-58e8e7703142","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"canSeeResource":{"_name":"canSeeResource","_id":"ee8aa513-4812-4f51-a7e0-4856a084d547","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"inventoryFull":{"_propertyPath":"Inventory.capacityReached","_name":"inventoryFull","_id":"db0f13cb-889c-4bf5-a04d-1d8f1103d3b0","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"dropOffPointFound":{"_propertyPath":"Controller.hasResource","_name":"dropOffPointFound","_id":"010db536-45d2-4b6f-8ee8-3f9606c25264","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"atDropOffPoint":{"_name":"atDropOffPoint","_id":"1290a41a-ccec-4ea7-b9a1-ae9fd16ffeea","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"atEnemy":{"_propertyPath":"Controller.isAttacking","_name":"atEnemy","_id":"cf2bae7f-cbc9-42da-9243-ddae988a430c","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}},"derivedData":{"repeat":true,"updateInterval":1.0,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
   _boundGraphObjectReferences: []
   _boundGraphSource:
-    _version: 0
+    _version: 3.25
     _category: 
     _comments: 
-    _translation: {x: 0, y: 0}
-    _zoomFactor: 1
+    _translation: {x: 58, y: 121}
+    _zoomFactor: 0.7569242
   _firstActivation: 0
   _enableAction: 0
   _disableAction: 0
@@ -428,7 +443,23 @@ MonoBehaviour:
   _preInitializeSubGraphs: 0
   _updateMode: 0
   _graph: {fileID: 0}
-  _blackboard: {fileID: 0}
+  _blackboard: {fileID: -5664859693588689256}
+--- !u!114 &-5664859693588689256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentBlackboard: {fileID: 0}
+  _serializedBlackboard: '{"_variables":{}}'
+  _objectReferences: []
+  _serializedVariables: []
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
