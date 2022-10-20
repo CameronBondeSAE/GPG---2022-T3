@@ -56,8 +56,8 @@ public class MapGenerator : MonoBehaviour
 
     public void Start()
     {
-        GameManager.Singleton.OnGameStart += Spawner;
-        GameManager.Singleton.OnGameEnd += DeleteMap;
+        GameManager.singleton.OnGameStart += Spawner;
+        GameManager.singleton.OnGameEnd += DeleteMap;
         
         CubeParent = new GameObject("CubeParent");
         BarrelParent = new GameObject("ItemParent");

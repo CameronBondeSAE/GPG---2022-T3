@@ -149,7 +149,7 @@ public class PerlinScript : MonoBehaviour
     //items are then spawned from Spawn Items
     void SpawnItemPos()
     {
-        itemPos = new Vector3(cubePos.x, cubePos.y + (scale / 2), cubePos.z);
+        itemPos = new Vector3(cubePos.x, 0+scale, cubePos.z);
 
         float itemNoise = Mathf.PerlinNoise(itemNoiseX, itemNoiseY);
 
@@ -242,8 +242,6 @@ public class PerlinScript : MonoBehaviour
         alienPos = new Vector3(cubePos.x, cubePos.y + (scale / 2), cubePos.z);
 
         float tempAlienDist = Vector3.Distance(alienPos, prevAlienPos);
-
-       //Debug.Log(tempAlienDist);
 
         if (tempAlienDist > minDist)
         {

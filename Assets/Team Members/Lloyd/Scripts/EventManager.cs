@@ -15,7 +15,17 @@ public class EventManager : MonoBehaviour
             TerrainClearEvent();
         }
     }
+    
+    public delegate void ChangeHealth(float amount);
 
+    public static event ChangeHealth ChangeHealthEvent;
 
+    public static void ChangeHealthFunction(float amount)
+    {
+        if (ChangeHealthEvent != null)
+        {
+            ChangeHealthEvent(amount);
+        }
+    }
 
 }
