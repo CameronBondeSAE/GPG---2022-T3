@@ -1,21 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Oscar
 {
-    public class ExplosiveIdleState : MonoBehaviour
+    public class ExplosiveIdleState : MonoBehaviour, IFlammable
     {
-        // Start is called before the first frame update
-        void Start()
+        private GameObject ExplosiveDevice;
+        
+        //effected by fire so needs to respond to being hit by fire.
+        public void SetOnFire()
         {
-            
-        }
-    
-        // Update is called once per frame
-        void Update()
-        {
-            
+            GetComponent<Oscar.StateManager>().ChangeState(GetComponent<ExplosiveNearlyExplodeState>());
         }
     }
 }

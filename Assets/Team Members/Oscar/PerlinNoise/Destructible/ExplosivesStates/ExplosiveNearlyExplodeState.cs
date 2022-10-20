@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,17 +7,33 @@ namespace Oscar
 {
     public class ExplosiveNearlyExplodeState : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private Color render;
+        private bool exploding = false;
+        private Color explodeRed = Color.red;
+        
+        private void Start()
         {
-            
+            ChangeColour();
         }
-    
-        // Update is called once per frame
-        void Update()
+
+        void ChangeColour()
         {
-            
+            if (exploding == false)
+            {
+                GetComponent<Renderer>().material.color = explodeRed;
+            }
         }
+
+        private void Update()
+        {
+            //pulse the object
+            //tween this
+            
+            //google tweening
+        }
+        
+        
+        
     }
 }
 

@@ -1,3 +1,4 @@
+using Oscar;
 using UnityEngine;
 
 public class Fire : MonoBehaviour
@@ -6,7 +7,7 @@ public class Fire : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<BarrelHealth>())
+        if (other.GetComponent<Explosive_Model>())
         {
             // _explosiveModelHurt = other.GetComponent<Explosive_Model>();
             // _explosiveModelHurt.SetOnFire();
