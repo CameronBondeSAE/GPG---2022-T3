@@ -6,21 +6,38 @@ using Random = UnityEngine.Random;
 
 public class MapGenerator : MonoBehaviour
 {
-    public GameManager gameManager;
-    
+
     //all the spawned objects, and making them fit nicely in the hierarchy
     public GameObject cubePrefab;
     public GameObject Barrel;
     public GameObject AISpawner;
-     
+    public GameObject Base;
+    
     GameObject CubeParent; 
     GameObject BarrelParent;
     GameObject AIParent;
     GameObject borderParent;
+    GameObject BaseParent;
     
+    //for easy delete when refreshing or resetting the map
     private List<GameObject> cubeLand = new List<GameObject>();
     private List<GameObject> BarrelList = new List<GameObject>();
     private List<GameObject> AIList = new List<GameObject>();
+    private List<GameObject> BaseList = new List<GameObject>();
+
+
+    //Base spawning variables
+    [SerializeField] 
+    private int HQAmount = 0;
+
+    [SerializeField] 
+    private float LastBaseDistance = 20;
+
+    private Vector3 prevBasePos;
+    
+    [SerializeField]
+    private float minDist = 20;
+    
 
     //Perlin noise values and required elements to spawn the maze.
     public int amount;
@@ -39,8 +56,8 @@ public class MapGenerator : MonoBehaviour
 
     public void Start()
     {
-        gameManager.OnGameStart += Spawner;
-        gameManager.OnGameEnd += DeleteMap;
+        GameManager.Singleton.OnGameStart += Spawner;
+        GameManager.Singleton.OnGameEnd += DeleteMap;
         
         CubeParent = new GameObject("CubeParent");
         BarrelParent = new GameObject("ItemParent");
@@ -52,14 +69,14 @@ public class MapGenerator : MonoBehaviour
             //randoms
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            spawnTerrain(zoomX,zoomZ);
+            //spawnTerrain(zoomX,zoomZ);
         }
         else if (randomMap == false)
         {
             //standard averages
             zoomX = 0.15f;
             zoomZ = 0.15f;
-            spawnTerrain(zoomX,zoomZ);
+            //spawnTerrain(zoomX,zoomZ);
         }
     }
 
@@ -80,6 +97,11 @@ public class MapGenerator : MonoBehaviour
             Destroy(AIList[aliens].gameObject);
         }
         AIList.Clear();
+        for (int bases = 0; bases < BaseList.Count; bases++)
+        {
+            Destroy(BaseList[bases].gameObject);
+        }
+        BaseList.Clear();
         Spawner();
     }
 
@@ -126,9 +148,15 @@ public class MapGenerator : MonoBehaviour
                     }
                     else
                     {
-                        SpawningTheBarrels(prefabPosition);
+                        if (perlinValue < .4f && prefabPosition.x > 20 && prefabPosition.z > 20)
+                        {
+                            SpawnTheBase(prefabPosition);
+                            
+                        }
+                        
                         SpawnAIInTheMaze(prefabPosition);
-                        SpawningTheItems(prefabPosition);
+                        SpawningTheBarrels(prefabPosition);
+                        //SpawningTheItems(prefabPosition);
                     }
                 }
             }
@@ -137,7 +165,26 @@ public class MapGenerator : MonoBehaviour
         SpawnWalls();
     }
 
-    
+    void SpawnTheBase(Vector3 prefabPosition)
+    {
+        //learn how to calculate distances between objects
+        float tempBaseDist = Vector3.Distance(prefabPosition, prevBasePos);
+        if (tempBaseDist > minDist)
+        {
+            if (HQAmount <= 2)
+            {
+                Vector3 tempBasePos = prefabPosition;
+                prevBasePos = tempBasePos;
+                GameObject HQ = Instantiate(Base,prefabPosition,quaternion.identity);
+                HQAmount++;
+                BaseList.Add(HQ);
+                
+            }
+        }
+        
+
+
+    }
 
     void SpawningTheBarrels(Vector3 prefabPosition)
     {
@@ -233,6 +280,11 @@ public class MapGenerator : MonoBehaviour
             Destroy(AIList[aliens].gameObject);
         }
         AIList.Clear();
+        for (int bases = 0; bases < BaseList.Count; bases++)
+        {
+            Destroy(BaseList[bases].gameObject);
+        }
+        BaseList.Clear();
     }
     private void SpawningTheItems(Vector3 prefabPosition)
     {
