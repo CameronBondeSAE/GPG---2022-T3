@@ -12,12 +12,18 @@ public class MarcusTerrain : MonoBehaviour
     // Best mazes seem to come from 0.05 - 0.15
     // Larger zoom means tighter areas
     public int amount;
-    float zoom;
-    Vector2 randomOffset;
+    public int aiLimit;
+
+    Vector3 aiPos;
+    int spawnedAI;
 
     Vector3 itemPos;
+    float itemZoom;
+
     Vector3 brickPosition;
     Vector3 floorPos;
+    float zoom;
+    Vector2 randomOffset;
 
     public GameObject pickup;
     public GameObject swarmer;
@@ -38,7 +44,7 @@ public class MarcusTerrain : MonoBehaviour
         }
         else
         {
-            GenerateMaze(0.1f, new Vector2(500, 500));
+            GenerateMaze(0.1f, new Vector2(500, 500), 0.15f);
         }
     }
 
@@ -74,7 +80,7 @@ public class MarcusTerrain : MonoBehaviour
         }
         else
         {
-            GenerateMaze(0.1f, new Vector2(500, 500));
+            GenerateMaze(0.1f, new Vector2(500, 500), 0.15f);
         }
     }
 
@@ -84,10 +90,12 @@ public class MarcusTerrain : MonoBehaviour
         randomOffset.x = Random.Range(0, 1000);
         randomOffset.y = Random.Range(0, 1000);
         
-        GenerateMaze(zoom, randomOffset);
+        itemZoom = Random.Range(0.05f, 0.15f);
+        
+        GenerateMaze(zoom, randomOffset, itemZoom);
     }
     
-    void GenerateMaze(float step, Vector2 startPoint)
+    void GenerateMaze(float step, Vector2 startPoint, float itemStep)
     {
         for (int x = 0; x < amount; x++)
         {
@@ -104,7 +112,7 @@ public class MarcusTerrain : MonoBehaviour
                     GameObject go = Instantiate(floorPrefab, floorPos, Quaternion.identity);
                     bricks.Add(go);
                     
-                    SpawnItems(x, z);
+                    SpawnItems(x, z, itemStep);
                 }
                 else
                 {
@@ -115,20 +123,30 @@ public class MarcusTerrain : MonoBehaviour
         }
     }
 
-    void SpawnItems(float xValue, float zValue)
+    void SpawnItems(float xValue, float zValue, float itemStep)
     {
-        float itemZoom = 0.15f;
         itemPos = new Vector3(xValue, 1f, zValue);
         
-        if (Mathf.PerlinNoise(xValue * itemZoom, zValue * itemZoom) >= 0.7f)
+        if (Mathf.PerlinNoise(xValue * itemStep, zValue * itemStep) >= 0.7f)
         {
             GameObject item = Instantiate(pickup, itemPos, Quaternion.identity);
             items.Add(item);
         }
-        else if (Mathf.PerlinNoise(xValue * itemZoom, zValue * itemZoom) <= 0.4f)
+        else if (Mathf.PerlinNoise(xValue * itemStep, zValue * itemStep) <= 0.3f)
         {
-            GameObject ai = Instantiate(swarmer, itemPos, Quaternion.identity);
-            aliens.Add(ai);
+            SpawnAI(xValue, zValue);
+        }
+    }
+
+    void SpawnAI(float xPos, float zPos)
+    {
+        aiPos = new Vector3(xPos, 1f, zPos);
+        
+        if(spawnedAI < aiLimit)
+        {
+            GameObject aiInstance = Instantiate(swarmer, aiPos, Quaternion.identity);
+            aliens.Add(aiInstance);
+            spawnedAI++;
         }
     }
 }
