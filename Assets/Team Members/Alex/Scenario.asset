@@ -110,6 +110,13 @@ MonoBehaviour:
     post:
     - id: 6
       value: 1
+  - name: WonderingAround
+    isDefault: 0
+    state: {fileID: 0}
+    cost: 0
+    position: {x: 769, y: 419}
+    pre: []
+    post: []
   goals:
   - name: Gather Resources
     isDefault: 1

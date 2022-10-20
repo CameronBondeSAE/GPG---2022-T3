@@ -29,6 +29,8 @@ namespace Alex
             aWorldState.Set(Scenario.canAttack, controller.CanAttack());
             aWorldState.Set(Scenario.isAttacking, controller.IsAttacking());
             aWorldState.Set(Scenario.enemyDead, controller.EnemyDead());
+            
+            aWorldState.Set(Scenario.wondering, controller.Wondering());
         }
         
         public enum Scenario
@@ -41,7 +43,9 @@ namespace Alex
             enemyDead = 5,
             canAttack = 6,
             seeEnemy = 7,
-            isAttacking = 8
+            isAttacking = 8,
+            wondering = 9
+            
         }
     }
 }

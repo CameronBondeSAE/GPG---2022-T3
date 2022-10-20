@@ -100,5 +100,10 @@ public class Controller : MonoBehaviour
     {
         return false;
     }
+
+    public bool Wondering()
+    {
+        return enemies == null && resourceTargets == null;
+    }
 }
 

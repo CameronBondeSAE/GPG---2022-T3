@@ -12,13 +12,13 @@ namespace Alex
 
         public void OnTriggerEnter(Collider collider)
         {
-            if (collider.GetComponent<Energy>() != null && !collider.isTrigger)
+            if (collider.gameObject.layer == 9);
                 neighbours.Add(collider.gameObject);
         }
 
         public void OnTriggerExit(Collider collider)
         {
-            if (collider.GetComponent<Energy>() != null)
+            if (collider.gameObject.layer == 9);
                 neighbours.Remove(collider.gameObject);
         }
     }

@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 1387461434300845896}
   - component: {fileID: -5533211695306525179}
   - component: {fileID: -5664859693588689256}
+  - component: {fileID: -7807660158720829330}
   m_Layer: 9
   m_Name: AlienAI
   m_TagString: Untagged
@@ -220,7 +221,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c247682035983d04690b73f6dfeab4d8, type: 3}
   m_Name: 
@@ -265,7 +266,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bbf0d2b0b43f8e49bd6f46990100a39, type: 3}
   m_Name: 
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56c80a312bbd1db4a8760a6469642d08, type: 3}
   m_Name: 
@@ -293,13 +294,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15b4867bbe3f19440aad9c792f680787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 5477602151829979742}
-  force: 1000
+  force: 100
 --- !u!114 &3196209236514557478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +461,19 @@ MonoBehaviour:
   _serializedBlackboard: '{"_variables":{}}'
   _objectReferences: []
   _serializedVariables: []
+--- !u!114 &-7807660158720829330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b271b5af4b194494b47856baa239f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbours: []
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
