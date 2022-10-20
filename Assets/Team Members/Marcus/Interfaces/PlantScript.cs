@@ -7,8 +7,8 @@ public class PlantScript : MonoBehaviour, IFlammable
     public PHealth health;
     private float myHealth = 100f;
 
-    private bool isAflame = false;
-    private bool hasBurned = false;
+    private bool isAflame;
+    private bool hasBurned;
     private float burnDuration;
 
     private Renderer objColour;
@@ -18,7 +18,7 @@ public class PlantScript : MonoBehaviour, IFlammable
     {
         health.damagedEvent += FlowerHurty;
         
-        objColour = this.GetComponent<Renderer>();
+        objColour = GetComponent<Renderer>();
         objColour.material.color = Color.green;
     }
 
@@ -28,9 +28,9 @@ public class PlantScript : MonoBehaviour, IFlammable
         if (isAflame)
         {
             burnDuration += Time.deltaTime;
-            this.transform.localScale -= new Vector3(burnDuration, burnDuration/25, burnDuration);
+            transform.localScale -= new Vector3(burnDuration, burnDuration/25, burnDuration);
 
-            if (this.transform.localScale.y < 0)
+            if (transform.localScale.y < 0)
             {
                 isAflame = false;
                 hasBurned = true;

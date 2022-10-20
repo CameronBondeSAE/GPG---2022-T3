@@ -47,12 +47,6 @@ public class MarcusTerrain : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Clear()
     {
         // Clear the list of tiles before regeneration

@@ -16,7 +16,7 @@ public class MarcusInput : MonoBehaviour
     public float speed;
 
     public ParticleSystem ps;
-    private bool firing = false;
+    private bool firing;
 
     private void OnEnable()
     {
