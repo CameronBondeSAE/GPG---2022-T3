@@ -1,36 +1,20 @@
+using System;
 using UnityEngine;
 
 namespace Oscar
 {
-    public class Explosive_Model : MonoBehaviour, IFlammable
+    public class Explosive_Model : MonoBehaviour
     {
-        public enum States
+        public enum ExplosionStates
         {
             Idle,
             AboutToBlow,
             Explode
         }
         
-        public States currentStates;
-        
-        private void Update()
-        {
-            switch (currentStates)
-            {
-                case States.Idle:
-                    //stationary Explosive
-                    break;
-                case States.AboutToBlow:
-                    //when the Explosive is pulsating and about to explode
-                    break;
-                case States.Explode:
-                    //when the explosive has exploded/in the midst of it
-                    break;
-            }
-        }
-        
-        
-        
+        public ExplosionStates state;
+        public ExplosionStates lastState;
+
         private float TimeRemaining = 3;
     
         private bool onFire = false;
@@ -41,22 +25,11 @@ namespace Oscar
         
         
         
-        
-        
         public BarrelHealth barrelHealth;
         public void Start()
         {
             barrelHealth.myAmount(myHealth);
         }
-        public void SetOnFire()
-        {
-            this.GetComponent<Renderer>().material.color = Color.red;
-            onFire = true;
-            
-            print("ow");
-        }
-    
-        
     }
 }
 
