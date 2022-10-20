@@ -12,12 +12,12 @@ public class CubeScript : MonoBehaviour
     {
         myself = this.GameObject();
 
-        EventManager.TerrainClearEvent += KillSelf;
+        Lloyd.EventManager.TerrainClearEvent += KillSelf;
     }
 
     void OnDisable()
     {
-        EventManager.TerrainClearEvent -= KillSelf;
+        Lloyd.EventManager.TerrainClearEvent -= KillSelf;
     }
 
     public void KillSelf()
