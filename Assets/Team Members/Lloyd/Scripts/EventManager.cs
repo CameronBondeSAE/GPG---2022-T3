@@ -2,30 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventManager : MonoBehaviour
+namespace Lloyd
 {
-    public delegate void TerrainClear();
-
-    public static event TerrainClear TerrainClearEvent;
-
-    public static void TerrainClearFunction()
+    public class EventManager : MonoBehaviour
     {
-        if (TerrainClearEvent != null)
+        public delegate void TerrainClear();
+
+        public static event TerrainClear TerrainClearEvent;
+
+        public static void TerrainClearFunction()
         {
-            TerrainClearEvent();
+            if (TerrainClearEvent != null)
+            {
+                TerrainClearEvent();
+            }
         }
-    }
-    
-    public delegate void ChangeHealth(float amount);
 
-    public static event ChangeHealth ChangeHealthEvent;
+        public delegate void ChangeHealth(float amount);
 
-    public static void ChangeHealthFunction(float amount)
-    {
-        if (ChangeHealthEvent != null)
+        public static event ChangeHealth ChangeHealthEvent;
+
+        public static void ChangeHealthFunction(float amount)
         {
-            ChangeHealthEvent(amount);
+            if (ChangeHealthEvent != null)
+            {
+                ChangeHealthEvent(amount);
+            }
         }
-    }
+        
+        public delegate void Burning();
 
+        public static event Burning BurningEvent;
+
+        public static void BurningEventFunction()
+        {
+            if (BurningEvent != null)
+            {
+                BurningEvent();
+            }
+        }
+        
+        public delegate void Burnt();
+
+        public static event Burnt BurntEvent;
+
+        public static void BurntEventFunction()
+        {
+            if (BurntEvent != null)
+            {
+                BurntEvent();
+            }
+        }
+
+    }
 }

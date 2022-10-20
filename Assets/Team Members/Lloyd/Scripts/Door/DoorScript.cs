@@ -1,76 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class DoorScript : MonoBehaviour, IFlammable
+namespace Lloyd
 {
-    public TMP_Text doorText;
- 
-    
-    
+
+    public class DoorScript : MonoBehaviour, IFlammable, IInteractable
+{
+
     private HealthComponent HPComp;
     private float HP;
 
     private float fireDamage;
-
-    private bool isActive;
     
     private bool isBurning;
 
-    private Renderer rend;
-    
-    
+    Vector3 doorPos;
 
-    private void Start()
+    private bool isOpen;
+    private bool isActive;
+
+    void OnEnable()
     {
+        EventManager.ChangeHealthEvent += ChangeHP;
+
+        doorPos = this.transform.position;
+
         HPComp = this.GetComponent<HealthComponent>();
 
-        HP = HPComp.MyHP();
-
         fireDamage = HPComp.MyFireDamage();
-            
-        rend = this.GetComponent<Renderer>();
-        
-        rend.material.SetColor("_BaseColor", new Color(0.3f, 0.4f, 0.6f, 0.3f));
 
         isActive = true;
         
-       // doorText = this.GetComponent<TMP_Text>();
+        EventManager.ChangeHealthFunction(HPComp.MyHP());
+    }
+    
+    
 
+    public void Interact()
+    {
+        isOpen = !isOpen;
     }
 
     private void FixedUpdate()
     {
         if (isBurning && isActive)
         {
-            rend.material.SetColor("_BaseColor", Color.red);
             EventManager.ChangeHealthFunction(-fireDamage);
         }
-        
- 
-        doorText.text = HP.ToString(); 
-
-        
+        Debug.Log(HP);
     }
 
 
     public void SetOnFire()
     {
+        Lloyd.EventManager.BurningEventFunction();
         isBurning = true;
     }
 
     public void Burnt()
     {
-        rend.material.SetColor("_BaseColor", Color.black);
+        Lloyd.EventManager.BurntEventFunction();
         isActive = false;
         HP = 0;
     }
 
-    private void OnEnable()
-    {
-        EventManager.ChangeHealthEvent += ChangeHP;
-    }
+   
 
     private void OnDisable()
     {
@@ -79,12 +74,11 @@ public class DoorScript : MonoBehaviour, IFlammable
 
     private void ChangeHP(float amount)
     {
-        
         HP += amount;
         
         if (HP <= 0)
             Burnt();
     }
     
-    
+}
 }
