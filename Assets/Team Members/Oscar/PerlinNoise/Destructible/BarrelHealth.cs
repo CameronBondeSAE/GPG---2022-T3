@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class BarrelHealth : MonoBehaviour
 {
-    public Barrel barrel;
+    //public Explosive_Model explosiveModel;
     float amount;
 
     private float damage = 0.1f;
     
     public void OnEnable()
     {
-        barrel.burning += Damage;
+        //explosiveModel.burning += Damage;
     }
 
     public float myAmount(float myHealth)
