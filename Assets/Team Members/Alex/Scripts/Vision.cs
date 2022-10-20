@@ -30,35 +30,53 @@ namespace Alex
 
                 Physics.Raycast(transform.position, dir, out RaycastHit HitInfo);
                 if(HitInfo.collider == null) continue;
-                Debug.DrawLine(transform.position, HitInfo.point, Color.green);
                 
-                if (HitInfo.collider.GetComponent<Resource>() != null)
-                {
-                    Transform resource = HitInfo.transform;
-
-                    if (!resourcesInSight.Contains(resource))
-                    {
-                        resourcesInSight.Add(resource);
-                    }
-                }
                 
-                if (HitInfo.collider.GetComponent<DropOffPoint>() != null)
-                {
-                    Transform resource = HitInfo.transform;
-
-                    if (!dropOffPointsFound.Contains(resource))
-                    {
-                        dropOffPointsFound.Add(resource);
-                    }
-                }
-
                 if (HitInfo.collider.GetComponent<Enemy>() != null)
                 {
+                    Debug.DrawLine(transform.position, HitInfo.point, Color.red);
                     Transform enemy = HitInfo.transform;
 
                     if (!enemyInSight.Contains(enemy))
                     {
                         enemyInSight.Add(enemy);
+                    }
+                }
+                
+                else
+                {
+                    Debug.DrawLine(transform.position, HitInfo.point, Color.green);
+
+                    if (HitInfo.collider.GetComponent<Resource>() != null)
+                    {
+
+                        Transform resource = HitInfo.transform;
+
+                        if (!resourcesInSight.Contains(resource))
+                        {
+                            resourcesInSight.Add(resource);
+                        }
+                    }
+
+                    if (HitInfo.collider.GetComponent<DropOffPoint>() != null)
+                    {
+                        Transform resource = HitInfo.transform;
+
+                        if (!dropOffPointsFound.Contains(resource))
+                        {
+                            dropOffPointsFound.Add(resource);
+                        }
+                    }
+
+                    if (HitInfo.collider.GetComponent<Enemy>() != null)
+                    {
+                        Debug.DrawLine(transform.position, HitInfo.point, Color.red);
+                        Transform enemy = HitInfo.transform;
+
+                        if (!enemyInSight.Contains(enemy))
+                        {
+                            enemyInSight.Add(enemy);
+                        }
                     }
                 }
             }
