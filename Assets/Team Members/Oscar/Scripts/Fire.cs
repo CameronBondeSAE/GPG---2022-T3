@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    private Barrel _barrelHurt;
+    //private Explosive_Model _explosiveModelHurt;
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<BarrelHealth>())
         {
-            _barrelHurt = other.GetComponent<Barrel>();
-            _barrelHurt.SetOnFire();
+            // _explosiveModelHurt = other.GetComponent<Explosive_Model>();
+            // _explosiveModelHurt.SetOnFire();
         }
     }
 }
