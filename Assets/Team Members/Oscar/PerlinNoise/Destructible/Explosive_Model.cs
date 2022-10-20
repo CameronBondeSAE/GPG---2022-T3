@@ -14,16 +14,8 @@ namespace Oscar
         
         public ExplosionStates state;
         public ExplosionStates lastState;
-
-        private float TimeRemaining = 3;
-    
-        private bool onFire = false;
+        
         private float myHealth = 100;
-    
-        public delegate void OnFire();
-        public event OnFire burning;
-        
-        
         
         public BarrelHealth barrelHealth;
         public void Start()
