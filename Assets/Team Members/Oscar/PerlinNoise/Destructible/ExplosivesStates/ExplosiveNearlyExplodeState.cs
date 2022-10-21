@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Oscar
@@ -8,32 +9,25 @@ namespace Oscar
     public class ExplosiveNearlyExplodeState : MonoBehaviour
     {
         private Color render;
-        private bool exploding = false;
         private Color explodeRed = Color.red;
         
         private void Start()
         {
-            ChangeColour();
+            StartCoroutine(ChangeColour());
         }
 
-        void ChangeColour()
+        IEnumerator ChangeColour()
         {
-            if (exploding == false)
-            {
-                GetComponent<Renderer>().material.color = explodeRed;
-            }
+            GetComponent<Renderer>().material.color = explodeRed;
+            yield return new WaitForSeconds(3);
+            GetComponent<Oscar.StateManager>().ChangeState(GetComponent<ExplosiveExplodeState>());
+
         }
 
-        private void Update()
+        private void OnDisable()
         {
-            //pulse the object
-            //tween this
             
-            //google tweening
         }
-        
-        
-        
     }
 }
 
