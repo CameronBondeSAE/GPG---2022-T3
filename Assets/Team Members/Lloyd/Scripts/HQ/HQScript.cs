@@ -110,12 +110,12 @@ public class HQScript : MonoBehaviour
     
     void OnEnable()
     {
-        EventManager.TerrainClearEvent += KillSelf;
+        Lloyd.EventManager.TerrainClearEvent += KillSelf;
     }
 
     void OnDisable()
     {
-        EventManager.TerrainClearEvent -= KillSelf;
+        Lloyd.EventManager.TerrainClearEvent -= KillSelf;
     }
 
     public void KillSelf()

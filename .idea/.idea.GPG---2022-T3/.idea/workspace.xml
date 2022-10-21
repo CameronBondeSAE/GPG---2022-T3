@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aaefdcdf-ecf0-4ecb-90b0-f8fc79c97588" name="Changes" comment="" />
+    <list default="true" id="aaefdcdf-ecf0-4ecb-90b0-f8fc79c97588" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GPG---2022-T3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GPG---2022-T3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Cam/GuyDudeActionMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Team Members/Cam/GuyDudeActionMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Cam/New Controls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Team Members/Cam/New Controls.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scene/FireTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scene/FireTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/CubeScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/CubeScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/EventManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/EventManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/Fire/DoorScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/Fire/DoorScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/Fire/HealthComponent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/Fire/HealthComponent.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/HQ/HQScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/HQ/HQScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/PerlinScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Team Members/Lloyd/Scripts/PerlinScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +44,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity 2022.1.18f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity 2022.1.8f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\102205\Documents\GPG---2022-T3 -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\102205\Documents\GPG---2022-T3" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -67,6 +85,7 @@
       <workItem from="1665020774639" duration="1331000" />
       <workItem from="1665616069002" duration="10028000" />
       <workItem from="1665980234243" duration="6700000" />
+      <workItem from="1666241210629" duration="2916000" />
     </task>
     <servers />
   </component>

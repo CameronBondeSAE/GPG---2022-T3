@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,15 +52,23 @@ public class MarcusInput : MonoBehaviour
         playerMove = input.ReadValue<Vector2>();
     }
 
+    public delegate void Firing();
+    public event Firing FireEvent;
+
+    public delegate void Stopped();
+    public event Stopped StopEvent;
+    
     private void OnPlayerThrow(InputAction.CallbackContext input)
     {
         if (!firing)
         {
             ps.Play();
+            FireEvent?.Invoke();
         }
         else
         {
            ps.Stop(); 
+           StopEvent?.Invoke();
         }
         
         firing = !firing;

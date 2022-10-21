@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Luke;
 using Unity.Mathematics;
@@ -18,12 +19,7 @@ public class MapGenerator : MonoBehaviour
     GameObject AIParent;
     GameObject borderParent;
     GameObject BaseParent;
-    
-    //for easy delete when refreshing or resetting the map
-    private List<GameObject> cubeLand = new List<GameObject>();
-    private List<GameObject> BarrelList = new List<GameObject>();
-    private List<GameObject> AIList = new List<GameObject>();
-    private List<GameObject> BaseList = new List<GameObject>();
+    GameObject HQParent;
 
 
     //Base spawning variables
@@ -31,12 +27,14 @@ public class MapGenerator : MonoBehaviour
     private int HQAmount = 0;
 
     [SerializeField] 
-    private float LastBaseDistance = 20;
+    private float LastBaseDistance;
 
     private Vector3 prevBasePos;
     
     [SerializeField]
-    private float minDist = 20;
+    private float minDist = 90;
+
+    private float tempBaseDist;
     
 
     //Perlin noise values and required elements to spawn the maze.
@@ -56,6 +54,7 @@ public class MapGenerator : MonoBehaviour
 
     public void Start()
     {
+        
         GameManager.singleton.OnGameStart += Spawner;
         GameManager.singleton.OnGameEnd += DeleteMap;
         
@@ -63,6 +62,7 @@ public class MapGenerator : MonoBehaviour
         BarrelParent = new GameObject("ItemParent");
         AIParent = new GameObject("AIParent");
         borderParent = new GameObject("borderParent");
+        HQParent = new GameObject("HQParent");
         
         if (randomMap == true)
         {
@@ -82,26 +82,30 @@ public class MapGenerator : MonoBehaviour
 
     public void ResetTheMap()
     {
-        for (int cubes = 0; cubes < cubeLand.Count; cubes++)
+        //for every child in the cube parent delete the children
+        foreach (Transform child in CubeParent.transform)
         {
-            Destroy(cubeLand[cubes].gameObject);
+            Destroy(child.gameObject);
         }
-        cubeLand.Clear();
-        for (int items = 0; items < BarrelList.Count; items++)
+        //for every child in the barrel parent delete the children
+        foreach (Transform child in BarrelParent.transform)
         {
-            Destroy(BarrelList[items].gameObject);
+            Destroy(child.gameObject);
         }
-        BarrelList.Clear();
-        for (int aliens = 0; aliens < AIList.Count; aliens++)
+        //for every child in the AI parent delete the children
+        foreach (Transform child in AIParent.transform)
         {
-            Destroy(AIList[aliens].gameObject);
+            Destroy(child.gameObject);
         }
-        AIList.Clear();
-        for (int bases = 0; bases < BaseList.Count; bases++)
+        //for every child in the Base parent delete the children
+        foreach (Transform child in HQParent.transform)
         {
-            Destroy(BaseList[bases].gameObject);
+            Destroy(child.gameObject);
         }
-        BaseList.Clear();
+        
+        //reset the values so bases will respawn
+        HQAmount = 0;
+        tempBaseDist = 0;
         Spawner();
     }
 
@@ -139,7 +143,6 @@ public class MapGenerator : MonoBehaviour
                     {
                         GameObject newCube = Instantiate(cubePrefab, prefabPosition, Quaternion.identity);
                         newCube.transform.SetParent(CubeParent.transform);
-                        cubeLand.Add(newCube.gameObject);
                         newCube.GetComponent<Renderer>().material.color = Color.black;
                         if (perlinValue > .8)
                         {
@@ -151,7 +154,6 @@ public class MapGenerator : MonoBehaviour
                         if (perlinValue < .4f && prefabPosition.x > 20 && prefabPosition.z > 20)
                         {
                             SpawnTheBase(prefabPosition);
-                            
                         }
                         
                         SpawnAIInTheMaze(prefabPosition);
@@ -161,29 +163,30 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-
+        
         SpawnWalls();
     }
 
     void SpawnTheBase(Vector3 prefabPosition)
     {
-        //learn how to calculate distances between objects
-        float tempBaseDist = Vector3.Distance(prefabPosition, prevBasePos);
+        //learn how to calculate distances between potential created object and the previously spawned one
+        tempBaseDist = Vector3.Distance(prefabPosition, prevBasePos);
+        
+        //if the distance is less then the minimum distance set 
         if (tempBaseDist > minDist)
         {
-            if (HQAmount <= 2)
+            //and there isnt already 2 bases
+            if (HQAmount <= 1)
             {
+                //spawn the bases
                 Vector3 tempBasePos = prefabPosition;
                 prevBasePos = tempBasePos;
                 GameObject HQ = Instantiate(Base,prefabPosition,quaternion.identity);
+                HQ.name = "base";
+                HQ.transform.SetParent(HQParent.transform);                
                 HQAmount++;
-                BaseList.Add(HQ);
-                
             }
         }
-        
-
-
     }
 
     void SpawningTheBarrels(Vector3 prefabPosition)
@@ -194,35 +197,53 @@ public class MapGenerator : MonoBehaviour
         if (SpawmTheBarrels == 1)
         {
             GameObject spawnedItem = Instantiate(Barrel, prefabPosition, quaternion.identity);
+            OnCollisionEnter(spawnedItem.GetComponent<Collider>());
+            void OnCollisionEnter(Collider collision)
+            {
+                if (collision.gameObject.name == "base")
+                {
+                    Destroy(spawnedItem);
+                }
+                else
+                {
+                    spawnedItem.transform.SetParent(BarrelParent.transform);
+                    spawnedItem.GetComponent<Renderer>().material.color = Color.blue;
+                }
+            }
             
-            spawnedItem.transform.SetParent(BarrelParent.transform);
-            BarrelList.Add(spawnedItem.gameObject);
-            
-            spawnedItem.GetComponent<Renderer>().material.color = Color.blue;
         }
     }
 
     void SpawnAIInTheMaze(Vector3 prefabPosition)
     {
         //create spawn location with new perlin then 
-        
+
         int spawnTheAI = Random.Range(1, 50);
         if (spawnTheAI == 1)
         {
             GameObject spawnedAI = Instantiate(AISpawner, prefabPosition, quaternion.identity);
-            
-            spawnedAI.transform.SetParent(AIParent.transform);
-            AIList.Add(spawnedAI.gameObject);
+            OnCollisionEnter(spawnedAI.GetComponent<Collider>());
+
+            void OnCollisionEnter(Collider collision)
+            {
+                if (collision.gameObject.name == "base")
+                {
+                    Destroy(spawnedAI);
+                }
+                else
+                {
+                    spawnedAI.transform.SetParent(AIParent.transform);
+                }
+            }
         }
     }
-    
+
     void SpawnWalls()
     {
         GameObject firstWall = Instantiate(cubePrefab,
             new Vector3(0, prefabPosition.y, (amount / 2)), quaternion.identity);
         firstWall.name = "firstWall";
         firstWall.transform.localScale = new Vector3(1, prefabPosition.y * scale * 2, prefabPosition.z);
-        cubeLand.Add(firstWall.gameObject);
         firstWall.GetComponent<Renderer>().material.color = Color.black;
         firstWall.transform.SetParent(borderParent.transform);
 
@@ -231,7 +252,6 @@ public class MapGenerator : MonoBehaviour
             new Vector3(prefabPosition.x - (amount / 2),prefabPosition.y,prefabPosition.z), Quaternion.identity);
         secondWall.name = "secondWall";
         secondWall.transform.localScale = new Vector3(prefabPosition.x,prefabPosition.y * scale * 2,1);
-        cubeLand.Add(secondWall.gameObject);
         secondWall.GetComponent<Renderer>().material.color = Color.black;
         secondWall.transform.SetParent(borderParent.transform);
         
@@ -240,7 +260,6 @@ public class MapGenerator : MonoBehaviour
             new Vector3(prefabPosition.x, prefabPosition.y, prefabPosition.z - (amount / 2)), quaternion.identity);
         thirdWall.name = "thirdWall";
         thirdWall.transform.localScale = new Vector3(1, prefabPosition.y * scale * 2, prefabPosition.z);
-        cubeLand.Add(thirdWall.gameObject);
         thirdWall.GetComponent<Renderer>().material.color = Color.black;
         thirdWall.transform.SetParent(borderParent.transform);
         
@@ -249,7 +268,6 @@ public class MapGenerator : MonoBehaviour
             new Vector3((amount / 2), prefabPosition.y, 0), quaternion.identity);
         fourthWall.name = "fourthWall";
         fourthWall.transform.localScale = new Vector3(prefabPosition.x, prefabPosition.y * scale * 2, 1);
-        cubeLand.Add(fourthWall.gameObject);
         fourthWall.GetComponent<Renderer>().material.color = Color.black;
         fourthWall.transform.SetParent(borderParent.transform);
         
@@ -258,34 +276,37 @@ public class MapGenerator : MonoBehaviour
             new Vector3((amount / 2), 0, (amount / 2)), quaternion.identity);
         floor.name = "floor";
         floor.transform.localScale = new Vector3(amount, 1, amount);
-        cubeLand.Add(floor.gameObject);
         floor.GetComponent<Renderer>().material.color = Color.green;
         floor.transform.SetParent(borderParent.transform);
     }
     
     private void DeleteMap()
     {
-        for (int cubes = 0; cubes < cubeLand.Count; cubes++)
+        //for every child in the cube parent delete the children
+        foreach (Transform child in CubeParent.transform)
         {
-            Destroy(cubeLand[cubes].gameObject);
+            Destroy(child.gameObject);
         }
-        cubeLand.Clear();
-        for (int items = 0; items < BarrelList.Count; items++)
+        //for every child in the barrel parent delete the children
+        foreach (Transform child in BarrelParent.transform)
         {
-            Destroy(BarrelList[items].gameObject);
+            Destroy(child.gameObject);
         }
-        BarrelList.Clear();
-        for (int aliens = 0; aliens < AIList.Count; aliens++)
+        //for every child in the AI parent delete the children
+        foreach (Transform child in AIParent.transform)
         {
-            Destroy(AIList[aliens].gameObject);
+            Destroy(child.gameObject);
         }
-        AIList.Clear();
-        for (int bases = 0; bases < BaseList.Count; bases++)
+        //for every child in the Base parent delete the children
+        foreach (Transform child in HQParent.transform)
         {
-            Destroy(BaseList[bases].gameObject);
+            Destroy(child.gameObject);
         }
-        BaseList.Clear();
+        //reset values so bases can respawn
+        HQAmount = 0;
+        tempBaseDist = 0;
     }
+    
     private void SpawningTheItems(Vector3 prefabPosition)
     {
         

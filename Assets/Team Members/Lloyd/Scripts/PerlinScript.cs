@@ -70,7 +70,7 @@ public class PerlinScript : MonoBehaviour
 
     public void GenerateTerrain()
     {
-        EventManager.TerrainClearFunction();
+        Lloyd.EventManager.TerrainClearFunction();
         SpawnTerrain();
     }
 

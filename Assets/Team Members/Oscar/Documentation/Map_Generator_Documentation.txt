@@ -1,0 +1,24 @@
+HOW TO USE Map Generator 
+
+- Cube Prefab - for the prefab used to create the map, walls and floor
+
+- Barrel - for the exploding barrel prefab
+
+- AI Spawner - for the enemy Alien AI to spawn
+
+- Base - Used to spawn the bases in the map
+
+- HQ amount - Adjust the amount of HQ's
+
+- Last Base Distance - Adjust base distances
+
+- Min Distance - adjust the minimum distance from the last base
+
+- Amount - Adjust the amount of cubes that will spawn for the map
+
+- Random Map - If ticked the map will randomize upon spawn, otherwise it will spawn the last spawned map
+
+- cube size - adjust the distance between each cube
+
+- Terrain Refresh - spawns the terrain 
+
