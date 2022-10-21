@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class DoorStateManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public MonoBehaviour startingState;
+    public MonoBehaviour currentState;
+
+    private void Start()
     {
-        
+        ChangeState(startingState);
+        Debug.Log(currentState);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeState(MonoBehaviour newState)
     {
-        
+        if (newState == currentState)
+        {
+            return;
+        }
+
+        if (currentState != null)
+        {
+            currentState.enabled = false;
+        }
+
+        newState.enabled = true;
+
+        // New state swap over to incoming state
+        currentState = newState;
     }
 }

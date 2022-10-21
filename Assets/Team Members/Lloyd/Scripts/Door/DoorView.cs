@@ -49,4 +49,5 @@ public class DoorView : MonoBehaviour
         Lloyd.EventManager.BurningEvent -= Burning;
         Lloyd.EventManager.BurntEvent -= Burnt;
     }
+    
 }
