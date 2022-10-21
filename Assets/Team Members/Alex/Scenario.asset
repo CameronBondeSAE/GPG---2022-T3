@@ -41,7 +41,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 1493426894229047526, guid: 1f7f9e26fbe0ed743a9e467a2bac17aa, type: 3}
     cost: 0
-    position: {x: 877.34973, y: 89.86503}
+    position: {x: 842.323, y: 52.822155}
     pre:
     - id: 2
       value: 0
@@ -49,8 +49,6 @@ MonoBehaviour:
       value: 1
     - id: 0
       value: 1
-    - id: 8
-      value: 0
     post:
     - id: 2
       value: 1
@@ -60,14 +58,12 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4016345892358988173, guid: 9a95d1fdac2bc8445bb6afe90c23ce5f, type: 3}
     cost: 0
-    position: {x: 1329.9386, y: 92.04908}
+    position: {x: 1284.1272, y: 71.923676}
     pre:
     - id: 2
       value: 1
     - id: 3
       value: 1
-    - id: 8
-      value: 0
     post:
     - id: 2
       value: 0
@@ -77,57 +73,72 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 92025900423707080, guid: c8838a6a57e655c4fac71155cd4e186d, type: 3}
     cost: 0
-    position: {x: 668.82117, y: 89.092026}
+    position: {x: 642.3024, y: 58.03844}
     pre:
     - id: 0
       value: 1
-    - id: 8
-      value: 0
     post:
     - id: 1
       value: 1
   - name: Move To Base
     isDefault: 0
     state: {fileID: 8653921907090280506, guid: bb1d05f5173f35146925cc601b303855, type: 3}
-    cost: 0
-    position: {x: 1085.8037, y: 109.957054}
+    cost: 5
+    position: {x: 1059.197, y: 88.90883}
     pre:
     - id: 2
       value: 1
-    - id: 8
-      value: 0
     post:
     - id: 3
       value: 1
   - name: Move to Enemy
-    isDefault: 1
+    isDefault: 0
     state: {fileID: 1885941748799611865, guid: 6f8b6c8c12e4ca74280020c331fcbbe0, type: 3}
-    cost: 0
-    position: {x: 465.83704, y: 85.214966}
+    cost: 5
+    position: {x: 430.32367, y: 46.371464}
     pre:
     - id: 8
       value: 1
     post:
-    - id: 6
-      value: 1
-  - name: WonderingAround
-    isDefault: 0
-    state: {fileID: 0}
-    cost: 0
-    position: {x: 769, y: 419}
-    pre: []
-    post: []
-  goals:
-  - name: Gather Resources
+    - id: 8
+      value: 0
+  - name: WanderingAround
     isDefault: 1
-    position: {x: 204.41046, y: 46}
+    state: {fileID: 2822014770511461438, guid: 05678d2698b87154aa19d8e610e07cad, type: 3}
+    cost: 0
+    position: {x: 419.73645, y: 233.75562}
+    pre:
+    - id: 8
+      value: 0
+    - id: 0
+      value: 0
+    - id: 2
+      value: 0
+    post:
+    - id: 0
+      value: 1
+  - name: 'Find Enemy '
+    isDefault: 0
+    state: {fileID: 2822014770511461438, guid: ab1607ee23e39a04495d6f135f881b4a, type: 3}
+    cost: 0
+    position: {x: 637.299, y: 255.42873}
+    pre:
+    - id: 8
+      value: 0
+    post:
+    - id: 8
+      value: 1
+  goals:
+  - name: Gather Or Kill
+    isDefault: 1
+    position: {x: 220.41046, y: 54}
     conditions:
     - id: 5
       value: 1
-    - id: 6
-      value: 1
+    - id: 8
+      value: 0
   worldStates:
-  - position: {x: 213.02606, y: 360.49}
+  - position: {x: 217.02606, y: 463.49}
     isAutoUpdate: 1
     list:
     - id: 0
