@@ -7,15 +7,15 @@ using TMPro;
 public class DoorView : MonoBehaviour
 {
     private float HP;
-    
-    private Renderer rend;
-    
-    public TMP_Text doorText;
+
+    private Renderer _rend;
 
     private void OnEnable()
     {
-        rend = this.GetComponent<Renderer>();
-        rend.material.SetColor("_BaseColor", new Color(0.3f, 0.4f, 0.6f, 0.3f));
+
+        _rend = this.GetComponent<Renderer>();
+        
+        _rend.material.SetColor("_BaseColor", new Color(0.3f, 0.4f, 0.6f, 0.3f));
 
         Lloyd.EventManager.ChangeHealthEvent += ChangeHP;
         Lloyd.EventManager.BurningEvent += Burning;
@@ -29,18 +29,18 @@ public class DoorView : MonoBehaviour
 
     private void FixedUpdate()
     {
-        doorText.text = HP.ToString(); 
+       // doorText.text = HP.ToString(); 
     }
 
 
     public void Burning()
     {
-        rend.material.SetColor("_BaseColor", Color.red);
+        _rend.material.SetColor("_BaseColor", Color.red);
     }
 
     public void Burnt()
     {
-        rend.material.SetColor("_BaseColor", Color.black);
+        _rend.material.SetColor("_BaseColor", Color.black);
     }
 
     private void OnDisable()
