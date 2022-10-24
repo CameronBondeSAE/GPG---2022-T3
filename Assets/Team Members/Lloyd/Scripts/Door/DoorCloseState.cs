@@ -9,4 +9,9 @@ public class DoorCloseState : MonoBehaviour
         {
             Lloyd.EventManager.DoorCloseEventFunction();
         }
+
+        private void OnDisable()
+        {
+            
+        }
 }

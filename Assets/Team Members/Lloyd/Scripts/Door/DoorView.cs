@@ -7,7 +7,7 @@ using TMPro;
 public class DoorView : MonoBehaviour
 {
     private float HP;
-    
+
     private Renderer rend;
     
     public TMP_Text doorText;

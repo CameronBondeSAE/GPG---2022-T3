@@ -77,6 +77,18 @@ namespace Lloyd
                 DoorCloseEvent();
             }
         }
+        
+        public delegate void DoorIdle();
+
+        public static event DoorIdle DoorIdleEvent;
+
+        public static void DoorIdleEventFunction()
+        {
+            if (DoorIdleEvent != null)
+            {
+                DoorIdleEvent();
+            }
+        }
 
     }
 }
