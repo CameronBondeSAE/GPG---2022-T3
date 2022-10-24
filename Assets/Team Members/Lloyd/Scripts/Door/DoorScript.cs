@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NodeCanvas.Tasks.Conditions;
 using UnityEngine;
 
 namespace Lloyd
@@ -17,20 +18,21 @@ namespace Lloyd
 
     Vector3 doorPos;
 
-    private bool isOpen;
-    private bool isActive;
+    private bool isOpen=false;
+
+    private bool isActive=true;
 
     void OnEnable()
     {
-        EventManager.ChangeHealthEvent += ChangeHP;
+        Lloyd.EventManager.ChangeHealthEvent += ChangeHP;
+        Lloyd.EventManager.DoorOpenEvent += FlipActive;
+        Lloyd.EventManager.DoorCloseEvent += FlipActive;
 
         doorPos = this.transform.position;
 
         HPComp = this.GetComponent<HealthComponent>();
 
         fireDamage = HPComp.MyFireDamage();
-
-        isActive = true;
         
         EventManager.ChangeHealthFunction(HPComp.MyHP());
     }
@@ -39,16 +41,30 @@ namespace Lloyd
 
     public void Interact()
     {
-        isOpen = !isOpen;
+        if (isActive)
+        {
+            isOpen = !isOpen;
+            if (isOpen)
+                Lloyd.EventManager.DoorOpenEventFunction();
+
+            else if (!isOpen)
+                Lloyd.EventManager.DoorCloseEventFunction();
+
+            isActive = false;
+        }
+    }
+
+    private void FlipActive()
+    {
+        
     }
 
     private void FixedUpdate()
     {
-        if (isBurning && isActive)
+        if (isBurning)
         {
             EventManager.ChangeHealthFunction(-fireDamage);
         }
-        Debug.Log(HP);
     }
 
 
@@ -61,7 +77,6 @@ namespace Lloyd
     public void Burnt()
     {
         Lloyd.EventManager.BurntEventFunction();
-        isActive = false;
         HP = 0;
     }
 
@@ -69,7 +84,9 @@ namespace Lloyd
 
     private void OnDisable()
     {
-        EventManager.ChangeHealthEvent -= ChangeHP;
+        Lloyd.EventManager.ChangeHealthEvent -= ChangeHP;
+        Lloyd.EventManager.DoorOpenEvent -= FlipActive;
+        Lloyd.EventManager.DoorCloseEvent -= FlipActive;
     }
 
     private void ChangeHP(float amount)
