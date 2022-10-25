@@ -5,32 +5,24 @@ namespace Oscar
 {
     public class ExplosiveExplodeState : MonoBehaviour
     {
-        public int amountOfFragments = 4;
-        public float distance = 1f;
-        public GameObject rotator;
-        public Vector3 rotatorAxis;
         public GameObject explosivefragments;
 
         private float transformRotation;
         // Start is called before the first frame update
         void Start()
         {
-            for (int fragment = 0; fragment < amountOfFragments; fragment++)
-            {
-                GameObject brokenFragments = Instantiate(explosivefragments,
-                    this.transform.position + new Vector3(1,0,0), 
-                    quaternion.RotateY(transformRotation)) as GameObject;
-                
-                brokenFragments.transform.parent = rotator.transform;
-                
-                transformRotation += 90f;
-            }
+            //play particle system
+            
+            //spawn the fragments of the explosives remains
+            GameObject brokenFragments = Instantiate(explosivefragments, 
+                transform.position, quaternion.identity) as GameObject;
+            
+            //then as we dont need the barrel anymore then just delete it.
             DestroyExplosiveModel();
-            print("Exploded! Im Broken and Dead!");
         }
         void DestroyExplosiveModel()
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }
