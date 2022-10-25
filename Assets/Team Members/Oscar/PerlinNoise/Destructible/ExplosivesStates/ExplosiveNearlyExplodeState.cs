@@ -10,23 +10,20 @@ namespace Oscar
     {
         private Color render;
         private Color explodeRed = Color.red;
-        
-        private void Start()
-        {
-            StartCoroutine(ChangeColour());
-        }
 
-        IEnumerator ChangeColour()
+        //used IEnumerator so it will start on start but will wait a few seconds before continuing.
+        IEnumerator Start()
         {
+            //play hiss sound 
+            
             GetComponent<Renderer>().material.color = explodeRed;
             yield return new WaitForSeconds(3);
             GetComponent<Oscar.StateManager>().ChangeState(GetComponent<ExplosiveExplodeState>());
-
         }
 
         private void OnDisable()
         {
-            
+            //play explosion sound 
         }
     }
 }
