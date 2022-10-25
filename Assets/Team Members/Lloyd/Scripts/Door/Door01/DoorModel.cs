@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NodeCanvas.Tasks.Conditions;
+using Tanks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ namespace Lloyd
         private bool _isActive = true;
 
         //tracks if door is open or closed
-        [SerializeField]private bool _isOpen;
+       private bool _isOpen=true;
 
         //Door Health
         [SerializeField] private float _HP;
@@ -41,10 +42,14 @@ namespace Lloyd
         //Door Wing GameObjects
         [SerializeField] private float _doorWingSize;
 
+        [SerializeField] private float _numDoors;
+        public List<GameObject> _doorList = new List<GameObject>();
+
         public GameObject _doorWingprefab;
         private GameObject _doorWing01;
-        private GameObject _doorWing02;   
-        
+        private GameObject _doorWing02;
+
+        private DoorComponents _doorComp;
         private DoorComponents _doorComp01;
         private DoorComponents _doorComp02;
         
@@ -52,9 +57,7 @@ namespace Lloyd
         {
             EventManager.ChangeHealthEvent += ChangeHP;
             EventManager.DoorIdleEvent += DoorIdle;
-            EventManager.DoorInteractedEvent += DoorMove;
-
-            EventManager.DoorTestEvent += Test;
+            EventManager.DoorMoveEvent += DoorMove;
 
             _moveState = GetComponent<DoorMovingState>();
             _idleState = GetComponent<DoorIdleState>();
@@ -62,11 +65,6 @@ namespace Lloyd
             ChangeState(_idleState); 
             
             SpawnDoors();
-        }
-
-        private void Test(int x)
-        {
-            Debug.Log("Test "+x);
         }
         
         private void DoorMove()
@@ -96,23 +94,28 @@ namespace Lloyd
 
         private void SpawnDoors()
         {
+            for (int x = 0; x < _numDoors; x++)
+            {
+                
+            }
+            
             _doorWingPos = new Vector3(transform.position.x - (_doorWingSize), transform.position.y,
                 transform.position.z);
 
-            _doorWing01 = Instantiate(_doorWingprefab, _doorWingPos, Quaternion.identity);
+            _doorWing01 = Instantiate(_doorWingprefab, _doorWingPos, Quaternion.Euler(-90, 0, 0));
 
             _doorWing01.name = "Door01";
 
             _doorComp01 = _doorWing01.GetComponent<DoorComponents>();
             
             _doorComp01.SetDoorComps(_mainDoorInt, 1, _HP, _fireDamage, _speed);
-            
-            
+
+
 
             _doorWingPos = new Vector3(transform.position.x + (_doorWingSize), transform.position.y,
                 transform.position.z);
 
-            _doorWing02 = Instantiate(_doorWingprefab, _doorWingPos, Quaternion.identity);
+            _doorWing02 = Instantiate(_doorWingprefab, _doorWingPos, Quaternion.Euler(-90, 0, 0));
 
             _doorWing02.name = "Door02";
             
@@ -125,15 +128,14 @@ namespace Lloyd
         {
             if (_isActive)
             {
+                EventManager.DoorInteractedFunction();
+
                 _isOpen = !_isOpen;
-                
-                EventManager.DoorTestFunction(2);
                 
                 ChangeState(_moveState);
 
                 _isActive = false;
             }
-            EventManager.DoorTestFunction(1);
         }
 
         private void DoorIdle()
@@ -141,12 +143,6 @@ namespace Lloyd
             _isActive = true;
             ChangeState(_idleState);
         }
-
-        /*private void DoorMove()
-        {
-            _isActive = false;
-            ChangeState(_moveState);
-        }*/
 
         private void FixedUpdate()
         {
@@ -172,7 +168,8 @@ namespace Lloyd
         private void OnDisable()
         {
             EventManager.ChangeHealthEvent -= ChangeHP;
-            EventManager.DoorInteractedEvent -= DoorMove;
+            EventManager.DoorIdleEvent -= DoorIdle;
+            EventManager.DoorMoveEvent -= DoorMove;
         }
 
         private void ChangeHP(float amount)

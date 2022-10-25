@@ -87,13 +87,13 @@ namespace Lloyd
             DoorIdleEvent?.Invoke();
         }
         
-        public delegate void DoorTest(int x);
+        public delegate void DoorTest(int x, int y);
 
         public static event DoorTest DoorTestEvent;
 
-        public static void DoorTestFunction(int x)
+        public static void DoorTestFunction(int x, int y)
         {
-            DoorTestEvent?.Invoke(x);
+            DoorTestEvent?.Invoke(x, y);
         }
     }
 }
