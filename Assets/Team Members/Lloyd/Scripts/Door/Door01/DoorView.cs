@@ -9,11 +9,11 @@ public class DoorView : MonoBehaviour
     // // // //
     // DOOR COMPONENTS
     private DoorComponents _doorComp;
-    
+
     private int _mainDoorInt;
 
     private int _doorInt;
-    
+
     private float _HP;
 
     private float _fireDamage;
@@ -26,9 +26,9 @@ public class DoorView : MonoBehaviour
     {
         _doorComp = GetComponent<DoorComponents>();
         GetComps();
-        
+
         _rend = GetComponent<Renderer>();
-        
+
         _rend.material.SetColor("_BaseColor", new Color(0.3f, 0.4f, 0.6f, 0.3f));
 
         Lloyd.EventManager.ChangeHealthEvent += ChangeHP;
@@ -38,24 +38,26 @@ public class DoorView : MonoBehaviour
 
     private void GetComps()
     {
-        _doorComp.GetDoorComps(out int a, out int b, out float c, out float d, out float e);
-        _mainDoorInt = a;
-        _doorInt = b;
-        _HP = c;
-        _fireDamage = d;
-        _speed = e;
+        if (_doorComp != null)
+        {
+            _doorComp.GetDoorComps(out int a, out int b, out float c, out float d, out float e);
+            _mainDoorInt = a;
+            _doorInt = b;
+            _HP = c;
+            _fireDamage = d;
+            _speed = e;
+        }
     }
 
     public void ChangeHP(float amount)
-    { 
+    {
         _HP += amount;
     }
 
     private void FixedUpdate()
     {
-       // doorText.text = HP.ToString(); 
+        // doorText.text = HP.ToString(); 
     }
-
 
     public void Burning()
     {
@@ -73,5 +75,4 @@ public class DoorView : MonoBehaviour
         Lloyd.EventManager.BurningEvent -= Burning;
         Lloyd.EventManager.BurntEvent -= Burnt;
     }
-    
 }

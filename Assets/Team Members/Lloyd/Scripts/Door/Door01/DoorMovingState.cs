@@ -8,10 +8,6 @@ public class DoorMovingState : MonoBehaviour
 {
     private DoorModel _doorModel;
 
-    public MonoBehaviour _idleState;
-
-    private DoorStateManager _stateManager;
-
     private Rigidbody _rb01;
     private Rigidbody _rb02;
 
@@ -21,6 +17,7 @@ public class DoorMovingState : MonoBehaviour
     private bool _isMoving;
 
     private float _speed;
+    private int _timeMoving;
     private bool _isOpen;
 
     private int _fixedUpdateCount;
@@ -29,8 +26,6 @@ public class DoorMovingState : MonoBehaviour
     {
         _doorModel = GetComponent<DoorModel>();
 
-        _stateManager = GetComponent<DoorStateManager>();
-
         _doorWing01 = _doorModel.Wing01();
         _rb01 = _doorWing01.GetComponent<Rigidbody>();
 
@@ -38,6 +33,7 @@ public class DoorMovingState : MonoBehaviour
         _rb02 = _doorWing02.GetComponent<Rigidbody>();
 
         _speed = _doorModel.GetSpeed();
+        _timeMoving = _doorModel.GetTimeMoving();
 
         _isOpen = _doorModel.IsOpen();
         StartCoroutine(Move());
@@ -60,13 +56,13 @@ public class DoorMovingState : MonoBehaviour
             _rb02.AddForce(_rb02.transform.position + (Vector3.left * _speed));
         }
 
-        yield return new WaitUntil(() => _fixedUpdateCount >= 80);
+        yield return new WaitUntil(() => _fixedUpdateCount >= _timeMoving);
         
         _rb01.velocity = new Vector3(0f, 0f, 0f);
         _rb02.velocity = new Vector3(0f, 0f, 0f);
 
         _isMoving = false;
-
+        
         EventManager.DoorIdleFunction();
     }
 
@@ -78,5 +74,7 @@ public class DoorMovingState : MonoBehaviour
 
     private void OnDisable()
     {
+        _rb01.velocity = new Vector3(0f, 0f, 0f);
+        _rb02.velocity = new Vector3(0f, 0f, 0f);
     }
 }

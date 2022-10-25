@@ -85,10 +85,15 @@ namespace Lloyd
         public static void DoorIdleFunction()
         {
             DoorIdleEvent?.Invoke();
-            /*if (DoorIdleEvent != null)
-            {
-                DoorIdleEvent();
-            }*/
+        }
+        
+        public delegate void DoorTest(int x);
+
+        public static event DoorTest DoorTestEvent;
+
+        public static void DoorTestFunction(int x)
+        {
+            DoorTestEvent?.Invoke(x);
         }
     }
 }

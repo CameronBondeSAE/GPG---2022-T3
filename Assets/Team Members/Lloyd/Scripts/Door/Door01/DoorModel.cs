@@ -12,45 +12,61 @@ namespace Lloyd
         [SerializeField] private int _mainDoorInt=1;
         
         //State Manager
-        public MonoBehaviour _moveState;
-        public MonoBehaviour _currentState;
-
-        public MonoBehaviour _idleState;
+        private MonoBehaviour _currentState;
+        
+        private MonoBehaviour _moveState;
+        private MonoBehaviour _idleState;
         private MonoBehaviour _destroyedState;
 
         //determines if door can be Interacted with
         private bool _isActive = true;
 
+        //tracks if door is open or closed
         [SerializeField]private bool _isOpen;
 
         //Door Health
         [SerializeField] private float _HP;
-        private DoorComponents _doorComp01;
-        private DoorComponents _doorComp02;
+     
 
         //Door Fire Damge
         [SerializeField] private float _fireDamage;
-
         private bool isBurning;
 
         //Door Movement
         private Vector3 _doorWingPos;
         [SerializeField] private float _speed;
 
+        [SerializeField] private int _timeMoving;
+
         //Door Wing GameObjects
         [SerializeField] private float _doorWingSize;
 
         public GameObject _doorWingprefab;
         private GameObject _doorWing01;
-        private GameObject _doorWing02;
-
+        private GameObject _doorWing02;   
+        
+        private DoorComponents _doorComp01;
+        private DoorComponents _doorComp02;
+        
         void OnEnable()
         {
             EventManager.ChangeHealthEvent += ChangeHP;
             EventManager.DoorIdleEvent += DoorIdle;
             EventManager.DoorInteractedEvent += DoorMove;
 
+            EventManager.DoorTestEvent += Test;
+
+            _moveState = GetComponent<DoorMovingState>();
+            _idleState = GetComponent<DoorIdleState>();
+
+            ChangeState(_idleState); 
+            
             SpawnDoors();
+        }
+
+        private void Test(int x)
+        {
+            Debug.Log("Test "+x);
         }
         
         private void DoorMove()
@@ -59,11 +75,7 @@ namespace Lloyd
             ChangeState(_moveState);
         }
 
-        private void Start()
-        {
-            ChangeState(_idleState);
-        }
-
+        //copy pased from Cam's set up
         public void ChangeState(MonoBehaviour newState)
         {
             if (newState == _currentState)
@@ -109,26 +121,25 @@ namespace Lloyd
             _doorComp02.SetDoorComps(_mainDoorInt, 2, _HP, _fireDamage, _speed);
         }
 
-
-
         public void Interact()
         {
             if (_isActive)
             {
                 _isOpen = !_isOpen;
                 
+                EventManager.DoorTestFunction(2);
+                
                 ChangeState(_moveState);
-                EventManager.DoorIdleFunction();
 
                 _isActive = false;
             }
+            EventManager.DoorTestFunction(1);
         }
 
         private void DoorIdle()
         {
             _isActive = true;
             ChangeState(_idleState);
-            Debug.Log("whee");
         }
 
         /*private void DoorMove()
@@ -144,7 +155,6 @@ namespace Lloyd
                 EventManager.ChangeHealthFunction(-_fireDamage);
             }
         }
-
 
         public void SetOnFire()
         {
@@ -191,6 +201,11 @@ namespace Lloyd
         public float GetSpeed()
         {
             return _speed;
+        }
+        
+        public int GetTimeMoving()
+        {
+            return _timeMoving;
         }
 
         public bool IsActive()
