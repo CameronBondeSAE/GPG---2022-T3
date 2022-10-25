@@ -488,7 +488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &632581582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,12 +572,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 632581581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.61, z: 0}
+  m_LocalPosition: {x: 0, y: 3.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &632581587
 Rigidbody:
@@ -654,6 +654,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
+--- !u!1 &939292166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 939292167}
+  m_Layer: 0
+  m_Name: Explosive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &939292167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939292166}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.301126, y: 1.3680134, z: -0.05718994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1350184116}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1349580674
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,15 +910,15 @@ GameObject:
   - component: {fileID: 1350184113}
   - component: {fileID: 1350184112}
   - component: {fileID: 1350184111}
-  - component: {fileID: 1350184110}
   - component: {fileID: 1350184109}
+  - component: {fileID: 1350184110}
   m_Layer: 0
-  m_Name: Explosive
+  m_Name: Explosive_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1350184109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,6 +943,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f3f30d9557d934f9821ffb0ee242cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amountOfFragments: 4
+  distance: 1
+  rotator: {fileID: 939292166}
+  rotatorAxis: {x: 0, y: 0, z: 0}
+  explosivefragments: {fileID: 5922649274407099928, guid: e280177aa1e13884b870d1d4b665547a, type: 3}
 --- !u!114 &1350184111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,14 +1045,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350184108}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.55}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.301126, y: -1.3680134, z: 0.05718994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 266246691}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 939292167}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2001188258
 GameObject:

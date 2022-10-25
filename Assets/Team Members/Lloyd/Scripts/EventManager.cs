@@ -53,6 +53,42 @@ namespace Lloyd
                 BurntEvent();
             }
         }
+        
+        public delegate void DoorMove();
+
+        public static event DoorMove DoorMoveEvent;
+
+        public static void DoorMoveFunction()
+        {
+            if (DoorMoveEvent != null)
+            {
+                DoorMoveEvent();
+            }
+        }
+        
+        public delegate void DoorInteracted();
+
+        public static event DoorInteracted DoorInteractedEvent;
+
+        public static void DoorInteractedFunction()
+        {
+            if (DoorInteractedEvent != null)
+            {
+                DoorInteractedEvent();
+            }
+        }
+        
+        public delegate void DoorIdle();
+
+        public static event DoorIdle DoorIdleEvent;
+
+        public static void DoorIdleEventFunction()
+        {
+            if (DoorIdleEvent != null)
+            {
+                DoorIdleEvent();
+            }
+        }
 
     }
 }
