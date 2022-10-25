@@ -29,7 +29,7 @@ public class DoorView : MonoBehaviour
 
         _rend = GetComponent<Renderer>();
 
-        _rend.material.SetColor("_BaseColor", new Color(0.3f, 0.4f, 0.6f, 0.3f));
+        _rend.material.SetColor("_BaseColor", new Color(0.3f, 0.4f, 0.6f, 0.0f));
 
         Lloyd.EventManager.ChangeHealthEvent += ChangeHP;
         Lloyd.EventManager.BurningEvent += Burning;
@@ -54,19 +54,14 @@ public class DoorView : MonoBehaviour
         _HP += amount;
     }
 
-    private void FixedUpdate()
-    {
-        // doorText.text = HP.ToString(); 
-    }
-
     public void Burning()
     {
-        _rend.material.SetColor("_BaseColor", Color.red);
+        _rend.material.SetColor("_BaseColor", new Color(1f,0,0,.5f));
     }
 
     public void Burnt()
     {
-        _rend.material.SetColor("_BaseColor", Color.black);
+        _rend.material.SetColor("_BaseColor", new Color(0f,0,0,.5f));
     }
 
     private void OnDisable()
