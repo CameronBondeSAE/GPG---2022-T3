@@ -29,7 +29,7 @@ namespace Lloyd
                 ChangeHealthEvent(amount);
             }
         }
-        
+
         public delegate void Burning();
 
         public static event Burning BurningEvent;
@@ -41,7 +41,7 @@ namespace Lloyd
                 BurningEvent();
             }
         }
-        
+
         public delegate void Burnt();
 
         public static event Burnt BurntEvent;
@@ -53,7 +53,7 @@ namespace Lloyd
                 BurntEvent();
             }
         }
-        
+
         public delegate void DoorMove();
 
         public static event DoorMove DoorMoveEvent;
@@ -65,7 +65,7 @@ namespace Lloyd
                 DoorMoveEvent();
             }
         }
-        
+
         public delegate void DoorInteracted();
 
         public static event DoorInteracted DoorInteractedEvent;
@@ -77,18 +77,18 @@ namespace Lloyd
                 DoorInteractedEvent();
             }
         }
-        
+
         public delegate void DoorIdle();
 
         public static event DoorIdle DoorIdleEvent;
 
-        public static void DoorIdleEventFunction()
+        public static void DoorIdleFunction()
         {
-            if (DoorIdleEvent != null)
+            DoorIdleEvent?.Invoke();
+            /*if (DoorIdleEvent != null)
             {
                 DoorIdleEvent();
-            }
+            }*/
         }
-
     }
 }

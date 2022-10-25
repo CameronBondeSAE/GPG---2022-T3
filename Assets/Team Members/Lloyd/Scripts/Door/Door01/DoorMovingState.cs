@@ -12,17 +12,16 @@ public class DoorMovingState : MonoBehaviour
 
     private DoorStateManager _stateManager;
 
-   [SerializeField] private Rigidbody _rb01;
-   [SerializeField] private Rigidbody _rb02;
+    private Rigidbody _rb01;
+    private Rigidbody _rb02;
 
-    [SerializeField]private GameObject _doorWing01;
-    [SerializeField]private GameObject _doorWing02;
+    private GameObject _doorWing01;
+    private GameObject _doorWing02;
 
     private bool _isMoving;
 
     private float _speed;
-
-    [SerializeField] private bool _isOpen;
+    private bool _isOpen;
 
     private int _fixedUpdateCount;
 
@@ -53,24 +52,22 @@ public class DoorMovingState : MonoBehaviour
         if (_isOpen)
         {
             _rb01.AddForce(_rb01.transform.position + (Vector3.left * _speed));
-            
-
             _rb02.AddForce(_rb02.transform.position + (Vector3.right * _speed));
         }
         else
         {
             _rb01.AddForce(_rb01.transform.position + (Vector3.right * _speed));
-
             _rb02.AddForce(_rb02.transform.position + (Vector3.left * _speed));
         }
 
         yield return new WaitUntil(() => _fixedUpdateCount >= 80);
-
-        _isMoving = false;
+        
         _rb01.velocity = new Vector3(0f, 0f, 0f);
         _rb02.velocity = new Vector3(0f, 0f, 0f);
 
-        EventManager.DoorIdleEventFunction();
+        _isMoving = false;
+
+        EventManager.DoorIdleFunction();
     }
 
     private void FixedUpdate()

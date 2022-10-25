@@ -6,14 +6,28 @@ using TMPro;
 
 public class DoorView : MonoBehaviour
 {
-    private float HP;
+    // // // //
+    // DOOR COMPONENTS
+    private DoorComponents _doorComp;
+    
+    private int _mainDoorInt;
+
+    private int _doorInt;
+    
+    private float _HP;
+
+    private float _fireDamage;
+
+    private float _speed;
 
     private Renderer _rend;
 
     private void OnEnable()
     {
-
-        _rend = this.GetComponent<Renderer>();
+        _doorComp = GetComponent<DoorComponents>();
+        GetComps();
+        
+        _rend = GetComponent<Renderer>();
         
         _rend.material.SetColor("_BaseColor", new Color(0.3f, 0.4f, 0.6f, 0.3f));
 
@@ -22,9 +36,19 @@ public class DoorView : MonoBehaviour
         Lloyd.EventManager.BurntEvent += Burnt;
     }
 
+    private void GetComps()
+    {
+        _doorComp.GetDoorComps(out int a, out int b, out float c, out float d, out float e);
+        _mainDoorInt = a;
+        _doorInt = b;
+        _HP = c;
+        _fireDamage = d;
+        _speed = e;
+    }
+
     public void ChangeHP(float amount)
     { 
-        HP += amount;
+        _HP += amount;
     }
 
     private void FixedUpdate()

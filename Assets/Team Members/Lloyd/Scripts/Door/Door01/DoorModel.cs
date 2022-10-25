@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using LloydDoor;
 using NodeCanvas.Tasks.Conditions;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,6 +8,9 @@ namespace Lloyd
 {
     public class DoorModel : MonoBehaviour, IFlammable
     {
+        //what door am I globally?
+        [SerializeField] private int _mainDoorInt=1;
+        
         //State Manager
         public MonoBehaviour _moveState;
         public MonoBehaviour _currentState;
@@ -90,10 +92,10 @@ namespace Lloyd
             _doorWing01.name = "Door01";
 
             _doorComp01 = _doorWing01.GetComponent<DoorComponents>();
-            _doorComp01.SetHP(_HP);
-            _doorComp01.SetFireDamage(_fireDamage);
-            _doorComp01.SetSpeed(_speed);
-           // _doorComp01.SetDoorInt(1);
+            
+            _doorComp01.SetDoorComps(_mainDoorInt, 1, _HP, _fireDamage, _speed);
+            
+            
 
             _doorWingPos = new Vector3(transform.position.x + (_doorWingSize), transform.position.y,
                 transform.position.z);
@@ -101,12 +103,10 @@ namespace Lloyd
             _doorWing02 = Instantiate(_doorWingprefab, _doorWingPos, Quaternion.identity);
 
             _doorWing02.name = "Door02";
+            
+            _doorComp02 = _doorWing01.GetComponent<DoorComponents>();
 
-            _doorComp02 = _doorWing02.GetComponent<DoorComponents>();
-            _doorComp02.SetHP(_HP);
-            _doorComp02.SetFireDamage(_fireDamage);
-            _doorComp02.SetSpeed(_speed);
-           // _doorComp01.SetDoorInt(2);
+            _doorComp02.SetDoorComps(_mainDoorInt, 2, _HP, _fireDamage, _speed);
         }
 
 
@@ -118,6 +118,7 @@ namespace Lloyd
                 _isOpen = !_isOpen;
                 
                 ChangeState(_moveState);
+                EventManager.DoorIdleFunction();
 
                 _isActive = false;
             }
@@ -127,6 +128,7 @@ namespace Lloyd
         {
             _isActive = true;
             ChangeState(_idleState);
+            Debug.Log("whee");
         }
 
         /*private void DoorMove()

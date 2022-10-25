@@ -5,52 +5,41 @@ using UnityEngine;
 
 public class DoorComponents : MonoBehaviour
 {
-    public int _doorInt;
+    public int _mainDoorInt;
+    
+    public int _doorWingInt;
 
-    public int GetDoorInt()
-    {
-        return _doorInt;
-    }
+   public float _HP;
 
-    public void SetDoorInt(int x)
-    {
-        _doorInt = x;
-    }
-
-    public float _HP;
-
-    public float GetHP()
-    {
-        return _HP;
-    }
-
-    public void SetHP(float x)
-    {
-        _HP = x;
-    }
-
-    //determines how flammable something is (ie, the higher the float, the faster x will burn)
+   //determines how flammable something is (ie, the higher the float, the faster x will burn)
     public float _fireDamage;
 
-    public float GetFireDamage()
+   public float _speed;
+
+   public void SetDoorComps(int a, int b, float c, float d, float e)
     {
-        return _fireDamage;
+        _mainDoorInt = a;
+
+        _doorWingInt = b;
+
+        _HP = c;
+
+        _fireDamage = d;
+
+        _speed = e;
+    } 
+    
+    public void GetDoorComps(out int a, out int b,out float c,out float d,out float e)
+    {
+        a = _mainDoorInt;
+
+        b = _doorWingInt;
+
+        c = _HP;
+
+        d = _fireDamage;
+
+        e = _speed;
     }
 
-    public void SetFireDamage(float x)
-    {
-        _fireDamage = x;
-    }
-
-    public float _speed;
-
-    public float GetSpeed()
-    {
-        return _speed;
-    }
-
-    public void SetSpeed(float x)
-    {
-        _speed = x;
-    }
 }
