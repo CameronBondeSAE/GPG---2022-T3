@@ -47,15 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef8adc6fa69cd04e9fa7acf3ed39ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveState: {fileID: 5504284391338401089}
-  _currentState: {fileID: 0}
-  _idleState: {fileID: 2673514785662043412}
+  _mainDoorInt: 1
   _isOpen: 0
   _HP: 10
   _fireDamage: 0.25
   _speed: 0
-  _doorWingSize: 22
-  _doorWingprefab: {fileID: 1137594636082041391, guid: 6d7d8f9d901d8b44b89c8d3411a247c2, type: 3}
+  _doorWingSize: 50
+  _doorWingprefab: {fileID: 4464187641542929429, guid: 6341261070d5b854c9ec0e8f2fedc8f9, type: 3}
 --- !u!65 &217761237709104157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93,12 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709287ec9e181214d932cfaa43b7596b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleState: {fileID: 0}
-  _rb01: {fileID: 0}
-  _rb02: {fileID: 0}
-  _doorWing01: {fileID: 0}
-  _doorWing02: {fileID: 0}
-  _isOpen: 0
 --- !u!1 &2532123973250777705
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +100,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3444015109496717770}
-  - component: {fileID: 3162271068692685411}
   - component: {fileID: 8764432144084024619}
   m_Layer: 0
   m_Name: Door_View
@@ -132,18 +123,6 @@ Transform:
   m_Father: {fileID: 1000418914816544422}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3162271068692685411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2532123973250777705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63e925d61368a104185b1431c740ab01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &8764432144084024619
 MeshRenderer:
   m_ObjectHideFlags: 0
