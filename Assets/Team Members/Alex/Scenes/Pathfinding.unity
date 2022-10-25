@@ -331,12 +331,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9fd853c7fc00b64cbd3b83bdfe1d1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 25, y: 25, z: 25}
-  gridSize: {x: 25, y: 1, z: 25}
-  startPos: {x: 0, y: 0, z: 0}
-  endPos: {x: 0, y: 0, z: 0}
+  gridSpaceSize: {x: 1, y: 1, z: 1}
+  totalGridSize: {x: 25, y: 1, z: 25}
+  startPos: {x: 1, y: 0, z: 1}
+  endPos: {x: 0, y: 0, z: 10}
   xPosInArray: 0
   zPosInArray: 0
+  currentPos: {x: 0, y: 0, z: 0}
 --- !u!114 &1853719494
 MonoBehaviour:
   m_ObjectHideFlags: 0
