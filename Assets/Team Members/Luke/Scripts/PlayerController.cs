@@ -10,7 +10,7 @@ public class PlayerController : NetworkBehaviour
     public GameObject player;
     public Transform playerTransform;
 
-    private PlayerControls _playerControls;
+    public PlayerControls playerControls;
     private InputAction _move;
     private InputAction _aim;
     private InputAction _action3;
@@ -23,28 +23,24 @@ public class PlayerController : NetworkBehaviour
     
     private void OnEnable()
     {
-	    _playerControls = new PlayerControls();
-	    _move = _playerControls.Player.Move;
-	    _aim = _playerControls.Player.Aim;
-	    _action1 = _playerControls.Player.Action1;
-	    _action2 = _playerControls.Player.Action2;
-        _action3 = _playerControls.Player.Action3;
-
-	    _move.Enable();
+	    playerControls = new PlayerControls();
+        playerControls.UI.Enable();
+	    _move = playerControls.Player.Move;
+	    _aim = playerControls.Player.Aim;
+	    _action1 = playerControls.Player.Action1;
+	    _action2 = playerControls.Player.Action2;
+        _action3 = playerControls.Player.Action3;
+        
 	    _move.performed += MovePerformed;
 	    _move.canceled += MoveCancelled;
-	    
-	    _aim.Enable();
+        
 	    _aim.performed += AimPerformed;
 	    _aim.canceled += AimCancelled;
 
-        _action1.Enable();
 	    _action1.performed += Action1Performed;
 	    
-	    _action2.Enable();
 	    _action2.performed += Action2Performed;
         
-        _action3.Enable();
         _action3.performed += Action3Performed;
     }
 
@@ -52,20 +48,15 @@ public class PlayerController : NetworkBehaviour
     {
 	    _move.performed -= MovePerformed;
 	    _move.canceled -= MoveCancelled;
-	    _move.Disable();
 
-	    _aim.performed -= AimPerformed;
+        _aim.performed -= AimPerformed;
 	    _aim.canceled -= AimCancelled;
-	    _aim.Disable();
 
         _action1.performed -= Action1Performed;
-	    _action1.Disable();
 	    
 	    _action2.performed -= Action2Performed;
-	    _action2.Disable();
-        
+	    
         _action3.performed -= Action3Performed;
-        _action3.Disable();
     }
 
     private void FixedUpdate()
@@ -90,7 +81,7 @@ public class PlayerController : NetworkBehaviour
     private void AimPerformed(InputAction.CallbackContext context)
     {
 	    if (!IsLocalPlayer) return;
-        if (playerTransform == null) return;
+        if (player == null) return;
 	    _aimInput = context.ReadValue<Vector2>();
 	    if (context.control.parent.name == "Mouse")
 	    {
@@ -113,18 +104,21 @@ public class PlayerController : NetworkBehaviour
     private void Action1Performed(InputAction.CallbackContext context)
     {
 	    if (!IsLocalPlayer) return;
+        if (player == null) return;
 	    player.GetComponent<IControllable>()?.Action1();
     }
     
     private void Action2Performed(InputAction.CallbackContext context)
     {
 	    if (!IsLocalPlayer) return;
+        if (player == null) return;
 	    player.GetComponent<IControllable>()?.Action2();
     }
     
     private void Action3Performed(InputAction.CallbackContext context)
     {
         if (!IsLocalPlayer) return;
+        if (player == null) return;
         player.GetComponent<IControllable>()?.Action3();
     }
 }

@@ -41,16 +41,6 @@ public class Avatar : NetworkBehaviour, IControllable
         _rb.angularVelocity = Vector3.zero;
     }
 
-    [ClientRpc]
-    public void AssignToClientEntityClientRpc(ulong clientId)
-    {
-        if (IsOwner)
-        {
-            ClientEntity clientEntity = NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<ClientEntity>();
-            clientEntity.ControlledPlayer = gameObject;
-        }
-    }
-
     public void Move(Vector2 direction)
     {
         MovePlayer(direction); //Clientside prediction
@@ -62,7 +52,7 @@ public class Avatar : NetworkBehaviour, IControllable
         
     }
 
-    public void Action1() //Kick
+    public void Action1()
     {
         interact.RequestInteractWithServerRpc();
     }
