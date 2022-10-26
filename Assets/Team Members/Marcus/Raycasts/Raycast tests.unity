@@ -2864,7 +2864,7 @@ GameObject:
   - component: {fileID: 837191903}
   - component: {fileID: 837191902}
   - component: {fileID: 837191901}
-  - component: {fileID: 837191905}
+  - component: {fileID: 837191906}
   m_Layer: 0
   m_Name: person
   m_TagString: Untagged
@@ -2952,7 +2952,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &837191905
+--- !u!114 &837191906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2961,11 +2961,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 837191900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35e816f1b102f74a9ae83a685352961, type: 3}
+  m_Script: {fileID: 11500000, guid: 070fe2277978eb544ac2db35b67de76a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rays: 180
-  scanLength: 5
+  rays: 4
 --- !u!1 &907598993
 GameObject:
   m_ObjectHideFlags: 0
