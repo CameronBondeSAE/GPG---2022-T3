@@ -109,6 +109,7 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     [ClientRpc]
     public void GetDropPointClientRpc(Vector3 dropPoint)
     {
+	    // TODO: CAM NOTE: Do you even need to do this on the client? Doesn't the item have a networked transform?
         parentTransform.position = dropPoint;
     }
 
@@ -117,13 +118,15 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     [ClientRpc]
     public void GetDroppedClientRpc()
     {
-        PutDown();
+	    // TODO: TO CHECK: HACK: I (Cam) added a GO var to the interface, so items know who picked them up. But clients can't really use that at all, so I'm just passing null. The implementor will need to check isServer to get the real value
+        PutDown(null);
     }
 
     [ClientRpc]
     public void GetPickedUpClientRpc()
     {
-        PickedUp();
+	    // TODO: TO CHECK: HACK: I (Cam) added a GO var to the interface, so items know who picked them up. But clients can't really use that at all, so I'm just passing null. The implementor will need to check isServer to get the real value
+        PickedUp(null);
     }
     
     #endregion
@@ -132,12 +135,12 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     
     public bool isHeld { get; set; }
     public bool locked { get; set; }
-    public void PickedUp()
+    public void PickedUp(GameObject interactor)
     {
         parentTransform.gameObject.SetActive(false);
     }
 
-    public void PutDown()
+    public void PutDown(GameObject interactor)
     {
         parentTransform.gameObject.SetActive(true);
         StartCoroutine(ItemLockCooldown());
