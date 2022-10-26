@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Avatar : NetworkBehaviour, IControllable
 {
     private Vector2 _moveInput;
+    private Interact interact;
     private Transform _transform;
     private Rigidbody _rb;
     public float acceleration = 100f;
@@ -18,6 +19,7 @@ public class Avatar : NetworkBehaviour, IControllable
     {
 	    _transform = transform;
         _rb = GetComponent<Rigidbody>();
+        interact = GetComponent<Interact>();
     }
 
     [ServerRpc]
@@ -62,7 +64,7 @@ public class Avatar : NetworkBehaviour, IControllable
 
     public void Action1() //Kick
     {
-        
+        interact.RequestInteractWithServerRpc();
     }
 
     public void Action2()

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5296546071687087714}
   - component: {fileID: 2121190796657263943}
+  - component: {fileID: 8292341557237954405}
   - component: {fileID: 5296546071687087742}
   - component: {fileID: 5296546071687087713}
   - component: {fileID: -3345389951856140231}
@@ -49,10 +50,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d746044fa28f7014f92afdf82075560b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interact: {fileID: 0}
   acceleration: 100
   maxSpeed: 15
   turnSpeed: 5
   drag: 7
+--- !u!114 &8292341557237954405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5296546071687087743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e5cb7f8b9482145a4a668bde953a0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heldObject: {fileID: 0}
+  heldItems: 0
 --- !u!54 &5296546071687087742
 Rigidbody:
   m_ObjectHideFlags: 0
