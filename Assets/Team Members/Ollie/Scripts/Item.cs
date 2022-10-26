@@ -87,7 +87,7 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
             isHeld = false;
             locked = false;
             transform.parent.position = tempPosition;
-            parentTransform = transform.parent.GetComponent<Transform>();
+            parentTransform = transform.parent;
         }
     }
     

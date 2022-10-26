@@ -96,6 +96,13 @@ namespace Ollie
             SetUpClientUI();
         }
 
+        public void JoinCamsHouse()
+        {
+            NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = "121.200.8.114";
+            NetworkManager.Singleton.StartClient();
+            SetUpClientUI();
+        }
+
         void SetUpClientUI()
         {
             startButton.gameObject.SetActive(false);

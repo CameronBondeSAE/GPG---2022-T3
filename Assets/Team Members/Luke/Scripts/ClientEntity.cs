@@ -19,7 +19,7 @@ public class ClientEntity : NetworkBehaviour
             controlledPlayer = value;
             _playerController.player = value;
             _playerController.playerTransform = value.transform;
-            _playerController.playerControls.Player.Enable();
+            // _playerController.playerControls.Player.Enable();
         }
     }
 

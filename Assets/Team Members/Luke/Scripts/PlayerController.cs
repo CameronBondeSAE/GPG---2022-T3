@@ -24,7 +24,7 @@ public class PlayerController : NetworkBehaviour
     private void OnEnable()
     {
 	    playerControls = new PlayerControls();
-        playerControls.UI.Enable();
+        playerControls.Player.Enable();
 	    _move = playerControls.Player.Move;
 	    _aim = playerControls.Player.Aim;
 	    _action1 = playerControls.Player.Action1;
