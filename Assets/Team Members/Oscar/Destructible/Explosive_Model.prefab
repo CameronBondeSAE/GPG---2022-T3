@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 6522943975982661893}
   - component: {fileID: 6522943975982661895}
   - component: {fileID: 6522943975982661892}
+  - component: {fileID: 8847604673982240050}
   m_Layer: 0
   m_Name: Explosive_Model
   m_TagString: Untagged
@@ -166,7 +167,7 @@ Transform:
   - {fileID: 8256449087222599737}
   - {fileID: 6522943974831568777}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6522943975982661913
 MeshFilter:
@@ -283,6 +284,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosivefragments: {fileID: 5010368680524319573, guid: 9a18431a32ec8044396820ea8ad5b851, type: 3}
+--- !u!114 &8847604673982240050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6522943975982661894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a3e6ac3f2e9a642b86fb53fc6673fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &158070345722198926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -346,8 +359,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: d6103124587880f47a153e13a52e5946, type: 3}
+--- !u!198 &6390261491015887521 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6530026891734634799, guid: d6103124587880f47a153e13a52e5946, type: 3}
+  m_PrefabInstance: {fileID: 158070345722198926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8256449087222599737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
   m_PrefabInstance: {fileID: 158070345722198926}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8815755733273906337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8675708619266520879, guid: d6103124587880f47a153e13a52e5946, type: 3}
+  m_PrefabInstance: {fileID: 158070345722198926}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4515327612717591468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815755733273906337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b416910b5a88b141a72326d10ef6161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Smoke: {fileID: 6390261491015887521}
+  AlmostBlowUp: {fileID: 6522943975982661895}

@@ -11,9 +11,11 @@ namespace Oscar
         private Color render;
         private Color explodeRed = Color.red;
 
+        public event Action AlmostExplode;
         //used IEnumerator so it will start on start but will wait a few seconds before continuing.
         IEnumerator Start()
         {
+            AlmostExplode?.Invoke();
             //play hiss sound 
             
             GetComponent<Renderer>().material.color = explodeRed;
