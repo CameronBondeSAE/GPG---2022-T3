@@ -352,8 +352,8 @@ GameObject:
   - component: {fileID: 632581585}
   - component: {fileID: 632581584}
   - component: {fileID: 632581583}
-  - component: {fileID: 632581582}
   - component: {fileID: 632581587}
+  - component: {fileID: 632581588}
   m_Layer: 0
   m_Name: fire
   m_TagString: Untagged
@@ -361,18 +361,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &632581582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632581581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25882febb8a3f5243930a76c49fabd83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &632581583
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -467,6 +455,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &632581588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632581581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c3689c965a2bb46b43fcb5cbd1043a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &917250536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -906,7 +906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5136594932003047974, guid: 6f38e7e1aa7c8874f8f982f3903551ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3680134
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5136594932003047974, guid: 6f38e7e1aa7c8874f8f982f3903551ab, type: 3}
       propertyPath: m_LocalPosition.z
