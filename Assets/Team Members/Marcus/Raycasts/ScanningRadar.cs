@@ -45,13 +45,6 @@ public class ScanningRadar : MonoBehaviour
         {
             StartScan();
         }
-
-        // Raycast for player direction
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hitInfo;
-        Physics.Raycast(ray, out hitInfo);
-        
-        Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
     }
 
     public void StartScan()
