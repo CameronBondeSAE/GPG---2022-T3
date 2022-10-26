@@ -15,5 +15,11 @@ namespace Oscar
         {
             GetComponent<Oscar.StateManager>().ChangeState(GetComponent<ExplosiveNearlyExplodeState>());
         }
+
+        
+        private void OnDisable()
+        {
+            
+        }
     }
 }
