@@ -30,6 +30,14 @@ public class ScanningRadar : MonoBehaviour
                 Ray radar01 = new Ray(transform.position, scanDir);
                 RaycastHit Hit01;
                 Physics.Raycast(radar01, out Hit01);
+                
+                Vector3 reflect = Vector3.Reflect(radar01.direction, Hit01.normal);
+                RaycastHit hitReflection;
+                Physics.Raycast(Hit01.point, reflect, out hitReflection);
+
+                Vector3 secondaryRef = Vector3.Reflect(reflect, hitReflection.normal);
+                RaycastHit hitSecondary;
+                Physics.Raycast(hitReflection.point, secondaryRef, out hitSecondary);
             }
             cycles++;
         }
