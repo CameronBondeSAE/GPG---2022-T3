@@ -26,18 +26,18 @@ public class ScanningRadar : MonoBehaviour
             for (int i = 0; i < rays; i ++)
             {
                 Vector3 scanDir = Quaternion.Euler(0,  i * raySpacing + cycles, 0) * transform.forward;
-                /*Debug.DrawRay(transform.position, scanDir * 10f, Color.green);*/
                 Ray radar01 = new Ray(transform.position, scanDir);
                 RaycastHit Hit01;
                 Physics.Raycast(radar01, out Hit01);
                 
-                Vector3 reflect = Vector3.Reflect(radar01.direction, Hit01.normal);
+                // Just some silly reflection stuff because I wanted to test it out
+                /*Vector3 reflect = Vector3.Reflect(radar01.direction, Hit01.normal);
                 RaycastHit hitReflection;
                 Physics.Raycast(Hit01.point, reflect, out hitReflection);
 
                 Vector3 secondaryRef = Vector3.Reflect(reflect, hitReflection.normal);
                 RaycastHit hitSecondary;
-                Physics.Raycast(hitReflection.point, secondaryRef, out hitSecondary);
+                Physics.Raycast(hitReflection.point, secondaryRef, out hitSecondary);*/
             }
             cycles++;
         }
