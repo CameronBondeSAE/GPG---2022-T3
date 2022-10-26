@@ -26,7 +26,10 @@ public class ScanningRadar : MonoBehaviour
             for (int i = 0; i < rays; i ++)
             {
                 Vector3 scanDir = Quaternion.Euler(0,  i * raySpacing + cycles, 0) * transform.forward;
-                Debug.DrawRay(transform.position, scanDir * 10f, Color.green);
+                /*Debug.DrawRay(transform.position, scanDir * 10f, Color.green);*/
+                Ray radar01 = new Ray(transform.position, scanDir);
+                RaycastHit Hit01;
+                Physics.Raycast(radar01, out Hit01);
             }
             cycles++;
         }
@@ -34,10 +37,9 @@ public class ScanningRadar : MonoBehaviour
         {
             StartScan();
         }
-        
+
         // Raycast for player direction
         Ray ray = new Ray(transform.position, transform.forward);
-
         RaycastHit hitInfo;
         Physics.Raycast(ray, out hitInfo);
         
