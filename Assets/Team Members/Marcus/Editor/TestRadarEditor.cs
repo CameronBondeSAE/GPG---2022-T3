@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [CustomEditor(typeof(TestRadar))]
-public class RadarEditor : Editor
+public class TestRadarEditor : Editor
 {
     public override void OnInspectorGUI()
     {
