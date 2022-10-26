@@ -84,19 +84,26 @@ namespace Kevin
                 Debug.Log("You must type in IP Address!");
                 return;
             }*/
-            
-            NetworkManager.Singleton.StartHost();
-            ipCanvas.SetActive(false);
-            lobbyCanvas.SetActive(true);
-
-            foreach (Level level in levels)
+            if (ipInputField.text == "")
             {
-                GameObject levelObject = Instantiate(levelPrefab, selectLevelPanelTransform);
-                levelObject.GetComponentInChildren<TMP_Text>().text = level.levelNameOnUI;
-                levelObject.GetComponent<LevelButton>().currentLevel = level.level.name;
+                Debug.Log("IP address not entered!!!");
             }
-            
-            Debug.Log(NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address);
+            else
+            {
+                GameManager.singleton.UpdateGameStates(GameManager.GameState.InGameLobby);
+                NetworkManager.Singleton.StartHost();
+                ipCanvas.SetActive(false);
+                lobbyCanvas.SetActive(true);
+
+                foreach (Level level in levels)
+                {
+                    GameObject levelObject = Instantiate(levelPrefab, selectLevelPanelTransform);
+                    levelObject.GetComponentInChildren<TMP_Text>().text = level.levelNameOnUI;
+                    levelObject.GetComponent<LevelButton>().currentLevel = level.level.name;
+                }
+
+                Debug.Log(NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address);
+            }
         }
 
         public void JoinGameButton()
@@ -107,6 +114,7 @@ namespace Kevin
             }
             else
             {
+                GameManager.singleton.UpdateGameStates(GameManager.GameState.InGameLobby);
                 NetworkManager.Singleton.StartClient();
                 ClientLobby();
                 Debug.Log("Player just joined!");
@@ -128,10 +136,8 @@ namespace Kevin
             //GameManager.singleton.InvokeOnGameStart();
             //GameManager.singleton.OnGameStarted();
             OnGameStart?.Invoke();
+            GameManager.singleton.UpdateGameStates(GameManager.GameState.GameStart);
             //OnStart?.Invoke();
-            lobbyCamera.SetActive(false);
-            lobbyDirectionalLight.SetActive(false);
-            
             if (selectedLevel == "")
             {
                 Debug.Log("You must select a level!!!");

@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera tracker
       objectReference: {fileID: 0}
+    - target: {fileID: 2785611567970660203, guid: 6149859ef44444b4cac0083d9b8d97c8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3819870499758901466, guid: 6149859ef44444b4cac0083d9b8d97c8, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -311,6 +315,11 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!1 &275551119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2785611567970660203, guid: 6149859ef44444b4cac0083d9b8d97c8, type: 3}
+  m_PrefabInstance: {fileID: 32327471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &754579986
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +655,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 538336660
       objectReference: {fileID: 0}
+    - target: {fileID: 8604443078459999940, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
+      propertyPath: cameraPrefab
+      value: 
+      objectReference: {fileID: 275551119}
     - target: {fileID: 8604443078459999941, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
       propertyPath: m_Name
       value: GameManager

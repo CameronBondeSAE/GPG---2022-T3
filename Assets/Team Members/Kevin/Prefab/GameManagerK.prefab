@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7116880673025972671}
   - component: {fileID: 7116880673025972670}
   - component: {fileID: 7116880673025972665}
+  - component: {fileID: 7519998147513656667}
   m_Layer: 0
   m_Name: GameManagerK
   m_TagString: Untagged
@@ -40,13 +41,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7116880673025972664}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81e970cbdbacf824f8c8cc6259c104d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playersInLobby: 0
   lobbySceneManager: {fileID: 0}
+  lightCamManager: {fileID: 0}
+  audioManager: {fileID: 0}
+  State: 0
 --- !u!114 &7116880673025972665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,3 +67,16 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &7519998147513656667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7116880673025972664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca07f907b7063c48aa4b6803e3107e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playersAlive: 0

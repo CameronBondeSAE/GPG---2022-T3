@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,10 @@ public class GameManager : NetworkBehaviour
 	public event Action OnGameEnd;
 
     [SerializeField] private GameObject avatarPrefab;
+    [SerializeField] private GameObject cameraPrefab;
+
+    /*public GameObject localSpawnedPlayer;
+    public Transform localPlayerTransform;*/
     
 	public int playersAlive;
 	public void InvokeOnGameStart()
@@ -29,6 +34,11 @@ public class GameManager : NetworkBehaviour
 	private void InvokeOnGameStartClientRPC()
 	{
 		Debug.Log("Game Started!!!");
+		cameraPrefab.SetActive(true);
+		//cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<Avatar>().transform;
+		cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().transform;
+		//cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.gameObject.transform;
+		//cameraPrefab.GetComponent<CameraTracker>().target = localPlayerTransform;
 		OnGameStart?.Invoke();
 	}
 
@@ -66,7 +76,8 @@ public class GameManager : NetworkBehaviour
     void Awake()
 	{
 		singleton = this;
-    }
+		cameraPrefab.SetActive(false);
+	}
 
     private void Start()
     {
