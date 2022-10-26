@@ -145,6 +145,12 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     
     #endregion
     
+    //TODO: Idea
+    //If picking up a second special item (pack pill thing), ITEM ITSELF should see that player already has this item
+    //tell original item to int++ and then this (second) item deletes itself
+    //then player spawns item based on int amount
+    //if int amount == 0, then destroy placehold
+    
     //HACK: Occasionally the object shows up for a frame in it's original position
     //before teleporting to it's correct position. WFS delay doesn't fix for some reason.
     private IEnumerator ItemLockCooldown()
