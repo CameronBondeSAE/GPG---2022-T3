@@ -11,12 +11,14 @@ public class Radar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        raySpacing = 360 / rays;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        raySpacing = 360f / rays;
+        
         for (int i = 0; i < rays; i++)
         {
             Vector3 facing = Quaternion.Euler(0, i * raySpacing, 0) * transform.forward;
