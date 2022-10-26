@@ -875,33 +875,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 944178262, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 944178262, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 944178262, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1785989398}
-    - target: {fileID: 944178262, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 944178262, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: InvokeOnGameStart
-      objectReference: {fileID: 0}
-    - target: {fileID: 944178262, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Luke.GameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 944178262, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4347023889492393202, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: m_Name
       value: Lobby UI Manager
