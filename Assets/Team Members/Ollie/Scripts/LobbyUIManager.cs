@@ -70,6 +70,7 @@ namespace Ollie
         public void HostGame()
         {
             NetworkManager.Singleton.StartHost();
+            
 
             if (!autoHost)
             {
@@ -91,6 +92,13 @@ namespace Ollie
 
         public void JoinGame()
         {
+            NetworkManager.Singleton.StartClient();
+            SetUpClientUI();
+        }
+
+        public void JoinCamsHouse()
+        {
+            NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = "121.200.8.114";
             NetworkManager.Singleton.StartClient();
             SetUpClientUI();
         }

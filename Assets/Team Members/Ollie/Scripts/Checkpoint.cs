@@ -32,6 +32,8 @@ public class Checkpoint : NetworkBehaviour
     [ClientRpc]
     void CheckpointUpdateClientRpc()
     {
+        //TODO change this to ITEM colour, not checkpoint
+        //unless we're having one item per checkpoint
         GetComponent<Renderer>().material.color = Color.green;
     }
 }

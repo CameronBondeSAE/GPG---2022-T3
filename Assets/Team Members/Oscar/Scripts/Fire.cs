@@ -7,10 +7,11 @@ public class Fire : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Explosive_Model>())
+        //if the collision is with something that has IFlammable on it
+        //set it on fire!
+        if (other.GetComponent<IFlammable>() != null)
         {
-            // _explosiveModelHurt = other.GetComponent<Explosive_Model>();
-            // _explosiveModelHurt.SetOnFire();
+            other.GetComponent<IFlammable>().SetOnFire();
         }
     }
 }

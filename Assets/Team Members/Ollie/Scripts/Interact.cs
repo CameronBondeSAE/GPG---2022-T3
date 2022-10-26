@@ -13,17 +13,17 @@ public class Interact : NetworkBehaviour
 
     private void Update()
     {
-        if (IsLocalPlayer)
-        {
-            if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            {
-                RequestInteractWithServerRpc();
-            }
-        }
+        // if (IsLocalPlayer)
+        // {
+        //     if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        //     {
+        //         RequestInteractWithServerRpc();
+        //     }
+        // }
     }
 
     [ServerRpc]
-    private void RequestInteractWithServerRpc()
+    public void RequestInteractWithServerRpc()
     {
         Vector3 dropPoint = transform.position + transform.forward * 2;
         if (heldItems > 0 && heldObject != null)
@@ -40,14 +40,19 @@ public class Interact : NetworkBehaviour
         {
             if (other.GetComponent<IPickupable>() != null)
             {
-                if (!other.gameObject.GetComponent<Item>().locked)
+                if (heldItems == 0)
                 {
-                    other.transform.parent.gameObject.SetActive(false);
-                    heldObject = other.gameObject;
-                    heldItems++;
-                    heldObject.GetComponent<Item>().GetPickedUpClientRpc();
+                    if (!other.gameObject.GetComponent<Item>().locked)
+                    {
+                        other.transform.parent.gameObject.SetActive(false);
+                        heldObject = other.gameObject;
+                        heldItems++;
+                        heldObject.GetComponent<Item>().GetPickedUpClientRpc();
+                    }
                 }
+                else print("You're already holding an item! Press space to drop it.");
             }
+            
         }
     }
 }

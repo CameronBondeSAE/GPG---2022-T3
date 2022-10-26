@@ -15,7 +15,7 @@ public enum ItemType
 
 public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
 {
-    public NetworkManager networkManager;
+    private NetworkManager networkManager;
     public NetworkVariable<Vector3> networkPosition;
     public Transform parentTransform;
     private Vector3 tempPosition;
@@ -87,7 +87,7 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
             isHeld = false;
             locked = false;
             transform.parent.position = tempPosition;
-            parentTransform = transform.parent.GetComponent<Transform>();
+            parentTransform = transform.parent;
         }
     }
     
@@ -109,6 +109,7 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     [ClientRpc]
     public void GetDropPointClientRpc(Vector3 dropPoint)
     {
+	    // TODO: CAM NOTE: Do you even need to do this on the client? Doesn't the item have a networked transform?
         parentTransform.position = dropPoint;
     }
 
@@ -117,13 +118,15 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     [ClientRpc]
     public void GetDroppedClientRpc()
     {
-        PutDown();
+	    // TODO: TO CHECK: HACK: I (Cam) added a GO var to the interface, so items know who picked them up. But clients can't really use that at all, so I'm just passing null. The implementor will need to check isServer to get the real value
+        PutDown(null);
     }
 
     [ClientRpc]
     public void GetPickedUpClientRpc()
     {
-        PickedUp();
+	    // TODO: TO CHECK: HACK: I (Cam) added a GO var to the interface, so items know who picked them up. But clients can't really use that at all, so I'm just passing null. The implementor will need to check isServer to get the real value
+        PickedUp(null);
     }
     
     #endregion
@@ -132,18 +135,24 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     
     public bool isHeld { get; set; }
     public bool locked { get; set; }
-    public void PickedUp()
+    public void PickedUp(GameObject interactor)
     {
         parentTransform.gameObject.SetActive(false);
     }
 
-    public void PutDown()
+    public void PutDown(GameObject interactor)
     {
         parentTransform.gameObject.SetActive(true);
         StartCoroutine(ItemLockCooldown());
     }
     
     #endregion
+    
+    //TODO: Idea
+    //If picking up a second special item (pack pill thing), ITEM ITSELF should see that player already has this item
+    //tell original item to int++ and then this (second) item deletes itself
+    //then player spawns item based on int amount
+    //if int amount == 0, then destroy placehold
     
     //HACK: Occasionally the object shows up for a frame in it's original position
     //before teleporting to it's correct position. WFS delay doesn't fix for some reason.

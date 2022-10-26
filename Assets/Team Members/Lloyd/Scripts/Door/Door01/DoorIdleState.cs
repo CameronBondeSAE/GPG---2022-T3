@@ -7,16 +7,14 @@ using UnityEngine;
 public class DoorIdleState : MonoBehaviour
 
 {
-    
     private void OnEnable()
-    {
+    {   
         EventManager.DoorInteractedEvent += ChangeState;
     }
 
     private void ChangeState()
     {
         EventManager.DoorMoveFunction();
-        Debug.Log("hi");
     }
 
     private void OnDisable()
