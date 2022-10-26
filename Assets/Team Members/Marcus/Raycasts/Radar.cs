@@ -7,6 +7,10 @@ public class Radar : MonoBehaviour
 {
     public int rays;
     private float raySpacing;
+
+    private bool scanning;
+    private float scanTimer;
+    public float scanLength;
     
     // Start is called before the first frame update
     void Start()
@@ -17,19 +21,36 @@ public class Radar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        raySpacing = 360f / rays;
-        
-        for (int i = 0; i < rays; i++)
+        if (scanning)
         {
-            Vector3 facing = Quaternion.Euler(0, i * raySpacing, 0) * transform.forward;
-            Debug.DrawRay(transform.position, facing * 10f, Color.green);
+            scanTimer -= Time.deltaTime;
+            if (scanTimer <= 0f)
+            {
+                RadialScan();
+            }
+            
+            // Raycast for radar
+            raySpacing = 360f / rays;
+        
+            for (int i = 0; i < rays; i++)
+            {
+                Vector3 facing = Quaternion.Euler(0, i * raySpacing, 0) * transform.forward;
+                Debug.DrawRay(transform.position, facing * 10f, Color.green);
+            }
         }
         
-        /*Ray ray = new Ray(transform.position, transform.forward);
+        // Raycast for player direction
+        Ray ray = new Ray(transform.position, transform.forward);
 
         RaycastHit hitInfo;
         Physics.Raycast(ray, out hitInfo);
         
-        Debug.DrawLine(ray.origin, hitInfo.point, Color.green);*/
+        Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
     }
+
+    public void RadialScan()
+    {
+        scanning = !scanning;
+        scanTimer = scanLength;
+    } 
 }
