@@ -1,29 +1,41 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Alex
 {
     [Serializable]
-    public class Node : MonoBehaviour
+    public class Node
     {
         public Vector3 worldPosition;
         public bool isBlocked;
         public int gCost;
         public int hCost;
-        public int gridX;
-        public int gridZ;
+
         public Node parent;
+        public bool isPathNode;
+
+        public Vector2Int gridPosition;
 
 
-        
-        public Node(int gridX, int gridZ)
+        public void Awake()
         {
-            gridX = this.gridX;
-            gridZ = this.gridZ;
+           // isPathable = false;
         }
+/*
+        public Vector3 gridPosVector3
+        {
+            get
+            {
+                return new Vector3(gridPosition.x, 0, gridPosition.y);
+            }
+          }  
+   */     
+
         
+      
         
 
         public int fCost
