@@ -23,6 +23,7 @@ namespace Oscar
 
         private void OnDisable()
         {
+            GetComponent<ExplosiveRaycast>().ExplosionRaycast();
             //play explosion sound 
         }
     }
