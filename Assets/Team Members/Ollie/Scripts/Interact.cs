@@ -40,14 +40,19 @@ public class Interact : NetworkBehaviour
         {
             if (other.GetComponent<IPickupable>() != null)
             {
-                if (!other.gameObject.GetComponent<Item>().locked)
+                if (heldItems == 0)
                 {
-                    other.transform.parent.gameObject.SetActive(false);
-                    heldObject = other.gameObject;
-                    heldItems++;
-                    heldObject.GetComponent<Item>().GetPickedUpClientRpc();
+                    if (!other.gameObject.GetComponent<Item>().locked)
+                    {
+                        other.transform.parent.gameObject.SetActive(false);
+                        heldObject = other.gameObject;
+                        heldItems++;
+                        heldObject.GetComponent<Item>().GetPickedUpClientRpc();
+                    }
                 }
+                else print("You're already holding at item! Press space to drop it.");
             }
+            
         }
     }
 }

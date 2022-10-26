@@ -47,12 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead3f9b45b7ba2d4ba9082c449fa6835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkManager: {fileID: 0}
   networkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
-  renderer: {fileID: 0}
-  parentTransform: {fileID: 0}
-  rigidbody: {fileID: 0}
+  parentTransform: {fileID: 707490151707609999}
   boxColliders: []
   itemType: 0
 --- !u!65 &708260685

@@ -15,7 +15,7 @@ public enum ItemType
 
 public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
 {
-    public NetworkManager networkManager;
+    private NetworkManager networkManager;
     public NetworkVariable<Vector3> networkPosition;
     public Transform parentTransform;
     private Vector3 tempPosition;

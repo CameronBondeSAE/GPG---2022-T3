@@ -70,6 +70,7 @@ namespace Ollie
         public void HostGame()
         {
             NetworkManager.Singleton.StartHost();
+            
 
             if (!autoHost)
             {
