@@ -6,8 +6,8 @@ using UnityEngine;
 
 public interface IPickupable
 {
-    void PickedUp();
-    void PutDown();
+    void PickedUp(GameObject interactor);
+    void PutDown(GameObject interactor);
     bool isHeld { get; set; }
     bool locked { get; set; }
 }
