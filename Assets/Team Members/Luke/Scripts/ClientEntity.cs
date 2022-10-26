@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class ClientEntity : MonoBehaviour
+public class ClientEntity : NetworkBehaviour
 {
     public string playerName;
 
@@ -24,5 +25,14 @@ public class ClientEntity : MonoBehaviour
     public void OnEnable()
     {
         _playerController = GetComponent<PlayerController>();
+    }
+
+    [ClientRpc]
+    public void AssignAvatarClientRpc(ulong avatarNetworkObjectId)
+    {
+        foreach (NetworkObject clientOwnedObject in NetworkManager.LocalClient.OwnedObjects)
+        {
+            if (clientOwnedObject.NetworkObjectId == avatarNetworkObjectId) ControlledPlayer = clientOwnedObject.gameObject;
+        }
     }
 }

@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5296546071687087714}
-  - component: {fileID: 5296546071687087712}
+  - component: {fileID: 2121190796657263943}
   - component: {fileID: 5296546071687087742}
   - component: {fileID: 5296546071687087713}
   - component: {fileID: -3345389951856140231}
   - component: {fileID: 4781166731886668140}
   m_Layer: 0
-  m_Name: LukePlayer
+  m_Name: LukeAvatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,11 +34,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5296546073451224755}
-  - {fileID: 6686206336526524195}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5296546071687087712
+--- !u!114 &2121190796657263943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,10 +46,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5296546071687087743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaec6bb9989b9484c8af800490559928, type: 3}
+  m_Script: {fileID: 11500000, guid: d746044fa28f7014f92afdf82075560b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveInput: {x: 0, y: 0}
   acceleration: 100
   maxSpeed: 15
   turnSpeed: 5
@@ -241,62 +239,3 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &8606072809627265965
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6686206336526524195}
-  - component: {fileID: 3641724387824814318}
-  - component: {fileID: 3345697526597109590}
-  m_Layer: 0
-  m_Name: KickZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6686206336526524195
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8606072809627265965}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5296546071687087714}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3641724387824814318
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8606072809627265965}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3345697526597109590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8606072809627265965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a708fd6de85940847a6539459538e783, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 5296546071687087712}

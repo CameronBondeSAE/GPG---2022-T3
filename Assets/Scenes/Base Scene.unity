@@ -526,8 +526,13 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1209910815}
-    PlayerPrefab: {fileID: 5846054267924296851, guid: 3ea51d8b1c84010409f6292b24ae3754, type: 3}
-    NetworkPrefabs: []
+    PlayerPrefab: {fileID: 690749189991956008, guid: 4fc1cc29f6160d24a9c62b8259c053a4, type: 3}
+    NetworkPrefabs:
+    - Override: 0
+      Prefab: {fileID: 5296546071687087743, guid: 1651e280b4d1f0549bc34b02b51f5cf0, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -578,6 +583,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1785989400, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 538336660
+      objectReference: {fileID: 0}
     - target: {fileID: 8604443078459999941, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
       propertyPath: m_Name
       value: GameManager

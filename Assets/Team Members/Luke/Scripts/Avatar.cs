@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : NetworkBehaviour, IControllable
+public class Avatar : NetworkBehaviour, IControllable
 {
     private Vector2 _moveInput;
     private Transform _transform;
