@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScanningRadar : MonoBehaviour
+public class ScanningRadar : MonoBehaviour, IInteractable, IPickupable
 {
     public int rays;
     private float raySpacing;
@@ -52,4 +52,24 @@ public class ScanningRadar : MonoBehaviour
         cycles = 0;
         scanning = !scanning;
     }
+
+    #region Interface Functions
+    public void Interact()
+    {
+        StartScan();
+    }
+
+    public void PickedUp()
+    {
+        //Make a bwep bwep sound
+    }
+
+    public void PutDown()
+    {
+        //Make a beowp sound
+    }
+
+    public bool isHeld { get; set; }
+    public bool locked { get; set; }
+    #endregion
 }
