@@ -11,7 +11,7 @@ public class CameraTracker : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (transform != null)
+		if (target != null)
 	    {
 		    transform.position = target.position + offset;
 		    transform.LookAt(target);

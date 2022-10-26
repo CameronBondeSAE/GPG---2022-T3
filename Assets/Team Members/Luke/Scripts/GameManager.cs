@@ -34,12 +34,13 @@ public class GameManager : NetworkBehaviour
 	private void InvokeOnGameStartClientRPC()
 	{
 		Debug.Log("Game Started!!!");
-		cameraPrefab.SetActive(true);
-		//cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<Avatar>().transform;
-		cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().transform;
-		//cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.gameObject.transform;
-		//cameraPrefab.GetComponent<CameraTracker>().target = localPlayerTransform;
 		OnGameStart?.Invoke();
+	}
+
+	[ClientRpc]
+	private void SetCameraTargetClientRpc()
+	{
+		cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 	}
 
 	public void InvokeOnGameEnd()
@@ -71,12 +72,12 @@ public class GameManager : NetworkBehaviour
             client.Value.PlayerObject.GetComponent<ClientEntity>()
                 .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
         }
+        SetCameraTargetClientRpc();
     }
     
     void Awake()
 	{
 		singleton = this;
-		cameraPrefab.SetActive(false);
 	}
 
     private void Start()
