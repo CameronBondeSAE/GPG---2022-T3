@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 
-public class Radar : MonoBehaviour
+public class TestRadar : MonoBehaviour
 {
     public int rays;
     private float raySpacing;
@@ -34,8 +34,8 @@ public class Radar : MonoBehaviour
         
             for (int i = 0; i < rays; i++)
             {
-                Vector3 facing = Quaternion.Euler(0, i * raySpacing, 0) * transform.forward;
-                Debug.DrawRay(transform.position, facing * 10f, Color.green);
+                Vector3 scanDir = Quaternion.Euler(0, i * raySpacing, 0) * transform.forward;
+                Debug.DrawRay(transform.position, scanDir * 10f, Color.green);
             }
         }
         

@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 
-[CustomEditor(typeof(Radar))]
+[CustomEditor(typeof(TestRadar))]
 public class RadarEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -13,7 +13,7 @@ public class RadarEditor : Editor
 
         if (GUILayout.Button("Start Radar") && Application.isPlaying)
         {
-            (target as Radar)?.RadialScan();
+            (target as TestRadar)?.RadialScan();
         }
     }
 }
