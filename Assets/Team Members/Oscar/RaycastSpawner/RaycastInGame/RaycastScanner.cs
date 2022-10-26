@@ -6,18 +6,22 @@ using UnityEngine;
 public class RaycastScanner : MonoBehaviour
 {
     public int rayAmount = 360;
-    int spacingScale;
+    public int spacingScale;
     // Update is called once per frame
 
     void Update()
     {
+        Ray ray = new Ray(Quaternion.Euler(0,360*spacingScale,0) * transform.position, transform.forward);
+        RaycastHit hitInfo;
+        Physics.Raycast(ray, out hitInfo);
+
+        Vector3 dir = Quaternion.Euler(0, 1 + spacingScale, 0) * transform.forward;
+
         for (int i = 0; i < rayAmount; i++)
         {
-            Ray ray = new Ray(Quaternion.Euler(0,360*spacingScale,0) * transform.position, transform.forward);
-            RaycastHit hitInfo;
-            Physics.Raycast(ray, out hitInfo);
-            Debug.DrawLine(ray.origin,hitInfo.point,Color.green);
+            Debug.DrawLine(ray.origin,dir + hitInfo.point,Color.green);
         }
+        
         
     }
 }
