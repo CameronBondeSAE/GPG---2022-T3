@@ -41,7 +41,7 @@ public class Spreading : MonoBehaviour, IFlammable
 
             if (spreadTimer <= 0 && spreadNumber < spreadLimit)
             {
-                spreadDistance = Random.Range(1, 3);
+                spreadDistance = Random.Range(10, 30);
                 spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
                 
                 Spread(spreadDistance, spreadDirection);
@@ -56,7 +56,7 @@ public class Spreading : MonoBehaviour, IFlammable
         RaycastHit hitInfo;
         Physics.Raycast(ray, out hitInfo, distance);
         
-        Instantiate(seedling, (transform.position + hitInfo.point) * 2* distance , Quaternion.identity);
+        Instantiate(seedling, hitInfo.);
         spreadNumber++;
         RandomiseTimer();
     }
