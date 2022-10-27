@@ -5,7 +5,13 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class RaycastTests : MonoBehaviour
 {
+    public float rayDistance;
     public int bounces;
+
+    private Vector3 newOrigin;
+    private Vector3 newDirection;
+    private Vector3 reflection;
+    private RaycastHit newHit;
     
     // Start is called before the first frame update
     void Start()
@@ -18,18 +24,29 @@ public class RaycastTests : MonoBehaviour
     {
         // Raycast for player direction
         Ray ray = new Ray(transform.position, transform.forward);
-
         RaycastHit hitInfo;
-        Physics.Raycast(ray, out hitInfo);
-        if()
+
+        if (Physics.Raycast(ray, out hitInfo, rayDistance))
+        {
+            reflection = Vector3.Reflect(ray.direction, hitInfo.normal);
+            newOrigin = hitInfo.point; newDirection = reflection;
+            
+            BounceRaycast();
+        }
         
         Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
     }
 
     public void BounceRaycast()
     {
-        Vector3 reflect = Vector3.Reflect(radar01.direction, Hit01.normal);
-        RaycastHit hitReflection;
-        Physics.Raycast(Hit01.point, reflect, out hitReflection);
+        for (int x = 0; x < bounces; x++)
+        {
+            Ray newRay = new Ray(newOrigin, newDirection);
+            if (Physics.Raycast(newRay, out newHit, rayDistance))
+            {
+                reflection = Vector3.Reflect(newRay.direction, newHit.normal);
+                newOrigin = newHit.point; newDirection = reflection;
+            }
+        }
     }
 }
