@@ -32,8 +32,6 @@ namespace Alex
             closedNodes.Clear();
             Node startNode = grid.gridNodeReferences[startPos.x, startPos.z];
             Node endNode = grid.gridNodeReferences[endPos.x, endPos.z];
-            startNode.gCost = 99999;
-            startNode.hCost = 99999;
             openNodes.Add(startNode);
             
 
@@ -48,11 +46,13 @@ namespace Alex
                 
                 if(!closedNodes.Contains(currentNode))
                     closedNodes.Add(currentNode);
-                
+
+                int lowestFCost = 99999;
                 foreach (Node openNode in openNodes)
                 {
-                    if (openNode.fCost <= currentNode.fCost) //&& openNodes[i].hCost < currentNode.hCost)
+                    if (openNode.fCost <= lowestFCost) //&& openNodes[i].hCost < currentNode.hCost)
                     {
+                        lowestFCost = openNode.fCost;
                         currentNode = openNode;
                     }
                 }
