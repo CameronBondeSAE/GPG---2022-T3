@@ -22,6 +22,8 @@ public class HQScript : MonoBehaviour
     
     private Renderer rend;
 
+    [SerializeField] private float _HQRadius;
+
     //tracks items deposited
     private int itemCount;
     //when this many items have been deposited, fire victory event
@@ -54,11 +56,14 @@ public class HQScript : MonoBehaviour
 
     private void Update()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 5f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _HQRadius);
 
-        foreach (Collider item in colliders)
+        foreach (Collider obj in colliders)
         {
-            Destroy(item.GameObject());
+            if (obj.GetComponent<Marcus.Health>() != null)
+            {
+              Destroy(obj.gameObject);
+            }
         }
     }
 

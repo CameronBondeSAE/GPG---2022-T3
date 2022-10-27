@@ -21,6 +21,7 @@ namespace Lloyd
         [SerializeField] private float wallsHeight;
 
         [Header("Terrain Object")] public GameObject cubePrefab;
+        public GameObject wallPrefab;
 
         [Header("Item Prefab")] [SerializeField]
         private GameObject itemPrefab;
@@ -114,7 +115,7 @@ namespace Lloyd
 
                     if (perlinNoise > 0.4)
                     {
-                        GameObject cube = Instantiate(cubePrefab, cubePos, Quaternion.identity) as GameObject;
+                        GameObject cube = Instantiate(wallPrefab, cubePos, Quaternion.identity) as GameObject;
                         cube.transform.SetParent(terrainParent.transform);
 
                         cubeRend = cube.GetComponent<Renderer>();

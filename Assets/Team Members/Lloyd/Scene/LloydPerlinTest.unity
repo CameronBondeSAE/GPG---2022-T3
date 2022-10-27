@@ -661,7 +661,8 @@ MonoBehaviour:
   zoomNoiseY: 0.09529527
   scale: 6.746392
   wallsHeight: 14
-  cubePrefab: {fileID: 8830323646262685556, guid: c3d78f570187722418f95a344845f3eb, type: 3}
+  cubePrefab: {fileID: 3010419542067228138, guid: 7dc9d9f7a4b13f84c8780523767281c8, type: 3}
+  wallPrefab: {fileID: 8830323646262685556, guid: c3d78f570187722418f95a344845f3eb, type: 3}
   itemPrefab: {fileID: 7976933377232811398, guid: 406c51da39bb78842ab4efe6a060b6e1, type: 3}
   itemVector3List: []
   itemNoiseX: 0.006259978
@@ -673,4 +674,3 @@ MonoBehaviour:
   AlienHQ: {fileID: 8749085813108591677, guid: 53bff0fc767e0d44eb20b10e130091f7, type: 3}
   numAlienHQ: 3
   alienHQVector3List: []
-  _HPComp: {fileID: 0}
