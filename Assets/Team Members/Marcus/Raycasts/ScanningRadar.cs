@@ -54,17 +54,17 @@ public class ScanningRadar : MonoBehaviour, IInteractable, IPickupable
     }
 
     #region Interface Functions
-    public void Interact()
+    public void Interact(GameObject Interactor)
     {
         StartScan();
     }
 
-    public void PickedUp()
+    public void PickedUp(GameObject Interactor)
     {
         //Make a bwep bwep sound
     }
 
-    public void PutDown()
+    public void PutDown(GameObject Interactor)
     {
         //Make a beowp sound
     }
