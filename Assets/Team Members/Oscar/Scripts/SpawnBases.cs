@@ -35,6 +35,12 @@ namespace Oscar
                 }
             }
         }
+
+        void BaseSpace()
+        {
+            //delete items with health when spawned
+        }
+        
     }
 
 }

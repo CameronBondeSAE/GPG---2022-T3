@@ -15,6 +15,10 @@ public class ExplosiveRaycast : MonoBehaviour
             {
                 item.GetComponent<IFlammable>().SetOnFire();
             }
+            if (item.GetComponent<Marcus.Health>() != null)
+            {
+                //take the damage my famalamb
+            }
         }
     }
     
