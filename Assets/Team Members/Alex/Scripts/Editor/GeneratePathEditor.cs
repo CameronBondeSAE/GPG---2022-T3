@@ -19,6 +19,12 @@ public class GeneratePathEditor : Editor
         {
             AStar aStar = (target as AStar);
             
+            aStar?.openNodes.Clear();
+            aStar?.openNodes.Clear();
+            aStar?.closedNodes.Clear();
+            aStar?.isPathable.Clear();
+            aStar?.neighbours.Clear();
+            aStar?.grid.Scan();
             aStar?.StartCoroutine(aStar?.FindPath(aStar.grid.startPos, aStar.grid.endPos));
         }
         
