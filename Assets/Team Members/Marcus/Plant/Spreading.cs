@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Spreading : MonoBehaviour, IFlammable
 {
     public GameObject seedling;
     
-    public int spreadAmount;
+    public int spreadLimit;
     private int spreadNumber;
 
     private float maxSize = 1;
@@ -18,7 +19,12 @@ public class Spreading : MonoBehaviour, IFlammable
     // Start is called before the first frame update
     void Start()
     {
-        
+        RandomiseTimer();
+    }
+
+    void RandomiseTimer()
+    {
+        spreadTimer = Random.Range(2f, 5f);
     }
 
     // Update is called once per frame
@@ -31,13 +37,10 @@ public class Spreading : MonoBehaviour, IFlammable
         }
         else
         {
-            print("I can grow");
-            spreadTimer = Random.Range(2f, 5f);
             spreadTimer -= Time.deltaTime;
 
-            if (spreadTimer <= 0 && spreadNumber < spreadAmount)
+            if (spreadTimer <= 0 && spreadNumber < spreadLimit)
             {
-                print("I'm growing now");
                 spreadDistance = Random.Range(1, 3);
                 spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
                 
@@ -53,9 +56,9 @@ public class Spreading : MonoBehaviour, IFlammable
         RaycastHit hitInfo;
         Physics.Raycast(ray, out hitInfo, distance);
         
-        Instantiate(seedling, hitInfo.point, Quaternion.identity);
+        Instantiate(seedling, (transform.position + hitInfo.point) * 2* distance , Quaternion.identity);
         spreadNumber++;
-        print("plant growed");
+        RandomiseTimer();
     }
 
     public void SetOnFire()
