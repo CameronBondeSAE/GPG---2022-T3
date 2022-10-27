@@ -56,7 +56,7 @@ public class Spreading : MonoBehaviour, IFlammable
         RaycastHit hitInfo;
         Physics.Raycast(ray, out hitInfo, distance);
         
-        Instantiate(seedling, hitInfo.);
+        Instantiate(seedling, hitInfo.point, Quaternion.identity);
         spreadNumber++;
         RandomiseTimer();
     }

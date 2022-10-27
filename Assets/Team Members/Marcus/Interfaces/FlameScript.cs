@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class FlameScript : MonoBehaviour
 {
-    public PHealth thing;
+    public Heath_UnivComp thing;
     
     private float fireDamage = 5f;
     
     private void OnTriggerEnter(Collider collisionData)
     {
-        if (collisionData.GetComponent<PHealth>())
+        if (collisionData.GetComponent<Heath_UnivComp>())
         {
-            thing = collisionData.GetComponent<PHealth>();
+            thing = collisionData.GetComponent<Heath_UnivComp>();
             thing.Damaged(fireDamage);
         }
 
