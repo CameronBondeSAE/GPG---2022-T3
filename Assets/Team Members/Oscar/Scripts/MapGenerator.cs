@@ -13,13 +13,15 @@ public class MapGenerator : MonoBehaviour
     public GameObject Barrel;
     public GameObject AISpawner;
     public GameObject Base;
-    
+    public GameObject borderPrefab;
+        
     GameObject CubeParent; 
     GameObject BarrelParent;
     GameObject AIParent;
     GameObject borderParent;
     GameObject BaseParent;
     GameObject HQParent;
+    
 
 
     //Base spawning variables
@@ -82,27 +84,18 @@ public class MapGenerator : MonoBehaviour
 
     public void ResetTheMap()
     {
-        //for every child in the cube parent delete the children
-        foreach (Transform child in CubeParent.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        //for every child in the barrel parent delete the children
-        foreach (Transform child in BarrelParent.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        //for every child in the AI parent delete the children
-        foreach (Transform child in AIParent.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        //for every child in the Base parent delete the children
-        foreach (Transform child in HQParent.transform)
-        {
-            Destroy(child.gameObject);
-        }
+        Destroy(CubeParent);
+        Destroy(BarrelParent);
+        Destroy(AIParent);
+        Destroy(borderParent);
+        Destroy(HQParent);
         
+        CubeParent = new GameObject("CubeParent");
+        BarrelParent = new GameObject("ItemParent");
+        AIParent = new GameObject("AIParent");
+        borderParent = new GameObject("borderParent");
+        HQParent = new GameObject("HQParent");
+
         //reset the values so bases will respawn
         HQAmount = 0;
         tempBaseDist = 0;
@@ -169,6 +162,7 @@ public class MapGenerator : MonoBehaviour
 
     void SpawnTheBase(Vector3 prefabPosition)
     {
+        //minDist = 90 - (amount / 2);
         //learn how to calculate distances between potential created object and the previously spawned one
         tempBaseDist = Vector3.Distance(prefabPosition, prevBasePos);
         
@@ -183,7 +177,7 @@ public class MapGenerator : MonoBehaviour
                 prevBasePos = tempBasePos;
                 GameObject HQ = Instantiate(Base,prefabPosition,quaternion.identity);
                 HQ.name = "base";
-                HQ.transform.SetParent(HQParent.transform);                
+                HQ.transform.SetParent(HQParent.transform);
                 HQAmount++;
             }
         }
@@ -240,7 +234,7 @@ public class MapGenerator : MonoBehaviour
 
     void SpawnWalls()
     {
-        GameObject firstWall = Instantiate(cubePrefab,
+        GameObject firstWall = Instantiate(borderPrefab,
             new Vector3(0, prefabPosition.y, (amount / 2)), quaternion.identity);
         firstWall.name = "firstWall";
         firstWall.transform.localScale = new Vector3(1, prefabPosition.y * scale * 2, prefabPosition.z);
@@ -248,23 +242,23 @@ public class MapGenerator : MonoBehaviour
         firstWall.transform.SetParent(borderParent.transform);
 
         
-        GameObject secondWall = Instantiate(cubePrefab,
-            new Vector3(prefabPosition.x - (amount / 2),prefabPosition.y,prefabPosition.z), Quaternion.identity);
+        GameObject secondWall = Instantiate(borderPrefab,
+            new Vector3(prefabPosition.x - (amount / 2),prefabPosition.y,prefabPosition.z+1), Quaternion.identity);
         secondWall.name = "secondWall";
         secondWall.transform.localScale = new Vector3(prefabPosition.x,prefabPosition.y * scale * 2,1);
         secondWall.GetComponent<Renderer>().material.color = Color.black;
         secondWall.transform.SetParent(borderParent.transform);
         
         
-        GameObject thirdWall = Instantiate(cubePrefab,
-            new Vector3(prefabPosition.x, prefabPosition.y, prefabPosition.z - (amount / 2)), quaternion.identity);
+        GameObject thirdWall = Instantiate(borderPrefab,
+            new Vector3(prefabPosition.x+1, prefabPosition.y, prefabPosition.z - (amount / 2)), quaternion.identity);
         thirdWall.name = "thirdWall";
         thirdWall.transform.localScale = new Vector3(1, prefabPosition.y * scale * 2, prefabPosition.z);
         thirdWall.GetComponent<Renderer>().material.color = Color.black;
         thirdWall.transform.SetParent(borderParent.transform);
         
         
-        GameObject fourthWall = Instantiate(cubePrefab,
+        GameObject fourthWall = Instantiate(borderPrefab,
             new Vector3((amount / 2), prefabPosition.y, 0), quaternion.identity);
         fourthWall.name = "fourthWall";
         fourthWall.transform.localScale = new Vector3(prefabPosition.x, prefabPosition.y * scale * 2, 1);
@@ -272,7 +266,7 @@ public class MapGenerator : MonoBehaviour
         fourthWall.transform.SetParent(borderParent.transform);
         
         
-        GameObject floor = Instantiate(cubePrefab,
+        GameObject floor = Instantiate(borderPrefab,
             new Vector3((amount / 2), 0, (amount / 2)), quaternion.identity);
         floor.name = "floor";
         floor.transform.localScale = new Vector3(amount, 1, amount);
@@ -282,26 +276,18 @@ public class MapGenerator : MonoBehaviour
     
     private void DeleteMap()
     {
-        //for every child in the cube parent delete the children
-        foreach (Transform child in CubeParent.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        //for every child in the barrel parent delete the children
-        foreach (Transform child in BarrelParent.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        //for every child in the AI parent delete the children
-        foreach (Transform child in AIParent.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        //for every child in the Base parent delete the children
-        foreach (Transform child in HQParent.transform)
-        {
-            Destroy(child.gameObject);
-        }
+        Destroy(CubeParent);
+        Destroy(BarrelParent);
+        Destroy(AIParent);
+        Destroy(borderParent);
+        Destroy(HQParent);
+        
+        CubeParent = new GameObject("CubeParent");
+        BarrelParent = new GameObject("ItemParent");
+        AIParent = new GameObject("AIParent");
+        borderParent = new GameObject("borderParent");
+        HQParent = new GameObject("HQParent");
+        
         //reset values so bases can respawn
         HQAmount = 0;
         tempBaseDist = 0;

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PingObject : MonoBehaviour
 {
-    public float pingValue;
+    private float pingValue = 1.5f;
     public IEnumerator pinged()
     {
-        GetComponent<Renderer>().material.color = Color.green;
+        GetComponent<Renderer>().material.color = Color.red;
         yield return new WaitForSeconds(pingValue);
         GetComponent<Renderer>().material.color = Color.white;
     }
