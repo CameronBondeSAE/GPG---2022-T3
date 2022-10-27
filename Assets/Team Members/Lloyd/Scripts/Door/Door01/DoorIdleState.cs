@@ -9,16 +9,16 @@ public class DoorIdleState : MonoBehaviour
 {
     private void OnEnable()
     {   
-        EventManager.DoorInteractedEvent += ChangeState;
+        EventManager.singleton.DoorInteractedEvent += ChangeState;
     }
 
     private void ChangeState()
     {
-        EventManager.DoorMoveFunction();
+        EventManager.singleton.DoorMoveFunction();
     }
 
     private void OnDisable()
     {
-        EventManager.DoorInteractedEvent -= ChangeState;
+        EventManager.singleton.DoorInteractedEvent -= ChangeState;
     }
 }

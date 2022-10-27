@@ -31,9 +31,9 @@ public class DoorView : MonoBehaviour
 
         _rend.material.SetColor("_BaseColor", new Color(0.3f, 0.4f, 0.6f, 0.0f));
 
-        Lloyd.EventManager.ChangeHealthEvent += ChangeHP;
-        Lloyd.EventManager.BurningEvent += Burning;
-        Lloyd.EventManager.BurntEvent += Burnt;
+        Lloyd.EventManager.singleton.ChangeHealthEvent += ChangeHP;
+        Lloyd.EventManager.singleton.BurningEvent += Burning;
+        Lloyd.EventManager.singleton.BurntEvent += Burnt;
     }
 
     private void GetComps()
@@ -66,8 +66,8 @@ public class DoorView : MonoBehaviour
 
     private void OnDisable()
     {
-        Lloyd.EventManager.ChangeHealthEvent -= ChangeHP;
-        Lloyd.EventManager.BurningEvent -= Burning;
-        Lloyd.EventManager.BurntEvent -= Burnt;
+        Lloyd.EventManager.singleton.ChangeHealthEvent -= ChangeHP;
+        Lloyd.EventManager.singleton.BurningEvent -= Burning;
+        Lloyd.EventManager.singleton.BurntEvent -= Burnt;
     }
 }

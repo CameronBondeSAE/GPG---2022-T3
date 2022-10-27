@@ -55,9 +55,9 @@ namespace Lloyd
         
         void OnEnable()
         {
-            EventManager.ChangeHealthEvent += ChangeHP;
-            EventManager.DoorIdleEvent += DoorIdle;
-            EventManager.DoorMoveEvent += DoorMove;
+            EventManager.singleton.ChangeHealthEvent += ChangeHP;
+            EventManager.singleton.DoorIdleEvent += DoorIdle;
+            EventManager.singleton.DoorMoveEvent += DoorMove;
 
             _moveState = GetComponent<DoorMovingState>();
             _idleState = GetComponent<DoorIdleState>();
@@ -128,7 +128,7 @@ namespace Lloyd
         {
             if (_isActive)
             {
-                EventManager.DoorInteractedFunction();
+                EventManager.singleton.DoorInteractedFunction();
 
                 _isOpen = !_isOpen;
                 
@@ -148,28 +148,28 @@ namespace Lloyd
         {
             if (isBurning)
             {
-                EventManager.ChangeHealthFunction(-_fireDamage);
+                EventManager.singleton.ChangeHealthFunction(-_fireDamage);
             }
         }
 
         public void SetOnFire()
         {
-            EventManager.BurningEventFunction();
+            EventManager.singleton.BurningEventFunction();
             isBurning = true;
         }
 
         public void Burnt()
         {
-            EventManager.BurntEventFunction();
+            EventManager.singleton.BurntEventFunction();
             _HP = 0;
         }
 
 
         private void OnDisable()
         {
-            EventManager.ChangeHealthEvent -= ChangeHP;
-            EventManager.DoorIdleEvent -= DoorIdle;
-            EventManager.DoorMoveEvent -= DoorMove;
+            EventManager.singleton.ChangeHealthEvent -= ChangeHP;
+            EventManager.singleton.DoorIdleEvent -= DoorIdle;
+            EventManager.singleton.DoorMoveEvent -= DoorMove;
         }
 
         private void ChangeHP(float amount)

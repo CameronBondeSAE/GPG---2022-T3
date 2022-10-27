@@ -4,11 +4,13 @@ using UnityEngine;
 
 namespace Lloyd
 {
-
-
     public class Raycast : MonoBehaviour
-    {    
+    {
+        private Rigidbody rb;
+        
         [SerializeField] float _rayDist;
+
+        private Ray _ray;
 
         private Ray _newRay;
 
@@ -23,22 +25,28 @@ namespace Lloyd
 
         private RaycastHit _newHitInfo;
 
-        // Update is called once per frame
+       [SerializeField] private float speed;
+        
+        void Start()
+        {
+            rb = GetComponent<Rigidbody>();
+        }
+
         void Update()
         {
-            Ray ray = new Ray(transform.position, transform.forward);
+            _ray = new Ray(transform.position, transform.forward);
             RaycastHit hitInfo = new RaycastHit();
             
-
-            if (Physics.Raycast(ray, out hitInfo, _rayDist))
+            if (Physics.Raycast(_ray, out hitInfo, _rayDist))
             {
-                _reflectDir  = Vector3.Reflect(ray.direction, hitInfo.normal);
+                _reflectDir  = Vector3.Reflect(_ray.direction, hitInfo.normal);
                 _newOrigin = hitInfo.point;
 
                 _newDirection = _reflectDir;
 
                 BounceRay();
             }
+            transform.Rotate(0.0f, speed, 0.0f, Space.Self);
         }
 
         private void BounceRay()
