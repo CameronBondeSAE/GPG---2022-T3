@@ -21,6 +21,7 @@ namespace Alex
             grid = GetComponent<GridGenerator>();
             openNodes = new List<Node>();
             closedNodes = new List<Node>();
+            grid.Scan();
             StartCoroutine(FindPath(grid.startPos, grid.endPos));
         }
 
@@ -31,37 +32,39 @@ namespace Alex
             closedNodes.Clear();
             Node startNode = grid.gridNodeReferences[startPos.x, startPos.z];
             Node endNode = grid.gridNodeReferences[endPos.x, endPos.z];
-
+            startNode.gCost = 99999;
+            startNode.hCost = 99999;
             openNodes.Add(startNode);
             
 
             currentNode = openNodes[0];
             while (openNodes.Count > 0)
             {
-                for (int i = 1; i < openNodes.Count; i++)
+                if (currentNode == endNode)
                 {
-                    if (openNodes[i].fCost <= currentNode.fCost) //&& openNodes[i].hCost < currentNode.hCost)
+                    RetracePath(startNode, endNode);
+                    break;
+                }
+                
+                if(!closedNodes.Contains(currentNode))
+                    closedNodes.Add(currentNode);
+                
+                foreach (Node openNode in openNodes)
+                {
+                    if (openNode.fCost <= currentNode.fCost) //&& openNodes[i].hCost < currentNode.hCost)
                     {
-                        currentNode = openNodes[i];
+                        currentNode = openNode;
                     }
                 }
                 openNodes.Remove(currentNode);
                 
-                if(!closedNodes.Contains(currentNode))
-                    closedNodes.Add(currentNode);
+                
 
-                if (currentNode == endNode)
-                {
-                    RetracePath(startNode, endNode);
-                    yield return null;
-                }
-
+                
                 foreach (Node neighbour in GetNeighbors(currentNode))
                 {
                     if (neighbour.isBlocked || closedNodes.Contains(neighbour))
                     {
-                        if(!closedNodes.Contains(neighbour))
-                            closedNodes.Add(neighbour);
                         continue;
                     }
 
@@ -76,7 +79,6 @@ namespace Alex
                             openNodes.Add(neighbour);
                     }
                 }
-
                 
                 yield return new WaitForSeconds(.01f);
             }
@@ -114,7 +116,6 @@ namespace Alex
 
             while (currentNode != startNode)
             {
-                currentNode.isPathNode = true;
                 isPathable.Add(currentNode);
                 currentNode = currentNode.parent;
             }

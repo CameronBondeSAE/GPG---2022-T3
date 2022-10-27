@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NodeCanvas.Tasks.Actions;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,15 +15,17 @@ namespace Alex
         public int gCost;
         public int hCost;
 
+
         public Node parent;
         public bool isPathNode;
 
         public Vector2Int gridPosition;
+        public Node[,] nodeArray;
 
 
         public void Awake()
         {
-           // isPathable = false;
+            // isPathable = false;
         }
 /*
         public Vector3 gridPosVector3

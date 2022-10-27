@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
@@ -26,7 +27,7 @@ namespace Alex
         
         
             
-        public void Awake()
+        public void Scan()
         {
             astar = GetComponent<AStar>();   
             
@@ -36,16 +37,23 @@ namespace Alex
             {
                 for (int z = 0; z < totalGridSize.z; z++)
                 {
-                    gridNodeReferences[x,z] = new Node();
+                    gridNodeReferences[x, z] = new Node();
                     gridNodeReferences[x, z].gridPosition = new Vector2Int(x, z);
-                    gridNodeReferences[x, z].worldPosition = new Vector3(x,0,z);
+                    gridNodeReferences[x, z].worldPosition = new Vector3(x, 0, z);
                     gridNodeReferences[x, z].isPathNode = false;
 
                     if (Physics.OverlapBox(new Vector3(x * gridSpaceSize.x, 0, z * gridSpaceSize.z),
-                            new Vector3(gridSpaceSize.x, gridSpaceSize.y, gridSpaceSize.z)/2, Quaternion.identity).Length > 0)
+                                new Vector3(gridSpaceSize.x, gridSpaceSize.y, gridSpaceSize.z) / 2, Quaternion.identity)
+                            .Length > 0)
                     {
                         gridNodeReferences[x, z].isBlocked = true;
+                        if (gridNodeReferences[x, z].isBlocked)
+                        {
+                            gridNodeReferences[x, z].gCost = 0;
+                            gridNodeReferences[x, z].hCost = 0;
+                        }
                     }
+
                     else
                     {
                         gridNodeReferences[x, z].isBlocked = false;
@@ -53,17 +61,22 @@ namespace Alex
                 }
             }
         }
-        
+
         private void OnDrawGizmos()
         {
             if (gridNodeReferences != null && gridNodeReferences.Length > 0)
             {
                 foreach (Node node in gridNodeReferences)
                 {
+                    
                     if (node.isBlocked)
                     {
                         Gizmos.color = new Color(1, 0, 0, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, 0, node.worldPosition.z), Vector3.one);
+
+                        Handles.Label(new Vector3(node.worldPosition.x - .2f, 0, node.worldPosition.z +.2f), "G-cost " + node.gCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x +.2f, 0, node.worldPosition.z +.2f), "h-cost " + node.hCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x , 0, node.worldPosition.z -.2f), "f-cost " + node.fCost.ToString(""));
                     }
 
                     else if (node.worldPosition == startPos)
@@ -76,10 +89,11 @@ namespace Alex
                     {
                         Gizmos.color = new Color(0, 0, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, 0, node.worldPosition.z), Vector3.one);
+                        
                     }
                     
                     
-                    else if (node.isPathNode)
+                    else if (astar.isPathable.Contains(node))
                     {
                         Gizmos.color = new Color(0, 0, 0, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, 0, node.worldPosition.z), Vector3.one);
@@ -89,12 +103,18 @@ namespace Alex
                     {
                         Gizmos.color = new Color(1, 0, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, 0, node.worldPosition.z), Vector3.one);
+                        Handles.Label(new Vector3(node.worldPosition.x - .2f, 0, node.worldPosition.z +.2f), "G-cost " + node.gCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x +.2f, 0, node.worldPosition.z +.2f), "h-cost " + node.hCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x , 0, node.worldPosition.z -.2f), "f-cost " + node.fCost.ToString(""));
                     }
                     
                     else if (astar.openNodes.Contains(node))
                     {
                         Gizmos.color = new Color(1, 1, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, 0, node.worldPosition.z), Vector3.one);
+                        Handles.Label(new Vector3(node.worldPosition.x - .2f, 0, node.worldPosition.z +.2f), "G-cost " + node.gCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x +.2f, 0, node.worldPosition.z +.2f), "h-cost " + node.hCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x , 0, node.worldPosition.z -.2f), "f-cost " + node.fCost.ToString(""));
                     }
                     
                     else
