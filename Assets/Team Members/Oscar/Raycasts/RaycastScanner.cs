@@ -22,8 +22,9 @@ public class RaycastScanner : MonoBehaviour
         }
         
         dir = Quaternion.Euler(0, timer, 0) * transform.forward;
-        Physics.Raycast(transform.position, dir, out hitInfo);
-
+        Physics.Raycast(transform.position, dir, out hitInfo,10f);
+        Debug.DrawRay(dir,hitInfo.point,Color.green);
+        
         if (hitInfo.collider.GetComponent<PingObject>() != null)
         {
             StartCoroutine(hitInfo.collider.GetComponent<PingObject>().pinged());
