@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(PerlinScript))]
+[CustomEditor(typeof(Lloyd.LevelGenerator))]
 
 public class TerrainEditor : Editor
 {
@@ -13,12 +13,12 @@ public class TerrainEditor : Editor
         
         if (GUILayout.Button("Randomise Values"))
         {
-            (target as PerlinScript)?.RandomiseValues();
+            (target as Lloyd.LevelGenerator)?.RandomiseValues();
         }
 
         if (GUILayout.Button("Generate Terrain (Play Mode Only)") && Application.isPlaying)
         {
-            (target as PerlinScript)?.GenerateTerrain();
+            (target as Lloyd.LevelGenerator)?.GenerateTerrain();
         }
         
         

@@ -6,23 +6,18 @@ namespace Lloyd
 {
     public class EventManager : MonoBehaviour
     {
-        public delegate void TerrainClear();
+        public static EventManager singleton;
 
-        public static event TerrainClear TerrainClearEvent;
-
-        public static void TerrainClearFunction()
+        private void Awake()
         {
-            if (TerrainClearEvent != null)
-            {
-                TerrainClearEvent();
-            }
+            singleton = this;
         }
-
+        
         public delegate void ChangeHealth(float amount);
 
-        public static event ChangeHealth ChangeHealthEvent;
+        public event ChangeHealth ChangeHealthEvent;
 
-        public static void ChangeHealthFunction(float amount)
+        public void ChangeHealthFunction(float amount)
         {
             if (ChangeHealthEvent != null)
             {
@@ -32,9 +27,9 @@ namespace Lloyd
 
         public delegate void Burning();
 
-        public static event Burning BurningEvent;
+        public event Burning BurningEvent;
 
-        public static void BurningEventFunction()
+        public void BurningEventFunction()
         {
             if (BurningEvent != null)
             {
@@ -44,9 +39,9 @@ namespace Lloyd
 
         public delegate void Burnt();
 
-        public static event Burnt BurntEvent;
+        public event Burnt BurntEvent;
 
-        public static void BurntEventFunction()
+        public void BurntEventFunction()
         {
             if (BurntEvent != null)
             {
@@ -56,9 +51,9 @@ namespace Lloyd
 
         public delegate void DoorMove();
 
-        public static event DoorMove DoorMoveEvent;
+        public event DoorMove DoorMoveEvent;
 
-        public static void DoorMoveFunction()
+        public void DoorMoveFunction()
         {
             if (DoorMoveEvent != null)
             {
@@ -68,9 +63,9 @@ namespace Lloyd
 
         public delegate void DoorInteracted();
 
-        public static event DoorInteracted DoorInteractedEvent;
+        public event DoorInteracted DoorInteractedEvent;
 
-        public static void DoorInteractedFunction()
+        public void DoorInteractedFunction()
         {
             if (DoorInteractedEvent != null)
             {
@@ -80,18 +75,18 @@ namespace Lloyd
 
         public delegate void DoorIdle();
 
-        public static event DoorIdle DoorIdleEvent;
+        public event DoorIdle DoorIdleEvent;
 
-        public static void DoorIdleFunction()
+        public void DoorIdleFunction()
         {
             DoorIdleEvent?.Invoke();
         }
         
         public delegate void DoorTest(int x, int y);
 
-        public static event DoorTest DoorTestEvent;
+        public event DoorTest DoorTestEvent;
 
-        public static void DoorTestFunction(int x, int y)
+        public void DoorTestFunction(int x, int y)
         {
             DoorTestEvent?.Invoke(x, y);
         }

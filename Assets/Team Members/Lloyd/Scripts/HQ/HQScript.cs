@@ -52,12 +52,14 @@ public class HQScript : MonoBehaviour
         isActive = true;
     }
 
-    private void OnCollisionEnter(Collision c)
+    private void Update()
     {
-        CubeScript cubeScript = c.gameObject.GetComponent<CubeScript>();
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5f);
 
-        if ((cubeScript != null) && ((c.gameObject.name != "Ground")) && ((c.gameObject.name != "Wall")))
-            cubeScript.KillSelf();
+        foreach (Collider item in colliders)
+        {
+            Destroy(item.GameObject());
+        }
     }
 
     public void ItemDeposited()
@@ -105,17 +107,6 @@ public class HQScript : MonoBehaviour
                 myHQType = HQType.Aliens;
                 break;
         }
-    }
-    
-    
-    void OnEnable()
-    {
-        Lloyd.EventManager.TerrainClearEvent += KillSelf;
-    }
-
-    void OnDisable()
-    {
-        Lloyd.EventManager.TerrainClearEvent -= KillSelf;
     }
 
     public void KillSelf()
