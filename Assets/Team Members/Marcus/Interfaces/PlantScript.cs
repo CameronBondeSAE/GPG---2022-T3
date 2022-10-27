@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlantScript : MonoBehaviour, IFlammable
 {
-    public Heath_UnivComp health;
+    public PHealth health;
     private float myHealth = 100f;
 
     private bool isAflame;

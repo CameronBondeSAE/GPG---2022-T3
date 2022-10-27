@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heath_UnivComp : MonoBehaviour
+public class PHealth : MonoBehaviour
 {
     public delegate void OnDamaged(float incDamage);
     public event OnDamaged damagedEvent;
