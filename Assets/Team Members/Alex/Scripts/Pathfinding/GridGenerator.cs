@@ -24,6 +24,7 @@ namespace Alex
         public bool isPathable;
         public float alpha = .5f;
         private AStar astar;
+        public float textOffSet = .2f;
         
         
             
@@ -74,9 +75,9 @@ namespace Alex
                         Gizmos.color = new Color(1, 0, 0, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, 0, node.worldPosition.z), Vector3.one);
 
-                        Handles.Label(new Vector3(node.worldPosition.x - .2f, 0, node.worldPosition.z +.2f), "G-cost " + node.gCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x +.2f, 0, node.worldPosition.z +.2f), "h-cost " + node.hCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x , 0, node.worldPosition.z -.2f), "f-cost " + node.fCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x - .5f, 0, node.worldPosition.z +.2f), "G-cost " + node.gCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x -.5f, 0, node.worldPosition.z), "h-cost " + node.hCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x -.5f, 0, node.worldPosition.z -.2f), "f-cost " + node.fCost.ToString(""));
                     }
 
                     else if (node.worldPosition == startPos)
@@ -103,18 +104,18 @@ namespace Alex
                     {
                         Gizmos.color = new Color(1, 0, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, 0, node.worldPosition.z), Vector3.one);
-                        Handles.Label(new Vector3(node.worldPosition.x - .2f, 0, node.worldPosition.z +.2f), "G-cost " + node.gCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x +.2f, 0, node.worldPosition.z +.2f), "h-cost " + node.hCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x , 0, node.worldPosition.z -.2f), "f-cost " + node.fCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x - .5f, 0, node.worldPosition.z +.2f), "G-cost " + node.gCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x -.5f, 0, node.worldPosition.z), "h-cost " + node.hCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x -.5f, 0, node.worldPosition.z -.2f), "f-cost " + node.fCost.ToString(""));
                     }
                     
                     else if (astar.openNodes.Contains(node))
                     {
                         Gizmos.color = new Color(1, 1, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, 0, node.worldPosition.z), Vector3.one);
-                        Handles.Label(new Vector3(node.worldPosition.x - .2f, 0, node.worldPosition.z +.2f), "G-cost " + node.gCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x +.2f, 0, node.worldPosition.z +.2f), "h-cost " + node.hCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x , 0, node.worldPosition.z -.2f), "f-cost " + node.fCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x - .5f, 0, node.worldPosition.z +.2f), "G-cost " + node.gCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x -.5f, 0, node.worldPosition.z), "h-cost " + node.hCost.ToString(""));
+                        Handles.Label(new Vector3(node.worldPosition.x -.5f, 0, node.worldPosition.z -.2f), "f-cost " + node.fCost.ToString(""));
                     }
                     
                     else
