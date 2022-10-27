@@ -24,7 +24,7 @@ public class RaycastsEtc : MonoBehaviour
 		// Raycasts and Linecasts
 		Ray ray = new Ray(transform.position, transform.forward);
 		RaycastHit hitInfo = new RaycastHit();
-		Physics.Raycast(ray, out hitInfo, 999f);
+		Physics.Raycast(ray, out hitInfo, 25f);
  		
 		Debug.DrawLine(hitInfo.point, hitInfo.point+hitInfo.normal, Color.green);
 

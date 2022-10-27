@@ -21,7 +21,7 @@ public class ElevatorMovingUpState : MonoBehaviour
 	    {
 		    // End somehow
 		    // HACK: Shouldn't really be the responibility of this state to know about other states
-		    GetComponent<Cam.StateManager>().ChangeState(GetComponent<ElevatorStopState>());
+		    // GetComponent<Cam.StateManager>().ChangeState(GetComponent<ElevatorStopState>());
 	    }
     }
 
