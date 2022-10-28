@@ -8,8 +8,6 @@ namespace Oscar
 {
     public class ExplosiveIdleState : MonoBehaviour, IFlammable
     {
-        private GameObject ExplosiveDevice;
-        
         //effected by fire so needs to respond to being hit by fire.
         public void SetOnFire()
         {
