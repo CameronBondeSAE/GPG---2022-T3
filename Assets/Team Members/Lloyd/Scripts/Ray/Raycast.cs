@@ -6,8 +6,8 @@ namespace Lloyd
 {
     public class Raycast : MonoBehaviour
     {
-        private Rigidbody rb;
-        
+        private Rigidbody _rb;
+    
         [SerializeField] float _rayDist;
 
         private Ray _ray;
@@ -25,11 +25,11 @@ namespace Lloyd
 
         private RaycastHit _newHitInfo;
 
-       [SerializeField] private float speed;
+       [SerializeField] private float _speed;
         
         void Start()
         {
-            rb = GetComponent<Rigidbody>();
+            _rb = GetComponent<Rigidbody>();
         }
 
         void Update()
@@ -46,13 +46,15 @@ namespace Lloyd
 
                 BounceRay();
             }
-            transform.Rotate(0.0f, speed, 0.0f, Space.Self);
+            transform.Rotate(0.0f, _speed, 0.0f, Space.Self);
         }
 
         private void BounceRay()
         {
             for (int x = 0; x < _bounceNo; x++)
             {
+                
+                
                 _newRay = new Ray(_newOrigin, _newDirection);
                 if (Physics.Raycast(_newRay, out _newHitInfo, _rayDist))
                 {
@@ -60,35 +62,13 @@ namespace Lloyd
                     _newOrigin = _newHitInfo.point;
 
                     _newDirection = _reflectDir;
+                    
                 }
             }
-
         }
         
+
+        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    //namespace
 }

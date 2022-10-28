@@ -65,8 +65,6 @@ namespace Lloyd
         private GameObject cubeSpawned;
         private bool isHighest;
 
-        private Health _health;
-
         private void Start()
         {
             GenerateTerrain();
