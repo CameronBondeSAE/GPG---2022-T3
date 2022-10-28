@@ -8,7 +8,6 @@ namespace Oscar
 {
     public class ExplosiveNearlyExplodeState : MonoBehaviour
     {
-        private Color render;
         private Color explodeRed = Color.red;
 
         public event Action AlmostExplode;

@@ -7,7 +7,6 @@ namespace Oscar
     {
         public GameObject explosivefragments;
 
-        private float transformRotation;
         // Start is called before the first frame update
         void Start()
         {

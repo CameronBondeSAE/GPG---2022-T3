@@ -140,11 +140,11 @@ GameObject:
   - component: {fileID: 6522943975982661913}
   - component: {fileID: 6522943975982661912}
   - component: {fileID: 6522943975982661915}
-  - component: {fileID: 6522943975982661914}
-  - component: {fileID: 6522943975982661893}
-  - component: {fileID: 6522943975982661895}
-  - component: {fileID: 6522943975982661892}
-  - component: {fileID: 8847604673982240050}
+  - component: {fileID: 8134697189783218653}
+  - component: {fileID: 7665765543256430508}
+  - component: {fileID: 86582184059768784}
+  - component: {fileID: 6661313131583358677}
+  - component: {fileID: 2041809841749051246}
   m_Layer: 0
   m_Name: Explosive_Model
   m_TagString: Untagged
@@ -197,7 +197,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 3b870f7b114841246a33803f669235ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,7 +233,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6522943975982661914
+--- !u!114 &8134697189783218653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,21 +245,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f343aef618de5cb4b923cf50f92ba35b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: {fileID: 6522943975982661893}
+  startingState: {fileID: 7665765543256430508}
   currentState: {fileID: 0}
---- !u!114 &6522943975982661893
+--- !u!114 &7665765543256430508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6522943975982661894}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9cd72bb28f49894aac4a067468e6050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6522943975982661895
+--- !u!114 &86582184059768784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221dc295d5d979e4fac8664eb0db06e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6522943975982661892
+--- !u!114 &6661313131583358677
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosivefragments: {fileID: 5010368680524319573, guid: 9a18431a32ec8044396820ea8ad5b851, type: 3}
---- !u!114 &8847604673982240050
+--- !u!114 &2041809841749051246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -308,6 +308,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7526745740825540438, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: AlmostBlowUp
+      value: 
+      objectReference: {fileID: 86582184059768784}
     - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -359,32 +363,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: d6103124587880f47a153e13a52e5946, type: 3}
---- !u!198 &6390261491015887521 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6530026891734634799, guid: d6103124587880f47a153e13a52e5946, type: 3}
-  m_PrefabInstance: {fileID: 158070345722198926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8256449087222599737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
   m_PrefabInstance: {fileID: 158070345722198926}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8815755733273906337 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8675708619266520879, guid: d6103124587880f47a153e13a52e5946, type: 3}
-  m_PrefabInstance: {fileID: 158070345722198926}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4515327612717591468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8815755733273906337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b416910b5a88b141a72326d10ef6161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Smoke: {fileID: 6390261491015887521}
-  AlmostBlowUp: {fileID: 6522943975982661895}
