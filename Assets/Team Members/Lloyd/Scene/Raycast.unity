@@ -232,6 +232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Radar
       objectReference: {fileID: 0}
+    - target: {fileID: 2085840361809099251, guid: 14bf5f1ff9db276458d7cdf9f3d8a5c5, type: 3}
+      propertyPath: _fireball
+      value: 
+      objectReference: {fileID: 2097233744307224593, guid: 68d82a5d303fb164ea28c9a6a7be4d4c, type: 3}
     - target: {fileID: 2085840361809099255, guid: 14bf5f1ff9db276458d7cdf9f3d8a5c5, type: 3}
       propertyPath: m_RootOrder
       value: 3
