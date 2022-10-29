@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class FireballModel : MonoBehaviour
@@ -27,11 +28,21 @@ public class FireballModel : MonoBehaviour
 
     private Renderer _rend;
 
+    public FireballView _fireballView;
+
+    private Rigidbody _rb;
     private void OnEnable()
     {
         _rend = GetComponent<Renderer>();
         
         _rend.material.SetColor("_BaseColor", new Color(1f,0,0,.5f));
+
+        Physics.IgnoreLayerCollision(11,11);
+
+        StartCoroutine(TickTock());
+
+        _rb = GetComponent<Rigidbody>();
+
     }
 
     private void FixedUpdate()
@@ -45,6 +56,7 @@ public class FireballModel : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(_center, _radius);
         foreach (var hitCollider in hitColliders)
         {
+            
             if (hitCollider.GetComponent<IFlame>() != null)
             {
                 hitCollider.GetComponent<IFlame>().ChangeHeat(_heat);
@@ -56,12 +68,29 @@ public class FireballModel : MonoBehaviour
                 {
                     hitCollider.GetComponent<IFlame>().ChangeHeat(_heat*_proximityMultiplier);
                 }
+                
+               transform.SetParent(hitCollider.transform);
+               _rb.isKinematic = true;  
+               
+               Debug.Log("Hit");
             }
+         
         }
+    }
 
-        _lifespan--;
-        if (_lifespan <= 0)
-            Destroy(this);
+    private IEnumerator TickTock()
+    {
+        yield return new WaitForSeconds(_lifespan);
+        StartCoroutine(Death());
+    }
+
+    private IEnumerator Death()
+    {
+        _fireballView.Death();
+
+        yield return new WaitForSeconds(2);
+
+        Destroy(this.gameObject);
     }
 
     private void OnDisable()

@@ -13,18 +13,11 @@ public class FireballView : MonoBehaviour
 
         StartCoroutine(Wait(.8f));
     }
-    
-    private void Death()
-    {
-        _anim.SetBool("IsOpen", false);
-        _anim.SetTrigger("End");
 
-        StartCoroutine(Wait(1.2f));
-    }
-
-    private void OnDisable()
+    public void Death()
     {
-        
+         _anim.SetBool("IsOpen", true);
+                _anim.SetTrigger("End");
     }
 
     private IEnumerator Wait(float x)

@@ -42,3 +42,5 @@ Fire patchnotes
 -- if object is a minimum distance, heat is signficantly increased by the proximity multiplier
 
 -- added ripped DOOM fire sprites. made an animation controller for sprite cycling. fires start, idle, then fade over time
+
+-- Flamethrower now sprays in a perlin pattern
