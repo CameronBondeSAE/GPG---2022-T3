@@ -7,11 +7,11 @@ public class SludgeNearlyExplodeState : MonoBehaviour
 {
     private Color purple = new Color32(143,0,254,1);
 
-    public event Action AlmostExplode; 
+    public event Action SludgeExplode; 
     IEnumerator Start()
     {
         //make smoke from fire
-        AlmostExplode?.Invoke();
+        SludgeExplode?.Invoke();
         //play the SFX
 
         GetComponent<Renderer>().material.color = purple;
@@ -19,5 +19,9 @@ public class SludgeNearlyExplodeState : MonoBehaviour
         GetComponent<Oscar.StateManager>().ChangeState(GetComponent<SludgeExplodeState>());
 
     }
-    
+
+    private void OnDisable()
+    {
+        
+    }
 }

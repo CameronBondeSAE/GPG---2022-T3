@@ -4,18 +4,22 @@ using System.Collections.Generic;
 using Oscar;
 using UnityEngine;
 
-public class ExplosiveSmoke : MonoBehaviour
+namespace Oscar
 {
-    public ParticleSystem Smoke;
-    public ExplosiveNearlyExplodeState AlmostBlowUp;
-    private void OnEnable()
+    public class ExplosiveSmoke : MonoBehaviour
     {
-        AlmostBlowUp.AlmostExplode += SmokeDispense;
-    }
-
-    public void SmokeDispense()
-    {
-        Smoke.Play();
+        public ParticleSystem Smoke;
+        public Oscar.ExplosiveNearlyExplodeState AlmostBlowUp;
+        private void OnEnable()
+        {
+            AlmostBlowUp.AlmostExplode += SmokeDispense;
+        }
+    
+        public void SmokeDispense()
+        {
+            Smoke.Play();
+        }
+    
     }
 
 }
