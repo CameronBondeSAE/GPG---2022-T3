@@ -30,3 +30,17 @@ HQ patchnotes
 -- added for loops and lists for spawning items and HQ. Perlin noise now spawns vector 3 transforms, which are stored as a list, which are then looped through to spawn objects at their respective transforms (add to terrain later? also properly figure out list size constrictions and looping until it's done)
 
 -- successfully added logic for a minimum spawn distance between HQs :)
+
+1.4 
+
+-- HQ's now destroy walls on spawn (overlap sphere targets health component)
+
+Fire patchnotes
+
+-- added sphere that increases heat by float value
+
+-- if object is a minimum distance, heat is signficantly increased by the proximity multiplier
+
+-- added ripped DOOM fire sprites. made an animation controller for sprite cycling. fires start, idle, then fade over time
+
+-- Flamethrower now sprays in a perlin pattern
