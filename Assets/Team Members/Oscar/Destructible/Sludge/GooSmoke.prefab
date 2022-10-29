@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5049897262042699720
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6530026891734634799, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6530026891734634799, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.48235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 6530026891734634799, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526745740825540438, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: AlmostBlowUp
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116991309241854903, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675708619266520879, guid: d6103124587880f47a153e13a52e5946, type: 3}
+      propertyPath: m_Name
+      value: GooSmoke
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7526745740825540438, guid: d6103124587880f47a153e13a52e5946, type: 3}
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: d6103124587880f47a153e13a52e5946, type: 3}
+--- !u!198 &2056885065347139303 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6530026891734634799, guid: d6103124587880f47a153e13a52e5946, type: 3}
+  m_PrefabInstance: {fileID: 5049897262042699720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4499828062277935335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8675708619266520879, guid: d6103124587880f47a153e13a52e5946, type: 3}
+  m_PrefabInstance: {fileID: 5049897262042699720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4476723129528102388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4499828062277935335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6afaa2a9b7da1e64ab083f2482d04444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Smoke: {fileID: 2056885065347139303}
+  AlmostGooExplode: {fileID: 0}
