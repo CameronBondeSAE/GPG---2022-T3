@@ -16,8 +16,10 @@ namespace Alex
         public float alpha = .5f;
         public Node currentNode;
         
+        
         void Start()
         {
+            
             grid = GetComponent<GridGenerator>();
             openNodes = new List<Node>();
             closedNodes = new List<Node>();
@@ -30,6 +32,7 @@ namespace Alex
         {
             openNodes.Clear();
             closedNodes.Clear();
+            
             Node startNode = grid.gridNodeReferences[startPos.x, startPos.z];
             Node endNode = grid.gridNodeReferences[endPos.x, endPos.z];
             openNodes.Add(startNode);
@@ -133,13 +136,6 @@ namespace Alex
             if (distX > distZ)
                 return 14 * distZ + 10 * (distX - distZ);
             return 14 * distX + 10 * (distZ - distX); 
-        }
-
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = new Color(1, 1, 0, alpha);
-            Gizmos.DrawCube(new Vector3(currentNode.gridPosition.x, 0, currentNode.gridPosition.y), Vector3.one);
         }
     }
 }

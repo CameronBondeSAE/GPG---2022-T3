@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Alex;
 using UnityEngine;
+using Alex;
 using UnityEditor;
 
 [CustomEditor(typeof(AStar), true)]
