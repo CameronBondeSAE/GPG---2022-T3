@@ -22,6 +22,8 @@ public class HQScript : MonoBehaviour
     
     private Renderer rend;
 
+    [SerializeField] private float _HQRadius;
+
     //tracks items deposited
     private int itemCount;
     //when this many items have been deposited, fire victory event
@@ -52,12 +54,17 @@ public class HQScript : MonoBehaviour
         isActive = true;
     }
 
-    private void OnCollisionEnter(Collision c)
+    private void Update()
     {
-        CubeScript cubeScript = c.gameObject.GetComponent<CubeScript>();
+        Collider[] colliders = Physics.OverlapSphere(transform.position, _HQRadius);
 
-        if ((cubeScript != null) && ((c.gameObject.name != "Ground")) && ((c.gameObject.name != "Wall")))
-            cubeScript.KillSelf();
+        foreach (Collider obj in colliders)
+        {
+            if (obj.GetComponent<Marcus.Health>() != null)
+            {
+              Destroy(obj.gameObject);
+            }
+        }
     }
 
     public void ItemDeposited()
@@ -105,17 +112,6 @@ public class HQScript : MonoBehaviour
                 myHQType = HQType.Aliens;
                 break;
         }
-    }
-    
-    
-    void OnEnable()
-    {
-        Lloyd.EventManager.TerrainClearEvent += KillSelf;
-    }
-
-    void OnDisable()
-    {
-        Lloyd.EventManager.TerrainClearEvent -= KillSelf;
     }
 
     public void KillSelf()

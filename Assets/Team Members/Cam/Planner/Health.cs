@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+namespace Cam
 {
-	public float amount = 100f;
+	public class Health : MonoBehaviour
+	{
+		public float amount = 100f;
 
+	}
 }

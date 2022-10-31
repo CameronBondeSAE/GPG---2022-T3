@@ -63,7 +63,7 @@ public class DoorMovingState : MonoBehaviour
 
         _isMoving = false;
         
-        EventManager.DoorIdleFunction();
+        EventManager.singleton.DoorIdleFunction();
     }
 
     private void FixedUpdate()

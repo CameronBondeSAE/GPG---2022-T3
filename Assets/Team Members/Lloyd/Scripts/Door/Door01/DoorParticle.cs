@@ -15,7 +15,7 @@ public class DoorParticle : MonoBehaviour
 
     private void OnEnable()
     {
-        Lloyd.EventManager.DoorIdleEvent += SteamOn;
+        Lloyd.EventManager.singleton.DoorIdleEvent += SteamOn;
 
         steamList.Add(steam01);
         steamList.Add(steam02);
@@ -56,6 +56,6 @@ public class DoorParticle : MonoBehaviour
 
     private void OnDisable()
     {
-        Lloyd.EventManager.DoorIdleEvent -= SteamOn;
+        Lloyd.EventManager.singleton.DoorIdleEvent -= SteamOn;
     }
 }

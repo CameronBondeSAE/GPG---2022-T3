@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5530932041577439139}
   - component: {fileID: 5530932041577439140}
+  - component: {fileID: 3411614321170409340}
+  - component: {fileID: 8632995031716236647}
+  - component: {fileID: 717600289217134444}
+  - component: {fileID: 4194513743047498130}
   m_Layer: 0
   m_Name: Map Generator
   m_TagString: Untagged
@@ -44,14 +48,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60111928508bcc743beb5af1efc4ea6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
-  Barrel: {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
-  AISpawner: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
-  Base: {fileID: 7655450866958091700, guid: f4eb1f7b1559ed144bc84ddebed3ba78, type: 3}
-  borderPrefab: {fileID: 6660555670414354313, guid: bb2f4f3f7c71b4049a14a754c638e983, type: 3}
-  HQAmount: 0
-  LastBaseDistance: 0
-  minDist: 90
-  amount: 100
+  spawnBases: {fileID: 8632995031716236647}
+  spawnEnvironment: {fileID: 717600289217134444}
+  spawnExplosives: {fileID: 4194513743047498130}
+  spawnAI: {fileID: 3411614321170409340}
+  amount: 50
   randomMap: 0
   cubeSize: 1
+--- !u!114 &3411614321170409340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530932041577439141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caff9346e881b1f43a3de31a7bb3f001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIEnemy: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
+--- !u!114 &8632995031716236647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530932041577439141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd32f1fa11f58e4dac74de01bfe0c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDist: 0
+  HQAmount: 0
+  Base: {fileID: 7655450866958091700, guid: f4eb1f7b1559ed144bc84ddebed3ba78, type: 3}
+  tempBaseDist: 0
+--- !u!114 &717600289217134444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530932041577439141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d34df3bd7755e64f9d881d6505d64aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  borderPrefab: {fileID: 6660555670414354313, guid: bb2f4f3f7c71b4049a14a754c638e983, type: 3}
+  perlinPrefab: {fileID: 3192070640700946563, guid: 9fd6eb9b778f6e743937f5a574b749c1, type: 3}
+--- !u!114 &4194513743047498130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530932041577439141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 771cfaa1bf7788e49b3c170afbd6ec19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosive: {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}

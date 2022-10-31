@@ -12,11 +12,11 @@ namespace Cam
 		
 		private void Start()
 		{
-			ChangeState(startingState);
+			// ChangeState(startingState);
 		}
 
 		// This works for ANY STATE
-		public void ChangeState(MonoBehaviour newState)
+		public void ChangeState(StateBase newState)
 		{
 			// Check if the state is the same and DON'T swap
 			if (newState == currentState)

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class Spreading : MonoBehaviour, IFlammable
 {
@@ -41,7 +43,7 @@ public class Spreading : MonoBehaviour, IFlammable
 
             if (spreadTimer <= 0 && spreadNumber < spreadLimit)
             {
-                spreadDistance = Random.Range(10, 30);
+                spreadDistance = Random.Range(1, 3);
                 spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
                 
                 Spread(spreadDistance, spreadDirection);
@@ -51,14 +53,18 @@ public class Spreading : MonoBehaviour, IFlammable
 
     void Spread(float distance, Vector3 direction)
     {
-        //grow new plants
-        Ray ray = new Ray(transform.position, direction);
-        RaycastHit hitInfo;
-        Physics.Raycast(ray, out hitInfo, distance);
+        Vector3 pos = transform.position + direction;
         
-        Instantiate(seedling, hitInfo.);
-        spreadNumber++;
-        RandomiseTimer();
+        //grow new plants
+        foreach (Collider item in Physics.OverlapSphere(pos, distance))
+        {
+            if (item == null)
+            {
+                Instantiate(seedling, pos, Quaternion.identity);
+                spreadNumber++;
+                RandomiseTimer();
+            }
+        }
     }
 
     public void SetOnFire()
