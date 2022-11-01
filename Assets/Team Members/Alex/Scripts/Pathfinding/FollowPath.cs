@@ -9,23 +9,20 @@ namespace Alex
 
     public class FollowPath : MonoBehaviour
     {
-        GridGenerator grid;
-        AStar astar;
-        Controller controller;
-        Vision vision;
-        public List<Node> pathableNodesToMove;
-        public List<Node> openNodes;
-        public List<Node> closedNodes;
-        Target target;
+        public GridGenerator grid;
+        public AStar astar;
+        public Controller controller;
+        public Vision vision;
+        public TurnTowards turntowards;
+
+        public Target target;
         public Vector3 myTarget;
-        public Node[,] pathableNodeArray;
-        public Node[] path;
+
         public int currentPathIndex;
-        
-        public Vector3 startPos;
-        public Vector3 endPos;
+
         public Vector3Int myPos;
         public Vector3Int targetPos;
+
 
 
 
@@ -33,48 +30,38 @@ namespace Alex
         // Start is called before the first frame update
         void Start()
         {
-                        
-            //pathableNodeArray = grid.gridNodeReferences;
-
-
-            //startPos = grid.startPos;
-            //Debug.Log(startPos);
-
-            //endPos = grid.endPos;
-
-            //astar.endLocation.worldPosition = myTarget;
-            //endPos = astar.endLocation.worldPosition;
+            astar.pathFoundEvent += PathFound;
             
             
-            grid = GetComponent<GridGenerator>();
-            astar = GetComponent<AStar>();
-            target = GetComponent<Target>();
-            controller = GetComponent<Controller>();
-
-            //myTarget = target.transform.position;
-            myPos = new Vector3Int((int)controller.rb.transform.position.x, (int)controller.rb.transform.position.y, (int)controller.rb.transform.position.z);
+            myPos = new Vector3Int((int)controller.rb.transform.position.x, (int)controller.rb.transform.position.y,
+                (int)controller.rb.transform.position.z);
             targetPos = new Vector3Int((int)target.transform.position.x, (int)target.transform.position.y,
                 (int)target.transform.position.z);
 
 
+            astar.FindPathStartCoroutine(myPos,targetPos);
+            
+            
 
-            astar.FindPath(myPos, targetPos);
+
+
+
+            //pathableNodesToMove = astar.isPathable;
+
+            //path[0] = astar.isPathable[0];
+
             
             Debug.Log(myPos);
             Debug.Log(targetPos);
-
-            //Debug.Log(astar.isPathable[0]);
-            //StartCoroutine(FindPathToTarget(myPos, endPos.));
+            
+            
+            //StartCoroutine(FindPathToTarget(myPos, targetPos));
 
         }
 
-        public IEnumerator FindPathToTarget(Vector3Int startPosition, Vector3Int endPosition)
+        void PathFound()
         {
-            startPosition = myPos;
-            endPosition = targetPos;
-            
-            
-            yield return new WaitForSeconds(.01f);
+            Debug.Log(astar.isPathable[0]);
         }
     }
 }

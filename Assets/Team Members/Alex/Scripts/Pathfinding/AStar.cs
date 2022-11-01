@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Alex
@@ -15,6 +14,10 @@ namespace Alex
         public List<Node> neighbours;
         public float alpha = .5f;
         public Node currentNode;
+        public event Action pathFoundEvent;
+        
+        public Vector3Int startPos;
+        public Vector3Int endPos;
         
         
         void Start()
@@ -24,14 +27,19 @@ namespace Alex
             openNodes = new List<Node>();
             closedNodes = new List<Node>();
             grid.Scan();
-            StartCoroutine(FindPath(grid.startPos, grid.endPos));
         }
 
-
+        public void FindPathStartCoroutine(Vector3Int _startPos, Vector3Int _endPos)
+        {
+            StartCoroutine(FindPath(_startPos, _endPos));
+        }
+        
         public IEnumerator FindPath(Vector3Int startPos, Vector3Int endPos)
         {
             openNodes.Clear();
             closedNodes.Clear();
+            isPathable.Clear();
+            neighbours.Clear();
             
             Node startNode = grid.gridNodeReferences[startPos.x, startPos.z];
             Node endNode = grid.gridNodeReferences[endPos.x, endPos.z];
@@ -125,6 +133,7 @@ namespace Alex
             isPathable.Reverse();
 
             grid.path = isPathable;
+            pathFoundEvent?.Invoke();
         }
 
 

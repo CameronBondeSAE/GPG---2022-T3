@@ -18,14 +18,13 @@ public class GeneratePathEditor : Editor
         if (GUILayout.Button("Find Path"))
         {
             AStar aStar = (target as AStar);
-            
-            aStar?.openNodes.Clear();
-            aStar?.openNodes.Clear();
-            aStar?.closedNodes.Clear();
-            aStar?.isPathable.Clear();
-            aStar?.neighbours.Clear();
-            aStar?.grid.Scan();
-            aStar?.StartCoroutine(aStar?.FindPath(aStar.grid.startPos, aStar.grid.endPos));
+
+
+            if (aStar != null)
+            {
+                aStar.grid.Scan();
+                aStar.FindPathStartCoroutine(aStar.startPos, aStar.endPos);
+            }
         }
         
     }

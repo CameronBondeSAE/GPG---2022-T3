@@ -19,7 +19,7 @@ public class FindPathForAIEditor : Editor
         {
             FollowPath followPath = (target as FollowPath);
 
-            followPath?.StartCoroutine(followPath?.FindPathToTarget(astar.grid.startPos, astar.grid.endPos));
+            //followPath?.StartCoroutine(followPath?.FindPathToTarget(followPath.myPos, followPath.targetPos));
         }
         
     }

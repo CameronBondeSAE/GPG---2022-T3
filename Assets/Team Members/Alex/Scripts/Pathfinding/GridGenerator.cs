@@ -23,8 +23,7 @@ namespace Alex
         public Node[,] gridNodeReferences;
         public Vector3Int gridSpaceSize;
         public Vector3Int totalGridSize;
-        public Vector3Int startPos;
-        public Vector3Int endPos;
+
         public List<Node> path;
         public bool isPathable;
         public float alpha = .5f;
@@ -90,7 +89,7 @@ namespace Alex
                         Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
                     }
 
-                    else if (node.worldPosition == startPos)
+                    else if (node.worldPosition == astar.startPos)
                     {
                         Gizmos.color = new Color(0, 0, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
@@ -99,7 +98,7 @@ namespace Alex
                         Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
                     }
                     
-                    else if (node.worldPosition == endPos)
+                    else if (node.worldPosition == astar.endPos)
                     {
                         Gizmos.color = new Color(0, 0, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
@@ -148,5 +147,6 @@ namespace Alex
                 Gizmos.DrawCube(new Vector3(astar.currentNode.gridPosition.x, yOffSet,  astar.currentNode.gridPosition.y), Vector3.one);
             }
         }
+        
     }
 }
