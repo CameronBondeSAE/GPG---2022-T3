@@ -58,7 +58,7 @@ public class Spreading : MonoBehaviour, IFlammable
         //grow new plants
         foreach (Collider item in Physics.OverlapSphere(pos, distance))
         {
-            if (item == null)
+            if (item /*is an empty space*/)
             {
                 Instantiate(seedling, pos, Quaternion.identity);
                 spreadNumber++;

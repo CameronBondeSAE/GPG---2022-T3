@@ -52,6 +52,15 @@ public class MarcusInput : MonoBehaviour
         playerMove = input.ReadValue<Vector2>();
     }
 
+    //With the new flamethrower mechanics I could add this here rather than a separate script
+    /*public GameObject fireball;
+    private Vector3 flameSpeed;
+
+    void CreateFlame()
+    {
+        gameObject flame = Instantiate(fireball, transform.forward, Quaternion.identity);
+        flame.GetComponent<Rigidbody>().AddForce(flameSpeed)
+    }*/
     public delegate void Firing();
     public event Firing FireEvent;
 
