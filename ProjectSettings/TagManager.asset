@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - wall
+  - grid
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Resource
   - Water
   - UI
   - Separation

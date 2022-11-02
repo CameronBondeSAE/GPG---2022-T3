@@ -14,11 +14,13 @@ namespace Alex
         public List<Node> neighbours;
         public float alpha = .5f;
         public Node currentNode;
-        public event Action pathFoundEvent;
+        public event Action PathFoundEvent;
         
         public Vector3Int startPos;
         public Vector3Int endPos;
-        
+        Coroutine co;
+ 
+       
         
         void Awake()
         {
@@ -30,7 +32,8 @@ namespace Alex
 
         public void FindPathStartCoroutine(Vector3Int _startPos, Vector3Int _endPos)
         {
-            StartCoroutine(FindPath(_startPos, _endPos));
+            if (co != null) StopCoroutine(co);
+            co = StartCoroutine(FindPath(_startPos, _endPos));
         }
         
         public IEnumerator FindPath(Vector3Int startPos, Vector3Int endPos)
@@ -132,7 +135,7 @@ namespace Alex
             isPathable.Reverse();
 
             //grid.path = isPathable;
-            pathFoundEvent?.Invoke();
+            PathFoundEvent?.Invoke();
         }
 
 

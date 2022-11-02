@@ -26,20 +26,23 @@ namespace Alex
         public Vector3 nextNodePos;
         public Wonder wonder;
         public float distanceToTargetCheck = 1.5f;
+        public event Action PathEndReachedEvent; 
         
-        
+
+
         // Start is called before the first frame update
         void Start()
         {
-            astar.pathFoundEvent += PathFound;
-
-            myPos = controller.rb.transform.position;
-            targetPos = target.transform.position;
-
-
-            astar.FindPathStartCoroutine(Vector3Int.FloorToInt(myPos),Vector3Int.FloorToInt(targetPos));
-            
+            astar.PathFoundEvent += PathFound;
         }
+
+        public void ActivatePathToTarget(Vector3 targetPos)
+        {
+            myPos = controller.rb.transform.position;
+
+            astar.FindPathStartCoroutine(Vector3Int.FloorToInt(myPos), Vector3Int.FloorToInt(targetPos));
+        }
+
 
         void PathFound()
         {
@@ -75,11 +78,9 @@ namespace Alex
 
             else
             {
-                Debug.Log("End reached!");
-                turntowards.turnSpeed = 10;
-                wonder.enabled = true;
+                PathEndReachedEvent?.Invoke();
+                enabled = false;
             }
-
         }
     }
 }

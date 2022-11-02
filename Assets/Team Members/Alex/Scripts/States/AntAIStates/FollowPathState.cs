@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Alex;
 using UnityEngine;
 
+/*
 namespace Alex
 {
 
@@ -15,11 +16,7 @@ namespace Alex
         Controller controller;
         Vision vision;
         TurnTowards turnTowards;
-        
-        
-        
-        
-        
+
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
@@ -41,13 +38,18 @@ namespace Alex
         {
             base.Execute(aDeltaTime, aTimeScale);
 
+            if (vision.enemyInSight.Count > 0)
+                followPath.enabled = true;
+
             Finish();
         }
 
         public override void Exit()
         {
             base.Exit();
+            followPath.enabled = false;
             Finish();
         }
     }
 }
+*/

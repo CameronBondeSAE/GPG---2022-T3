@@ -37,7 +37,6 @@ namespace Alex
             if (vision.enemyInSight.Count > 0)
             {
                 owner.GetComponent<TurnTowards>().targetPosition = vision.enemyInSight[0].transform.position;
-                //owner.GetComponent<TurnTowards>().targetTransform = vision.resourcesInSight[0].transform.position;
                 Finish();
             }
         }

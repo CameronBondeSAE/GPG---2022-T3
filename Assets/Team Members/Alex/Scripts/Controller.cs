@@ -25,7 +25,7 @@ public class Controller : MonoBehaviour
     public Collider collider;
     public Inventory inventory;
     public int turnSpeed;
-    public FollowPath followPath;
+    public bool followingPath;
     public AStar aStar;
 
     public void Awake()
@@ -50,10 +50,14 @@ public class Controller : MonoBehaviour
     public bool FollowingPath()
     {
         //if (enemies.Count > 0)
-            //return aStar.FindPathStartCoroutine(rb.transform.position,enemies[0].transform.position);
+           // return aStar.FindPathStartCoroutine(Vector3Int.FloorToInt(rb.transform.position),Vector3Int.FloorToInt(enemies[0].transform.position));
        // if(resourceTargets.Count > 0)
          //   return(aStar.FindPathStartCoroutine(Vector3Int.FloorToInt(rb.transform.position),Vector3Int.FloorToInt(enemies[0].transform.position)))
-        return false;
+        //else
+        {
+            return false;
+        }
+         
     }
 
 
@@ -88,7 +92,7 @@ public class Controller : MonoBehaviour
         //return false;
         if (vision.resourcesInSight.Count > 0)
         {
-            return Vector3.Distance(vision.resourcesInSight[0].transform.position, rb.transform.position) < 0.2f;
+            return Vector3.Distance(vision.resourcesInSight[0].transform.position, rb.transform.position) < 2f;
         }
         else return false;
     }

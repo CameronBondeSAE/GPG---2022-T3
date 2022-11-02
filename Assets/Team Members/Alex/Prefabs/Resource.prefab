@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 406841744869549976}
   - component: {fileID: 406841744869549977}
   - component: {fileID: 406841744869549978}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Resource
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &406841744869549982
 MeshFilter:

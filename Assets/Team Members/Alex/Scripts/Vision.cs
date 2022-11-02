@@ -13,17 +13,15 @@ namespace Alex
         public List<Transform> enemyInSight;
         public List<Transform> dropOffPointsFound;
         public GameObject currentTarget;
-        public Sensor sensor;
-        public FollowPath followPath;
-        public AStar astar;
-        public Controller controller;
+
+
         
         
 
         private void FixedUpdate()
         {
             enemyInSight.Clear();
-            resourcesInSight.Clear();
+            //resourcesInSight.Clear();
             for (int i = -rays; i < rays; i++)
             {
                 
@@ -44,7 +42,6 @@ namespace Alex
                     if (!enemyInSight.Contains(enemy))
                     {
                         enemyInSight.Add(enemy);
-                        astar.FindPathStartCoroutine(Vector3Int.FloorToInt(controller.rb.transform.position) , Vector3Int.FloorToInt(enemyInSight[0].transform.position));
                     }
                 }
                 
@@ -60,7 +57,6 @@ namespace Alex
                         if (!resourcesInSight.Contains(resource))
                         {
                             resourcesInSight.Add(resource);
-                            astar.FindPathStartCoroutine(Vector3Int.FloorToInt(controller.rb.transform.position) , Vector3Int.FloorToInt(resourcesInSight[0].transform.position));
                         }
                     }
 

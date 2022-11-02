@@ -13,6 +13,7 @@ namespace Alex
         public float turnSpeed = 1;
         Resource resource;
         Controller controller;
+        FollowPath followPath;
 
         
 
@@ -27,10 +28,23 @@ namespace Alex
             controller = aGameObject.GetComponent<Controller>();
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
+            followPath = aGameObject.GetComponent<FollowPath>();
         }
         public override void Enter()
         {
             base.Enter();
+            followPath.enabled = true;
+            followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
+            if (vision.resourcesInSight.Count == 0 && vision.resourcesInSight != null) return;
+            if (vision.resourcesInSight.Count > 0)
+            {
+                followPath.ActivatePathToTarget(vision.resourcesInSight[0].transform.position);
+            }
+        }
+
+        private void FollowPathOnPathEndReachedEvent()
+        {
+            followPath.enabled = false;
             Finish();
         }
 
@@ -38,13 +52,13 @@ namespace Alex
         {
             base.Execute(aDeltaTime, aTimeScale);
 
-            if (vision.resourcesInSight.Count == 0 && vision.resourcesInSight != null) return;
-            if (vision.resourcesInSight.Count > 0)
-            {
-                owner.GetComponent<TurnTowards>().targetPosition = vision.resourcesInSight[0].transform.position;
-                //owner.GetComponent<TurnTowards>().targetTransform = vision.resourcesInSight[0].transform.position;
-                Finish();
-            }
+            
+        }
+        
+        public override void Exit()
+        {
+            base.Exit();
+            followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
         }
     }
 }

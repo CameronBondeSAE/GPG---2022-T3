@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: -5664859693588689256}
   - component: {fileID: -7807660158720829330}
   - component: {fileID: 8175690127105362018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AlienAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ef6b0d8254239646bc7f59c7082b994, type: 3}
   m_Name: 
@@ -325,13 +325,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e724e36405834fa192b36cd6a4e6059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   manualUpdate: 0
-  thinkInterval: 0.1
+  thinkInterval: 2
   scenario: {fileID: 11400000, guid: 05416ebd0545f5c4fab422f0bdc75b53, type: 2}
 --- !u!114 &5404456835436071769
 MonoBehaviour:
@@ -364,7 +364,6 @@ MonoBehaviour:
   enemyInSight: []
   dropOffPointsFound: []
   currentTarget: {fileID: 0}
-  sensor: {fileID: 0}
 --- !u!114 &5602566739967719583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,7 +371,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9de656f1aca463e4aa2153dacc54f3a6, type: 3}
   m_Name: 
@@ -386,7 +385,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6e6d5ee52bfa864297d7812368a5fc8, type: 3}
   m_Name: 
@@ -404,6 +403,8 @@ MonoBehaviour:
   collider: {fileID: 1794423253392461860}
   inventory: {fileID: 5602566739967719583}
   turnSpeed: 0
+  followingPath: 0
+  aStar: {fileID: 0}
 --- !u!114 &-5533211695306525179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,7 +484,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7bf2cb906ceaaa46a86809dc554e06f, type: 3}
   m_Name: 
@@ -494,9 +495,13 @@ MonoBehaviour:
   vision: {fileID: -478265464831815864}
   turntowards: {fileID: 1804444449802422546}
   target: {fileID: 0}
+  distanceToTarget: 0
   currentPathIndex: 0
   myPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
+  nextNodePos: {x: 0, y: 0, z: 0}
+  wonder: {fileID: 132510624617632370}
+  distanceToTargetCheck: 1.5
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2292759128216016126, guid: 2d491d91a670dc34d8dedfbd3e13c1e6, type: 3}
       propertyPath: layerMask.m_Bits
-      value: 575
+      value: 567
       objectReference: {fileID: 0}
     - target: {fileID: 2292759128216016127, guid: 2d491d91a670dc34d8dedfbd3e13c1e6, type: 3}
       propertyPath: m_Name
