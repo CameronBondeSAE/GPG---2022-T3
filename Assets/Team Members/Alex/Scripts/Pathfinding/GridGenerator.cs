@@ -23,9 +23,6 @@ namespace Alex
         public Node[,] gridNodeReferences;
         public Vector3Int gridSpaceSize;
         public Vector3Int totalGridSize;
-
-        public List<Node> path;
-        public bool isPathable;
         public float alpha = .5f;
         private AStar astar;
         public float textOffSet = .2f;
@@ -35,6 +32,11 @@ namespace Alex
         void Awake()
         {
             singleton = this;
+        }
+
+        public Vector3Int ConvertVector3ToVector3Int(Vector3 vector3)
+        {
+            return new Vector3Int((int)vector3.x, (int)vector3.y, (int)vector3.z);
         }
         
             

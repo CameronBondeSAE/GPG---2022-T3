@@ -20,9 +20,8 @@ namespace Alex
         public Vector3Int endPos;
         
         
-        void Start()
+        void Awake()
         {
-            
             grid = GetComponent<GridGenerator>();
             openNodes = new List<Node>();
             closedNodes = new List<Node>();
@@ -132,7 +131,7 @@ namespace Alex
             }
             isPathable.Reverse();
 
-            grid.path = isPathable;
+            //grid.path = isPathable;
             pathFoundEvent?.Invoke();
         }
 

@@ -52,10 +52,6 @@ namespace Alex
                     controller.hasResource = true;
                 Finish();
             }
-
-
-
-            
         }
 
         public override void Exit()
