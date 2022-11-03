@@ -22,6 +22,11 @@ namespace Alex
         void Awake()
         {
             singleton = this;
+
+            if (debug)
+            {
+	            Scan();
+            }
         }
 
         public Vector3Int ConvertVector3ToVector3Int(Vector3 vector3)
