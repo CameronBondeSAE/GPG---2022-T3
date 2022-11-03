@@ -101,7 +101,7 @@ MonoBehaviour:
   seedling: {fileID: 3466463561830862670, guid: 45de6a249c85be344bb5285f3f01ee35, type: 3}
   layers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   spreadLimit: 2
 --- !u!135 &-2345939443833775618
 SphereCollider:
