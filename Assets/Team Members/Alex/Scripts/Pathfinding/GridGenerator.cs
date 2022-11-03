@@ -50,7 +50,7 @@ namespace Alex
                     gridNodeReferences[x, z].worldPosition = new Vector3(x, 0, z);
                     gridNodeReferences[x, z].isPathNode = false;
 
-                    if (Physics.OverlapBox(new Vector3(x * gridSpaceSize.x, yOffSet, z * gridSpaceSize.z),
+                    if (Physics.OverlapBox(  transform.position + new Vector3(x * gridSpaceSize.x, yOffSet, z * gridSpaceSize.z),
                             new Vector3(gridSpaceSize.x, gridSpaceSize.y, gridSpaceSize.z) / 2, Quaternion.identity,
                             layerMask).Length != 0)
                     {
@@ -83,7 +83,7 @@ namespace Alex
                     if (node.isBlocked)
                     {
                         Gizmos.color = new Color(1, 0, 0, alpha);
-                        Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
+                        Gizmos.DrawCube(transform.position + new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
 
                         //Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
                         //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
