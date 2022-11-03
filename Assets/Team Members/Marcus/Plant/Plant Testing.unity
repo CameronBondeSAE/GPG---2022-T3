@@ -475,6 +475,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 745966111348042474, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
+      propertyPath: layers.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     - target: {fileID: 4137073510955222978, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
       propertyPath: m_Name
       value: Overgrowth
@@ -624,7 +628,7 @@ GameObject:
   - component: {fileID: 1139981083}
   - component: {fileID: 1139981082}
   - component: {fileID: 1139981081}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PolyShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1034,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5038
+  m_Name: pb_Mesh35392
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1195,7 +1199,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5356
+  m_Name: pb_Mesh35434
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1454,7 +1458,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5644
+  m_Name: pb_Mesh35418
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1627,7 +1631,7 @@ GameObject:
   - component: {fileID: 1978465661}
   - component: {fileID: 1978465660}
   - component: {fileID: 1978465659}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PolyShape (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2472,7 +2476,7 @@ GameObject:
   - component: {fileID: 2079676877}
   - component: {fileID: 2079676876}
   - component: {fileID: 2079676875}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PolyShape (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
