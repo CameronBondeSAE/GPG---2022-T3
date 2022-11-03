@@ -52,10 +52,10 @@ public class Spreading : MonoBehaviour, IFlammable
 
     void Spread(float distance, Vector3 direction)
     {
-        Vector3 pos = transform.position + direction;
+        Vector3 pos = transform.position + direction * distance;
         
         //grow new plants
-        foreach (Collider item in Physics.OverlapSphere(pos, distance))
+        foreach (Collider item in Physics.OverlapSphere(pos, maxSize.x))
         {
             if (item /*is an empty space*/)
             {
