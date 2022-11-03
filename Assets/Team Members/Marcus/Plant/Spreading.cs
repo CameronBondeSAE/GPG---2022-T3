@@ -37,7 +37,7 @@ public class Spreading : MonoBehaviour, IFlammable
         transform.localScale = Vector3.MoveTowards(transform.localScale, maxSize, 0.002f);
         
         //if meets a certain size, grow new plants
-        if (transform.localScale == maxSize)
+        if (transform.localScale.magnitude >= maxSize.magnitude)
         {
             spreadTimer -= Time.deltaTime;
 
@@ -56,12 +56,12 @@ public class Spreading : MonoBehaviour, IFlammable
         Vector3 pos = transform.position + direction * distance;
         
         //grow new plants
-        if (Physics.OverlapSphere(pos, maxSize.x, layers).Length == 0)
+        if (Physics.OverlapSphere(pos, maxSize.x/2, layers, QueryTriggerInteraction.Collide).Length == 0)
         {
             Instantiate(seedling, pos, Quaternion.identity);
-            spreadNumber++;
-            RandomiseTimer();
         }
+        spreadNumber++;
+        RandomiseTimer();
     }
 
     public void SetOnFire()

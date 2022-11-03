@@ -11,8 +11,8 @@ namespace Oscar
 {
     public class ExplosiveNearlyExplodeState : MonoBehaviour
     {
-        private Material myMAT;
-
+        private Color colRed = new Color32(255,0,0,255);
+        private Vector3 scaleIncrease = new Vector3(3, 3, 3);
         public event Action AlmostExplode;
         //used IEnumerator so it will start on start but will wait a few seconds before continuing.
         IEnumerator Start()
@@ -20,17 +20,17 @@ namespace Oscar
             AlmostExplode?.Invoke();
             //play hiss sound 
 
-            DOTween.To(setter, 0, 1, 3);
-            //GetComponent<Renderer>().material.color = explodeRed;
+            //pulse its size before exploding
+            transform.DOShakeScale(3f,
+                new Vector3(.1f,.1f,.1f), 5,5f,false);
+            
+            //change colour to red gradually
+            GetComponent<Renderer>().material.DOColor(colRed, 2f);
+            
             yield return new WaitForSeconds(3);
             GetComponent<Oscar.StateManager>().ChangeState(GetComponent<ExplosiveExplodeState>());
         }
-
-        private void setter(float pNewValue)
-        {
-            
-        }
-
+        
         private void OnDisable()
         {
             GetComponent<ExplosiveRaycast>().ExplosionRaycast();
