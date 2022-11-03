@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 745966111348042474}
   - component: {fileID: -2345939443833775618}
   - component: {fileID: 6386181562119310714}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Overgrowth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d1a9d2ccf0f5f47a8b20de23c6fc24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedling: {fileID: 4137073510955222978}
+  seedling: {fileID: 3466463561830862670, guid: 45de6a249c85be344bb5285f3f01ee35, type: 3}
+  layers:
+    serializedVersion: 2
+    m_Bits: 2048
   spreadLimit: 2
 --- !u!135 &-2345939443833775618
 SphereCollider:
