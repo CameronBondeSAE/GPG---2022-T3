@@ -32,6 +32,7 @@ namespace Oscar
                     HQ.name = "base";
                     HQ.transform.SetParent(HQParent.transform);
                     HQAmount++;
+                    
                 }
             }
         }
@@ -39,6 +40,15 @@ namespace Oscar
         void BaseSpace()
         {
             //delete items with health when spawned
+            //should delete items that overlap with the hq
+            Collider[] obstructions = Physics.OverlapSphere(transform.position, 10f);
+            foreach (Collider item in obstructions)
+            {
+                if (item.GetComponent<Marcus.Health>() != null)
+                {
+                    Destroy(item.gameObject);
+                }
+            }
         }
         
     }
