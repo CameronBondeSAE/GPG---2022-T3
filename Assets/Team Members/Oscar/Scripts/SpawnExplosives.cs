@@ -8,7 +8,7 @@ namespace Oscar
 {
     public class SpawnExplosives : MonoBehaviour
     {
-        public GameObject explosive;
+        public GameObject[] explosive;
         
         public void SpawningTheExplosives(Vector3 prefabPosition, GameObject explosiveParent)
         {
@@ -17,10 +17,9 @@ namespace Oscar
             int SpawmTheBarrels = Random.Range(1, 50);
             if (SpawmTheBarrels == 1)
             {
-                GameObject spawnedItem = Instantiate(explosive, prefabPosition, quaternion.identity);
+                GameObject spawnedItem = Instantiate(explosive[Random.Range(0,2)], prefabPosition, quaternion.identity);
                 
                 spawnedItem.transform.SetParent(explosiveParent.transform);
-                spawnedItem.GetComponent<Renderer>().material.color = Color.blue;
             }
         }
     }
