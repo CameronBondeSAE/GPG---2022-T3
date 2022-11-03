@@ -40,7 +40,7 @@ namespace Alex
         {
             myPos = controller.rb.transform.position;
 
-            astar.FindPathStartCoroutine(Vector3Int.FloorToInt(myPos), Vector3Int.FloorToInt(targetPos));
+            astar.ActivateCoroutine(Vector3Int.FloorToInt(myPos), Vector3Int.FloorToInt(targetPos));
         }
 
 
@@ -74,13 +74,14 @@ namespace Alex
                 {
                     astar.isPathable.Remove(astar.isPathable[0]);
                 }
+
+                if (astar.isPathable.Count == 0)
+                {
+                    PathEndReachedEvent?.Invoke();
+                    enabled = false;
+                }
             }
 
-            else
-            {
-                PathEndReachedEvent?.Invoke();
-                enabled = false;
-            }
         }
     }
 }

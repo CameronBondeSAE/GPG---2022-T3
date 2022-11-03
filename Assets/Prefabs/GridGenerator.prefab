@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2292759128216016127
+--- !u!1 &2549803751419214575
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2292759128216016124}
-  - component: {fileID: 2292759128216016126}
-  - component: {fileID: 2292759128216016115}
+  - component: {fileID: 8794102369871677484}
+  - component: {fileID: 1442101613209404459}
   m_Layer: 0
-  m_Name: Pathfinder
+  m_Name: GridGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2292759128216016124
+--- !u!4 &8794102369871677484
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2292759128216016127}
+  m_GameObject: {fileID: 2549803751419214575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2292759128216016126
+--- !u!114 &1442101613209404459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2292759128216016127}
+  m_GameObject: {fileID: 2549803751419214575}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9fd853c7fc00b64cbd3b83bdfe1d1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSpaceSize: {x: 1, y: 1, z: 1}
-  totalGridSize: {x: 10, y: 1, z: 10}
+  gridSpaceSize: {x: 0, y: 0, z: 0}
+  totalGridSize: {x: 0, y: 0, z: 0}
   alpha: 0.5
   textOffSet: 0.2
   yOffSet: 1
@@ -54,30 +53,3 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   debug: 0
---- !u!114 &2292759128216016115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2292759128216016127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d4c09a382add874b9320801ec949937, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 0}
-  openNodes: []
-  closedNodes: []
-  isPathable: []
-  neighbours: []
-  alpha: 0.5
-  currentNode:
-    worldPosition: {x: 0, y: 0, z: 0}
-    isBlocked: 0
-    gCost: 0
-    hCost: 0
-    isPathNode: 0
-    gridPosition: {x: 0, y: 0}
-  startPos: {x: 0, y: 0, z: 0}
-  endPos: {x: 0, y: 0, z: 0}

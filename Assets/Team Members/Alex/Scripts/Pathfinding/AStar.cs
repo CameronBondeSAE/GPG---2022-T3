@@ -30,7 +30,7 @@ namespace Alex
             grid.Scan();
         }
 
-        public void FindPathStartCoroutine(Vector3Int _startPos, Vector3Int _endPos)
+        public void ActivateCoroutine(Vector3Int _startPos, Vector3Int _endPos)
         {
             if (co != null) StopCoroutine(co);
             co = StartCoroutine(FindPath(_startPos, _endPos));

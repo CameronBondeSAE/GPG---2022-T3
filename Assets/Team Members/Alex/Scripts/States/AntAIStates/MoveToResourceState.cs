@@ -14,6 +14,7 @@ namespace Alex
         Resource resource;
         Controller controller;
         FollowPath followPath;
+        TurnTowards turnTowards;
 
         
 
@@ -33,7 +34,9 @@ namespace Alex
         public override void Enter()
         {
             base.Enter();
+            //turnTowards.enabled = true;
             followPath.enabled = true;
+            
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
             if (vision.resourcesInSight.Count == 0 && vision.resourcesInSight != null) return;
             if (vision.resourcesInSight.Count > 0)
@@ -45,6 +48,7 @@ namespace Alex
         private void FollowPathOnPathEndReachedEvent()
         {
             followPath.enabled = false;
+            //turnTowards.enabled = false;
             Finish();
         }
 

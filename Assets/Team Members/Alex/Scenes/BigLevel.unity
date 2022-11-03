@@ -378,6 +378,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7557305625988945381, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
+      propertyPath: numberToSpawn
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_RootOrder
       value: 11

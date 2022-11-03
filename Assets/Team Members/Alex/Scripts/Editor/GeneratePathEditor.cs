@@ -23,7 +23,7 @@ public class GeneratePathEditor : Editor
             if (aStar != null)
             {
                 aStar.grid.Scan();
-                aStar.FindPathStartCoroutine(aStar.startPos, aStar.endPos);
+                aStar.ActivateCoroutine(aStar.startPos, aStar.endPos);
             }
         }
         

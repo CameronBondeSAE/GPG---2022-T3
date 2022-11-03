@@ -1,14 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
-using Lloyd;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
-using Random = System.Random;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Alex
@@ -17,9 +9,6 @@ namespace Alex
     public class GridGenerator : MonoBehaviour
     {
         public static GridGenerator singleton;
-        
-        
-
         public Node[,] gridNodeReferences;
         public Vector3Int gridSpaceSize;
         public Vector3Int totalGridSize;
@@ -28,6 +17,8 @@ namespace Alex
         public float textOffSet = .2f;
         public float yOffSet = 1f;
         public LayerMask layerMask;
+        public bool debug = false;
+
 
         void Awake()
         {
@@ -39,7 +30,9 @@ namespace Alex
             return new Vector3Int((int)vector3.x, (int)vector3.y, (int)vector3.z);
         }
         
-            
+        
+        
+        
         public void Scan()
         {
             astar = GetComponent<AStar>();   
@@ -74,8 +67,11 @@ namespace Alex
             }
         }
 
+        
         private void OnDrawGizmos()
         {
+            if(debug == false)
+                return;
             if (gridNodeReferences != null && gridNodeReferences.Length > 0)
             {
                 foreach (Node node in gridNodeReferences)
@@ -86,58 +82,56 @@ namespace Alex
                         Gizmos.color = new Color(1, 0, 0, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
 
-                        Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
                     }
 
                     else if (node.worldPosition == astar.startPos)
                     {
                         Gizmos.color = new Color(0, 0, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
-                        Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
                     }
                     
                     else if (node.worldPosition == astar.endPos)
                     {
                         Gizmos.color = new Color(0, 0, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
-                        Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
                     }
-                    
                     
                     else if (astar.isPathable.Contains(node))
                     {
                         Gizmos.color = new Color(0, 0, 0, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
-                        Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
                     }
                     
                     else if (astar.closedNodes.Contains(node))
                     {
                         Gizmos.color = new Color(1, 0, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
-                        Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
                     }
                     
                     else if (astar.openNodes.Contains(node))
                     {
                         Gizmos.color = new Color(1, 1, 1, alpha);
                         Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
-                        Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
-                        Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x - .5f, yOffSet, node.worldPosition.z +.2f), "gcost " + node.gCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
+                        //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
                     }
- 
-
+                    
                     else
                     { 
                         Gizmos.color = new Color(0, 1, 0, alpha); Gizmos.DrawCube(new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
@@ -149,6 +143,5 @@ namespace Alex
                 Gizmos.DrawCube(new Vector3(astar.currentNode.gridPosition.x, yOffSet,  astar.currentNode.gridPosition.y), Vector3.one);
             }
         }
-        
     }
 }
