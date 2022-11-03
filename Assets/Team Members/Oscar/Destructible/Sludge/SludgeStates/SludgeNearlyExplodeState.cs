@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class SludgeNearlyExplodeState : MonoBehaviour
@@ -14,10 +15,15 @@ public class SludgeNearlyExplodeState : MonoBehaviour
         SludgeExplode?.Invoke();
         //play the SFX
 
-        GetComponent<Renderer>().material.color = purple;
+        //pulse its size before exploding
+        transform.DOShakeScale(3f,
+            new Vector3(.1f,.1f,.1f), 5,5f,false);
+        
+        //change colour to red gradually
+        GetComponent<Renderer>().material.DOColor(purple, 2f);
+        
         yield return new WaitForSeconds(3);
         GetComponent<Oscar.StateManager>().ChangeState(GetComponent<SludgeExplodeState>());
-
     }
 
     private void OnDisable()
