@@ -12,7 +12,7 @@ public class Spreading : MonoBehaviour, IFlammable
     public int spreadLimit;
     private int spreadNumber;
 
-    private float maxSize = 1;
+    private Vector3 maxSize;
 
     private float spreadTimer;
     private float spreadDistance;
@@ -21,6 +21,7 @@ public class Spreading : MonoBehaviour, IFlammable
     // Start is called before the first frame update
     void Start()
     {
+        maxSize = new Vector3(1, 0.05f, 1);
         RandomiseTimer();
     }
 
@@ -32,12 +33,10 @@ public class Spreading : MonoBehaviour, IFlammable
     // Update is called once per frame
     void Update()
     {
+        transform.localScale = Vector3.MoveTowards(transform.localScale, maxSize, 0.002f);
+        
         //if meets a certain size, grow new plants
-        if (transform.localScale.x < maxSize)
-        {
-            transform.localScale += new Vector3(0.1f * Time.deltaTime, 0, 0.1f * Time.deltaTime);
-        }
-        else
+        if (transform.localScale.x >= maxSize.x)
         {
             spreadTimer -= Time.deltaTime;
 
