@@ -36,7 +36,7 @@ public class Spreading : MonoBehaviour, IFlammable
         transform.localScale = Vector3.MoveTowards(transform.localScale, maxSize, 0.002f);
         
         //if meets a certain size, grow new plants
-        if (transform.localScale.x >= maxSize.x)
+        if (transform.localScale == maxSize)
         {
             spreadTimer -= Time.deltaTime;
 
