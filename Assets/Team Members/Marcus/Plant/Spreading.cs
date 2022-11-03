@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class Spreading : MonoBehaviour, IFlammable
 {
     public GameObject seedling;
+    public LayerMask layers;
     
     public int spreadLimit;
     private int spreadNumber;
@@ -42,7 +43,7 @@ public class Spreading : MonoBehaviour, IFlammable
 
             if (spreadTimer <= 0 && spreadNumber < spreadLimit)
             {
-                spreadDistance = Random.Range(1, 3);
+                spreadDistance = Random.Range(1f, 3f);
                 spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
                 
                 Spread(spreadDistance, spreadDirection);
@@ -55,14 +56,11 @@ public class Spreading : MonoBehaviour, IFlammable
         Vector3 pos = transform.position + direction * distance;
         
         //grow new plants
-        foreach (Collider item in Physics.OverlapSphere(pos, maxSize.x))
+        if (Physics.OverlapSphere(pos, maxSize.x, layers).Length == 0)
         {
-            if (item /*is an empty space*/)
-            {
-                Instantiate(seedling, pos, Quaternion.identity);
-                spreadNumber++;
-                RandomiseTimer();
-            }
+            Instantiate(seedling, pos, Quaternion.identity);
+            spreadNumber++;
+            RandomiseTimer();
         }
     }
 
