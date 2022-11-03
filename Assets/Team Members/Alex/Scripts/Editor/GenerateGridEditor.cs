@@ -4,8 +4,8 @@ using UnityEngine;
 using Alex;
 using UnityEditor;
 
-[CustomEditor(typeof(FollowPath), true)]
-public class FindPathForAIEditor : Editor
+[CustomEditor(typeof(GridGenerator), true)]
+public class GridGeneratorEditor : Editor
 {
     private Grid grid;
     private Node node;
@@ -15,11 +15,9 @@ public class FindPathForAIEditor : Editor
     {
         base.OnInspectorGUI();
         
-        if (GUILayout.Button("Find Path"))
+        if (GUILayout.Button("Generate Grid"))
         {
-            FollowPath followPath = (target as FollowPath);
-
-            //followPath?.StartCoroutine(followPath?.FindPathToTarget(followPath.myPos, followPath.targetPos));
+            GridGenerator.singleton.Scan();
         }
         
     }

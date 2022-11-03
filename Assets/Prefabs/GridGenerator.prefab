@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1442101613209404459
 MonoBehaviour:
@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9fd853c7fc00b64cbd3b83bdfe1d1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSpaceSize: {x: 0, y: 0, z: 0}
-  totalGridSize: {x: 0, y: 0, z: 0}
+  gridSpaceSize: {x: 1, y: 1, z: 1}
+  totalGridSize: {x: 50, y: 1, z: 50}
   alpha: 0.5
   textOffSet: 0.2
-  yOffSet: 1
+  yOffSet: 0.6
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  debug: 0
+    m_Bits: 2048
+  debug: 1

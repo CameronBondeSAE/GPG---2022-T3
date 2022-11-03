@@ -13,7 +13,6 @@ namespace Alex
         public Vector3Int gridSpaceSize;
         public Vector3Int totalGridSize;
         public float alpha = .5f;
-        private AStar astar;
         public float textOffSet = .2f;
         public float yOffSet = 1f;
         public LayerMask layerMask;
@@ -29,14 +28,12 @@ namespace Alex
         {
             return new Vector3Int((int)vector3.x, (int)vector3.y, (int)vector3.z);
         }
-        
-        
-        
-        
+
+
+
+
         public void Scan()
         {
-            astar = GetComponent<AStar>();   
-            
             gridNodeReferences = new Node[totalGridSize.x, totalGridSize.z];
 
             for (int x = 0; x < totalGridSize.x; x++)
@@ -49,7 +46,8 @@ namespace Alex
                     gridNodeReferences[x, z].isPathNode = false;
 
                     if (Physics.OverlapBox(new Vector3(x * gridSpaceSize.x, yOffSet, z * gridSpaceSize.z),
-                                new Vector3(gridSpaceSize.x, gridSpaceSize.y, gridSpaceSize.z) / 2, Quaternion.identity, layerMask).Length != 0)
+                            new Vector3(gridSpaceSize.x, gridSpaceSize.y, gridSpaceSize.z) / 2, Quaternion.identity,
+                            layerMask).Length != 0)
                     {
                         gridNodeReferences[x, z].isBlocked = true;
                         if (gridNodeReferences[x, z].isBlocked)
@@ -67,16 +65,16 @@ namespace Alex
             }
         }
 
-        
+
         private void OnDrawGizmos()
         {
-            if(debug == false)
+            if (debug == false)
                 return;
             if (gridNodeReferences != null && gridNodeReferences.Length > 0)
             {
                 foreach (Node node in gridNodeReferences)
                 {
-                    
+
                     if (node.isBlocked)
                     {
                         Gizmos.color = new Color(1, 0, 0, alpha);
@@ -86,7 +84,7 @@ namespace Alex
                         //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z), "hcost " + node.hCost.ToString(""));
                         //Handles.Label(new Vector3(node.worldPosition.x -.5f, yOffSet, node.worldPosition.z -.2f), "fcost " + node.fCost.ToString(""));
                     }
-
+/*
                     else if (node.worldPosition == astar.startPos)
                     {
                         Gizmos.color = new Color(0, 0, 1, alpha);
@@ -138,9 +136,12 @@ namespace Alex
                         
                     }
                 }
+                
                 Gizmos.color = new Color(1, 1, 0, alpha);
                 //Gizmos.DrawCube(new Vector3(astar.currentNode.gridPosition.y, yOffSet, astar.currentNode.gridPosition.y), Vector3.one);
                 Gizmos.DrawCube(new Vector3(astar.currentNode.gridPosition.x, yOffSet,  astar.currentNode.gridPosition.y), Vector3.one);
+            */
+                }
             }
         }
     }

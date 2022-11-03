@@ -22,7 +22,7 @@ public class GeneratePathEditor : Editor
 
             if (aStar != null)
             {
-                aStar.grid.Scan();
+                GridGenerator.singleton.Scan();
                 aStar.ActivateCoroutine(aStar.startPos, aStar.endPos);
             }
         }

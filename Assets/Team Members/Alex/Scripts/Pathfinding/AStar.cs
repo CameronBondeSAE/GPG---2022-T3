@@ -7,7 +7,6 @@ namespace Alex
 {
     public class AStar : MonoBehaviour
     {
-        public GridGenerator grid;
         public List<Node> openNodes;
         public List<Node> closedNodes;
         public List<Node> isPathable;
@@ -19,15 +18,18 @@ namespace Alex
         public Vector3Int startPos;
         public Vector3Int endPos;
         Coroutine co;
+        public bool debug = false;
  
        
         
         void Awake()
         {
-            grid = GetComponent<GridGenerator>();
+            if (debug == true)
+            {
+                GridGenerator.singleton.Scan();
+            }
             openNodes = new List<Node>();
             closedNodes = new List<Node>();
-            grid.Scan();
         }
 
         public void ActivateCoroutine(Vector3Int _startPos, Vector3Int _endPos)
@@ -43,8 +45,8 @@ namespace Alex
             isPathable.Clear();
             neighbours.Clear();
             
-            Node startNode = grid.gridNodeReferences[startPos.x, startPos.z];
-            Node endNode = grid.gridNodeReferences[endPos.x, endPos.z];
+            Node startNode = GridGenerator.singleton.gridNodeReferences[startPos.x, startPos.z];
+            Node endNode = GridGenerator.singleton.gridNodeReferences[endPos.x, endPos.z];
             openNodes.Add(startNode);
             
 
@@ -111,9 +113,9 @@ namespace Alex
                     int checkX = node.gridPosition.x + x;
                     int checkZ = node.gridPosition.y + z;
 
-                    if (checkX >= 0 && checkX < grid.totalGridSize.x && checkZ >= 0 && checkZ < grid.totalGridSize.z)
+                    if (checkX >= 0 && checkX < GridGenerator.singleton.totalGridSize.x && checkZ >= 0 && checkZ < GridGenerator.singleton.totalGridSize.z)
                     {
-                        neighbours.Add(grid.gridNodeReferences[checkX,checkZ]);
+                        neighbours.Add(GridGenerator.singleton.gridNodeReferences[checkX,checkZ]);
                         Debug.DrawRay(new Vector3(checkX,0,checkZ),Vector3.up,Color.green);
                     }
                 }

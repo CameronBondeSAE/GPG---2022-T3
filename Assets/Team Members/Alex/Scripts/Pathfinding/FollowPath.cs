@@ -9,23 +9,14 @@ namespace Alex
 
     public class FollowPath : MonoBehaviour
     {
-        public GridGenerator grid;
         public AStar astar;
         public Controller controller;
-        public Vision vision;
         public TurnTowards turntowards;
-
-        public Target target;
-
-
         public float distanceToTarget;
         public int currentPathIndex;
-
         public Vector3 myPos;
-        public Vector3 targetPos;
         public Vector3 nextNodePos;
-        public Wonder wonder;
-        public float distanceToTargetCheck = 1.5f;
+        public float distanceToTargetCheck = 1.5f; 
         public event Action PathEndReachedEvent; 
         
 
