@@ -9,7 +9,7 @@ public class GooPuddle : MonoBehaviour
     {
         //create overlap sphere to do a raycast to set other objects on fire.
         Collider[] colliders = Physics.OverlapBox(new Vector3(0,transform.position.y, 0), 
-            new Vector3(transform.localScale.x/2,transform.localScale.y,
+            new Vector3(transform.localScale.x/2,0.5f,
                 transform.localScale.z/2));
 
         foreach (Collider item in colliders) 
