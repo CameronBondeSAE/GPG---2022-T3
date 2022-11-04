@@ -71,8 +71,6 @@ public class FireballModel : MonoBehaviour
                 
                transform.SetParent(hitCollider.transform);
                _rb.isKinematic = true;  
-               
-               Debug.Log("Hit");
             }
          
         }
@@ -88,7 +86,9 @@ public class FireballModel : MonoBehaviour
     {
         _fireballView.Death();
 
-        yield return new WaitForSeconds(2);
+        float rand = Random.Range(0.1f, 2.2f);
+
+        yield return new WaitForSeconds(rand);
 
         Destroy(this.gameObject);
     }

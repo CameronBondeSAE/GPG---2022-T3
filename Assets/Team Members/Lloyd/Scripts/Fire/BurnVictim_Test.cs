@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BurnVictim_Test : MonoBehaviour, IFlame
 {
@@ -18,6 +19,8 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
     private Renderer _rend;
 
     private bool _burning=false;
+    
+    private bool _isAlive=true;
 
     private void OnEnable()
     {
@@ -34,11 +37,14 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
 
     public void FixedUpdate()
     {
+    if(_isAlive){
         if (_burning)
             _HP -= _fireMultiplier;
+            }
 
         if (_HP <= 0)
         {
+            _isAlive = false;
             _HP = 0;
             Death();
         }
@@ -47,6 +53,16 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
     private void Death()
     {
      _rend.material.SetColor("_BaseColor", Color.black);
+
+     StartCoroutine(ActualDeath());
+    }
+
+    private IEnumerator ActualDeath()
+    {
+        float rand = Random.Range(3f, 5f);
+        
+        yield return new WaitForSecondsRealtime(rand);
+            Destroy(gameObject);
     }
     
     public void ChangeHeat(float x)
