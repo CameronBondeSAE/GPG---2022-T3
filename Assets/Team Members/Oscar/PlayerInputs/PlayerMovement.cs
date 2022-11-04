@@ -18,9 +18,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] 
     private float playerSpeed = 10f;
 
-    [SerializeField] 
-    private float gravityValue = -9.81f;
-
     private Vector2 movementInput = Vector2.zero;
     
     void Start()
@@ -34,14 +31,8 @@ public class PlayerMovement : MonoBehaviour
         movementInput = context.ReadValue<Vector2>();
     }
     
-    // Update is called once per frame
     void Update()
     {
-        if (groundedPlayer && playerVelocity.y < 0)
-        {
-            playerVelocity.y = 0f;
-        }
-
         Vector3 move = new Vector3(movementInput.x, 0, movementInput.y);
         rb.AddRelativeForce(move * playerSpeed);
         
