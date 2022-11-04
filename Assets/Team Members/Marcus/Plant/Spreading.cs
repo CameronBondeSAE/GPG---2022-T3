@@ -14,10 +14,13 @@ public class Spreading : MonoBehaviour, IFlammable
     private int spreadNumber;
 
     private Vector3 maxSize;
+    private bool matured;
 
     private float spreadTimer;
     private float spreadDistance;
     private Vector3 spreadDirection;
+
+    private float deaathTimer;
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,7 @@ public class Spreading : MonoBehaviour, IFlammable
     void RandomiseTimer()
     {
         spreadTimer = Random.Range(2f, 5f);
+        deaathTimer = Random.Range(4f, 7f);
     }
 
     // Update is called once per frame
@@ -47,6 +51,30 @@ public class Spreading : MonoBehaviour, IFlammable
                 spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
                 
                 Spread(spreadDistance, spreadDirection);
+            }
+            else if (spreadNumber >= spreadLimit)
+            {
+                matured = true;
+            }
+        }
+
+        if (matured)
+        {
+            deaathTimer -= Time.deltaTime;
+
+            if (deaathTimer <= 0)
+            {
+                int rEvoChance = Random.Range(0, 10);
+                
+                if (Physics.OverlapSphere(transform.position, maxSize.x, layers, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
+                {
+                    print("GRR ANGY PLANT");
+                    gameObject.GetComponent<Renderer>().material.color = Color.red;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
