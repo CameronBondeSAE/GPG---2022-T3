@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ManEater : MonoBehaviour, IFlammable
 {
+    public Collider[] targets;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -13,9 +15,16 @@ public class ManEater : MonoBehaviour, IFlammable
     // Update is called once per frame
     void Update()
     {
-        if(Physics.OverlapSphere(transform.position, 2))
+        targets = Physics.OverlapSphere(transform.position, 2);
+        foreach (Collider item in targets)
+        {
+            if (item.GetComponent<MarcusInput>())
+            {
+                print("Get nommed");
+            }
+        }
     }
-
+    
     public void SetOnFire()
     {
         //Well die but more dramatically
