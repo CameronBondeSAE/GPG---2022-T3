@@ -16,9 +16,6 @@ namespace Lloyd
             {
                 (target as Lloyd.Flamethrower)?.ShootFire();
             }
-
-
-
         }
     }
 }

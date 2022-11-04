@@ -64,6 +64,8 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2097233744307224603, guid: 68d82a5d303fb164ea28c9a6a7be4d4c, type: 3}
+    - {fileID: 2097233744307224607, guid: 68d82a5d303fb164ea28c9a6a7be4d4c, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 68d82a5d303fb164ea28c9a6a7be4d4c, type: 3}

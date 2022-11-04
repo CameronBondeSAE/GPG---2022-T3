@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
@@ -36,13 +37,14 @@ namespace Lloyd
         public GameObject _fireball;
 
         [SerializeField] private float _fireRate;
+        
+        [SerializeField] private int _wobbleMultiplier;
 
         private Rigidbody _rb;
 
         private float _angle;
 
         private Vector3 _angleVector;
-        
         
         Quaternion _currentRotation;
         
@@ -82,8 +84,6 @@ namespace Lloyd
             {
                 if (hitCollider.GetComponent<IFlame>() != null)
                 {
-                    
-                    
                     hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage);
 
                     _burnVictimPos = hitCollider.transform.position;
@@ -106,7 +106,7 @@ namespace Lloyd
         {
             _angle = _perlinHeight * Mathf.PerlinNoise(Time.time * _perlinX, 0.0f);
             
-            _angleVector = new Vector3(_angle, _angle, 0);
+            _angleVector = new Vector3(_angle*_wobbleMultiplier, _angle*_wobbleMultiplier, 0);
             
             _currentRotation.eulerAngles = _angleVector;
         }
@@ -128,13 +128,28 @@ namespace Lloyd
             
             GameObject _fire1 = Instantiate(_fireball, transform.position, _currentRotation) as GameObject;
             _firePrefabRb = _fire1.GetComponent<Rigidbody>();
-            _firePrefabRb.AddForce(transform.forward * _force, ForceMode.Impulse);
+            _firePrefabRb.AddForce(transform.forward * (_force/(_angle*2f)), ForceMode.Impulse);
             
             GameObject _fire2 = Instantiate(_fireball, transform.position, _currentRotation) as GameObject;
             _firePrefabRb = _fire2.GetComponent<Rigidbody>();
-            _firePrefabRb.AddForce(transform.forward * _force, ForceMode.Impulse);
+            _firePrefabRb.AddForce(transform.forward * (_force/(_angle*3f)), ForceMode.Impulse);
 
-            yield return new WaitForSeconds(_fireRate);
+            int rand = Random.Range(1, 10);
+
+            if (rand < 5)
+            {
+
+                GameObject _fire4 = Instantiate(_fireball, transform.position, _currentRotation) as GameObject;
+                _firePrefabRb = _fire4.GetComponent<Rigidbody>();
+                _firePrefabRb.AddForce(transform.forward * (_force / (_angle * 4f)), ForceMode.Impulse);
+
+                GameObject _fire5 = Instantiate(_fireball, transform.position, _currentRotation) as GameObject;
+                _firePrefabRb = _fire5.GetComponent<Rigidbody>();
+                _firePrefabRb.AddForce(transform.forward * (_force / (_angle * 5)), ForceMode.Impulse);
+            }
+
+
+            yield return new WaitForSecondsRealtime(_fireRate);
 
             _canShoot = true;
             _shooting = false;
@@ -145,7 +160,7 @@ namespace Lloyd
 
         private void FixedUpdate()
         {
-            transform.Rotate(0.0f, .5f, 0.0f, Space.Self);
+            //transform.Rotate(0.0f, .5f, 0.0f, Space.Self);
             
             Wobble();
         }
