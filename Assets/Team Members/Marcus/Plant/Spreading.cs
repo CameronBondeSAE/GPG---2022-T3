@@ -8,7 +8,9 @@ using Random = UnityEngine.Random;
 public class Spreading : MonoBehaviour, IFlammable
 {
     public GameObject seedling;
-    public LayerMask layers;
+    public GameObject manEater;
+    public LayerMask spreadLayers;
+    public LayerMask evolutionLayer;
     
     public int spreadLimit;
     private int spreadNumber;
@@ -66,10 +68,11 @@ public class Spreading : MonoBehaviour, IFlammable
             {
                 int rEvoChance = Random.Range(0, 10);
                 
-                if (Physics.OverlapSphere(transform.position, maxSize.x, layers, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
+                if (Physics.OverlapSphere(transform.position, maxSize.x, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 /*&& rEvoChance == 1*/)
                 {
-                    print("GRR ANGY PLANT");
-                    gameObject.GetComponent<Renderer>().material.color = Color.red;
+                    //Destroy and spawn manEater prefab
+                    Instantiate(manEater, transform.position, Quaternion.identity);
+                    Destroy(gameObject);
                 }
                 else
                 {
@@ -84,7 +87,7 @@ public class Spreading : MonoBehaviour, IFlammable
         Vector3 pos = transform.position + direction * distance;
         
         //grow new plants
-        if (Physics.OverlapSphere(pos, maxSize.x/2, layers, QueryTriggerInteraction.Collide).Length == 0)
+        if (Physics.OverlapSphere(pos, maxSize.x/2, spreadLayers, QueryTriggerInteraction.Collide).Length == 0)
         {
             Instantiate(seedling, pos, Quaternion.identity);
         }
