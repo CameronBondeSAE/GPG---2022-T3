@@ -52,9 +52,11 @@ public class HQScript : MonoBehaviour
             rend.material.color = Color.magenta;
 
         isActive = true;
+        
+        DestroyLand();
     }
 
-    private void Update()
+    private void DestroyLand()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, _HQRadius);
 
