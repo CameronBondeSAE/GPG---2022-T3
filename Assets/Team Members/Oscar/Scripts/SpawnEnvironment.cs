@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,29 @@ namespace Oscar
     {
         public GameObject borderPrefab;
         public GameObject perlinPrefab;
+
+        private Vector3 prefabPosition;
+        private GameObject CubeParent;
+        private float perlinValue;
+
+        public MapGenerator mapGenerator;
+        private void OnEnable()
+        {
+            // mapGenerator.SpawnCubes += SpawnPerlinWalls;
+        }
         
+
         public void SpawnPerlinWalls(Vector3 prefabPosition, GameObject CubeParent, float perlinValue)
         {
-            GameObject newCube = Instantiate(perlinPrefab, prefabPosition, Quaternion.identity);
-            newCube.transform.SetParent(CubeParent.transform);
-            newCube.GetComponent<Renderer>().material.color = Color.black;
-            if (perlinValue > .8)
+            if (perlinValue > .5)
             {
-                newCube.GetComponent<Renderer>().material.color = Color.red;
+                GameObject newCube = Instantiate(perlinPrefab, prefabPosition, Quaternion.identity);
+                newCube.transform.SetParent(CubeParent.transform);
+                newCube.GetComponent<Renderer>().material.color = Color.black;
+                if (perlinValue > .8)
+                {
+                    newCube.GetComponent<Renderer>().material.color = Color.red;
+                }
             }
         }
 

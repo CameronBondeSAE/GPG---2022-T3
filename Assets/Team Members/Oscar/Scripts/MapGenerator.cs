@@ -82,7 +82,7 @@ public class MapGenerator : MonoBehaviour
         spawnBases.tempBaseDist = 0;
         Spawner();
     }
-
+    
     public void Spawner()
     {
         if (randomMap == true)
@@ -96,7 +96,11 @@ public class MapGenerator : MonoBehaviour
             spawnTerrain(zoomX, zoomZ);
         }
     }
-    
+    public event Action SpawnCubes;
+    public event Action SpawnBases;
+    public event Action SpawnAI;
+    public event Action SpawnExplosives;
+
     public void spawnTerrain(float zoomX, float zoomZ)
     {
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
@@ -116,16 +120,20 @@ public class MapGenerator : MonoBehaviour
                     if (perlinValue > .5)
                     {
                         spawnEnvironment.SpawnPerlinWalls(prefabPosition, CubeParent, perlinValue);
+                        // SpawnCubes?.Invoke(prefabPosition, CubeParent, perlinValue);
                     }
                     else
                     {
                         if (perlinValue < .4f && prefabPosition.x > 20 && prefabPosition.z > 20)
                         {
-                            spawnBases.SpawnTheBase(prefabPosition, HQParent);
+                            spawnBases.SpawnTheBase(prefabPosition, HQParent, perlinValue);
+                            // SpawnBases?.Invoke(prefabPosition, HQParent, perlinValue);
                         }
                         
-                        spawnAI.SpawnAIInTheMaze(prefabPosition,AIParent);
-                        spawnExplosives.SpawningTheExplosives(prefabPosition,BarrelParent);
+                        spawnAI.SpawnAIInTheMaze(prefabPosition,AIParent, perlinValue);
+                        // SpawnAI?.Invoke(prefabPosition,AIParent, perlinValue);
+                        spawnExplosives.SpawningTheExplosives(prefabPosition,BarrelParent, perlinValue);
+                        // SpawnExplosives?.Invoke(prefabPosition,BarrelParent, perlinValue);
                     }
                 }
             }

@@ -7,16 +7,19 @@ namespace Oscar
     public class SpawnAI : MonoBehaviour
     {
         public GameObject AIEnemy;
-        public void SpawnAIInTheMaze(Vector3 prefabPosition, GameObject AIParent)
+        public void SpawnAIInTheMaze(Vector3 prefabPosition, GameObject AIParent, float perlinValue)
         {
-            //create spawn location with new perlin then 
-
-            int spawnTheAI = Random.Range(1, 50);
-            if (spawnTheAI == 1)
+            if (perlinValue < .5)
             {
-                GameObject spawnedAI = Instantiate(AIEnemy, prefabPosition, Quaternion.identity);
-                
-                spawnedAI.transform.SetParent(AIParent.transform);
+                //create spawn location with new perlin then 
+    
+                int spawnTheAI = Random.Range(1, 50);
+                if (spawnTheAI == 1)
+                {
+                    GameObject spawnedAI = Instantiate(AIEnemy, prefabPosition, Quaternion.identity);
+                    
+                    spawnedAI.transform.SetParent(AIParent.transform);
+                }
             }
         }
     }

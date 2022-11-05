@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   borderPrefab: {fileID: 6660555670414354313, guid: bb2f4f3f7c71b4049a14a754c638e983, type: 3}
-  perlinPrefab: {fileID: 3192070640700946563, guid: 9fd6eb9b778f6e743937f5a574b749c1, type: 3}
+  perlinPrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
+  mapGenerator: {fileID: 0}
 --- !u!114 &4194513743047498130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,4 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771cfaa1bf7788e49b3c170afbd6ec19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosive: {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
+  explosive:
+  - {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
+  - {fileID: 6122380363611737215, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
+  mapGenerator: {fileID: 0}
