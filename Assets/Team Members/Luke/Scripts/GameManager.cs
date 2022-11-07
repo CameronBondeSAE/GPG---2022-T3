@@ -25,11 +25,10 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] private GameObject countdownTimer;
     
-    /*public GameObject localSpawnedPlayer;
-    public Transform localPlayerTransform;*/
-    
+    //In Game Counts
 	public int playersAlive;
 	public int playersInGame;
+	public int amountOfResources;
 
 	public bool zoomedIn;
 	
