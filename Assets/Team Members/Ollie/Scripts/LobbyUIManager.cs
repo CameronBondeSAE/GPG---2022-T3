@@ -173,7 +173,7 @@ namespace Ollie
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManagerOnOnSceneEvent;
             Scene scene = sceneEvent.Scene;
             
-            lobbyCam.SetActive(false);
+            //lobbyCam.SetActive(false);
             directionalLight.SetActive(false);
             BroadcastLobbyUIStateClientRpc(true);
         }
@@ -182,7 +182,7 @@ namespace Ollie
         private void BroadcastLobbyUIStateClientRpc(bool gameInProgress)
         {
             lobbyUICanvas.SetActive(!gameInProgress);
-            lobbyCam.SetActive(false);
+            //lobbyCam.SetActive(false);
             directionalLight.SetActive(false);
             //InGameLobbyUI(gameInProgress);
         }

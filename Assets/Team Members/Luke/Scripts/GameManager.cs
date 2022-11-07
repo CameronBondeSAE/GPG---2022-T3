@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
+using Kevin;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,12 +18,20 @@ public class GameManager : NetworkBehaviour
 	public event Action OnGameEnd;
 
     [SerializeField] private GameObject avatarPrefab;
-    [SerializeField] private GameObject cameraPrefab;
+    [SerializeField] public GameObject cameraPrefab;
+    [SerializeField] private GameObject virtualCameraOne;
+    [SerializeField] private GameObject virtualCameraTwo;
+    [SerializeField] private GameObject playerNamePrefab;
 
+    [SerializeField] private GameObject countdownTimer;
+    
     /*public GameObject localSpawnedPlayer;
     public Transform localPlayerTransform;*/
     
 	public int playersAlive;
+	public int playersInGame;
+
+	public NetworkManager myLocalClient;
 	public void InvokeOnGameStart()
 	{
 		if (IsServer)
@@ -33,6 +43,7 @@ public class GameManager : NetworkBehaviour
 	[ClientRpc]
 	private void InvokeOnGameStartClientRPC()
 	{
+		countdownTimer.SetActive(true);
 		Debug.Log("Game Started!!!");
 		OnGameStart?.Invoke();
 	}
@@ -41,6 +52,8 @@ public class GameManager : NetworkBehaviour
 	private void SetCameraTargetClientRpc()
 	{
 		cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 	}
 
 	public void InvokeOnGameEnd()
@@ -54,6 +67,7 @@ public class GameManager : NetworkBehaviour
 	[ClientRpc]
 	private void InvokeOnGameEndClientRPC()
 	{
+		Debug.Log("Times Up!");
 		OnGameEnd?.Invoke();
 	}
 
@@ -71,9 +85,20 @@ public class GameManager : NetworkBehaviour
             avatar.GetComponent<NetworkObject>().SpawnWithOwnership(client.Value.ClientId);
             client.Value.PlayerObject.GetComponent<ClientEntity>()
                 .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
+            playersAlive++;
+            playersInGame++;
+            /*avatar.GetComponent<PlayerNameTracker>().playerName.text =
+	            client.Value.PlayerObject.GetComponent<ClientInfo>().ClientName.Value.ToString();*/
         }
         SetCameraTargetClientRpc();
+        //SetPlayerNameClientRpc();
     }
+
+    /*[ClientRpc]
+    private void SetPlayerNameClientRpc()
+    {
+	    
+    }*/
     
     void Awake()
 	{
@@ -85,4 +110,10 @@ public class GameManager : NetworkBehaviour
         NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
     }
 }
+//Things to add
+//Game end logic
+//Adding player names onto player prefabs
+//Total time alive as a human
+//Total resources in the world
+//
 }
