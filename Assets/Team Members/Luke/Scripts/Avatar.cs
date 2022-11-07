@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
+using Tanks;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -59,7 +61,16 @@ public class Avatar : NetworkBehaviour, IControllable
 
     public void Action2()
     {
-        
+        if (GameManager.singleton.zoomedIn)
+        {
+            GameManager.singleton.virtualCameraTwo.SetActive(true);
+            GameManager.singleton.zoomedIn = false;
+        }
+        else if (GameManager.singleton.zoomedIn == false)
+        {
+            GameManager.singleton.virtualCameraTwo.SetActive(false);
+            GameManager.singleton.zoomedIn = true;
+        }
     }
     
     public void Action3()

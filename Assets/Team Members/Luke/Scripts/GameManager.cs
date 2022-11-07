@@ -19,8 +19,8 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] private GameObject avatarPrefab;
     [SerializeField] public GameObject cameraPrefab;
-    [SerializeField] private GameObject virtualCameraOne;
-    [SerializeField] private GameObject virtualCameraTwo;
+    [SerializeField] public GameObject virtualCameraOne;
+    [SerializeField] public GameObject virtualCameraTwo;
     [SerializeField] private GameObject playerNamePrefab;
 
     [SerializeField] private GameObject countdownTimer;
@@ -31,6 +31,8 @@ public class GameManager : NetworkBehaviour
 	public int playersAlive;
 	public int playersInGame;
 
+	public bool zoomedIn;
+	
 	public NetworkManager myLocalClient;
 	public void InvokeOnGameStart()
 	{
@@ -54,6 +56,9 @@ public class GameManager : NetworkBehaviour
 		cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		
+		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 	}
 
 	public void InvokeOnGameEnd()
