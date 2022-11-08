@@ -1,5 +1,5 @@
 {
-    "name": "SwarmPlayer",
+    "name": "LloydPlayer",
     "maps": [
         {
             "name": "Player",
@@ -25,8 +25,17 @@
                 },
                 {
                     "name": "Fire",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "a94d19d2-02a6-4ab2-afd9-fea9d2fad00e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "FireAlt",
+                    "type": "PassThrough",
+                    "id": "3bc65be2-42f3-4ea9-adad-b908715d4f3c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -271,6 +280,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3eb1abf-cd9f-4448-afb8-12ffc7bcfe6b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "FireAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
