@@ -32,6 +32,9 @@ namespace Lloyd
 
         private Rigidbody _firePrefabRb;
 
+        private Rigidbody _firePointRb;
+        private Vector3 _firePointPos;
+
         [SerializeField] private float _force;
 
         public GameObject _fireball;
@@ -40,7 +43,8 @@ namespace Lloyd
 
         [SerializeField] private float _altFireRate;
 
-        [SerializeField] private int _wobbleMultiplier;
+        [SerializeField] private float _wobbleMultiplier;
+        [SerializeField] private float _xScale;
 
         [SerializeField] private float _maxFuel;
         [SerializeField] private float _fuel;
@@ -52,15 +56,7 @@ namespace Lloyd
         private Vector3 _angleVector;
 
         Quaternion _currentRotation;
-
-        // "Bobbing" animation from 1D Perlin noise.
-
-        // Range over which height varies.
-        [SerializeField] float _perlinY;
-
-        // Distance covered per second along X axis of Perlin plane.
-        [SerializeField] float _perlinX;
-
+        
         //am I allowed to shoot? ticks depending on fire rate and ammo
         private bool _canShoot;
 
@@ -81,6 +77,8 @@ namespace Lloyd
             _fuel = _maxFuel;
 
             _rb = GetComponent<Rigidbody>();
+
+            _firePointRb = GetComponentInChildren<Rigidbody>();
         }
 
         private void Shoot()
@@ -108,11 +106,13 @@ namespace Lloyd
 
         private void Wobble()
         {
-            _angle = _perlinY * Mathf.PerlinNoise(Time.time * _perlinX, 0f);
+            float height = _wobbleMultiplier * Mathf.PerlinNoise(Time.time * _xScale, 0.0f);
 
-            _angleVector = new Vector3(_angle * _wobbleMultiplier, _angle * _wobbleMultiplier, 0);
+            Vector3 _angleVector = new Vector3(0, height, 0);
 
             _currentRotation.eulerAngles = _angleVector;
+
+            _firePointRb.MoveRotation(Quaternion.AngleAxis(height, _angleVector));
         }
 
         public void ShootFire()
@@ -129,10 +129,13 @@ namespace Lloyd
                 
                 _canShoot = false;
                 _shooting = true;
-
-                GameObject _fire = Instantiate(_fireball, transform.position, _currentRotation) as GameObject;
+                
+                _firePointPos = _firePointRb.transform.position;
+                Vector3 targetDir = _firePointPos - transform.position;
+                
+                GameObject _fire = Instantiate(_fireball, transform.position, Quaternion.identity) as GameObject;
                 _firePrefabRb = _fire.GetComponent<Rigidbody>();
-                _firePrefabRb.AddForce(transform.forward * _force, ForceMode.Impulse);
+                _firePrefabRb.AddForce(targetDir * _force, ForceMode.Impulse);
 
                 yield return new WaitForSecondsRealtime(_fireRate);
 

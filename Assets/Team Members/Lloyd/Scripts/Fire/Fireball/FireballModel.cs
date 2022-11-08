@@ -42,6 +42,7 @@ public class FireballModel : MonoBehaviour
 
         _rend.material.SetColor("_BaseColor", new Color(1f, 0, 0, .5f));
 
+        Physics.IgnoreLayerCollision(0,9);
         Physics.IgnoreLayerCollision(9, 9);
 
         StartCoroutine(TickTock());

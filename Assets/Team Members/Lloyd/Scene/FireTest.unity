@@ -16262,6 +16262,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7053776936428505430, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: m_Constraints
+      value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473141916074021226, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _xScale
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
       propertyPath: _fireRate
       value: 0.001
@@ -16272,7 +16284,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
       propertyPath: _wobbleMultiplier
-      value: 20
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963970899831, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _runSpeed
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7607850963997499756, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
       propertyPath: m_RootOrder
@@ -16322,7 +16338,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7473141916074021226, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
 --- !u!1001 &8809752036107005366

@@ -10,8 +10,6 @@ public class FireballView : MonoBehaviour
     private void OnEnable()
     {
         _anim = GetComponent<Animator>();
-
-        _anim.SetBool("IsOpen", true);
     }
 
     public void Death()

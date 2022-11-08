@@ -30,29 +30,29 @@ namespace Lloyd
         private Vector2 _mousePos;
 
         private Vector3 _rotation;
-
+        
         private void OnEnable()
         {
             _rb = GetComponent<Rigidbody>();
             _playerInput = new LloydPlayer();
 
-           // _playerInput.Player.Fire.performed += Fire => _isShooting = true;
-          //  _playerInput.Player.Fire.canceled += Fire => _isShooting = false;
+            // _playerInput.Player.Fire.performed += Fire => _isShooting = true;
+            //  _playerInput.Player.Fire.canceled += Fire => _isShooting = false;
 
             _playerInput.Player.Fire.performed += Fire;
             _playerInput.Player.Fire.canceled += Fire;
-            
+
             _playerInput.Player.Fire.performed += AltFire;
 
             _playerInput.Player.Enable();
         }
-        
+
         private void FixedUpdate()
         {
             HandleMovement();
             Look();
-            
-            if(_isShooting)
+
+            if (_isShooting)
                 _flamethrower.ShootFire();
         }
 
@@ -71,7 +71,7 @@ namespace Lloyd
         private void Look()
         {
             MouseLook(new InputAction.CallbackContext());
-            
+
             Ray ray = Camera.main.ScreenPointToRay(_mousePos);
 
             if (Physics.Raycast(ray, out RaycastHit raycastHit, _floorLayer))
@@ -98,9 +98,9 @@ namespace Lloyd
         //SHOOT
         private void Fire(InputAction.CallbackContext context)
         {
-            if(context.performed)
+            if (context.performed)
                 _isShooting = true;
-            if(context.canceled)
+            if (context.canceled)
                 _isShooting = false;
         }
 
