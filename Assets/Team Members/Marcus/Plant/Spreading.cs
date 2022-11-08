@@ -66,9 +66,9 @@ public class Spreading : MonoBehaviour, IFlammable
 
             if (deaathTimer <= 0)
             {
-                int rEvoChance = Random.Range(0, 10);
+                int rEvoChance = Random.Range(0, 5);
                 
-                if (Physics.OverlapSphere(transform.position, maxSize.x, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 /*&& rEvoChance == 1*/)
+                if (Physics.OverlapSphere(transform.position, maxSize.x, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
                 {
                     //Destroy and spawn manEater prefab
                     Instantiate(manEater, transform.position, Quaternion.identity);
