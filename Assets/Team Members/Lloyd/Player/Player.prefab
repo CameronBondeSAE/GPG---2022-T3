@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7607850963454043043}
   - component: {fileID: 7607850963454043040}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,14 +48,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a3f7a96079350408eba4ecdc906252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heatDamage: 0
+  _heatDamage: 1
   _boxExtents: {x: 10, y: 10, z: 10}
   _boxWidth: 10
   _force: 250
   _fireball: {fileID: 2097233744307224593, guid: 68d82a5d303fb164ea28c9a6a7be4d4c, type: 3}
   _fireRate: 0.25
-  _wobbleMultiplier: 0
-  _perlinHeight: 1
+  _altFireRate: 0.25
+  _wobbleMultiplier: 1
+  _maxFuel: 5000
+  _perlinY: 1
   _perlinX: 1
 --- !u!1 &7607850963907577394
 GameObject:
@@ -298,7 +300,7 @@ Transform:
   m_Children:
   - {fileID: 7607850963970899830}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7607850963997983885
 GameObject:
@@ -311,7 +313,7 @@ GameObject:
   - component: {fileID: 7607850963997983874}
   - component: {fileID: 7607850963997983872}
   - component: {fileID: 7607850963997983875}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +396,7 @@ GameObject:
   - component: {fileID: 7607850964835763404}
   - component: {fileID: 7607850964835763395}
   - component: {fileID: 7607850964835763394}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7607850964925962399}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8459696224755329704}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3377818082076466518}
   - component: {fileID: 563901314552804959}
   - component: {fileID: 4995220475339385136}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   _radius: 5
   _proximityMultiplier: 2
   _minDistance: 0.5
-  _lifespan: 5
+  _lifespan: 2.5
   _fireballView: {fileID: 563901314552804959}
 --- !u!54 &2097233744307224603
 Rigidbody:

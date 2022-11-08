@@ -155,9 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &6185459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -366,9 +367,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &17260879
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -479,9 +481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &25758811
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -592,9 +595,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &30231486
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -705,9 +709,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &33500448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -818,9 +823,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &77732282
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -931,9 +937,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &96583732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1044,9 +1051,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &121154371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1157,9 +1165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &122517704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1270,9 +1279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &123049200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1383,9 +1393,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &129075165
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1496,9 +1507,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &164653646
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1609,9 +1621,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &193519521
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1722,9 +1735,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &204531855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1835,9 +1849,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &208199527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1948,9 +1963,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &224633563
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2061,9 +2077,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &234035952
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2334,9 +2351,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &269760547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2447,9 +2465,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &273930107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2560,9 +2579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &278495517
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2673,9 +2693,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &289832781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2786,9 +2807,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &293578505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2899,9 +2921,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &313025056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3012,9 +3035,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &327789089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3156,9 +3180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &357395645
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3269,9 +3294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &377365734
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3382,9 +3408,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &396709005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3495,9 +3522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &411504186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3608,9 +3636,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &416480755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3721,9 +3750,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &427678022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3834,9 +3864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &467085390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3947,9 +3978,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &471539066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4138,9 +4170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!1 &537783035
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,9 +4206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &537783037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4286,9 +4320,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &560108578
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4399,9 +4434,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &561870363
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4512,9 +4548,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &562839765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4625,9 +4662,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &578858888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4738,9 +4776,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &609070810
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4851,9 +4890,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &649257346
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4964,9 +5004,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &650249223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5077,9 +5118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &657234010
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5221,9 +5263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &684158478
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5334,9 +5377,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &691995628
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5447,9 +5491,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &722796746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5560,9 +5605,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &797192718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5673,9 +5719,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &809636567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5786,9 +5833,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &815704759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5899,9 +5947,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &821712605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6012,9 +6061,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &863935880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6125,9 +6175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &870265099
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6238,9 +6289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &888556038
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6351,9 +6403,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &890939163
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6464,9 +6517,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &913379169
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6577,9 +6631,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &918549109
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6690,9 +6745,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &954854306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6803,9 +6859,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &960695993
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6916,9 +6973,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &967233811
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7029,9 +7087,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &970436215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7352,9 +7411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &995806268
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7465,9 +7525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1005491558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7578,9 +7639,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1017039038
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7691,9 +7753,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1073051557
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7804,9 +7867,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1076846020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7917,9 +7981,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1099010054
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8030,9 +8095,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1101182668
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8143,9 +8209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1108462526
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8287,9 +8354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1138482644
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8400,9 +8468,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1186255725
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8513,9 +8582,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1188562329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8626,9 +8696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1208911721
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8739,9 +8810,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1214950778
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8883,9 +8955,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1231705152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8996,9 +9069,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1244297667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9109,9 +9183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1254337051
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9222,9 +9297,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1265781955
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9335,9 +9411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1273351900
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9448,9 +9525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1286833470
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9561,9 +9639,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1286908562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9674,9 +9753,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1295852241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9787,9 +9867,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1308580536
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9900,9 +9981,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1311258396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10013,9 +10095,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1312369426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10126,9 +10209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1353208114
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10239,9 +10323,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1376492155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10352,9 +10437,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1386973130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10465,9 +10551,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1402030666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10578,9 +10665,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1479089067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10691,9 +10779,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1488430024
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10804,9 +10893,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1490913673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10917,9 +11007,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1502388584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11030,9 +11121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1502560446
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11143,9 +11235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1515861531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11256,9 +11349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1527252082
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11369,9 +11463,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1562542236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11482,9 +11577,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1567268718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11595,9 +11691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1576634259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11708,9 +11805,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1579311846
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11821,9 +11919,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1593656449
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11934,9 +12033,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1597455661
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12047,9 +12147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1626268939
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12377,9 +12478,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1727322768
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12490,9 +12592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1733225996
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12603,9 +12706,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1760527457
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12716,9 +12820,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1773519946
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12829,9 +12934,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1779591161
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12942,9 +13048,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1785866113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13055,9 +13162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1786003227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13168,9 +13276,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1806148732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13281,9 +13390,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1810875638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13394,9 +13504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1831584664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13507,9 +13618,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1855024362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13620,9 +13732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1855536173
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13733,9 +13846,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1866747037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13846,9 +13960,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1895286422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13959,9 +14074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1922117543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14072,9 +14188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1941117608
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14185,9 +14302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1977503021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14298,9 +14416,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1996201270
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14411,9 +14530,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &1998467505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14524,9 +14644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &2017006227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14637,9 +14758,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &2044968140
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14750,9 +14872,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &2047903151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14863,9 +14986,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &2084083461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14976,9 +15100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &2088652057
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15089,9 +15214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &2095114759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15202,9 +15328,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &2101547283
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15315,9 +15442,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 0
+  _fireMultiplier: 2
+  _heatThreshold: 25
 --- !u!65 &2124527348
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15404,6 +15532,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _fireRate
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _heatDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _wobbleMultiplier
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7607850963997499756, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
       propertyPath: m_RootOrder
       value: 3
