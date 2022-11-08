@@ -33,7 +33,7 @@ namespace Alex
                 if(HitInfo.collider == null) continue;
                 
                 
-                if (HitInfo.collider.GetComponent<Enemy>() != null)
+                if (HitInfo.collider.GetComponent<Target>() != null)
                 {
                     Debug.DrawLine(transform.position, HitInfo.point, Color.red);
                     Transform enemy = HitInfo.transform;

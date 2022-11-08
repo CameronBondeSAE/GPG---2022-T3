@@ -116,7 +116,7 @@ Transform:
   - {fileID: 561430403378240219}
   - {fileID: 8555692990794580215}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1794423253392461858
 MeshFilter:
@@ -146,7 +146,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f2010d4ff0c0ad94e9915c3b61ba312e, type: 2}
+  - {fileID: 2100000, guid: 524bdbd923546a44eb9a9f73af997981, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -359,6 +359,8 @@ MonoBehaviour:
   turnSpeed: 0
   followingPath: 0
   aStar: {fileID: 0}
+  renderer: {fileID: 1794423253392461861}
+  defaultShader: {fileID: -6465566751694194690, guid: 4ac1cbcbfa784624e90eb2a6087c373e, type: 3}
 --- !u!114 &-7807660158720829330
 MonoBehaviour:
   m_ObjectHideFlags: 0

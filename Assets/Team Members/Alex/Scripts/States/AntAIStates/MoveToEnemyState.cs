@@ -13,6 +13,8 @@ namespace Alex
         Vision vision;
         Rigidbody rb;
         Controller controller;
+        Renderer renderer;
+        public Shader agroShader;
 
         public override void Create(GameObject aGameObject)
         {
@@ -22,10 +24,12 @@ namespace Alex
             controller = aGameObject.GetComponent<Controller>();
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
+            renderer = aGameObject.GetComponent<Renderer>();
         }
         public override void Enter()
         {
             base.Enter();
+            controller.renderer.material.shader = agroShader;
             Finish();
         }
 
@@ -40,6 +44,12 @@ namespace Alex
                 //owner.GetComponent<TurnTowards>().targetTransform = vision.resourcesInSight[0].transform.position;
                 Finish();
             }
+        }
+        
+        public override void Exit()
+        {
+            base.Exit();
+            controller.renderer.material.shader = controller.defaultShader;
         }
     }
 }

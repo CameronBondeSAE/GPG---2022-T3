@@ -15,9 +15,15 @@ namespace Alex
         }
 
         // Update is called once per frame
-        void Update()
+        private void OnCollisionEnter(Collision collision)
         {
-
+            if (collision.collider.gameObject.layer == LayerMask.NameToLayer("AlienAI"))
+            {
+                
+                Vision vision = collision.gameObject.GetComponent<Vision>();
+                vision.enemyInSight.Remove(transform);
+                Destroy(gameObject);
+            }
         }
     }
 }

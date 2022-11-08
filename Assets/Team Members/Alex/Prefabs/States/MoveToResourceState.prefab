@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79215c0a6bda2964db99641cd35fbdc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
+  vision: {fileID: 0}
+  turnSpeed: 1
+  eleShader: {fileID: -6465566751694194690, guid: f12d051a9b1e8ce4fb03c6c7b3034685, type: 3}

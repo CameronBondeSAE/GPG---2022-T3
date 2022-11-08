@@ -15,9 +15,11 @@ namespace Alex
         Controller controller;
         FollowPath followPath;
         TurnTowards turnTowards;
+        Renderer renderer;
+        public Shader eleShader;
 
 
-        private Rigidbody rb;
+        Rigidbody rb;
 
         public override void Create(GameObject aGameObject)
         {
@@ -29,10 +31,14 @@ namespace Alex
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
             followPath = aGameObject.GetComponent<FollowPath>();
+            renderer = aGameObject.GetComponent<Renderer>();
         }
         public override void Enter()
         {
             base.Enter();
+            controller.renderer.material.shader = eleShader;
+           //renderer.material.shader = eleShader;
+            
             followPath.enabled = true;
             
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
@@ -41,6 +47,8 @@ namespace Alex
             {
                 followPath.ActivatePathToTarget(vision.resourcesInSight[0].transform.position);
             }
+
+           
         }
 
         private void FollowPathOnPathEndReachedEvent()
@@ -60,7 +68,9 @@ namespace Alex
         public override void Exit()
         {
             base.Exit();
+            controller.renderer.material.shader = controller.defaultShader;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
+            
         }
     }
 }

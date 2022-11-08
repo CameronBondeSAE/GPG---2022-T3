@@ -41,7 +41,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 1493426894229047526, guid: 1f7f9e26fbe0ed743a9e467a2bac17aa, type: 3}
     cost: 0
-    position: {x: 939.61096, y: 17.911163}
+    position: {x: 939.61096, y: 47.911163}
     pre:
     - id: 2
       value: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 4016345892358988173, guid: 9a95d1fdac2bc8445bb6afe90c23ce5f, type: 3}
     cost: 0
-    position: {x: 1429.4152, y: 53.49435}
+    position: {x: 1429.4152, y: 83.494354}
     pre:
     - id: 2
       value: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 92025900423707080, guid: c8838a6a57e655c4fac71155cd4e186d, type: 3}
     cost: 0
-    position: {x: 695.57465, y: 53.78714}
+    position: {x: 695.57465, y: 83.78714}
     pre:
     - id: 0
       value: 1
@@ -84,7 +84,7 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 8653921907090280506, guid: bb1d05f5173f35146925cc601b303855, type: 3}
     cost: 5
-    position: {x: 1191.3959, y: 67.861694}
+    position: {x: 1191.3959, y: 97.861694}
     pre:
     - id: 2
       value: 1
@@ -92,53 +92,27 @@ MonoBehaviour:
     - id: 3
       value: 1
   - name: Move to Enemy
-    isDefault: 0
+    isDefault: 1
     state: {fileID: 1885941748799611865, guid: 6f8b6c8c12e4ca74280020c331fcbbe0, type: 3}
     cost: 5
-    position: {x: 422.47028, y: 43.64896}
+    position: {x: 443.47028, y: 80.64896}
     pre:
     - id: 8
       value: 1
     post:
     - id: 8
       value: 0
-  - name: WanderingAround
-    isDefault: 1
-    state: {fileID: 2822014770511461438, guid: 05678d2698b87154aa19d8e610e07cad, type: 3}
-    cost: 0
-    position: {x: 419.73645, y: 263.7556}
-    pre:
-    - id: 8
-      value: 0
-    - id: 0
-      value: 0
-    - id: 2
-      value: 0
-    post:
-    - id: 0
-      value: 1
-  - name: 'Find Enemy '
-    isDefault: 0
-    state: {fileID: 2822014770511461438, guid: ab1607ee23e39a04495d6f135f881b4a, type: 3}
-    cost: 0
-    position: {x: 773.4247, y: 291.9732}
-    pre:
-    - id: 8
-      value: 0
-    post:
-    - id: 8
-      value: 1
   goals:
   - name: Gather Or Kill
     isDefault: 1
-    position: {x: 220.41046, y: 84}
+    position: {x: 220.41046, y: 114}
     conditions:
     - id: 5
       value: 1
     - id: 8
       value: 0
   worldStates:
-  - position: {x: 217.02606, y: 493.49}
+  - position: {x: 217.02606, y: 523.49}
     isAutoUpdate: 1
     list:
     - id: 0

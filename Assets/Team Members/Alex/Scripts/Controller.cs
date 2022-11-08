@@ -27,6 +27,8 @@ public class Controller : MonoBehaviour
     public int turnSpeed;
     public bool followingPath;
     public AStar aStar;
+    public Renderer renderer;
+    public Shader defaultShader;
 
     public void Awake()
     {

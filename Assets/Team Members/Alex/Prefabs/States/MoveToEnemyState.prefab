@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6269559147249916545
 MonoBehaviour:
@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd6d558edbe66f439fb44b3bdd00211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
+  vision: {fileID: 0}
+  agroShader: {fileID: -6465566751694194690, guid: 5fe9feba891dc544784aedec872b24dd, type: 3}
