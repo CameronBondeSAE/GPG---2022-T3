@@ -13,6 +13,7 @@ namespace Oscar
     {
         private Color colRed = new Color32(255,0,0,255);
         private Vector3 scaleIncrease = new Vector3(3, 3, 3);
+        public float countDown;
         public event Action AlmostExplode;
         //used IEnumerator so it will start on start but will wait a few seconds before continuing.
         IEnumerator Start()
@@ -27,7 +28,7 @@ namespace Oscar
             //change colour to red gradually
             GetComponent<Renderer>().material.DOColor(colRed, 2f);
             
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(countDown);
             GetComponent<Oscar.StateManager>().ChangeState(GetComponent<ExplosiveExplodeState>());
         }
         
