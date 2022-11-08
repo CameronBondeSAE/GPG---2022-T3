@@ -30,32 +30,30 @@ namespace Lloyd
         private Vector2 _mousePos;
 
         private Vector3 _rotation;
-
+        
         private void OnEnable()
         {
             _rb = GetComponent<Rigidbody>();
             _playerInput = new LloydPlayer();
 
-            _playerInput.Player.Fire.performed += Fire => _isShooting = true;
-            _playerInput.Player.Fire.canceled += Fire => _isShooting = false;
+            // _playerInput.Player.Fire.performed += Fire => _isShooting = true;
+            //  _playerInput.Player.Fire.canceled += Fire => _isShooting = false;
 
             _playerInput.Player.Fire.performed += Fire;
+            _playerInput.Player.Fire.canceled += Fire;
+
+            _playerInput.Player.Fire.performed += AltFire;
 
             _playerInput.Player.Enable();
-        }
-
-        private void Update()
-        {/*
-            if (_isShooting)
-            {
-                Fire(new InputAction.CallbackContext());
-            }*/
         }
 
         private void FixedUpdate()
         {
             HandleMovement();
             Look();
+
+            if (_isShooting)
+                _flamethrower.ShootFire();
         }
 
 
@@ -73,7 +71,7 @@ namespace Lloyd
         private void Look()
         {
             MouseLook(new InputAction.CallbackContext());
-            
+
             Ray ray = Camera.main.ScreenPointToRay(_mousePos);
 
             if (Physics.Raycast(ray, out RaycastHit raycastHit, _floorLayer))
@@ -81,7 +79,7 @@ namespace Lloyd
                 _rotation = new Vector3(raycastHit.point.x, _rb.transform.position.y, raycastHit.point.z);
                 Rotate(_rotation);
             }
-            Debug.Log(_mousePos);
+            //Debug.Log(_mousePos);
         }
 
         //MOVE
@@ -100,7 +98,15 @@ namespace Lloyd
         //SHOOT
         private void Fire(InputAction.CallbackContext context)
         {
-            _flamethrower.ShootFire();
+            if (context.performed)
+                _isShooting = true;
+            if (context.canceled)
+                _isShooting = false;
+        }
+
+        private void AltFire(InputAction.CallbackContext context)
+        {
+            _flamethrower.ShootAltFire();
         }
     }
 }

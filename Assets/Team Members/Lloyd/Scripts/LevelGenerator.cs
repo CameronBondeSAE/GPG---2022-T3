@@ -12,8 +12,7 @@ namespace Lloyd
     {
         [Header("Noise Settings")] [SerializeField]
         private int numCube;
-
-        [SerializeField] private int cubeSize;
+        [SerializeField] private int cubeScale;
 
         //perlin noise stuff
         [SerializeField] private float zoomNoiseX;
@@ -98,9 +97,9 @@ namespace Lloyd
 
             alienHQVector3List = new List<Vector3>(numAlienHQ);
 
-            for (int x = 0; x < numCube; x = x + cubeSize)
+            for (int x = 0; x < numCube; x = x + cubeScale)
             {
-                for (int z = 0; z < numCube; z = z + cubeSize)
+                for (int z = 0; z < numCube; z = z + cubeScale)
                 {
                     centrePos = new Vector3(cubePos.x / 2, cubePos.y / 2, cubePos.z / 2);
 
@@ -124,7 +123,7 @@ namespace Lloyd
                         GameObject cube = Instantiate(wallPrefab, cubePos, Quaternion.identity) as GameObject;
                         cube.transform.SetParent(terrainParent.transform);
 
-                        cube.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
+                        cube.transform.localScale = new Vector3(cubeScale, cubeScale, cubeScale);
 
 
                         cubeRend = cube.GetComponent<Renderer>();
@@ -257,7 +256,7 @@ namespace Lloyd
         private void PlaceHQ()
         {
             GameObject HumanHQprefab = Instantiate(HumanHQ,
-                new Vector3(centrePos.x, (centrePos.y + cubeSize) / 2, centrePos.z), Quaternion.identity);
+                new Vector3(centrePos.x, (centrePos.y + cubeScale) / 2, centrePos.z), Quaternion.identity);
             HumanHQprefab.transform.SetParent(HQParent.transform);
 
             Instantiate(_playerObj, centrePos, Quaternion.identity);
@@ -265,7 +264,7 @@ namespace Lloyd
 
         private void SpawnAlienHQPos()
         {
-            alienPos = new Vector3(cubePos.x, cubePos.y + (cubeSize / 2), cubePos.z);
+            alienPos = new Vector3(cubePos.x, cubePos.y + (cubeScale / 2), cubePos.z);
 
             float tempAlienDist = Vector3.Distance(alienPos, prevAlienPos);
 

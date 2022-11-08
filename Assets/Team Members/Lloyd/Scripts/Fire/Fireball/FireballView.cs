@@ -10,21 +10,10 @@ public class FireballView : MonoBehaviour
     private void OnEnable()
     {
         _anim = GetComponent<Animator>();
-
-        StartCoroutine(Wait(.8f));
     }
 
     public void Death()
     {
-         _anim.SetBool("IsOpen", true);
                 _anim.SetTrigger("End");
-    }
-
-    private IEnumerator Wait(float x)
-    {
-        yield return new WaitForSeconds(x);
-        {
-            _anim.SetBool("IsOpen", true);
-        }
     }
 }

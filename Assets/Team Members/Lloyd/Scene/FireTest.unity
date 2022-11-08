@@ -155,9 +155,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &6185459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -366,9 +369,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &17260879
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -479,9 +485,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &25758811
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -592,9 +601,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &30231486
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -705,9 +717,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &33500448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -818,9 +833,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &77732282
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -931,9 +949,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &96583732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1044,9 +1065,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &121154371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1157,9 +1181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &122517704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1270,9 +1297,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &123049200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1383,9 +1413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &129075165
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1496,9 +1529,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &164653646
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1609,9 +1645,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &193519521
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1722,9 +1761,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &204531855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1835,9 +1877,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &208199527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1948,9 +1993,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &224633563
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2061,9 +2109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &234035952
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2299,6 +2350,11 @@ Transform:
   - {fileID: 1265781958}
   - {fileID: 164653649}
   - {fileID: 16128284}
+  - {fileID: 814303261}
+  - {fileID: 1677035258}
+  - {fileID: 1072483551}
+  - {fileID: 1606334295}
+  - {fileID: 1967443303}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2334,9 +2390,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &269760547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2447,9 +2506,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &273930107
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2560,9 +2622,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &278495517
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2673,9 +2738,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &289832781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2786,9 +2854,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &293578505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2899,9 +2970,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &313025056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3012,9 +3086,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &327789089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3156,9 +3233,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &357395645
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3269,9 +3349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &377365734
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3382,9 +3465,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &396709005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3495,9 +3581,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &411504186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3608,9 +3697,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &416480755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3721,9 +3813,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &427678022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3834,9 +3929,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &467085390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3947,9 +4045,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &471539066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4028,119 +4129,11 @@ Transform:
   m_Father: {fileID: 244536983}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &493566717
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 493566721}
-  - component: {fileID: 493566720}
-  - component: {fileID: 493566719}
-  - component: {fileID: 493566718}
-  - component: {fileID: 493566722}
-  m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &493566718
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493566717}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &493566719
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493566717}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &493566720
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493566717}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &493566721
+--- !u!4 &493566721 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+  m_PrefabInstance: {fileID: 8809752036107005366}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493566717}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12993698, y: 12.543694, z: 0.61271584}
-  m_LocalScale: {x: 0.099999994, y: 10, z: 0.099999994}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 244536983}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &493566722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 493566717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
 --- !u!1 &537783035
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,9 +4166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &537783037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4286,9 +4282,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &560108578
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4399,9 +4398,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &561870363
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4512,9 +4514,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &562839765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4625,9 +4630,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &578858888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4738,9 +4746,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &609070810
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4851,9 +4862,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &649257346
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4964,9 +4978,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &650249223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5077,9 +5094,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &657234010
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5221,9 +5241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &684158478
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5334,9 +5357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &691995628
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5447,9 +5473,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &722796746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5560,9 +5589,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &797192718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5673,9 +5705,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &809636567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5754,6 +5789,122 @@ Transform:
   m_Father: {fileID: 244536983}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 266.20502, z: 0}
+--- !u!1 &814303260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 814303261}
+  - component: {fileID: 814303265}
+  - component: {fileID: 814303264}
+  - component: {fileID: 814303263}
+  - component: {fileID: 814303262}
+  m_Layer: 0
+  m_Name: Cube (128)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &814303261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814303260}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.197, y: 12.543694, z: 0.086715885}
+  m_LocalScale: {x: 0.099999994, y: 10, z: 0.099999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 244536983}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &814303262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814303260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
+--- !u!65 &814303263
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814303260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &814303264
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814303260}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &814303265
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814303260}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &815704757
 GameObject:
   m_ObjectHideFlags: 0
@@ -5786,9 +5937,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &815704759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5899,9 +6053,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &821712605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6012,9 +6169,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &863935880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6125,9 +6285,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &870265099
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6238,9 +6401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &888556038
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6351,9 +6517,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &890939163
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6464,9 +6633,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &913379169
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6577,9 +6749,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &918549109
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6690,9 +6865,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &954854306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6803,9 +6981,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &960695993
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6916,9 +7097,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &967233811
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7029,9 +7213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &970436215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7352,9 +7539,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &995806268
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7465,9 +7655,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1005491558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7578,9 +7771,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1017039038
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7659,6 +7855,122 @@ Transform:
   m_Father: {fileID: 244536983}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 198.182, z: 0}
+--- !u!1 &1072483550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1072483551}
+  - component: {fileID: 1072483555}
+  - component: {fileID: 1072483554}
+  - component: {fileID: 1072483553}
+  - component: {fileID: 1072483552}
+  m_Layer: 0
+  m_Name: Cube (130)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1072483551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072483550}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.19500014, y: 12.543694, z: 0.086715885}
+  m_LocalScale: {x: 0.099999994, y: 10, z: 0.099999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 244536983}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1072483552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072483550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
+--- !u!65 &1072483553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072483550}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1072483554
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072483550}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1072483555
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072483550}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1073051555
 GameObject:
   m_ObjectHideFlags: 0
@@ -7691,9 +8003,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1073051557
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7804,9 +8119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1076846020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7917,9 +8235,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1099010054
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8030,9 +8351,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1101182668
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8143,9 +8467,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1108462526
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8287,9 +8614,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1138482644
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8400,9 +8730,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1186255725
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8513,9 +8846,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1188562329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8626,9 +8962,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1208911721
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8739,9 +9078,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 1
+  _radius: 10
+  _heatThreshold: 500
 --- !u!65 &1214950778
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8883,9 +9225,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1231705152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8996,9 +9341,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1244297667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9109,9 +9457,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1254337051
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9222,9 +9573,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1265781955
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9335,9 +9689,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1273351900
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9448,9 +9805,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1286833470
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9561,9 +9921,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1286908562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9674,9 +10037,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1295852241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9787,9 +10153,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1308580536
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9900,9 +10269,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1311258396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10013,9 +10385,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1312369426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10126,9 +10501,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1353208114
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10239,9 +10617,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1376492155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10352,9 +10733,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1386973130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10465,9 +10849,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1402030666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10578,9 +10965,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1479089067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10691,9 +11081,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1488430024
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10804,9 +11197,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1490913673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10917,9 +11313,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1502388584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11030,9 +11429,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1502560446
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11143,9 +11545,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1515861531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11256,9 +11661,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1527252082
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11369,9 +11777,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1562542236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11482,9 +11893,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1567268718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11595,9 +12009,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1576634259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11708,9 +12125,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1579311846
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11821,9 +12241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1593656449
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11934,9 +12357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1597455661
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12015,6 +12441,122 @@ Transform:
   m_Father: {fileID: 244536983}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 130.916, z: 0}
+--- !u!1 &1606334294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1606334295}
+  - component: {fileID: 1606334299}
+  - component: {fileID: 1606334298}
+  - component: {fileID: 1606334297}
+  - component: {fileID: 1606334296}
+  m_Layer: 0
+  m_Name: Cube (131)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1606334295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606334294}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.592, y: 12.543694, z: 0.086715885}
+  m_LocalScale: {x: 0.099999994, y: 10, z: 0.099999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 244536983}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1606334296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606334294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
+--- !u!65 &1606334297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606334294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1606334298
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606334294}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1606334299
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606334294}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1626268937
 GameObject:
   m_ObjectHideFlags: 0
@@ -12047,9 +12589,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 1
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1626268939
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12345,6 +12890,122 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
+--- !u!1 &1677035257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1677035258}
+  - component: {fileID: 1677035262}
+  - component: {fileID: 1677035261}
+  - component: {fileID: 1677035260}
+  - component: {fileID: 1677035259}
+  m_Layer: 0
+  m_Name: Cube (129)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1677035258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677035257}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0149998665, y: 12.543694, z: 0.086715885}
+  m_LocalScale: {x: 0.099999994, y: 10, z: 0.099999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 244536983}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1677035259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677035257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
+--- !u!65 &1677035260
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677035257}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1677035261
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677035257}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1677035262
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677035257}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1727322766
 GameObject:
   m_ObjectHideFlags: 0
@@ -12377,9 +13038,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1727322768
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12490,9 +13154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1733225996
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12603,9 +13270,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1760527457
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12716,9 +13386,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1773519946
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12829,9 +13502,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1779591161
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12942,9 +13618,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1785866113
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13055,9 +13734,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1786003227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13168,9 +13850,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1806148732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13281,9 +13966,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1810875638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13394,9 +14082,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1831584664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13507,9 +14198,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1855024362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13620,9 +14314,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1855536173
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13733,9 +14430,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1866747037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13846,9 +14546,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1895286422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13959,9 +14662,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 10
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1922117543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14072,9 +14778,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1941117608
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14153,6 +14862,122 @@ Transform:
   m_Father: {fileID: 244536983}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 130.916, z: 0}
+--- !u!1 &1967443302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1967443303}
+  - component: {fileID: 1967443307}
+  - component: {fileID: 1967443306}
+  - component: {fileID: 1967443305}
+  - component: {fileID: 1967443304}
+  m_Layer: 0
+  m_Name: Cube (132)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1967443303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967443302}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.38199997, y: 12.543694, z: 0.086715885}
+  m_LocalScale: {x: 0.099999994, y: 10, z: 0.099999994}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 244536983}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1967443304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967443302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
+--- !u!65 &1967443305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967443302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1967443306
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967443302}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1967443307
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967443302}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1977503019
 GameObject:
   m_ObjectHideFlags: 0
@@ -14185,9 +15010,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1977503021
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14298,9 +15126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1996201270
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14411,9 +15242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &1998467505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14524,9 +15358,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &2017006227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14637,9 +15474,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &2044968140
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14750,9 +15590,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &2047903151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14863,9 +15706,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &2084083461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14976,9 +15822,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 100
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &2088652057
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15089,9 +15938,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 1
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &2095114759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15202,9 +16054,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
+  _maxHP: 100
+  _coolRate: 1
   _fireMultiplier: 1
-  _heatMax: 10
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &2101547283
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15315,9 +16170,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d2afa3739e54fa61fcd740fa73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 1000
-  _fireMultiplier: 5
-  _heatMax: 10
+  _maxHP: 100
+  _coolRate: 1
+  _fireMultiplier: 2
+  _fireDamage: 10
+  _radius: 10
+  _heatThreshold: 25
 --- !u!65 &2124527348
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15404,6 +16262,34 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7053776936428505430, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: m_Constraints
+      value: 94
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473141916074021226, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _xScale
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _fireRate
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _heatDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _wobbleMultiplier
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963970899831, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: _runSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7607850963997499756, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -15452,6 +16338,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7473141916074021226, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+--- !u!1001 &8809752036107005366
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 244536983}
+    m_Modifications:
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.12993698
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.543694
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.61271584
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613578935, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809752035613579083, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
+      propertyPath: m_Name
+      value: BurnVictim
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b31a8f45f72cbf44ace4a516b1092ae, type: 3}
