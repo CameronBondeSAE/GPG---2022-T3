@@ -14,7 +14,12 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
 
     [SerializeField] private float _fireMultiplier;
 
+    [SerializeField] private float _fireDamage;
+
     private float _heatLevel;
+
+    //how big the spreading AOE is
+    [SerializeField] private float _radius;
 
     [SerializeField] private float _heatThreshold;
 
@@ -28,6 +33,7 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
     {
         _HP = _maxHP;
 
+        //view stuff
         _rend = GetComponent<Renderer>();
         _rend.material.SetColor("_BaseColor", Color.green);
     }
@@ -43,8 +49,10 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
         if (_isAlive)
         {
             if (_burning)
+            {
                 _HP -= _fireMultiplier;
-            BurnAOE();
+                BurnAOE();
+            }
         }
 
         if (_HP <= 0)
@@ -53,11 +61,19 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
             _HP = 0;
             Death();
         }
+
+        Cool();
     }
 
     private void BurnAOE()
-    {
-        
+    { 
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _radius);
+        foreach (var hitCollider in hitColliders)
+        if (hitCollider.GetComponent<IFlame>() != null)
+        {
+            hitCollider.GetComponent<IFlame>().ChangeHeat(_fireDamage);
+        }
+
     }
 
     private void Death()
@@ -80,6 +96,16 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
         _heatLevel += x;
 
         if (_heatLevel >= _heatThreshold)
+        {
             SetOnFire();
+        }
+
+        if (_heatLevel <= 0)
+            _heatLevel = 0;
+    }
+
+    private void Cool()
+    {
+        ChangeHeat(-_coolRate);
     }
 }

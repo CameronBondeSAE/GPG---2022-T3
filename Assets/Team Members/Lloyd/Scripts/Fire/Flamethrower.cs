@@ -43,7 +43,7 @@ namespace Lloyd
         [SerializeField] private int _wobbleMultiplier;
 
         [SerializeField] private float _maxFuel;
-        private float _fuel;
+        [SerializeField] private float _fuel;
 
         private Rigidbody _rb;
 
