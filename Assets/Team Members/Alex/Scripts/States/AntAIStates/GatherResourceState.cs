@@ -24,10 +24,13 @@ namespace Alex
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
             
+
+
         }
         public override void Enter()
         {
             base.Enter();
+            
             Finish();
         }
 

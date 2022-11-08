@@ -12,11 +12,10 @@ namespace Alex
         public List<Transform> resourcesInSight;
         public List<Transform> enemyInSight;
         public List<Transform> dropOffPointsFound;
-        public GameObject currentTarget;
 
 
-        
-        
+
+
 
         private void FixedUpdate()
         {

@@ -9,6 +9,7 @@ namespace Alex
         public Transform targetTransform;
         public Vector3 targetPosition;
         public int turnSpeed;
+        public Vision vision;
 
         Rigidbody rb;
         // Start is called before the first frame update
@@ -26,7 +27,14 @@ namespace Alex
         void FixedUpdate()
         {
             Vector3 point;
-            if (targetTransform != null)
+            
+            if (vision.resourcesInSight != null)
+            {
+                targetTransform = vision.resourcesInSight[0];
+                point = transform.InverseTransformPoint(targetTransform.transform.position);
+            }
+
+            else if (targetTransform != null)
             {
                 point = transform.InverseTransformPoint(targetTransform.transform.position);
             }
@@ -34,7 +42,7 @@ namespace Alex
             {
                 point = transform.InverseTransformPoint(targetPosition);
             }
-            rb.AddRelativeTorque(0, point.x * turnSpeed, 0);
+            //rb.AddRelativeTorque(0, point.x * turnSpeed, 0);
         }
     }
 }

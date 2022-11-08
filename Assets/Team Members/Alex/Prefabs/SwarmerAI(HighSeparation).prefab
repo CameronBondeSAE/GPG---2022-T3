@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 40213192657109042, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
+      propertyPath: force
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1794423253392461859, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -54,7 +58,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
       propertyPath: m_Name
-      value: SwarmerAI
+      value: SwarmerAI(HighSeparation)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8270060209491018145, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
+      propertyPath: force
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8744244824783631288, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
+      propertyPath: force
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

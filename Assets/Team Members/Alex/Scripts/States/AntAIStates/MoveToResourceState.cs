@@ -16,7 +16,6 @@ namespace Alex
         FollowPath followPath;
         TurnTowards turnTowards;
 
-        
 
         private Rigidbody rb;
 
@@ -34,7 +33,6 @@ namespace Alex
         public override void Enter()
         {
             base.Enter();
-            //turnTowards.enabled = true;
             followPath.enabled = true;
             
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
@@ -48,7 +46,7 @@ namespace Alex
         private void FollowPathOnPathEndReachedEvent()
         {
             followPath.enabled = false;
-            //turnTowards.enabled = false;
+            
             Finish();
         }
 

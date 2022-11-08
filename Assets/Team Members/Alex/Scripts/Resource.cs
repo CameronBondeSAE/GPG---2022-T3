@@ -13,6 +13,7 @@ namespace Alex
         Rigidbody rb;
         Vision vision;
         Inventory inventory;
+        public LayerMask layerMask;
 
         private void Awake()
         {
@@ -23,7 +24,7 @@ namespace Alex
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.layer == 9)
+            if (collision.collider.gameObject.layer == LayerMask.NameToLayer("AlienAI"))
             {
                 Inventory inventory = collision.gameObject.GetComponent<Inventory>();
                 inventory.resources += 1;

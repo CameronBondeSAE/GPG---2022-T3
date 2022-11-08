@@ -13,6 +13,7 @@ namespace Alex
         Vision vision;
         Rigidbody rb;
         Controller controller;
+        private TurnTowards turnTowards;
 
         public override void Create(GameObject aGameObject)
         {
@@ -22,6 +23,7 @@ namespace Alex
             controller = aGameObject.GetComponent<Controller>();
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
+            turnTowards = aGameObject.GetComponent<TurnTowards>();
         }
         public override void Enter()
         {
@@ -36,9 +38,14 @@ namespace Alex
             if (vision.enemyInSight.Count == 0 && vision.enemyInSight != null) return;
             if (vision.enemyInSight.Count > 0)
             {
-                owner.GetComponent<TurnTowards>().targetPosition = vision.enemyInSight[0].transform.position;
+                turnTowards.targetPosition = vision.enemyInSight[0].transform.position;
                 Finish();
             }
+        }
+
+        public override void Exit()
+        {
+            
         }
     }
 }
