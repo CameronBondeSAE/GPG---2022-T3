@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221dc295d5d979e4fac8664eb0db06e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countDown: 3
 --- !u!114 &6661313131583358677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a3e6ac3f2e9a642b86fb53fc6673fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explodeRadius: 5
 --- !u!54 &2657967746583373875
 Rigidbody:
   m_ObjectHideFlags: 0

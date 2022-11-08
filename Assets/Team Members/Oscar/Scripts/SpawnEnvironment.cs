@@ -14,7 +14,7 @@ namespace Oscar
         private GameObject CubeParent;
         private float perlinValue;
 
-        public MapGenerator mapGenerator;
+        //public MapGenerator mapGenerator;
         private void OnEnable()
         {
             // mapGenerator.SpawnCubes += SpawnPerlinWalls;
@@ -23,15 +23,12 @@ namespace Oscar
 
         public void SpawnPerlinWalls(Vector3 prefabPosition, GameObject CubeParent, float perlinValue)
         {
-            if (perlinValue > .5)
+            GameObject newCube = Instantiate(perlinPrefab, prefabPosition, Quaternion.identity);
+            newCube.transform.SetParent(CubeParent.transform);
+            newCube.GetComponent<Renderer>().material.color = Color.black;
+            if (perlinValue > .8)
             {
-                GameObject newCube = Instantiate(perlinPrefab, prefabPosition, Quaternion.identity);
-                newCube.transform.SetParent(CubeParent.transform);
-                newCube.GetComponent<Renderer>().material.color = Color.black;
-                if (perlinValue > .8)
-                {
-                    newCube.GetComponent<Renderer>().material.color = Color.red;
-                }
+                newCube.GetComponent<Renderer>().material.color = Color.red;
             }
         }
 

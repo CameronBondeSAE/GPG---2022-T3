@@ -7,6 +7,8 @@ using UnityEngine;
 public class SludgeNearlyExplodeState : MonoBehaviour
 {
     private Color purple = new Color32(143,0,254,1);
+    
+    public float countDown;
 
     public event Action SludgeExplode; 
     IEnumerator Start()
@@ -22,7 +24,7 @@ public class SludgeNearlyExplodeState : MonoBehaviour
         //change colour to red gradually
         GetComponent<Renderer>().material.DOColor(purple, 2f);
         
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(countDown);
         GetComponent<Oscar.StateManager>().ChangeState(GetComponent<SludgeExplodeState>());
     }
 
