@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ExplosiveFragments : MonoBehaviour
 {
-    
     IEnumerator Start()
     {
         yield return new WaitForSeconds(3);

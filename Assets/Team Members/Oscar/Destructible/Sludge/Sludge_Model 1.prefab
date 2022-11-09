@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6122380363608692118}
   - component: {fileID: 6122380363608692119}
+  - component: {fileID: 6434064501786015847}
   m_Layer: 0
   m_Name: Sludge_View
   m_TagString: Untagged
@@ -43,7 +44,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -128,6 +129,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6434064501786015847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6122380363608692113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b416910b5a88b141a72326d10ef6161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Smoke: {fileID: 5223215218238050840}
+  AlmostBlowUp: {fileID: 7653601613542386340}
+  barrel: {fileID: 6122380363611737215}
 --- !u!1 &6122380363611737215
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,11 +156,11 @@ GameObject:
   - component: {fileID: 6122380363611737206}
   - component: {fileID: 6122380363611737201}
   - component: {fileID: 6122380363611737200}
-  - component: {fileID: 6122380363611737203}
-  - component: {fileID: 6122380363611737202}
-  - component: {fileID: 6122380363611737213}
-  - component: {fileID: 6122380363611737212}
   - component: {fileID: 6122380363611737204}
+  - component: {fileID: 6122380363611737203}
+  - component: {fileID: 270977214738848422}
+  - component: {fileID: 7653601613542386340}
+  - component: {fileID: 5661840892398076725}
   m_Layer: 0
   m_Name: Sludge_Model 1
   m_TagString: Untagged
@@ -164,10 +180,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7081522124898314368}
   - {fileID: 6122380363608692118}
+  - {fileID: 7081522124898314368}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6122380363611737206
 MeshFilter:
@@ -233,58 +249,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6122380363611737203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6122380363611737215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f343aef618de5cb4b923cf50f92ba35b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingState: {fileID: 6122380363611737202}
-  currentState: {fileID: 0}
---- !u!114 &6122380363611737202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6122380363611737215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a520a51e0312cb43b0d589472aca1b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6122380363611737213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6122380363611737215}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf8f1e89aca6b44dbf4f77d07ef37af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  countDown: 3
---- !u!114 &6122380363611737212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6122380363611737215}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b0118d5d1c0aa418835a7ce57aa123, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sludgeGoo: {fileID: 9097946386778531175, guid: d7661cab8e3d6794a907a86b2eae08ac, type: 3}
 --- !u!54 &6122380363611737204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -301,6 +265,60 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &6122380363611737203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6122380363611737215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f343aef618de5cb4b923cf50f92ba35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingState: {fileID: 270977214738848422}
+  currentState: {fileID: 0}
+--- !u!114 &270977214738848422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6122380363611737215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9cd72bb28f49894aac4a067468e6050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nearlyExplode: {fileID: 7653601613542386340}
+--- !u!114 &7653601613542386340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6122380363611737215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221dc295d5d979e4fac8664eb0db06e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countDown: 3
+  explodeState: {fileID: 5661840892398076725}
+--- !u!114 &5661840892398076725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6122380363611737215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f3f30d9557d934f9821ffb0ee242cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosivefragments: {fileID: 9097946386778531175, guid: d7661cab8e3d6794a907a86b2eae08ac, type: 3}
 --- !u!1001 &6122380362987132159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -357,17 +375,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4476723129528102388, guid: f3d8858291928524a88db59a102a3372, type: 3}
-      propertyPath: AlmostGooExplode
-      value: 
-      objectReference: {fileID: 6122380363611737213}
     - target: {fileID: 4499828062277935335, guid: f3d8858291928524a88db59a102a3372, type: 3}
       propertyPath: m_Name
       value: GooSmoke
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4476723129528102388, guid: f3d8858291928524a88db59a102a3372, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f3d8858291928524a88db59a102a3372, type: 3}
+--- !u!198 &5223215218238050840 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2056885065347139303, guid: f3d8858291928524a88db59a102a3372, type: 3}
+  m_PrefabInstance: {fileID: 6122380362987132159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7081522124898314368 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3941087670285827199, guid: f3d8858291928524a88db59a102a3372, type: 3}

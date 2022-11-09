@@ -8,16 +8,12 @@ namespace Oscar
 {
     public class ExplosiveIdleState : MonoBehaviour, IFlammable
     {
+        public MonoBehaviour nearlyExplode;
         //effected by fire so needs to respond to being hit by fire.
         public void SetOnFire()
         {
-            GetComponent<Oscar.StateManager>().ChangeState(GetComponent<ExplosiveNearlyExplodeState>());
+            GetComponent<Oscar.StateManager>().ChangeState(nearlyExplode);
         }
-
         
-        private void OnDisable()
-        {
-            
-        }
     }
 }

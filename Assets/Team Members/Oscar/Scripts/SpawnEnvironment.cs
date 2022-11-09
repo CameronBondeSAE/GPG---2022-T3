@@ -13,14 +13,7 @@ namespace Oscar
         private Vector3 prefabPosition;
         private GameObject CubeParent;
         private float perlinValue;
-
-        //public MapGenerator mapGenerator;
-        private void OnEnable()
-        {
-            // mapGenerator.SpawnCubes += SpawnPerlinWalls;
-        }
         
-
         public void SpawnPerlinWalls(Vector3 prefabPosition, GameObject CubeParent, float perlinValue)
         {
             GameObject newCube = Instantiate(perlinPrefab, prefabPosition, Quaternion.identity);
@@ -31,32 +24,32 @@ namespace Oscar
                 newCube.GetComponent<Renderer>().material.color = Color.red;
             }
         }
-
         public void SpawnTheEnvironment(Vector3 prefabPosition, int amount, float scale, GameObject borderParent)
         {
+            
             GameObject firstWall = Instantiate(borderPrefab,
-                new Vector3(0, prefabPosition.y, (amount / 2)), Quaternion.identity);
+                new Vector3(0, prefabPosition.y, (amount / 2)+.5f), Quaternion.identity);
             firstWall.name = "firstWall";
             firstWall.transform.localScale = new Vector3(1, prefabPosition.y * scale * 2, prefabPosition.z);
             firstWall.GetComponent<Renderer>().material.color = Color.black;
             firstWall.transform.SetParent(borderParent.transform);
 
             GameObject secondWall = Instantiate(borderPrefab,
-                new Vector3(prefabPosition.x - (amount / 2),prefabPosition.y,prefabPosition.z+1), Quaternion.identity);
+                new Vector3(prefabPosition.x - (amount / 2) + 1,prefabPosition.y,prefabPosition.z + 1.5f), Quaternion.identity);
             secondWall.name = "secondWall";
             secondWall.transform.localScale = new Vector3(prefabPosition.x,prefabPosition.y * scale * 2,1);
             secondWall.GetComponent<Renderer>().material.color = Color.black;
             secondWall.transform.SetParent(borderParent.transform);
 
             GameObject thirdWall = Instantiate(borderPrefab,
-                new Vector3(prefabPosition.x+1, prefabPosition.y, prefabPosition.z - (amount / 2)), Quaternion.identity);
+                new Vector3(prefabPosition.x + 1.5f, prefabPosition.y, prefabPosition.z - (amount / 2) + 1), Quaternion.identity);
             thirdWall.name = "thirdWall";
             thirdWall.transform.localScale = new Vector3(1, prefabPosition.y * scale * 2, prefabPosition.z);
             thirdWall.GetComponent<Renderer>().material.color = Color.black;
             thirdWall.transform.SetParent(borderParent.transform);
 
             GameObject fourthWall = Instantiate(borderPrefab,
-                new Vector3((amount / 2), prefabPosition.y, 0), Quaternion.identity);
+                new Vector3((amount / 2) + .5f, prefabPosition.y, 0), Quaternion.identity);
             fourthWall.name = "fourthWall";
             fourthWall.transform.localScale = new Vector3(prefabPosition.x, prefabPosition.y * scale * 2, 1);
             fourthWall.GetComponent<Renderer>().material.color = Color.black;

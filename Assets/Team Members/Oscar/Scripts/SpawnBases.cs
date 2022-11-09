@@ -14,12 +14,13 @@ namespace Oscar
         public GameObject Base;
         public float tempBaseDist;
 
+        //work on this
         public void SpawnTheBase(Vector3 prefabPosition, GameObject HQParent, float perlinValue)
         {
             if (perlinValue < .4f && prefabPosition.x > 20 && prefabPosition.z > 20)
             {
                 //minDist = 90 - (amount / 2);
-                //learn how to calculate distances between potential created object and the previously spawned one
+                //calculate distances between potential created object and the previously spawned one
                 tempBaseDist = Vector3.Distance(prefabPosition, prevBasePos);
 
                 //if the distance is less then the minimum distance set 
