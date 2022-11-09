@@ -6,8 +6,10 @@ namespace Oscar
 {
     public class ExplosiveNearlyExplodeState : MonoBehaviour
     {
-        public float countDown;
+        public Oscar.StateManager stateManager;
         public MonoBehaviour explodeState;
+
+        public float countDown;
         public event Action AlmostExplode;
         //used IEnumerator so it will start on start but will wait a few seconds before continuing.
         IEnumerator Start()
@@ -15,7 +17,7 @@ namespace Oscar
             AlmostExplode?.Invoke();
 
             yield return new WaitForSeconds(countDown);
-            GetComponent<Oscar.StateManager>().ChangeState(explodeState);
+            stateManager.ChangeState(explodeState);
         }
         
     }

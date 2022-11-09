@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9cd72bb28f49894aac4a067468e6050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateManager: {fileID: 8134697189783218653}
   nearlyExplode: {fileID: 86582184059768784}
 --- !u!114 &86582184059768784
 MonoBehaviour:
@@ -289,8 +290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221dc295d5d979e4fac8664eb0db06e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDown: 3
+  stateManager: {fileID: 8134697189783218653}
   explodeState: {fileID: 6661313131583358677}
+  countDown: 3
 --- !u!114 &6661313131583358677
 MonoBehaviour:
   m_ObjectHideFlags: 0

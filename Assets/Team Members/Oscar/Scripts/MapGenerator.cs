@@ -37,6 +37,7 @@ public class MapGenerator : MonoBehaviour
     private Vector3 prefabPosition;
     public int cubeSize = 1;
 
+    private float perlinValue;
     public void Start()
     {
         GameManager.singleton.OnGameStart += Spawner;
@@ -109,7 +110,7 @@ public class MapGenerator : MonoBehaviour
         { 
             for (int positionZ = 0; positionZ < amount; positionZ=positionZ+cubeSize)
             {
-                float perlinValue = Mathf.PerlinNoise((positionX * zoomX), (positionZ * zoomZ));
+                perlinValue = Mathf.PerlinNoise((positionX * zoomX), (positionZ * zoomZ));
                 
                 prefabPosition.x = positionX;
                 prefabPosition.y = perlinValue * scale;
@@ -123,11 +124,6 @@ public class MapGenerator : MonoBehaviour
                     }
                     else
                     {
-                        if (perlinValue < .4f && prefabPosition.x > 10 && prefabPosition.z > 10)
-                        {
-                            spawnBases.SpawnTheBase(prefabPosition, HQParent, perlinValue);
-                        }
-                        
                         spawnAI.SpawnAIInTheMaze(prefabPosition,AIParent, perlinValue);
                         spawnExplosives.SpawningTheExplosives(prefabPosition,BarrelParent, perlinValue);
                     }
@@ -135,6 +131,11 @@ public class MapGenerator : MonoBehaviour
                 else
                 {
                     spawnItems.SpawnTheItems(prefabPosition, ItemParent, perlinValue);
+                }
+                
+                if (perlinValue < .4f && prefabPosition.x > 20 && prefabPosition.z > 20)
+                {
+                    spawnBases.SpawnTheBase(prefabPosition, HQParent);
                 }
             }
         }
