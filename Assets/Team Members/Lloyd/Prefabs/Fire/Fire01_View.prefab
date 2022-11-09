@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8997907807820932228}
   - component: {fileID: 8997907807820932347}
   - component: {fileID: 4849118843617728788}
+  - component: {fileID: 2197393663990212616}
   m_Layer: 0
   m_Name: Fire01_View
   m_TagString: Untagged
@@ -119,3 +120,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraTransform: {fileID: 0}
+--- !u!114 &2197393663990212616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8997907807820932345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b557c5ec4666a8344b075e8cd99c79ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waitTime: 2.5

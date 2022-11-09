@@ -7,20 +7,10 @@ using UnityEngine;
 
 namespace Lloyd
 {
-    public class DoorModel : MonoBehaviour, IFlammable
+    public class DoorDoubleModel : MonoBehaviour, IFlammable
     {
-        [SerializeField]
-        enum DoorType
-        {
-            DoorSingle,
-            DoorDouble,
-            DoorAlien
-        };
-
-        private DoorType _myType;
-        
         //what door am I globally?
-        [SerializeField] private int _mainDoorInt=1;
+        [SerializeField] private int _mainDoorInt;
         
         //State Manager
         private MonoBehaviour _currentState;
@@ -47,16 +37,9 @@ namespace Lloyd
         [SerializeField] private float _speed;
 
         [SerializeField] private int _timeMoving;
-
-        //Door Wing GameObjects
-        [SerializeField] private float _doorWingSize;
-
-        [SerializeField] private float _numDoors;
-        public List<GameObject> _doorList = new List<GameObject>();
-
-        public GameObject _doorWingprefab;
-        private GameObject _doorWing01;
-        private GameObject _doorWing02;
+        
+        public GameObject _doorWing01;
+        public GameObject _doorWing02;
 
         private DoorComponents _doorComp;
         private DoorComponents _doorComp01;
@@ -105,38 +88,20 @@ namespace Lloyd
 
         private void SpawnDoors()
         {
-            _doorWingPos = new Vector3(transform.position.x - (_doorWingSize), transform.position.y,
-                transform.position.z);
-
-            _doorWing01 = Instantiate(_doorWingprefab, _doorWingPos, Quaternion.Euler(-90, 0, 0));
-
-            _doorWing01.name = "Door01";
-
             _doorComp01 = _doorWing01.GetComponent<DoorComponents>();
             
             _doorComp01.SetDoorComps(_mainDoorInt, 1, _HP, _fireDamage, _speed);
-
-            _doorWing01.transform.SetParent(this.transform,false);
-
-            _doorWingPos = new Vector3(transform.position.x + (_doorWingSize), transform.position.y,
-                transform.position.z);
-
-            _doorWing02 = Instantiate(_doorWingprefab, _doorWingPos, Quaternion.Euler(-90, 0, 0));
-
-            _doorWing02.name = "Door02";
             
             _doorComp02 = _doorWing02.GetComponent<DoorComponents>();
 
             _doorComp02.SetDoorComps(_mainDoorInt, 2, _HP, _fireDamage, _speed);
-            
-            _doorWing02.transform.SetParent(this.transform, false);
         }
 
         public void Interact()
         {
             if (_isActive)
             {
-                EventManager.singleton.DoorInteractedFunction();
+                _doorEvent.DoorInteractedFunction();
 
                 _isOpen = !_isOpen;
                 
@@ -156,27 +121,27 @@ namespace Lloyd
         {
             if (isBurning)
             {
-                EventManager.singleton.ChangeHealthFunction(-_fireDamage);
+                _doorEvent.ChangeHealthFunction(-_fireDamage);
             }
         }
 
         public void SetOnFire()
         {
-            EventManager.singleton.BurningEventFunction();
+            _doorEvent.BurningEventFunction();
             isBurning = true;
         }
 
         public void Burnt()
         {
-            EventManager.singleton.BurntEventFunction();
+            _doorEvent.BurntEventFunction();
             _HP = 0;
         }
         
         private void OnDisable()
         {
-            EventManager.singleton.ChangeHealthEvent -= ChangeHP;
-            EventManager.singleton.DoorIdleEvent -= DoorIdle;
-            EventManager.singleton.DoorMoveEvent -= DoorMove;
+            _doorEvent.ChangeHealthEvent -= ChangeHP;
+            _doorEvent.DoorIdleEvent -= DoorIdle;
+            _doorEvent.DoorMoveEvent -= DoorMove;
         }
 
         private void ChangeHP(float amount)
