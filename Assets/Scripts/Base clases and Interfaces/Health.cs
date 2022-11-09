@@ -6,6 +6,12 @@ namespace Marcus
 {
     public class Health : MonoBehaviour
     {
-
+        public delegate void Damaged(float damageAmount);
+        public event Damaged DamageTaken;
+        
+        void Damage(float incDamage)
+        {
+            DamageTaken?.Invoke(incDamage);
+        }
     }
 }
