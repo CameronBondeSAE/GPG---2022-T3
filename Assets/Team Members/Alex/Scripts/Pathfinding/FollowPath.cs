@@ -37,7 +37,7 @@ namespace Alex
 
         void PathFound()
         {
-            Debug.Log("Pathable " + astar.isPathable[0]);
+            //Debug.Log("Pathable " + astar.isPathable[0]);
             turntowards.targetPosition = astar.isPathable[0].worldPosition;
         }
 

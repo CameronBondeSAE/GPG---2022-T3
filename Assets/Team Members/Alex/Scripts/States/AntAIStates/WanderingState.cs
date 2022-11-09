@@ -1,18 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Alex;
 using UnityEngine;
 
-public class WanderingState : MonoBehaviour
+namespace Alex
 {
-    // Start is called before the first frame update
-    void Start()
+    public class WanderingState : AntAIState
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public Wonder wonder;
+
+        // Reference to my main GameObject, so I can access all the normal code I have in there.
+        public GameObject owner;
+
+        public override void Create(GameObject aGameObject)
+        {
+            base.Create(aGameObject);
+
+            owner = aGameObject;
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
+            wonder.enabled = true;
+            Finish();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            wonder.enabled = false;
+            Finish();
+        }
     }
 }

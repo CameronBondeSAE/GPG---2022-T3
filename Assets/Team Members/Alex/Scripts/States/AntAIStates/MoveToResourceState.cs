@@ -32,13 +32,15 @@ namespace Alex
             rb = aGameObject.GetComponent<Rigidbody>();
             followPath = aGameObject.GetComponent<FollowPath>();
             renderer = aGameObject.GetComponent<Renderer>();
+            turnTowards = aGameObject.GetComponent<TurnTowards>();
         }
         public override void Enter()
         {
             base.Enter();
             controller.renderer.material.shader = eleShader;
            //renderer.material.shader = eleShader;
-            
+      
+            turnTowards.enabled = true;
             followPath.enabled = true;
             
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
@@ -54,15 +56,13 @@ namespace Alex
         private void FollowPathOnPathEndReachedEvent()
         {
             followPath.enabled = false;
-            
+            turnTowards.enabled = false;
             Finish();
         }
 
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
-
-            
         }
         
         public override void Exit()

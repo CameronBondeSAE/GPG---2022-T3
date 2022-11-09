@@ -29,7 +29,9 @@ namespace Alex
                 Inventory inventory = collision.gameObject.GetComponent<Inventory>();
                 inventory.resources += 1;
                 Vision vision = collision.gameObject.GetComponent<Vision>();
+                
                 vision.resourcesInSight.Remove(transform);
+                
                 Destroy(gameObject);
             }
         }

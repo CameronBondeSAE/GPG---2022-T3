@@ -62,6 +62,10 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   turnSpeed: 0
   vision: {fileID: 0}
+  controller: {fileID: 0}
+  wonder: {fileID: 0}
+  astar: {fileID: 0}
+  followPath: {fileID: 0}
 --- !u!1 &1794423253392461865
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +82,6 @@ GameObject:
   - component: {fileID: 1794423253392461856}
   - component: {fileID: 132510624617632370}
   - component: {fileID: 1804444449802422546}
-  - component: {fileID: 3167607737926146247}
   - component: {fileID: 3196209236514557478}
   - component: {fileID: 571341911324433146}
   - component: {fileID: 5404456835436071769}
@@ -178,7 +181,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: b501533e8223d4240b510d0556062039, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.56
+  m_Radius: 0.82
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -226,24 +229,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perlinNoise: 0
   offset: 10
-  turnForce: 20
+  turnForce: 10
 --- !u!114 &1804444449802422546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efeaf7902444d9943ab76c1ac377d497, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTransform: {fileID: 0}
-  targetPosition: {x: 20, y: 0, z: 20}
-  turnSpeed: 10
-  vision: {fileID: -478265464831815864}
---- !u!114 &3167607737926146247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,12 +239,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1794423253392461865}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78eadc23ccc38e6468f2864b9e266849, type: 3}
+  m_Script: {fileID: 11500000, guid: efeaf7902444d9943ab76c1ac377d497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyAmount: 100
-  energyMax: 100
-  energyMin: 0
+  targetTransform: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  turnSpeed: 10
+  vision: {fileID: -478265464831815864}
+  controller: {fileID: 1387461434300845896}
+  wonder: {fileID: 132510624617632370}
+  astar: {fileID: 5772701356384670382}
+  followPath: {fileID: 8175690127105362018}
 --- !u!114 &3196209236514557478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,9 +350,10 @@ MonoBehaviour:
   inventory: {fileID: 5602566739967719583}
   turnSpeed: 0
   followingPath: 0
-  aStar: {fileID: 0}
+  aStar: {fileID: 5772701356384670382}
   renderer: {fileID: 1794423253392461861}
   defaultShader: {fileID: -6465566751694194690, guid: 4ac1cbcbfa784624e90eb2a6087c373e, type: 3}
+  turnTowards: {fileID: 1804444449802422546}
 --- !u!114 &-7807660158720829330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +369,7 @@ MonoBehaviour:
   neighbours: []
   layerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!114 &8175690127105362018
 MonoBehaviour:
   m_ObjectHideFlags: 0

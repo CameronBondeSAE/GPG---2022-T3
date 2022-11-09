@@ -15,11 +15,9 @@ namespace Alex
 
 
 
-
-
         private void FixedUpdate()
         {
-            enemyInSight.Clear();
+            //enemyInSight.Clear();
             //resourcesInSight.Clear();
             for (int i = -rays; i < rays; i++)
             {
