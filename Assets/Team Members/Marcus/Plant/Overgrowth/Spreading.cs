@@ -22,7 +22,7 @@ public class Spreading : MonoBehaviour, IFlammable
     private float spreadDistance;
     private Vector3 spreadDirection;
 
-    private float deaathTimer;
+    private float deathTimer;
     
     // Start is called before the first frame update
     void Start()
@@ -34,7 +34,7 @@ public class Spreading : MonoBehaviour, IFlammable
     void RandomiseTimer()
     {
         spreadTimer = Random.Range(2f, 5f);
-        deaathTimer = Random.Range(4f, 7f);
+        deathTimer = Random.Range(4f, 7f);
     }
 
     // Update is called once per frame
@@ -62,13 +62,13 @@ public class Spreading : MonoBehaviour, IFlammable
 
         if (matured)
         {
-            deaathTimer -= Time.deltaTime;
+            deathTimer -= Time.deltaTime;
 
-            if (deaathTimer <= 0)
+            if (deathTimer <= 0)
             {
-                int rEvoChance = Random.Range(0, 10);
+                int rEvoChance = Random.Range(0, 5);
                 
-                if (Physics.OverlapSphere(transform.position, maxSize.x, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 /*&& rEvoChance == 1*/)
+                if (Physics.OverlapSphere(transform.position, maxSize.x, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
                 {
                     //Destroy and spawn manEater prefab
                     Instantiate(manEater, transform.position, Quaternion.identity);
