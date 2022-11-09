@@ -8,10 +8,12 @@ public class Checkpoint : NetworkBehaviour
 {
     //called when item placed, maybe player listens to show score?
     public event Action itemPlacedEvent;
-    
+    public NetworkVariable<Color> colorRed;
+
     private void Start()
     {
-        GetComponent<Renderer>().material.color = Color.red;
+        colorRed = new NetworkVariable<Color>(Color.red);
+        GetComponent<Renderer>().material.color = colorRed.Value;
     }
 
     private void OnTriggerEnter(Collider other)
