@@ -15,11 +15,31 @@ public class GameTimer : NetworkBehaviour
     {
         gameStarted = true;
     }
+    
+
     void Update()
     {
         /*if (IsServer)
         {*/
-            if (time > 0  && gameStarted)
+        if (IsServer)
+        {
+            if (time > 0 && gameStarted)
+            {
+                if (time < 11)
+                {
+                    RequestTimerColorChangeServerRPC();
+                    //timeText.color = new Color(255, 0, 0,255);
+                }
+
+                CountdownTimerServerRPC();
+            }
+            else
+            {
+                time = 0; 
+                GameManager.singleton.InvokeOnGameEnd();
+            }
+        }
+            /*if (time > 0  && gameStarted)
             {
                 if (time < 11)
                 {
@@ -33,12 +53,23 @@ public class GameTimer : NetworkBehaviour
             {
                 time = 0; 
                 GameManager.singleton.InvokeOnGameEnd();
-            }
+            }*/
             
         
         //}
     }
 
+    [ServerRpc]
+    void CountdownTimerServerRPC()
+    {
+        if (IsServer)
+        {
+            time -= Time.deltaTime;
+            TimeToDisplayServerRPC(time);
+        }
+    }
+    
+    
     [ServerRpc(RequireOwnership = false)]
     void TimeToDisplayServerRPC(float timeToDisplay)
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using Cinemachine;
+using Cinemachine;
 using Kevin;
 using Unity.Netcode;
 using Unity.VisualScripting;
@@ -37,6 +37,8 @@ public class GameManager : NetworkBehaviour
 	{
 		if (IsServer)
 		{
+			GameObject go = Instantiate(countdownTimer);
+			go.GetComponent<NetworkObject>().Spawn();
 			InvokeOnGameStartClientRPC();
 		}
 	}
@@ -44,7 +46,7 @@ public class GameManager : NetworkBehaviour
 	[ClientRpc]
 	private void InvokeOnGameStartClientRPC()
 	{
-		countdownTimer.SetActive(true);
+		//countdownTimer.SetActive(true);
 		Debug.Log("Game Started!!!");
 		OnGameStart?.Invoke();
 	}
@@ -53,11 +55,11 @@ public class GameManager : NetworkBehaviour
 	private void SetCameraTargetClientRpc()
 	{
 		cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
-		//virtualCameraOne.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
-		//virtualCameraOne.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		
-		//virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
-		//virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 	}
 
 	public void InvokeOnGameEnd()
