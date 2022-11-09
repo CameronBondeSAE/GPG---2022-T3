@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Marcus
 {
-    public class MatureState : MonoBehaviour
+    public class MatureState : MonoBehaviour, IFlammable
     {
         public MonoBehaviour dyingState;
         
@@ -45,6 +45,11 @@ namespace Marcus
                     GetComponent<StateManager>().ChangeState(dyingState);
                 }
             }
+        }
+
+        public void SetOnFire()
+        {
+            print("MYAH!!! am old ded ;-;");
         }
     }
 }
