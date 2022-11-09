@@ -109,7 +109,7 @@ public class GameManager : NetworkBehaviour
     void Awake()
 	{
 		singleton = this;
-	}
+    }
 
     private void Start()
     {
