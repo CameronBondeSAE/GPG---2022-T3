@@ -12,7 +12,7 @@ namespace Marcus
         public int spreadLimit;
         private int spreadNumber;
         
-        private Vector3 maxSize; //Needs to become float
+        private float maxSize;
         
         private float spreadTimer;
         private float spreadDistance;
@@ -32,7 +32,7 @@ namespace Marcus
         // Update is called once per frame
         void Update()
         {
-            if (transform.localScale.magnitude >= maxSize.magnitude)
+            if (transform.localScale.magnitude >= maxSize)
             {
                 spreadTimer -= Time.deltaTime;
 
@@ -55,7 +55,7 @@ namespace Marcus
             Vector3 pos = transform.position + direction * distance;
         
             //grow new plants
-            if (Physics.OverlapSphere(pos, maxSize.x/2, spreadLayers, QueryTriggerInteraction.Collide).Length == 0)
+            if (Physics.OverlapSphere(pos, maxSize/2, spreadLayers, QueryTriggerInteraction.Collide).Length == 0)
             {
                 Instantiate(seedling, pos, Quaternion.identity);
             }
