@@ -49,7 +49,7 @@ namespace Lloyd
         [SerializeField] private float _maxFuel;
         [SerializeField] private float _fuel;
 
-        private bool _equipped;
+        private bool _equipped=true;
 
         private Rigidbody _rb;
 

@@ -24,9 +24,6 @@ namespace Lloyd
         [Header("Terrain Object")] public GameObject cubePrefab;
         public GameObject wallPrefab;
 
-        [Header("Player Prefab")] [SerializeField]
-        public GameObject _playerObj;
-
         public GameObject _barrelObj;
         [SerializeField] private float numBarrels;
 
@@ -60,7 +57,6 @@ namespace Lloyd
         private Vector3 prevAlienPos;
 
         private GameObject terrainParent;
-
         private GameObject itemParent;
         private GameObject environmentParent;
         private GameObject HQParent;
@@ -123,7 +119,7 @@ namespace Lloyd
                         GameObject cube = Instantiate(wallPrefab, cubePos, Quaternion.identity) as GameObject;
                         cube.transform.SetParent(terrainParent.transform);
 
-                        cube.transform.localScale = new Vector3(cubeScale, cubeScale, cubeScale);
+                            //cube.transform.localScale = new Vector3(cubeScale, cubeScale, cubeScale);
 
 
                         cubeRend = cube.GetComponent<Renderer>();
@@ -258,8 +254,6 @@ namespace Lloyd
             GameObject HumanHQprefab = Instantiate(HumanHQ,
                 new Vector3(centrePos.x, (centrePos.y + cubeScale) / 2, centrePos.z), Quaternion.identity);
             HumanHQprefab.transform.SetParent(HQParent.transform);
-
-            Instantiate(_playerObj, centrePos, Quaternion.identity);
         }
 
         private void SpawnAlienHQPos()
