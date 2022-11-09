@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Marcus
 {
-    public class GrowthState : MonoBehaviour
+    public class GrowthState : MonoBehaviour, IFlammable
     {
         public MonoBehaviour matureState;
         
@@ -67,6 +67,11 @@ namespace Marcus
             }
             spreadNumber++;
             RandomiseTimer();
+        }
+
+        public void SetOnFire()
+        {
+            print("MYAH!!! am die T^T");
         }
     }   
 }
