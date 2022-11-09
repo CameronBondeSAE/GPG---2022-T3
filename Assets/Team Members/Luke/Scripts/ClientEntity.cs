@@ -4,36 +4,40 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
-public class ClientEntity : NetworkBehaviour
+namespace Luke
 {
-    public string playerName;
-
-    private PlayerController _playerController;
-    private GameObject controlledPlayer;
-
-    public GameObject ControlledPlayer
+    public class ClientEntity : NetworkBehaviour
     {
-        get => controlledPlayer;
-        set
+        public string playerName;
+
+        private PlayerController _playerController;
+        private GameObject controlledPlayer;
+
+        public GameObject ControlledPlayer
         {
-            controlledPlayer = value;
-            _playerController.player = value;
-            _playerController.playerTransform = value.transform;
-            // _playerController.playerControls.Player.Enable();
+            get => controlledPlayer;
+            set
+            {
+                controlledPlayer = value;
+                _playerController.player = value;
+                _playerController.playerTransform = value.transform;
+                // _playerController.playerControls.Player.Enable();
+            }
         }
-    }
 
-    public void OnEnable()
-    {
-        _playerController = GetComponent<PlayerController>();
-    }
-
-    [ClientRpc]
-    public void AssignAvatarClientRpc(ulong avatarNetworkObjectId)
-    {
-        foreach (NetworkObject clientOwnedObject in NetworkManager.LocalClient.OwnedObjects)
+        public void OnEnable()
         {
-            if (clientOwnedObject.NetworkObjectId == avatarNetworkObjectId) ControlledPlayer = clientOwnedObject.gameObject;
+            _playerController = GetComponent<PlayerController>();
+        }
+
+        [ClientRpc]
+        public void AssignAvatarClientRpc(ulong avatarNetworkObjectId)
+        {
+            foreach (NetworkObject clientOwnedObject in NetworkManager.LocalClient.OwnedObjects)
+            {
+                if (clientOwnedObject.NetworkObjectId == avatarNetworkObjectId)
+                    ControlledPlayer = clientOwnedObject.gameObject;
+            }
         }
     }
 }
