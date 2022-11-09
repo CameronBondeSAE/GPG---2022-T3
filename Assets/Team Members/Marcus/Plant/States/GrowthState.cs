@@ -37,8 +37,6 @@ namespace Marcus
         {
             age = Mathf.MoveTowards(age, maxSize, 0.002f);
 
-            transform.localScale = Vector3.one * age;
-            
             if (age >= maxSize)
             {
                 spreadTimer -= Time.deltaTime;
