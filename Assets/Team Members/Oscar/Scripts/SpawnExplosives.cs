@@ -10,20 +10,30 @@ namespace Oscar
     public class SpawnExplosives : MonoBehaviour
     {
         public GameObject[] explosive;
+
+        private float boomInt = .4f;
         
+        public int boomAmount = 0;
+        public int waitAmount = 0;
+
         public void SpawningTheExplosives(Vector3 prefabPosition, GameObject explosiveParent, float perlinValue)
-        {
-            if (perlinValue < .5)
+        {            
+            //create spawn location with new perlin then 
+            float explosivesPerlin = Mathf.PerlinNoise((boomInt), (boomInt));
+
+            //use new perlin to spawn explosives
+            if (explosivesPerlin < .4 && boomAmount <= 50 && waitAmount >= 100)
             {
+                GameObject spawnedItem = Instantiate(explosive[Random.Range(0,2)], prefabPosition, quaternion.identity);
                 
-                //use new perlin to create clusters of barrels
-                int SpawmTheBarrels = Random.Range(1, 50);
-                if (SpawmTheBarrels == 1)
-                {
-                    GameObject spawnedItem = Instantiate(explosive[Random.Range(0,2)], prefabPosition, quaternion.identity);
-                    
-                    spawnedItem.transform.SetParent(explosiveParent.transform);
-                }
+                spawnedItem.transform.SetParent(explosiveParent.transform);
+
+                boomAmount++;
+                waitAmount = 0;
+            }
+            else
+            {
+                waitAmount++;
             }
             
         }
