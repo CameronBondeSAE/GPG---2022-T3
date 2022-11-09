@@ -1,11 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Marcus;
 using UnityEngine;
 
 public class ManEater : MonoBehaviour, IFlammable
 {
-    public Collider[] targets;
+    public ColissionManager colissionManager;
     
+    private void OnEnable()
+    {
+        colissionManager.OnTriggerEnterEvent += EatThing;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +22,14 @@ public class ManEater : MonoBehaviour, IFlammable
     // Update is called once per frame
     void Update()
     {
-        targets = Physics.OverlapSphere(transform.position, 2);
-        foreach (Collider item in targets)
+        
+    }
+
+    void EatThing(Collider other)
+    {
+        if (other.GetComponent<MarcusInput>() != null)
         {
-            if (item.GetComponent<MarcusInput>())
-            {
-                print("Get nommed");
-            }
+            print("Get Nommed");
         }
     }
     

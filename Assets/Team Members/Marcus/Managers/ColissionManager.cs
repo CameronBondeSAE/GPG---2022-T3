@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,18 @@ namespace Marcus
 {
     public class ColissionManager : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        public event Action<Collision> OnCollisionEnterEvent;
+        public event Action<Collider> OnTriggerEnterEvent;
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            OnCollisionEnterEvent?.Invoke(collision);
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnTriggerEnter(Collider other)
         {
-
+            OnTriggerEnterEvent?.Invoke(other);
         }
+
     }
 }

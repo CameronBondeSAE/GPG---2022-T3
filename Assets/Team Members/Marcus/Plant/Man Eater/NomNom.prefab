@@ -93,6 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2749822692284270998}
   - component: {fileID: 3147280091634773374}
+  - component: {fileID: 2115377991730240438}
   m_Layer: 12
   m_Name: EatingRange
   m_TagString: Untagged
@@ -128,6 +129,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2115377991730240438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324746840436421323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1529f2949554f499352db46032bf1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7557588422353277080
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,4 +202,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0572ce1988dfafc41a0297e645f4abb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets: []
+  colissionManager: {fileID: 2115377991730240438}
