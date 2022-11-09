@@ -47,6 +47,8 @@ public class GameManager : NetworkBehaviour
 	private void InvokeOnGameStartClientRPC()
 	{
 		//countdownTimer.SetActive(true);
+		GameObject go = Instantiate(countdownTimer);
+		go.GetComponent<NetworkObject>().Spawn();
 		Debug.Log("Game Started!!!");
 		OnGameStart?.Invoke();
 	}
@@ -109,7 +111,7 @@ public class GameManager : NetworkBehaviour
     void Awake()
 	{
 		singleton = this;
-	}
+    }
 
     private void Start()
     {

@@ -15,6 +15,8 @@ namespace Alex
         Controller controller;
         Renderer renderer;
         public Shader agroShader;
+        FollowPath followPath;
+        TurnTowards turnTowards;
 
         public override void Create(GameObject aGameObject)
         {
@@ -25,14 +27,36 @@ namespace Alex
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
             renderer = aGameObject.GetComponent<Renderer>();
+            turnTowards = aGameObject.GetComponent<TurnTowards>();
         }
         public override void Enter()
         {
             base.Enter();
             controller.renderer.material.shader = agroShader;
             Finish();
+
+            turnTowards.enabled = true;
+            followPath.enabled = true;
+            
+            
+            followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
+            if (vision.enemyInSight.Count == 0 && vision.enemyInSight != null) return;
+            if (vision.enemyInSight.Count > 0)
+            {
+                followPath.ActivatePathToTarget(vision.enemyInSight[0].transform.position);
+            }
+
+           
         }
 
+        private void FollowPathOnPathEndReachedEvent()
+        {
+            followPath.enabled = false;
+            turnTowards.enabled = false;
+            Finish();
+        }
+
+        /*
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
@@ -45,11 +69,13 @@ namespace Alex
                 Finish();
             }
         }
-        
+        */
         public override void Exit()
         {
             base.Exit();
             controller.renderer.material.shader = controller.defaultShader;
+            followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
+            
         }
     }
 }

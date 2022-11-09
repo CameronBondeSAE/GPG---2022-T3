@@ -29,6 +29,7 @@ public class Controller : MonoBehaviour
     public AStar aStar;
     public Renderer renderer;
     public Shader defaultShader;
+    public TurnTowards turnTowards;
 
     public void Awake()
     {
@@ -36,12 +37,26 @@ public class Controller : MonoBehaviour
         vision = FindObjectOfType<Vision>();
         enemyTargets = FindObjectsOfType<Target>().ToList();
         dropOffPoints = FindObjectsOfType<DropOffPoint>().ToList();
+        turnTowards.enabled = false;
+
     }
 
     public void FixedUpdate()
     {
         enemies = vision.enemyInSight;
         resourceTargets = vision.resourcesInSight;
+        
+        for(var i = resourceTargets.Count - 1; i > -1; i--)
+        {
+            if (resourceTargets[i] == null)
+                resourceTargets.RemoveAt(i);
+        }
+        
+        for(var i = enemies.Count - 1; i > -1; i--)
+        {
+            if (enemies[i] == null)
+                enemies.RemoveAt(i);
+        }
     }
 
     public bool CanSeeEnemy()

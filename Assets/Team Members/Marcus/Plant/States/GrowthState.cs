@@ -6,13 +6,16 @@ namespace Marcus
 {
     public class GrowthState : MonoBehaviour
     {
+        public MonoBehaviour matureState;
+        
         public GameObject seedling;
         public LayerMask spreadLayers;
         
         public int spreadLimit;
-        private int spreadNumber;
+        public int spreadNumber;
         
-        private float maxSize;
+        public float maxSize;
+        public float age;
         
         private float spreadTimer;
         private float spreadDistance;
@@ -32,7 +35,9 @@ namespace Marcus
         // Update is called once per frame
         void Update()
         {
-            if (transform.localScale.magnitude >= maxSize)
+            age = Mathf.MoveTowards(age, maxSize, 0.002f);
+
+            if (age >= maxSize)
             {
                 spreadTimer -= Time.deltaTime;
 
@@ -45,7 +50,8 @@ namespace Marcus
                 }
                 else if (spreadNumber == spreadLimit)
                 {
-                    //Change to Mature State
+                    //Change to Mature state
+                    GetComponent<StateManager>().ChangeState(matureState);
                 }
             }
         }
