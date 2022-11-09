@@ -10781,18 +10781,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: spreadLimit
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: layers.m_Bits
-      value: 2048
-      objectReference: {fileID: 0}
     - target: {fileID: 4137073510955222978, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
       propertyPath: m_Name
       value: Overgrowth
@@ -10840,10 +10828,6 @@ PrefabInstance:
     - target: {fileID: 6379728519353468977, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6379728519353468977, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -34890,7 +34874,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh39690
+  m_Name: pb_Mesh51496
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

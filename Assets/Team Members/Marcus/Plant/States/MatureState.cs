@@ -6,6 +6,8 @@ namespace Marcus
 {
     public class MatureState : MonoBehaviour
     {
+        public MonoBehaviour dyingState;
+        
         public GameObject manEater;
         public LayerMask evolutionLayer;
     
@@ -37,10 +39,11 @@ namespace Marcus
                     Instantiate(manEater, transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
-                /*else
+                else
                 {
                     //Change to dying State
-                }*/
+                    GetComponent<StateManager>().ChangeState(dyingState);
+                }
             }
         }
     }

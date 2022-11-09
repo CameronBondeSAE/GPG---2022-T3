@@ -133,7 +133,7 @@ Transform:
   m_Children:
   - {fileID: 6968536774408021869}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-3726067801277088723
 MonoBehaviour:
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4137073510955222978}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96d1a9d2ccf0f5f47a8b20de23c6fc24, type: 3}
   m_Name: 
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4137073510955222978}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3766e811e6668ed48b7321111df73674, type: 3}
   m_Name: 
@@ -211,11 +211,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cfd995f60baf94fb8a547d51983103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matureState: {fileID: -2488204498220542135}
   seedling: {fileID: 3466463561830862670, guid: 45de6a249c85be344bb5285f3f01ee35, type: 3}
   spreadLayers:
     serializedVersion: 2
     m_Bits: 6144
   spreadLimit: 12
+  spreadNumber: 0
+  maxSize: 1
+  age: 0
 --- !u!114 &-2488204498220542135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7580c9da1fae0f64caf5754bd63b21ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dyingState: {fileID: 6026247607994705170}
   manEater: {fileID: 7557588422353277080, guid: 13bdd9c06130f0940898ebab53dd8e3a, type: 3}
   evolutionLayer:
     serializedVersion: 2
