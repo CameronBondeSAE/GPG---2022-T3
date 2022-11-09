@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8632995031716236647}
   - component: {fileID: 717600289217134444}
   - component: {fileID: 4194513743047498130}
+  - component: {fileID: -685920881112126037}
   m_Layer: 0
   m_Name: Map Generator
   m_TagString: Untagged
@@ -52,7 +53,8 @@ MonoBehaviour:
   spawnEnvironment: {fileID: 717600289217134444}
   spawnExplosives: {fileID: 4194513743047498130}
   spawnAI: {fileID: 3411614321170409340}
-  amount: 50
+  spawnItems: {fileID: -685920881112126037}
+  amount: 75
   randomMap: 0
   cubeSize: 1
 --- !u!114 &3411614321170409340
@@ -98,7 +100,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   borderPrefab: {fileID: 6660555670414354313, guid: bb2f4f3f7c71b4049a14a754c638e983, type: 3}
   perlinPrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
-  mapGenerator: {fileID: 0}
 --- !u!114 &4194513743047498130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,4 +115,16 @@ MonoBehaviour:
   explosive:
   - {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
   - {fileID: 6122380363611737215, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
-  mapGenerator: {fileID: 0}
+--- !u!114 &-685920881112126037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530932041577439141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef5d3a0e07c27d419f4a8d00d830d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 3466463561830862670, guid: 45de6a249c85be344bb5285f3f01ee35, type: 3}

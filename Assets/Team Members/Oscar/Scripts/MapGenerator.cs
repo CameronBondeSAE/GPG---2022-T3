@@ -11,6 +11,7 @@ public class MapGenerator : MonoBehaviour
     public Oscar.SpawnEnvironment spawnEnvironment;
     public Oscar.SpawnExplosives spawnExplosives;
     public Oscar.SpawnAI spawnAI;
+    public Oscar.SpawnItems spawnItems;
     
     //all the spawned object parents, and making them fit nicely in the hierarchy
     GameObject CubeParent; 
@@ -19,6 +20,7 @@ public class MapGenerator : MonoBehaviour
     GameObject borderParent;
     GameObject BaseParent;
     GameObject HQParent;
+    GameObject ItemParent;
     
     //Perlin noise values and required elements to spawn the maze.
     public int amount;
@@ -37,7 +39,6 @@ public class MapGenerator : MonoBehaviour
 
     public void Start()
     {
-        
         GameManager.singleton.OnGameStart += Spawner;
         GameManager.singleton.OnGameEnd += DeleteMap;
         
@@ -46,20 +47,21 @@ public class MapGenerator : MonoBehaviour
         AIParent = new GameObject("AIParent");
         borderParent = new GameObject("borderParent");
         HQParent = new GameObject("HQParent");
+        ItemParent = new GameObject("itemParent");
         
         if (randomMap == true)
         {
             //randoms
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            //spawnTerrain(zoomX,zoomZ);
+            spawnTerrain(zoomX,zoomZ);
         }
         else if (randomMap == false)
         {
             //standard averages
             zoomX = 0.15f;
             zoomZ = 0.15f;
-            //spawnTerrain(zoomX,zoomZ);
+            spawnTerrain(zoomX,zoomZ);
         }
     }
 
@@ -70,12 +72,14 @@ public class MapGenerator : MonoBehaviour
         Destroy(AIParent);
         Destroy(borderParent);
         Destroy(HQParent);
+        Destroy(ItemParent);
         
         CubeParent = new GameObject("CubeParent");
         BarrelParent = new GameObject("ItemParent");
         AIParent = new GameObject("AIParent");
         borderParent = new GameObject("borderParent");
         HQParent = new GameObject("HQParent");
+        ItemParent = new GameObject("itemParent");
 
         //reset the values so bases will respawn
         spawnBases.HQAmount = 0;
@@ -96,10 +100,6 @@ public class MapGenerator : MonoBehaviour
             spawnTerrain(zoomX, zoomZ);
         }
     }
-    public event Action SpawnCubes;
-    public event Action SpawnBases;
-    public event Action SpawnAI;
-    public event Action SpawnExplosives;
 
     public void spawnTerrain(float zoomX, float zoomZ)
     {
@@ -120,28 +120,26 @@ public class MapGenerator : MonoBehaviour
                     if (perlinValue > .5)
                     {
                         spawnEnvironment.SpawnPerlinWalls(prefabPosition, CubeParent, perlinValue);
-                        // SpawnCubes?.Invoke(prefabPosition, CubeParent, perlinValue);
                     }
                     else
                     {
-                        if (perlinValue < .4f && prefabPosition.x > 20 && prefabPosition.z > 20)
+                        if (perlinValue < .4f && prefabPosition.x > 10 && prefabPosition.z > 10)
                         {
                             spawnBases.SpawnTheBase(prefabPosition, HQParent, perlinValue);
-                            // SpawnBases?.Invoke(prefabPosition, HQParent, perlinValue);
                         }
                         
                         spawnAI.SpawnAIInTheMaze(prefabPosition,AIParent, perlinValue);
-                        // SpawnAI?.Invoke(prefabPosition,AIParent, perlinValue);
                         spawnExplosives.SpawningTheExplosives(prefabPosition,BarrelParent, perlinValue);
-                        // SpawnExplosives?.Invoke(prefabPosition,BarrelParent, perlinValue);
                     }
+                }
+                else
+                {
+                    spawnItems.SpawnTheItems(prefabPosition, ItemParent, perlinValue);
                 }
             }
         }
-        
         spawnEnvironment.SpawnTheEnvironment(prefabPosition, amount, scale, borderParent);
     }
-    
     
     private void DeleteMap()
     {
@@ -150,17 +148,18 @@ public class MapGenerator : MonoBehaviour
         Destroy(AIParent);
         Destroy(borderParent);
         Destroy(HQParent);
+        Destroy(ItemParent);
         
         CubeParent = new GameObject("CubeParent");
         BarrelParent = new GameObject("ItemParent");
         AIParent = new GameObject("AIParent");
         borderParent = new GameObject("borderParent");
         HQParent = new GameObject("HQParent");
+        ItemParent = new GameObject("itemParent");
+
         
         //reset values so bases can respawn
         spawnBases.HQAmount = 0;
         spawnBases.tempBaseDist = 0;
     }
 }
-
-    

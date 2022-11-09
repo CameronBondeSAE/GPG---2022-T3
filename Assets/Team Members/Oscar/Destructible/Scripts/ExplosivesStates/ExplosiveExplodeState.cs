@@ -6,13 +6,11 @@ namespace Oscar
     public class ExplosiveExplodeState : MonoBehaviour
     {
         public GameObject explosivefragments;
-
-        // Start is called before the first frame update
-        void Start()
+        
+        void OnEnable()
         {
-            //play particle system
-            
-            //spawn the fragments of the explosives remains
+            GetComponent<ExplosiveRaycast>().ExplosionRaycast();
+
             GameObject brokenFragments = Instantiate(explosivefragments, 
                 transform.position, quaternion.identity) as GameObject;
             

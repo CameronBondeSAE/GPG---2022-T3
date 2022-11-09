@@ -10,14 +10,7 @@ namespace Oscar
     public class SpawnExplosives : MonoBehaviour
     {
         public GameObject[] explosive;
-
-        public MapGenerator mapGenerator;
         
-        private void OnEnable()
-        {
-            // mapGenerator.SpawnCubes += SpawningTheExplosives(Vector3 prefabPosition, GameObject explosiveParent, float perlinValue);
-        }
-
         public void SpawningTheExplosives(Vector3 prefabPosition, GameObject explosiveParent, float perlinValue)
         {
             if (perlinValue < .5)
