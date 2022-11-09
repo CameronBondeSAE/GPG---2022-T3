@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Lloyd
 {
-    [CustomEditor(typeof(Lloyd.DoorModel))]
+    [CustomEditor(typeof(Lloyd.DoorDoubleModel))]
     public class DoorEditor : Editor
     {
         public override void OnInspectorGUI()
@@ -14,12 +14,12 @@ namespace Lloyd
 
             if (GUILayout.Button("Interact: Open / Close"))
             {
-                (target as Lloyd.DoorModel)?.Interact();
+                (target as Lloyd.DoorDoubleModel)?.Interact();
             }
 
             if (GUILayout.Button("Set on Fire") && Application.isPlaying)
             {
-                (target as Lloyd.DoorModel)?.SetOnFire();
+                (target as Lloyd.DoorDoubleModel)?.SetOnFire();
             }
 
 

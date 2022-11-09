@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Lloyd;
 
 public class DoorParticle : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class DoorParticle : MonoBehaviour
     public List<ParticleSystem> steamList = new List<ParticleSystem>();
     private ParticleSystem tempSyst;
 
+    public DoorEventManager _doorEvent;
+
     private void OnEnable()
     {
-        Lloyd.EventManager.singleton.DoorIdleEvent += SteamOn;
+        _doorEvent.DoorIdleEvent += SteamOn;
 
         steamList.Add(steam01);
         steamList.Add(steam02);
@@ -56,6 +59,6 @@ public class DoorParticle : MonoBehaviour
 
     private void OnDisable()
     {
-        Lloyd.EventManager.singleton.DoorIdleEvent -= SteamOn;
+        _doorEvent.DoorIdleEvent -= SteamOn;
     }
 }

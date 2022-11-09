@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Lloyd;
 
 public class DoorView : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class DoorView : MonoBehaviour
 
     private Renderer _rend;
 
+    public DoorEventManager _doorEvent;
+
     private void OnEnable()
     {
         _doorComp = GetComponent<DoorComponents>();
@@ -31,9 +34,9 @@ public class DoorView : MonoBehaviour
 
         _rend.material.SetColor("_BaseColor", new Color(0.3f, 0.4f, 0.6f, 0.0f));
 
-        Lloyd.EventManager.singleton.ChangeHealthEvent += ChangeHP;
-        Lloyd.EventManager.singleton.BurningEvent += Burning;
-        Lloyd.EventManager.singleton.BurntEvent += Burnt;
+        _doorEvent.ChangeHealthEvent += ChangeHP;
+        _doorEvent.BurningEvent += Burning;
+        _doorEvent.BurntEvent += Burnt;
     }
 
     private void GetComps()
@@ -66,8 +69,8 @@ public class DoorView : MonoBehaviour
 
     private void OnDisable()
     {
-        Lloyd.EventManager.singleton.ChangeHealthEvent -= ChangeHP;
-        Lloyd.EventManager.singleton.BurningEvent -= Burning;
-        Lloyd.EventManager.singleton.BurntEvent -= Burnt;
+        _doorEvent.ChangeHealthEvent -= ChangeHP;
+        _doorEvent.BurningEvent -= Burning;
+        _doorEvent.BurntEvent -= Burnt;
     }
 }
