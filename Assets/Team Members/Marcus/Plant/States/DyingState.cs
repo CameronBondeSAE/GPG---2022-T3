@@ -6,16 +6,6 @@ namespace Marcus
 {
     public class DyingState : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        //Change colour to brown and do other dying things
     }
 }

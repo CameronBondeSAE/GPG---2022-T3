@@ -49,10 +49,7 @@ public class Spreading : MonoBehaviour, IFlammable
 
             if (spreadTimer <= 0 && spreadNumber < spreadLimit)
             {
-                spreadDistance = Random.Range(1f, 3f);
-                spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
-                
-                Spread(spreadDistance, spreadDirection);
+                Grow();
             }
             else if (spreadNumber >= spreadLimit)
             {
@@ -66,19 +63,32 @@ public class Spreading : MonoBehaviour, IFlammable
 
             if (deathTimer <= 0)
             {
-                int rEvoChance = Random.Range(0, 5);
-                
-                if (Physics.OverlapSphere(transform.position, maxSize.x, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
-                {
-                    //Destroy and spawn manEater prefab
-                    Instantiate(manEater, transform.position, Quaternion.identity);
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
+               Mature(); 
             }
+        }
+    }
+
+    void Grow()
+    {
+        spreadDistance = Random.Range(1f, 3f);
+        spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
+                
+        Spread(spreadDistance, spreadDirection);
+    }
+
+    void Mature()
+    {
+        int rEvoChance = Random.Range(0, 5);
+                
+        if (Physics.OverlapSphere(transform.position, maxSize.x, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
+        {
+            //Destroy and spawn manEater prefab
+            Instantiate(manEater, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
