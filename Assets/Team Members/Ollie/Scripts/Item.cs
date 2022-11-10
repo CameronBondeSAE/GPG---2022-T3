@@ -167,4 +167,9 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     {
 	    
     }
+
+    public void ChangeHeat(IHeatSource heatSource, float x)
+    {
+        throw new NotImplementedException();
+    }
 }
