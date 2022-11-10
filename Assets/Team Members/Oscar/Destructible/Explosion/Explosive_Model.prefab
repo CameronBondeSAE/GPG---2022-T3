@@ -156,12 +156,11 @@ GameObject:
   - component: {fileID: 6522943975982661913}
   - component: {fileID: 6522943975982661912}
   - component: {fileID: 6522943975982661915}
+  - component: {fileID: 2657967746583373875}
   - component: {fileID: 8134697189783218653}
   - component: {fileID: 7665765543256430508}
   - component: {fileID: 86582184059768784}
   - component: {fileID: 6661313131583358677}
-  - component: {fileID: 2041809841749051246}
-  - component: {fileID: 2657967746583373875}
   m_Layer: 0
   m_Name: Explosive_Model
   m_TagString: Untagged
@@ -250,6 +249,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!54 &2657967746583373875
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6522943975982661894}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &8134697189783218653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,37 +321,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosivefragments: {fileID: 5010368680524319573, guid: 9a18431a32ec8044396820ea8ad5b851, type: 3}
-  explosiveRaycast: {fileID: 2041809841749051246}
---- !u!114 &2041809841749051246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6522943975982661894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a3e6ac3f2e9a642b86fb53fc6673fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explodeRadius: 5
-  heat: 500
---- !u!54 &2657967746583373875
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6522943975982661894}
-  serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1001 &158070345722198926
 PrefabInstance:
   m_ObjectHideFlags: 0

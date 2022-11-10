@@ -1,19 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Shapes;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class RaycastScanner : MonoBehaviour
+public class RaycastScanner : ImmediateModeShapeDrawer
 {
-    private int rays = 3;
-    public float radarSpeed;
+    public float radarSpeed = 100f;
     private float timer;
     private Vector3 dir;
     
     RaycastHit hitInfo;
+    
+    private float rays = 1;
 
-    void Update()
+    private void Update()
     {
         timer += Time.deltaTime * radarSpeed;
         if (timer >= 360f)
@@ -22,15 +25,13 @@ public class RaycastScanner : MonoBehaviour
         }
         
         dir = Quaternion.Euler(0, timer, 0) * transform.forward;
+    
         Physics.Raycast(transform.position, dir, out hitInfo,10f);
-        Debug.DrawRay(dir,hitInfo.point,Color.green);
         
         if (hitInfo.collider.GetComponent<PingObject>() != null)
         {
-            StartCoroutine(hitInfo.collider.GetComponent<PingObject>().pinged());
+            //StartCoroutine(hitInfo.collider.GetComponent<PingObject>().pinged());
             print("Ping");
         }
     }
-    
-    
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5010368680524319574}
   - component: {fileID: -7618143752296665990}
+  - component: {fileID: 532414736217978010}
   m_Layer: 0
   m_Name: BrokenExplosive
   m_TagString: Untagged
@@ -56,6 +57,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c99c107712a8f74887ef8303fdccefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosiveRaycast: {fileID: 532414736217978010}
+--- !u!114 &532414736217978010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010368680524319573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a3e6ac3f2e9a642b86fb53fc6673fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explodeRadius: 5
+  heat: 500
 --- !u!1001 &831702538610588200
 PrefabInstance:
   m_ObjectHideFlags: 0

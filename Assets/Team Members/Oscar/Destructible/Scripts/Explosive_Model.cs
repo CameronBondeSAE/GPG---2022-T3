@@ -14,14 +14,6 @@ namespace Oscar
         
         public ExplosionStates state;
         public ExplosionStates lastState;
-        
-        private float myHealth = 100;
-        
-        public BarrelHealth barrelHealth;
-        public void Start()
-        {
-            barrelHealth.myAmount(myHealth);
-        }
     }
 }
 

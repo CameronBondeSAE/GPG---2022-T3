@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ExplosiveFragments : MonoBehaviour
 {
-    
+    public ExplosiveRaycast explosiveRaycast;
+
     IEnumerator Start()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.AddExplosionForce(5f,Vector3.forward, 5,  3f);
+        transform.position = new Vector3(transform.position.x, 1, transform.position.z);
+        explosiveRaycast.ExplosionRaycast();
         
         yield return new WaitForSeconds(3);
         Destroy(this.gameObject);
