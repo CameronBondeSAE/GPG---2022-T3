@@ -106,7 +106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6379728519353468977}
-  - component: {fileID: -3726067801277088723}
   - component: {fileID: -2345939443833775618}
   - component: {fileID: 6386181562119310714}
   - component: {fileID: 6442183896938820065}
@@ -136,27 +135,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3726067801277088723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4137073510955222978}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96d1a9d2ccf0f5f47a8b20de23c6fc24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seedling: {fileID: 3466463561830862670, guid: 45de6a249c85be344bb5285f3f01ee35, type: 3}
-  manEater: {fileID: 7557588422353277080, guid: 13bdd9c06130f0940898ebab53dd8e3a, type: 3}
-  spreadLayers:
-    serializedVersion: 2
-    m_Bits: 6144
-  evolutionLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  spreadLimit: 12
 --- !u!135 &-2345939443833775618
 SphereCollider:
   m_ObjectHideFlags: 0

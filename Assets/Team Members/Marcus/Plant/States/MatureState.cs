@@ -47,9 +47,18 @@ namespace Marcus
             }
         }
 
+        #region Interface Functions
+
         public void SetOnFire()
         {
             print("MYAH!!! am old ded ;-;");
         }
+
+        public void ChangeHeat(IHeatSource heatSource, float x)
+        {
+            
+        }
+
+        #endregion
     }
 }
