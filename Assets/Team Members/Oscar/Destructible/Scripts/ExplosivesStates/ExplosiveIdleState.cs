@@ -15,6 +15,10 @@ namespace Oscar
         {
             stateManager.ChangeState(nearlyExplode);
         }
-        
+
+        public void ChangeHeat(IHeatSource heatSource, float x)
+        {
+            SetOnFire();
+        }
     }
 }

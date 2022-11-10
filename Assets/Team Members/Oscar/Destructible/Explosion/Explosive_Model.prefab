@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosivefragments: {fileID: 5010368680524319573, guid: 9a18431a32ec8044396820ea8ad5b851, type: 3}
+  explosiveRaycast: {fileID: 2041809841749051246}
 --- !u!114 &2041809841749051246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeRadius: 5
+  heat: 500
 --- !u!54 &2657967746583373875
 Rigidbody:
   m_ObjectHideFlags: 0
