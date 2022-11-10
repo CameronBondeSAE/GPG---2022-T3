@@ -78,10 +78,14 @@ public class FireballModel : MonoBehaviour
                 transform.SetParent(hitCollider.transform);
                 _rb.isKinematic = true;
             }
-           
+
+            if (hitCollider.GetComponent<IFlammable>() != null)
+            {
+                hitCollider.GetComponent<IFlammable>().SetOnFire();
+            }
         }
     }
-
+    
     private IEnumerator TickTock()
     {
         yield return new WaitForSeconds(_lifespan);

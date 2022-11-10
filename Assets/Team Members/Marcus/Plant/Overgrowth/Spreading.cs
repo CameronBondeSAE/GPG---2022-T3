@@ -105,9 +105,18 @@ public class Spreading : MonoBehaviour, IFlammable
         RandomiseTimer();
     }
 
+    #region Interface Functions
+
     public void SetOnFire()
     {
         //straight die
         //maybe scream or wither
     }
+
+    public void ChangeHeat(IHeatSource heatSource, float x)
+    {
+        
+    }
+
+    #endregion
 }

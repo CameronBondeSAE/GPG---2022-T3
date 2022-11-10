@@ -658,9 +658,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numCube: 150
   cubeScale: 1
-  zoomNoiseX: 0.08929813
-  zoomNoiseY: 0.09529527
-  cubeHeight: 1
+  zoomNoiseX: 0.17868163
+  zoomNoiseY: 0.16940352
+  cubeHeight: 7.832613
   wallsHeight: 14
   cubePrefab: {fileID: 3010419542067228138, guid: 7dc9d9f7a4b13f84c8780523767281c8, type: 3}
   wallPrefab: {fileID: 8830323646262685556, guid: c3d78f570187722418f95a344845f3eb, type: 3}
@@ -669,9 +669,9 @@ MonoBehaviour:
   numBarrels: 10
   itemPrefab: {fileID: 7976933377232811398, guid: 406c51da39bb78842ab4efe6a060b6e1, type: 3}
   itemVector3List: []
-  itemNoiseX: 0.006259978
-  itemNoiseY: 0.038525123
-  minDist: 75
+  itemNoiseX: 0.048293527
+  itemNoiseY: 0.07841738
+  minDist: 70
   numItems: 200
   HumanHQ: {fileID: 7884631281891504534, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
   numHumanHQ: 1

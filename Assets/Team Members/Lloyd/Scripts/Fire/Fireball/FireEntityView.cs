@@ -7,6 +7,8 @@ public class FireEntityView : MonoBehaviour
 {
     private Animator _anim;
 
+    private SpriteRenderer _spr;
+
     public float _waitTime;
 
     private void OnEnable()
@@ -17,16 +19,18 @@ public class FireEntityView : MonoBehaviour
         StartCoroutine(Wait(_waitTime));
     }
 
-    public void Death()
+    private IEnumerator Death()
     {
-        _anim.SetTrigger("End");
+        _anim.SetTrigger("Death");
+        yield return new WaitForSeconds(.75f);
+        Destroy(this.gameObject);
     }
 
     private IEnumerator Wait(float x)
     {
-        yield return new WaitForSeconds(x);
+        yield return new WaitForSeconds(_waitTime);
         {
-            Death();
+            StartCoroutine(Death());
         }
     }
 }

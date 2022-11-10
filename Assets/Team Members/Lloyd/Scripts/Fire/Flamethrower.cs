@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
-    public class Flamethrower : MonoBehaviour
+    public class Flamethrower : MonoBehaviour, IPickup
     {
         [Header("FLAME SETTINGS [DAMAGE / SIZE / FIRE RATE]")] [SerializeField]
         private float _heatDamage;
@@ -17,7 +17,7 @@ namespace Lloyd
         [SerializeField] private float _boxWidth;
 
         [SerializeField]
-        private enum FlamethrowerType
+        public enum FlamethrowerType
         {
             FireballShooter,
             OverlapBoxFire,
@@ -49,6 +49,8 @@ namespace Lloyd
         [SerializeField] private float _maxFuel;
         [SerializeField] private float _fuel;
 
+        private bool _equipped=true;
+
         private Rigidbody _rb;
 
         private float _angle;
@@ -59,9 +61,6 @@ namespace Lloyd
         
         //am I allowed to shoot? ticks depending on fire rate and ammo
         private bool _canShoot;
-
-        //am I currently shooting? Shoot() creates a box collider that increases heat
-        private bool _shooting;
 
         private float _distance;
 
@@ -80,28 +79,28 @@ namespace Lloyd
 
             _firePointRb = GetComponentInChildren<Rigidbody>();
         }
-
-        private void Shoot()
-        {
-            Collider[] hitColliders = Physics.OverlapBox(_boxCenter, _boxWidth * _boxExtents);
-            foreach (var hitCollider in hitColliders)
-            {
-                if (hitCollider.GetComponent<IFlame>() != null)
-                {
-                    hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage);
-
-                    _burnVictimPos = hitCollider.transform.position;
-
-                    GameObject fire = Instantiate(_firePrefab, _burnVictimPos, Quaternion.identity) as GameObject;
-
-                    _distance = Vector3.Distance(_boxCenter, _burnVictimPos);
-                    if (_distance > _minDistance)
-                    {
-                        hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage * _proximityMultiplier);
-                    }
-                }
-            }
-        }
+        //
+        // private void Shoot()
+        // {
+        //     Collider[] hitColliders = Physics.OverlapBox(_boxCenter, _boxWidth * _boxExtents);
+        //     foreach (var hitCollider in hitColliders)
+        //     {
+        //         if (hitCollider.GetComponent<IFlame>() != null)
+        //         {
+        //             hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage);
+        //
+        //             _burnVictimPos = hitCollider.transform.position;
+        //
+        //             GameObject fire = Instantiate(_firePrefab, _burnVictimPos, Quaternion.identity) as GameObject;
+        //
+        //             _distance = Vector3.Distance(_boxCenter, _burnVictimPos);
+        //             if (_distance > _minDistance)
+        //             {
+        //                 hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage * _proximityMultiplier);
+        //             }
+        //         }
+        //     }
+        // }
 
 
         private void Wobble()
@@ -123,12 +122,11 @@ namespace Lloyd
 
         private IEnumerator SpitFire()
         {
-            if (_fuel > 0)
+            if (_equipped && _fuel > 0)
             {
                 _fuel--;
                 
                 _canShoot = false;
-                _shooting = true;
                 
                 _firePointPos = _firePointRb.transform.position;
                 Vector3 targetDir = _firePointPos - transform.position;
@@ -140,7 +138,6 @@ namespace Lloyd
                 yield return new WaitForSecondsRealtime(_fireRate);
 
                 _canShoot = true;
-                _shooting = false;
             }
         }
 
@@ -153,13 +150,11 @@ namespace Lloyd
         private IEnumerator AltFire()
         {
             _canShoot = false;
-            _shooting = true;
 
 
             yield return new WaitForSecondsRealtime(_altFireRate);
 
             _canShoot = true;
-            _shooting = false;
         }
 
 
@@ -168,6 +163,17 @@ namespace Lloyd
             //transform.Rotate(0.0f, .5f, 0.0f, Space.Self);
 
             Wobble();
+        }
+
+        public void PickUp(GameObject player)
+        {
+            _equipped = true;
+            transform.SetParent(player.transform);
+        }
+
+        public void Throw()
+        {
+            _equipped = false;
         }
     }
 }

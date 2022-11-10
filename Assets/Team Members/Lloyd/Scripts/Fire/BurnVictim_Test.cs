@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class BurnVictim_Test : MonoBehaviour, IFlame
 {
     [SerializeField] private float _maxHP;
-    private float _HP;
+    public float _HP;
 
     [SerializeField] private float _coolRate;
 
@@ -98,6 +98,12 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
         if (_heatLevel >= _heatThreshold)
         {
             SetOnFire();
+        }
+        
+        else if (_heatLevel <= _heatThreshold)
+        {
+            _burning = false;
+            _rend.material.SetColor("_BaseColor", Color.black);
         }
 
         if (_heatLevel <= 0)

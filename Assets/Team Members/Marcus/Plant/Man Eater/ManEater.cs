@@ -32,10 +32,19 @@ public class ManEater : MonoBehaviour, IFlammable
             print("Get Nommed");
         }
     }
-    
+
+    #region Interface Functions
+
     public void SetOnFire()
     {
         //Well die but more dramatically
         //Maybe spread some man eater virus to nearby plants
     }
+
+    public void ChangeHeat(IHeatSource heatSource, float x)
+    {
+        
+    }
+
+    #endregion
 }

@@ -52,4 +52,9 @@ public class PlantScript : MonoBehaviour, IFlammable
     {
         isAflame = true;
     }
+
+    public void ChangeHeat(IHeatSource heatSource, float x)
+    {
+        
+    }
 }

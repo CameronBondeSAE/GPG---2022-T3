@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7396080872855201196}
   - component: {fileID: 775395812907608701}
   - component: {fileID: 8327105606269631670}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BorderPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

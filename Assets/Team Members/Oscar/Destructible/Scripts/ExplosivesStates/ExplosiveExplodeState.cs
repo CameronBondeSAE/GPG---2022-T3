@@ -6,10 +6,10 @@ namespace Oscar
     public class ExplosiveExplodeState : MonoBehaviour
     {
         public GameObject explosivefragments;
-        
+        public ExplosiveRaycast explosiveRaycast;
         void OnEnable()
         {
-            GetComponent<ExplosiveRaycast>().ExplosionRaycast();
+            explosiveRaycast.ExplosionRaycast();
 
             GameObject brokenFragments = Instantiate(explosivefragments, 
                 transform.position, quaternion.identity) as GameObject;

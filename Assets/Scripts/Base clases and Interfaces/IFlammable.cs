@@ -1,4 +1,4 @@
 public interface IFlammable
 {
-	public void SetOnFire();
+	public void ChangeHeat(IHeatSource heatSource, float x);
 }

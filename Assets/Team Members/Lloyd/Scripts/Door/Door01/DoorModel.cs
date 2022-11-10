@@ -9,6 +9,21 @@ namespace Lloyd
 {
     public class DoorModel : MonoBehaviour, IFlammable
     {
+        [SerializeField]
+        enum DoorType
+        {
+            DoorSingle,
+            DoorDouble,
+            DoorAlien
+        };
+
+        private DoorType _myType;
+
+        public void ChangeHeat(IHeatSource x, float z)
+        {
+            
+        }
+        
         //what door am I globally?
         [SerializeField] private int _mainDoorInt=1;
         
@@ -23,12 +38,11 @@ namespace Lloyd
         private bool _isActive = true;
 
         //tracks if door is open or closed
-       private bool _isOpen=true;
+       [SerializeField] private bool _isOpen;
 
         //Door Health
         [SerializeField] private float _HP;
      
-
         //Door Fire Damge
         [SerializeField] private float _fireDamage;
         private bool isBurning;
@@ -52,12 +66,14 @@ namespace Lloyd
         private DoorComponents _doorComp;
         private DoorComponents _doorComp01;
         private DoorComponents _doorComp02;
+
+        public DoorEventManager _doorEvent;
         
         void OnEnable()
         {
-            EventManager.singleton.ChangeHealthEvent += ChangeHP;
-            EventManager.singleton.DoorIdleEvent += DoorIdle;
-            EventManager.singleton.DoorMoveEvent += DoorMove;
+            _doorEvent.ChangeHealthEvent += ChangeHP;
+            _doorEvent.DoorIdleEvent += DoorIdle;
+            _doorEvent.DoorMoveEvent += DoorMove;
 
             _moveState = GetComponent<DoorMovingState>();
             _idleState = GetComponent<DoorIdleState>();
@@ -94,11 +110,6 @@ namespace Lloyd
 
         private void SpawnDoors()
         {
-            for (int x = 0; x < _numDoors; x++)
-            {
-                
-            }
-            
             _doorWingPos = new Vector3(transform.position.x - (_doorWingSize), transform.position.y,
                 transform.position.z);
 
@@ -110,7 +121,7 @@ namespace Lloyd
             
             _doorComp01.SetDoorComps(_mainDoorInt, 1, _HP, _fireDamage, _speed);
 
-
+            _doorWing01.transform.SetParent(this.transform,false);
 
             _doorWingPos = new Vector3(transform.position.x + (_doorWingSize), transform.position.y,
                 transform.position.z);
@@ -119,9 +130,11 @@ namespace Lloyd
 
             _doorWing02.name = "Door02";
             
-            _doorComp02 = _doorWing01.GetComponent<DoorComponents>();
+            _doorComp02 = _doorWing02.GetComponent<DoorComponents>();
 
             _doorComp02.SetDoorComps(_mainDoorInt, 2, _HP, _fireDamage, _speed);
+            
+            _doorWing02.transform.SetParent(this.transform, false);
         }
 
         public void Interact()
@@ -163,8 +176,7 @@ namespace Lloyd
             EventManager.singleton.BurntEventFunction();
             _HP = 0;
         }
-
-
+        
         private void OnDisable()
         {
             EventManager.singleton.ChangeHealthEvent -= ChangeHP;

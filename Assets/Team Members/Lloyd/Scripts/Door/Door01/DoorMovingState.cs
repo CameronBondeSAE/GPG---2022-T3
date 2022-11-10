@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DoorMovingState : MonoBehaviour
 {
-    private DoorModel _doorModel;
+    private DoorDoubleModel _doorModel;
 
     private Rigidbody _rb01;
     private Rigidbody _rb02;
@@ -22,9 +22,11 @@ public class DoorMovingState : MonoBehaviour
 
     private int _fixedUpdateCount;
 
+    public DoorEventManager _doorEvent;
+
     private void OnEnable()
     {
-        _doorModel = GetComponent<DoorModel>();
+        _doorModel = GetComponent<DoorDoubleModel>();
 
         _doorWing01 = _doorModel.Wing01();
         _rb01 = _doorWing01.GetComponent<Rigidbody>();
@@ -43,8 +45,7 @@ public class DoorMovingState : MonoBehaviour
     {
         _fixedUpdateCount = 0;
         _isMoving = true;
-
-
+        
         if (_isOpen)
         {
             _rb01.AddForce(_rb01.transform.position + (Vector3.left * _speed));
@@ -62,14 +63,16 @@ public class DoorMovingState : MonoBehaviour
         _rb02.velocity = new Vector3(0f, 0f, 0f);
 
         _isMoving = false;
-        
-        EventManager.singleton.DoorIdleFunction();
+
+        _doorEvent.DoorIdleFunction();
     }
 
     private void FixedUpdate()
     {
         if (_isMoving)
+        {
             _fixedUpdateCount++;
+        }
     }
 
     private void OnDisable()
