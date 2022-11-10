@@ -81,7 +81,7 @@ public class FireballModel : MonoBehaviour
 
             if (hitCollider.GetComponent<IFlammable>() != null)
             {
-                hitCollider.GetComponent<IFlammable>().SetOnFire();
+                
             }
         }
     }
