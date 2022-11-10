@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosiveRaycast : MonoBehaviour
+public class ExplosiveRaycast : MonoBehaviour, IHeatSource
 {
     public float explodeRadius = 5f;
+    public float heat = 500;
+    private IHeatSource theHeatSource;
+    
     public void ExplosionRaycast()
     {
         //create overlap sphere to do a raycast to set other objects on fire.
@@ -14,7 +17,7 @@ public class ExplosiveRaycast : MonoBehaviour
         {
             if (item.GetComponent<IFlammable>() != null)
             {
-                item.GetComponent<IFlammable>().SetOnFire();
+                item.GetComponent<IFlammable>().ChangeHeat(theHeatSource, heat);
             }
             if (item.GetComponent<Marcus.Health>() != null)
             {
