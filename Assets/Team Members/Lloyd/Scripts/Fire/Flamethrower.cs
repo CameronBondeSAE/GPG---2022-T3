@@ -79,28 +79,28 @@ namespace Lloyd
 
             _firePointRb = GetComponentInChildren<Rigidbody>();
         }
-
-        private void Shoot()
-        {
-            Collider[] hitColliders = Physics.OverlapBox(_boxCenter, _boxWidth * _boxExtents);
-            foreach (var hitCollider in hitColliders)
-            {
-                if (hitCollider.GetComponent<IFlame>() != null)
-                {
-                    hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage);
-
-                    _burnVictimPos = hitCollider.transform.position;
-
-                    GameObject fire = Instantiate(_firePrefab, _burnVictimPos, Quaternion.identity) as GameObject;
-
-                    _distance = Vector3.Distance(_boxCenter, _burnVictimPos);
-                    if (_distance > _minDistance)
-                    {
-                        hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage * _proximityMultiplier);
-                    }
-                }
-            }
-        }
+        //
+        // private void Shoot()
+        // {
+        //     Collider[] hitColliders = Physics.OverlapBox(_boxCenter, _boxWidth * _boxExtents);
+        //     foreach (var hitCollider in hitColliders)
+        //     {
+        //         if (hitCollider.GetComponent<IFlame>() != null)
+        //         {
+        //             hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage);
+        //
+        //             _burnVictimPos = hitCollider.transform.position;
+        //
+        //             GameObject fire = Instantiate(_firePrefab, _burnVictimPos, Quaternion.identity) as GameObject;
+        //
+        //             _distance = Vector3.Distance(_boxCenter, _burnVictimPos);
+        //             if (_distance > _minDistance)
+        //             {
+        //                 hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage * _proximityMultiplier);
+        //             }
+        //         }
+        //     }
+        // }
 
 
         private void Wobble()

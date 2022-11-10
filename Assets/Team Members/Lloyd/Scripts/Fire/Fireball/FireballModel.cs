@@ -85,7 +85,7 @@ public class FireballModel : MonoBehaviour
             }
         }
     }
-
+    
     private IEnumerator TickTock()
     {
         yield return new WaitForSeconds(_lifespan);

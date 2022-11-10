@@ -111,6 +111,11 @@ namespace Lloyd
             }
         }
 
+        public void ChangeHeat(IHeatSource x, float y)
+        {
+            
+        }
+
         private void DoorIdle()
         {
             _isActive = true;

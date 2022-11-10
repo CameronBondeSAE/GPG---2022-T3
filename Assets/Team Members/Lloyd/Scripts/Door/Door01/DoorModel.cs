@@ -18,6 +18,11 @@ namespace Lloyd
         };
 
         private DoorType _myType;
+
+        public void ChangeHeat(IHeatSource x, float z)
+        {
+            
+        }
         
         //what door am I globally?
         [SerializeField] private int _mainDoorInt=1;
