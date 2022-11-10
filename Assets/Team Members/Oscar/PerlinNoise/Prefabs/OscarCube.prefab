@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6771691052248181540}
   - component: {fileID: 7108007269907048534}
   - component: {fileID: 3128846673792359752}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: OscarCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
