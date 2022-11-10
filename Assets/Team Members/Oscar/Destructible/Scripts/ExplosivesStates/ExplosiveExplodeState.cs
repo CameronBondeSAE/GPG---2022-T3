@@ -6,13 +6,10 @@ namespace Oscar
     public class ExplosiveExplodeState : MonoBehaviour
     {
         public GameObject explosivefragments;
-        public ExplosiveRaycast explosiveRaycast;
         void OnEnable()
         {
-            explosiveRaycast.ExplosionRaycast();
-
             GameObject brokenFragments = Instantiate(explosivefragments, 
-                transform.position, quaternion.identity) as GameObject;
+                new Vector3(transform.position.x, -1.2f, transform.position.z), quaternion.identity) as GameObject;
             
             //then as we dont need the barrel anymore then just delete it.
             DestroyExplosiveModel();

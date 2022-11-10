@@ -203,8 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2439643269514293398}
-  - component: {fileID: 6602348795448269128}
-  - component: {fileID: 7836342835898448615}
+  - component: {fileID: 386096535401496966}
   m_Layer: 0
   m_Name: Fragment
   m_TagString: Untagged
@@ -228,9 +227,9 @@ Transform:
   - {fileID: 4228605545976214549}
   - {fileID: 3976675927218216516}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &6602348795448269128
+--- !u!54 &386096535401496966
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,18 +245,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7836342835898448615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6354211155324366622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c044a8fe709474eb507933c3cee0d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8685356434328697667
 GameObject:
   m_ObjectHideFlags: 0

@@ -552,17 +552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c3689c965a2bb46b43fcb5cbd1043a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &855081476 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 270977214738848422, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
-  m_PrefabInstance: {fileID: 2136600986}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9cd72bb28f49894aac4a067468e6050, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &995123680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -960,7 +949,7 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!1001 &2136600986
+--- !u!1001 &1817697130
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -968,29 +957,21 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5661840892398076725, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6122380363611737203, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
-      propertyPath: startingState
-      value: 
-      objectReference: {fileID: 855081476}
     - target: {fileID: 6122380363611737207, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6122380363611737207, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.57833827
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6122380363611737207, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21000051
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6122380363611737207, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.18195629
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6122380363611737207, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1022,15 +1003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6122380363611737215, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
       propertyPath: m_Name
-      value: Sludge_Model 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6122380363611737215, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7653601613542386340, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      value: Sludge_Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
