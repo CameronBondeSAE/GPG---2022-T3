@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5530932041577439140
 MonoBehaviour:
@@ -69,7 +69,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caff9346e881b1f43a3de31a7bb3f001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AIEnemy: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
+  AIEnemy: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
+  AIAmount: 0
+  waitAmount: 0
 --- !u!114 &8632995031716236647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd32f1fa11f58e4dac74de01bfe0c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDist: 0
+  minDist: 30
   HQAmount: 0
   Base: {fileID: 7655450866958091700, guid: f4eb1f7b1559ed144bc84ddebed3ba78, type: 3}
   tempBaseDist: 0
@@ -99,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   borderPrefab: {fileID: 6660555670414354313, guid: bb2f4f3f7c71b4049a14a754c638e983, type: 3}
+  floorPrefab: {fileID: 4232256060729106274, guid: 8dc690060ed05ce4aa01b5ffefd9061f, type: 3}
   perlinPrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
 --- !u!114 &4194513743047498130
 MonoBehaviour:
