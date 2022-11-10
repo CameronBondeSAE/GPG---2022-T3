@@ -73,10 +73,12 @@ MonoBehaviour:
     isDefault: 0
     state: {fileID: 92025900423707080, guid: c8838a6a57e655c4fac71155cd4e186d, type: 3}
     cost: 0
-    position: {x: 695.57465, y: 83.78714}
+    position: {x: 704.1811, y: 81.84979}
     pre:
     - id: 0
       value: 1
+    - id: 8
+      value: 0
     post:
     - id: 1
       value: 1
@@ -94,8 +96,8 @@ MonoBehaviour:
   - name: Move to Enemy
     isDefault: 0
     state: {fileID: 1885941748799611865, guid: 6f8b6c8c12e4ca74280020c331fcbbe0, type: 3}
-    cost: 5
-    position: {x: 443.47028, y: 80.64896}
+    cost: 10
+    position: {x: 438.4577, y: 81.90211}
     pre:
     - id: 8
       value: 1
@@ -106,12 +108,12 @@ MonoBehaviour:
     isDefault: 1
     state: {fileID: 2822014770511461438, guid: 05678d2698b87154aa19d8e610e07cad, type: 3}
     cost: 0
-    position: {x: 257, y: 276}
+    position: {x: 259.48138, y: 298.3325}
     pre:
     - id: 8
       value: 0
-    - id: 5
-      value: 1
+    - id: 0
+      value: 0
     post: []
   goals:
   - name: Gather Or Kill
@@ -123,7 +125,7 @@ MonoBehaviour:
     - id: 8
       value: 0
   worldStates:
-  - position: {x: 260.02606, y: 524.49}
+  - position: {x: 253.78546, y: 547.74316}
     isAutoUpdate: 1
     list:
     - id: 0

@@ -127,7 +127,6 @@ namespace Alex
         {
             isPathable = new List<Node>();
             Node currentNode = endNode;
-            
 
             while (currentNode != startNode)
             {
