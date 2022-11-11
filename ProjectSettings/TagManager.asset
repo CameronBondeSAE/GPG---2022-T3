@@ -13,10 +13,10 @@ TagManager:
   - Resource
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - AlienAI
+  - SwarmerAI
+  - Enemy
+  - Target
   - Floor
   - Obstacles
   - Plants

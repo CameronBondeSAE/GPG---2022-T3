@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: -7807660158720829330}
   - component: {fileID: 8175690127105362018}
   - component: {fileID: 5772701356384670382}
+  - component: {fileID: -8587638066688477751}
   m_Layer: 6
   m_Name: AlienAI
   m_TagString: Untagged
@@ -310,6 +311,7 @@ MonoBehaviour:
   resourcesInSight: []
   enemyInSight: []
   dropOffPointsFound: []
+  testShapes: {fileID: -8587638066688477751}
 --- !u!114 &5602566739967719583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +419,24 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
   debug: 0
+--- !u!114 &-8587638066688477751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5071d749f2be4a54b93be2a28f2cbb6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useCullingMasks: 0
+  colour: {r: 0, g: 1, b: 0, a: 1}
+  lineThickness: 1
+  intensity: 1
+  worldPosition: {x: 0, y: 0, z: 0}
+  controller: {fileID: 1387461434300845896}
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,13 +18,14 @@ namespace Alex
         public Vector3Int startPos;
         public Vector3Int endPos;
         Coroutine co;
-        public bool debug = false;
+        public bool debugDraw = false;
+        public bool debugScan = false;
  
        
         
         void Awake()
         {
-            if (debug == true)
+            if (debugScan == true)
             {
                 GridGenerator.singleton.Scan();
             }

@@ -94,7 +94,7 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
-    - _ElectricityScale: 15
+    - _ElectricityScale: 37.26
     - _ElectricityWidth: 0.5
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1

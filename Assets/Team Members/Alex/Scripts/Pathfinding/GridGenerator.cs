@@ -17,13 +17,14 @@ namespace Alex
         public float yOffSet = 1f;
         public LayerMask layerMask;
         public bool debug = false;
-
+        public bool debugDraw = false;
+        public bool debugScan = false;
 
         void Awake()
         {
             singleton = this;
 
-            if (debug)
+            if (debugScan)
             {
 	            Scan();
             }
@@ -73,7 +74,7 @@ namespace Alex
 
         private void OnDrawGizmos()
         {
-            if (debug == false)
+            if (debugDraw == false)
                 return;
             if (gridNodeReferences != null && gridNodeReferences.Length > 0)
             {

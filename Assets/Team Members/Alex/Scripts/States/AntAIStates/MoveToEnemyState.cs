@@ -40,6 +40,8 @@ namespace Alex
             
             
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
+            
+            //Exit early if no enemies in sight
             if (vision.enemyInSight.Count == 0 && vision.enemyInSight != null) return;
             if (vision.enemyInSight.Count > 0)
             {
