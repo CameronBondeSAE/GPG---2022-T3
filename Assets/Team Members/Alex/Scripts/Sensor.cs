@@ -19,8 +19,8 @@ namespace Alex
             aWorldState.Set(Scenario.resourceCollected, controller.ResourceCollected());
 
             aWorldState.Set(Scenario.seeEnemy, controller.CanSeeEnemy());
-            aWorldState.Set(Scenario.canAttack, controller.CanAttack());
-            aWorldState.Set(Scenario.isAttacking, controller.IsAttacking());
+            //aWorldState.Set(Scenario.canAttack, controller.CanAttack());
+            //aWorldState.Set(Scenario.isAttacking, controller.IsAttacking());
             aWorldState.Set(Scenario.enemyDead, controller.EnemyDead());
             
             aWorldState.Set(Scenario.wondering, controller.Wondering());
@@ -35,9 +35,9 @@ namespace Alex
             atBase = 3,
             resourceCollected = 4,
             enemyDead = 5,
-            canAttack = 6,
+            //canAttack = 6,
             seeEnemy = 7,
-            isAttacking = 8,
+            //isAttacking = 8,
             wondering = 9,
             //followingPath = 10
             
