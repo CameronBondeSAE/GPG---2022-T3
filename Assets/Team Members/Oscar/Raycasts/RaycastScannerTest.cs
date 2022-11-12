@@ -6,16 +6,16 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RaycastScanner : ImmediateModeShapeDrawer
+public class RaycastScannerTest : ImmediateModeShapeDrawer
 {
     public float radarSpeed = 100f;
     private float timer;
     private Vector3 dir;
     
     RaycastHit hitInfo;
-    
-    private float rays = 1;
 
+    public LayerMask pingLayer;
+    
     private void Update()
     {
         timer += Time.deltaTime * radarSpeed;
@@ -26,12 +26,15 @@ public class RaycastScanner : ImmediateModeShapeDrawer
         
         dir = Quaternion.Euler(0, timer, 0) * transform.forward;
     
-        Physics.Raycast(transform.position, dir, out hitInfo,10f);
-        
-        if (hitInfo.collider.GetComponent<PingObject>() != null)
+        Ray ray = new Ray(transform.position, dir);
+
+        if (Physics.Raycast(ray,out hitInfo))
         {
-            //StartCoroutine(hitInfo.collider.GetComponent<PingObject>().pinged());
-            print("Ping");
+            if (hitInfo.collider.gameObject.layer == pingLayer)
+            {
+                //StartCoroutine(hitInfo.collider.GetComponent<PingObject>().pinged());
+                print("Pinged");
+            }
         }
     }
 }
