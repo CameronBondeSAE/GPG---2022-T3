@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class GuyBroProfile : MonoBehaviour, IFlammable
+public class GuyBroProfile : MonoBehaviour
 {
 	public int broness = 23541;
 	public string nickName = "Dude";

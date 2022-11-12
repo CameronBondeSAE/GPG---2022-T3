@@ -6,13 +6,15 @@ using Lloyd;
 
 public class FlammableComponent : MonoBehaviour
 {
+    //Flammable Component assumes gameObj also has a HealthComponent attached
     private HealthComponent healthComp;
     
     public GameObject flamePrefab;
     
     //determines how much is inflicted through ChangeHeat
     //does this go here? does flamethrower hold this info? do different objects' fire hurt more? etc
-    [SerializeField] private float fireDamage;
+    [Header ("Fire Damage")]
+    [SerializeField] private float heat;
     
     //object's current heat level
     private float heatLevel;
@@ -43,24 +45,27 @@ public class FlammableComponent : MonoBehaviour
     private void OnEnable()
     {
         healthComp = GetComponent<HealthComponent>();
-
-        fuel = healthComp.GetHP();
+        
+        fuel += healthComp.GetHP();
     }
 
     public void SetOnFire()
     {
         burning = true;
         SetOnFireFunction();
-        GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
-        flameModel = fire.GetComponent<FlameModel>();
-        flameModel.SetFireDamage(fireDamage);
-        flameModel.SetRadius(radius);
+
+        if (flamePrefab != null)
+        {
+            GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
+            flameModel = fire.GetComponent<FlameModel>();
+            flameModel.SetFlameStats(heat, fuel, radius);
+        }
     }
 
     public void FixedUpdate()
     {
         if(burning)
-            healthComp.ChangeHP(-fireDamage);
+            healthComp.ChangeHP(-heat);
         
         Cool();
     }

@@ -12426,6 +12426,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
+--- !u!1 &1359366066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
+  m_PrefabInstance: {fileID: 1359366065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1359366067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359366066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flamePrefab: {fileID: 0}
+  fireDamage: 0
+  heatThreshold: 0
+  heatMultiplier: 0
+  fuel: 0
+  coolRate: 0
+  radius: 0
 --- !u!1 &1376492153
 GameObject:
   m_ObjectHideFlags: 0

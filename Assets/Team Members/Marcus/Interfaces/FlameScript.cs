@@ -19,7 +19,7 @@ public class FlameScript : MonoBehaviour
 
         if (collisionData.GetComponent<IFlammable>() != null)
         {
-            collisionData.GetComponent<IFlammable>().SetOnFire();
+           // collisionData.GetComponent<IFlammable>().SetOnFire();
         }
     }
 }

@@ -5,29 +5,38 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class FlameModel : MonoBehaviour, IHeatSource
-{
+{   
+    //how much damage flame does
+    private float heat;
+ 
+     //how much fuel it has to burn
     [SerializeField] private float fuel;
-
-    private Vector3 center;
-
+    
+    //fire does more damage depending on proximity
     private float radius;
-
-    public void SetRadius(float amount)
+    private Vector3 center;
+    [SerializeField]private float minDistance;
+    private float distance;
+    [SerializeField] private float proximityMultiplier;
+    
+    private Vector3 burnVictim;
+    
+    //Setters
+    //fire stats are set by HeatComponent
+    //
+    public void SetFlameStats(float x, float y, float z)
     {
-        radius = amount;
-    }
-
-    private float fireDamage;
-
-    public void SetFireDamage(float amount)
-    {
-        fireDamage = amount;
+        heat = x;
+        fuel = y;
+        radius = z;
     }
 
     private IHeatSource myself;
 
     private void OnEnable()
     {
+        myself = GetComponent<IHeatSource>();
+        center = transform.position;
     }
 
     private void FixedUpdate()
@@ -49,7 +58,13 @@ public class FlameModel : MonoBehaviour, IHeatSource
                 IFlammable[] flammables = hitCollider.GetComponents<IFlammable>();
                 foreach (IFlammable item in flammables)
                 {
-                    item.ChangeHeat(myself, fireDamage);
+                    distance = Vector3.Distance(center, burnVictim);
+                    if (distance > minDistance)
+                    {
+                        hitCollider.GetComponent<IFlammable>().ChangeHeat(myself, heat * proximityMultiplier);
+                    }
+                    
+                    item.ChangeHeat(myself, heat);
                 }
             }
         }
@@ -65,7 +80,12 @@ public class FlameModel : MonoBehaviour, IHeatSource
         fuel--;
         if (fuel <= 0)
         {
-            Destroy(myself);
+            FlameOut();
         }
+    }
+
+    private void FlameOut()
+    {
+        Destroy(this);
     }
 }

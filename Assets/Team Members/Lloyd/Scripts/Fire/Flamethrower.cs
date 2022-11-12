@@ -12,10 +12,6 @@ namespace Lloyd
         [Header("FLAME SETTINGS [DAMAGE / SIZE / FIRE RATE]")] [SerializeField]
         private float _heatDamage;
 
-        [SerializeField] private Vector3 _boxExtents;
-
-        [SerializeField] private float _boxWidth;
-
         [SerializeField]
         public enum FlamethrowerType
         {
@@ -47,7 +43,7 @@ namespace Lloyd
         [SerializeField] private float _xScale;
 
         [SerializeField] private float _maxFuel;
-        [SerializeField] private float _fuel;
+        public float _fuel;
 
         private bool _equipped=true;
 
@@ -62,13 +58,12 @@ namespace Lloyd
         //am I allowed to shoot? ticks depending on fire rate and ammo
         private bool _canShoot;
 
-        private float _distance;
+        [Header("OVERHEAT STATS -- Flamethrower overheats by overHeatRate when shooting and explodes when overHeatPoint is reached")]
+        [SerializeField] private float overHeatRate;
+        [SerializeField] private float overHeatPoint;
+        private float overHeatLevel;
 
-        private float _minDistance;
-
-        private float _proximityMultiplier;
-
-        private Vector3 _burnVictimPos;
+        private bool shooting;
 
         private void OnEnable()
         {
@@ -78,30 +73,9 @@ namespace Lloyd
             _rb = GetComponent<Rigidbody>();
 
             _firePointRb = GetComponentInChildren<Rigidbody>();
-        }
-        //
-        // private void Shoot()
-        // {
-        //     Collider[] hitColliders = Physics.OverlapBox(_boxCenter, _boxWidth * _boxExtents);
-        //     foreach (var hitCollider in hitColliders)
-        //     {
-        //         if (hitCollider.GetComponent<IFlame>() != null)
-        //         {
-        //             hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage);
-        //
-        //             _burnVictimPos = hitCollider.transform.position;
-        //
-        //             GameObject fire = Instantiate(_firePrefab, _burnVictimPos, Quaternion.identity) as GameObject;
-        //
-        //             _distance = Vector3.Distance(_boxCenter, _burnVictimPos);
-        //             if (_distance > _minDistance)
-        //             {
-        //                 hitCollider.GetComponent<IFlame>().ChangeHeat(_heatDamage * _proximityMultiplier);
-        //             }
-        //         }
-        //     }
-        // }
 
+            overHeatLevel = 0;
+        }
 
         private void Wobble()
         {
@@ -124,6 +98,7 @@ namespace Lloyd
         {
             if (_equipped && _fuel > 0)
             {
+                shooting = true;
                 _fuel--;
                 
                 _canShoot = false;
@@ -138,6 +113,7 @@ namespace Lloyd
                 yield return new WaitForSecondsRealtime(_fireRate);
 
                 _canShoot = true;
+                shooting = false;
             }
         }
 
@@ -163,6 +139,30 @@ namespace Lloyd
             //transform.Rotate(0.0f, .5f, 0.0f, Space.Self);
 
             Wobble();
+
+            Overheat();
+        }
+
+        private void Overheat()
+        {
+            if (shooting)
+                overHeatLevel += (1 * overHeatRate);
+
+            if (overHeatLevel <= overHeatPoint)
+                StartCoroutine(Explode());
+
+            if (overHeatLevel <= 0)
+                overHeatLevel = 0;
+
+            else
+                overHeatLevel--;
+
+        }
+
+        private IEnumerator Explode()
+        {
+            //tween, wait and explode
+            yield break;
         }
 
         public void PickUp(GameObject player)

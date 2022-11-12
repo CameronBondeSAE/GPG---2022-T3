@@ -5,7 +5,7 @@ using Tanks;
 using UnityEngine;
 
 [Serializable]
-public class GuyBro_Model : MonoBehaviour, IFlammable
+public class GuyBro_Model : MonoBehaviour
 {
 	public int broness;
 	public string nickName;
