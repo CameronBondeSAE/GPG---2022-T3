@@ -22,8 +22,6 @@ namespace Lloyd
 
         private FlamethrowerType _myType;
 
-        private Vector3 _boxCenter;
-
         [Header("FLAME PREFAB")] private GameObject _firePrefab;
 
         private Rigidbody _firePrefabRb;
