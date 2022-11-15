@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Lloyd
 {
-    [CustomEditor(typeof(Lloyd.DoorDoubleModel))]
+    [CustomEditor(typeof(DoorDoubleModel))]
     public class DoorEditor : Editor
     {
         public override void OnInspectorGUI()
@@ -23,6 +23,20 @@ namespace Lloyd
             }
 
 
+        }
+    }
+    
+    [CustomEditor(typeof(DoorSingleModel))]
+    public class DoorSingleEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            if (GUILayout.Button("Interact: Open / Close"))
+            {
+                (target as DoorSingleModel)?.Interact();
+            }
         }
     }
 }

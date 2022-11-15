@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
 public class DoorComponents : MonoBehaviour
 {
+    
     public int _mainDoorInt;
     
     public int _doorWingInt;
