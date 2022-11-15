@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(MapGenerator))]
-public class ButtonEditor : Editor
+public class MapButtonEditor : Editor
 {
         public override void OnInspectorGUI()
         {
@@ -16,5 +16,19 @@ public class ButtonEditor : Editor
                         (target as MapGenerator)?.ResetTheMap();
                 }
 
+        }
+}
+
+[CustomEditor((typeof(PerlinCube_Model)))]
+public class TheButtonEditor : Editor
+{
+        public override void OnInspectorGUI()
+        {
+                base.OnInspectorGUI();
+
+                if (GUILayout.Button("Start Wall Destruction") && Application.isPlaying)
+                {
+                        (target as PerlinCube_Model)?.DestroyTheWall();
+                }
         }
 }
