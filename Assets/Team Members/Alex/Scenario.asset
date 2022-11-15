@@ -23,19 +23,9 @@ MonoBehaviour:
     - id: 3
       name: atBase
     - id: 4
-      name: gatheringResource
+      name: seeEnemy
     - id: 5
       name: resourceCollected
-    - id: 6
-      name: enemyDead
-    - id: 7
-      name: canAttack
-    - id: 8
-      name: seeEnemy
-    - id: 9
-      name: movingToEnemy
-    - id: 10
-      name: isAttacking
   actions:
   - name: Gather Resource
     isDefault: 0
@@ -67,22 +57,20 @@ MonoBehaviour:
     post:
     - id: 2
       value: 0
-    - id: 5
-      value: 1
   - name: Move To Resource
     isDefault: 0
     state: {fileID: 92025900423707080, guid: c8838a6a57e655c4fac71155cd4e186d, type: 3}
     cost: 0
-    position: {x: 704.1811, y: 81.84979}
+    position: {x: 711.57935, y: 43.62538}
     pre:
     - id: 0
       value: 1
-    - id: 8
+    - id: 4
       value: 0
     post:
     - id: 1
       value: 1
-  - name: Move To Base
+  - name: Move To Drop Off Point
     isDefault: 0
     state: {fileID: 8653921907090280506, guid: bb1d05f5173f35146925cc601b303855, type: 3}
     cost: 5
@@ -93,16 +81,18 @@ MonoBehaviour:
     post:
     - id: 3
       value: 1
+    - id: 5
+      value: 1
   - name: Move to Enemy
     isDefault: 0
     state: {fileID: 1885941748799611865, guid: 6f8b6c8c12e4ca74280020c331fcbbe0, type: 3}
-    cost: 10
-    position: {x: 438.4577, y: 81.90211}
+    cost: 100
+    position: {x: 470.5169, y: 41.211617}
     pre:
-    - id: 8
+    - id: 4
       value: 1
     post:
-    - id: 8
+    - id: 4
       value: 0
   - name: Wondering
     isDefault: 1
@@ -110,7 +100,7 @@ MonoBehaviour:
     cost: 0
     position: {x: 259.48138, y: 298.3325}
     pre:
-    - id: 8
+    - id: 4
       value: 0
     - id: 0
       value: 0
@@ -118,12 +108,12 @@ MonoBehaviour:
   goals:
   - name: Gather Or Kill
     isDefault: 1
-    position: {x: 220.41046, y: 114}
+    position: {x: 237.57574, y: 53.466095}
     conditions:
+    - id: 4
+      value: 0
     - id: 5
       value: 1
-    - id: 8
-      value: 0
   worldStates:
   - position: {x: 253.78546, y: 547.74316}
     isAutoUpdate: 1
@@ -136,9 +126,7 @@ MonoBehaviour:
       value: 0
     - id: 3
       value: 0
+    - id: 4
+      value: 0
     - id: 5
-      value: 0
-    - id: 8
-      value: 0
-    - id: 6
       value: 0

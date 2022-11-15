@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1731224247912090146}
-  - component: {fileID: 1904056326749032987}
+  - component: {fileID: 383937834012636348}
   m_Layer: 0
   m_Name: WanderingState
   m_TagString: Untagged
@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1904056326749032987
+--- !u!114 &383937834012636348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,8 +41,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2822014770511461438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c06b9014f9a9649ba69d2ce4823384, type: 3}
+  m_Script: {fileID: 11500000, guid: 2627569cc3c422e438542fb02925c910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  owner: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
+  wonder: {fileID: 132510624617632370, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
+  owner: {fileID: 0}

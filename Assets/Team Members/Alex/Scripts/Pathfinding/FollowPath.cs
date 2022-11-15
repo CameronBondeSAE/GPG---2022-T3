@@ -16,7 +16,7 @@ namespace Alex
         public int currentPathIndex;
         public Vector3 myPos;
         public Vector3 nextNodePos;
-        public float distanceToTargetCheck = 1.5f; 
+        public float distanceToTargetCheck = 2.5f; 
         public event Action PathEndReachedEvent; 
         
 
@@ -59,7 +59,7 @@ namespace Alex
                 if (distanceToTarget >= distanceToTargetCheck)
                 {
                     turntowards.targetPosition = astar.isPathable[0].worldPosition;
-                    turntowards.turnSpeed = 500;
+                    turntowards.turnSpeed = 200;
                 }
                 else
                 {

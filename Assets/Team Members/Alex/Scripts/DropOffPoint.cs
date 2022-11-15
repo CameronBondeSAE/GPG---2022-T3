@@ -19,12 +19,12 @@ public class DropOffPoint : MonoBehaviour
     }
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("AlienAI"))
         {
-            if (collision.gameObject.layer == 9)
-            {
-                Inventory inventory = collision.gameObject.GetComponent<Inventory>();
-                inventory.resources = 0;
-                inventory.capacityReached = false;
-            }
+            Inventory inventory = collision.gameObject.GetComponent<Inventory>();
+            inventory.resources = 0;
+            inventory.capacityReached = false;
         }
+    }
 }

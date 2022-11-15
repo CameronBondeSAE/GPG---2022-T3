@@ -28,12 +28,13 @@ namespace Alex
             rb = aGameObject.GetComponent<Rigidbody>();
             renderer = aGameObject.GetComponent<Renderer>();
             turnTowards = aGameObject.GetComponent<TurnTowards>();
+            followPath = aGameObject.GetComponent<FollowPath>();
         }
         public override void Enter()
         {
             base.Enter();
             controller.renderer.material.shader = agroShader;
-            Finish();
+            
 
             turnTowards.enabled = true;
             followPath.enabled = true;

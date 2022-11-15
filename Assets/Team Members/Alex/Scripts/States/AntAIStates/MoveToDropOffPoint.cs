@@ -14,6 +14,9 @@ namespace Alex
         Vision vision;
         private Rigidbody rb;
         DropOffPoint dropOffPoint;
+        TurnTowards turnTowards;
+        FollowPath followPath;
+        
 
         public override void Create(GameObject aGameObject)
         {
@@ -24,31 +27,41 @@ namespace Alex
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
             owner = aGameObject;
+            turnTowards = aGameObject.GetComponent<TurnTowards>();
+            followPath = aGameObject.GetComponent<FollowPath>();
         }
 
 
         public override void Enter()
         {
             base.Enter();
-
-            Finish();
-        }
-
-        public override void Execute(float aDeltaTime, float aTimeScale)
-        {
-            base.Execute(aDeltaTime, aTimeScale);
             
+            turnTowards.enabled = true;
+            followPath.enabled = true;
+            
+            
+            followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
+            
+            //Exit early if no enemies in sight
             if (vision.dropOffPointsFound.Count == 0 && vision.dropOffPointsFound != null) return;
             if (vision.dropOffPointsFound.Count > 0)
             {
-                owner.GetComponent<TurnTowards>().targetPosition = vision.dropOffPointsFound[0].transform.position;
-                Finish();
+                followPath.ActivatePathToTarget(vision.dropOffPointsFound[0].transform.position);
             }
+        }
+        
+        
+        private void FollowPathOnPathEndReachedEvent()
+        {
+            followPath.enabled = false;
+            turnTowards.enabled = false;
+            Finish();
         }
 
         public override void Exit()
         {
             base.Exit();
+            followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
             Finish();
         }
     }

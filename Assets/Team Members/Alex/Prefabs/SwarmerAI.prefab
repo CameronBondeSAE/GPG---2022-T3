@@ -62,6 +62,10 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   turnSpeed: 0
   vision: {fileID: 0}
+  controller: {fileID: 0}
+  wonder: {fileID: 0}
+  astar: {fileID: 0}
+  followPath: {fileID: 0}
 --- !u!1 &1794423253392461865
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +86,6 @@ GameObject:
   - component: {fileID: 40213192657109042}
   - component: {fileID: 8270060209491018145}
   - component: {fileID: 8744244824783631288}
-  - component: {fileID: 2785484644818120828}
   - component: {fileID: 5459054142461481995}
   - component: {fileID: 6043905188681356340}
   m_Layer: 7
@@ -240,6 +243,10 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   turnSpeed: 10
   vision: {fileID: 0}
+  controller: {fileID: 0}
+  wonder: {fileID: 0}
+  astar: {fileID: 0}
+  followPath: {fileID: 0}
 --- !u!114 &3167607737926146247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,21 +304,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: {fileID: 5477602151829979742}
   force: 100
---- !u!114 &2785484644818120828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ef6b0d8254239646bc7f59c7082b994, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 1794423253392461856}
-  turnSpeed: 50
-  distance: 1
 --- !u!114 &5459054142461481995
 MonoBehaviour:
   m_ObjectHideFlags: 0

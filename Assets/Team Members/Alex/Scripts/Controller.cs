@@ -10,10 +10,8 @@ using UnityEngine.ProBuilder.MeshOperations;
 
 public class Controller : MonoBehaviour
 {
-    public List<Target> enemyTargets;
-    public List<Transform> resourceTargets;
-    public List<DropOffPoint> dropOffPoints;
-    public List<Transform> enemies;
+   
+    
     public bool hasResource;
     public bool canAttack;
     public bool isAttacking;
@@ -35,33 +33,14 @@ public class Controller : MonoBehaviour
     {
         hasResource = false;
         vision = FindObjectOfType<Vision>();
-        enemyTargets = FindObjectsOfType<Target>().ToList();
-        dropOffPoints = FindObjectsOfType<DropOffPoint>().ToList();
         turnTowards.enabled = false;
-
     }
 
-    public void FixedUpdate()
-    {
-        enemies = vision.enemyInSight;
-        resourceTargets = vision.resourcesInSight;
-        
-        for(var i = resourceTargets.Count - 1; i > -1; i--)
-        {
-            if (resourceTargets[i] == null)
-                resourceTargets.RemoveAt(i);
-        }
-        
-        for(var i = enemies.Count - 1; i > -1; i--)
-        {
-            if (enemies[i] == null)
-                enemies.RemoveAt(i);
-        }
-    }
+
 
     public bool CanSeeEnemy()
     {
-        return enemies.Count > 0;
+        return vision.enemyInSight.Count > 0;
     }
 
     public bool FollowingPath()
@@ -77,7 +56,7 @@ public class Controller : MonoBehaviour
          
     }
 
-
+/*
     public bool CanAttack()
     {
         if (vision.enemyInSight.Count > 0)
@@ -86,12 +65,12 @@ public class Controller : MonoBehaviour
         }
         else return false;
     }
-
+    
     public bool IsAttacking()
     {
         return false;
     }
-
+*/
     public bool EnemyDead()
     {
         return false;
@@ -135,7 +114,7 @@ public class Controller : MonoBehaviour
 
     public bool Wondering()
     {
-        return enemies == null && resourceTargets == null;
+        return vision.enemyInSight == null && vision.resourcesInSight == null;
     }
 }
 

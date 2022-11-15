@@ -117,7 +117,7 @@ namespace Alex
                     if (checkX >= 0 && checkX < GridGenerator.singleton.totalGridSize.x && checkZ >= 0 && checkZ < GridGenerator.singleton.totalGridSize.z)
                     {
                         neighbours.Add(GridGenerator.singleton.gridNodeReferences[checkX,checkZ]);
-                        Debug.DrawRay(new Vector3(checkX,0,checkZ),Vector3.up,Color.green);
+                        
                     }
                 }
             }
@@ -133,10 +133,12 @@ namespace Alex
             {
                 isPathable.Add(currentNode);
                 currentNode = currentNode.parent;
+                Debug.DrawRay(currentNode.worldPosition ,Vector3.up,Color.green, 2f);
             }
             isPathable.Reverse();
 
             //grid.path = isPathable;
+            
             PathFoundEvent?.Invoke();
         }
 

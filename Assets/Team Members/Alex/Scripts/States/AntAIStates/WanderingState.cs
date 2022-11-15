@@ -16,6 +16,7 @@ namespace Alex
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
+            wonder = aGameObject.GetComponent<Wonder>();
 
             owner = aGameObject;
         }
@@ -24,13 +25,14 @@ namespace Alex
         {
             base.Enter();
             wonder.enabled = true;
+            wonder.turnForce = 700;
             Finish();
         }
 
         public override void Exit()
         {
             base.Exit();
-            wonder.enabled = false;
+            wonder.turnForce = 20;
             Finish();
         }
     }

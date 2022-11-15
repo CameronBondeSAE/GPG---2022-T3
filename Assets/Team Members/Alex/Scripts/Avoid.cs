@@ -12,11 +12,13 @@ namespace Alex
 
         public float turnSpeed;
         public float distance = 1f;
+        
 
         // Start is called before the first frame update
 
         private void Awake()
         {
+            //LayerMask mask = LayerMask.GetMask("Obstacles");
             Physics2D.queriesStartInColliders = false;
         }
 
@@ -30,30 +32,33 @@ namespace Alex
             RaycastHit hitInfo;
 
 
-            if (Physics.Raycast(rb.transform.localPosition, transform.forward, out hitInfo, distance, 11, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(rb.transform.localPosition, transform.forward, out hitInfo, distance))
             {
-                Debug.DrawRay(rb.transform.localPosition, transform.forward * hitInfo.distance, Color.blue);
-
-                if (hitInfo.distance <= 1f)
+                if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
                 {
+                    Debug.DrawRay(rb.transform.localPosition, transform.forward * hitInfo.distance, Color.blue);
 
-                    //movement.speed = 10f;
-                    rb.AddRelativeTorque(0, turnSpeed * 10, 0);
-                    //transform.InverseTransformVector(hitInfo.transform.position);
-                }
+                    if (hitInfo.distance <= 1f)
+                    {
 
-                if (hitInfo.distance <= 1.5f)
-                {
-                    //movement.speed = 10f;
-                    rb.AddTorque(0, turnSpeed * 5, 0);
-                    //transform.InverseTransformVector(hitInfo.transform.position);
-                }
+                        //movement.speed = 10f;
+                        rb.AddRelativeTorque(0, turnSpeed * 10, 0);
+                        //transform.InverseTransformVector(hitInfo.transform.position);
+                    }
 
-                else if (hitInfo.distance <= 2f)
-                {
-                    //movement.speed = 50f;
-                    rb.AddTorque(0, turnSpeed, 0);
-                    //transform.InverseTransformVector(hitInfo.transform.position);
+                    if (hitInfo.distance <= 2.5f)
+                    {
+                        //movement.speed = 10f;
+                        rb.AddTorque(0, turnSpeed * 5, 0);
+                        //transform.InverseTransformVector(hitInfo.transform.position);
+                    }
+
+                    else if (hitInfo.distance <= 4f)
+                    {
+                        //movement.speed = 50f;
+                        rb.AddTorque(0, turnSpeed, 0);
+                        //transform.InverseTransformVector(hitInfo.transform.position);
+                    }
                 }
             }
         }
