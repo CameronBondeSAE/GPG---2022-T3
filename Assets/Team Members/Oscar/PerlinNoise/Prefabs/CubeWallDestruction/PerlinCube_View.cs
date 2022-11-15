@@ -12,20 +12,40 @@ public class PerlinCube_View : MonoBehaviour
     public GameObject perlinWallCube;
 
     public ParticleSystem[] crumblingParticles;
+
+    private bool DestroyTheWallNow;
     
     private void OnEnable()
     {
-        perlinCubeModel.wallDestruction += WallDecay;
+        perlinCubeModel.wallDestruction += WallCrumble;
     }
 
-    void WallDecay()
+    void WallCrumble()
     {
+        perlinWallCube.GetComponent<Renderer>().material.color = Color.blue;
         perlinCubeModel.transform.DOShakeScale(3f);
         foreach (ParticleSystem debree in crumblingParticles)
         {
             debree.Play();
         }
-        //perlinCubeModel.transform.DOScale(new Vector3(.1f, .1f, .1f), 3f);
         print("detroyed");
+        DestroyTheWallNow = true;
     }
+
+    public void FixedUpdate()
+    {
+        if (DestroyTheWallNow == true)
+        {
+            StartCoroutine(WallDestroy());
+        }
+    }
+
+    IEnumerator WallDestroy()
+    {
+        yield return new WaitForSeconds(3f);
+        perlinCubeModel.transform.DOScale(new Vector3(0f, 0f, 0f),3f);
+        yield return new WaitForSeconds(3f);
+        Destroy(perlinWallCube,1f);
+    }
+    
 }

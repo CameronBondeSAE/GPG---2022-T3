@@ -445,7 +445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &632581583
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -566,7 +566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6522943975982661918, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
       propertyPath: m_RootOrder
@@ -642,7 +642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1224669094
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1005,6 +1005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sludge_Model
       objectReference: {fileID: 0}
+    - target: {fileID: 6122380363611737215, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
@@ -1016,14 +1020,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3411614321170409340, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
-      propertyPath: AIEnemy
-      value: 
-      objectReference: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
-    - target: {fileID: 4194513743047498130, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
-      propertyPath: explosive.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5530932041577439139, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -1068,33 +1064,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5530932041577439140, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
-      propertyPath: amount
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530932041577439140, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
-      propertyPath: minDist
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530932041577439140, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
-      propertyPath: cubeSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530932041577439140, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
-      propertyPath: spawnItems
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5530932041577439141, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
       propertyPath: m_Name
       value: Map Generator
-      objectReference: {fileID: 0}
-    - target: {fileID: 5530932041577439141, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8632995031716236647, guid: ffd431cb1dc94344c90ba53199599fb3, type: 3}
-      propertyPath: minDist
-      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

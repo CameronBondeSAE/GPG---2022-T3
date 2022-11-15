@@ -11,14 +11,15 @@ namespace Oscar
         public Oscar.StateManager stateManager;
         public MonoBehaviour nearlyExplode;
         //effected by fire so needs to respond to being hit by fire.
-        public void SetOnFire()
-        {
-            stateManager.ChangeState(nearlyExplode);
-        }
+        
 
         public void ChangeHeat(IHeatSource heatSource, float x)
         {
             SetOnFire();
+        }
+        public void SetOnFire()
+        {
+            stateManager.ChangeState(nearlyExplode);
         }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -258,6 +258,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1693357923, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
+      propertyPath: sparkles
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
       propertyPath: m_Name
       value: OscarCube
@@ -386,14 +390,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810429094}
-  m_LocalRotation: {x: 0.22210002, y: -0, z: -0, w: 0.97502387}
-  m_LocalPosition: {x: 0.25, y: 8.15, z: -14.22}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 8.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 25.665, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &810429098
 MonoBehaviour:
   m_ObjectHideFlags: 0
