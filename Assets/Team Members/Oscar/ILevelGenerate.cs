@@ -11,6 +11,7 @@ namespace Oscar
         public void SpawnItems();
 
         public void SpawnExplosives();
+        
         public void SpawnBases();
     }
 }
