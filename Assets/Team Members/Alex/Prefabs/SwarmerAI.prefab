@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8555692990794580215
 Transform:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 1794423253392461865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1794423254282566961}
@@ -116,7 +116,7 @@ Transform:
   - {fileID: 561430403378240219}
   - {fileID: 8555692990794580215}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1794423253392461858
 MeshFilter:
@@ -178,7 +178,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: b501533e8223d4240b510d0556062039, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.56
+  m_Radius: 0.25
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 0}
-  speed: 400
+  speed: 200
 --- !u!54 &1794423253392461856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 5477602151829979742}
-  force: 100
+  force: 50
 --- !u!114 &5459054142461481995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a4c6cfdf37d6254c8b6f2523b2c4322, type: 3}
   m_Name: 
@@ -336,6 +336,8 @@ MonoBehaviour:
   cohesion: {fileID: 8270060209491018145}
   separation: {fileID: 8744244824783631288}
   neighbours: {fileID: 5459054142461481995}
+  onTime: 1
+  offTime: 15
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 50
+  turnSpeed: 10
   distance: 4
   layerMask:
     serializedVersion: 2
@@ -432,7 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: -50
+  turnSpeed: -10
   distance: 4
   layerMask:
     serializedVersion: 2
@@ -482,7 +484,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &706897844201177466
 MonoBehaviour:
@@ -545,12 +547,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 50
-  distance: 2
+  turnSpeed: 5
+  distance: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 2240
-  slowDownForce: 600
+  slowDownForce: 300
 --- !u!1 &6654157507890702779
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,7 +756,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5477602151829979742
 MonoBehaviour:
