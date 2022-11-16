@@ -22,7 +22,7 @@ public class HQScript : MonoBehaviour
     
     private Renderer rend;
 
-    [SerializeField] private float _HQRadius;
+    public float _HQRadius;
 
     //tracks items deposited
     private int itemCount;
@@ -52,12 +52,12 @@ public class HQScript : MonoBehaviour
             rend.material.color = Color.magenta;
 
         isActive = true;
-        
-        DestroyLand();
     }
 
-    private void DestroyLand()
+    public void DestroyLand(float x)
     {
+        _HQRadius = x;
+        
         Collider[] colliders = Physics.OverlapSphere(transform.position, _HQRadius);
 
         foreach (Collider obj in colliders)

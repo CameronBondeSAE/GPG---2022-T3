@@ -307,6 +307,17 @@ public partial class @LloydPlayer : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""3655a1a3-c276-4ea5-9a81-388f61c57f80"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MousePosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a3eb1abf-cd9f-4448-afb8-12ffc7bcfe6b"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",

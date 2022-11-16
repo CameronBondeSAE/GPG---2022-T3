@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -23,6 +24,11 @@ namespace Lloyd
         private bool _isShooting;
 
         private Vector2 _movement;
+
+        private Vector2 look;
+
+        [SerializeField]private float controllerDeadZone = 0.1f;
+        [SerializeField] private float rotateSmoothing = 1000f;
 
         [SerializeField] private float _runSpeed;
         [SerializeField] private float _maxSpeed;
@@ -50,8 +56,9 @@ namespace Lloyd
         private void FixedUpdate()
         {
             HandleMovement();
-            Look();
-
+            //Look();
+            ControllerRotate();
+            
             if (_isShooting)
                 _flamethrower.ShootFire();
         }
@@ -63,9 +70,30 @@ namespace Lloyd
             _mousePos = _playerInput.Player.MousePosition.ReadValue<Vector2>();
         }
 
+        public void ControllerLook(InputAction.CallbackContext context)
+        {
+            look = _playerInput.Player.Look.ReadValue<Vector2>();
+        }
+
         private void Rotate(Vector3 rotation)
         {
-            transform.LookAt(rotation);
+            transform.LookAt(rotation);     
+        }
+
+        private void ControllerRotate()
+        {
+            ControllerLook(new InputAction.CallbackContext());
+            
+            if (Mathf.Abs(look.x) > controllerDeadZone || Mathf.Abs(look.y) > controllerDeadZone)
+            {
+                Vector3 playerDir = Vector3.right * look.x + Vector3.forward * look.y;
+                if (playerDir.sqrMagnitude > 0.0f)
+                {
+                    Quaternion newRotate = Quaternion.LookRotation(playerDir, Vector3.up);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotate,
+                        rotateSmoothing * Time.deltaTime);
+                }
+            }
         }
 
         private void Look()

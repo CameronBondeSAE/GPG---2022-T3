@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHQType: 1
-  _HQRadius: 10
+  _HQRadius: 1.01
   itemVictory: 20
 --- !u!135 &1958683027176869243
 SphereCollider:

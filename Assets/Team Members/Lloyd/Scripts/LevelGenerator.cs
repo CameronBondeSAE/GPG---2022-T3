@@ -12,7 +12,7 @@ namespace Lloyd
     {
         [Header("Noise Settings")] [SerializeField]
         private int numCube;
-        [SerializeField] private int cubeScale;
+        [SerializeField] private float cubeScale;
 
         //perlin noise stuff
         [SerializeField] private float zoomNoiseX;
@@ -26,7 +26,7 @@ namespace Lloyd
 
         public GameObject _barrelObj;
         [SerializeField] private float numBarrels;
-
+        
         [Header("Plant Prefab")] [SerializeField]
         private GameObject itemPrefab;
 
@@ -47,8 +47,14 @@ namespace Lloyd
 
         [Header("HQ")] [SerializeField] private GameObject HumanHQ;
 
+        private HQScript hqscript;
+
+        [SerializeField] private float destroyRadius;
+
         [SerializeField] private int numHumanHQ;
 
+        [SerializeField] private GameObject alienSmart;
+        [SerializeField] private GameObject alienDumb;
         [SerializeField] private GameObject AlienHQ;
         [SerializeField] private int numAlienHQ;
         public List<Vector3> alienHQVector3List = new List<Vector3>();
@@ -60,6 +66,7 @@ namespace Lloyd
         private GameObject itemParent;
         private GameObject environmentParent;
         private GameObject HQParent;
+        private GameObject AlienParent;
 
         //cube stuff
         private Vector3 cubePos;
@@ -79,11 +86,13 @@ namespace Lloyd
             Destroy(itemParent);
             Destroy(environmentParent);
             Destroy(HQParent);
+            Destroy(AlienParent);
 
             terrainParent = new GameObject("terrainParent");
             itemParent = new GameObject("itemParent");
             environmentParent = new GameObject("environmentParent");
             HQParent = new GameObject("HQParent");
+            AlienParent = new GameObject("AlienParent");
             SpawnTerrain();
         }
 
@@ -93,9 +102,9 @@ namespace Lloyd
 
             alienHQVector3List = new List<Vector3>(numAlienHQ);
 
-            for (int x = 0; x < numCube; x = x + cubeScale)
+            for (float x = 0; x < numCube; x = x + cubeScale)
             {
-                for (int z = 0; z < numCube; z = z + cubeScale)
+                for (float z = 0; z < numCube; z = z + cubeScale)
                 {
                     centrePos = new Vector3(cubePos.x / 2, cubePos.y / 2, cubePos.z / 2);
 
@@ -104,7 +113,7 @@ namespace Lloyd
                     cubePos.y = perlinNoise * cubeHeight;
                     cubePos.z = z;
 
-                    if (perlinNoise < 0.1f && x > 20 && z > 20)
+                    if (perlinNoise < 0.1f && x > 33 && z > 33)
                     {
                         SpawnAlienHQPos();
                     }
@@ -112,27 +121,19 @@ namespace Lloyd
                     if (perlinNoise < 0.2)
                     {
                         SpawnItemPos();
-                    }
+                    } 
 
-                    if (perlinNoise > 0.4)
+                    if (perlinNoise > 0.5)
                     {
                         GameObject cube = Instantiate(wallPrefab, cubePos, Quaternion.identity) as GameObject;
                         cube.transform.SetParent(terrainParent.transform);
 
                             //cube.transform.localScale = new Vector3(cubeScale, cubeScale, cubeScale);
-
-
+                            
                         cubeRend = cube.GetComponent<Renderer>();
-                        cubeRend.material.color = Color.black;
+                        cubeRend.material.color = Color.gray;
 
-
-                        if (perlinNoise < .5f)
-                        {
-                            cubeRend = cube.GetComponent<Renderer>();
-                            cubeRend.material.color = Color.white;
-                        }
-
-                        if (perlinNoise > .6f)
+                        if (perlinNoise > .9f)
                         {
                             cubeRend = cube.GetComponent<Renderer>();
 
@@ -141,11 +142,11 @@ namespace Lloyd
 
                         //changes the size of the bottom cubes to stretch towards the ground (ostensibly prevents running underneath & fills gaps)
                         //note Mathf.Abs to fix box collider problem
-                        Resize(3f, new Vector3(0f, Mathf.Abs(-1), 0f));
+                        Resize(cubeScale, new Vector3(0f, Mathf.Abs(-1*cubeHeight), 0f));
 
                         void Resize(float amount, Vector3 direction)
                         {
-                            cube.transform.position += direction * amount / 2;
+                            //cube.transform.position += direction * amount / 2;
                             cube.transform.localScale += direction * amount;
                         }
                     }
@@ -184,14 +185,14 @@ namespace Lloyd
                 GameObject item =
                     Instantiate(itemPrefab, tempItemPos, Quaternion.identity) as GameObject;
                 item.transform.SetParent(itemParent.transform);
-                cubeRend = item.GetComponent<Renderer>();
-                cubeRend.material.color = Color.yellow;
+                cubeRend = item.GetComponentInChildren<Renderer>();
+                cubeRend.material.color = Color.green;
             }
         }
 
         void PlaceWalls()
         {
-            GameObject wall01 = Instantiate(cubePrefab, new Vector3(cubePos.x / 2, cubePos.y, cubePos.z + .5f),
+            GameObject wall01 = Instantiate(cubePrefab, new Vector3(cubePos.x / 2, cubePos.y, cubePos.z + 0),
                 Quaternion.identity);
             wall01.name = "Wall";
             wall01.transform.localScale = new Vector3(cubePos.x, wallsHeight, 1);
@@ -199,7 +200,7 @@ namespace Lloyd
             cubeRend = wall01.GetComponent<Renderer>();
             cubeRend.material.color = Color.blue;
 
-            GameObject wall02 = Instantiate(cubePrefab, new Vector3(cubePos.x + .5f, cubePos.y, cubePos.z / 2),
+            GameObject wall02 = Instantiate(cubePrefab, new Vector3(cubePos.x + 0, cubePos.y, cubePos.z / 2),
                 Quaternion.identity);
             wall02.name = "Wall";
             wall02.transform.localScale = new Vector3(1, wallsHeight, cubePos.z);
@@ -208,7 +209,7 @@ namespace Lloyd
             cubeRend.material.color = Color.blue;
 
             GameObject wall03 =
-                Instantiate(cubePrefab, new Vector3(cubePos.x / 2, cubePos.y, -.5f), Quaternion.identity);
+                Instantiate(cubePrefab, new Vector3(cubePos.x / 2, cubePos.y, 0), Quaternion.identity);
             wall03.name = "Wall";
             wall03.transform.localScale = new Vector3(cubePos.x, wallsHeight, 1);
             wall03.transform.SetParent(environmentParent.transform);
@@ -216,7 +217,7 @@ namespace Lloyd
             cubeRend.material.color = Color.blue;
 
             GameObject wall04 =
-                Instantiate(cubePrefab, new Vector3(-.5f, cubePos.y, cubePos.z / 2), Quaternion.identity);
+                Instantiate(cubePrefab, new Vector3(0, cubePos.y, cubePos.z / 2), Quaternion.identity);
             wall04.name = "Wall";
             wall04.transform.localScale = new Vector3(1, wallsHeight, cubePos.z);
             wall04.transform.SetParent(environmentParent.transform);
@@ -228,16 +229,18 @@ namespace Lloyd
         {
             GameObject ground = Instantiate(cubePrefab, centrePos, Quaternion.identity);
             ground.name = "Ground";
-            ground.transform.localScale = new Vector3(cubePos.x, Mathf.Abs(-cubePos.y), cubePos.z);
+            ground.transform.localScale = new Vector3(cubePos.x, Mathf.Abs(cubePos.y-cubeScale), cubePos.z);
             cubeRend = ground.GetComponent<Renderer>();
-            cubeRend.material.color = Color.blue;
+            cubeRend.material.color = Color.black;
+
+            ground.transform.position = new Vector3(cubePos.x/2, 0, cubePos.z/2 );
 
             ground.transform.SetParent(environmentParent.transform);
         }
 
         public void RandomiseValues()
         {
-            cubeHeight = Random.Range(5f, 8f);
+            cubeHeight = Random.Range(2f, 5f);
             zoomNoiseX = Random.Range(.07f, .2f);
             zoomNoiseY = Random.Range(.07f, .2f);
 
@@ -254,6 +257,9 @@ namespace Lloyd
             GameObject HumanHQprefab = Instantiate(HumanHQ,
                 new Vector3(centrePos.x, (centrePos.y + cubeScale) / 2, centrePos.z), Quaternion.identity);
             HumanHQprefab.transform.SetParent(HQParent.transform);
+            
+            hqscript = HumanHQprefab.GetComponentInChildren<HQScript>();
+            hqscript.DestroyLand(destroyRadius);
         }
 
         private void SpawnAlienHQPos()
@@ -286,6 +292,16 @@ namespace Lloyd
             {
                 GameObject AlienHQprefab = Instantiate(AlienHQ, tempAlienPos, Quaternion.identity);
                 AlienHQprefab.transform.SetParent(HQParent.transform);
+                
+                GameObject alienLeader = Instantiate(alienSmart, tempAlienPos, Quaternion.identity);
+                GameObject alienPeon = Instantiate(alienDumb, tempAlienPos, Quaternion.identity);
+
+                alienLeader.transform.SetParent(AlienParent.transform);
+                alienPeon.transform.SetParent(alienLeader.transform);
+
+                hqscript = AlienHQprefab.GetComponentInChildren<HQScript>();
+                hqscript.DestroyLand(destroyRadius);
+                
             }
         }
     }

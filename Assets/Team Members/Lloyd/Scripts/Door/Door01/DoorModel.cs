@@ -12,7 +12,7 @@ namespace Lloyd
     {
         
         //what door am I globally?
-        [SerializeField] private int _mainDoorInt=1;
+        //[SerializeField] private int _mainDoorInt=1;
         
         //State Manager
         private MonoBehaviour _currentState;
