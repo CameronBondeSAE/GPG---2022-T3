@@ -20,7 +20,6 @@ namespace Luke
         private InputAction _action2;
 
         [SerializeField] private Vector2 _moveDirection;
-        private Vector2 _aimInput;
         private Vector2 _aimDirection;
 
         private void OnEnable()
@@ -82,24 +81,22 @@ namespace Luke
 
         private void AimPerformed(InputAction.CallbackContext context)
         {
-            if (!IsLocalPlayer) return;
+	        if (!IsLocalPlayer) return;
             if (player == null) return;
-            _aimInput = context.ReadValue<Vector2>();
+            Vector2 aimInput = context.ReadValue<Vector2>();
             if (context.control.parent.name == "Mouse")
             {
                 if (Camera.main == null) return;
                 Vector3 playerPos = Camera.main.WorldToScreenPoint(playerTransform.position);
-                _aimDirection = Vector2.ClampMagnitude(_aimInput - new Vector2(playerPos.x, playerPos.y), 1f);
+                _aimDirection = aimInput - new Vector2(playerPos.x, playerPos.y);
                 return;
             }
-
-            _aimDirection = _aimInput;
+            _aimDirection = aimInput;
         }
 
         private void AimCancelled(InputAction.CallbackContext context)
         {
             if (!IsLocalPlayer) return;
-            _aimInput = Vector2.zero;
             _aimDirection = Vector2.zero;
         }
 

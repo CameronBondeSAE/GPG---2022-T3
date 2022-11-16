@@ -25,33 +25,46 @@ public class Avatar : NetworkBehaviour, IControllable
     }
 
     [ServerRpc]
-    private void RequestPlayerFixedUpdateServerRpc(Vector2 input)
+    private void RequestMovePlayerServerRpc(Vector2 direction)
     {
-        MovePlayer(input);
+        MovePlayer(direction);
+    }
+    
+    [ServerRpc]
+    private void RequestAimPlayerServerRpc(Vector2 direction)
+    {
+	    AimPlayer(direction);
     }
 
-    private void MovePlayer(Vector2 input)
+    private void MovePlayer(Vector2 direction)
     {
         Vector3 velocity = _rb.velocity;
         Vector3 dragVector3 = new Vector3(-velocity.x*drag, 0, -velocity.z*drag);
         _rb.AddForce(dragVector3, ForceMode.Acceleration);
-        Vector3 heading = new (input.x*acceleration, 0,input.y*acceleration);
+        Vector3 heading = new (direction.x*acceleration, 0,direction.y*acceleration);
         _rb.AddForce(heading, ForceMode.Acceleration);
         _rb.velocity = new(Mathf.Clamp(velocity.x,-maxSpeed, maxSpeed),velocity.y,
             Mathf.Clamp(velocity.z,-maxSpeed, maxSpeed));
-        _rb.AddTorque(0f,turnSpeed*Vector3.SignedAngle(_transform.forward,heading,Vector3.up),0f, ForceMode.Acceleration);
-        _rb.angularVelocity = Vector3.zero;
+        
+        // account for direction player facing here
+    }
+
+    private void AimPlayer(Vector2 direction)
+    {
+	    Vector3 targetAngle = new Vector3(0,turnSpeed*Vector3.SignedAngle(_transform.forward, new Vector3(direction.x, 0, direction.y), Vector3.up),0);
+	    _rb.AddTorque(targetAngle, ForceMode.Acceleration);
     }
 
     public void Move(Vector2 direction)
     {
-        MovePlayer(direction); //Clientside prediction
-        RequestPlayerFixedUpdateServerRpc(direction);
+        MovePlayer(direction); // Clientside prediction
+        RequestMovePlayerServerRpc(direction);
     }
 
     public void Aim(Vector2 direction)
     {
-        
+	    AimPlayer(direction); // Clientside prediction
+	    RequestAimPlayerServerRpc(direction);
     }
 
     public void Action1()
@@ -63,14 +76,12 @@ public class Avatar : NetworkBehaviour, IControllable
     {
         if (GameManager.singleton.zoomedIn)
         {
-            GameManager.singleton.virtualCameraTwo.SetActive(true);
+            GameManager.singleton.virtualCameraTwo.gameObject.SetActive(true);
             GameManager.singleton.zoomedIn = false;
+            return;
         }
-        else if (GameManager.singleton.zoomedIn == false)
-        {
-            GameManager.singleton.virtualCameraTwo.SetActive(false);
-            GameManager.singleton.zoomedIn = true;
-        }
+        GameManager.singleton.virtualCameraTwo.gameObject.SetActive(false);
+        GameManager.singleton.zoomedIn = true;
     }
     
     public void Action3()
