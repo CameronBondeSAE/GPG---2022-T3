@@ -1176,27 +1176,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &884751716 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6580783833038072679, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
-  m_PrefabInstance: {fileID: 512529543984451742}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &884751721
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884751716}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &954495868
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,10 +2265,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1757774261, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
-      propertyPath: pingLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 6580783833038072679, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
       propertyPath: m_Name
       value: Radar_Model
