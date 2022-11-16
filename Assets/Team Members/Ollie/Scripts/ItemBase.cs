@@ -135,14 +135,14 @@ public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
 
     public void DestroySelf()
     {
-        Destroy(gameObject.transform.parent.gameObject);
+        Destroy(gameObject);
     }
 
     public bool isHeld { get; set; }
     public bool locked { get; set; }
     public bool autoPickup { get; set; }
 
-    public void PickedUp(GameObject interactor)
+    public virtual void PickedUp(GameObject interactor)
     {
         //parentTransform.gameObject.SetActive(false);
         isHeld = true;
@@ -156,7 +156,7 @@ public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
         // }
     }
 
-    public void PutDown(GameObject interactor)
+    public virtual void PutDown(GameObject interactor)
     {
         //parentTransform.gameObject.SetActive(true);
         isHeld = false;

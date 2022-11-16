@@ -86,6 +86,6 @@ public class Avatar : NetworkBehaviour, IControllable
     
     public void Action3()
     {
-        
+        interact.DeathItemRespawn();
     }
 }
