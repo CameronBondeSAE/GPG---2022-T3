@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Marcus
 {
-    public class GrowthState : MonoBehaviour
+    public class GrowthState : MonoBehaviour, IPickupable
     {
         public MonoBehaviour matureState;
         
@@ -14,7 +16,7 @@ namespace Marcus
         public int spreadLimit;
         public int spreadNumber;
         
-        public float maxSize;
+        public float maxAge;
         public float age;
         
         private float spreadTimer;
@@ -35,9 +37,9 @@ namespace Marcus
         // Update is called once per frame
         void Update()
         {
-            age = Mathf.MoveTowards(age, maxSize, 0.002f);
+            age = Mathf.MoveTowards(age, maxAge, 0.002f);
 
-            if (age >= maxSize)
+            if (age >= maxAge)
             {
                 spreadTimer -= Time.deltaTime;
 
@@ -61,12 +63,35 @@ namespace Marcus
             Vector3 pos = transform.position + direction * distance;
         
             //grow new plants
-            if (Physics.OverlapSphere(pos, maxSize/2, spreadLayers, QueryTriggerInteraction.Collide).Length == 0)
+            if (Physics.OverlapSphere(pos, maxAge/2, spreadLayers, QueryTriggerInteraction.Collide).Length == 0)
             {
                 Instantiate(seedling, pos, Quaternion.identity);
             }
             spreadNumber++;
             RandomiseTimer();
         }
+
+        #region Interface Functions
+
+        public void PickedUp(GameObject interactor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PutDown(GameObject interactor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DestroySelf()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool isHeld { get; set; }
+        public bool locked { get; set; }
+        public bool autoPickup { get; set; }
+
+        #endregion
     }   
 }

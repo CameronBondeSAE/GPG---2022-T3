@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: e9a5ef3a81fa66e4c844fdbb43124895, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c789cdaf91c4a41449ccab5d99d11475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plantModel: {fileID: 617182278784988819}
+  plantGrowth: {fileID: 617182278784988819}
+  plantMature: {fileID: -2488204498220542135}
+  plantDeath: {fileID: 6026247607994705170}
 --- !u!1 &4137073510955222978
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +212,7 @@ MonoBehaviour:
     m_Bits: 6144
   spreadLimit: 12
   spreadNumber: 0
-  maxSize: 1
+  maxAge: 1
   age: 0
 --- !u!114 &-2488204498220542135
 MonoBehaviour:
