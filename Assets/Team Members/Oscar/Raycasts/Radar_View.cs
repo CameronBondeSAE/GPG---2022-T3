@@ -1,38 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Shapes;
 using UnityEngine;
 
 namespace Oscar
 {
-    public class Radar_View : ImmediateModeShapeDrawer
+    public class Radar_View : Radar_Model
     {
         //for the drawing of the lines in the game view
         public Color colour = Color.green;
         public float lineThickness = 1f;
         public float intensity = 1f;
-        public float length = 3f;
-        
-        //for the actual raycast
-        private float timer;
-        private float radarSpeed = 100f;
-        private Vector3 dir;
-        
-        //overide used because it is from the inherited script
+
+        //override used because it is from the inherited script
         public override void DrawShapes(Camera cam)
         {
             base.DrawShapes(cam);
-            
-            //create the loop for the radar using time.deltatime
-            timer += Time.deltaTime * radarSpeed;
-            if (timer >= 360f)
-            {
-                timer = 0f;
-            }
-            
-            //defined direction over time
-            dir = Quaternion.Euler(0, timer, 0) * transform.forward * length;
             
             //draw the lines in the game space.
             using (Draw.Command(Camera.main))

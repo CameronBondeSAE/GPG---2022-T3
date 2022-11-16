@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Shapes;
 using UnityEngine;
 
 namespace Oscar
 {
-    public class Radar_Model : MonoBehaviour, IFlammable
+    public class Radar_Model : ImmediateModeShapeDrawer, IFlammable,IPickupable
     {
         //for the actual raycast
-        private float timer;
+        public float timer;
         private float radarSpeed = 100f;
-        private Vector3 dir;
+        public Vector3 dir;
 
         private RaycastHit hitInfo;
         
         public LayerMask pingLayer;
-        public float length = 3f;
-
-        
+        private float length = 10f;
         
         void Update()
         {
@@ -34,21 +33,20 @@ namespace Oscar
             Ray ray = new Ray(transform.position, dir);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, length))
+            if (Physics.Raycast(ray, out hit, length,pingLayer))
             {
                 if (hit.collider != null)
                 {
-                    if (hit.collider.gameObject.layer == pingLayer)
-                    {
-                        print("ping");
-                    }
+                    print("ping");
                 }
             }
         }
         
+        //Interfaces that Interact with this item.
         public bool isHeld { get; set; }
         public bool locked { get; set; }
-        
+        public bool autoPickup { get; set; }
+
         public void PickedUp(GameObject interactor)
         {
             throw new System.NotImplementedException();
@@ -58,7 +56,12 @@ namespace Oscar
         {
             throw new System.NotImplementedException();
         }
-
+        
+        public void DestroySelf()
+        {
+            throw new System.NotImplementedException();
+        }
+        
         public void ChangeHeat(IHeatSource heatSource, float x)
         {
             
