@@ -17,6 +17,7 @@ namespace Alex
         public Shader agroShader;
         FollowPath followPath;
         TurnTowards turnTowards;
+        TestShapes testShapes;
 
         public override void Create(GameObject aGameObject)
         {
@@ -29,12 +30,13 @@ namespace Alex
             renderer = aGameObject.GetComponent<Renderer>();
             turnTowards = aGameObject.GetComponent<TurnTowards>();
             followPath = aGameObject.GetComponent<FollowPath>();
+            testShapes = aGameObject.GetComponent<TestShapes>();
         }
         public override void Enter()
         {
             base.Enter();
             controller.renderer.material.shader = agroShader;
-            
+            testShapes.colour = Color.red;
 
             turnTowards.enabled = true;
             followPath.enabled = true;
@@ -77,6 +79,7 @@ namespace Alex
         {
             base.Exit();
             controller.renderer.material.shader = controller.defaultShader;
+            testShapes.colour = Color.green;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
             
         }

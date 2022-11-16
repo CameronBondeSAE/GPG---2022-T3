@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Shapes;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace Alex
 {
@@ -25,10 +27,13 @@ namespace Alex
             //enemyInSight.Clear();
             //resourcesInSight.Clear();
             //dropOffPointsFound.Clear();
-            
-            testShapes.polygonPath.ClearAllPoints();
 
-            testShapes.polygonPath.AddPoint(new Vector2(transform.position.x + testShapes.transform.InverseTransformPoint(Vector3.zero).x, transform.position.z + testShapes.transform.InverseTransformPoint(Vector3.zero).z));
+
+
+            testShapes.polygonPath.ClearAllPoints();
+            
+            //converting the Y space from X coordinates to get flat vision cone
+            testShapes.polygonPath.AddPoint(transform.position.x, transform.position.z);
             
             
             
@@ -45,7 +50,7 @@ namespace Alex
 
                 
                 
-                testShapes.polygonPath.AddPoints(new Vector2(HitInfo.point.x +  testShapes.transform.InverseTransformPoint(Vector3.zero).x, HitInfo.point.z + testShapes.transform.InverseTransformPoint(Vector3.zero).z));
+                testShapes.polygonPath.AddPoint(HitInfo.point.x,HitInfo.point.z);
                 // CAM BIT
                 // Add point for later rendering
                 // testShapesViewModel.polygonPath.AddPoint(new Vector2()); // X and Z from ray
@@ -58,6 +63,7 @@ namespace Alex
                     if (!enemyInSight.Contains(enemy))
                     {
                         enemyInSight.Add(enemy);
+                        //testShapes.colour = Color.red;
                     }
                 }
                 
@@ -95,11 +101,13 @@ namespace Alex
                         if (!enemyInSight.Contains(enemy))
                         {
                             enemyInSight.Add(enemy);
+                            //testShapes.colour = Color.red;
                         }
                     }
                 }
             }
-            testShapes.polygonPath.AddPoint(new Vector2(transform.position.x + testShapes.transform.InverseTransformPoint(Vector3.zero).x, transform.position.z + testShapes.transform.InverseTransformPoint(Vector3.zero).z));
+            testShapes.polygonPath.AddPoint(transform.position.x, transform.position.z);
+            
         }
         // CAM BIT
         

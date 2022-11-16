@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 10886421}
   - component: {fileID: 10886420}
   - component: {fileID: 10886419}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -808,7 +808,7 @@ GameObject:
   - component: {fileID: 1160275750}
   - component: {fileID: 1160275749}
   - component: {fileID: 1160275748}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -978,7 +978,7 @@ PrefabInstance:
       objectReference: {fileID: 1640299007667872377, guid: 1b09c7f5c96eeb648a60af9de8559868, type: 3}
     - target: {fileID: 7557305625988945381, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: numberToSpawn
-      value: 5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_RootOrder
@@ -986,7 +986,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 56.3
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -994,7 +994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 53.4
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1105,7 +1105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945387, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1122,7 +1122,7 @@ GameObject:
   - component: {fileID: 1327937277}
   - component: {fileID: 1327937276}
   - component: {fileID: 1327937275}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall
   m_TagString: wall
   m_Icon: {fileID: 0}
@@ -1221,7 +1221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1442101613209404459, guid: ba093f3f8673d7e48b709ee64d1b41ae, type: 3}
       propertyPath: debugDraw
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1442101613209404459, guid: ba093f3f8673d7e48b709ee64d1b41ae, type: 3}
       propertyPath: debugScan
@@ -1312,7 +1312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 57.4
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1320,7 +1320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 53.2
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1952,7 +1952,7 @@ PrefabInstance:
       objectReference: {fileID: 5506969832059502176, guid: dc85734c4cb468a4e8523dbc44110406, type: 3}
     - target: {fileID: 7557305625988945381, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: numberToSpawn
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_RootOrder
@@ -2118,7 +2118,7 @@ GameObject:
   - component: {fileID: 2099756510}
   - component: {fileID: 2099756509}
   - component: {fileID: 2099756508}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall
   m_TagString: wall
   m_Icon: {fileID: 0}

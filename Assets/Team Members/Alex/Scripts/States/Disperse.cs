@@ -11,8 +11,8 @@ namespace Alex
         public Cohesion cohesion;
         public Separation separation;
         public Neighbours neighbours;
-        public float onTime = 5f;
-        public float offTime = 15f;
+        public float offTime = 5f;
+        public float onTime = 15f;
 
 
         void Start()

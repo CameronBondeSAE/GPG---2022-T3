@@ -33,14 +33,16 @@ namespace Alex
             followPath = aGameObject.GetComponent<FollowPath>();
             renderer = aGameObject.GetComponent<Renderer>();
             turnTowards = aGameObject.GetComponent<TurnTowards>();
+            
         }
         public override void Enter()
         {
             base.Enter();
             controller.renderer.material.shader = eleShader;
+            
            //renderer.material.shader = eleShader;
-      
-            turnTowards.enabled = true;
+
+           turnTowards.enabled = true;
             followPath.enabled = true;
             
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;

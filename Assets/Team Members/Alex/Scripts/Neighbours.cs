@@ -22,11 +22,7 @@ namespace Alex
 
         public void OnTriggerExit(Collider collider)
         {
-            if (collider.gameObject.layer == LayerMask.NameToLayer("AlienAI"))
-                neighbours.Remove(collider.gameObject);
-            
-            if (collider.gameObject.layer == LayerMask.NameToLayer("SwarmerAI"))
-                neighbours.Add(collider.gameObject);
+            neighbours.Remove(collider.gameObject);
         }
     }
 }

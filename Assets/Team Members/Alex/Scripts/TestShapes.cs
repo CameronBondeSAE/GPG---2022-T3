@@ -38,13 +38,17 @@ namespace Alex
                 Draw.ThicknessSpace = ThicknessSpace.Meters;
                 Draw.Color = colour * intensity;
 
-                for (int i = 0; i < 100; i++)
-                {
+                //for (int i = 0; i < 100; i++)
+                //{
                     //Draw.Line(new Vector3(Random.Range(0, 50f), Random.Range(0, 50f), Random.Range(0, 50f)),
                         //new Vector3(Random.Range(0, 50f), Random.Range(0, 50f), Random.Range(0, 50f)));
                     
-                    Draw.Polygon(polygonPath);
-                }
+                 
+                        Draw.Rotation = Quaternion.Euler(90f,0,0);
+                        Draw.Position = new Vector3(0, 0.5f, 0);
+
+                        Draw.Polygon(polygonPath);
+                //}
             }
         }
     }

@@ -37,7 +37,7 @@ namespace Alex
             if (Physics.Raycast(rb.transform.localPosition, transform.forward, out hitInfo, distance, layerMask))
             {
                 {
-                    Debug.DrawRay(rb.transform.localPosition, transform.forward * hitInfo.distance, Color.blue);
+                    //Debug.DrawRay(rb.transform.localPosition, transform.forward * hitInfo.distance, Color.blue);
 
                     if (hitInfo.distance <= 1f)
                     {

@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Alex
 {
@@ -12,7 +15,7 @@ namespace Alex
         public float numberToSpawn = 10;
 
         // Start is called before the first frame update
-        void Start()
+        public void Start()
         {
             for (int i = 0; i < numberToSpawn; i++)
             {
