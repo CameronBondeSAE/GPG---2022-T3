@@ -30,6 +30,8 @@ namespace Alex
 
             testShapes.polygonPath.AddPoint(new Vector2(transform.position.x + testShapes.transform.InverseTransformPoint(Vector3.zero).x, transform.position.z + testShapes.transform.InverseTransformPoint(Vector3.zero).z));
             
+            
+            
             for (int i = -rays; i < rays; i++)
             {
                 

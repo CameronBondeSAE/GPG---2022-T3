@@ -4,24 +4,27 @@ using System.Collections.Generic;
 using Alex;
 using UnityEngine;
 
-public class AlexAI : MonoBehaviour
+namespace Alex
 {
-    private SteeringBase align;
-    private SteeringBase separation;
-    private SteeringBase cohesion;
-    Rigidbody rb;
-    
-    public void Awake()
+    public class AlexAI : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-        align = GetComponent<Align>();
-        separation = GetComponent<Separation>();
-        cohesion = GetComponent<Cohesion>();
-    }
+        private SteeringBase align;
+        private SteeringBase separation;
+        private SteeringBase cohesion;
+        Rigidbody rb;
 
-    private void FixedUpdate()
-    {
-        GetComponent<SteeringManager>().CalculateMove(align.transform.position);
+        public void Awake()
+        {
+            rb = GetComponent<Rigidbody>();
+            align = GetComponent<Align>();
+            separation = GetComponent<Separation>();
+            cohesion = GetComponent<Cohesion>();
+        }
+
+        private void FixedUpdate()
+        {
+            GetComponent<SteeringManager>().CalculateMove(align.transform.position);
+        }
     }
 }
 
