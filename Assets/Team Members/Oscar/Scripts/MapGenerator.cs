@@ -18,7 +18,6 @@ public class MapGenerator : MonoBehaviour
     GameObject BarrelParent;
     GameObject AIParent;
     GameObject borderParent;
-    GameObject BaseParent;
     GameObject HQParent;
     GameObject ItemParent;
     
@@ -38,6 +37,14 @@ public class MapGenerator : MonoBehaviour
     public int cubeSize = 1;
 
     private float perlinValue;
+    
+    //arrays for the spawning to make it event driven
+    private List<Vector3> totalAI = new List<Vector3>();
+    private List<Vector3> totalItems = new List<Vector3>();
+    private List<Vector3> totalExplosives = new List<Vector3>();
+    private List<Vector3> totalHQ = new List<Vector3>();
+
+
     public void Start()
     {
         GameManager.singleton.OnGameStart += Spawner;
@@ -124,23 +131,48 @@ public class MapGenerator : MonoBehaviour
                     }
                     else
                     {
-                        spawnAI.SpawnAIInTheMaze(prefabPosition,AIParent, perlinValue);
-                        spawnExplosives.SpawningTheExplosives(prefabPosition,BarrelParent, perlinValue);
+                        totalAI.Add(prefabPosition);
+                        //spawnAI.SpawnAIInTheMaze(prefabPosition,AIParent, perlinValue);
+                        totalExplosives.Add(prefabPosition);
+                        //spawnExplosives.SpawningTheExplosives(prefabPosition,BarrelParent, perlinValue);
                     }
                 }
                 else
                 {
-                    spawnItems.SpawnTheItems(prefabPosition, ItemParent, perlinValue);
+                    totalItems.Add(prefabPosition);
+                    //spawnItems.SpawnTheItems(prefabPosition, ItemParent, perlinValue);
                 }
                 
                 if (perlinValue < .4f && prefabPosition.x > 20 && prefabPosition.z > 20)
                 {
-                    spawnBases.SpawnTheBase(prefabPosition, HQParent);
+                    totalHQ.Add(prefabPosition);
+                    //spawnBases.SpawnTheBase(prefabPosition, HQParent);
                 }
             }
         }
         spawnEnvironment.SpawnTheEnvironment(prefabPosition, amount, scale, borderParent);
     }
+    
+    public void AI()
+    {
+        spawnAI.SpawnAIInTheMaze(totalAI,AIParent, perlinValue);
+    }
+
+    public void Explosives()
+    {
+        spawnExplosives.SpawningTheExplosives(totalExplosives, BarrelParent, perlinValue);
+    }
+
+    public void Items()
+    {
+        spawnItems.SpawnTheItems(totalItems, ItemParent, perlinValue);
+    }
+
+    public void HQ()
+    {
+        spawnBases.SpawnTheBase(totalHQ, HQParent);
+    }
+    
     
     private void DeleteMap()
     {

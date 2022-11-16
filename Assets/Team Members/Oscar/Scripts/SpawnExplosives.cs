@@ -16,25 +16,29 @@ namespace Oscar
         private int boomAmount = 0;
         private int waitAmount = 0;
 
-        public void SpawningTheExplosives(Vector3 prefabPosition, GameObject explosiveParent, float perlinValue)
+        public void SpawningTheExplosives(List<Vector3> prefabPosition, GameObject explosiveParent, float perlinValue)
         {            
             //create spawn location with new perlin then 
             float explosivesPerlin = Mathf.PerlinNoise((boomInt), (boomInt));
 
-            //use new perlin to spawn explosives
-            if (explosivesPerlin < .4 && boomAmount <= 50 && waitAmount >= 110)
+            for (int i = 0; i < prefabPosition.Count; i++)
             {
-                GameObject spawnedItem = Instantiate(explosive[Random.Range(0,2)], prefabPosition, quaternion.identity);
-                
-                spawnedItem.transform.SetParent(explosiveParent.transform);
-
-                boomAmount++;
-                waitAmount = 0;
+                //use new perlin to spawn explosives
+                if (explosivesPerlin < .4 && boomAmount <= 50 && waitAmount >= 110)
+                {
+                    GameObject spawnedItem = Instantiate(explosive[Random.Range(0,2)], prefabPosition[i], quaternion.identity);
+                    
+                    spawnedItem.transform.SetParent(explosiveParent.transform);
+    
+                    boomAmount++;
+                    waitAmount = 0;
+                }
+                else
+                {
+                    waitAmount++;
+                }
             }
-            else
-            {
-                waitAmount++;
-            }
+            
             
         }
     }

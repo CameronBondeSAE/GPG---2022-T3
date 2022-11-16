@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class DrawingRaycast : ImmediateModeShapeDrawer
+    public class Radar_View : ImmediateModeShapeDrawer
     {
         //for the drawing of the lines in the game view
         public Color colour = Color.green;
@@ -18,11 +18,7 @@ namespace Oscar
         private float timer;
         private float radarSpeed = 100f;
         private Vector3 dir;
-
-        private RaycastHit hitInfo;
         
-        public LayerMask pingLayer;
-
         //overide used because it is from the inherited script
         public override void DrawShapes(Camera cam)
         {
@@ -56,24 +52,6 @@ namespace Oscar
                 for (int i = 0; i < 360; i++)
                 {
                     Draw.Line(dir,Vector3.zero,Color.clear,Draw.Color);
-                }
-            }
-        }
-
-        private void Update()
-        {            
-            //the actual raycast that will read the collisions if there are any
-            Ray ray = new Ray(transform.position, dir);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, length))
-            {
-                if (hit.collider != null)
-                {
-                    if (hit.collider.gameObject.layer == pingLayer)
-                    {
-                        print("ping");
-                    }
                 }
             }
         }

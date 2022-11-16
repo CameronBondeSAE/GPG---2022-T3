@@ -14,31 +14,31 @@ namespace Oscar
         public GameObject Base;
         public float tempBaseDist;
 
-        //work on this
-        public void SpawnTheBase(Vector3 prefabPosition, GameObject HQParent)
+        public void SpawnTheBase(List<Vector3> prefabPosition, GameObject HQParent)
         {
             //minDist = 90 - (amount / 2);
             //calculate distances between potential created object and the previously spawned one
-            tempBaseDist = Vector3.Distance(prefabPosition, prevBasePos);
-
-            //if the distance is less then the minimum distance set 
-            if (tempBaseDist > minDist)
+            for (int i = 0; i < prefabPosition.Count; i++)
             {
-                //and there isnt already 2 bases
-                if (HQAmount <= 1)
+                tempBaseDist = Vector3.Distance(prefabPosition[i], prevBasePos);
+                //if the distance is less then the minimum distance set 
+                if (tempBaseDist > minDist)
                 {
-                    //spawn the bases
-                    Vector3 tempBasePos = prefabPosition;
-                    prevBasePos = tempBasePos;
-                    
-                    GameObject HQ = Instantiate(Base, prefabPosition, quaternion.identity);
-                    
-                    HQ.transform.SetParent(HQParent.transform);
-                    HQAmount++;
+                    //and there isnt already 2 bases
+                    if (HQAmount <= 1)
+                    {
+                        //spawn the bases
+                        Vector3 tempBasePos = prefabPosition[i];
+                        
+                        prevBasePos = tempBasePos;
+                        
+                        GameObject HQ = Instantiate(Base, prefabPosition[i], quaternion.identity);
+                        
+                        HQ.transform.SetParent(HQParent.transform);
+                        HQAmount++;
+                    }
                 }
             }
         }
-
     }
-
 }

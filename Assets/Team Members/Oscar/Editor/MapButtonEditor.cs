@@ -15,7 +15,26 @@ public class MapButtonEditor : Editor
                 {
                         (target as MapGenerator)?.ResetTheMap();
                 }
-
+                
+                if (GUILayout.Button("AI Spawn") && Application.isPlaying)
+                {
+                        (target as MapGenerator)?.AI();
+                }
+                
+                if (GUILayout.Button("Explosives Spawn") && Application.isPlaying)
+                {
+                        (target as MapGenerator)?.Explosives();
+                }
+                
+                if (GUILayout.Button("Items Spawn") && Application.isPlaying)
+                {
+                        (target as MapGenerator)?.Items();
+                }
+                
+                if (GUILayout.Button("HQ Spawn") && Application.isPlaying)
+                {
+                        (target as MapGenerator)?.HQ();
+                }
         }
 }
 

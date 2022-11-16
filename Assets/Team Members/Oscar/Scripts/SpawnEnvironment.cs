@@ -11,7 +11,7 @@ namespace Oscar
         public GameObject floorPrefab;
         public GameObject perlinPrefab;
 
-        private Vector3 prefabPosition;
+        private List<Vector3> prefabPosition;
         private GameObject CubeParent;
         private float perlinValue;
         
