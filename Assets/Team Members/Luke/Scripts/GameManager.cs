@@ -53,10 +53,9 @@ public class GameManager : NetworkBehaviour
 	[ClientRpc]
 	private void SetCameraTargetClientRpc()
 	{
-		cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
-		
+
 		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 	}
@@ -113,6 +112,11 @@ public class GameManager : NetworkBehaviour
     private void Start()
     {
         NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
+    }
+
+    public void LevelFinishedLoading()
+    {
+	    
     }
 }
 //Things to add
