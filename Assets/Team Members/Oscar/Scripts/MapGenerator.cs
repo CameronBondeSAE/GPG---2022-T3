@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Luke;
+using Oscar;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MapGenerator : MonoBehaviour
+public class MapGenerator : MonoBehaviour, ILevelGenerate
 {
     public Oscar.SpawnBases spawnBases;
     public Oscar.SpawnEnvironment spawnEnvironment;
@@ -39,6 +40,7 @@ public class MapGenerator : MonoBehaviour
     private float perlinValue;
     
     //arrays for the spawning to make it event driven
+    private List<Vector3> totalCubes = new List<Vector3>();
     private List<Vector3> totalAI = new List<Vector3>();
     private List<Vector3> totalItems = new List<Vector3>();
     private List<Vector3> totalExplosives = new List<Vector3>();
@@ -62,14 +64,14 @@ public class MapGenerator : MonoBehaviour
             //randoms
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            spawnTerrain(zoomX,zoomZ);
+            SpawnTerrain(zoomX,zoomZ);
         }
         else if (randomMap == false)
         {
             //standard averages
             zoomX = 0.15f;
             zoomZ = 0.15f;
-            spawnTerrain(zoomX,zoomZ);
+            SpawnTerrain(zoomX,zoomZ);
         }
     }
 
@@ -101,15 +103,15 @@ public class MapGenerator : MonoBehaviour
         {
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            spawnTerrain(zoomX, zoomZ);
+            SpawnTerrain(zoomX, zoomZ);
         }
         else if (randomMap == false)
         {
-            spawnTerrain(zoomX, zoomZ);
+            SpawnTerrain(zoomX, zoomZ);
         }
     }
 
-    public void spawnTerrain(float zoomX, float zoomZ)
+    public void SpawnTerrain(float zoomX, float zoomZ)
     {
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         
@@ -127,7 +129,8 @@ public class MapGenerator : MonoBehaviour
                 {
                     if (perlinValue > .5)
                     {
-                        spawnEnvironment.SpawnPerlinWalls(prefabPosition, CubeParent, perlinValue);
+                        totalCubes.Add(prefabPosition);
+                        //spawnEnvironment.SpawnPerlinWalls(prefabPosition, CubeParent, perlinValue);
                     }
                     else
                     {
@@ -150,30 +153,9 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-        spawnEnvironment.SpawnTheEnvironment(prefabPosition, amount, scale, borderParent);
-    }
-    
-    public void AI()
-    {
-        spawnAI.SpawnAIInTheMaze(totalAI,AIParent, perlinValue);
     }
 
-    public void Explosives()
-    {
-        spawnExplosives.SpawningTheExplosives(totalExplosives, BarrelParent, perlinValue);
-    }
 
-    public void Items()
-    {
-        spawnItems.SpawnTheItems(totalItems, ItemParent, perlinValue);
-    }
-
-    public void HQ()
-    {
-        spawnBases.SpawnTheBase(totalHQ, HQParent);
-    }
-    
-    
     private void DeleteMap()
     {
         Destroy(CubeParent);
@@ -194,5 +176,35 @@ public class MapGenerator : MonoBehaviour
         //reset values so bases can respawn
         spawnBases.HQAmount = 0;
         spawnBases.tempBaseDist = 0;
+    }
+
+    public void SpawnPerlin()
+    {
+        spawnEnvironment.SpawnPerlinWalls(totalCubes, CubeParent, perlinValue);
+    }
+
+    public void SpawnBorder()
+    {
+        spawnEnvironment.SpawnTheEnvironment(prefabPosition, amount, scale, borderParent);
+    }
+
+    public void SpawnAI()
+    {
+        spawnAI.SpawnAIInTheMaze(totalAI,AIParent, perlinValue);
+    }
+
+    public void SpawnItems()
+    {
+        spawnItems.SpawnTheItems(totalItems, ItemParent);
+    }
+
+    public void SpawnExplosives()
+    {
+        spawnExplosives.SpawningTheExplosives(totalExplosives, BarrelParent, perlinValue);
+    }
+
+    public void SpawnBases()
+    {
+        spawnBases.SpawnTheBase(totalHQ, HQParent);
     }
 }

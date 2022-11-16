@@ -16,24 +16,34 @@ public class MapButtonEditor : Editor
                         (target as MapGenerator)?.ResetTheMap();
                 }
                 
+                if (GUILayout.Button("Perlin Spawn") && Application.isPlaying)
+                {
+                        (target as MapGenerator)?.SpawnPerlin();
+                }
+                
+                if (GUILayout.Button("Border Spawn") && Application.isPlaying)
+                {
+                        (target as MapGenerator)?.SpawnBorder();
+                }
+                
                 if (GUILayout.Button("AI Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.AI();
+                        (target as MapGenerator)?.SpawnAI();
                 }
                 
                 if (GUILayout.Button("Explosives Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.Explosives();
+                        (target as MapGenerator)?.SpawnExplosives();
                 }
                 
                 if (GUILayout.Button("Items Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.Items();
+                        (target as MapGenerator)?.SpawnItems();
                 }
                 
                 if (GUILayout.Button("HQ Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.HQ();
+                        (target as MapGenerator)?.SpawnBases();
                 }
         }
 }
