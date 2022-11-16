@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomness: 0
-  amount: 200
+  amount: 100
   aiLimit: 0
   pickup: {fileID: 4137073510955222978, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
   swarmer: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}

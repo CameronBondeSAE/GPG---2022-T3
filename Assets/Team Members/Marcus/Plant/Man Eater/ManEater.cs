@@ -27,7 +27,7 @@ public class ManEater : MonoBehaviour, IFlammable
 
     void EatThing(Collider other)
     {
-        if (other.GetComponent<MarcusInput>() != null)
+        if (other.GetComponent<MarcusInput>() != null) //Replace <MarcusInput> with whatever is unique to the player (IControllable)???
         {
             print("Get Nommed");
         }
