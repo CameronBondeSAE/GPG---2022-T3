@@ -43,7 +43,7 @@ namespace Alex
             averagePosition /= neighbours.neighbours.Count;
 
             Vector3 direction = (averagePosition - rb.transform.position).normalized;
-            Debug.DrawLine(rb.transform.position, averagePosition, Color.green);
+            //Debug.DrawLine(rb.transform.position, averagePosition, Color.green);
             return direction;
         }
     }

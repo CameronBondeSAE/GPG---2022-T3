@@ -465,6 +465,9 @@ MonoBehaviour:
   rb: {fileID: 1794423253392461856}
   turnSpeed: 40
   distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2240
 --- !u!1 &4539377846754210193
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +577,9 @@ MonoBehaviour:
   rb: {fileID: 1794423253392461856}
   turnSpeed: 20
   distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2240
 --- !u!1 &6654157507890702779
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,3 +848,6 @@ MonoBehaviour:
   rb: {fileID: 1794423253392461856}
   turnSpeed: 35
   distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2240

@@ -40,7 +40,7 @@ public class Separation : SteeringBase
 
         Vector3 direction = (rb.transform.position - separationMove).normalized;
 
-        Debug.DrawLine(rb.transform.localPosition, separationMove, Color.red);
+        //Debug.DrawLine(rb.transform.localPosition, separationMove, Color.red);
 
         return direction;
     }

@@ -12,6 +12,8 @@ namespace Alex
 
         public float turnSpeed;
         public float distance = 1f;
+        public LayerMask layerMask;
+        public float slowDownForce;
         
 
         // Start is called before the first frame update
@@ -32,9 +34,8 @@ namespace Alex
             RaycastHit hitInfo;
 
 
-            if (Physics.Raycast(rb.transform.localPosition, transform.forward, out hitInfo, distance))
+            if (Physics.Raycast(rb.transform.localPosition, transform.forward, out hitInfo, distance, layerMask))
             {
-                if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Obstacles"))
                 {
                     Debug.DrawRay(rb.transform.localPosition, transform.forward * hitInfo.distance, Color.blue);
 
@@ -43,6 +44,7 @@ namespace Alex
 
                         //movement.speed = 10f;
                         rb.AddRelativeTorque(0, turnSpeed * 10, 0);
+                        rb.AddRelativeForce(0, 0, -slowDownForce);
                         //transform.InverseTransformVector(hitInfo.transform.position);
                     }
 

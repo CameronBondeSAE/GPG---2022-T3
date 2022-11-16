@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NodeCanvas.Tasks.Actions;
 using UnityEngine;
 
 namespace Alex
@@ -9,7 +10,10 @@ namespace Alex
         public Align align;
         public Cohesion cohesion;
         public Separation separation;
-        
+        public Neighbours neighbours;
+        public float onTime = 5f;
+        public float offTime = 15f;
+
 
         void Start()
         {
@@ -18,14 +22,17 @@ namespace Alex
         
         public IEnumerator SwarmersDisperse()
         {
+            neighbours.neighbours.Clear();
+            neighbours.enabled = false;
             align.enabled = false;
             cohesion.enabled = false;
             separation.enabled = false;
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(onTime);
+            neighbours.enabled = true;
             align.enabled = true;
             cohesion.enabled = true;
             separation.enabled = true;
-            yield return new WaitForSeconds(30f);
+            yield return new WaitForSeconds(offTime);
             StartCoroutine(SwarmersDisperse());
         }
 
