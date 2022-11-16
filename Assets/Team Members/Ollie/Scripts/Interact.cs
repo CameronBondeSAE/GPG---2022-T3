@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 /// <summary>
 /// Put this on the Player
 /// allows them to pickup plants & items
@@ -15,11 +16,16 @@ public class Interact : NetworkBehaviour
 {
     public GameObject heldObject;
     public Transform equippedMountPos;
-    public IPickupable pickupableNearby;
+    [Serialize] public IPickupable pickupableNearby;
     public int storedItems;
-    public int storedMax;
+    public int storedMax = 10;
     public int equippedItems;
-    public int equippedMax;
+    public int equippedMax = 1;
+
+    [Header("Hack Item Spawning")]
+    public NetworkObject item;
+    public GameObject flamethrower;
+    public GameObject plant;
 
     [ServerRpc]
     public void RequestInteractWithServerRpc()
@@ -30,25 +36,36 @@ public class Interact : NetworkBehaviour
             {
                 equippedItems++;
                 pickupableNearby.PickedUp(gameObject);
-                //somehow set the object to be my child
-                //and place it in equippedMountPos;
+                pickupableNearby.DestroySelf();
+                pickupableNearby = null;
             }
         }
         
-        
-        
-        Vector3 dropPoint = transform.position + transform.forward * 2;
-        if (storedItems > 0 && heldObject != null)
+        else if (equippedItems >= equippedMax)
         {
-            storedItems--;
-            heldObject.GetComponent<ItemBase>().GetDropPointClientRpc(dropPoint);
-            heldObject.GetComponent<ItemBase>().GetDroppedClientRpc();
+            equippedItems--;
+            Vector3 myPos = transform.position;
+            NetworkObject go = Instantiate(item);
+            go.transform.position =
+                myPos - transform.forward;
+            go.Spawn();
         }
+        
+        
+        
+        
+        // Vector3 dropPoint = transform.position + transform.forward * 2;
+        // if (storedItems > 0 && heldObject != null)
+        // {
+        //     storedItems--;
+        //     heldObject.GetComponent<ItemBase>().GetDropPointClientRpc(dropPoint);
+        //     heldObject.GetComponent<ItemBase>().GetDroppedClientRpc();
+        // }
     }
 
     public void ParentItemObject(GameObject child)
     {
-        child.transform.parent = equippedMountPos;
+        //child.transform.parent = equippedMountPos;
     }
 
     private void OnTriggerEnter(Collider other)

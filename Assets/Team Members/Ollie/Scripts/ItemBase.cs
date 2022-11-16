@@ -135,7 +135,7 @@ public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
 
     public void DestroySelf()
     {
-        throw new NotImplementedException();
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
     public bool isHeld { get; set; }
@@ -146,10 +146,14 @@ public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     {
         //parentTransform.gameObject.SetActive(false);
         isHeld = true;
-        if (!autoPickup && interactor.GetComponent<Interact>()!= null)
-        {
-            interactor.GetComponent<Interact>().ParentItemObject(gameObject);
-        }
+        
+        //replaced with hack
+        //destroying objects and just respawning
+        
+        // if (!autoPickup && interactor.GetComponent<Interact>()!= null)
+        // {
+        //     interactor.GetComponent<Interact>().ParentItemObject(gameObject);
+        // }
     }
 
     public void PutDown(GameObject interactor)
