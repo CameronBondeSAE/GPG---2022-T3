@@ -158,7 +158,8 @@ MonoBehaviour:
   pickup: {fileID: 4137073510955222978, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
   swarmer: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
   floorPrefab: {fileID: 8433662347367654271, guid: 0d0c60d10f636ce418c5444dcfb9e1c7, type: 3}
-  wallPrefab: {fileID: 1029339241619491306, guid: 8e8eb3c426d52964695de5ad06452695, type: 3}
+  wallPrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
+  borderPrefab: {fileID: 1029339241619491306, guid: 8e8eb3c426d52964695de5ad06452695, type: 3}
   bricks: []
   items: []
   aliens: []

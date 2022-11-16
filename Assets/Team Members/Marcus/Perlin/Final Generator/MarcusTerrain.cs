@@ -29,6 +29,7 @@ public class MarcusTerrain : MonoBehaviour
     
     public GameObject floorPrefab;
     public GameObject wallPrefab;
+    public GameObject borderPrefab;
     
     public List<GameObject> bricks;
     public List<GameObject> items;
@@ -91,11 +92,13 @@ public class MarcusTerrain : MonoBehaviour
     void GenerateMaze(float step, Vector2 startPoint, float itemStep)
     {
         // Spawn floor as one piece
-        floorPos = new Vector3(amount/2, 0, amount/2);
+        float floorPos = amount / 2;
 
-        GameObject floor = Instantiate(floorPrefab, floorPos, Quaternion.identity);
-        floor.transform.localScale = new Vector3(amount, 0.1f, amount);
+        GameObject floor = Instantiate(floorPrefab, new Vector3(floorPos, 0f, floorPos), Quaternion.identity);
+        floor.transform.localScale = new Vector3(amount + 1, 0.1f, amount + 1);
         bricks.Add(floor);
+        
+        SpawnBorder();
 
         for (int x = 0; x < amount; x++)
         {
@@ -116,6 +119,23 @@ public class MarcusTerrain : MonoBehaviour
                 }
             }
         }
+    }
+
+    void SpawnBorder()
+    {
+        GameObject curBorder;
+        
+        curBorder = Instantiate(borderPrefab, new Vector3(amount/2, 2, -1), Quaternion.identity);
+        curBorder.transform.localScale += new Vector3(amount, 0, 0);
+        
+        curBorder = Instantiate(borderPrefab, new Vector3(-1, 2, amount/2), Quaternion.identity);
+        curBorder.transform.localScale += new Vector3(0, 0, amount);
+        
+        curBorder = Instantiate(borderPrefab, new Vector3(amount/2, 2, amount + 1), Quaternion.identity);
+        curBorder.transform.localScale += new Vector3(amount, 0, 0);
+        
+        curBorder = Instantiate(borderPrefab, new Vector3(amount + 1, 2, amount/2), Quaternion.identity);
+        curBorder.transform.localScale += new Vector3(0, 0, amount);
     }
 
     void SpawnItems(float xValue, float zValue, float itemStep)
