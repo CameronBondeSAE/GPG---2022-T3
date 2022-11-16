@@ -33,7 +33,13 @@ namespace Marcus
             //Just exist?
         }
 
+        public void DestroySelf()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public bool isHeld { get; set; }
         public bool locked { get; set; }
+        public bool autoPickup { get; set; }
     }
 }
