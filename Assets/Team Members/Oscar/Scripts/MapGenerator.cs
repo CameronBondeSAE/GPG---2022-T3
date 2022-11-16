@@ -45,8 +45,7 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
     private List<Vector3> totalItems = new List<Vector3>();
     private List<Vector3> totalExplosives = new List<Vector3>();
     private List<Vector3> totalHQ = new List<Vector3>();
-
-
+    
     public void Start()
     {
         GameManager.singleton.OnGameStart += Spawner;
@@ -73,28 +72,6 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
             zoomZ = 0.15f;
             SpawnTerrain(zoomX,zoomZ);
         }
-    }
-
-    public void ResetTheMap()
-    {
-        Destroy(CubeParent);
-        Destroy(BarrelParent);
-        Destroy(AIParent);
-        Destroy(borderParent);
-        Destroy(HQParent);
-        Destroy(ItemParent);
-        
-        CubeParent = new GameObject("CubeParent");
-        BarrelParent = new GameObject("ItemParent");
-        AIParent = new GameObject("AIParent");
-        borderParent = new GameObject("borderParent");
-        HQParent = new GameObject("HQParent");
-        ItemParent = new GameObject("itemParent");
-
-        //reset the values so bases will respawn
-        spawnBases.HQAmount = 0;
-        spawnBases.tempBaseDist = 0;
-        Spawner();
     }
     
     public void Spawner()
@@ -130,31 +107,53 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
                     if (perlinValue > .5)
                     {
                         totalCubes.Add(prefabPosition);
-                        //spawnEnvironment.SpawnPerlinWalls(prefabPosition, CubeParent, perlinValue);
                     }
                     else
                     {
                         totalAI.Add(prefabPosition);
-                        //spawnAI.SpawnAIInTheMaze(prefabPosition,AIParent, perlinValue);
                         totalExplosives.Add(prefabPosition);
-                        //spawnExplosives.SpawningTheExplosives(prefabPosition,BarrelParent, perlinValue);
                     }
                 }
                 else
                 {
                     totalItems.Add(prefabPosition);
-                    //spawnItems.SpawnTheItems(prefabPosition, ItemParent, perlinValue);
                 }
                 
                 if (perlinValue < .4f && prefabPosition.x > 20 && prefabPosition.z > 20)
                 {
                     totalHQ.Add(prefabPosition);
-                    //spawnBases.SpawnTheBase(prefabPosition, HQParent);
                 }
             }
         }
+        Luke.GameManager.singleton.LevelFinishedLoading();
     }
+    public void ResetTheMap()
+        {
+            Destroy(CubeParent);
+            Destroy(BarrelParent);
+            Destroy(AIParent);
+            Destroy(borderParent);
+            Destroy(HQParent);
+            Destroy(ItemParent);
+            
+            CubeParent = new GameObject("CubeParent");
+            BarrelParent = new GameObject("ItemParent");
+            AIParent = new GameObject("AIParent");
+            borderParent = new GameObject("borderParent");
+            HQParent = new GameObject("HQParent");
+            ItemParent = new GameObject("itemParent");
+            
+            totalCubes = new List<Vector3>();
+            totalAI = new List<Vector3>();
+            totalItems = new List<Vector3>();
+            totalExplosives = new List<Vector3>();
+            totalHQ = new List<Vector3>();
 
+            //reset the values so bases will respawn
+            spawnBases.HQAmount = 0;
+            spawnBases.tempBaseDist = 0;
+            Spawner();
+        }
 
     private void DeleteMap()
     {
@@ -172,6 +171,11 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
         HQParent = new GameObject("HQParent");
         ItemParent = new GameObject("itemParent");
 
+        totalCubes = new List<Vector3>();
+        totalAI = new List<Vector3>();
+        totalItems = new List<Vector3>();
+        totalExplosives = new List<Vector3>();
+        totalHQ = new List<Vector3>();
         
         //reset values so bases can respawn
         spawnBases.HQAmount = 0;

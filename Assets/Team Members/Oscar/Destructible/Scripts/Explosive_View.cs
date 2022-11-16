@@ -14,7 +14,6 @@ namespace Oscar
         public GameObject barrel;
         
         private Color colRed = new Color32(255,0,0,255);
-        private Vector3 scaleIncrease = new Vector3(3, 3, 3);
         
         private void OnEnable()
         {

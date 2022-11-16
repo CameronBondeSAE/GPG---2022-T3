@@ -45,13 +45,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useCullingMasks: 0
-  colour: {r: 0, g: 1, b: 0, a: 1}
-  lineThickness: 1
-  intensity: 1
-  length: 3
+  timer: 0
+  dir: {x: 0, y: 0, z: 0}
   pingLayer:
     serializedVersion: 2
     m_Bits: 64
+  length: 10
+  colour: {r: 0, g: 1, b: 0, a: 1}
+  lineThickness: 0.2
+  intensity: 0.2
 --- !u!1 &6580783833038072679
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +184,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea553eb4a69889c42bb68b4b05d192af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useCullingMasks: 0
+  timer: 0
+  dir: {x: 0, y: 0, z: 0}
+  pingLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  length: 10
 --- !u!1 &7602782766364354882
 GameObject:
   m_ObjectHideFlags: 0
