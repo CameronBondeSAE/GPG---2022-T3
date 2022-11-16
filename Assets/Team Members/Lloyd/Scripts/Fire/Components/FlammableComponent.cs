@@ -73,7 +73,7 @@ public class FlammableComponent : MonoBehaviour
         {
             GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
             fire.transform.SetParent(transform);
-            flameModel = fire.GetComponent<FlameModel>();
+            flameModel = fire.GetComponentInChildren<FlameModel>();
             flameModel.SetFlameStats(fireDamage, fuel, radius);
             
             fireList.Add(fire);
@@ -83,10 +83,12 @@ public class FlammableComponent : MonoBehaviour
     public void Extinguish()
     {
         burning = false;
+        heatLevel = 0;
         
         foreach (GameObject fire in fireList){
-                flameModel = fire.GetComponent<FlameModel>();
+                flameModel = fire.GetComponentInChildren<FlameModel>();
                 flameModel.SetFlameStats(0, 0, 0);
+                Destroy(fire);
                 fireList.Clear();
         }
     }
@@ -122,6 +124,11 @@ public class FlammableComponent : MonoBehaviour
             heatLevel = 0;
             Extinguish();
         }
+    }
+
+    private void Cool()
+    {
+        ChangeHeat(-coolRate*.2f);
     }
     
     public event Action SetOnFireEvent;

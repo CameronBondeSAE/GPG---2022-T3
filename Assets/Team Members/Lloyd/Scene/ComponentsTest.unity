@@ -542,14 +542,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991603803}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 74, z: -26}
+  m_LocalRotation: {x: 0.19623397, y: -0, z: -0, w: 0.98055714}
+  m_LocalPosition: {x: 0, y: 5.3, z: -6.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 22.634, y: 0, z: 0}
 --- !u!114 &991603807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -862,14 +862,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flamePrefab: {fileID: 1035946083864619115, guid: bd7cf4b4ee68a3841804182734b86b41, type: 3}
+  flamePrefab: {fileID: 4150792052017500699, guid: bd7cf4b4ee68a3841804182734b86b41, type: 3}
   fireDamage: 5
   heatLevel: 0
   heatThreshold: 50
   heatMultiplier: 2
   fuel: 50
   coolRate: 1
-  radius: 1
+  radius: 50
 --- !u!1001 &1359366065
 PrefabInstance:
   m_ObjectHideFlags: 0

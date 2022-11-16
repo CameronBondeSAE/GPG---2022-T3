@@ -10,14 +10,14 @@ public class FlameModel : MonoBehaviour, IHeatSource
     private float heat;
  
      //how much fuel it has to burn
-    [SerializeField] private float fuel;
+    private float fuel;
     
     //fire does more damage depending on proximity
-    private float radius;
-    private Vector3 center;
-    [SerializeField]private float minDistance;
-    private float distance;
-    [SerializeField] private float proximityMultiplier;
+    [SerializeField] private float radius;
+    [SerializeField] private Vector3 center;
+    [SerializeField] private float minDistance;
+    [SerializeField] private float distance;
+    [SerializeField] private float proximityMultiplier=2;
     
     private Vector3 burnVictim;
     
@@ -29,6 +29,10 @@ public class FlameModel : MonoBehaviour, IHeatSource
         heat = x;
         fuel = y;
         radius = z;
+
+        minDistance = radius / 2;
+
+        transform.localScale = new Vector3(radius, radius, radius);
     }
 
     private IHeatSource myself;
