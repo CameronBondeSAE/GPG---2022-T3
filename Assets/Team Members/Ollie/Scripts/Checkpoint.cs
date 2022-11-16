@@ -24,7 +24,7 @@ public class Checkpoint : NetworkBehaviour
             if (otherParent != null && other.transform.parent.GetComponentInChildren<IGoalItem>() != null)
             {
                 GetComponent<Renderer>().material.color = Color.green;
-                otherParent.GetComponentInChildren<Item>().locked = true;
+                otherParent.GetComponentInChildren<ItemBase>().locked = true;
                 itemPlacedEvent?.Invoke();
                 CheckpointUpdateClientRpc();
             }

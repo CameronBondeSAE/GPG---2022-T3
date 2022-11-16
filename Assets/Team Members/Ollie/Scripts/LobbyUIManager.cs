@@ -55,10 +55,10 @@ namespace Ollie
         public TMP_InputField serverIPInputField;
         
         [Header("Hack for now/Ignore")]
-        public GameObject playerPrefab;
+        //public GameObject playerPrefab;
 
-        public GameObject lobbyCam;
-        public GameObject directionalLight;
+        //public GameObject lobbyCam;
+        //public GameObject directionalLight;
         bool              inGame = false;
 
         ulong         myLocalClientId;
@@ -174,7 +174,7 @@ namespace Ollie
             Scene scene = sceneEvent.Scene;
             
             //lobbyCam.SetActive(false);
-            directionalLight.SetActive(false);
+            //directionalLight.SetActive(false);
             BroadcastLobbyUIStateClientRpc(true);
         }
 
@@ -183,7 +183,7 @@ namespace Ollie
         {
             lobbyUICanvas.SetActive(!gameInProgress);
             //lobbyCam.SetActive(false);
-            directionalLight.SetActive(false);
+            //directionalLight.SetActive(false);
             //InGameLobbyUI(gameInProgress);
         }
         

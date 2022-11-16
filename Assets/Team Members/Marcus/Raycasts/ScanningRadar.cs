@@ -69,7 +69,14 @@ public class ScanningRadar : MonoBehaviour, IInteractable, IPickupable
         //Make a beowp sound
     }
 
+    public void DestroySelf()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public bool isHeld { get; set; }
     public bool locked { get; set; }
+    public bool autoPickup { get; set; }
+
     #endregion
 }

@@ -8,8 +8,15 @@ public interface IPickupable
 {
     void PickedUp(GameObject interactor);
     void PutDown(GameObject interactor);
+    void DestroySelf();
     bool isHeld { get; set; }
     bool locked { get; set; }
+    bool autoPickup { get; set; }
+}
+
+public interface IThrowOut
+{
+    void ThrowOut(GameObject thrower);
 }
 
 public interface IGoalItem

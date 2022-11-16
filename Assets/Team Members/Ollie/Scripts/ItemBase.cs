@@ -13,16 +13,16 @@ public enum ItemType
     Goal
 }
 
-public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
+public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
 {
     private NetworkManager networkManager;
-    public NetworkVariable<Vector3> networkPosition;
-    public Transform parentTransform;
-    private Vector3 tempPosition;
-    private Transform tempParentTransform;
-    public BoxCollider[] boxColliders;
-    
-    public ItemType itemType;
+    // public NetworkVariable<Vector3> networkPosition;
+    // public Transform parentTransform;
+    // private Vector3 tempPosition;
+    // private Transform tempParentTransform;
+    // public BoxCollider[] boxColliders;
+    //
+    // public ItemType itemType;
 
     #region SetUps
 
@@ -31,7 +31,7 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
         networkManager = NetworkManager.Singleton;
         networkManager.OnServerStarted += SetUpItem;
         networkManager.OnClientConnectedCallback += SetUpItemClient;
-        networkPosition.OnValueChanged += OnValueChanged;
+        //networkPosition.OnValueChanged += OnValueChanged;
     }
     private void OnDisable()
     {
@@ -64,15 +64,15 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
 
     void SetUpItemClient(ulong clientId)
     {
-        tempPosition = transform.parent.position;
+        //tempPosition = transform.parent.position;
         if(IsServer) SetupClientRpc();
     }
     void SetUpItem()
     {
         if (IsServer)
         {
-            parentTransform = transform.parent.GetComponent<Transform>();
-            boxColliders = parentTransform.GetComponentsInChildren<BoxCollider>();
+            //parentTransform = transform.parent.GetComponent<Transform>();
+            //boxColliders = parentTransform.GetComponentsInChildren<BoxCollider>();
             isHeld = false;
             locked = false;
             SetupClientRpc();
@@ -86,8 +86,8 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
         {
             isHeld = false;
             locked = false;
-            transform.parent.position = tempPosition;
-            parentTransform = transform.parent;
+            //transform.parent.position = tempPosition;
+            //parentTransform = transform.parent;
         }
     }
     
@@ -110,7 +110,7 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     public void GetDropPointClientRpc(Vector3 dropPoint)
     {
 	    // TODO: CAM NOTE: Do you even need to do this on the client? Doesn't the item have a networked transform?
-        parentTransform.position = dropPoint;
+        //parentTransform.position = dropPoint;
     }
 
     //HACK: Delay to reduce the likelihood of item becoming reactive in it's old pos
@@ -132,17 +132,30 @@ public class Item : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     #endregion
     
     #region IPickupable Interface
-    
+
+    public void DestroySelf()
+    {
+        throw new NotImplementedException();
+    }
+
     public bool isHeld { get; set; }
     public bool locked { get; set; }
+    public bool autoPickup { get; set; }
+
     public void PickedUp(GameObject interactor)
     {
-        parentTransform.gameObject.SetActive(false);
+        //parentTransform.gameObject.SetActive(false);
+        isHeld = true;
+        if (!autoPickup && interactor.GetComponent<Interact>()!= null)
+        {
+            interactor.GetComponent<Interact>().ParentItemObject(gameObject);
+        }
     }
 
     public void PutDown(GameObject interactor)
     {
-        parentTransform.gameObject.SetActive(true);
+        //parentTransform.gameObject.SetActive(true);
+        isHeld = false;
         StartCoroutine(ItemLockCooldown());
     }
     
