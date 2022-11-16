@@ -137,9 +137,4 @@ public class FlammableComponent : MonoBehaviour
     {
         SetOnFireEvent?.Invoke();
     }
-
-    private void Cool()
-    {
-        ChangeHeat(-coolRate*.2f);
-    }
 }
