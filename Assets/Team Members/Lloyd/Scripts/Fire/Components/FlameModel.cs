@@ -49,7 +49,7 @@ public class FlameModel : MonoBehaviour, IHeatSource
     private void CastFire()
     {
         
-        //change this
+        //change this thru HeatComponent when spawning
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
@@ -77,7 +77,7 @@ public class FlameModel : MonoBehaviour, IHeatSource
 
     private void TickTock()
     {
-        fuel--;
+        fuel -= 0.2f;
         if (fuel <= 0)
         {
             FlameOut();

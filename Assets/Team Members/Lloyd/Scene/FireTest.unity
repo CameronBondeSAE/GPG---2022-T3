@@ -17417,7 +17417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6379728519353468977, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 6379728519353468977, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20063,6 +20063,10 @@ PrefabInstance:
     - target: {fileID: 7607850963454043040, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
       propertyPath: _wobbleMultiplier
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607850963970899829, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7607850963970899831, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
       propertyPath: _runSpeed

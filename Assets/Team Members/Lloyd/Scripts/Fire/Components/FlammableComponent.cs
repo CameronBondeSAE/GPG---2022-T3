@@ -8,17 +8,20 @@ public class FlammableComponent : MonoBehaviour
 {
     //Flammable Component assumes gameObj also has a HealthComponent attached
     private HealthComponent healthComp;
-    
+
+    private FlameModel flameModel;
     public GameObject flamePrefab;
     
     //determines how much is inflicted through ChangeHeat
     //does this go here? does flamethrower hold this info? do different objects' fire hurt more? etc
     [Header ("Fire Damage")]
-    [SerializeField] private float heat;
+    [SerializeField] private float fireDamage;
     
+    [Header("Current Heat Level")]
     //object's current heat level
-    private float heatLevel;
+    public float heatLevel;
     
+    [Header ("Object Set On Fire Heat Level")]
     //the threshold at which object is actually alight
     //this is where "On Fire" animations, sounds, logic, etc are activated
     //spawns Flame prefab
@@ -40,35 +43,54 @@ public class FlammableComponent : MonoBehaviour
     //determines how big the instantiated flame should be
     [SerializeField] private float radius;
 
-    private FlameModel flameModel;
+    List<GameObject> fireList = new List<GameObject>();
 
     private void OnEnable()
     {
         healthComp = GetComponent<HealthComponent>();
         
         fuel += healthComp.GetHP();
-    }
+    }    
+    
+    public void FixedUpdate()
+         {
+             if(burning)
+                 healthComp.ChangeHP(-fireDamage*0.2f);
+             
+             Cool();
+         }
 
     public void SetOnFire()
     {
-        burning = true;
+        if (fireList.Count > 0)
+        {
+            return;
+        }
         SetOnFireFunction();
+        heatLevel += fireDamage;
 
         if (flamePrefab != null)
         {
             GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
+            fire.transform.SetParent(transform);
             flameModel = fire.GetComponent<FlameModel>();
-            flameModel.SetFlameStats(heat, fuel, radius);
+            flameModel.SetFlameStats(fireDamage, fuel, radius);
+            
+            fireList.Add(fire);
         }
     }
 
-    public void FixedUpdate()
+    public void Extinguish()
     {
-        if(burning)
-            healthComp.ChangeHP(-heat);
+        burning = false;
         
-        Cool();
+        foreach (GameObject fire in fireList){
+                flameModel = fire.GetComponent<FlameModel>();
+                flameModel.SetFlameStats(0, 0, 0);
+                fireList.Clear();
+        }
     }
+
 
     public void ChangeHeat(float x)
     {
@@ -84,18 +106,22 @@ public class FlammableComponent : MonoBehaviour
             heatLevel += x;
         }
         
-        if (heatLevel >= heatThreshold)
+        if (heatLevel >= heatThreshold && !burning)
         {
+            burning = true;
             SetOnFire();
         }
         
-        if (heatLevel <= heatThreshold || fuel >= 0)
+        if (heatLevel <= heatThreshold || fuel <= 0)
         {
             burning = false;
         }
 
         if (heatLevel <= 0)
+        {
             heatLevel = 0;
+            Extinguish();
+        }
     }
     
     public event Action SetOnFireEvent;
@@ -107,6 +133,6 @@ public class FlammableComponent : MonoBehaviour
 
     private void Cool()
     {
-        ChangeHeat(-coolRate);
+        ChangeHeat(-coolRate*.2f);
     }
 }

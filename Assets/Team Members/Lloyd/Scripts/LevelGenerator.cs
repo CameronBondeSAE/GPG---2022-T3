@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,7 @@ using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
-    public class LevelGenerator : MonoBehaviour
+    public class LevelGenerator : MonoBehaviour, ILevelGenerate
     {
         [Header("Noise Settings")] [SerializeField]
         private int numCube;
@@ -47,6 +48,8 @@ namespace Lloyd
 
         [Header("HQ")] [SerializeField] private GameObject HumanHQ;
 
+        [SerializeField] private GameObject playerPrefab;
+
         private HQScript hqscript;
 
         [SerializeField] private float destroyRadius;
@@ -66,6 +69,7 @@ namespace Lloyd
         private GameObject itemParent;
         private GameObject environmentParent;
         private GameObject HQParent;
+        private GameObject PlayerParent;
         private GameObject AlienParent;
 
         //cube stuff
@@ -75,9 +79,34 @@ namespace Lloyd
         private GameObject cubeSpawned;
         private bool isHighest;
 
-        private void Start()
+        public void SpawnPerlin()
         {
             GenerateTerrain();
+        }
+
+        public void SpawnBorder()
+        {
+            
+        }
+
+        public void SpawnAI()
+        {
+            
+        }
+
+        public void SpawnItems()
+        {
+            
+        }
+
+        public void SpawnExplosives()
+        {
+            
+        }
+
+        public void SpawnBases()
+        {
+            
         }
 
         public void GenerateTerrain()
@@ -86,12 +115,14 @@ namespace Lloyd
             Destroy(itemParent);
             Destroy(environmentParent);
             Destroy(HQParent);
+            Destroy(PlayerParent);
             Destroy(AlienParent);
 
             terrainParent = new GameObject("terrainParent");
             itemParent = new GameObject("itemParent");
             environmentParent = new GameObject("environmentParent");
             HQParent = new GameObject("HQParent");
+            PlayerParent = new GameObject("PlayerParent");
             AlienParent = new GameObject("AlienParent");
             SpawnTerrain();
         }
@@ -129,8 +160,8 @@ namespace Lloyd
                         cube.transform.SetParent(terrainParent.transform);
 
                             //cube.transform.localScale = new Vector3(cubeScale, cubeScale, cubeScale);
-                            
-                        cubeRend = cube.GetComponent<Renderer>();
+
+                            cubeRend = cube.GetComponent<Renderer>();
                         cubeRend.material.color = Color.gray;
 
                         if (perlinNoise > .9f)
@@ -159,7 +190,7 @@ namespace Lloyd
 
             PlaceGround();
             PlaceWalls();
-            SpawnItems();
+            SpawnPlants();
         }
 
         //spawns item transforms in List itemVector3List
@@ -178,7 +209,7 @@ namespace Lloyd
             }
         }
 
-        void SpawnItems()
+        void SpawnPlants()
         {
             foreach (Vector3 tempItemPos in itemVector3List)
             {
@@ -260,6 +291,9 @@ namespace Lloyd
             
             hqscript = HumanHQprefab.GetComponentInChildren<HQScript>();
             hqscript.DestroyLand(destroyRadius);
+
+            /*GameObject player = Instantiate(playerPrefab, HumanHQprefab.transform.position, Quaternion.identity);
+            player.transform.SetParent(PlayerParent.transform);*/
         }
 
         private void SpawnAlienHQPos()

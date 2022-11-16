@@ -7,7 +7,7 @@ using Lloyd;
 public class HealthComponent : MonoBehaviour
 {
     [SerializeField] private float maxHP;
-    private float HP;
+    public float HP;
 
     private bool isAlive=true;
 

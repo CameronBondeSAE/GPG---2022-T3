@@ -17,6 +17,12 @@ public enum LaserDoorType
 public class DoorSingleModel : MonoBehaviour, IHeatSource
 {
     public LaserDoorType myType;
+
+    [SerializeField] private float fireDamage;
+
+    private IHeatSource myself;
+
+    private FlammableComponent flammableComp;
     
     [SerializeField] private float timeMoving;
     
@@ -47,10 +53,15 @@ public class DoorSingleModel : MonoBehaviour, IHeatSource
     [SerializeField]
     private float radius;
 
+    [Header("Enemy Detection Box")] [SerializeField]
+    private Vector3 halfExtents;
+
     [SerializeField] private LayerMask playerLayer;
 
     private void OnEnable()
     {
+        myself = GetComponent<IHeatSource>();
+        
         doorView = GetComponentInChildren<DoorSingleView>();
         doorView.SetColor(Color.red);
 
@@ -64,7 +75,7 @@ public class DoorSingleModel : MonoBehaviour, IHeatSource
         downLength = lineLength;
 
         downPos = new Vector3(transform.position.x, transform.position.y - downLength, transform.position.z);
-
+        
         isOpen = false;
     }
 
@@ -76,8 +87,9 @@ public class DoorSingleModel : MonoBehaviour, IHeatSource
         {
             ChangePos();
 
-            DetectPlayer(origPos, radius);
-            Debug.Log(isOpen);
+           DetectPlayer(origPos, radius);
+            if(!isOpen)
+                DetectBurnVictim();
         }
         
         doorView.SetLineStats(numLines, lineLength, lineThickness, intensity, distanceBetween);
@@ -122,9 +134,23 @@ public class DoorSingleModel : MonoBehaviour, IHeatSource
         }
     }
 
+    private void DetectBurnVictim()
+    {
+        halfExtents = new Vector3(distanceBetween + numLines, lineLength, 1);
+        Collider[] hitColl = Physics.OverlapBox(origPos, halfExtents, Quaternion.identity);
+        foreach (var hitCollider in hitColl)
+        {
+            if (hitCollider.GetComponent<FlammableComponent>() != null)
+            {
+                flammableComp = hitCollider.GetComponent<FlammableComponent>();
+                flammableComp.ChangeHeat(fireDamage);
+            }
+        }
+    }
+
     private void DetectPlayer(Vector3 center, float rad)
     {
-        center = origPos;
+        center = new Vector3(origPos.x*(numLines+distanceBetween), origPos.y, origPos.z);
         rad = radius;
 
         Collider[] hitColl = Physics.OverlapSphere(center, rad, playerLayer);
