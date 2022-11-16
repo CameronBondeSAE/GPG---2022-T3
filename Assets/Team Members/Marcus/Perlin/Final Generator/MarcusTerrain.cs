@@ -90,6 +90,13 @@ public class MarcusTerrain : MonoBehaviour
     
     void GenerateMaze(float step, Vector2 startPoint, float itemStep)
     {
+        // Spawn floor as one piece
+        floorPos = new Vector3(amount/2, 0, amount/2);
+
+        GameObject floor = Instantiate(floorPrefab, floorPos, Quaternion.identity);
+        floor.transform.localScale = new Vector3(amount, 0.1f, amount);
+        bricks.Add(floor);
+
         for (int x = 0; x < amount; x++)
         {
             for (int z = 0; z < amount; z++)
@@ -100,17 +107,12 @@ public class MarcusTerrain : MonoBehaviour
 
                 if (brickPosition.y < 0.5f)
                 {
-                    floorPos = new Vector3(brickPosition.x, 0, brickPosition.z);
-
-                    GameObject go = Instantiate(floorPrefab, floorPos, Quaternion.identity);
-                    bricks.Add(go);
-                    
                     SpawnItems(x, z, itemStep);
                 }
                 else
                 {
-                    GameObject go = Instantiate(wallPrefab, brickPosition, Quaternion.identity);
-                    bricks.Add(go);
+                    GameObject wall = Instantiate(wallPrefab, brickPosition, Quaternion.identity);
+                    bricks.Add(wall);
                 }
             }
         }
