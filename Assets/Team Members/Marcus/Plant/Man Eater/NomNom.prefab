@@ -152,6 +152,8 @@ GameObject:
   - component: {fileID: 3842668169975856270}
   - component: {fileID: 8476142898420728742}
   - component: {fileID: 487877632528248135}
+  - component: {fileID: -8394875228692163360}
+  - component: {fileID: -4190843060470435521}
   m_Layer: 12
   m_Name: NomNom
   m_TagString: Untagged
@@ -174,7 +176,7 @@ Transform:
   - {fileID: 1043457877479003603}
   - {fileID: 2749822692284270998}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8476142898420728742
 CapsuleCollider:
@@ -203,3 +205,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colissionManager: {fileID: 2115377991730240438}
+  fireness: {fileID: -4190843060470435521}
+--- !u!114 &-8394875228692163360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557588422353277080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc7765993eb00342b21a0d0c93d2baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 25
+  HP: 0
+--- !u!114 &-4190843060470435521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557588422353277080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flamePrefab: {fileID: 4150792052017500699, guid: bd7cf4b4ee68a3841804182734b86b41, type: 3}
+  fireDamage: 5
+  heatLevel: 0
+  heatThreshold: 35
+  heatMultiplier: 1.2
+  fuel: 30
+  coolRate: 0.05
+  radius: 1
