@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using Random = UnityEngine.Random;
 
 namespace Alex
 {
@@ -18,6 +20,7 @@ namespace Alex
         FollowPath followPath;
         TurnTowards turnTowards;
         TestShapes testShapes;
+        Neighbours neighbours;
 
         public override void Create(GameObject aGameObject)
         {
@@ -31,6 +34,7 @@ namespace Alex
             turnTowards = aGameObject.GetComponent<TurnTowards>();
             followPath = aGameObject.GetComponent<FollowPath>();
             testShapes = aGameObject.GetComponent<TestShapes>();
+            neighbours = aGameObject.GetComponent<Neighbours>();
         }
         public override void Enter()
         {
@@ -44,15 +48,17 @@ namespace Alex
             
             
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
-            
+
             //Exit early if no enemies in sight
             if (vision.enemyInSight.Count == 0 && vision.enemyInSight != null) return;
             if (vision.enemyInSight.Count > 0)
             {
                 followPath.ActivatePathToTarget(vision.enemyInSight[0].transform.position);
+                foreach (Transform neighbour in neighbours.neighbours)
+                {
+                    neighbour.transform.position = new Vector3(vision.enemyInSight[0].transform.position.x + Random.Range(-5, 5), vision.enemyInSight[0].transform.position.y, vision.enemyInSight[0].transform.position.z + Random.Range(-5, 5));
+                }
             }
-
-           
         }
 
         private void FollowPathOnPathEndReachedEvent()

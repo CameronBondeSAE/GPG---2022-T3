@@ -16,7 +16,6 @@ namespace Alex
         public float textOffSet = .2f;
         public float yOffSet = 1f;
         public LayerMask layerMask;
-        public bool debug = false;
         public bool debugDraw = false;
         public bool debugScan = false;
 

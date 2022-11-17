@@ -116,7 +116,7 @@ Transform:
   - {fileID: 561430403378240219}
   - {fileID: 8555692990794580215}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1794423253392461858
 MeshFilter:
@@ -227,6 +227,7 @@ MonoBehaviour:
   perlinNoise: 0
   offset: 10
   turnForce: 20
+  randomOffSet: 0
 --- !u!114 &1804444449802422546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 5477602151829979742}
-  force: 50
+  force: 75
 --- !u!114 &5459054142461481995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +328,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a4c6cfdf37d6254c8b6f2523b2c4322, type: 3}
   m_Name: 
@@ -336,7 +337,7 @@ MonoBehaviour:
   cohesion: {fileID: 8270060209491018145}
   separation: {fileID: 8744244824783631288}
   neighbours: {fileID: 5459054142461481995}
-  onTime: 1
+  onTime: 5
   offTime: 15
 --- !u!1 &1794423253976717427
 GameObject:

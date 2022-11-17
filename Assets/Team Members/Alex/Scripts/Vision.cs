@@ -71,7 +71,7 @@ namespace Alex
                 {
                     Debug.DrawLine(transform.position, HitInfo.point, Color.green);
 
-                    if (HitInfo.collider.GetComponent<Resource>() != null)
+                    if (HitInfo.collider.GetComponent<IResource>() != null)
                     {
 
                         Transform resource = HitInfo.transform;

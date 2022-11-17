@@ -14,6 +14,7 @@ namespace Alex
         public Wonder wonder;
         public AStar astar;
         public FollowPath followPath;
+        public float slowingForce = 50f;
 
         Rigidbody rb;
         // Start is called before the first frame update
@@ -32,27 +33,18 @@ namespace Alex
         {
             
             Vector3 point;
-            
-            
-            if (vision.resourcesInSight != null)
-            {
-                //targetTransform = vision.resourcesInSight[0];
+            //targetTransform = vision.resourcesInSight[0];
                 
                 point = transform.InverseTransformPoint(targetPosition);
                 rb.AddRelativeTorque(0, point.x * turnSpeed, 0);
-            }
-            /*
-            else if (targetTransform != null)
-            {
-                point = transform.InverseTransformPoint(targetTransform.transform.position);
-            }
-            else
-            {
-                point = transform.InverseTransformPoint(targetPosition);
-            }
-            //rb.AddRelativeTorque(0, point.x * turnSpeed, 0);
+                // Slow down if facing away from target
+                // Get angle....
+                
+                
+                    Vector3 targetDir = targetPosition - transform.position;
+                    float angle = Vector3.Angle(targetDir, transform.forward);
+                    rb.AddRelativeForce(0, 0, -angle * slowingForce);
             
-             */
         }
     }
 }
