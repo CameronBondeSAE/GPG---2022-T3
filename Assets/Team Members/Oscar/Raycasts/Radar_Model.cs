@@ -16,7 +16,7 @@ namespace Oscar
         
         public LayerMask pingLayer;
         private float length = 10f;
-        
+
         void Update()
         {
             //create the loop for the radar using time.deltatime
@@ -37,7 +37,7 @@ namespace Oscar
             {
                 if (hit.collider != null)
                 {
-                    print("ping");
+                    
                 }
             }
         }
