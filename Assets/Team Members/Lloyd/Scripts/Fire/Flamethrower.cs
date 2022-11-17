@@ -7,10 +7,10 @@ using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
-    public class Flamethrower : MonoBehaviour, IPickup
+    public class Flamethrower : MonoBehaviour, IPickup, IInteractable
     {
         [Header("FLAME SETTINGS [DAMAGE / SIZE / FIRE RATE]")] [SerializeField]
-        private float _heatDamage;
+        private float fireDamage;
 
         [SerializeField]
         public enum FlamethrowerType
@@ -20,43 +20,47 @@ namespace Lloyd
             FunnyThirdKind
         };
 
-        private FlamethrowerType _myType;
+        private FlamethrowerType myType;
 
-        [Header("FLAME PREFAB")] private GameObject _firePrefab;
+        [Header("FLAME PREFAB")] private GameObject firePrefab;
 
-        private Rigidbody _firePrefabRb;
+        private Rigidbody firePrefabRb;
 
-        private Rigidbody _firePointRb;
-        private Vector3 _firePointPos;
+        private Rigidbody firePointRb;
+        private Vector3 firePointPos;
 
-        [SerializeField] private float _force;
+        private Coroutine shootCo;
 
-        public GameObject _fireball;
+        [SerializeField] private float force;
 
-        [SerializeField] private float _fireRate;
+        public GameObject fireball;
 
-        [SerializeField] private float _altFireRate;
+        [SerializeField] private float fireRate;
 
-        [SerializeField] private float _wobbleMultiplier;
-        [SerializeField] private float _xScale;
+        [SerializeField] private float altFireRate;
 
-        [SerializeField] private float _maxFuel;
-        public float _fuel;
+        [SerializeField] private float wobbleMultiplier;
+        [SerializeField] private float xScale;
 
-        private bool _equipped=true;
+        public bool isHeld { get; set; }
+        
+        public bool locked { get; set; }
+        
+        public bool autoPickup { get; set; }
 
-        private Rigidbody _rb;
+        private Rigidbody rb;
 
-        private float _angle;
+        private float angle;
 
-        private Vector3 _angleVector;
+        private Vector3 angleVector;
 
-        Quaternion _currentRotation;
+        Quaternion currentRotation;
         
         //am I allowed to shoot? ticks depending on fire rate and ammo
-        private bool _canShoot;
+        private bool canShoot;
 
-        [Header("OVERHEAT STATS -- Flamethrower overheats by overHeatRate when shooting and explodes when overHeatPoint is reached")]
+        [Header("OVERHEAT STATS")]
+        
         [SerializeField] private float overHeatRate;
         [SerializeField] private float overHeatPoint;
         private float overHeatLevel;
@@ -65,88 +69,97 @@ namespace Lloyd
 
         private void OnEnable()
         {
-            _canShoot = true;
-            _fuel = _maxFuel;
-
-            _rb = GetComponent<Rigidbody>();
-
-            _firePointRb = GetComponentInChildren<Rigidbody>();
-
+            canShoot = true;
             overHeatLevel = 0;
+
+            rb = GetComponent<Rigidbody>();
+
+            firePointRb = GetComponentInChildren<Rigidbody>();
+
+            StartCoroutine(SpitFire());
         }
 
-        private void Wobble()
+        private void FixedUpdate()
         {
-            float height = _wobbleMultiplier * Mathf.PerlinNoise(Time.time * _xScale, 0.0f);
+            if (shooting)
+            {
+                Wobble();
+                Overheat();
+            }
+        }
+        
+        public void Interact(GameObject interactor)
+        {
+            if(isHeld)
+                ShootFire();
 
-            Vector3 _angleVector = new Vector3(0, height, 0);
-
-            _currentRotation.eulerAngles = _angleVector;
-
-            _firePointRb.MoveRotation(Quaternion.AngleAxis(height, _angleVector));
+            if (!isHeld)
+                ShootTilDead();
         }
 
+        //FLAMETHROWER 
+        //
+        
         public void ShootFire()
         {
-            if (_canShoot)
+            if (canShoot && isHeld)
                 StartCoroutine(SpitFire());
+
+            if (canShoot && !isHeld)
+                StartCoroutine(ShootTilDead());
         }
 
         private IEnumerator SpitFire()
         {
-            if (_equipped && _fuel > 0)
-            {
                 shooting = true;
-                _fuel--;
                 
-                _canShoot = false;
+                canShoot = false;
                 
-                _firePointPos = _firePointRb.transform.position;
-                Vector3 targetDir = _firePointPos - transform.position;
+                firePointPos = firePointRb.transform.position;
+                Vector3 targetDir = firePointPos - transform.position;
                 
-                GameObject _fire = Instantiate(_fireball, transform.position, Quaternion.identity) as GameObject;
-                _firePrefabRb = _fire.GetComponent<Rigidbody>();
-                _firePrefabRb.AddForce(targetDir * _force, ForceMode.Impulse);
+                GameObject _fire = Instantiate(fireball, transform.position, Quaternion.identity) as GameObject;
+                firePrefabRb = _fire.GetComponent<Rigidbody>();
+                firePrefabRb.AddForce(targetDir * force, ForceMode.Impulse);
 
-                yield return new WaitForSecondsRealtime(_fireRate);
+                yield return new WaitForSecondsRealtime(fireRate);
 
-                _canShoot = true;
+                canShoot = true;
                 shooting = false;
+        }
+
+        private IEnumerator ShootTilDead()
+        {
+            while (!isHeld)
+            {
+                StartCoroutine(SpitFire());
+                yield return new WaitForSeconds(fireRate);
             }
         }
-
-        public void ShootAltFire()
+        
+        //ALT FIRE GOES HERE
+   public void ShootAltFire()
         {
-            if (_canShoot)
+            if (canShoot)
                 StartCoroutine(AltFire());
         }
-
+   
         private IEnumerator AltFire()
         {
-            _canShoot = false;
+            canShoot = false;
+            
+            yield return new WaitForSecondsRealtime(altFireRate);
 
-
-            yield return new WaitForSecondsRealtime(_altFireRate);
-
-            _canShoot = true;
+            canShoot = true;
         }
-
-
-        private void FixedUpdate()
-        {
-            //transform.Rotate(0.0f, .5f, 0.0f, Space.Self);
-
-            Wobble();
-
-            Overheat();
-        }
+        
+        //FLAMETHROWER WILL OVERHEAT AND EXPLODE IF FIRED TOO MUCH
 
         private void Overheat()
         {
-            if (shooting)
-                overHeatLevel += (1 * overHeatRate);
+            overHeatLevel += (1 * overHeatRate);
 
-            if (overHeatLevel <= overHeatPoint)
+            if (overHeatLevel >= overHeatPoint)
                 StartCoroutine(Explode());
 
             if (overHeatLevel <= 0)
@@ -154,24 +167,42 @@ namespace Lloyd
 
             else
                 overHeatLevel--;
-
         }
 
         private IEnumerator Explode()
         {
             //tween, wait and explode
+            Debug.Log("KABOOM");
             yield break;
         }
+        
+        //IPICKUP MANDATORY(S)
 
-        public void PickUp(GameObject player)
+        public void PickedUp(GameObject player)
         {
-            _equipped = true;
+            isHeld = true;
             transform.SetParent(player.transform);
         }
 
-        public void Throw()
+        public void PutDown(GameObject player)
         {
-            _equipped = false;
+            isHeld = false;
+        }
+        public void DestroySelf()
+                 {
+                     StartCoroutine(Explode());
+                 }
+
+        //PERLIN WOBBLE EXPERIMENT
+        private void Wobble()
+        {
+            float height = wobbleMultiplier * Mathf.PerlinNoise(Time.time * xScale, 0.0f);
+
+            Vector3 _angleVector = new Vector3(0, height, 0);
+
+            currentRotation.eulerAngles = _angleVector;
+
+            firePointRb.MoveRotation(Quaternion.AngleAxis(height, _angleVector));
         }
     }
 }

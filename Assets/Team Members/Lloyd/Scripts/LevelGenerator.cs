@@ -86,7 +86,8 @@ namespace Lloyd
 
         public void SpawnBorder()
         {
-            
+            PlaceGround();
+            PlaceWalls();
         }
 
         public void SpawnAI()
@@ -96,7 +97,7 @@ namespace Lloyd
 
         public void SpawnItems()
         {
-            
+             SpawnPlants();
         }
 
         public void SpawnExplosives()
@@ -106,7 +107,9 @@ namespace Lloyd
 
         public void SpawnBases()
         {
-            
+            PlaceHQ();
+
+            SpawnAlienHQ();
         }
 
         public void GenerateTerrain()
@@ -183,14 +186,6 @@ namespace Lloyd
                     }
                 }
             }
-
-            PlaceHQ();
-
-            SpawnAlienHQ();
-
-            PlaceGround();
-            PlaceWalls();
-            SpawnPlants();
         }
 
         //spawns item transforms in List itemVector3List
