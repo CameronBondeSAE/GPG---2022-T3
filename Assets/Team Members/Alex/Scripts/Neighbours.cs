@@ -8,21 +8,21 @@ namespace Alex
 {
     public class Neighbours : MonoBehaviour
     {
-        public List<GameObject> neighbours = new List<GameObject>();
+        public List<Transform> neighbours = new List<Transform>();
         public LayerMask layerMask;
 
         public void OnTriggerEnter(Collider collider)
         {
             if (collider.gameObject.layer == LayerMask.NameToLayer("AlienAI"))
-                neighbours.Add(collider.gameObject);
+                neighbours.Add(collider.transform);
             
             if (collider.gameObject.layer == LayerMask.NameToLayer("SwarmerAI"))
-                neighbours.Add(collider.gameObject);
+                neighbours.Add(collider.transform);
         }
 
         public void OnTriggerExit(Collider collider)
         {
-            neighbours.Remove(collider.gameObject);
+            neighbours.Remove(collider.transform);
         }
     }
 }

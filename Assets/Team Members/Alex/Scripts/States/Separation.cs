@@ -31,9 +31,9 @@ public class Separation : SteeringBase
         Vector3 separationMove = Vector3.zero;
 
         // Average of all neighbours directions
-        foreach (GameObject item in neighbours.neighbours)
+        foreach (Transform item in neighbours.neighbours)
         {
-            separationMove += item.transform.position;
+            separationMove += item.position;
         }
 
         separationMove /= neighbours.neighbours.Count;

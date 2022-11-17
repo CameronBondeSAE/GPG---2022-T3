@@ -35,9 +35,9 @@ namespace Alex
 			Vector3 alignmentMove = Vector3.zero;
 
 			// Average of all neighbours directions
-			foreach (GameObject item in neighbours.neighbours)
+			foreach (Transform item in neighbours.neighbours)
 			{
-				alignmentMove += item.transform.forward;
+				alignmentMove += item.forward;
 			}
 
 			alignmentMove /= neighbours.neighbours.Count;
