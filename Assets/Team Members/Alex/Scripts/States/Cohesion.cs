@@ -33,11 +33,11 @@ namespace Alex
             //toggle this true for jobs, false for Alex's base code
             runningAsJob = false;
             
-            //arbitrary lengths because actual length might change
-            averagePosition = new NativeArray<float3>(10000000, Allocator.Persistent);
-            neighbourPositions = new NativeArray<float3>(10000000, Allocator.Persistent);
+            //arbitrary length because actual length might change
+            neighbourPositions = new NativeArray<float3>(100000, Allocator.Persistent);
             
             //only a single variable so locking length to 1
+            averagePosition = new NativeArray<float3>(1, Allocator.Persistent);
             myPos = new NativeArray<float3>(1, Allocator.Persistent);
             direction = new NativeArray<float3>(1, Allocator.Persistent);
             neighboursCount = new NativeArray<int>(1, Allocator.Persistent);
@@ -79,7 +79,7 @@ namespace Alex
                 this.averagePosition[0] = Vector3.zero;
                 for (int i = 0; i < neighbours.neighbours.Count; i++)
                 {
-                    neighbourPositions[i] = neighbours.neighbours[i].transform.position;
+                    neighbourPositions[i] = neighbours.neighbours[i].position;
                 }
                 myPos[0] = transform.position;
                 neighboursCount[0] = neighbours.neighbours.Count;
@@ -88,16 +88,18 @@ namespace Alex
                 CohesionJob cohesionJob = new CohesionJob
                 {
                     averagePosition = this.averagePosition,
-                    neighbourPositions = neighbourPositions,
-                    myPos = myPos,
+                    neighbourPositions = this.neighbourPositions,
+                    myPos = this.myPos,
                     direction = this.direction,
-                    neighboursCount = neighboursCount,
+                    neighboursCount = this.neighboursCount,
                 };
 
                 //Start jobs according to number of neighboursCount
-                JobHandle cohesionHandle = cohesionJob.Schedule(neighboursCount[0], 16);
+                //JobHandle cohesionHandle = cohesionJob.Schedule(neighboursCount[0], 1);
+                JobHandle cohesionHandle = cohesionJob.Schedule();
                 cohesionHandle.Complete();
 
+                
                 Vector3 jobDirection = this.direction[0];
                 jobDirection = jobDirection.normalized;
                 return jobDirection;
