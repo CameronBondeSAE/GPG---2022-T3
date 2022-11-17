@@ -35,6 +35,7 @@ namespace Marcus
         void SetOnFire()
         {
             print("OUCHIES FIRE HURT");
+            Destroy(gameObject);
             // Combust and shrivel
         }
     }
