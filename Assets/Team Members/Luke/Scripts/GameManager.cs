@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Kevin;
+using Lloyd;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -85,11 +86,26 @@ public class GameManager : NetworkBehaviour
         if (!IsServer) return;
         foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
         {
-            GameObject avatar = Instantiate(avatarPrefab);
-            avatar.GetComponent<NetworkObject>().SpawnWithOwnership(client.Value.ClientId);
-            client.Value.PlayerObject.GetComponent<ClientEntity>()
-                .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
-            playersAlive++;
+	        // CAM HACK: Find base spawn and spawnpoints
+	        Transform spawnTransform = null;
+	        foreach (HQ hq in FindObjectsOfType<HQ>())
+	        {
+		        if (hq.myHQType == HQ.HQType.Humans)
+		        {
+			        spawnTransform = hq.GetComponentInChildren<SpawnPoint>().transform;
+		        }
+	        }
+
+
+	        if (spawnTransform != null) // No Spawns found
+	        {
+		        GameObject avatar = Instantiate(avatarPrefab, spawnTransform.position, spawnTransform.rotation);
+		        avatar.GetComponent<NetworkObject>().SpawnWithOwnership(client.Value.ClientId);
+		        client.Value.PlayerObject.GetComponent<ClientEntity>()
+			        .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
+	        }
+
+	        playersAlive++;
             playersInGame++;
             /*avatar.GetComponent<PlayerNameTracker>().playerName.text =
 	            client.Value.PlayerObject.GetComponent<ClientInfo>().ClientName.Value.ToString();*/
