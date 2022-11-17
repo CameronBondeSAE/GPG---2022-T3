@@ -142,9 +142,9 @@ namespace Alex
                     }
                 }
                */ 
-                Gizmos.color = new Color(0, 1, 0, alpha);
+                // Gizmos.color = new Color(0, 1, 0, alpha);
                 //Gizmos.DrawCube(new Vector3(astar.currentNode.gridPosition.y, yOffSet, astar.currentNode.gridPosition.y), Vector3.one);
-                Gizmos.DrawCube(transform.position + new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
+                // Gizmos.DrawCube(transform.position + new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
                 //Gizmos.DrawCube(new Vector3(astar.currentNode.gridPosition.x, yOffSet,  astar.currentNode.gridPosition.y), Vector3.one);
             
                 }
