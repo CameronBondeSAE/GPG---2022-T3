@@ -16,7 +16,7 @@ namespace Lloyd
 			Aliens
 		};
 
-		public HQType myHQType;
+		public HQType type;
 
 		private GameObject myself;
 
@@ -41,8 +41,8 @@ namespace Lloyd
 
 			myself = this.GameObject();
 
-			HQInt = (int) myHQType;
-			HQString = myHQType.ToString();
+			HQInt = (int) type;
+			HQString = type.ToString();
 			itemCount = 0;
 
 			// rend = this.GetComponent<Renderer>();
@@ -109,11 +109,11 @@ namespace Lloyd
 			switch (key)
 			{
 				case 1:
-					myHQType = HQType.Humans;
+					type = HQType.Humans;
 					break;
 
 				case 2:
-					myHQType = HQType.Aliens;
+					type = HQType.Aliens;
 					break;
 			}
 		}

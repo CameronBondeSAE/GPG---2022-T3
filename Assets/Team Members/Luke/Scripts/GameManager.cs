@@ -90,7 +90,7 @@ public class GameManager : NetworkBehaviour
 	        Transform spawnTransform = null;
 	        foreach (HQ hq in FindObjectsOfType<HQ>())
 	        {
-		        if (hq.myHQType == HQ.HQType.Humans)
+		        if (hq.type == HQ.HQType.Humans)
 		        {
 			        spawnTransform = hq.GetComponentInChildren<SpawnPoint>().transform;
 		        }

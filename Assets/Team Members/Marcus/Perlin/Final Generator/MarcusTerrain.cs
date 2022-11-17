@@ -140,14 +140,14 @@ public class MarcusTerrain : MonoBehaviour
 
     void SpawnItems(float xValue, float zValue, float itemStep)
     {
-        itemPos = new Vector3(xValue, 1f, zValue);
+        itemPos = new Vector3(xValue, 0.1f, zValue);
         
         if (Mathf.PerlinNoise(xValue * itemStep, zValue * itemStep) >= 0.7f)
         {
             GameObject item = Instantiate(pickup, itemPos, Quaternion.identity);
             items.Add(item);
         }
-        else if (Mathf.PerlinNoise(xValue * itemStep, zValue * itemStep) <= 0.3f)
+        else if (Mathf.PerlinNoise(xValue * itemStep, zValue * itemStep) <= 0.5f)
         {
             SpawnAI(xValue, zValue);
         }
