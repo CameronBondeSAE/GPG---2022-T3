@@ -230,6 +230,7 @@ MonoBehaviour:
   perlinNoise: 0
   offset: 10
   turnForce: 10
+  randomOffSet: 0
 --- !u!114 &1804444449802422546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,6 +469,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 2240
+  slowDownForce: 0
 --- !u!1 &4539377846754210193
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +582,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 2240
+  slowDownForce: 0
 --- !u!1 &6654157507890702779
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,3 +854,4 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 2240
+  slowDownForce: 0

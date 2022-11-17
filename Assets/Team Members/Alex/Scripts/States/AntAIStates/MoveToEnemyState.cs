@@ -37,6 +37,7 @@ namespace Alex
             base.Enter();
             controller.renderer.material.shader = agroShader;
             testShapes.colour = Color.red;
+            testShapes.intensity = 2;
 
             turnTowards.enabled = true;
             followPath.enabled = true;
@@ -80,6 +81,7 @@ namespace Alex
             base.Exit();
             controller.renderer.material.shader = controller.defaultShader;
             testShapes.colour = Color.green;
+            testShapes.intensity = 1;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
             
         }
