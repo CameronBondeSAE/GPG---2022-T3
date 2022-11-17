@@ -19,7 +19,7 @@ namespace Lloyd
         }
     }
     
-    [CustomEditor(typeof(FlammableComponent))]
+    [CustomEditor(typeof(Flammable))]
     public class FlammableComponentEditor : Editor
     {
         public override void OnInspectorGUI()
@@ -28,12 +28,12 @@ namespace Lloyd
 
             if (GUILayout.Button("Burn"))
             {
-                (target as FlammableComponent)?.ChangeHeat(25f);
+                (target as Flammable)?.ChangeHeat(25f);
             }
             
             if (GUILayout.Button("Extinguish"))
             {
-                (target as FlammableComponent)?.Extinguish();
+                (target as Flammable)?.Extinguish();
             }
         }
     }

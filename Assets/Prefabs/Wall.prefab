@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 1890521074}
   - component: {fileID: 767568316}
   m_Layer: 11
-  m_Name: OscarCube
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ Transform:
   m_Children:
   - {fileID: 1693357922}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4786817437330063166
 MeshFilter:
@@ -179,8 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc7765993eb00342b21a0d0c93d2baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
-  HP: 0
+  maxHP: 100
+  HP: 100
 --- !u!1001 &153526296
 PrefabInstance:
   m_ObjectHideFlags: 0

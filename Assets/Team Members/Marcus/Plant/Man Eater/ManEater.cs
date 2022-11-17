@@ -7,7 +7,7 @@ using UnityEngine;
 public class ManEater : MonoBehaviour, IFlammable
 {
     public ColissionManager colissionManager;
-    public FlammableComponent fireness;
+    public Flammable fireness;
     
     private void OnEnable()
     {

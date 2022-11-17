@@ -292,6 +292,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3899235174
       objectReference: {fileID: 0}
+    - target: {fileID: 882494828671942839, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
+      propertyPath: myHQType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4310262376535627008, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -338,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7884631281891504534, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
       propertyPath: m_Name
-      value: HumanHQ (1)
+      value: Alien HQ
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -3206,7 +3210,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-675136
+  m_Name: pb_Mesh-3945718
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

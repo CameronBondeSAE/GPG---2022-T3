@@ -45,13 +45,13 @@ namespace Lloyd
 			HQString = myHQType.ToString();
 			itemCount = 0;
 
-			rend = this.GetComponent<Renderer>();
+			// rend = this.GetComponent<Renderer>();
 
-			if (HQInt == 1)
-				rend.material.color = Color.green;
-
-			else if (HQInt == 2)
-				rend.material.color = Color.magenta;
+			// if (HQInt == 1)
+			// 	rend.material.color = Color.green;
+			//
+			// else if (HQInt == 2)
+			// 	rend.material.color = Color.magenta;
 
 			isActive = true;
 		}

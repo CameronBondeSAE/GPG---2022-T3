@@ -8,7 +8,7 @@ namespace Marcus
 {
     public class PlantBase : MonoBehaviour, IFlammable, IResource
     {
-        public FlammableComponent fireness;
+        public Flammable fireness;
 
         private void OnEnable()
         {

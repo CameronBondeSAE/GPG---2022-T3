@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
 
-public class FlammableComponent : MonoBehaviour
+public class Flammable : MonoBehaviour
 {
     //Flammable Component assumes gameObj also has a HealthComponent attached
-    private HealthComponent healthComp;
+    private Health healthComp;
 
     private FlameModel flameModel;
     public GameObject flamePrefab;
@@ -47,7 +47,7 @@ public class FlammableComponent : MonoBehaviour
 
     private void OnEnable()
     {
-        healthComp = GetComponent<HealthComponent>();
+        healthComp = GetComponent<Health>();
         
         fuel += healthComp.GetHP();
     }    

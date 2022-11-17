@@ -50,7 +50,7 @@ namespace Lloyd
 
         [SerializeField] private GameObject playerPrefab;
 
-        private HQScript hqscript;
+        private HQ hqscript;
 
         [SerializeField] private float destroyRadius;
 
@@ -289,7 +289,7 @@ namespace Lloyd
                 new Vector3(centrePos.x, (centrePos.y + cubeScale) / 2, centrePos.z), Quaternion.identity);
             HumanHQprefab.transform.SetParent(HQParent.transform);
             
-            hqscript = HumanHQprefab.GetComponentInChildren<HQScript>();
+            hqscript = HumanHQprefab.GetComponentInChildren<HQ>();
             hqscript.DestroyLand(destroyRadius);
 
             /*GameObject player = Instantiate(playerPrefab, HumanHQprefab.transform.position, Quaternion.identity);
@@ -333,7 +333,7 @@ namespace Lloyd
                 alienLeader.transform.SetParent(AlienParent.transform);
                 alienPeon.transform.SetParent(alienLeader.transform);
 
-                hqscript = AlienHQprefab.GetComponentInChildren<HQScript>();
+                hqscript = AlienHQprefab.GetComponentInChildren<HQ>();
                 hqscript.DestroyLand(destroyRadius);
                 
             }

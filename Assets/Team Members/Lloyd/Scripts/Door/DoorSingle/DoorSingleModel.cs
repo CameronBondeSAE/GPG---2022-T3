@@ -22,7 +22,7 @@ public class DoorSingleModel : MonoBehaviour, IHeatSource
 
     private IHeatSource myself;
 
-    private FlammableComponent flammableComp;
+    private Flammable flammableComp;
     
     [SerializeField] private float timeMoving;
     
@@ -140,9 +140,9 @@ public class DoorSingleModel : MonoBehaviour, IHeatSource
         Collider[] hitColl = Physics.OverlapBox(origPos, halfExtents, Quaternion.identity);
         foreach (var hitCollider in hitColl)
         {
-            if (hitCollider.GetComponent<FlammableComponent>() != null)
+            if (hitCollider.GetComponent<Flammable>() != null)
             {
-                flammableComp = hitCollider.GetComponent<FlammableComponent>();
+                flammableComp = hitCollider.GetComponent<Flammable>();
                 flammableComp.ChangeHeat(fireDamage);
             }
         }

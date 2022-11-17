@@ -28,7 +28,6 @@ public class PerlinCube_View : MonoBehaviour
         {
             debree.Play();
         }
-        print("detroyed");
         DestroyTheWallNow = true;
     }
 
