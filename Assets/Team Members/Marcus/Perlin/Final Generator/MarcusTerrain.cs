@@ -92,7 +92,7 @@ public class MarcusTerrain : MonoBehaviour
     void GenerateMaze(float step, Vector2 startPoint, float itemStep)
     {
         // Spawn floor as one piece
-        float floorPos = amount / 2;
+        float floorPos = amount / 2f;
 
         GameObject floor = Instantiate(floorPrefab, new Vector3(floorPos, 0f, floorPos), Quaternion.identity);
         floor.transform.localScale = new Vector3(amount + 1, 0.1f, amount + 1);
@@ -125,16 +125,16 @@ public class MarcusTerrain : MonoBehaviour
     {
         GameObject curBorder;
         
-        curBorder = Instantiate(borderPrefab, new Vector3(amount/2, 2, -1), Quaternion.identity);
+        curBorder = Instantiate(borderPrefab, new Vector3(amount/2f, 2, -1), Quaternion.identity);
         curBorder.transform.localScale += new Vector3(amount, 0, 0);
         
-        curBorder = Instantiate(borderPrefab, new Vector3(-1, 2, amount/2), Quaternion.identity);
+        curBorder = Instantiate(borderPrefab, new Vector3(-1, 2, amount/2f), Quaternion.identity);
         curBorder.transform.localScale += new Vector3(0, 0, amount);
         
-        curBorder = Instantiate(borderPrefab, new Vector3(amount/2, 2, amount + 1), Quaternion.identity);
+        curBorder = Instantiate(borderPrefab, new Vector3(amount/2f, 2, amount + 1), Quaternion.identity);
         curBorder.transform.localScale += new Vector3(amount, 0, 0);
         
-        curBorder = Instantiate(borderPrefab, new Vector3(amount + 1, 2, amount/2), Quaternion.identity);
+        curBorder = Instantiate(borderPrefab, new Vector3(amount + 1, 2, amount/2f), Quaternion.identity);
         curBorder.transform.localScale += new Vector3(0, 0, amount);
     }
 
