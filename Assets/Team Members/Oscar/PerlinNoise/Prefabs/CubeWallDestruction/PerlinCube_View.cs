@@ -36,6 +36,7 @@ public class PerlinCube_View : MonoBehaviour
     {
         if (DestroyTheWallNow == true)
         {
+	        DestroyTheWallNow = false; // CAM: Otherwise it'll retrigger many coroutine
             StartCoroutine(WallDestroy());
         }
     }

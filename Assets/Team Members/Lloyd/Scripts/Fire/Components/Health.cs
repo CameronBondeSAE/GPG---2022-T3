@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
+using Sirenix.OdinInspector;
 
-public class HealthComponent : MonoBehaviour
+public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHP;
     public float HP;
@@ -36,6 +37,12 @@ public class HealthComponent : MonoBehaviour
     public float GetHP()
     {
         return HP;
+    }
+
+    [Button]
+    public void Die()
+    {
+	    ChangeHP(-1000000000);
     }
     
     public event Action YouDiedEvent;

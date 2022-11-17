@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Marcus
 {
-    public class PlantBase : MonoBehaviour, IFlammable
+    public class PlantBase : MonoBehaviour, IFlammable, IResource
     {
         public FlammableComponent fireness;
 

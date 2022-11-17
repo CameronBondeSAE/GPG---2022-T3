@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Lloyd;
 using UnityEngine;
 
-public class TerrainBuilder : MonoBehaviour
+public class HacksAndTests : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        
+	    yield return new WaitForSeconds(0.5f);
+	    foreach (HQ hq in FindObjectsOfType<HQ>())
+	    {
+		    hq.DestroyLand(8f);
+	    }
     }
 
     // Update is called once per frame

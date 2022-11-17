@@ -8,20 +8,15 @@ public class PerlinCube_Model : MonoBehaviour
     public event Action wallDestruction;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+	    GetComponent<Health>().YouDiedEvent += DestroyTheWall;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
     //destroy the wall
     public void DestroyTheWall()
     {
+	    Destroy(gameObject);
         wallDestruction?.Invoke();
     }
 }
