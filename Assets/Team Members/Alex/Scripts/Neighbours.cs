@@ -11,18 +11,20 @@ namespace Alex
         public List<Transform> neighbours = new List<Transform>();
         public LayerMask layerMask;
 
-        public void OnTriggerEnter(Collider collider)
+        public void OnTriggerEnter(Collider other)
         {
-            if (collider.gameObject.layer == LayerMask.NameToLayer("AlienAI"))
-                neighbours.Add(collider.transform);
+	        if (neighbours.Contains(other.transform)) return;
+	        
+            if (other.gameObject.layer == LayerMask.NameToLayer("AlienAI"))
+                neighbours.Add(other.transform);
             
-            if (collider.gameObject.layer == LayerMask.NameToLayer("SwarmerAI"))
-                neighbours.Add(collider.transform);
+            if (other.gameObject.layer == LayerMask.NameToLayer("SwarmerAI"))
+                neighbours.Add(other.transform);
         }
 
-        public void OnTriggerExit(Collider collider)
+        public void OnTriggerExit(Collider other)
         {
-            neighbours.Remove(collider.transform);
+	        if (neighbours.Contains(other.transform)) neighbours.Remove(other.transform);
         }
     }
 }
