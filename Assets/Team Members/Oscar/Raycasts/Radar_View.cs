@@ -1,5 +1,7 @@
+using System;
 using Shapes;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Oscar
 {
@@ -9,7 +11,7 @@ namespace Oscar
         public Color colour = Color.green;
         public float lineThickness = 1f;
         public float intensity = 1f;
-
+        
         //override used because it is from the inherited script
         public override void DrawShapes(Camera cam)
         {
@@ -28,11 +30,14 @@ namespace Oscar
                 Draw.Position = transform.position;
                 Draw.Rotation = Quaternion.identity;
                 
-
+                
                 //draw the lines
                 for (int i = 0; i < 360; i++)
                 {
-                    Draw.Line(dir,Vector3.zero,Color.clear,Draw.Color);
+                    while (radarOn == true)
+                    {
+                        Draw.Line(dir,Vector3.zero,Color.clear,Draw.Color);
+                    }
                 }
             }
         }

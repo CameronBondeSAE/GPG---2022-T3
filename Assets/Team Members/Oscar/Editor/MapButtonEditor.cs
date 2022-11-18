@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using UnityEditor;
 using UnityEngine;
 
@@ -58,6 +59,24 @@ public class TheButtonEditor : Editor
                 if (GUILayout.Button("Start Wall Destruction") && Application.isPlaying)
                 {
                         (target as PerlinCube_Model)?.DestroyTheWall();
+                }
+        }
+}
+
+[CustomEditor(typeof(Radar_Model))]
+public class AnotherButtonEditor : Editor
+{
+        public override void OnInspectorGUI()
+        {
+                base.OnInspectorGUI();
+
+                if (GUILayout.Button("Radar Is Equipted") && Application.isPlaying)
+                {
+                        (target as Radar_Model)?.pickedUp100();
+                }
+                if (GUILayout.Button("Radar Is Not On") && Application.isPlaying)
+                {
+                        (target as Radar_Model)?.NotOn();
                 }
         }
 }
