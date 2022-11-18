@@ -22,15 +22,10 @@ public class ScanMatChange : MonoBehaviour, IAffectedByRadar
         SetHeight(matHeight);
     }
     
-    public IEnumerator Detection()
+    public void Detection()
     {
-        print("pp");
-        
-        matHeight = 2f;
-        SetHeight(matHeight);
-        yield return new WaitForSeconds(2);
-        matHeight = 0f;
-        SetHeight(matHeight);
+        print("changed colour");
+        print("changed back");
     }
     
     private void SetHeight(float height)

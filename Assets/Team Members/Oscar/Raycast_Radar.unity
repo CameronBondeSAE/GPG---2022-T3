@@ -2391,6 +2391,10 @@ PrefabInstance:
       propertyPath: radarModel
       value: 
       objectReference: {fileID: 1192211793}
+    - target: {fileID: 5569981887068387152, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
+      propertyPath: radarOn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6580783833038072679, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
       propertyPath: m_Name
       value: Radar_Model

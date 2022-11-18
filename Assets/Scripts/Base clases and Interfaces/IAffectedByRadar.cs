@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAffectedByRadar
 {
-    public IEnumerator Detection();
+    public void Detection();
 }

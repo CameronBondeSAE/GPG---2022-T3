@@ -9,7 +9,7 @@ namespace Oscar
     public class Radar_Model : ImmediateModeShapeDrawer, IFlammable,IPickupable
     {
         //is it on the player or not
-        public bool radarOn;
+        private bool radarOn = false;
 
         //for the actual raycast
         public float timer;
@@ -56,22 +56,36 @@ namespace Oscar
 
         public void pickedUp100()
         {
-            radarOn = true;
+            RadarSwitch();
         }
+
+        public bool RadarSwitch()
+        {
+            if (radarOn == true)
+            {
+                radarOn = false;
+            }
+            else
+            {
+                radarOn = true;
+            }
+            return radarOn;
+        }
+
 
         public void NotOn()
         {
-            radarOn = false;
+            RadarSwitch();
         }
 
         public void PickedUp(GameObject interactor)
         {
-            radarOn = true;
+            RadarSwitch();
         }
 
         public void PutDown(GameObject interactor)
         {
-            radarOn = false;
+            RadarSwitch();
         }
 
         public void DestroySelf()
