@@ -1,50 +1,36 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using Oscar;
 
 [RequireComponent(typeof(Renderer))]
-public class ScanMatChange : MonoBehaviour
+public class ScanMatChange : MonoBehaviour, IAffectedByRadar
 {
     private Material mat;
 
-    public float objectHeight = 1.0f;
     public float noiseStrength = .25f;
     
-    public bool SeePlayer = false;
     private float time;
     
-    private float matHeight = 0;
+    private float matHeight;
     private void Awake()
     {
         mat = GetComponent<Renderer>().material;
+        matHeight = transform.localPosition.y;
+        matHeight = 0f;
         SetHeight(matHeight);
     }
-
-    private void Update()
+    
+    public void Detection()
     {
-        if (SeePlayer == false)
-        {
-            
-            time += 0.01f; //Time.time * Mathf.PI * 0.25f;
-
-            float height = transform.localPosition.y;
-            height += time * (objectHeight / 2.0f);
-            SetHeight(height);
-        }
-        else
-        {
-            time = 0f;
-            float height = transform.localPosition.y;
-            height = -1;
-            SetHeight(height);
-            
-            SeePlayer = false;
-        }
+        print("changed colour");
+        print("changed back");
     }
-
+    
     private void SetHeight(float height)
     {
         mat.SetFloat("_CutOffHeight", height);
         mat.SetFloat("_NoiseStrength", noiseStrength);
     }
-    
 }

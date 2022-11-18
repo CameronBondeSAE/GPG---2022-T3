@@ -1483,6 +1483,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1192211793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5569981887068387152, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
+  m_PrefabInstance: {fileID: 512529543984451742}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea553eb4a69889c42bb68b4b05d192af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1327582981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1829,6 @@ GameObject:
   - component: {fileID: 1687737826}
   - component: {fileID: 1687737825}
   - component: {fileID: 1687737831}
-  - component: {fileID: 1687737832}
   m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -1944,23 +1954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ba7267451afcf429b905f164d1dc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectHeight: 1
   noiseStrength: 0.25
-  SeePlayer: 0
---- !u!114 &1687737832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687737824}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 910bb65761151d0488520daf63d1be20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noiseStrength: 0.25
-  objectHeight: 1
 --- !u!1 &1899762415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,17 +2387,13 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 884751721, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
+    - target: {fileID: 1757774261, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
+      propertyPath: radarModel
+      value: 
+      objectReference: {fileID: 1192211793}
     - target: {fileID: 5569981887068387152, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
-      propertyPath: length
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5569981887068387152, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
-      propertyPath: pingLayer.m_Bits
-      value: 64
+      propertyPath: radarOn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6580783833038072679, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
       propertyPath: m_Name

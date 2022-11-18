@@ -258,10 +258,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1693357923, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
-      propertyPath: sparkles
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
       propertyPath: m_Name
       value: OscarCube

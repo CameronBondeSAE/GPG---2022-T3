@@ -16,7 +16,6 @@ public class PerlinCube_Model : MonoBehaviour
     //destroy the wall
     public void DestroyTheWall()
     {
-	    Destroy(gameObject);
         wallDestruction?.Invoke();
     }
 }
