@@ -27,7 +27,7 @@ public struct AlignJob : IJob
 		{
 			alignmentMove += ItemPositions[i];
 		}
-		alignmentMove /= ItemPositions.Length;
+		alignmentMove /= NumberOfItems;
 		
 		Result[0] = math.cross(Forward, alignmentMove);
 	}
