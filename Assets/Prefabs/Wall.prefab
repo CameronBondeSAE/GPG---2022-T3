@@ -69,6 +69,7 @@ GameObject:
   - component: {fileID: 7108007269907048534}
   - component: {fileID: 1890521074}
   - component: {fileID: 767568316}
+  - component: {fileID: 688293660}
   m_Layer: 11
   m_Name: Wall
   m_TagString: Untagged
@@ -90,7 +91,7 @@ Transform:
   m_Children:
   - {fileID: 1693357922}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4786817437330063166
 MeshFilter:
@@ -181,6 +182,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   HP: 100
+--- !u!114 &688293660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275283118841150105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flamePrefab: {fileID: 4150792052017500699, guid: bd7cf4b4ee68a3841804182734b86b41, type: 3}
+  fireDamage: 5
+  heatLevel: 0
+  heatThreshold: 50
+  heatMultiplier: 2
+  fuel: 50
+  coolRate: 1
+  radius: 5
 --- !u!1001 &153526296
 PrefabInstance:
   m_ObjectHideFlags: 0

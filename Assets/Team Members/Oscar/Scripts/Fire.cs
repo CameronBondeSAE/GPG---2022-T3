@@ -9,9 +9,9 @@ public class Fire : MonoBehaviour, IHeatSource
     {
         //if the collision is with something that has IFlammable on it
         //set it on fire!
-        if (other.GetComponent<IFlammable>() != null)
+        if (other.GetComponent<Flammable>() != null)
         {
-            other.GetComponent<IFlammable>().ChangeHeat(theheat, 500);
+            other.GetComponent<Flammable>().ChangeHeat(25);
         }
     }
 }
