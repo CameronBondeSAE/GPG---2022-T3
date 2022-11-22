@@ -11,8 +11,10 @@ namespace Oscar
         [SerializeField]
         private float minDist = 30;
         public int HQAmount;
-        public GameObject Base;
+        public GameObject humanBase;
+        public GameObject alienBase;
         public float tempBaseDist;
+        private bool humanHQ = true;
 
         public void SpawnTheBase(List<Vector3> prefabPosition, GameObject HQParent)
         {
@@ -27,15 +29,32 @@ namespace Oscar
                     //and there isnt already 2 bases
                     if (HQAmount <= 1)
                     {
-                        //spawn the bases
-                        Vector3 tempBasePos = prefabPosition[i];
-                        
-                        prevBasePos = tempBasePos;
-                        
-                        GameObject HQ = Instantiate(Base, prefabPosition[i], quaternion.identity);
-                        
-                        HQ.transform.SetParent(HQParent.transform);
-                        HQAmount++;
+                        if (humanHQ == true)
+                        {
+                            //spawn the bases
+                            Vector3 tempBasePos = prefabPosition[i];
+                            
+                            prevBasePos = tempBasePos;
+                            
+                            GameObject HQ = Instantiate(humanBase, prefabPosition[i], quaternion.identity);
+                            
+                            HQ.transform.SetParent(HQParent.transform);
+                            HQAmount++;
+                            humanHQ = false;
+                        }
+                        else
+                        {
+                            //spawn the bases
+                            Vector3 tempBasePos = prefabPosition[i];
+                            
+                            prevBasePos = tempBasePos;
+                            
+                            GameObject HQ = Instantiate(alienBase, prefabPosition[i], quaternion.identity);
+                            
+                            HQ.transform.SetParent(HQParent.transform);
+                            HQAmount++;
+                            humanHQ = true;
+                        }
                     }
                 }
             }
