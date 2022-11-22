@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,10 +12,9 @@ public class MarcusTerrain : MonoBehaviour
     // Best mazes seem to come from 0.05 - 0.15
     // Larger zoom means tighter areas
     public int amount;
-    public int aiLimit;
 
     Vector3 aiPos;
-    int spawnedAI;
+    int aiLimit;
 
     Vector3 itemPos;
     float itemZoom;
@@ -34,7 +34,7 @@ public class MarcusTerrain : MonoBehaviour
     public List<GameObject> bricks;
     public List<GameObject> items;
     public List<GameObject> aliens;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +67,7 @@ public class MarcusTerrain : MonoBehaviour
         {
             Destroy(ai.gameObject);
         }
+        aliens.Clear();
 
         if (randomness)
         {
@@ -156,12 +157,15 @@ public class MarcusTerrain : MonoBehaviour
     void SpawnAI(float xPos, float zPos)
     {
         aiPos = new Vector3(xPos, 1f, zPos);
-        
-        if(spawnedAI < aiLimit)
+
+        if (aiLimit == 5)
         {
             GameObject aiInstance = Instantiate(swarmer, aiPos, Quaternion.identity);
             aliens.Add(aiInstance);
-            spawnedAI++;
+
+            aiLimit = 0;
         }
+
+        aiLimit++;
     }
 }
