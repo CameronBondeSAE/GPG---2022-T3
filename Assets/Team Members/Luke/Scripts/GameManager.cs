@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Kevin;
 using Lloyd;
+using Oscar;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,6 +26,18 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private GameObject playerNamePrefab;
 
     [SerializeField] private GameObject countdownTimer;
+
+    private ILevelGenerate levelGenerator;
+
+    public ILevelGenerate LevelGenerator
+    {
+	    get => levelGenerator;
+	    set
+	    {
+		    levelGenerator = value;
+		    levelGenerator.SpawnPerlin();
+	    }
+    }
     
     //In Game Counts
 	public int playersAlive;
@@ -128,6 +141,48 @@ public class GameManager : NetworkBehaviour
     private void Start()
     {
         NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
+    }
+
+    public void SpawnPerlinFinished()
+    {
+	    
+	    
+	    levelGenerator.SpawnBorder();
+    }
+
+    public void SpawnBorderFinished()
+    {
+	    
+	    
+	    levelGenerator.SpawnAI();
+    }
+
+    public void SpawnAIFinished()
+    {
+	    
+	    
+	    levelGenerator.SpawnItems();
+    }
+
+    public void SpawnItemsFinished()
+    {
+	    
+	    
+	    levelGenerator.SpawnExplosives();
+    }
+
+    public void SpawnExplosivesFinished()
+    {
+	    
+	    
+	    levelGenerator.SpawnBases();
+    }
+
+    public void SpawnBasesFinished()
+    {
+	    
+	    
+	    
     }
 
     public void LevelFinishedLoading()
