@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
 using Oscar;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Lloyd
 {
     public class LevelGenerator : MonoBehaviour, ILevelGenerate
     {
+        public Luke.GameManager gameManager;
+        
         [Header("Noise Settings")] [SerializeField]
         private int numCube;
         [SerializeField] private float cubeScale;
@@ -186,6 +189,7 @@ namespace Lloyd
                     }
                 }
             }
+            gameManager.SpawnPerlinFinished();
         }
 
         //spawns item transforms in List itemVector3List
@@ -214,6 +218,7 @@ namespace Lloyd
                 cubeRend = item.GetComponentInChildren<Renderer>();
                 cubeRend.material.color = Color.green;
             }
+            gameManager.SpawnItemsFinished();
         }
 
         void PlaceWalls()
@@ -262,6 +267,7 @@ namespace Lloyd
             ground.transform.position = new Vector3(cubePos.x/2, 0, cubePos.z/2 );
 
             ground.transform.SetParent(environmentParent.transform);
+            gameManager.SpawnBorderFinished();
         }
 
         public void RandomiseValues()
@@ -332,6 +338,7 @@ namespace Lloyd
                 hqscript.DestroyLand(destroyRadius);
                 
             }
+            gameManager.SpawnBasesFinished();
         }
     }
 }
