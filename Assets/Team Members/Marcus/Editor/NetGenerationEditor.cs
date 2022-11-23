@@ -40,5 +40,10 @@ public class NetGenerationEditor : Editor
         {
             (target as NetworkedGenerator)?.SpawnExplosives();
         }
+
+        if (GUILayout.Button("RANDOMISE PERLINS") && Application.isPlaying)
+        {
+            (target as NetworkedGenerator)?.RandomiseValues();
+        }
     }
 }

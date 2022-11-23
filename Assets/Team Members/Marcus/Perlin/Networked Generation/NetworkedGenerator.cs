@@ -13,12 +13,12 @@ namespace Marcus
         int aiLimit;
 
         Vector3 itemPos;
-        float itemZoom;
+        float itemStep = 0.15f;
 
         Vector3 brickPos;
         Vector3 floorPos;
-        float zoom;
-        Vector2 randomOffset;
+        float step = 0.1f;
+        Vector2 startPoint = Vector2.one * 500;
     
         //Luke Said to use this rather than running everything through the original perlin
         private float[,] perlinGrid;
@@ -42,10 +42,13 @@ namespace Marcus
             itemGrid = new float[amount, amount];
         }
 
-        // Update is called once per frame
-        void Update()
+        public void RandomiseValues()
         {
-            
+            step = Random.Range(0.08f, 0.12f);
+            startPoint.x = Random.Range(0, 1000);
+            startPoint.y = Random.Range(0, 1000);
+        
+            itemStep = Random.Range(0.05f, 0.15f);
         }
 
         public void SpawnPerlin()
@@ -60,7 +63,7 @@ namespace Marcus
                 for (int z = 0; z < amount; z++)
                 {
                     brickPos.x = x;
-                    brickPos.y = Mathf.PerlinNoise((x + 500/*startPoint.x*/) * 0.1f/*step*/, (z + 500/*startPoint.y*/) * 0.1f/*step*/);
+                    brickPos.y = Mathf.PerlinNoise((x + startPoint.x) * step, (z + startPoint.y) * step);
                     brickPos.z = z;
 
                     if (brickPos.y < 0.5f)
@@ -101,7 +104,7 @@ namespace Marcus
                 {
                     aiPos = new Vector3(x, 0.1f, z);
 
-                    if (itemGrid[x, z] == 0)
+                    if (itemGrid[x, z] == 0.5f)
                     {
                         if (aiLimit == 5)
                         {
@@ -125,14 +128,14 @@ namespace Marcus
 
                     if (perlinGrid[x, z] == 0)
                     {
-                        if (Mathf.PerlinNoise(x * 0.15f/*itemStep*/, z * 0.15f/*itemStep*/) >= 0.7f)
+                        if (Mathf.PerlinNoise(x * itemStep, z * itemStep) >= 0.7f)
                         {
                             Instantiate(pickup, itemPos, Quaternion.identity);
                             itemGrid[x, z] = 1;
                         }
-                        else if (Mathf.PerlinNoise(x * 0.15f/*itemStep*/, z * 0.15f/*itemStep*/) <= 0.2f)
+                        else if (Mathf.PerlinNoise(x * itemStep, z * itemStep) <= 0.2f)
                         {
-                            itemGrid[x, z] = 0;
+                            itemGrid[x, z] = 0.5f;
                         }
                     }
                 }
