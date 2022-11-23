@@ -63,14 +63,19 @@ namespace Lloyd
         
         [SerializeField] private float overHeatRate;
         [SerializeField] private float overHeatPoint;
-        private float overHeatLevel;
+        public float overHeatLevel;
 
         private bool shooting;
 
+        public FlamethrowerModelView modelView;
+
         private void OnEnable()
         {
+            //modelView = GetComponentInChildren<FlamethrowerModelView>(); 
+            
+            isHeld = false;
+            
             canShoot = true;
-            overHeatLevel = 0;
 
             rb = GetComponent<Rigidbody>();
 
@@ -84,16 +89,19 @@ namespace Lloyd
             if (shooting)
             {
                 Wobble();
-                Overheat();
             }
+
+            HandleOverheat();
+            
+           // Debug.Log(overHeatLevel);
         }
         
         public void Interact(GameObject interactor)
         {
-            if(isHeld)
+                if(isHeld)
                 ShootFire();
 
-            if (!isHeld)
+                else if (!isHeld)
                 ShootTilDead();
         }
 
@@ -102,11 +110,12 @@ namespace Lloyd
         
         public void ShootFire()
         {
-            if (canShoot && isHeld)
+         //   if (canShoot && isHeld)
+         if(canShoot)
                 StartCoroutine(SpitFire());
 
-            if (canShoot && !isHeld)
-                StartCoroutine(ShootTilDead());
+           // if (canShoot && !isHeld)
+             //   StartCoroutine(ShootTilDead());
         }
 
         private IEnumerator SpitFire()
@@ -155,24 +164,32 @@ namespace Lloyd
         
         //FLAMETHROWER WILL OVERHEAT AND EXPLODE IF FIRED TOO MUCH
 
-        private void Overheat()
+        private void HandleOverheat()
         {
-            overHeatLevel += (1 * overHeatRate);
+            if (!shooting)
+            {
+                overHeatLevel--;
+                if (overHeatLevel <= 0)
+                    overHeatLevel = 0;
+            }
 
+            if (shooting)
+            {
+                 overHeatLevel += overHeatRate * Time.deltaTime;
+            }
+            
+            modelView.OnChangeOverheat(overHeatLevel);
+            
             if (overHeatLevel >= overHeatPoint)
                 StartCoroutine(Explode());
-
-            if (overHeatLevel <= 0)
-                overHeatLevel = 0;
-
-            else
-                overHeatLevel--;
         }
 
         private IEnumerator Explode()
         {
+            canShoot = false;
+            canShoot = false;
+            modelView.OnYouDied();
             //tween, wait and explode
-            Debug.Log("KABOOM");
             yield break;
         }
         

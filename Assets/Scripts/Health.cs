@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
             if (HP <= 0)
             {
                 isAlive = false;
-                YouDiedFunction();
+                OnYouDied();
             }
         }
     }
@@ -42,14 +42,21 @@ public class Health : MonoBehaviour
     [Button]
     public void Die()
     {
-	    ChangeHP(-1000000000);
+        ChangeHP(-1000000000);
+    }
+
+    public event Action<float> ChangeHealth; 
+
+    private void OnChangeHealth(float x)
+    {
+        ChangeHealth?.Invoke(x);
     }
     
-    public event Action YouDiedEvent;
+    public event Action YouDied;
 
-    private void YouDiedFunction()
+    private void OnYouDied()
     {
-        YouDiedEvent?.Invoke();
+        YouDied?.Invoke();
     }
 
 }

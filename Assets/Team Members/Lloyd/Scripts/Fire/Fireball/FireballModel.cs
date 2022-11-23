@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class FireballModel : MonoBehaviour
 {
+    //this is what the flamethrower shoots
+    
     //firePrefab
+    //simple sprite
     public GameObject _fire01Prefab;
     
     //fireball's firepower

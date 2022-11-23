@@ -10,7 +10,7 @@ public class PerlinCube_Model : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-	    GetComponent<Health>().YouDiedEvent += DestroyTheWall;
+	    GetComponent<Health>().YouDied += DestroyTheWall;
     }
 
     //destroy the wall

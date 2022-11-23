@@ -57,15 +57,15 @@ public class FlameModel : MonoBehaviour, IHeatSource
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.GetComponent<IFlammable>() != null)
+            if (hitCollider.GetComponent<Flammable>() != null)
             {
-                IFlammable[] flammables = hitCollider.GetComponents<IFlammable>();
+                Flammable[] flammables = hitCollider.GetComponents<Flammable>();
                 foreach (IFlammable item in flammables)
                 {
                     distance = Vector3.Distance(center, burnVictim);
                     if (distance > minDistance)
                     {
-                        hitCollider.GetComponent<IFlammable>().ChangeHeat(myself, heat * proximityMultiplier);
+                        item.ChangeHeat(myself, heat * proximityMultiplier);
                     }
                     
                     item.ChangeHeat(myself, heat);

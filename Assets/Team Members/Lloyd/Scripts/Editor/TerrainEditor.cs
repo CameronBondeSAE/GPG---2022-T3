@@ -21,6 +21,19 @@ public class TerrainEditor : Editor
             (target as Lloyd.LevelGenerator)?.GenerateTerrain();
         }
         
+        if (GUILayout.Button("Spawn Walls & Floor (Play Mode Only)") && Application.isPlaying)
+        {
+            (target as Lloyd.LevelGenerator)?.SpawnBorder();
+        }
         
+        if (GUILayout.Button("Spawn Plants (Play Mode Only)") && Application.isPlaying)
+        {
+            (target as Lloyd.LevelGenerator)?.SpawnItems();
+        }
+        
+        if (GUILayout.Button("Spawn Bases (Play Mode Only)") && Application.isPlaying)
+        {
+            (target as Lloyd.LevelGenerator)?.SpawnBases();
+        }
     }
 }
