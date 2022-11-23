@@ -60,7 +60,7 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
 	    HQParent = new GameObject("HQParent");
 	    ItemParent = new GameObject("itemParent");
 	    
-	    GameManager.singleton.OnGameStart += Spawner;
+	    //GameManager.singleton.OnGameStart += Spawner;
 	    // GameManager.singleton.OnGameEnd += DeleteMap;
         
         
@@ -69,14 +69,14 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
 		    //randoms
 		    zoomX = Random.Range(0.1f, 0.3f);
 		    zoomZ = Random.Range(0.1f, 0.3f);
-		    SpawnTerrain(zoomX,zoomZ);
+		    PrecalculateTerrain(zoomX,zoomZ);
 	    }
 	    else if (randomMap == false)
 	    {
 		    //standard averages
 		    zoomX = 0.15f;
 		    zoomZ = 0.15f;
-		    SpawnTerrain(zoomX, zoomZ);
+		    PrecalculateTerrain(zoomX, zoomZ);
 	    }
     }
 
@@ -91,17 +91,17 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
         {
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
-            SpawnTerrain(zoomX, zoomZ);
+            PrecalculateTerrain(zoomX, zoomZ);
         }
         else if (randomMap == false)
         {
-            SpawnTerrain(zoomX, zoomZ);
+            PrecalculateTerrain(zoomX, zoomZ);
         }
     }
 
-    public void SpawnTerrain(float zoomX, float zoomZ)
+    public void PrecalculateTerrain(float zoomX, float zoomZ)
     {
-        Luke.GameManager.singleton.LevelFinishedLoading();
+        //Luke.GameManager.singleton.LevelFinishedLoading();
         
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         
