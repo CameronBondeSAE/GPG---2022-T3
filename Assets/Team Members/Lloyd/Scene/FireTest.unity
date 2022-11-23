@@ -3582,7 +3582,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 644226654744835177, guid: 59fae0003407ba540a508eabea132f38, type: 3}
       propertyPath: overHeatRate
-      value: 5
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 644226654744835177, guid: 59fae0003407ba540a508eabea132f38, type: 3}
+      propertyPath: overHeatPoint
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
       propertyPath: m_RootOrder
