@@ -31,12 +31,8 @@ public class GameManager : NetworkBehaviour
 
     public ILevelGenerate LevelGenerator
     {
-	    get => levelGenerator;
-	    set
-	    {
-		    levelGenerator = value;
-		    levelGenerator.SpawnPerlin();
-	    }
+	    get;
+	    set;
     }
     
     //In Game Counts
