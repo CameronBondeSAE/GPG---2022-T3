@@ -16,8 +16,15 @@ namespace Lloyd
             {
                 (target as Lloyd.Flamethrower)?.ShootFire();
             }
+            
+            if (GUILayout.Button("Shoot Until Dead"))
+            {
+                (target as Lloyd.Flamethrower)?.ShootUntilDead();
+            }
         }
     }
+    
+    
     
     [CustomEditor(typeof(Flammable))]
     public class FlammableComponentEditor : Editor

@@ -54,7 +54,9 @@ MonoBehaviour:
   wobbleMultiplier: 0
   xScale: 0
   overHeatRate: 1
-  overHeatPoint: 100
+  overHeatPoint: 250
+  overHeatLevel: 0
+  explodeTimer: 1
   modelView: {fileID: 4110415233479144535}
 --- !u!1 &644226655285105476
 GameObject:
@@ -185,6 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f6fa78e1897b542871d65aafe3d3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelView: {fileID: 4110415233479144535}
+  flamethrower: {fileID: 1698010616495462052, guid: 6f664e5626dfbab4e8cc36c407cc9cba, type: 3}
+  Smoke: {fileID: 0}
 --- !u!1 &644226656055841542
 GameObject:
   m_ObjectHideFlags: 0

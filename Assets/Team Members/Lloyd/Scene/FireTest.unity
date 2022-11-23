@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3581,12 +3581,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 565614285413881079}
     m_Modifications:
     - target: {fileID: 644226654744835177, guid: 59fae0003407ba540a508eabea132f38, type: 3}
+      propertyPath: explodeTimer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 644226654744835177, guid: 59fae0003407ba540a508eabea132f38, type: 3}
       propertyPath: overHeatRate
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 644226654744835177, guid: 59fae0003407ba540a508eabea132f38, type: 3}
       propertyPath: overHeatPoint
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
       propertyPath: m_RootOrder

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Luke;
 using Oscar;
+using Tanks;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,8 +13,6 @@ namespace Lloyd
 {
     public class LevelGenerator : MonoBehaviour, ILevelGenerate
     {
-        public Luke.GameManager gameManager;
-        
         [Header("Noise Settings")] [SerializeField]
         private int numCube;
         [SerializeField] private float cubeScale;
@@ -82,6 +81,11 @@ namespace Lloyd
         private GameObject cubeSpawned;
         private bool isHighest;
 
+        private void Awake()
+        {
+            GameManager.singleton.LevelGenerator = this;
+        }
+
         public void SpawnPerlin()
         {
             GenerateTerrain();
@@ -95,7 +99,7 @@ namespace Lloyd
 
         public void SpawnAI()
         {
-            
+            GameManager.singleton.SpawnAIFinished();
         }
 
         public void SpawnItems()
@@ -105,7 +109,7 @@ namespace Lloyd
 
         public void SpawnExplosives()
         {
-            
+            GameManager.singleton.SpawnExplosivesFinished();
         }
 
         public void SpawnBases()
@@ -189,7 +193,7 @@ namespace Lloyd
                     }
                 }
             }
-            gameManager.SpawnPerlinFinished();
+            GameManager.singleton.SpawnPerlinFinished();
         }
 
         //spawns item transforms in List itemVector3List
@@ -218,7 +222,7 @@ namespace Lloyd
                 cubeRend = item.GetComponentInChildren<Renderer>();
                 cubeRend.material.color = Color.green;
             }
-            gameManager.SpawnItemsFinished();
+            GameManager.singleton.SpawnItemsFinished();
         }
 
         void PlaceWalls()
@@ -254,6 +258,7 @@ namespace Lloyd
             wall04.transform.SetParent(environmentParent.transform);
             cubeRend = wall04.GetComponent<Renderer>();
             cubeRend.material.color = Color.blue;
+            GameManager.singleton.SpawnBorderFinished();
         }
 
         void PlaceGround()
@@ -267,7 +272,6 @@ namespace Lloyd
             ground.transform.position = new Vector3(cubePos.x/2, 0, cubePos.z/2 );
 
             ground.transform.SetParent(environmentParent.transform);
-            gameManager.SpawnBorderFinished();
         }
 
         public void RandomiseValues()
@@ -338,7 +342,7 @@ namespace Lloyd
                 hqscript.DestroyLand(destroyRadius);
                 
             }
-            gameManager.SpawnBasesFinished();
+            GameManager.singleton.SpawnBasesFinished();
         }
     }
 }

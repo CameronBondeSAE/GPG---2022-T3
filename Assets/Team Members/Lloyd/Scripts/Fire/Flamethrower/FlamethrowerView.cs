@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Lloyd;
 public class FlamethrowerView : MonoBehaviour
@@ -9,23 +10,38 @@ public class FlamethrowerView : MonoBehaviour
 
     private float overheatLevel;
 
+    public GameObject flamethrower;
+
+    public ParticleSystem Smoke;
+
     private void OnEnable()
     {
         modelView = GetComponentInParent<FlamethrowerModelView>();
 
         modelView.ChangeOverheat += ChangeOverheat;
-        modelView.YouDied += Overheat;
+
+        modelView.Pulsing += Pulsate;
+        
+        modelView.YouDied += Explode;
     }
 
     private void ChangeOverheat(float x)
     {
         overheatLevel = x;
-        Debug.Log(overheatLevel);
+        //Debug.Log(overheatLevel);
     }
 
-    private void Overheat()
+    private void Pulsate()
     {
-        Debug.Log("KABOOM");
+        Smoke.Play();
+        
+        flamethrower.transform.DOShakeScale(3f,
+            new Vector3(.1f,.1f,.1f), 5,5f,false);
+    }
+
+    private void Explode()
+    {
+        //Debug.Log("KABOOM");
         //explode
     }
 }
