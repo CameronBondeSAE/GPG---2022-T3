@@ -143,7 +143,7 @@ public class DoorSingleModel : MonoBehaviour, IHeatSource
             if (hitCollider.GetComponent<Flammable>() != null)
             {
                 flammableComp = hitCollider.GetComponent<Flammable>();
-                flammableComp.ChangeHeat(fireDamage);
+                flammableComp.ChangeHeat(this, fireDamage);
             }
         }
     }

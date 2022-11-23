@@ -33,13 +33,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "FireAlt",
-                    "type": "PassThrough",
+                    "name": "AltFire",
+                    "type": "Value",
                     "id": "3bc65be2-42f3-4ea9-adad-b908715d4f3c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "MousePosition",
@@ -301,7 +301,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "FireAlt",
+                    "action": "AltFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

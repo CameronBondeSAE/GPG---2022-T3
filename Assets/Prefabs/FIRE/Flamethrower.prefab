@@ -51,7 +51,10 @@ MonoBehaviour:
   force: 100
   fireball: {fileID: 2097233744307224593, guid: 68d82a5d303fb164ea28c9a6a7be4d4c, type: 3}
   fireRate: 0.02
-  altFireRate: 0
+  barrel: {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
+  altAmmo: 3
+  altForce: 0
+  altFireRate: 3
   wobbleMultiplier: 0
   xScale: 0
   overHeatRate: 1

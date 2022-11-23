@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
-    public class FlamethrowerModel : MonoBehaviour, IPickup, IInteractable
+    public class FlamethrowerModel : MonoBehaviour, IPickup, IInteractable, IHeatSource
     {
         [Header("FLAME SETTINGS [DAMAGE / SIZE / FIRE RATE]")] [SerializeField]
         private float fireDamage;
@@ -37,10 +37,18 @@ namespace Lloyd
 
         [SerializeField] private float fireRate;
 
+        [Header("ALT FIRE")] public GameObject barrel;
+
+        [SerializeField] private int altAmmo;
+
+        [SerializeField] private float altForce;
+
         [SerializeField] private float altFireRate;
 
         [SerializeField] private float wobbleMultiplier;
         [SerializeField] private float xScale;
+
+        private Flammable flammable;
 
         public bool isHeld { get; set; }
 
@@ -147,16 +155,38 @@ namespace Lloyd
         //ALT FIRE GOES HERE
         public void ShootAltFire()
         {
-            if (canShoot)
+            if (canShoot && altAmmo > 0)
                 StartCoroutine(AltFire());
         }
 
         private IEnumerator AltFire()
         {
+            shooting = true;
             canShoot = false;
 
-            yield return new WaitForSecondsRealtime(altFireRate);
+            firePointPos = firePointRb.transform.position;
+            Vector3 targetDir = firePointPos - transform.position;
 
+            GameObject _barrel = Instantiate(barrel, transform.position, Quaternion.identity) as GameObject;
+            firePrefabRb = _barrel.GetComponent<Rigidbody>();
+            firePrefabRb.AddForce(targetDir * altForce, ForceMode.Impulse);
+
+            /*Oscar.ExplosiveIdleState explodeState = _barrel.GetComponent<Oscar.ExplosiveIdleState>();
+            explodeState.SetOnFire();*/
+            
+            /*if (_barrel.GetComponent<IFlammable>() != null)
+            {
+                Debug.Log("pew");
+                _barrel.GetComponent<IFlammable>().ChangeHeat(this, fireDamage);
+            }*/
+            flammable = _barrel.GetComponent<Flammable>();
+            flammable.SetOnFireFunction();
+
+            altAmmo--;
+
+            yield return new WaitForSecondsRealtime(altFireRate);
+            
+            shooting = false;
             canShoot = true;
         }
 
