@@ -172,6 +172,34 @@ public class GameManager : NetworkBehaviour
     {
 	    NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
     }
+    
+    public void NetworkInstantiate(GameObject prefab, Transform t)
+    {
+	    if (!IsServer) return;
+	    if (prefab.GetComponent<NetworkObject>() == null) return;
+	    GameObject go = Instantiate(prefab, t);
+	    go.GetComponent<NetworkObject>().Spawn();
+    }
+
+    public void NetworkInstantiate(GameObject prefab, Transform t, Transform parent)
+    {
+	    if (!IsServer) return;
+	    if (prefab.GetComponent<NetworkObject>() == null) return;
+	    GameObject go = Instantiate(prefab, t);
+	    go.GetComponent<NetworkObject>().Spawn();
+	    if (parent != null)
+	    {
+		    Transform child = go.transform;
+		    child.parent = parent;
+		    ParentClientRpc(child, parent);
+	    }
+    }
+
+    [ClientRpc]
+    private void ParentClientRpc(Transform child, Transform parent)
+    {
+	    child.parent = parent;
+    }
 
     public void SpawnPerlinFinished()
     {
