@@ -20,7 +20,7 @@ public class Separation : SteeringBase
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        neighbourPositions = new NativeArray<float3>(50, Allocator.Persistent);
+        neighbourPositions = new NativeArray<float3>(100, Allocator.Persistent);
     }
 
     void FixedUpdate()

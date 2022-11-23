@@ -18,14 +18,16 @@ public class GameManager : NetworkBehaviour
 
     public event Action OnGameStart;
 	public event Action OnGameEnd;
-
+	public event Action OnGameWaveTimer;
+	
     [SerializeField] private GameObject avatarPrefab;
     [SerializeField] public GameObject virtualCameraOne;
     [SerializeField] public GameObject virtualCameraTwo;
     [SerializeField] private GameObject playerNamePrefab;
 
     [SerializeField] private GameObject countdownTimer;
-
+    [SerializeField] private GameObject aiPrefab;
+    
     private ILevelGenerate levelGenerator;
 
     public ILevelGenerate LevelGenerator
@@ -59,6 +61,23 @@ public class GameManager : NetworkBehaviour
 		OnGameStart?.Invoke();
 	}
 
+	public void InvokeOnGameWaveTimer()
+	{
+		if (IsServer)
+		{
+			/*GameObject go = Instantiate(aiPrefab);
+			go.GetComponent<NetworkObject>().Spawn();*/
+			InvokeOnGameWaveTimerClientRPC();
+		}
+	}
+
+	[ClientRpc]
+	private void InvokeOnGameWaveTimerClientRPC()
+	{
+		Debug.Log("Wave Spawned!!!");
+		OnGameWaveTimer?.Invoke();
+	}
+
 	[ClientRpc]
 	private void SetCameraTargetClientRpc()
 	{
@@ -82,7 +101,6 @@ public class GameManager : NetworkBehaviour
 	[ClientRpc]
 	private void InvokeOnGameEndClientRPC()
 	{
-		Debug.Log("Times Up!");
 		OnGameEnd?.Invoke();
 	}
 
