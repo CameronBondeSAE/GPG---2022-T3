@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Oscar;
 using Tanks;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,6 +25,10 @@ public class MarcusTerrain : MonoBehaviour
     Vector3 floorPos;
     float zoom;
     Vector2 randomOffset;
+    
+    //Luke Said to use this rather than running everything through the original perlin
+    private float[,] perlinGrid;
+    private float[,] itemGrid;
 
     public GameObject playerHQ;
     public GameObject alienHQ;
@@ -104,7 +109,7 @@ public class MarcusTerrain : MonoBehaviour
         floor.transform.localScale = new Vector3(amount + 1, 0.1f, amount + 1);
         bricks.Add(floor);
         
-        SpawnBorder();
+        SpawnOuterWall();
 
         for (int x = 0; x < amount; x++)
         {
@@ -126,10 +131,10 @@ public class MarcusTerrain : MonoBehaviour
             }
         }
         
-        SpawnBases();
+        SpawnHQ();
     }
 
-    void SpawnBorder()
+    void SpawnOuterWall()
     {
         GameObject curBorder;
         
@@ -176,7 +181,7 @@ public class MarcusTerrain : MonoBehaviour
         aiLimit++;
     }
 
-    void SpawnBases()
+    void SpawnHQ()
     {
         for (int i = 0; i < 4; i++)
         {
