@@ -91,7 +91,7 @@ MonoBehaviour:
   humanBase: {fileID: 7884631281891504534, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
   alienBase: {fileID: 8749085813108591677, guid: 53bff0fc767e0d44eb20b10e130091f7, type: 3}
   tempBaseDist: 0
-  destroyRadius: 0
+  destroyRadius: 10
 --- !u!114 &717600289217134444
 MonoBehaviour:
   m_ObjectHideFlags: 0
