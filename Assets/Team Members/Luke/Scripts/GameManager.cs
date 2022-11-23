@@ -89,12 +89,7 @@ public class GameManager : NetworkBehaviour
 		OnGameEnd?.Invoke();
 	}
 
-    private void SubscribeToSceneEvent()
-    {
-        NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SpawnAvatars;
-    }
-
-    private void SpawnAvatars(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    private void SpawnAvatars()
     {
         if (!IsServer) return;
         foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
@@ -138,11 +133,6 @@ public class GameManager : NetworkBehaviour
 		singleton = this;
     }
 
-    private void Start()
-    {
-        NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
-    }
-
     public void SpawnPerlinFinished()
     {
 	    
@@ -180,14 +170,14 @@ public class GameManager : NetworkBehaviour
 
     public void SpawnBasesFinished()
     {
-	    
-	    
-	    
+
+
+	    SpawnAvatars();
     }
 
     public void LevelFinishedLoading()
     {
-	    
+	    //This will be removed, but I don't want to cause errors on github
     }
 }
 //Things to add
