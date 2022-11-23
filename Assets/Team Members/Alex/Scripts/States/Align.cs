@@ -14,13 +14,13 @@ namespace Alex
 		public Neighbours neighbours;
 		public float force;
 
-		private NativeArray<float3> _itemPositions;
+		private NativeArray<float3> _itemForwardVectors;
 		private NativeArray<float3> _rotationForce;
 
 		void Start()
 		{
 			rb = GetComponent<Rigidbody>();
-			_itemPositions = new NativeArray<float3>(100, Allocator.Persistent); //could use the total number of swarmers+aliens from game manager -1.
+			_itemForwardVectors = new NativeArray<float3>(100, Allocator.Persistent); //could use the total number of swarmers+aliens from game manager -1.
 			_rotationForce = new NativeArray<float3>(1, Allocator.Persistent);
 		}
 
@@ -43,13 +43,13 @@ namespace Alex
 			
 			for (int i=0; i<numberOfNeighbours; i++)
 			{
-				_itemPositions[i] = neighbours.neighbours[i].position;
+				_itemForwardVectors[i] = neighbours.neighbours[i].forward;
 			}
 			
 			AlignJob job = new AlignJob
 			{
 				Forward = forwardVector,
-				ItemPositions = _itemPositions,
+				ItemPositions = _itemForwardVectors,
 				Result = _rotationForce,
 				NumberOfItems = numberOfNeighbours
 			};
@@ -60,7 +60,7 @@ namespace Alex
 
 		private void OnDestroy()
 		{
-			_itemPositions.Dispose();
+			_itemForwardVectors.Dispose();
 			_rotationForce.Dispose();
 		}
 	}
