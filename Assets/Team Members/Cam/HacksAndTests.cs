@@ -14,6 +14,7 @@ public class HacksAndTests : MonoBehaviour
 	    {
 		    hq.DestroyLand(12f);
 	    }
+	    FindObjectOfType<MarcusTerrain>().Clear();
     }
 
     // Update is called once per frame
