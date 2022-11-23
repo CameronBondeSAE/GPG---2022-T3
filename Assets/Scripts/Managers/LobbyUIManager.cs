@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
 using TMPro;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UNET;
@@ -59,15 +60,16 @@ namespace Ollie
 
         //public GameObject lobbyCam;
         //public GameObject directionalLight;
-        bool              inGame = false;
+        //bool              inGame = false;
 
         ulong         myLocalClientId;
         NetworkObject myLocalClient;
         string        clientName;
 
         public static LobbyUIManager instance;
+        public GameManager gameManager;
 
-        
+
         #region Lobby Specific Stuff
 
         private void Awake()
@@ -79,6 +81,8 @@ namespace Ollie
             }
 
             instance = this;
+            gameManager = GameManager.singleton;
+            
         }
         
         private void Start()
@@ -256,6 +260,8 @@ namespace Ollie
         public void UpdateLevelSelectedText(string levelName)
         {
             levelSelectedDisplayText.text = levelName;
+            
+            //TODO: spawn perlin here somehow
         }
         
         #endregion
@@ -273,15 +279,10 @@ namespace Ollie
 
             NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManagerOnOnSceneEvent;
             NetworkManager.Singleton.SceneManager.OnLoadComplete += SetNewActiveScene;
-
-            //use this to know when scene IS loaded
-            //NetworkManager.Singleton.SceneManager.OnLoadComplete += OnLevelLoaded;
-
-            //if this fails it will duplicate spawns of the player?
+            
             try
             {
                 NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
-                //set new scene as default somehow??
             }
             catch (Exception e)
             {
@@ -289,6 +290,8 @@ namespace Ollie
             }
         }
         
+        //Sets the newly loaded scene to be the current active scene
+        //So all future spawned objects appear in the new scene
         private void SetNewActiveScene(ulong clientid, string scenename, LoadSceneMode loadscenemode)
         {
             NetworkManager.Singleton.SceneManager.OnLoadComplete -= SetNewActiveScene;
