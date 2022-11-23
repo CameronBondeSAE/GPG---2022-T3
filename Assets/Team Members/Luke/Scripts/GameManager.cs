@@ -30,8 +30,8 @@ public class GameManager : NetworkBehaviour
 
     public ILevelGenerate LevelGenerator
     {
-	    get;
-	    set;
+	    get => levelGenerator;
+	    set => levelGenerator = value;
     }
     
     //In Game Counts
