@@ -101,7 +101,7 @@ namespace Marcus
                 {
                     aiPos = new Vector3(x, 0.1f, z);
 
-                    if (itemGrid[x, z] == 0)
+                    if (itemGrid[x, z] == 0.5f)
                     {
                         if (aiLimit == 5)
                         {
@@ -132,7 +132,7 @@ namespace Marcus
                         }
                         else if (Mathf.PerlinNoise(x * 0.15f/*itemStep*/, z * 0.15f/*itemStep*/) <= 0.2f)
                         {
-                            itemGrid[x, z] = 0;
+                            itemGrid[x, z] = 0.5f;
                         }
                     }
                 }
