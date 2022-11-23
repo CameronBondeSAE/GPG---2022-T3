@@ -12,6 +12,12 @@ public class FlamethrowerModelView : MonoBehaviour
         ChangeOverheat?.Invoke(x);
     }
     
+    public event Action Pulsing;
+
+    public void OnPulsing()
+    {
+        Pulsing?.Invoke();
+    }
 
     public event Action YouDied;
 
