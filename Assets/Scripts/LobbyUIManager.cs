@@ -67,6 +67,37 @@ namespace Ollie
 
         public static LobbyUIManager instance;
 
+        
+        #region Lobby Specific Stuff
+
+        private void Awake()
+        {
+            if (!autoHost)
+            {
+                ipAddressCanvas.SetActive(true);
+                lobbyUICanvas.SetActive(false);
+            }
+
+            instance = this;
+        }
+        
+        private void Start()
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback += OnClientJoin;
+
+            serverIPInputField.text = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address;
+
+            if (autoHost)
+            {
+                //Host Game
+            }
+
+            if (autoLoadLevel)
+            {
+                //Start Game
+            }
+        }
+        
         public void HostGame()
         {
             NetworkManager.Singleton.StartHost();
@@ -89,7 +120,7 @@ namespace Ollie
                 //lobbyUICanvas.SetActive(false);
             }
         }
-
+        
         public void JoinGame()
         {
             NetworkManager.Singleton.StartClient();
@@ -102,8 +133,8 @@ namespace Ollie
             NetworkManager.Singleton.StartClient();
             SetUpClientUI();
         }
-
-        void SetUpClientUI()
+        
+        private void SetUpClientUI()
         {
             startButton.gameObject.SetActive(false);
             lobbyUICanvas.SetActive(true);
@@ -111,104 +142,11 @@ namespace Ollie
             levelDisplayUI.SetActive(false);
         }
         
-        private void Awake()
-        {
-            if (!autoHost)
-            {
-                ipAddressCanvas.SetActive(true);
-                lobbyUICanvas.SetActive(false);
-            }
-
-            instance = this;
-        }
-
-        private void Start()
-        {
-            NetworkManager.Singleton.OnClientConnectedCallback += OnClientJoin;
-
-            serverIPInputField.text = NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address;
-
-            if (autoHost)
-            {
-                //Host Game
-            }
-
-            if (autoLoadLevel)
-            {
-                //Start Game
-            }
-        }
-
         public void OnNewServerIPAddress()
         {
             NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = serverIPInputField.text;
         }
 
-        public void StartGame()
-        {
-            if (sceneToLoad == "")
-            {
-                print("You must select a level to load.");
-                return;
-            }
-
-            NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManagerOnOnSceneEvent;
-            NetworkManager.Singleton.SceneManager.OnLoadComplete += SetNewActiveScene;
-
-            //use this to know when scene IS loaded
-            //NetworkManager.Singleton.SceneManager.OnLoadComplete += OnLevelLoaded;
-
-            //if this fails it will duplicate spawns of the player?
-            try
-            {
-                NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
-                //set new scene as default somehow??
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e,this);
-            }
-        }
-
-        private void SetNewActiveScene(ulong clientid, string scenename, LoadSceneMode loadscenemode)
-        {
-            NetworkManager.Singleton.SceneManager.OnLoadComplete -= SetNewActiveScene;
-            Scene scene = (SceneManager.GetSceneByName(scenename));
-            SceneManager.SetActiveScene(scene);
-            //BroadcastActiveSceneClientRpc(scenename);
-        }
-
-        //HACK: attempted to set the newly loaded scene as the active scene on the client
-        //does not work - client tries to set active before it's finished loading
-        //does work for host though
-        [ClientRpc]
-        private void BroadcastActiveSceneClientRpc(string sceneToActive)
-        {
-            Scene scene = (SceneManager.GetSceneByName(sceneToActive));
-            SceneManager.SetActiveScene(scene);
-        }
-
-        private void SceneManagerOnOnSceneEvent(SceneEvent sceneEvent)
-        {
-            //if (sceneEvent.SceneEventType ==) ;
-            NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManagerOnOnSceneEvent;
-            Scene scene = sceneEvent.Scene;
-            
-            
-            //lobbyCam.SetActive(false);
-            //directionalLight.SetActive(false);
-            BroadcastLobbyUIStateClientRpc(true);
-        }
-
-        [ClientRpc]
-        private void BroadcastLobbyUIStateClientRpc(bool gameInProgress)
-        {
-            lobbyUICanvas.SetActive(!gameInProgress);
-            //lobbyCam.SetActive(false);
-            //directionalLight.SetActive(false);
-            //InGameLobbyUI(gameInProgress);
-        }
-        
         private void OnClientJoin(ulong clientId)
         {
             if (NetworkManager.Singleton.IsServer || IsOwner)
@@ -255,7 +193,7 @@ namespace Ollie
             HandleClientNameChange();
         }
 
-        void HandleClientNameChange()
+        private void HandleClientNameChange()
         {
             ClearLobbyNamesClientRpc();
 
@@ -266,7 +204,7 @@ namespace Ollie
         }
 
         [ClientRpc]
-        public void ClearLobbyNamesClientRpc()
+        private void ClearLobbyNamesClientRpc()
         {
             foreach (Transform child in playerPanel.transform)
             {
@@ -275,12 +213,12 @@ namespace Ollie
         }
 
         [ClientRpc]
-        public void SpawnClientLobbyUIClientRpc(string newName)
+        private void SpawnClientLobbyUIClientRpc(string newName)
         {
             SpawnClientLobbyUI(newName);
         }
 
-        void SpawnClientLobbyUI(string clientName)
+        private void SpawnClientLobbyUI(string clientName)
         {
             GameObject uiRef = Instantiate(clientLobbyUIPrefab, playerPanel.transform);
             uiRef.GetComponent<TMP_Text>().text = clientName;
@@ -308,7 +246,7 @@ namespace Ollie
         }
 
         [ServerRpc(RequireOwnership = false)]
-        void RequestClientNameChangeServerRpc(ulong clientId, string name)
+        private void RequestClientNameChangeServerRpc(ulong clientId, string name)
         {
             NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject.GetComponent<ClientInfo>().ClientName
                 .Value = name;
@@ -319,5 +257,71 @@ namespace Ollie
         {
             levelSelectedDisplayText.text = levelName;
         }
+        
+        #endregion
+
+        //TODO: Rip this region into a Game Mode script, IF TIME PERMITS
+        #region Game Mode Manager Stuff
+
+        public void StartGame()
+        {
+            if (sceneToLoad == "")
+            {
+                print("You must select a level to load.");
+                return;
+            }
+
+            NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManagerOnOnSceneEvent;
+            NetworkManager.Singleton.SceneManager.OnLoadComplete += SetNewActiveScene;
+
+            //use this to know when scene IS loaded
+            //NetworkManager.Singleton.SceneManager.OnLoadComplete += OnLevelLoaded;
+
+            //if this fails it will duplicate spawns of the player?
+            try
+            {
+                NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+                //set new scene as default somehow??
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e,this);
+            }
+        }
+        
+        private void SetNewActiveScene(ulong clientid, string scenename, LoadSceneMode loadscenemode)
+        {
+            NetworkManager.Singleton.SceneManager.OnLoadComplete -= SetNewActiveScene;
+            Scene scene = (SceneManager.GetSceneByName(scenename));
+            SceneManager.SetActiveScene(scene);
+            //BroadcastActiveSceneClientRpc(scenename);
+        }
+
+        //HACK: attempted to set the newly loaded scene as the active scene on the client
+        //does not work - client tries to set active before it's finished loading
+        //does work for host though
+        [ClientRpc]
+        private void BroadcastActiveSceneClientRpc(string sceneToActive)
+        {
+            Scene scene = (SceneManager.GetSceneByName(sceneToActive));
+            SceneManager.SetActiveScene(scene);
+        }
+        
+        private void SceneManagerOnOnSceneEvent(SceneEvent sceneEvent)
+        {
+            if (sceneEvent.SceneEventType != SceneEventType.Load) return;
+            NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManagerOnOnSceneEvent;
+            Scene scene = sceneEvent.Scene;
+            
+            BroadcastLobbyUIStateClientRpc(true);
+        }
+
+        [ClientRpc]
+        private void BroadcastLobbyUIStateClientRpc(bool gameInProgress)
+        {
+            lobbyUICanvas.SetActive(!gameInProgress);
+        }
+        
+        #endregion
     }
 }
