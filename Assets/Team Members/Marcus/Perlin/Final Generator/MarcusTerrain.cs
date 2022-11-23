@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tanks;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -19,10 +20,14 @@ public class MarcusTerrain : MonoBehaviour
     Vector3 itemPos;
     float itemZoom;
 
-    Vector3 brickPosition;
+    Vector3 brickPos;
     Vector3 floorPos;
     float zoom;
     Vector2 randomOffset;
+
+    public GameObject playerHQ;
+    public GameObject alienHQ;
+    Vector3 hqPos;
 
     public GameObject pickup;
     public GameObject swarmer;
@@ -105,21 +110,23 @@ public class MarcusTerrain : MonoBehaviour
         {
             for (int z = 0; z < amount; z++)
             {
-                brickPosition.x = x;
-                brickPosition.y = Mathf.PerlinNoise((x + startPoint.x) * step, (z + startPoint.y) * step);
-                brickPosition.z = z;
+                brickPos.x = x;
+                brickPos.y = Mathf.PerlinNoise((x + startPoint.x) * step, (z + startPoint.y) * step);
+                brickPos.z = z;
 
-                if (brickPosition.y < 0.5f)
+                if (brickPos.y < 0.5f)
                 {
                     SpawnItems(x, z, itemStep);
                 }
                 else
                 {
-                    GameObject wall = Instantiate(wallPrefab, brickPosition, Quaternion.identity);
+                    GameObject wall = Instantiate(wallPrefab, brickPos, Quaternion.identity);
                     bricks.Add(wall);
                 }
             }
         }
+        
+        SpawnBases();
     }
 
     void SpawnBorder()
@@ -167,5 +174,22 @@ public class MarcusTerrain : MonoBehaviour
         }
 
         aiLimit++;
+    }
+
+    void SpawnBases()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            hqPos = new Vector3(Random.Range(0, amount), -1, Random.Range(0, amount));
+
+            if (i == 0)
+            {
+                Instantiate(playerHQ, hqPos, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(alienHQ, hqPos, Quaternion.identity);
+            }
+        }
     }
 }
