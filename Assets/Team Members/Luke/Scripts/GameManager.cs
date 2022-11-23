@@ -186,20 +186,10 @@ public class GameManager : NetworkBehaviour
 	    if (!IsServer) return;
 	    if (prefab.GetComponent<NetworkObject>() == null) return;
 	    GameObject go = Instantiate(prefab, t);
-	    go.GetComponent<NetworkObject>().Spawn();
-	    if (parent != null)
-	    {
-		    Transform child = go.transform;
-		    child.parent = parent;
-		    // ParentClientRpc(child.GetComponent<NetworkObject>(), parent.GetComponent<NetworkObject>());
-	    }
+	    NetworkObject no = go.GetComponent<NetworkObject>();
+	    no.Spawn();
+	    no.TrySetParent(parent);
     }
-
-    // [ClientRpc]
-    // private void ParentClientRpc(NetworkObject child, NetworkObject parent)
-    // {
-	   //  child.transform.parent = parent.transform;
-    // }
 
     public void SpawnPerlinFinished()
     {
