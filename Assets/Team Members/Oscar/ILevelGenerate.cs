@@ -1,17 +1,22 @@
+using Unity.Netcode;
+
 namespace Oscar
 {
     public interface ILevelGenerate
     {
-        public void SpawnPerlin();
+	    /// <summary>
+	    /// You'll need the [ClientRpc] attribute in implementations
+	    /// </summary>
+        public void SpawnPerlinClientRpc();
 
-        public void SpawnBorder();
+        public void SpawnBorderClientRpc();
 
-        public void SpawnAI();
+        public void SpawnAIClientRpc();
 
-        public void SpawnItems();
+        public void SpawnItemsClientRpc();
 
-        public void SpawnExplosives();
+        public void SpawnExplosivesClientRpc();
         
-        public void SpawnBases();
+        public void SpawnBasesClientRpc();
     }
 }

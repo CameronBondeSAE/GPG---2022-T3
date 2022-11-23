@@ -58,7 +58,7 @@ namespace Marcus
             itemStep = Random.Range(0.05f, 0.15f);
         }
 
-        public void SpawnPerlin()
+        public void SpawnPerlinClientRpc()
         {
             float floorPos = amount / 2f;
 
@@ -86,7 +86,7 @@ namespace Marcus
             }
         }
 
-        public void SpawnBorder()
+        public void SpawnBorderClientRpc()
         {
             GameObject curBorder;
         
@@ -103,7 +103,7 @@ namespace Marcus
             curBorder.transform.localScale += new Vector3(0, 0, amount);
         }
 
-        public void SpawnAI()
+        public void SpawnAIClientRpc()
         {
             for (int x = 0; x < amount; x++)
             {
@@ -125,7 +125,7 @@ namespace Marcus
             }
         }
 
-        public void SpawnItems()
+        public void SpawnItemsClientRpc()
         {
             for (int x = 0; x < amount; x++)
             {
@@ -149,12 +149,12 @@ namespace Marcus
             }
         }
 
-        public void SpawnExplosives()
+        public void SpawnExplosivesClientRpc()
         {
             print("I DO NOTHING YET");
         }
 
-        public void SpawnBases()
+        public void SpawnBasesClientRpc()
         {
             for (int i = 0; i < 4; i++)
             {

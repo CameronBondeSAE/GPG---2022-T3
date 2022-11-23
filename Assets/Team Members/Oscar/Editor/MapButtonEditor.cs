@@ -19,32 +19,32 @@ public class MapButtonEditor : Editor
                 
                 if (GUILayout.Button("Perlin Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnPerlin();
+                        (target as MapGenerator)?.SpawnPerlinClientRpc();
                 }
                 
                 if (GUILayout.Button("Border Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnBorder();
+                        (target as MapGenerator)?.SpawnBorderClientRpc();
                 }
                 
                 if (GUILayout.Button("AI Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnAI();
+                        (target as MapGenerator)?.SpawnAIClientRpc();
                 }
                 
                 if (GUILayout.Button("Explosives Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnExplosives();
+                        (target as MapGenerator)?.SpawnExplosivesClientRpc();
                 }
                 
                 if (GUILayout.Button("Items Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnItems();
+                        (target as MapGenerator)?.SpawnItemsClientRpc();
                 }
                 
                 if (GUILayout.Button("HQ Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnBases();
+                        (target as MapGenerator)?.SpawnBasesClientRpc();
                 }
         }
 }
@@ -58,7 +58,7 @@ public class TheButtonEditor : Editor
 
                 if (GUILayout.Button("Start Wall Destruction") && Application.isPlaying)
                 {
-                        (target as PerlinCube_Model)?.DestroyTheWall();
+                        (target as PerlinCube_Model)?.DestroyTheWallClientRpc();
                 }
         }
 }

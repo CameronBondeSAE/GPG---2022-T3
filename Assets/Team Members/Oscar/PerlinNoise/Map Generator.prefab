@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 717600289217134444}
   - component: {fileID: 4194513743047498130}
   - component: {fileID: -685920881112126037}
+  - component: {fileID: 5530932041732532745}
   m_Layer: 0
   m_Name: Map Generator
   m_TagString: Untagged
@@ -54,6 +55,7 @@ MonoBehaviour:
   spawnExplosives: {fileID: 4194513743047498130}
   spawnAI: {fileID: 3411614321170409340}
   spawnItems: {fileID: -685920881112126037}
+  borderParent: {fileID: 0}
   amount: 75
   randomMap: 0
   cubeSize: 1
@@ -89,6 +91,7 @@ MonoBehaviour:
   humanBase: {fileID: 7884631281891504534, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
   alienBase: {fileID: 8749085813108591677, guid: 53bff0fc767e0d44eb20b10e130091f7, type: 3}
   tempBaseDist: 0
+  destroyRadius: 0
 --- !u!114 &717600289217134444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,3 +135,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 4137073510955222978, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
+--- !u!114 &5530932041732532745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5530932041577439141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

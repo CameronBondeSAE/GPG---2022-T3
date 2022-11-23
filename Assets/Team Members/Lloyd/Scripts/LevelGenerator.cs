@@ -86,33 +86,33 @@ namespace Lloyd
             GameManager.singleton.LevelGenerator = this;
         }
 
-        public void SpawnPerlin()
+        public void SpawnPerlinClientRpc()
         {
             GenerateTerrain();
         }
 
-        public void SpawnBorder()
+        public void SpawnBorderClientRpc()
         {
             PlaceGround();
             PlaceWalls();
         }
 
-        public void SpawnAI()
+        public void SpawnAIClientRpc()
         {
             GameManager.singleton.SpawnAIFinished();
         }
 
-        public void SpawnItems()
+        public void SpawnItemsClientRpc()
         {
              SpawnPlants();
         }
 
-        public void SpawnExplosives()
+        public void SpawnExplosivesClientRpc()
         {
             GameManager.singleton.SpawnExplosivesFinished();
         }
 
-        public void SpawnBases()
+        public void SpawnBasesClientRpc()
         {
             PlaceHQ();
 

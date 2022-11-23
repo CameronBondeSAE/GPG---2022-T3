@@ -13,32 +13,32 @@ public class NetGenerationEditor : Editor
 
         if (GUILayout.Button("Generate Perlin") && Application.isPlaying)
         {
-            (target as NetworkedGenerator)?.SpawnPerlin();
+            (target as NetworkedGenerator)?.SpawnPerlinClientRpc();
         }
         
         if (GUILayout.Button("Generate Bases") && Application.isPlaying)
         {
-            (target as NetworkedGenerator)?.SpawnBases();
+            (target as NetworkedGenerator)?.SpawnBasesClientRpc();
         }
         
         if (GUILayout.Button("Generate Border") && Application.isPlaying)
         {
-            (target as NetworkedGenerator)?.SpawnBorder();
+            (target as NetworkedGenerator)?.SpawnBorderClientRpc();
         }
         
         if (GUILayout.Button("Generate Items") && Application.isPlaying)
         {
-            (target as NetworkedGenerator)?.SpawnItems();
+            (target as NetworkedGenerator)?.SpawnItemsClientRpc();
         }
         
         if (GUILayout.Button("Generate AI") && Application.isPlaying)
         {
-            (target as NetworkedGenerator)?.SpawnAI();
+            (target as NetworkedGenerator)?.SpawnAIClientRpc();
         }
         
         if (GUILayout.Button("Generate Explosives (INACTIVE)") && Application.isPlaying)
         {
-            (target as NetworkedGenerator)?.SpawnExplosives();
+            (target as NetworkedGenerator)?.SpawnExplosivesClientRpc();
         }
 
         if (GUILayout.Button("RANDOMISE PERLINS") && Application.isPlaying)

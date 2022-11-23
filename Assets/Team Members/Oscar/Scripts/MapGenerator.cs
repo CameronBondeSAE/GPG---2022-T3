@@ -4,10 +4,11 @@ using Lloyd;
 using Luke;
 using Oscar;
 using Unity.Mathematics;
+using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MapGenerator : MonoBehaviour, ILevelGenerate
+public class MapGenerator : NetworkBehaviour, ILevelGenerate
 {
     public Oscar.SpawnBases spawnBases;
     public Oscar.SpawnEnvironment spawnEnvironment;
@@ -199,37 +200,44 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
         spawnBases.tempBaseDist = 0;
     }
 
-    public void SpawnPerlin()
+    
+    [ClientRpc]
+    public void SpawnPerlinClientRpc()
     {
         spawnEnvironment.SpawnPerlinWalls(totalCubes, CubeParent, perlinValue);
         //GameManager.singleton.SpawnPerlinFinished();
     }
 
-    public void SpawnBorder()
+    [ClientRpc]
+    public void SpawnBorderClientRpc()
     {
         spawnEnvironment.SpawnTheEnvironment(prefabPosition, amount, scale, borderParent);
         //GameManager.singleton.SpawnBorderFinished();
     }
 
-    public void SpawnAI()
+    [ClientRpc]
+    public void SpawnAIClientRpc()
     {
         spawnAI.SpawnAIInTheMaze(totalAI,AIParent, perlinValue);
         //GameManager.singleton.SpawnAIFinished();
     }
 
-    public void SpawnItems()
+    [ClientRpc]
+    public void SpawnItemsClientRpc()
     {
         spawnItems.SpawnTheItems(totalItems, ItemParent);
         //GameManager.singleton.SpawnItemsFinished();
     }
 
-    public void SpawnExplosives()
+    [ClientRpc]
+    public void SpawnExplosivesClientRpc()
     {
         spawnExplosives.SpawningTheExplosives(totalExplosives, BarrelParent, perlinValue);
         //GameManager.singleton.SpawnExplosivesFinished();
     }
 
-    public void SpawnBases()
+    [ClientRpc]
+    public void SpawnBasesClientRpc()
     {
         spawnBases.SpawnTheBase(totalHQ, HQParent);
         //GameManager.singleton.SpawnBasesFinished();

@@ -1036,6 +1036,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Network Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[1].Prefab
+      value: 
+      objectReference: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
     - target: {fileID: 3639541133573309103, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
       propertyPath: m_RootOrder
       value: 1

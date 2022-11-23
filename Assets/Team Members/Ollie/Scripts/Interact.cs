@@ -109,9 +109,11 @@ public class Interact : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<IPickupable>() != null)
+	    IPickupable pickupable = other.GetComponent<IPickupable>();
+	    if (pickupable != null)
         {
-            IPickupable item = other.GetComponent<IPickupable>();
+	        Debug.Log("Pickupable in range : "+pickupable);
+            IPickupable item = pickupable;
             if (item.autoPickup)
             {
                 if (storedItems < storedMax)

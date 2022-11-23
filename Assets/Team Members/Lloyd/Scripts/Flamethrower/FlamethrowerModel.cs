@@ -140,7 +140,7 @@ namespace Lloyd
         private IEnumerator ShootTilDead()
         {
                 StartCoroutine(SpitFire());
-                yield return new WaitUntil(canShoot);
+                yield return new WaitUntil(() => canShoot);
                 StartCoroutine(ShootTilDead());
         }
 

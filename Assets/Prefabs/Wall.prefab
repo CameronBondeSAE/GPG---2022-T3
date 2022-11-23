@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 1890521074}
   - component: {fileID: 767568316}
   - component: {fileID: 688293660}
+  - component: {fileID: 1865921109366203889}
   m_Layer: 11
   m_Name: Wall
   m_TagString: Untagged
@@ -91,7 +92,7 @@ Transform:
   m_Children:
   - {fileID: 1693357922}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4786817437330063166
 MeshFilter:
@@ -202,6 +203,22 @@ MonoBehaviour:
   fuel: 50
   coolRate: 1
   radius: 5
+--- !u!114 &1865921109366203889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275283118841150105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1001 &153526296
 PrefabInstance:
   m_ObjectHideFlags: 0

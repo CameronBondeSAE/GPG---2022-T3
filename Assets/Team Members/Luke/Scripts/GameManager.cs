@@ -120,12 +120,12 @@ public class GameManager : NetworkBehaviour
 	    }
 	    
 	    // TODO: Wait for level generation callback to be sure it's finished.
-	    levelGenerator.SpawnPerlin();
-	    levelGenerator.SpawnItems();
-	    levelGenerator.SpawnExplosives();
-	    levelGenerator.SpawnBases();
-	    levelGenerator.SpawnAI();
-	    levelGenerator.SpawnBorder();
+	    levelGenerator.SpawnPerlinClientRpc();
+	    levelGenerator.SpawnItemsClientRpc();
+	    levelGenerator.SpawnExplosivesClientRpc();
+	    levelGenerator.SpawnBasesClientRpc();
+	    levelGenerator.SpawnAIClientRpc();
+	    levelGenerator.SpawnBorderClientRpc();
 	    
         foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
         {
@@ -191,15 +191,15 @@ public class GameManager : NetworkBehaviour
 	    {
 		    Transform child = go.transform;
 		    child.parent = parent;
-		    ParentClientRpc(child, parent);
+		    // ParentClientRpc(child.GetComponent<NetworkObject>(), parent.GetComponent<NetworkObject>());
 	    }
     }
 
-    [ClientRpc]
-    private void ParentClientRpc(Transform child, Transform parent)
-    {
-	    child.parent = parent;
-    }
+    // [ClientRpc]
+    // private void ParentClientRpc(NetworkObject child, NetworkObject parent)
+    // {
+	   //  child.transform.parent = parent.transform;
+    // }
 
     public void SpawnPerlinFinished()
     {
