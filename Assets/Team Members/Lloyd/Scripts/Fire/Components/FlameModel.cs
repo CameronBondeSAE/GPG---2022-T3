@@ -16,8 +16,8 @@ public class FlameModel : MonoBehaviour, IHeatSource
     [SerializeField] private float radius;
     [SerializeField] private Vector3 center;
     [SerializeField] private float minDistance;
-    [SerializeField] private float distance;
-    [SerializeField] private float proximityMultiplier=2;
+    private float distance;
+    [SerializeField] private float proximityMultiplier;
     
     private Vector3 burnVictim;
     
@@ -82,6 +82,7 @@ public class FlameModel : MonoBehaviour, IHeatSource
     private void TickTock()
     {
         fuel -= 0.2f;
+        radius -= 0.2f;
         if (fuel <= 0)
         {
             FlameOut();

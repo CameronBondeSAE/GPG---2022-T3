@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
-    public class Flamethrower : MonoBehaviour, IPickup, IInteractable
+    public class FlamethrowerModel : MonoBehaviour, IPickup, IInteractable
     {
         [Header("FLAME SETTINGS [DAMAGE / SIZE / FIRE RATE]")] [SerializeField]
         private float fireDamage;
@@ -67,6 +67,10 @@ namespace Lloyd
         
         //
 
+        private FlameModel flameModel;
+
+        public GameObject flamePrefab;
+
         private bool shooting;
 
         public FlamethrowerModelView modelView;
@@ -80,8 +84,6 @@ namespace Lloyd
             canShoot = true;
 
             firePointRb = GetComponentInChildren<Rigidbody>();
-
-            StartCoroutine(SpitFire());
         }
 
         private void FixedUpdate()
@@ -93,7 +95,7 @@ namespace Lloyd
 
             HandleOverheat();
 
-            // Debug.Log(overHeatLevel);
+            //Debug.Log(fireRate);
         }
 
         public void Interact(GameObject interactor)
@@ -112,12 +114,10 @@ namespace Lloyd
                 else if (canShoot && !isHeld)
                     StartCoroutine(ShootTilDead());
         }
-
         private IEnumerator SpitFire()
         {
             shooting = true;
             canShoot = false;
-            
 
             firePointPos = firePointRb.transform.position;
             Vector3 targetDir = firePointPos - transform.position;
@@ -127,7 +127,6 @@ namespace Lloyd
             firePrefabRb.AddForce(targetDir * force, ForceMode.Impulse);
 
             yield return new WaitForSecondsRealtime(fireRate);
-
             
             shooting = false;
             canShoot = true;
@@ -140,12 +139,9 @@ namespace Lloyd
 
         private IEnumerator ShootTilDead()
         {
-            if (overHeatLevel < overHeatPoint && canShoot)
-            {
                 StartCoroutine(SpitFire());
-                yield return new WaitForSecondsRealtime(fireRate);
+                yield return new WaitUntil(canShoot);
                 StartCoroutine(ShootTilDead());
-            }
         }
 
         //ALT FIRE GOES HERE
@@ -186,6 +182,11 @@ namespace Lloyd
                 StartCoroutine(Explode());
         }
 
+        public void Kill()
+        {
+            StartCoroutine(Explode());
+        }
+
         private IEnumerator Explode()
         {
             canShoot = false;
@@ -194,7 +195,13 @@ namespace Lloyd
             
             yield return new WaitForSecondsRealtime(explodeTimer);
             
+            GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
+            flameModel = fire.GetComponentInChildren<FlameModel>();
+            flameModel.SetFlameStats(fireDamage, 10, 2);
+            
             modelView.OnYouDied();
+            
+            DestroyImmediate(this.gameObject);
         }
 
         //IPICKUP MANDATORY(S)

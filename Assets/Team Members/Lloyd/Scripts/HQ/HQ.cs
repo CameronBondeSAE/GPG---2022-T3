@@ -54,6 +54,8 @@ namespace Lloyd
 			// 	rend.material.color = Color.magenta;
 
 			isActive = true;
+			
+			DestroyLand(_HQRadius);
 		}
 
 		public void DestroyLand(float x)

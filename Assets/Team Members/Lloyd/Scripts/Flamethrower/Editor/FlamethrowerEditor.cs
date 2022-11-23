@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Lloyd
 {
-    [CustomEditor(typeof(Lloyd.Flamethrower))]
+    [CustomEditor(typeof(Lloyd.FlamethrowerModel))]
     public class FlamethrowerEditor : Editor
     {
         public override void OnInspectorGUI()
@@ -14,17 +14,20 @@ namespace Lloyd
 
             if (GUILayout.Button("Shoot Fire"))
             {
-                (target as Lloyd.Flamethrower)?.ShootFire();
+                (target as Lloyd.FlamethrowerModel)?.ShootFire();
             }
             
             if (GUILayout.Button("Shoot Until Dead"))
             {
-                (target as Lloyd.Flamethrower)?.ShootUntilDead();
+                (target as Lloyd.FlamethrowerModel)?.ShootUntilDead();
+            }
+            
+            if (GUILayout.Button("Explode"))
+            {
+                (target as Lloyd.FlamethrowerModel)?.Kill();
             }
         }
     }
-    
-    
     
     [CustomEditor(typeof(Flammable))]
     public class FlammableComponentEditor : Editor
@@ -41,6 +44,20 @@ namespace Lloyd
             if (GUILayout.Button("Extinguish"))
             {
                 (target as Flammable)?.Extinguish();
+            }
+        }
+    }
+    
+    [CustomEditor(typeof(HQ))]
+    public class HQEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
+
+            if (GUILayout.Button("Destroy Land"))
+            {
+                (target as HQ)?.DestroyLand(10);
             }
         }
     }
