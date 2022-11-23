@@ -59,7 +59,7 @@ namespace Alex
                 if (distanceToTarget >= distanceToTargetCheck)
                 {
                     turntowards.targetPosition = astar.isPathable[0].worldPosition;
-                    turntowards.turnSpeed = 200;
+                  
                 }
                 else
                 {

@@ -10,7 +10,6 @@ namespace Alex
         public Align align;
         public Cohesion cohesion;
         public Separation separation;
-        public Neighbours neighbours;
         public float onTime = 15f;
         public float offTime = 5f;
 
@@ -22,13 +21,10 @@ namespace Alex
         
         public IEnumerator SwarmersDisperse()
         {
-            neighbours.neighbours.Clear();
-            neighbours.enabled = false;
             align.enabled = false;
             cohesion.enabled = false;
             separation.enabled = false;
             yield return new WaitForSeconds(onTime);
-            neighbours.enabled = true;
             align.enabled = true;
             cohesion.enabled = true;
             separation.enabled = true;

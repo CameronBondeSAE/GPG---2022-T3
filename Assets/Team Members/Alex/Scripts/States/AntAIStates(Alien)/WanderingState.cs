@@ -8,7 +8,7 @@ namespace Alex
     public class WanderingState : AntAIState
     {
 
-        public Wonder wonder;
+        public Wander wander;
 
         // Reference to my main GameObject, so I can access all the normal code I have in there.
         public GameObject owner;
@@ -16,7 +16,7 @@ namespace Alex
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
-            wonder = aGameObject.GetComponent<Wonder>();
+            wander = aGameObject.GetComponent<Wander>();
 
             owner = aGameObject;
         }
@@ -24,15 +24,15 @@ namespace Alex
         public override void Enter()
         {
             base.Enter();
-            wonder.enabled = true;
-            wonder.turnForce = 700;
+            wander.enabled = true;
+            wander.turnForce = 700;
             Finish();
         }
 
         public override void Exit()
         {
             base.Exit();
-            wonder.turnForce = 20;
+            wander.turnForce = 20;
             Finish();
         }
     }

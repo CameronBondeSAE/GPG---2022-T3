@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
 namespace Alex
@@ -21,6 +22,7 @@ namespace Alex
         TurnTowards turnTowards;
         TestShapes testShapes;
         Neighbours neighbours;
+        public bool canSwarm = false;
 
         public override void Create(GameObject aGameObject)
         {
@@ -54,10 +56,21 @@ namespace Alex
             if (vision.enemyInSight.Count > 0)
             {
                 followPath.ActivatePathToTarget(vision.enemyInSight[0].transform.position);
+
+                
+                canSwarm = true;
+                
                 foreach (Transform neighbour in neighbours.neighbours)
                 {
-                    neighbour.transform.position = new Vector3(vision.enemyInSight[0].transform.position.x + Random.Range(-5, 5), vision.enemyInSight[0].transform.position.y, vision.enemyInSight[0].transform.position.z + Random.Range(-5, 5));
+                    
+                    neighbour.GetComponentInParent<ControllerSwarmer>().canAttack = true;
+                    neighbour.GetComponentInParent<ControllerSwarmer>().canSwarm = false;
+                    neighbour.GetComponentInParent<ControllerSwarmer>().target = vision.enemyInSight[0];
+                    
+                    //new WaitForSeconds(2f);
+                    //neighbour.transform.position = new Vector3(vision.enemyInSight[0].transform.position.x + Random.Range(-5, 5), vision.enemyInSight[0].transform.position.y, vision.enemyInSight[0].transform.position.z + Random.Range(-5, 5));
                 }
+                
             }
         }
 
@@ -89,7 +102,9 @@ namespace Alex
             testShapes.colour = Color.green;
             testShapes.intensity = 1;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
-            
+
+
+            canSwarm = false;
         }
     }
 }

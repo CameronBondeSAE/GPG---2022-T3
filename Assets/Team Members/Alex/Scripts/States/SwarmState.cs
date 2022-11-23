@@ -9,7 +9,7 @@ public class SwarmState : StateBase
     public Cohesion cohesion;
     public Align align;
     public Separation separation;
-    public Wonder wonder;
+    public Wander wander;
 
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class SwarmState : StateBase
         cohesion.enabled = true;
         align.enabled = true;
         separation.enabled = true;
-        wonder.enabled = true;
+        wander.enabled = true;
     }
 
     public void OnDisable()
@@ -26,6 +26,6 @@ public class SwarmState : StateBase
         cohesion.enabled = false;
         align.enabled = false;
         separation.enabled = false;
-        wonder.enabled = false;
+        wander.enabled = false;
     }
 }

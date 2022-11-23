@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Alex
 {
-
     public class AntAIState : Anthill.AI.AntAIState
     {
         protected Sensor sensor;

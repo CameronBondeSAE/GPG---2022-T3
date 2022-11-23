@@ -149,15 +149,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4190916841294650408, guid: e4ec2ca01afaf1744a6c7f5677f774b9, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Overridden
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4190916841294650408, guid: e4ec2ca01afaf1744a6c7f5677f774b9, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[1].m_Overridden
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4190916841294650408, guid: e4ec2ca01afaf1744a6c7f5677f774b9, type: 3}
       propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[2].m_Overridden
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4190916841294650409, guid: e4ec2ca01afaf1744a6c7f5677f774b9, type: 3}
       propertyPath: m_RootOrder

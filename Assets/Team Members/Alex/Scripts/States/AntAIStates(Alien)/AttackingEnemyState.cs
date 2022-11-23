@@ -13,6 +13,7 @@ namespace Alex
         Vision vision;
         Rigidbody rb;
         Controller controller;
+        public bool callSwarm;
 
         public override void Create(GameObject aGameObject)
         {
@@ -36,10 +37,18 @@ namespace Alex
             if (vision.enemyInSight.Count == 0 && vision.enemyInSight != null) return;
             if (vision.enemyInSight.Count > 0)
             {
+                
                 owner.GetComponent<TurnTowards>().targetPosition = vision.enemyInSight[0].transform.position;
                 //owner.GetComponent<TurnTowards>().targetTransform = vision.resourcesInSight[0].transform.position;
                 Finish();
             }
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            
+            Finish();
         }
     }
 }

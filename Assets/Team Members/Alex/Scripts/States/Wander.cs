@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Alex
 {
-    public class Wonder : MonoBehaviour
+    public class Wander : MonoBehaviour
     {
         public float perlinNoise;
         Rigidbody rb;

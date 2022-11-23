@@ -19,6 +19,7 @@ namespace Alex
         public List<Transform> dropOffPointsFound;
         public Array[] arrayOfThingsHit;
         public TestShapes testShapes;
+        public LayerMask layerMask;
 
 
 
@@ -46,7 +47,10 @@ namespace Alex
     
                 Debug.DrawRay(transform.position, dir * 10f, Color.green);
 
-                Physics.Raycast(transform.position, dir, out RaycastHit HitInfo);
+                //Physics.Raycast(transform.position, dir, out RaycastHit HitInfo);
+                
+                Physics.Raycast(transform.position, dir, out RaycastHit HitInfo, 999f, layerMask, QueryTriggerInteraction.Collide);
+                
                 if(HitInfo.collider == null) continue;
 
                 
@@ -65,6 +69,7 @@ namespace Alex
                     {
                         enemyInSight.Add(enemy);
                     }
+                    
                 }
                 
                 else

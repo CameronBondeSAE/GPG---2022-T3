@@ -34,7 +34,7 @@ namespace Alex
             runningAsJob = false;
             
             //arbitrary length because actual length might change
-            neighbourPositions = new NativeArray<float3>(100000, Allocator.Persistent);
+            neighbourPositions = new NativeArray<float3>(100, Allocator.Persistent);
             
             //only a single variable so locking length to 1
             averagePosition = new NativeArray<float3>(1, Allocator.Persistent);

@@ -63,9 +63,11 @@ MonoBehaviour:
   turnSpeed: 0
   vision: {fileID: 0}
   controller: {fileID: 0}
-  wonder: {fileID: 0}
+  wander: {fileID: 0}
   astar: {fileID: 0}
   followPath: {fileID: 0}
+  slowingForce: 50
+  slowDownAngleThreshhold: 25
 --- !u!1 &1794423253392461865
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +92,7 @@ GameObject:
   - component: {fileID: 8175690127105362018}
   - component: {fileID: 5772701356384670382}
   - component: {fileID: -8587638066688477751}
+  - component: {fileID: 6557381588813361938}
   m_Layer: 6
   m_Name: AlienAI
   m_TagString: Untagged
@@ -220,7 +223,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c247682035983d04690b73f6dfeab4d8, type: 3}
   m_Name: 
@@ -236,7 +239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efeaf7902444d9943ab76c1ac377d497, type: 3}
   m_Name: 
@@ -246,9 +249,11 @@ MonoBehaviour:
   turnSpeed: 10
   vision: {fileID: -478265464831815864}
   controller: {fileID: 1387461434300845896}
-  wonder: {fileID: 132510624617632370}
+  wander: {fileID: 0}
   astar: {fileID: 5772701356384670382}
   followPath: {fileID: 8175690127105362018}
+  slowingForce: 10
+  slowDownAngleThreshhold: 50
 --- !u!114 &571341911324433146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +300,9 @@ MonoBehaviour:
   enemyInSight: []
   dropOffPointsFound: []
   testShapes: {fileID: -8587638066688477751}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8191
 --- !u!114 &5602566739967719583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +350,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7bf2cb906ceaaa46a86809dc554e06f, type: 3}
   m_Name: 
@@ -401,6 +409,22 @@ MonoBehaviour:
   intensity: 1
   worldPosition: {x: 0, y: 0, z: 0}
   controller: {fileID: 1387461434300845896}
+--- !u!114 &6557381588813361938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b271b5af4b194494b47856baa239f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbours: []
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
