@@ -123,6 +123,58 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &169899873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169899875}
+  - component: {fileID: 169899874}
+  m_Layer: 0
+  m_Name: BetterTerrain (NEW, UTILISES INTERFACE)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &169899874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169899873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9441b4e628936e14cb4e709052f33f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 100
+  playerHQ: {fileID: 7884631281891504534, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
+  alienHQ: {fileID: 8749085813108591677, guid: 53bff0fc767e0d44eb20b10e130091f7, type: 3}
+  pickup: {fileID: 4137073510955222978, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
+  swarmer: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
+  floorPrefab: {fileID: 8433662347367654271, guid: 0d0c60d10f636ce418c5444dcfb9e1c7, type: 3}
+  wallPrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
+  borderPrefab: {fileID: 1029339241619491306, guid: 8e8eb3c426d52964695de5ad06452695, type: 3}
+--- !u!4 &169899875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169899873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 33.287388, y: 7.89939, z: 30.640966}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &335102094
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +186,7 @@ GameObject:
   - component: {fileID: 335102096}
   - component: {fileID: 335102095}
   m_Layer: 0
-  m_Name: TerrainGenerator
+  m_Name: TerrainGenerator (OLD, NON-MODULAR)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
