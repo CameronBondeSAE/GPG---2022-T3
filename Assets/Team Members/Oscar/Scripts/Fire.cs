@@ -11,7 +11,7 @@ public class Fire : MonoBehaviour, IHeatSource
         //set it on fire!
         if (other.GetComponent<Flammable>() != null)
         {
-            other.GetComponent<Flammable>().ChangeHeat(25);
+            other.GetComponent<Flammable>().ChangeHeat(this, 25);
         }
     }
 }

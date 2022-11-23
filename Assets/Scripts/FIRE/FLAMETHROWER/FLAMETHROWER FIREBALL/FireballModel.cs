@@ -57,7 +57,7 @@ public class FireballModel : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _center = this.transform.position;
+        _center = transform.position;
 
         //would it be more efficient to run two overlap spheres or calculate dist with one sphere?
         //

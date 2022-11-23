@@ -55,13 +55,13 @@ public partial class @LloydPlayer : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""FireAlt"",
-                    ""type"": ""PassThrough"",
+                    ""name"": ""AltFire"",
+                    ""type"": ""Value"",
                     ""id"": ""3bc65be2-42f3-4ea9-adad-b908715d4f3c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""MousePosition"",
@@ -323,7 +323,7 @@ public partial class @LloydPlayer : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""FireAlt"",
+                    ""action"": ""AltFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -914,7 +914,7 @@ public partial class @LloydPlayer : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-        m_Player_FireAlt = m_Player.FindAction("FireAlt", throwIfNotFound: true);
+        m_Player_AltFire = m_Player.FindAction("AltFire", throwIfNotFound: true);
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -990,7 +990,7 @@ public partial class @LloydPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
-    private readonly InputAction m_Player_FireAlt;
+    private readonly InputAction m_Player_AltFire;
     private readonly InputAction m_Player_MousePosition;
     public struct PlayerActions
     {
@@ -999,7 +999,7 @@ public partial class @LloydPlayer : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
-        public InputAction @FireAlt => m_Wrapper.m_Player_FireAlt;
+        public InputAction @AltFire => m_Wrapper.m_Player_AltFire;
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1019,9 +1019,9 @@ public partial class @LloydPlayer : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                @FireAlt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireAlt;
-                @FireAlt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireAlt;
-                @FireAlt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireAlt;
+                @AltFire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAltFire;
+                @AltFire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAltFire;
+                @AltFire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAltFire;
                 @MousePosition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
@@ -1038,9 +1038,9 @@ public partial class @LloydPlayer : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
-                @FireAlt.started += instance.OnFireAlt;
-                @FireAlt.performed += instance.OnFireAlt;
-                @FireAlt.canceled += instance.OnFireAlt;
+                @AltFire.started += instance.OnAltFire;
+                @AltFire.performed += instance.OnAltFire;
+                @AltFire.canceled += instance.OnAltFire;
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
@@ -1203,7 +1203,7 @@ public partial class @LloydPlayer : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
-        void OnFireAlt(InputAction.CallbackContext context);
+        void OnAltFire(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
     }
     public interface IUIActions

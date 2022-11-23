@@ -20,6 +20,8 @@ public class FlameModel : MonoBehaviour, IHeatSource
     [SerializeField] private float proximityMultiplier;
     
     private Vector3 burnVictim;
+
+    private Flammable flammable;
     
     //Setters
     //fire stats are set by HeatComponent
@@ -60,15 +62,16 @@ public class FlameModel : MonoBehaviour, IHeatSource
             if (hitCollider.GetComponent<Flammable>() != null)
             {
                 Flammable[] flammables = hitCollider.GetComponents<Flammable>();
-                foreach (IFlammable item in flammables)
+                foreach (Flammable item in flammables)
                 {
+                    flammable = item.GetComponent<Flammable>();
                     distance = Vector3.Distance(center, burnVictim);
                     if (distance > minDistance)
                     {
-                        item.ChangeHeat(myself, heat * proximityMultiplier);
+                        flammable.ChangeHeat(myself, heat * proximityMultiplier);
                     }
                     
-                    item.ChangeHeat(myself, heat);
+                    flammable.ChangeHeat(myself, heat);
                 }
             }
         }
