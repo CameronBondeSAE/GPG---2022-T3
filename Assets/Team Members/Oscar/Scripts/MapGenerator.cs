@@ -19,7 +19,7 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
     GameObject CubeParent; 
     GameObject BarrelParent;
     GameObject AIParent;
-    GameObject borderParent;
+    public GameObject borderParent;
     GameObject HQParent;
     GameObject ItemParent;
     
@@ -46,33 +46,42 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
     private List<Vector3> totalItems = new List<Vector3>();
     private List<Vector3> totalExplosives = new List<Vector3>();
     private List<Vector3> totalHQ = new List<Vector3>();
-    
+
+    private void Awake()
+    {
+	    // Register my generator with the main GameManager because they call everything
+	    GameManager.singleton.LevelGenerator = this;
+	    
+	    CubeParent = new GameObject("CubeParent");
+	    BarrelParent = new GameObject("ItemParent");
+	    AIParent = new GameObject("AIParent");
+	    borderParent = new GameObject("borderParent");
+	    HQParent = new GameObject("HQParent");
+	    ItemParent = new GameObject("itemParent");
+	    
+	    GameManager.singleton.OnGameStart += Spawner;
+	    // GameManager.singleton.OnGameEnd += DeleteMap;
+        
+        
+	    if (randomMap == true)
+	    {
+		    //randoms
+		    zoomX = Random.Range(0.1f, 0.3f);
+		    zoomZ = Random.Range(0.1f, 0.3f);
+		    SpawnTerrain(zoomX,zoomZ);
+	    }
+	    else if (randomMap == false)
+	    {
+		    //standard averages
+		    zoomX = 0.15f;
+		    zoomZ = 0.15f;
+		    SpawnTerrain(zoomX, zoomZ);
+	    }
+    }
+
     public void Start()
     {
-        GameManager.singleton.OnGameStart += Spawner;
-        GameManager.singleton.OnGameEnd += DeleteMap;
-        
-        CubeParent = new GameObject("CubeParent");
-        BarrelParent = new GameObject("ItemParent");
-        AIParent = new GameObject("AIParent");
-        borderParent = new GameObject("borderParent");
-        HQParent = new GameObject("HQParent");
-        ItemParent = new GameObject("itemParent");
-        
-        if (randomMap == true)
-        {
-            //randoms
-            zoomX = Random.Range(0.1f, 0.3f);
-            zoomZ = Random.Range(0.1f, 0.3f);
-            SpawnTerrain(zoomX,zoomZ);
-        }
-        else if (randomMap == false)
-        {
-            //standard averages
-            zoomX = 0.15f;
-            zoomZ = 0.15f;
-            SpawnTerrain(zoomX,zoomZ);
-        }
+
     }
     
     public void Spawner()

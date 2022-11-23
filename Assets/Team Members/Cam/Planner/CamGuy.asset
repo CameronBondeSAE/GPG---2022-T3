@@ -44,7 +44,7 @@ MonoBehaviour:
   goals:
   - name: Kill player
     isDefault: 1
-    position: {x: 324, y: 342}
+    position: {x: 225, y: 269}
     conditions:
     - id: 1
       value: 1

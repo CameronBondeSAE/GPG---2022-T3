@@ -20,7 +20,6 @@ public class GameManager : NetworkBehaviour
 	public event Action OnGameEnd;
 
     [SerializeField] private GameObject avatarPrefab;
-    [SerializeField] public GameObject cameraPrefab;
     [SerializeField] public GameObject virtualCameraOne;
     [SerializeField] public GameObject virtualCameraTwo;
     [SerializeField] private GameObject playerNamePrefab;
@@ -68,8 +67,8 @@ public class GameManager : NetworkBehaviour
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 
-		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
-		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		// virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		// virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 	}
 
 	public void InvokeOnGameEnd()
