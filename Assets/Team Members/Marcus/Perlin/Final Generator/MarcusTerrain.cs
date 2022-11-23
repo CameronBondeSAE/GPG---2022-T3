@@ -25,10 +25,6 @@ public class MarcusTerrain : MonoBehaviour
     Vector3 floorPos;
     float zoom;
     Vector2 randomOffset;
-    
-    //Luke Said to use this rather than running everything through the original perlin
-    private float[,] perlinGrid;
-    private float[,] itemGrid;
 
     public GameObject playerHQ;
     public GameObject alienHQ;
@@ -44,19 +40,6 @@ public class MarcusTerrain : MonoBehaviour
     public List<GameObject> bricks;
     public List<GameObject> items;
     public List<GameObject> aliens;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (randomness)
-        {
-            RandomiseValues();
-        }
-        else
-        {
-            GenerateMaze(0.1f, new Vector2(500, 500), 0.15f);
-        }
-    }
 
     public void Clear()
     {
