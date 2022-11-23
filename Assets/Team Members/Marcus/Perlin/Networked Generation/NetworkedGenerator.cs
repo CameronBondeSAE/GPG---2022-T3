@@ -44,10 +44,7 @@ namespace Marcus
         {
             gm = GameManager.singleton;
             gm.LevelGenerator = this;
-        }
-
-        void Start()
-        {
+            
             perlinGrid = new float[amount, amount];
             itemGrid = new float[amount, amount];
         }
