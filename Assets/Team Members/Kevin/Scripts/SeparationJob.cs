@@ -10,7 +10,9 @@ using UnityEngine;
 [BurstCompile]
 public struct SeparationJob : IJob
 {
+    [ReadOnly]
     public NativeArray<float3> NeighbourPosition;
+    
     public float3 MyPosition;
     public int NumberOfNeighbours;
     private float3 Direction;
@@ -18,9 +20,9 @@ public struct SeparationJob : IJob
     public void Execute()
     {
         float3 separationMove = new float3();
-        float normalizedDirectionX;
+        /*float normalizedDirectionX;
         float normalizedDirectionY;
-        float normalizedDirectionZ;
+        float normalizedDirectionZ;*/
         
         for (int i = 0; i < NumberOfNeighbours; i++)
         {
@@ -30,10 +32,11 @@ public struct SeparationJob : IJob
         separationMove /= NumberOfNeighbours;
         Direction = (MyPosition - separationMove);
         
-        float vectorLength = math.length(Direction);
+        /*float vectorLength = math.length(Direction);
         
-        NormalizedDirection = Direction.xyz / vectorLength;
+        NormalizedDirection = Direction.xyz / vectorLength;*/
         
+        NormalizedDirection = math.normalizesafe(Direction);
         /*normalizedDirectionX = direction.x / vectorLength;
         normalizedDirectionY = direction.y / vectorLength;
         normalizedDirectionZ = direction.z / vectorLength;

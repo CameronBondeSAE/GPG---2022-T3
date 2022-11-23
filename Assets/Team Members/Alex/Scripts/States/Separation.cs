@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -76,5 +77,9 @@ public class Separation : SteeringBase
         // Average of all neighbours directions
     }
 
+    public void OnDestroy()
+    {
+        neighbourPositions.Dispose();
+    }
 }
 }
