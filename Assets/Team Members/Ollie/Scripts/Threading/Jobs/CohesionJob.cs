@@ -28,7 +28,7 @@ namespace Ollie
 
             direction[0] = averagePosition[0] - myPos[0];
 
-            Debug.Log("job complete?");
+            //Debug.Log("job complete?");
         }
     }
 }
