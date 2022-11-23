@@ -178,6 +178,9 @@ namespace Ollie
             //BroadcastActiveSceneClientRpc(scenename);
         }
 
+        //HACK: attempted to set the newly loaded scene as the active scene on the client
+        //does not work - client tries to set active before it's finished loading
+        //does work for host though
         [ClientRpc]
         private void BroadcastActiveSceneClientRpc(string sceneToActive)
         {
@@ -222,6 +225,7 @@ namespace Ollie
                 HandleLocalClient(clientId);
             }
             //else RequestClientNamesLobbyUIServerRpc(clientId);
+            else RequestClientUIUpdateServerRpc();
 
             if (clientId == NetworkManager.Singleton.LocalClientId)
             {
