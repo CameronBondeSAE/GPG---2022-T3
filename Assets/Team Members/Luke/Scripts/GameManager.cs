@@ -91,9 +91,23 @@ public class GameManager : NetworkBehaviour
 		OnGameEnd?.Invoke();
 	}
 
-    private void SpawnAvatars()
+	private void SubscribeToSceneEvent()
+	{
+		NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetupScene;
+	}
+
+    private void SetupScene(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
-        if (!IsServer) return;
+	    if (!IsServer) return;
+	    
+	    // TODO: Wait for level generation callback to be sure it's finished.
+	    LevelGenerator.SpawnPerlin();
+	    LevelGenerator.SpawnItems();
+	    LevelGenerator.SpawnExplosives();
+	    LevelGenerator.SpawnBases();
+	    LevelGenerator.SpawnAI();
+	    LevelGenerator.SpawnBorder();
+	    
         foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
         {
 	        // CAM HACK: Find base spawn and spawnpoints
@@ -134,47 +148,40 @@ public class GameManager : NetworkBehaviour
 	{
 		singleton = this;
     }
+    
+    private void Start()
+    {
+	    NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
+    }
 
     public void SpawnPerlinFinished()
     {
 	    
-	    
-	    levelGenerator.SpawnBorder();
     }
 
     public void SpawnBorderFinished()
     {
 	    
-	    
-	    levelGenerator.SpawnAI();
     }
 
     public void SpawnAIFinished()
     {
 	    
-	    
-	    levelGenerator.SpawnItems();
     }
 
     public void SpawnItemsFinished()
     {
 	    
-	    
-	    levelGenerator.SpawnExplosives();
     }
 
     public void SpawnExplosivesFinished()
     {
 	    
-	    
-	    levelGenerator.SpawnBases();
     }
 
     public void SpawnBasesFinished()
     {
 
-
-	    SpawnAvatars();
     }
 
     public void LevelFinishedLoading()
