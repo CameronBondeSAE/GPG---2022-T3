@@ -77,10 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6a1978a985f1845951aa91323b2395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
+  radius: 1
   center: {x: 0, y: 0, z: 0}
-  minDistance: 0
-  distance: 0
+  minDistance: 0.5
   proximityMultiplier: 2
 --- !u!1 &7842239023470524786
 GameObject:
@@ -94,7 +93,7 @@ GameObject:
   - component: {fileID: 2360886637655937440}
   - component: {fileID: 6767636215469656019}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

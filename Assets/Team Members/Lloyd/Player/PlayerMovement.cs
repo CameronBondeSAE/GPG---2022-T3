@@ -17,7 +17,7 @@ namespace Lloyd
         private LloydPlayer _playerInput;
 
         //put in equip different weapons logic later
-        public Flamethrower _flamethrower;
+        public FlamethrowerModel _flamethrower;
 
         public LayerMask _floorLayer;
 
