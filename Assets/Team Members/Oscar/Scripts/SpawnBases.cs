@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Lloyd;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -7,14 +8,20 @@ namespace Oscar
 {
     public class SpawnBases : MonoBehaviour
     {
+        private Lloyd.HQ hqScript;
+
         private Vector3 prevBasePos;
-        [SerializeField]
-        private float minDist = 30;
+        
+        [SerializeField] private float minDist = 30;
+        
         public int HQAmount;
         public GameObject humanBase;
         public GameObject alienBase;
         public float tempBaseDist;
         private bool humanHQ = true;
+        
+        [SerializeField] private float destroyRadius;
+
 
         public void SpawnTheBase(List<Vector3> prefabPosition, GameObject HQParent)
         {
@@ -41,6 +48,10 @@ namespace Oscar
                             HQ.transform.SetParent(HQParent.transform);
                             HQAmount++;
                             humanHQ = false;
+                            
+                            hqScript = humanBase.GetComponentInChildren<HQ>();
+
+                            hqScript.DestroyLand(destroyRadius);
                         }
                         else
                         {
@@ -54,6 +65,10 @@ namespace Oscar
                             HQ.transform.SetParent(HQParent.transform);
                             HQAmount++;
                             humanHQ = true;
+                            
+                            hqScript = alienBase.GetComponentInChildren<HQ>();
+
+                            hqScript.DestroyLand(destroyRadius);
                         }
                     }
                 }
