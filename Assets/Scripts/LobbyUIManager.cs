@@ -190,6 +190,7 @@ namespace Ollie
 
         private void SceneManagerOnOnSceneEvent(SceneEvent sceneEvent)
         {
+            //if (sceneEvent.SceneEventType ==) ;
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManagerOnOnSceneEvent;
             Scene scene = sceneEvent.Scene;
             
