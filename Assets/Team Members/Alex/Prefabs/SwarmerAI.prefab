@@ -66,6 +66,7 @@ MonoBehaviour:
   wonder: {fileID: 0}
   astar: {fileID: 0}
   followPath: {fileID: 0}
+  slowingForce: 50
 --- !u!1 &1794423253392461865
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +195,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf19e82422346e429eea2c925a289e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neighbours: {fileID: 0}
   speed: 200
 --- !u!54 &1794423253392461856
 Rigidbody:
@@ -248,6 +248,7 @@ MonoBehaviour:
   wonder: {fileID: 0}
   astar: {fileID: 0}
   followPath: {fileID: 0}
+  slowingForce: 50
 --- !u!114 &3167607737926146247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: {fileID: 3058932944301065794}
   force: 50
+  runningAsJob: 0
 --- !u!114 &8744244824783631288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: {fileID: 5477602151829979742}
   force: 75
+  steveJobs: 0
 --- !u!114 &5459054142461481995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +331,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a4c6cfdf37d6254c8b6f2523b2c4322, type: 3}
   m_Name: 

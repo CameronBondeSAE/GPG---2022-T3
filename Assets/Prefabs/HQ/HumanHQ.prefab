@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86f999050244f44a8b87ba14d5b2280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   _HQRadius: 1.01
   itemVictory: 20
 --- !u!1001 &687837983

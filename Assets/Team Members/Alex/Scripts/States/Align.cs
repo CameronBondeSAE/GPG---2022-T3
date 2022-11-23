@@ -20,7 +20,7 @@ namespace Alex
 		void Start()
 		{
 			rb = GetComponent<Rigidbody>();
-			_itemPositions = new NativeArray<float3>(50, Allocator.Persistent); //could use the total number of swarmers+aliens from game manager -1.
+			_itemPositions = new NativeArray<float3>(100, Allocator.Persistent); //could use the total number of swarmers+aliens from game manager -1.
 			_rotationForce = new NativeArray<float3>(1, Allocator.Persistent);
 		}
 
