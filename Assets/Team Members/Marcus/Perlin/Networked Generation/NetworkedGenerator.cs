@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
 using Oscar;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Marcus
 {
     public class NetworkedGenerator : MonoBehaviour, ILevelGenerate
     {
+        private GameManager gm;
+        
         public int amount;
 
         Vector3 aiPos;
@@ -34,8 +39,13 @@ namespace Marcus
         public GameObject floorPrefab;
         public GameObject wallPrefab;
         public GameObject borderPrefab;
-        
-        // Start is called before the first frame update
+
+        private void Awake()
+        {
+            gm = GameManager.singleton;
+            gm.LevelGenerator = this;
+        }
+
         void Start()
         {
             perlinGrid = new float[amount, amount];
