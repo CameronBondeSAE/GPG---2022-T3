@@ -22,13 +22,9 @@ namespace Oscar
                 GameObject newCube = Instantiate(perlinPrefab, prefabPosition[i], Quaternion.identity);
                 newCube.transform.SetParent(CubeParent.transform);
                 newCube.GetComponent<Renderer>().material.color = Color.black;
-                if (perlinValue > .8)
-                {
-                    newCube.GetComponent<Renderer>().material.color = Color.red;
-                }
             }
-            
         }
+        
         public void SpawnTheEnvironment(Vector3 prefabPosition, int amount, float scale, GameObject borderParent)
         {
             //spawn all the walls
