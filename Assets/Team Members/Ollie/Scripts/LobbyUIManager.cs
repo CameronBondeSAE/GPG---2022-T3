@@ -153,6 +153,7 @@ namespace Ollie
             }
 
             NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManagerOnOnSceneEvent;
+            NetworkManager.Singleton.SceneManager.OnLoadComplete += SetNewActiveScene;
 
             //use this to know when scene IS loaded
             //NetworkManager.Singleton.SceneManager.OnLoadComplete += OnLevelLoaded;
@@ -161,6 +162,7 @@ namespace Ollie
             try
             {
                 NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+                //set new scene as default somehow??
             }
             catch (Exception e)
             {
@@ -168,10 +170,26 @@ namespace Ollie
             }
         }
 
+        private void SetNewActiveScene(ulong clientid, string scenename, LoadSceneMode loadscenemode)
+        {
+            NetworkManager.Singleton.SceneManager.OnLoadComplete -= SetNewActiveScene;
+            Scene scene = (SceneManager.GetSceneByName(scenename));
+            SceneManager.SetActiveScene(scene);
+            //BroadcastActiveSceneClientRpc(scenename);
+        }
+
+        [ClientRpc]
+        private void BroadcastActiveSceneClientRpc(string sceneToActive)
+        {
+            Scene scene = (SceneManager.GetSceneByName(sceneToActive));
+            SceneManager.SetActiveScene(scene);
+        }
+
         private void SceneManagerOnOnSceneEvent(SceneEvent sceneEvent)
         {
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManagerOnOnSceneEvent;
             Scene scene = sceneEvent.Scene;
+            
             
             //lobbyCam.SetActive(false);
             //directionalLight.SetActive(false);
