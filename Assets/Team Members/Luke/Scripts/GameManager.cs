@@ -95,14 +95,20 @@ public class GameManager : NetworkBehaviour
     private void SetupScene(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
 	    if (!IsServer) return;
+
+	    if (levelGenerator == null)
+	    {
+		    Debug.Log("No Level");
+		    return;
+	    }
 	    
 	    // TODO: Wait for level generation callback to be sure it's finished.
-	    LevelGenerator.SpawnPerlin();
-	    LevelGenerator.SpawnItems();
-	    LevelGenerator.SpawnExplosives();
-	    LevelGenerator.SpawnBases();
-	    LevelGenerator.SpawnAI();
-	    LevelGenerator.SpawnBorder();
+	    levelGenerator.SpawnPerlin();
+	    levelGenerator.SpawnItems();
+	    levelGenerator.SpawnExplosives();
+	    levelGenerator.SpawnBases();
+	    levelGenerator.SpawnAI();
+	    levelGenerator.SpawnBorder();
 	    
         foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
         {
