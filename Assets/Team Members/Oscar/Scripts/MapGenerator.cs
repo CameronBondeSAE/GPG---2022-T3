@@ -91,6 +91,8 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
 
     public void SpawnTerrain(float zoomX, float zoomZ)
     {
+        Luke.GameManager.singleton.LevelFinishedLoading();
+        
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         
         for (int positionX = 0; positionX < amount; positionX=positionX+cubeSize)
@@ -108,25 +110,30 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
                     if (perlinValue > .5)
                     {
                         totalCubes.Add(prefabPosition);
+                        //GameManager.singleton.SpawnPerlinFinished();
                     }
                     else
                     {
                         totalAI.Add(prefabPosition);
+                        //GameManager.singleton.SpawnAIFinished();
+                        
                         totalExplosives.Add(prefabPosition);
+                        //GameManager.singleton.SpawnExplosivesFinished();
                     }
                 }
                 else
                 {
                     totalItems.Add(prefabPosition);
+                    //GameManager.singleton.SpawnItemsFinished();
                 }
                 
                 if (perlinValue < .4f && prefabPosition.x > 20 && prefabPosition.z > 20)
                 {
                     totalHQ.Add(prefabPosition);
+                    //GameManager.singleton.SpawnBasesFinished();
                 }
             }
         }
-        Luke.GameManager.singleton.LevelFinishedLoading();
     }
     public void ResetTheMap()
         {
@@ -186,30 +193,36 @@ public class MapGenerator : MonoBehaviour, ILevelGenerate
     public void SpawnPerlin()
     {
         spawnEnvironment.SpawnPerlinWalls(totalCubes, CubeParent, perlinValue);
+        //GameManager.singleton.SpawnPerlinFinished();
     }
 
     public void SpawnBorder()
     {
         spawnEnvironment.SpawnTheEnvironment(prefabPosition, amount, scale, borderParent);
+        //GameManager.singleton.SpawnBorderFinished();
     }
 
     public void SpawnAI()
     {
         spawnAI.SpawnAIInTheMaze(totalAI,AIParent, perlinValue);
+        //GameManager.singleton.SpawnAIFinished();
     }
 
     public void SpawnItems()
     {
         spawnItems.SpawnTheItems(totalItems, ItemParent);
+        //GameManager.singleton.SpawnItemsFinished();
     }
 
     public void SpawnExplosives()
     {
         spawnExplosives.SpawningTheExplosives(totalExplosives, BarrelParent, perlinValue);
+        //GameManager.singleton.SpawnExplosivesFinished();
     }
 
     public void SpawnBases()
     {
         spawnBases.SpawnTheBase(totalHQ, HQParent);
+        //GameManager.singleton.SpawnBasesFinished();
     }
 }
