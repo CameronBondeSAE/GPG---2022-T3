@@ -86,6 +86,11 @@ namespace Lloyd
             GameManager.singleton.LevelGenerator = this;
         }
 
+        private void OnDisable()
+        {
+            GameManager.singleton.LevelGenerator = null;
+        }
+
         public void SpawnPerlinClientRpc()
         {
             GenerateTerrain();

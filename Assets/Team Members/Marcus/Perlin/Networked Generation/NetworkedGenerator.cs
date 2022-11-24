@@ -49,6 +49,11 @@ namespace Marcus
             itemGrid = new float[amount, amount];
         }
 
+        private void OnDisable()
+        {
+            GameManager.singleton.LevelGenerator = null;
+        }
+
         public void RandomiseValues()
         {
             step = Random.Range(0.08f, 0.12f);

@@ -66,6 +66,7 @@ namespace Ollie
         NetworkObject myLocalClient;
         string        clientName;
 
+        public static event Action LobbyGameStartEvent;
         public static LobbyUIManager instance;
         public GameManager gameManager;
 
@@ -262,6 +263,36 @@ namespace Ollie
             levelSelectedDisplayText.text = levelName;
             
             //TODO: spawn perlin here somehow
+            StartCoroutine(LobbyLevelPreviewCoroutine());
+        }
+
+        public IEnumerator LobbyLevelPreviewCoroutine()
+        {
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                Scene scene = SceneManager.GetSceneAt(i);
+                if (scene != SceneManager.GetActiveScene())
+                {
+                    SceneManager.UnloadSceneAsync(scene);
+                    //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
+                }
+            }
+            NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+            yield return new WaitForSeconds(0.1f);
+            GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
+        }
+
+        public void UnloadInactiveScenes()
+        {
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                Scene scene = SceneManager.GetSceneAt(i);
+                if (scene != SceneManager.GetActiveScene())
+                {
+                    SceneManager.UnloadSceneAsync(scene);
+                    //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
+                }
+            }
         }
         
         #endregion
@@ -276,7 +307,16 @@ namespace Ollie
                 print("You must select a level to load.");
                 return;
             }
-
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                Scene scene = SceneManager.GetSceneAt(i);
+                if (scene != SceneManager.GetActiveScene())
+                {
+                    SceneManager.UnloadSceneAsync(scene);
+                    //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
+                }
+            }
+            
             NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManagerOnOnSceneEvent;
             NetworkManager.Singleton.SceneManager.OnLoadComplete += SetNewActiveScene;
             
@@ -297,7 +337,19 @@ namespace Ollie
             NetworkManager.Singleton.SceneManager.OnLoadComplete -= SetNewActiveScene;
             Scene scene = (SceneManager.GetSceneByName(scenename));
             SceneManager.SetActiveScene(scene);
+            
+            //TODO: does this need clientrpc?
+
+            StartCoroutine(LobbyGameStartDelayCoroutine());
+
+
             //BroadcastActiveSceneClientRpc(scenename);
+        }
+
+        public IEnumerator LobbyGameStartDelayCoroutine()
+        {
+            yield return new WaitForSeconds(0.2f);
+            LobbyGameStartEvent?.Invoke();
         }
 
         //HACK: attempted to set the newly loaded scene as the active scene on the client

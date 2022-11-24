@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8604443078459999940
 MonoBehaviour:
@@ -46,7 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   avatarPrefab: {fileID: 5296546071687087743, guid: 1651e280b4d1f0549bc34b02b51f5cf0, type: 3}
+  virtualCameraOne: {fileID: 0}
+  virtualCameraTwo: {fileID: 0}
+  playerNamePrefab: {fileID: 0}
+  countdownTimer: {fileID: 2068962096470880831, guid: c6a9552307192a14ca7f5a8ab256a356, type: 3}
+  aiPrefab: {fileID: 0}
   playersAlive: 0
+  playersInGame: 0
+  amountOfResources: 0
+  zoomedIn: 1
+  myLocalClient: {fileID: 0}
 --- !u!114 &1785989400
 MonoBehaviour:
   m_ObjectHideFlags: 0

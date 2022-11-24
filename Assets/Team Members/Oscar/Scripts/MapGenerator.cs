@@ -80,6 +80,11 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
 	    }
     }
 
+    private void OnDisable()
+    {
+        GameManager.singleton.LevelGenerator = null;
+    }
+
     public void Start()
     {
 

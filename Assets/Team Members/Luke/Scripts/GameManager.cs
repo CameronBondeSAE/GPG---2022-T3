@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Kevin;
 using Lloyd;
+using Ollie;
 using Oscar;
 using Unity.Netcode;
 using Unity.VisualScripting;
@@ -106,11 +107,14 @@ public class GameManager : NetworkBehaviour
 
 	private void SubscribeToSceneEvent()
 	{
-		NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetupScene;
+		//NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetupScene;
+		LobbyUIManager.LobbyGameStartEvent += SetupScene;
 	}
 
-    private void SetupScene(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    //private void SetupScene(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    private void SetupScene()
     {
+	    virtualCameraTwo.SetActive(false);
 	    if (!IsServer) return;
 
 	    if (levelGenerator == null)
