@@ -20,6 +20,7 @@ namespace Alex
             
             if (other.gameObject.layer == LayerMask.NameToLayer("SwarmerAI"))
                 neighbours.Add(other.transform);
+            
         }
 
         public void OnTriggerExit(Collider other)
