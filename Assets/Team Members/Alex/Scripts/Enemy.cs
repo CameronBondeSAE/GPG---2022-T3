@@ -17,9 +17,15 @@ namespace Alex
             vision = GetComponent<Vision>();
             inventory = GetComponent<Inventory>();
             rb = GetComponent<Rigidbody>();
+            GetComponent<Health>().YouDied += killYourself;
             //isPickedUp = false;
         }
-        
+
+        private void killYourself()
+        {
+            Destroy(gameObject);
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.layer == 6)
