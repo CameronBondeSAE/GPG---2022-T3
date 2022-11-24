@@ -70,7 +70,7 @@ MonoBehaviour:
   heldObject: {fileID: 0}
   equippedMountPos: {fileID: 0}
   storedItems: 5
-  storedMax: 10
+  storedMax: 9054
   equippedItems: 0
   equippedMax: 1
   item: {fileID: 1030358358859370405, guid: 2ec874876f0bf47408ad0863e1c4ee5d, type: 3}
