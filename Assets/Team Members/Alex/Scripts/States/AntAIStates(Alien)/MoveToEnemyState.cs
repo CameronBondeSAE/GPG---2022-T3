@@ -22,7 +22,7 @@ namespace Alex
         TurnTowards turnTowards;
         TestShapes testShapes;
         Neighbours neighbours;
-        public bool canSwarm = false;
+        AttackSphereAndShader attackSphereAndShader;
 
         public override void Create(GameObject aGameObject)
         {
@@ -37,6 +37,7 @@ namespace Alex
             followPath = aGameObject.GetComponent<FollowPath>();
             testShapes = aGameObject.GetComponent<TestShapes>();
             neighbours = aGameObject.GetComponent<Neighbours>();
+            attackSphereAndShader = aGameObject.GetComponent<AttackSphereAndShader>();
         }
         public override void Enter()
         {
@@ -77,6 +78,7 @@ namespace Alex
         {
             followPath.enabled = false;
             turnTowards.enabled = false;
+
             Finish();
         }
 
@@ -101,9 +103,12 @@ namespace Alex
             testShapes.colour = Color.green;
             testShapes.intensity = 1;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
-
             
-            
+            foreach (Transform neighbour in neighbours.neighbours)
+            {
+                neighbour.GetComponentInParent<ControllerSwarmer>().canAttack = false;
+                neighbour.GetComponentInParent<ControllerSwarmer>().canSwarm = true;
+            }
         }
     }
 }

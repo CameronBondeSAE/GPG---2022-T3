@@ -40,10 +40,13 @@ namespace Alex
             align.enabled = false;
             separation.enabled = false;
             cohesion.enabled = false;
-            attackSphereAndShader.gameObject.SetActive(true);
-            
+            attackSphereAndShader.enabled = true;
+            attackSphereAndShader.attackCollider.SetActive(true);
+            turnTowards.enabled = true;
 
-            //EventManager.ChangeHealth
+            turnTowards.targetTransform = controllerSwarmer.target;
+
+            
             Finish();
         }
 
@@ -56,7 +59,10 @@ namespace Alex
         public override void Exit()
         {
             base.Exit();
-            attackSphereAndShader.gameObject.SetActive(false);
+            //attackSphereAndShader.gameObject.SetActive(false);
+            attackSphereAndShader.enabled = false;
+            attackSphereAndShader.attackCollider.SetActive(false);
+            turnTowards.enabled = false;
             Finish();
         }
     }

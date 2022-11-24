@@ -8,11 +8,13 @@ namespace Alex
 {
     public class AttackSphereAndShader : MonoBehaviour
     {
-        public GameObject gameObject;
+        public GameObject attackCollider;
         public Transform myTarget;
         public ControllerSwarmer controllerSwarmer;
         public Health enemyHealth;
-
+        private float damageOverTime;
+        private float damagePerSecond = 10;
+        
 
         public void OnEnable()
         {
@@ -20,10 +22,17 @@ namespace Alex
             enemyHealth = myTarget.GetComponent<Health>();
         }
 
-        public void OnCollisionEnter()
+        public void OnTriggerStay(Collider other)
         {
-            if (myTarget)
-                enemyHealth.ChangeHP(-10f);
+            if (other.transform == myTarget) 
+                DealDamage();
         }
+
+        void DealDamage()
+        {
+            damageOverTime = damagePerSecond * Time.deltaTime;
+            enemyHealth.ChangeHP(-damageOverTime);
+        }
+        
     }
 }
