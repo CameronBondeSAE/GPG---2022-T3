@@ -86,6 +86,7 @@ namespace Lloyd
             GameManager.singleton.LevelGenerator = this;
         }
 
+        //OLLIE HACK: Need this to allow lobby level previews
         private void OnDisable()
         {
             GameManager.singleton.LevelGenerator = null;

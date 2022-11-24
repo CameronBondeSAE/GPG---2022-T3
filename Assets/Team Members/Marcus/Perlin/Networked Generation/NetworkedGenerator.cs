@@ -49,6 +49,7 @@ namespace Marcus
             itemGrid = new float[amount, amount];
         }
 
+        //OLLIE HACK: Need this to allow lobby level previews
         private void OnDisable()
         {
             GameManager.singleton.LevelGenerator = null;
