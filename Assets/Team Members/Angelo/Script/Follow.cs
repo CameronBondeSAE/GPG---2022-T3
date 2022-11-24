@@ -6,6 +6,7 @@ public class Follow : MonoBehaviour
 {
     public Transform Leader;
     public float SpaceBetween = 2.0f;
+    public float SpeedCap = 10;
     void Start()
     {
         
@@ -18,7 +19,8 @@ public class Follow : MonoBehaviour
         if (dist > SpaceBetween)
         {
             Vector3 direction = Leader.position - transform.position;
-            transform.Translate(direction * Time.deltaTime);   
+            direction = direction * Time.deltaTime;
+            transform.Translate(direction);   
         }
     }
 }

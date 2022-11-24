@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Lloyd;
 using UnityEngine;
 
 public class Separation : MonoBehaviour
@@ -8,6 +9,12 @@ public class Separation : MonoBehaviour
     public Transform[] OtherPik;
     public Transform[] TruePik;
     public float SpaceBetween = 1.3f;
+
+    private Raycast[] lineOfSights;
+    private Raycast thing;
+    public int RayAmount;
+    private Rigidbody rb;
+    public float sightMax = 3;
 
     private void OnEnable()
     {
@@ -40,6 +47,15 @@ public class Separation : MonoBehaviour
                 TruePik[i - count] = OtherPik[i + 1];
             }
         }
+        
+        float angle = 180f / RayAmount;
+        for (int i = 0; i < RayAmount; i++)
+        {
+            //lineOfSights[i]
+
+            //it.transform.Rotate(Vector3.up, angle * i);
+            //it.transform.position = transform.position - (it.transform.forward * 2);
+        }
     }
 
     
@@ -58,6 +74,12 @@ public class Separation : MonoBehaviour
             }
         }
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, sightMax))
+        {
+            rb.AddRelativeTorque(0,90,0);
+        }
     }
 
     void UpdateSwarmInfo()
