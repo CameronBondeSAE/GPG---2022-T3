@@ -186,19 +186,19 @@ public class GameManager : NetworkBehaviour
 	    NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
     }
     
-    public void NetworkInstantiate(GameObject prefab, Transform t)
+    public void NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation)
     {
 	    if (!IsServer) return;
 	    if (prefab.GetComponent<NetworkObject>() == null) return;
-	    GameObject go = Instantiate(prefab, t);
+	    GameObject go = Instantiate(prefab, position, rotation);
 	    go.GetComponent<NetworkObject>().Spawn();
     }
 
-    public void NetworkInstantiate(GameObject prefab, Transform t, Transform parent)
+    public void NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
     {
 	    if (!IsServer) return;
 	    if (prefab.GetComponent<NetworkObject>() == null) return;
-	    GameObject go = Instantiate(prefab, t);
+	    GameObject go = Instantiate(prefab, position, rotation);
 	    NetworkObject no = go.GetComponent<NetworkObject>();
 	    no.Spawn();
 	    no.TrySetParent(parent);
