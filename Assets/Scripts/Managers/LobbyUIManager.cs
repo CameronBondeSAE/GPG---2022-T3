@@ -263,32 +263,23 @@ namespace Ollie
             levelSelectedDisplayText.text = levelName;
             
             //TODO: spawn perlin here somehow
-            LobbyLevelPreview();
+            StartCoroutine(LobbyLevelPreviewCoroutine());
         }
 
-        public void LobbyLevelPreview()
+        public IEnumerator LobbyLevelPreviewCoroutine()
         {
             for (int i = 0; i < SceneManager.sceneCount; i++)
             {
                 Scene scene = SceneManager.GetSceneAt(i);
-                if (scene == SceneManager.GetActiveScene())
+                if (scene != SceneManager.GetActiveScene())
                 {
                     SceneManager.UnloadSceneAsync(scene);
                     //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
                 }
             }
-
             NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
-	            
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnLoadEventCompleted;
-        }
-
-        private void OnLoadEventCompleted(string scenename, LoadSceneMode loadscenemode, List<ulong> clientscompleted, List<ulong> clientstimedout)
-        {
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnLoadEventCompleted;
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(scenename));
-	        if (GameManager.singleton.LevelGenerator != null)
-		        GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
+            yield return new WaitForSeconds(1f);
+            GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
         }
 
         public void UnloadInactiveScenes()
@@ -296,7 +287,7 @@ namespace Ollie
             for (int i = 0; i < SceneManager.sceneCount; i++)
             {
                 Scene scene = SceneManager.GetSceneAt(i);
-                if (scene == SceneManager.GetActiveScene())
+                if (scene != SceneManager.GetActiveScene())
                 {
                     SceneManager.UnloadSceneAsync(scene);
                     //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
@@ -319,7 +310,7 @@ namespace Ollie
             for (int i = 0; i < SceneManager.sceneCount; i++)
             {
                 Scene scene = SceneManager.GetSceneAt(i);
-                if (scene == SceneManager.GetActiveScene())
+                if (scene != SceneManager.GetActiveScene())
                 {
                     SceneManager.UnloadSceneAsync(scene);
                     //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
@@ -332,23 +323,13 @@ namespace Ollie
             try
             {
                 NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
-                
-                NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += StartGameEventOnLoadEventCompleted;
-                
-                
             }
             catch (Exception e)
             {
                 Debug.LogException(e,this);
             }
         }
-
-        private void StartGameEventOnLoadEventCompleted(string scenename, LoadSceneMode loadscenemode, List<ulong> clientscompleted, List<ulong> clientstimedout)
-        {
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= StartGameEventOnLoadEventCompleted;
-            LobbyGameStartEvent?.Invoke();
-        }
-
+        
         //Sets the newly loaded scene to be the current active scene
         //So all future spawned objects appear in the new scene
         private void SetNewActiveScene(ulong clientid, string scenename, LoadSceneMode loadscenemode)
@@ -359,7 +340,7 @@ namespace Ollie
             
             //TODO: does this need clientrpc?
 
-            // StartCoroutine(LobbyGameStartDelayCoroutine());
+            StartCoroutine(LobbyGameStartDelayCoroutine());
 
 
             //BroadcastActiveSceneClientRpc(scenename);

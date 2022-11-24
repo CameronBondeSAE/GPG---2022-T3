@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -562,8 +562,7 @@ GameObject:
   - component: {fileID: 1240244660}
   - component: {fileID: 1240244659}
   - component: {fileID: 1240244658}
-  - component: {fileID: 1240244663}
-  - component: {fileID: 1240244662}
+  - component: {fileID: 1240244657}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -571,6 +570,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1240244657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240244656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f65d8b4545a9644a17911d734da45e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &1240244658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -649,36 +660,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1240244662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240244656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 422984745
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
---- !u!114 &1240244663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240244656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55d555babc9117f4d84d8ab0f2f9fcde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 5296546071687087743, guid: 1651e280b4d1f0549bc34b02b51f5cf0, type: 3}
-  parent: {fileID: 1240244656}
 --- !u!1001 &5768193328356008914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -746,10 +727,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1785989400, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 1035585234
-      objectReference: {fileID: 0}
     - target: {fileID: 8604443078459999941, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
       propertyPath: m_Name
       value: GameManager

@@ -14,7 +14,6 @@ namespace Alex
         {
             aWorldState.Set(Scenario.Attack, controllerSwarmer.IsAttacking());
             aWorldState.Set(Scenario.Wandering, controllerSwarmer.IsSwarming());
-            aWorldState.Set(Scenario.HurtEnemy, controllerSwarmer.HurtEnemy());
         }
 
         public enum Scenario

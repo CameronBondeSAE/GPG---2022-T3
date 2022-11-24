@@ -18,8 +18,6 @@ public class PlantView : MonoBehaviour
     private Color deathColour = new Color32(135, 106, 0, 255);
     private Color burnColour = Color.black;
 
-    private bool burning;
-
     private void OnEnable()
     {
         plantMature.MatureEvent += Matured;
@@ -37,14 +35,7 @@ public class PlantView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!burning)
-        { 
-            transform.localScale = new Vector3(plantGrowth.age, 0.05f, plantGrowth.age);
-        }
-        else
-        {
-            transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(0.5f, 0.05f, 0.5f), 0.002f);
-        }
+        transform.localScale = new Vector3(plantGrowth.age, 0.05f, plantGrowth.age);
     }
 
     void Matured(float duration)
@@ -59,7 +50,8 @@ public class PlantView : MonoBehaviour
 
     void Burning()
     {
-        burning = true;
+        //Tween towards black and shrink
         body.DOColor(burnColour, 3f);
+        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one / 2, 3f);
     }
 }

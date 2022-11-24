@@ -22,7 +22,7 @@ namespace Alex
         TurnTowards turnTowards;
         TestShapes testShapes;
         Neighbours neighbours;
-        AttackSphereAndShader attackSphereAndShader;
+        public bool canSwarm = false;
 
         public override void Create(GameObject aGameObject)
         {
@@ -37,7 +37,6 @@ namespace Alex
             followPath = aGameObject.GetComponent<FollowPath>();
             testShapes = aGameObject.GetComponent<TestShapes>();
             neighbours = aGameObject.GetComponent<Neighbours>();
-            attackSphereAndShader = aGameObject.GetComponent<AttackSphereAndShader>();
         }
         public override void Enter()
         {
@@ -59,6 +58,7 @@ namespace Alex
                 followPath.ActivatePathToTarget(vision.enemyInSight[0].transform.position);
 
                 
+                canSwarm = true;
                 
                 foreach (Transform neighbour in neighbours.neighbours)
                 {
@@ -66,7 +66,7 @@ namespace Alex
                     neighbour.GetComponentInParent<ControllerSwarmer>().canAttack = true;
                     neighbour.GetComponentInParent<ControllerSwarmer>().canSwarm = false;
                     neighbour.GetComponentInParent<ControllerSwarmer>().target = vision.enemyInSight[0];
-                    neighbour.GetComponentInParent<ControllerSwarmer>().myOwnerAlienAI = controller;
+                    
                     //new WaitForSeconds(2f);
                     //neighbour.transform.position = new Vector3(vision.enemyInSight[0].transform.position.x + Random.Range(-5, 5), vision.enemyInSight[0].transform.position.y, vision.enemyInSight[0].transform.position.z + Random.Range(-5, 5));
                 }
@@ -78,7 +78,6 @@ namespace Alex
         {
             followPath.enabled = false;
             turnTowards.enabled = false;
-
             Finish();
         }
 
@@ -103,12 +102,9 @@ namespace Alex
             testShapes.colour = Color.green;
             testShapes.intensity = 1;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
+
             
-            foreach (Transform neighbour in neighbours.neighbours)
-            {
-                neighbour.GetComponentInParent<ControllerSwarmer>().canAttack = false;
-                neighbour.GetComponentInParent<ControllerSwarmer>().canSwarm = true;
-            }
+            
         }
     }
 }

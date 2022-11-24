@@ -24,8 +24,8 @@ MonoBehaviour:
   - name: ChaseEnemy
     isDefault: 0
     state: {fileID: 175078926364133715, guid: 53dacc5388a0b6b4c8e51bca082a51b4, type: 3}
-    cost: 500
-    position: {x: 687.57104, y: 108.55057}
+    cost: 50
+    position: {x: 686.57104, y: 109.55057}
     pre:
     - id: 0
       value: 1

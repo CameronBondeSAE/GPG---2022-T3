@@ -139,7 +139,7 @@ Transform:
   m_Children:
   - {fileID: 6968536774408021869}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6658169835453067230
 MonoBehaviour:
@@ -262,8 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc7765993eb00342b21a0d0c93d2baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 500
-  HP: 0
+  maxHP: 10
+  HP: 10
 --- !u!114 &-4279678345658173338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,11 +276,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flamePrefab: {fileID: 4092031293610382795, guid: 356b6b1337f47004c80f6626d3ff6fa7, type: 3}
+  flamePrefab: {fileID: 4150792052017500699, guid: bd7cf4b4ee68a3841804182734b86b41, type: 3}
   fireDamage: 5
   heatLevel: 0
   heatThreshold: 5
   heatMultiplier: 1.5
-  fuel: 1000
+  fuel: 10
   coolRate: 0.01
-  radius: 2
+  radius: 1

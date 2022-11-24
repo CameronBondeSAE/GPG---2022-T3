@@ -7,10 +7,10 @@ using UnityEngine;
 public class FlameModel : MonoBehaviour, IHeatSource
 {   
     //how much damage flame does
-    [SerializeField]private float heat;
+    private float heat;
  
      //how much fuel it has to burn
-     [SerializeField]private float fuel;
+    private float fuel;
     
     //fire does more damage depending on proximity
     [SerializeField] private float radius;
@@ -54,10 +54,8 @@ public class FlameModel : MonoBehaviour, IHeatSource
 
     private void CastFire()
     {
-
-        
         //change this thru HeatComponent when spawning
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius, 9999999, QueryTriggerInteraction.Collide);
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.GetComponent<Flammable>() != null)
@@ -71,23 +69,20 @@ public class FlameModel : MonoBehaviour, IHeatSource
                     {
                         flammable.ChangeHeat(myself, heat * proximityMultiplier);
                     }
-                    
                     flammable.ChangeHeat(myself, heat);
                 }
             }
         }
     }
 
-    public void ChangeFuel(float amount)
-    {
-        fuel += amount;
-    }
-
     private void TickTock()
     {
-        fuel -= 0.2f;
-        radius -= 0.2f;
-        if (fuel <= 0)
+        if (fuel > 0 && radius > 0)
+        {
+            fuel -= 0.2f;
+            radius -= 0.2f;
+        }
+        else if (fuel <= 0)
         {
             FlameOut();
         }

@@ -363,11 +363,6 @@ MonoBehaviour:
   myPos: {x: 0, y: 0, z: 0}
   nextNodePos: {x: 0, y: 0, z: 0}
   distanceToTargetCheck: 2.5
-  targetTransform: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
-  directionAndDistance: {x: 0, y: 0, z: 0}
-  movement: {fileID: 0}
-  justDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &5772701356384670382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,7 +389,7 @@ MonoBehaviour:
     gridPosition: {x: 0, y: 0}
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
-  debugDraw: 1
+  debugDraw: 0
   debugScan: 0
 --- !u!114 &-8587638066688477751
 MonoBehaviour:
