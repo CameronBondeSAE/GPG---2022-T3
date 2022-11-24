@@ -60,12 +60,15 @@ namespace Lloyd
             HandleMovement();
             //Look();
             ControllerRotate();
-            
-            if (_isShooting)
-                _flamethrower.ShootFire();
-            
-            if(_isAltShooting)
-                _flamethrower.ShootAltFire();
+
+            if (_flamethrower != null)
+            {
+                if (_isShooting)
+                    _flamethrower.ShootFire();
+
+                if (_isAltShooting)
+                    _flamethrower.ShootAltFire();
+            }
         }
 
 
