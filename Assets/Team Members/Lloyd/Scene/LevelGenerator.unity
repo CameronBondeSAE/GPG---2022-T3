@@ -679,5 +679,5 @@ MonoBehaviour:
   alienSmart: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
   alienDumb: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
   AlienHQ: {fileID: 8749085813108591677, guid: 53bff0fc767e0d44eb20b10e130091f7, type: 3}
-  numAlienHQ: 3
+  numAlienHQ: 2
   alienHQVector3List: []
