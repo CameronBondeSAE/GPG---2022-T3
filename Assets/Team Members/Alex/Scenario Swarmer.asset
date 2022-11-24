@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f22e7053ea04ed0922308786facc8c, type: 3}
+  m_Name: Scenario Swarmer
+  m_EditorClassIdentifier: 
+  conditions:
+    list:
+    - id: 0
+      name: Attack
+    - id: 1
+      name: wandering
+    - id: 2
+      name: HurtEnemy
+  actions:
+  - name: ChaseEnemy
+    isDefault: 0
+    state: {fileID: 175078926364133715, guid: 53dacc5388a0b6b4c8e51bca082a51b4, type: 3}
+    cost: 50
+    position: {x: 686.57104, y: 109.55057}
+    pre:
+    - id: 0
+      value: 1
+    post:
+    - id: 0
+      value: 0
+    - id: 2
+      value: 1
+  - name: Wander
+    isDefault: 1
+    state: {fileID: 8529320408676217435, guid: e34d03c88b81588489fbc7399db91bbc, type: 3}
+    cost: 0
+    position: {x: 434.16504, y: 114.3696}
+    pre:
+    - id: 0
+      value: 0
+    post:
+    - id: 0
+      value: 1
+  goals:
+  - name: Kill Enemy
+    isDefault: 1
+    position: {x: 205.77219, y: 101.71959}
+    conditions:
+    - id: 2
+      value: 1
+  worldStates:
+  - position: {x: 217.21506, y: 409}
+    isAutoUpdate: 1
+    list:
+    - id: 0
+      value: 0
+    - id: 2
+      value: 0

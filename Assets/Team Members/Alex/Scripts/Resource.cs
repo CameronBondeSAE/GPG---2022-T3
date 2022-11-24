@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Alex
 {
 
-    public class Resource : MonoBehaviour
+    public class Resource : MonoBehaviour, IResource
     {
         
         Rigidbody rb;

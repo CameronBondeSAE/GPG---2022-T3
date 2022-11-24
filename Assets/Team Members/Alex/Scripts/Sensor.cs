@@ -1,3 +1,4 @@
+using System;
 using Anthill.AI;
 using UnityEngine;
 
@@ -6,7 +7,6 @@ namespace Alex
     public class Sensor : MonoBehaviour, ISense
     {
         public Controller controller;
-        
 
         //Update all world conditions in this code
         //Health, sound, vision, etc

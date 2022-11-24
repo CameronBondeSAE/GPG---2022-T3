@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using System;
+using System.Numerics;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Alex
 {
@@ -18,8 +20,11 @@ namespace Alex
         public Vector3 nextNodePos;
         public float distanceToTargetCheck = 2.5f; 
         public event Action PathEndReachedEvent; 
-        
-
+        public Transform targetTransform;
+        public Vector3 targetPosition;
+        public Vector3 directionAndDistance;
+        public Movement movement;
+        public Vector3 justDirection;
 
         // Start is called before the first frame update
         void Start()
@@ -50,6 +55,8 @@ namespace Alex
 
         void Update()
         {
+            
+            
             myPos = controller.rb.transform.position;
             if (astar.isPathable.Count > 0)
             {
@@ -58,8 +65,26 @@ namespace Alex
                 
                 if (distanceToTarget >= distanceToTargetCheck)
                 {
-                    turntowards.targetPosition = astar.isPathable[0].worldPosition;
-                    turntowards.turnSpeed = 200;
+                    if (targetTransform)
+                    {
+                        targetPosition = targetTransform.position;
+                    }
+
+                    directionAndDistance = targetPosition - transform.position;
+                  
+                  
+                  //if (useTurnTowards)
+                  {
+                      //turntowards.targetPosition = astar.isPathable[0].worldPosition;
+                  }  
+                  //else
+                  {
+                      // directionAndDistance = targetpos - mypos;
+                      justDirection = directionAndDistance.normalized;
+                      controller.rb.AddForce(justDirection * movement.speed);
+                  }
+                  
+                  //turntowards.targetPosition = astar.isPathable[0].worldPosition;
                 }
                 else
                 {

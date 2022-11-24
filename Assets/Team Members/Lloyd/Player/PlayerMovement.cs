@@ -3,26 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace Lloyd
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IControllable
     {
         private Rigidbody _rb;
 
         private LloydPlayer _playerInput;
 
         //put in equip different weapons logic later
-        public Flamethrower _flamethrower;
+        public FlamethrowerModel _flamethrower;
 
         public LayerMask _floorLayer;
 
         private bool _isShooting;
+        private bool _isAltShooting;
 
         private Vector2 _movement;
+
+        private Vector2 look;
+
+        [SerializeField] private float controllerDeadZone = 0.1f;
+        [SerializeField] private float rotateSmoothing = 1000f;
 
         [SerializeField] private float _runSpeed;
         [SerializeField] private float _maxSpeed;
@@ -42,7 +49,8 @@ namespace Lloyd
             _playerInput.Player.Fire.performed += Fire;
             _playerInput.Player.Fire.canceled += Fire;
 
-            _playerInput.Player.Fire.performed += AltFire;
+            _playerInput.Player.AltFire.performed += AltFire;
+            _playerInput.Player.AltFire.canceled += AltFire;
 
             _playerInput.Player.Enable();
         }
@@ -50,10 +58,17 @@ namespace Lloyd
         private void FixedUpdate()
         {
             HandleMovement();
-            Look();
+            //Look();
+            ControllerRotate();
 
-            if (_isShooting)
-                _flamethrower.ShootFire();
+            if (_flamethrower != null)
+            {
+                if (_isShooting)
+                    _flamethrower.ShootFire();
+
+                if (_isAltShooting)
+                    _flamethrower.ShootAltFire();
+            }
         }
 
 
@@ -63,9 +78,30 @@ namespace Lloyd
             _mousePos = _playerInput.Player.MousePosition.ReadValue<Vector2>();
         }
 
+        public void ControllerLook(InputAction.CallbackContext context)
+        {
+            look = _playerInput.Player.Look.ReadValue<Vector2>();
+        }
+
         private void Rotate(Vector3 rotation)
         {
-            transform.LookAt(rotation);
+            transform.LookAt(rotation);     
+        }
+
+        private void ControllerRotate()
+        {
+            ControllerLook(new InputAction.CallbackContext());
+            
+            if (Mathf.Abs(look.x) > controllerDeadZone || Mathf.Abs(look.y) > controllerDeadZone)
+            {
+                Vector3 playerDir = Vector3.right * look.x + Vector3.forward * look.y;
+                if (playerDir.sqrMagnitude > 0.0f)
+                {
+                    Quaternion newRotate = Quaternion.LookRotation(playerDir, Vector3.up);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotate,
+                        rotateSmoothing * Time.deltaTime);
+                }
+            }
         }
 
         private void Look()
@@ -106,7 +142,35 @@ namespace Lloyd
 
         private void AltFire(InputAction.CallbackContext context)
         {
-            _flamethrower.ShootAltFire();
+            if (context.performed)
+                _isAltShooting = true;
+            if (context.canceled)
+                _isAltShooting = false;
+        }
+
+        public void Move(Vector2 direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Aim(Vector2 direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Action1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Action2()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Action3()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -68,7 +68,7 @@ public class DoorSingleView : ImmediateModeShapeDrawer
             {
                 for (int j = 0; j < numLines; j++)
                 {
-                    Draw.Line(new Vector3(doorPos.x + distanceBetween*j, doorPos.y, doorPos.z),
+                    Draw.Line(new Vector3(doorPos.x/2 + distanceBetween*j, doorPos.y, doorPos.z),
                         new Vector3(endPos.x + distanceBetween*j, endPos.y, endPos.z), lineThickness);
                     
                     /*

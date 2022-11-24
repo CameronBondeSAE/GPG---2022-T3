@@ -30,7 +30,7 @@ namespace Kevin
         [SerializeField] private GameObject avatarPrefab;
         
         [Header("Camera Prefab")] 
-        public GameObject camera;
+        //public GameObject camera;
         
         [Header("Game State")]
         public GameState State;

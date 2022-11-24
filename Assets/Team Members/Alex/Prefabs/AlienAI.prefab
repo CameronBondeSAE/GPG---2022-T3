@@ -63,9 +63,11 @@ MonoBehaviour:
   turnSpeed: 0
   vision: {fileID: 0}
   controller: {fileID: 0}
-  wonder: {fileID: 0}
+  wander: {fileID: 0}
   astar: {fileID: 0}
   followPath: {fileID: 0}
+  slowingForce: 50
+  slowDownAngleThreshhold: 25
 --- !u!1 &1794423253392461865
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,10 +89,10 @@ GameObject:
   - component: {fileID: -478265464831815864}
   - component: {fileID: 5602566739967719583}
   - component: {fileID: 1387461434300845896}
-  - component: {fileID: -7807660158720829330}
   - component: {fileID: 8175690127105362018}
   - component: {fileID: 5772701356384670382}
   - component: {fileID: -8587638066688477751}
+  - component: {fileID: 6557381588813361938}
   m_Layer: 6
   m_Name: AlienAI
   m_TagString: Untagged
@@ -197,7 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf19e82422346e429eea2c925a289e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neighbours: {fileID: 0}
   speed: 200
 --- !u!54 &1794423253392461856
 Rigidbody:
@@ -222,7 +223,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c247682035983d04690b73f6dfeab4d8, type: 3}
   m_Name: 
@@ -230,6 +231,7 @@ MonoBehaviour:
   perlinNoise: 0
   offset: 10
   turnForce: 10
+  randomOffSet: 0
 --- !u!114 &1804444449802422546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,9 +249,11 @@ MonoBehaviour:
   turnSpeed: 10
   vision: {fileID: -478265464831815864}
   controller: {fileID: 1387461434300845896}
-  wonder: {fileID: 132510624617632370}
+  wander: {fileID: 0}
   astar: {fileID: 5772701356384670382}
   followPath: {fileID: 8175690127105362018}
+  slowingForce: 10
+  slowDownAngleThreshhold: 50
 --- !u!114 &571341911324433146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +300,9 @@ MonoBehaviour:
   enemyInSight: []
   dropOffPointsFound: []
   testShapes: {fileID: -8587638066688477751}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8191
 --- !u!114 &5602566739967719583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,22 +343,6 @@ MonoBehaviour:
   renderer: {fileID: 1794423253392461861}
   defaultShader: {fileID: -6465566751694194690, guid: 4ac1cbcbfa784624e90eb2a6087c373e, type: 3}
   turnTowards: {fileID: 1804444449802422546}
---- !u!114 &-7807660158720829330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15b271b5af4b194494b47856baa239f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  neighbours: []
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &8175690127105362018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +350,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7bf2cb906ceaaa46a86809dc554e06f, type: 3}
   m_Name: 
@@ -372,6 +363,11 @@ MonoBehaviour:
   myPos: {x: 0, y: 0, z: 0}
   nextNodePos: {x: 0, y: 0, z: 0}
   distanceToTargetCheck: 2.5
+  targetTransform: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  directionAndDistance: {x: 0, y: 0, z: 0}
+  movement: {fileID: 1794423253392461862}
+  justDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &5772701356384670382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +394,7 @@ MonoBehaviour:
     gridPosition: {x: 0, y: 0}
   startPos: {x: 0, y: 0, z: 0}
   endPos: {x: 0, y: 0, z: 0}
-  debugDraw: 0
+  debugDraw: 1
   debugScan: 0
 --- !u!114 &-8587638066688477751
 MonoBehaviour:
@@ -418,6 +414,22 @@ MonoBehaviour:
   intensity: 1
   worldPosition: {x: 0, y: 0, z: 0}
   controller: {fileID: 1387461434300845896}
+--- !u!114 &6557381588813361938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15b271b5af4b194494b47856baa239f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbours: []
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +477,10 @@ MonoBehaviour:
   rb: {fileID: 1794423253392461856}
   turnSpeed: 40
   distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2240
+  slowDownForce: 0
 --- !u!1 &4539377846754210193
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +492,7 @@ GameObject:
   - component: {fileID: 5749996088807249338}
   - component: {fileID: 3915014071041367928}
   - component: {fileID: 706897844201177466}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: AlignCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,6 +590,10 @@ MonoBehaviour:
   rb: {fileID: 1794423253392461856}
   turnSpeed: 20
   distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2240
+  slowDownForce: 0
 --- !u!1 &6654157507890702779
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +702,7 @@ GameObject:
   - component: {fileID: 561430403378240219}
   - component: {fileID: 8268711834469189821}
   - component: {fileID: 3058932944301065794}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: CohesionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +764,7 @@ GameObject:
   - component: {fileID: 5643263454756364490}
   - component: {fileID: 7891709080601876795}
   - component: {fileID: 5477602151829979742}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SeparationCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -842,3 +862,7 @@ MonoBehaviour:
   rb: {fileID: 1794423253392461856}
   turnSpeed: 35
   distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2240
+  slowDownForce: 0

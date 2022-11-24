@@ -7,9 +7,11 @@ using UnityEngine;
 public class Checkpoint : NetworkBehaviour
 {
     //called when item placed, maybe player listens to show score?
-    public event Action itemPlacedEvent;
+    public delegate void ItemPlacedEventAction(int amount);
+    public event ItemPlacedEventAction itemPlacedEvent;
     public NetworkVariable<Color> colorRed;
 
+    public int amount;
     private void Start()
     {
         colorRed = new NetworkVariable<Color>(Color.red);
@@ -24,8 +26,8 @@ public class Checkpoint : NetworkBehaviour
             if (otherParent != null && other.transform.parent.GetComponentInChildren<IGoalItem>() != null)
             {
                 GetComponent<Renderer>().material.color = Color.green;
-                otherParent.GetComponentInChildren<Item>().locked = true;
-                itemPlacedEvent?.Invoke();
+                otherParent.GetComponentInChildren<ItemBase>().locked = true;
+                itemPlacedEvent?.Invoke(amount);
                 CheckpointUpdateClientRpc();
             }
         }

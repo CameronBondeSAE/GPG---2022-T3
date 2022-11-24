@@ -8,13 +8,14 @@ namespace Oscar
     public class SpawnItems : MonoBehaviour
     {
         public GameObject item;
-        public void SpawnTheItems(Vector3 prefabPosition, GameObject itemParent, float perlinValue)
+        public void SpawnTheItems(List<Vector3> prefabPosition, GameObject itemParent)
         {
-            if (perlinValue < 0.3f)
+            for (int i = 0; i < prefabPosition.Count; i++)
             {
-                GameObject newCube = Instantiate(item, prefabPosition, Quaternion.identity);
+                GameObject newCube = Instantiate(item, new Vector3(prefabPosition[i].x,1f,prefabPosition[i].z), Quaternion.identity);
                 newCube.transform.SetParent(itemParent.transform);
             }
+            
         }
     }
 }

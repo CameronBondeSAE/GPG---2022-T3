@@ -7,10 +7,12 @@ using UnityEngine;
 public class ManEater : MonoBehaviour, IFlammable
 {
     public ColissionManager colissionManager;
+    public Flammable fireness;
     
     private void OnEnable()
     {
         colissionManager.OnTriggerEnterEvent += EatThing;
+        fireness.SetOnFireEvent += SetOnFire;
     }
 
     // Start is called before the first frame update
@@ -27,18 +29,18 @@ public class ManEater : MonoBehaviour, IFlammable
 
     void EatThing(Collider other)
     {
-        if (other.GetComponent<MarcusInput>() != null)
+        if (other.GetComponent<IControllable>() != null)
         {
             print("Get Nommed");
         }
     }
-
-    #region Interface Functions
-
+    
     public void SetOnFire()
     {
         //Well die but more dramatically
         //Maybe spread some man eater virus to nearby plants
+        print("GGGRRR ANGRY DEATH NOISES!!!");
+        Destroy(gameObject);
     }
 
     public void ChangeHeat(IHeatSource heatSource, float x)
@@ -46,5 +48,4 @@ public class ManEater : MonoBehaviour, IFlammable
         
     }
 
-    #endregion
 }

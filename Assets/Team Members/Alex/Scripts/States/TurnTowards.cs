@@ -11,9 +11,11 @@ namespace Alex
         public int turnSpeed;
         public Vision vision;
         public Controller controller;
-        public Wonder wonder;
+        public Wander wander;
         public AStar astar;
         public FollowPath followPath;
+        public float slowingForce = 50f;
+        public float slowDownAngleThreshhold = 25f;
 
         Rigidbody rb;
         // Start is called before the first frame update
@@ -30,29 +32,34 @@ namespace Alex
         // Update is called once per frame
         void FixedUpdate()
         {
-            
+            /*
             Vector3 point;
-            
-            
-            if (vision.resourcesInSight != null)
-            {
-                //targetTransform = vision.resourcesInSight[0];
+            //targetTransform = vision.resourcesInSight[0];
                 
                 point = transform.InverseTransformPoint(targetPosition);
                 rb.AddRelativeTorque(0, point.x * turnSpeed, 0);
-            }
-            /*
-            else if (targetTransform != null)
-            {
-                point = transform.InverseTransformPoint(targetTransform.transform.position);
-            }
-            else
-            {
-                point = transform.InverseTransformPoint(targetPosition);
-            }
-            //rb.AddRelativeTorque(0, point.x * turnSpeed, 0);
-            
-             */
+                
+                Vector3 targetDir = targetPosition - transform.position;
+                float angle = Vector3.Angle(transform.forward,targetDir);
+                rb.AddRelativeForce(0, 0, -angle * slowingForce);
+                rb.AddRelativeTorque(0, point.x * turnSpeed, 0);
+                */
+                
+                if (targetTransform)
+                {
+                    targetPosition = targetTransform.position;
+                }
+                
+                Vector3 targetDir = targetPosition - transform.position;
+                float angle = Vector3.SignedAngle(transform.forward, targetDir, Vector3.up);
+                
+                
+                
+                // Slow down if facing away from target
+                if(Mathf.Abs(angle) > slowDownAngleThreshhold)
+                    rb.AddRelativeForce(0, 0,  -Mathf.Abs(angle * slowingForce));
+                rb.AddRelativeTorque(0, angle * turnSpeed, 0);
+               
         }
     }
 }

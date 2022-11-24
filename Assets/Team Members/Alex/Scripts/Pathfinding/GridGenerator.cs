@@ -16,7 +16,6 @@ namespace Alex
         public float textOffSet = .2f;
         public float yOffSet = 1f;
         public LayerMask layerMask;
-        public bool debug = false;
         public bool debugDraw = false;
         public bool debugScan = false;
 
@@ -143,9 +142,9 @@ namespace Alex
                     }
                 }
                */ 
-                Gizmos.color = new Color(0, 1, 0, alpha);
+                // Gizmos.color = new Color(0, 1, 0, alpha);
                 //Gizmos.DrawCube(new Vector3(astar.currentNode.gridPosition.y, yOffSet, astar.currentNode.gridPosition.y), Vector3.one);
-                Gizmos.DrawCube(transform.position + new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
+                // Gizmos.DrawCube(transform.position + new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
                 //Gizmos.DrawCube(new Vector3(astar.currentNode.gridPosition.x, yOffSet,  astar.currentNode.gridPosition.y), Vector3.one);
             
                 }

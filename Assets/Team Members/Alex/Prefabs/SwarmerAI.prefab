@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 8555692990794580215}
   - component: {fileID: 2651532426013251859}
   - component: {fileID: 5809955814551620479}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: TargetCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8555692990794580215
 Transform:
   m_ObjectHideFlags: 0
@@ -63,9 +63,11 @@ MonoBehaviour:
   turnSpeed: 0
   vision: {fileID: 0}
   controller: {fileID: 0}
-  wonder: {fileID: 0}
+  wander: {fileID: 0}
   astar: {fileID: 0}
   followPath: {fileID: 0}
+  slowingForce: 50
+  slowDownAngleThreshhold: 25
 --- !u!1 &1794423253392461865
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +90,9 @@ GameObject:
   - component: {fileID: 8744244824783631288}
   - component: {fileID: 5459054142461481995}
   - component: {fileID: 6043905188681356340}
+  - component: {fileID: 156267089695662634}
+  - component: {fileID: 6406306476827429921}
+  - component: {fileID: 2963014885378717769}
   m_Layer: 7
   m_Name: SwarmerAI
   m_TagString: Untagged
@@ -104,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 1794423253392461865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1794423254282566961}
@@ -116,7 +121,7 @@ Transform:
   - {fileID: 561430403378240219}
   - {fileID: 8555692990794580215}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1794423253392461858
 MeshFilter:
@@ -178,10 +183,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: b501533e8223d4240b510d0556062039, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.56
-  m_Height: 2
+  m_Radius: 0.25
+  m_Height: 3.15
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.56, z: 0}
 --- !u!114 &1794423253392461862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,8 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf19e82422346e429eea2c925a289e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  neighbours: {fileID: 0}
-  speed: 400
+  speed: 200
 --- !u!54 &1794423253392461856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -206,7 +210,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 10
   m_Drag: 5
-  m_AngularDrag: 5
+  m_AngularDrag: 25
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -227,6 +231,7 @@ MonoBehaviour:
   perlinNoise: 0
   offset: 10
   turnForce: 20
+  randomOffSet: 0
 --- !u!114 &1804444449802422546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,9 +249,11 @@ MonoBehaviour:
   turnSpeed: 10
   vision: {fileID: 0}
   controller: {fileID: 0}
-  wonder: {fileID: 0}
+  wander: {fileID: 0}
   astar: {fileID: 0}
   followPath: {fileID: 0}
+  slowingForce: 50
+  slowDownAngleThreshhold: 25
 --- !u!114 &3167607737926146247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 706897844201177466}
-  force: 50
+  force: 75
 --- !u!114 &8270060209491018145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbours: {fileID: 3058932944301065794}
   force: 50
+  runningAsJob: 0
 --- !u!114 &8744244824783631288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +311,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 5477602151829979742}
-  force: 100
+  force: 75
+  steveJobs: 0
 --- !u!114 &5459054142461481995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +336,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a4c6cfdf37d6254c8b6f2523b2c4322, type: 3}
   m_Name: 
@@ -335,6 +344,55 @@ MonoBehaviour:
   align: {fileID: 40213192657109042}
   cohesion: {fileID: 8270060209491018145}
   separation: {fileID: 8744244824783631288}
+  onTime: 5
+  offTime: 15
+--- !u!114 &156267089695662634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de8c5bf41f4d2f489b131d019d2865e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerSwarmer: {fileID: 6406306476827429921}
+--- !u!114 &6406306476827429921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43d418f90374f4248ba66368c0e02518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSwarmingAgain: 0
+  isAttackingTarget: 0
+  canAttack: 1
+  canSwarm: 1
+  myOwnerAlienAI: {fileID: 0}
+  neighbours: {fileID: 5459054142461481995}
+  target: {fileID: 0}
+--- !u!114 &2963014885378717769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e724e36405834fa192b36cd6a4e6059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manualUpdate: 0
+  thinkInterval: 2
+  scenario: {fileID: 11400000, guid: 865b02933fc1a4d49a89428369966843, type: 2}
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1794423253976717424}
   - component: {fileID: 1794423253976717425}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FeelerL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,8 +438,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 50
+  turnSpeed: 10
   distance: 4
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2240
+  slowDownForce: 100
 --- !u!1 &1794423254282566960
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1794423254282566961}
   - component: {fileID: 1794423254282566958}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FeelerR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,8 +489,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: -40
+  turnSpeed: -10
   distance: 4
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2240
+  slowDownForce: 100
 --- !u!1 &4539377846754210193
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +506,7 @@ GameObject:
   - component: {fileID: 5749996088807249338}
   - component: {fileID: 3915014071041367928}
   - component: {fileID: 706897844201177466}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: AlignCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +539,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &706897844201177466
 MonoBehaviour:
@@ -501,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9052546131963843774}
   - component: {fileID: 1491034629719951476}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FeelerM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,8 +602,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1794423253392461856}
-  turnSpeed: 50
+  turnSpeed: 5
   distance: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2240
+  slowDownForce: 300
 --- !u!1 &6654157507890702779
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +620,7 @@ GameObject:
   - component: {fileID: 635098809454652560}
   - component: {fileID: 6424645778153852261}
   - component: {fileID: 5535151424200543746}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +716,7 @@ GameObject:
   - component: {fileID: 561430403378240219}
   - component: {fileID: 8268711834469189821}
   - component: {fileID: 3058932944301065794}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: CohesionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +778,7 @@ GameObject:
   - component: {fileID: 5643263454756364490}
   - component: {fileID: 7891709080601876795}
   - component: {fileID: 5477602151829979742}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SeparationCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +811,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5477602151829979742
 MonoBehaviour:

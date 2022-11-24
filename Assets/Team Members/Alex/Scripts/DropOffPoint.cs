@@ -16,7 +16,9 @@ public class DropOffPoint : MonoBehaviour
         sensor = GetComponent<Sensor>();
         controller = GetComponent<Controller>();
         inventory = GetComponent<Inventory>();
+        
     }
+    
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision collision)
     {

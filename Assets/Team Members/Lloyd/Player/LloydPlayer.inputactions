@@ -33,13 +33,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "FireAlt",
-                    "type": "PassThrough",
+                    "name": "AltFire",
+                    "type": "Value",
                     "id": "3bc65be2-42f3-4ea9-adad-b908715d4f3c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "MousePosition",
@@ -285,12 +285,34 @@
                 },
                 {
                     "name": "",
+                    "id": "3655a1a3-c276-4ea5-9a81-388f61c57f80",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a3eb1abf-cd9f-4448-afb8-12ffc7bcfe6b",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "FireAlt",
+                    "action": "AltFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4d164f1a-5d76-4aaa-a5ff-c47b7efc2367",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AltFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

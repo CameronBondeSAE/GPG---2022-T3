@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using Kevin;
+using Lloyd;
+using Ollie;
+using Oscar;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,14 +19,23 @@ public class GameManager : NetworkBehaviour
 
     public event Action OnGameStart;
 	public event Action OnGameEnd;
-
+	public event Action OnGameWaveTimer;
+	
     [SerializeField] private GameObject avatarPrefab;
-    [SerializeField] public GameObject cameraPrefab;
     [SerializeField] public GameObject virtualCameraOne;
     [SerializeField] public GameObject virtualCameraTwo;
     [SerializeField] private GameObject playerNamePrefab;
 
     [SerializeField] private GameObject countdownTimer;
+    [SerializeField] private GameObject aiPrefab;
+    
+    private ILevelGenerate levelGenerator;
+
+    public ILevelGenerate LevelGenerator
+    {
+	    get => levelGenerator;
+	    set => levelGenerator = value;
+    }
     
     //In Game Counts
 	public int playersAlive;
@@ -50,15 +62,33 @@ public class GameManager : NetworkBehaviour
 		OnGameStart?.Invoke();
 	}
 
+	public void InvokeOnGameWaveTimer()
+	{
+		if (IsServer)
+		{
+			/*GameObject go = Instantiate(aiPrefab);
+			go.GetComponent<NetworkObject>().Spawn();*/
+			InvokeOnGameWaveTimerClientRPC();
+		}
+	}
+
+	[ClientRpc]
+	private void InvokeOnGameWaveTimerClientRPC()
+	{
+		Debug.Log("Wave Spawned!!!");
+		OnGameWaveTimer?.Invoke();
+	}
+
 	[ClientRpc]
 	private void SetCameraTargetClientRpc()
 	{
-		cameraPrefab.GetComponent<CameraTracker>().target = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		GameObject go = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer;
+		if (go == null) return;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
-		
-		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
-		virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+
+		// virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
+		// virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 	}
 
 	public void InvokeOnGameEnd()
@@ -72,25 +102,66 @@ public class GameManager : NetworkBehaviour
 	[ClientRpc]
 	private void InvokeOnGameEndClientRPC()
 	{
-		Debug.Log("Times Up!");
 		OnGameEnd?.Invoke();
 	}
 
-    private void SubscribeToSceneEvent()
-    {
-        NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SpawnAvatars;
-    }
+	private void SubscribeToSceneEvent()
+	{
+		//NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetupScene;
+		
+		
+		//OLLIE HACK: Subscribed SetupScene to the LobbyUIManager instead of the above, commented out line
+		//Means SetupScene only occurs when the Lobby's Start Game button is pressed
+		//Allows Lobby to load scenes in, call their Perlin spawn so level preview can exist
+		//On Start Game, lobby unloads everything but Base scene, then loads the new scene FULLY
+		//then SetupScene runs
+		LobbyUIManager.LobbyGameStartEvent += SetupScene;
+	}
 
-    private void SpawnAvatars(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    //private void SetupScene(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
+    private void SetupScene()
     {
-        if (!IsServer) return;
+	    //Ollie Hack: Enabled this camera in base scene by default, so the level preview can be seen
+	    //sets back to false when level actually starts
+	    virtualCameraTwo.SetActive(false);
+	    if (!IsServer) return;
+
+	    if (levelGenerator == null)
+	    {
+		    Debug.Log("No Level");
+		    return;
+	    }
+	    
+	    // TODO: Wait for level generation callback to be sure it's finished.
+	    levelGenerator.SpawnPerlinClientRpc();
+	    levelGenerator.SpawnItemsClientRpc();
+	    levelGenerator.SpawnExplosivesClientRpc();
+	    levelGenerator.SpawnBasesClientRpc();
+	    levelGenerator.SpawnAIClientRpc();
+	    levelGenerator.SpawnBorderClientRpc();
+	    
         foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
         {
-            GameObject avatar = Instantiate(avatarPrefab);
-            avatar.GetComponent<NetworkObject>().SpawnWithOwnership(client.Value.ClientId);
-            client.Value.PlayerObject.GetComponent<ClientEntity>()
-                .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
-            playersAlive++;
+	        // CAM HACK: Find base spawn and spawnpoints
+	        Transform spawnTransform = null;
+	        foreach (HQ hq in FindObjectsOfType<HQ>())
+	        {
+		        if (hq.type == HQ.HQType.Humans)
+		        {
+			        spawnTransform = hq.GetComponentInChildren<SpawnPoint>().transform;
+		        }
+	        }
+
+
+	        if (spawnTransform != null) // No Spawns found
+	        {
+		        GameObject avatar = Instantiate(avatarPrefab, spawnTransform.position, spawnTransform.rotation);
+		        avatar.GetComponent<NetworkObject>().SpawnWithOwnership(client.Value.ClientId);
+		        client.Value.PlayerObject.GetComponent<ClientEntity>()
+			        .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
+	        }
+
+	        playersAlive++;
             playersInGame++;
             /*avatar.GetComponent<PlayerNameTracker>().playerName.text =
 	            client.Value.PlayerObject.GetComponent<ClientInfo>().ClientName.Value.ToString();*/
@@ -109,10 +180,63 @@ public class GameManager : NetworkBehaviour
 	{
 		singleton = this;
     }
-
+    
     private void Start()
     {
-        NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
+	    NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
+    }
+    
+    public void NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation)
+    {
+	    if (!IsServer) return;
+	    if (prefab.GetComponent<NetworkObject>() == null) return;
+	    GameObject go = Instantiate(prefab, position, rotation);
+	    go.GetComponent<NetworkObject>().Spawn();
+    }
+
+    public void NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
+    {
+	    if (!IsServer) return;
+	    if (prefab.GetComponent<NetworkObject>() == null) return;
+	    GameObject go = Instantiate(prefab, position, rotation);
+	    NetworkObject no = go.GetComponent<NetworkObject>();
+	    no.Spawn();
+	    no.TrySetParent(parent);
+    }
+
+    public void SpawnPerlinFinished()
+    {
+	    
+    }
+
+    public void SpawnBorderFinished()
+    {
+	    
+    }
+
+    public void SpawnAIFinished()
+    {
+	    
+    }
+
+    public void SpawnItemsFinished()
+    {
+	    
+    }
+
+    public void SpawnExplosivesFinished()
+    {
+	    
+    }
+
+    public void SpawnBasesFinished()
+    {
+
+    }
+
+    public void LevelFinishedLoading()
+    {
+	    //This will be removed, but I don't want to cause errors on github
     }
 }
 //Things to add

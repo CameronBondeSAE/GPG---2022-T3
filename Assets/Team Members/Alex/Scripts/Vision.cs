@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Shapes;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
+using System.Linq;
 
 namespace Alex
 {
@@ -16,6 +19,7 @@ namespace Alex
         public List<Transform> dropOffPointsFound;
         public Array[] arrayOfThingsHit;
         public TestShapes testShapes;
+        public LayerMask layerMask;
 
 
 
@@ -25,10 +29,13 @@ namespace Alex
             //enemyInSight.Clear();
             //resourcesInSight.Clear();
             //dropOffPointsFound.Clear();
-            
-            testShapes.polygonPath.ClearAllPoints();
 
-            testShapes.polygonPath.AddPoint(new Vector2(transform.position.x + testShapes.transform.InverseTransformPoint(Vector3.zero).x, transform.position.z + testShapes.transform.InverseTransformPoint(Vector3.zero).z));
+
+
+            testShapes.polygonPath.ClearAllPoints();
+            
+            //converting the Y space from X coordinates to get flat vision cone
+            testShapes.polygonPath.AddPoint(transform.position.x, transform.position.z);
             
             
             
@@ -40,19 +47,22 @@ namespace Alex
     
                 Debug.DrawRay(transform.position, dir * 10f, Color.green);
 
-                Physics.Raycast(transform.position, dir, out RaycastHit HitInfo);
+                //Physics.Raycast(transform.position, dir, out RaycastHit HitInfo);
+                
+                Physics.Raycast(transform.position, dir, out RaycastHit HitInfo, 999f, layerMask, QueryTriggerInteraction.Collide);
+                
                 if(HitInfo.collider == null) continue;
 
                 
                 
-                testShapes.polygonPath.AddPoints(new Vector2(HitInfo.point.x +  testShapes.transform.InverseTransformPoint(Vector3.zero).x, HitInfo.point.z + testShapes.transform.InverseTransformPoint(Vector3.zero).z));
+                testShapes.polygonPath.AddPoint(HitInfo.point.x,HitInfo.point.z);
                 // CAM BIT
                 // Add point for later rendering
                 // testShapesViewModel.polygonPath.AddPoint(new Vector2()); // X and Z from ray
                 
                 if (HitInfo.collider.GetComponent<Target>() != null)
                 {
-                    //Debug.DrawLine(transform.position, HitInfo.point, Color.red);
+                    Debug.DrawLine(transform.position, HitInfo.point, Color.red);
                     Transform enemy = HitInfo.transform;
 
                     if (!enemyInSight.Contains(enemy))
@@ -65,7 +75,7 @@ namespace Alex
                 {
                     Debug.DrawLine(transform.position, HitInfo.point, Color.green);
 
-                    if (HitInfo.collider.GetComponent<Resource>() != null)
+                    if (HitInfo.collider.GetComponent<IResource>() != null)
                     {
 
                         Transform resource = HitInfo.transform;
@@ -99,7 +109,31 @@ namespace Alex
                     }
                 }
             }
-            testShapes.polygonPath.AddPoint(new Vector2(transform.position.x + testShapes.transform.InverseTransformPoint(Vector3.zero).x, transform.position.z + testShapes.transform.InverseTransformPoint(Vector3.zero).z));
+
+            if (enemyInSight.Count > 0)
+            {
+                if (enemyInSight[0] == null)
+                {
+                    enemyInSight.Remove(enemyInSight[0]);
+                }
+            }
+
+            //Sorting all the lists so that the closest will be first in order for AStar to use the closest object. 
+            resourcesInSight = resourcesInSight.OrderBy(
+                resource => Vector3.Distance(this.transform.position,resource.transform.position)
+            ).ToList();
+            
+            enemyInSight = enemyInSight.OrderBy(
+                enemy => Vector3.Distance(this.transform.position,enemy.transform.position)
+            ).ToList();
+            
+            dropOffPointsFound = dropOffPointsFound.OrderBy(
+                resource => Vector3.Distance(this.transform.position,resource.transform.position)
+            ).ToList();
+            
+            
+            testShapes.polygonPath.AddPoint(transform.position.x, transform.position.z);
+            
         }
         // CAM BIT
         

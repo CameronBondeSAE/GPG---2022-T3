@@ -12,22 +12,26 @@ namespace Oscar
         public int AIAmount = 0;
         public int waitAmount = 0;
         
-        public void SpawnAIInTheMaze(Vector3 prefabPosition, GameObject AIParent, float perlinValue)
+        public void SpawnAIInTheMaze(List<Vector3> prefabPosition, GameObject AIParent, float perlinValue)
         {
             float AIPerlin = Mathf.PerlinNoise((AIInt), (AIInt));
             //create spawn location with new perlin then 
 
-            if (AIPerlin > .5f && AIAmount <= 20 && waitAmount >= 100)
+            for (int i = 0; i < prefabPosition.Count; i++)
             {
-                GameObject spawnedAI = Instantiate(AIEnemy, prefabPosition, Quaternion.identity);
-                
-                spawnedAI.transform.SetParent(AIParent.transform);
-                AIAmount++;
-                waitAmount = 0;
-            }
-            else
-            {
-                waitAmount++;
+                if (AIPerlin > .5f && AIAmount <= 20 && waitAmount >= 100)
+                {
+                    GameObject spawnedAI = Instantiate(AIEnemy, prefabPosition[i], Quaternion.identity);
+
+                    spawnedAI.transform.SetParent(AIParent.transform);
+                    AIAmount++;
+                    waitAmount = 0;
+
+                }
+                else
+                {
+                    waitAmount++;
+                }
             }
         }
     }

@@ -108,10 +108,13 @@ VisualEffect:
       m_Array:
       - m_Value: {x: 110.13088, y: 76.687996, z: 0, w: 0}
         m_Name: ElectricityColor
-        m_Overridden: 0
+        m_Overridden: 1
       - m_Value: {x: 0.2822366, y: 0.24213827, z: 1, w: 0}
         m_Name: FlashColor
-        m_Overridden: 0
+        m_Overridden: 1
+      - m_Value: {x: 27.594814, y: 26.754005, z: 6.6817603, w: 0}
+        m_Name: SparksColor
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -144,7 +147,7 @@ VFXRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 0
   m_RendererPriority: 0
   m_StaticBatchInfo:
     firstSubMesh: 0

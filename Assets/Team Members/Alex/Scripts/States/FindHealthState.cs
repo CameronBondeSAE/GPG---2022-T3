@@ -10,19 +10,19 @@ namespace Alex
 
         public GameObject food;
         public TurnTowards turnTowards;
-        public Wonder wonder;
+        public Wander wander;
 
         public void OnEnable()
         {
             turnTowards.targetTransform = food.transform;
             turnTowards.enabled = true;
-            wonder.enabled = true;
+            wander.enabled = true;
         }
 
         public void OnDisable()
         {
             turnTowards.enabled = false;
-            wonder.enabled = false;
+            wander.enabled = false;
         }
     }
 }

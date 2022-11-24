@@ -15,7 +15,6 @@ namespace Alex
         private SteeringBase align;
         private SteeringBase separation;
         private SteeringBase cohesion;
-        public Neighbours neighbours;
     
         public void Awake()
         {
