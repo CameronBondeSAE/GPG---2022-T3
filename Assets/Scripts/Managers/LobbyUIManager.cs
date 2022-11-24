@@ -285,7 +285,8 @@ namespace Ollie
 
         private void OnLoadEventCompleted(string scenename, LoadSceneMode loadscenemode, List<ulong> clientscompleted, List<ulong> clientstimedout)
         {
-	        SceneManager.SetActiveScene(SceneManager.GetSceneByName(scenename));
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnLoadEventCompleted;
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(scenename));
 	        if (GameManager.singleton.LevelGenerator != null)
 		        GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
         }
@@ -331,13 +332,23 @@ namespace Ollie
             try
             {
                 NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+                
+                NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += StartGameEventOnLoadEventCompleted;
+                
+                
             }
             catch (Exception e)
             {
                 Debug.LogException(e,this);
             }
         }
-        
+
+        private void StartGameEventOnLoadEventCompleted(string scenename, LoadSceneMode loadscenemode, List<ulong> clientscompleted, List<ulong> clientstimedout)
+        {
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= StartGameEventOnLoadEventCompleted;
+            LobbyGameStartEvent?.Invoke();
+        }
+
         //Sets the newly loaded scene to be the current active scene
         //So all future spawned objects appear in the new scene
         private void SetNewActiveScene(ulong clientid, string scenename, LoadSceneMode loadscenemode)
