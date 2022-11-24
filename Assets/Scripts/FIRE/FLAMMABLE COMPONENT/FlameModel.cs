@@ -55,7 +55,7 @@ public class FlameModel : MonoBehaviour, IHeatSource
     private void CastFire()
     {
         //change this thru HeatComponent when spawning
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius, 9999999, QueryTriggerInteraction.Collide);
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.GetComponent<Flammable>() != null)

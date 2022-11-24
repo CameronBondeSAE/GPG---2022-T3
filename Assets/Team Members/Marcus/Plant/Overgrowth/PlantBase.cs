@@ -13,7 +13,6 @@ namespace Marcus
 
         private void OnEnable()
         {
-            fireness = GetComponent<Flammable>();
             fireness.SetOnFireEvent += SetOnFire;
             health.YouDied += Die;
         }
@@ -40,7 +39,6 @@ namespace Marcus
         
         void SetOnFire()
         {
-            Debug.Log("OW");
             // Fire tween event on view
             BurningEvent?.Invoke();
         }
