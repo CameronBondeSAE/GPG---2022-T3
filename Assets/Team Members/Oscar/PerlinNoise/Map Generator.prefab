@@ -56,7 +56,7 @@ MonoBehaviour:
   spawnAI: {fileID: 3411614321170409340}
   spawnItems: {fileID: -685920881112126037}
   borderParent: {fileID: 0}
-  amount: 75
+  amount: 100
   randomMap: 0
   cubeSize: 1
 --- !u!114 &3411614321170409340
