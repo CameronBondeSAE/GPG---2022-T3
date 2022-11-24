@@ -80,6 +80,7 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
 	    }
     }
 
+    //OLLIE HACK: Need this to allow lobby level previews
     private void OnDisable()
     {
         GameManager.singleton.LevelGenerator = null;

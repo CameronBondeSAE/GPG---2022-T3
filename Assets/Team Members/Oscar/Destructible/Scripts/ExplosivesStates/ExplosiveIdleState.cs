@@ -11,11 +11,20 @@ namespace Oscar
         public Oscar.StateManager stateManager;
         public MonoBehaviour nearlyExplode;
         //effected by fire so needs to respond to being hit by fire.
-
+        
         private Flammable flammable;
+
+        private void OnEnable()
+        {
+            flammable = GetComponent<Flammable>();
+
+            flammable.SetOnFireEvent += SetOnFire;
+        }
         
         public void ChangeHeat(IHeatSource heatSource, float x)
         {
+            stateManager.ChangeState(nearlyExplode);
+
             SetOnFire();
         }
         public void SetOnFire()

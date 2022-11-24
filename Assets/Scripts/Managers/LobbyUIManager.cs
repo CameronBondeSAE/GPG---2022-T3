@@ -278,7 +278,7 @@ namespace Ollie
                 }
             }
             NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1f);
             GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
         }
 
@@ -348,7 +348,7 @@ namespace Ollie
 
         public IEnumerator LobbyGameStartDelayCoroutine()
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             LobbyGameStartEvent?.Invoke();
         }
 

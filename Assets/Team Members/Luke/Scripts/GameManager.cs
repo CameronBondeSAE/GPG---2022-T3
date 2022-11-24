@@ -108,12 +108,21 @@ public class GameManager : NetworkBehaviour
 	private void SubscribeToSceneEvent()
 	{
 		//NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetupScene;
+		
+		
+		//OLLIE HACK: Subscribed SetupScene to the LobbyUIManager instead of the above, commented out line
+		//Means SetupScene only occurs when the Lobby's Start Game button is pressed
+		//Allows Lobby to load scenes in, call their Perlin spawn so level preview can exist
+		//On Start Game, lobby unloads everything but Base scene, then loads the new scene FULLY
+		//then SetupScene runs
 		LobbyUIManager.LobbyGameStartEvent += SetupScene;
 	}
 
     //private void SetupScene(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     private void SetupScene()
     {
+	    //Ollie Hack: Enabled this camera in base scene by default, so the level preview can be seen
+	    //sets back to false when level actually starts
 	    virtualCameraTwo.SetActive(false);
 	    if (!IsServer) return;
 
@@ -177,19 +186,19 @@ public class GameManager : NetworkBehaviour
 	    NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
     }
     
-    public void NetworkInstantiate(GameObject prefab, Transform t)
+    public void NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation)
     {
 	    if (!IsServer) return;
 	    if (prefab.GetComponent<NetworkObject>() == null) return;
-	    GameObject go = Instantiate(prefab, t);
+	    GameObject go = Instantiate(prefab, position, rotation);
 	    go.GetComponent<NetworkObject>().Spawn();
     }
 
-    public void NetworkInstantiate(GameObject prefab, Transform t, Transform parent)
+    public void NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
     {
 	    if (!IsServer) return;
 	    if (prefab.GetComponent<NetworkObject>() == null) return;
-	    GameObject go = Instantiate(prefab, t);
+	    GameObject go = Instantiate(prefab, position, rotation);
 	    NetworkObject no = go.GetComponent<NetworkObject>();
 	    no.Spawn();
 	    no.TrySetParent(parent);
