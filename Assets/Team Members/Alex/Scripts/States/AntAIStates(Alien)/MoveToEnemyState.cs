@@ -58,7 +58,6 @@ namespace Alex
                 followPath.ActivatePathToTarget(vision.enemyInSight[0].transform.position);
 
                 
-                canSwarm = true;
                 
                 foreach (Transform neighbour in neighbours.neighbours)
                 {
@@ -66,7 +65,7 @@ namespace Alex
                     neighbour.GetComponentInParent<ControllerSwarmer>().canAttack = true;
                     neighbour.GetComponentInParent<ControllerSwarmer>().canSwarm = false;
                     neighbour.GetComponentInParent<ControllerSwarmer>().target = vision.enemyInSight[0];
-                    
+                    neighbour.GetComponentInParent<ControllerSwarmer>().myOwnerAlienAI = controller;
                     //new WaitForSeconds(2f);
                     //neighbour.transform.position = new Vector3(vision.enemyInSight[0].transform.position.x + Random.Range(-5, 5), vision.enemyInSight[0].transform.position.y, vision.enemyInSight[0].transform.position.z + Random.Range(-5, 5));
                 }
