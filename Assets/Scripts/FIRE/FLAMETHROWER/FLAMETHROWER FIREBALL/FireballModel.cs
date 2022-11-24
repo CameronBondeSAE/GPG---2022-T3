@@ -62,26 +62,26 @@ public class FireballModel : MonoBehaviour
         //would it be more efficient to run two overlap spheres or calculate dist with one sphere?
         //
         
-        Collider[] hitColliders = Physics.OverlapSphere(_center, _radius);
+        Collider[] hitColliders = Physics.OverlapSphere(_center, _radius, 255, QueryTriggerInteraction.Collide);
         foreach (var hitCollider in hitColliders)
         {
             //GameObject fire = Instantiate(_fire01Prefab, transform.position, Quaternion.identity) as GameObject;
             
-            if (hitCollider.GetComponent<IFlammable>() != null)
+            if (hitCollider.GetComponent<Flammable>() != null)
             {
-                hitCollider.GetComponent<IFlammable>().ChangeHeat(theHeatSource,_heat);
+                hitCollider.GetComponent<Flammable>().ChangeHeat(theHeatSource,_heat);
 
                 _burnVictim = hitCollider.transform.position;
 
                 _distance = Vector3.Distance(_center, _burnVictim);
                 if (_distance > _minDistance)
                 {
-                    hitCollider.GetComponent<IFlammable>().ChangeHeat(theHeatSource,_heat * _proximityMultiplier);
+                    hitCollider.GetComponent<Flammable>().ChangeHeat(theHeatSource,_heat * _proximityMultiplier);
                 }
                 StartCoroutine(Death());
                 transform.SetParent(hitCollider.transform);
                 _rb.isKinematic = true;
-            }
+            } 
         }
     }
     

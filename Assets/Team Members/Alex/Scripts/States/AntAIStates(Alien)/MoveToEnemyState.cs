@@ -103,8 +103,8 @@ namespace Alex
             testShapes.intensity = 1;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
 
-
-            canSwarm = false;
+            
+            
         }
     }
 }

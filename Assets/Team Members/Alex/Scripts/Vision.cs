@@ -62,14 +62,13 @@ namespace Alex
                 
                 if (HitInfo.collider.GetComponent<Target>() != null)
                 {
-                    //Debug.DrawLine(transform.position, HitInfo.point, Color.red);
+                    Debug.DrawLine(transform.position, HitInfo.point, Color.red);
                     Transform enemy = HitInfo.transform;
 
                     if (!enemyInSight.Contains(enemy))
                     {
                         enemyInSight.Add(enemy);
                     }
-                    
                 }
                 
                 else
@@ -110,8 +109,15 @@ namespace Alex
                     }
                 }
             }
-            
-            
+
+            if (enemyInSight.Count > 0)
+            {
+                if (enemyInSight[0] == null)
+                {
+                    enemyInSight.Remove(enemyInSight[0]);
+                }
+            }
+
             //Sorting all the lists so that the closest will be first in order for AStar to use the closest object. 
             resourcesInSight = resourcesInSight.OrderBy(
                 resource => Vector3.Distance(this.transform.position,resource.transform.position)

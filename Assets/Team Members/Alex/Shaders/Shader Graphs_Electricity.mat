@@ -78,11 +78,12 @@ Material:
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 10
     - _ElectricityAmount: 6.76
-    - _ElectricityThickness: 0.92
+    - _ElectricityThickness: 1.62
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
     - _NoiseScale: 14.3
     - _OpaqueCullMode: 2
+    - _Power: 20000
     - _RenderQueueType: 4
     - _SrcBlend: 1
     - _StencilRef: 0

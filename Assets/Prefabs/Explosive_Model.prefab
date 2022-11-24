@@ -326,7 +326,7 @@ MonoBehaviour:
   fireDamage: 5000
   explodeUpPower: 100
   radius: 5
-  numFragments: 3
+  numFragments: 5
   explosivefragments: {fileID: 5010368680524319573, guid: 9a18431a32ec8044396820ea8ad5b851, type: 3}
 --- !u!114 &856647800917635925
 MonoBehaviour:
@@ -347,7 +347,7 @@ MonoBehaviour:
   heatMultiplier: 2
   fuel: 1
   coolRate: 1
-  radius: 1
+  radius: 3
 --- !u!114 &5587662145300073852
 MonoBehaviour:
   m_ObjectHideFlags: 0

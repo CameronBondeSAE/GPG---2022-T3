@@ -13,14 +13,7 @@ namespace Oscar
         //effected by fire so needs to respond to being hit by fire.
 
         private Flammable flammable;
-
-        private void OnEnable()
-        {
-            flammable = GetComponent<Flammable>();
-
-            flammable.SetOnFireEvent += SetOnFire;
-        }
-
+        
         public void ChangeHeat(IHeatSource heatSource, float x)
         {
             SetOnFire();
@@ -28,11 +21,6 @@ namespace Oscar
         public void SetOnFire()
         {
             stateManager.ChangeState(nearlyExplode);
-        }
-
-        private void OnDisable()
-        {
-            flammable.SetOnFireEvent -= SetOnFire;
         }
     }
 }

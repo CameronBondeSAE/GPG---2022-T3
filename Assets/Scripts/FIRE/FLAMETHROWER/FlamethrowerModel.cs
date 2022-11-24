@@ -168,19 +168,23 @@ namespace Lloyd
             Vector3 targetDir = firePointPos - transform.position;
 
             GameObject _barrel = Instantiate(barrel, transform.position, Quaternion.identity) as GameObject;
+            GameObject _fire = Instantiate(fireball, transform.position, Quaternion.identity) as GameObject;
+            _fire.transform.SetParent(_barrel.transform);
             firePrefabRb = _barrel.GetComponent<Rigidbody>();
             firePrefabRb.AddForce(targetDir * altForce, ForceMode.Impulse);
-
-            /*Oscar.ExplosiveIdleState explodeState = _barrel.GetComponent<Oscar.ExplosiveIdleState>();
-            explodeState.SetOnFire();*/
             
-            /*if (_barrel.GetComponent<IFlammable>() != null)
+            /*
+
+            Oscar.ExplosiveIdleState explodeState = _barrel.GetComponent<Oscar.ExplosiveIdleState>();
+            explodeState.SetOnFire();
+            
+            if (_barrel.GetComponent<IFlammable>() != null)
             {
                 Debug.Log("pew");
                 _barrel.GetComponent<IFlammable>().ChangeHeat(this, fireDamage);
-            }*/
+            }
             flammable = _barrel.GetComponent<Flammable>();
-            flammable.SetOnFireFunction();
+            flammable.SetOnFireFunction();*/
 
             altAmmo--;
 

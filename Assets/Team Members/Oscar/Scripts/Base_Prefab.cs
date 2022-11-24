@@ -13,7 +13,7 @@ namespace Oscar
             Collider[] obstructions = Physics.OverlapSphere(transform.position, 5f);
             foreach (Collider item in obstructions)
             {
-                if (item.GetComponent<Marcus.Health>() != null)
+                if (item.GetComponent<Health>() != null)
                 {
                     Destroy(item.gameObject);
                 }

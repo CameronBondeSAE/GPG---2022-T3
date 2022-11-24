@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2160.043, g: 2263.8164, b: 3286.5586, a: 1}
+  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -426,7 +426,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.04245283
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -434,44 +434,26 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.5269128
-      value: 0.95783126
-      inSlope: 5.0833707
-      outSlope: -5.603171
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.045013025
-      outWeight: 0.11660429
-    - serializedVersion: 3
-      time: 0.6933994
-      value: 0.23164546
-      inSlope: 0.022241347
-      outSlope: 0.022241347
+      time: 0.55753064
+      value: 0.12844986
+      inSlope: 0.586813
+      outSlope: 0.586813
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 1
-    - serializedVersion: 3
-      time: 0.7417535
-      value: 0.9652298
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.9023993
-      value: 0.6294041
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
+      time: 0.79437643
+      value: 0.53631294
+      inSlope: 3.675455
+      outSlope: 3.675455
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.3083992
     - serializedVersion: 3
-      time: 1
-      value: 1
+      time: 0.991991
+      value: 1.0000035
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -481,6 +463,35 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 0, b: 0, a: 1}
+    key2: {r: 1, g: 0.9082564, b: 0, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
+    key4: {r: 1, g: 1, b: 1, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 27178
+    ctime2: 45682
+    ctime3: 50693
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 39649
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 3
 --- !u!65 &947121879
 BoxCollider:
   m_ObjectHideFlags: 0
