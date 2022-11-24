@@ -62,7 +62,7 @@ public class FireballModel : MonoBehaviour
         //would it be more efficient to run two overlap spheres or calculate dist with one sphere?
         //
         
-        Collider[] hitColliders = Physics.OverlapSphere(_center, _radius);
+        Collider[] hitColliders = Physics.OverlapSphere(_center, _radius, 255, QueryTriggerInteraction.Collide);
         foreach (var hitCollider in hitColliders)
         {
             //GameObject fire = Instantiate(_fire01Prefab, transform.position, Quaternion.identity) as GameObject;
