@@ -69,7 +69,7 @@ public class Avatar : NetworkBehaviour, IControllable
 
     public void Action1()
     {
-        interact.RequestInteractWithServerRpc();
+        interact.RequestPickUpItemServerRpc();
     }
 
     public void Action2()

@@ -84,6 +84,7 @@ namespace Ollie
             instance = this;
             gameManager = GameManager.singleton;
             
+            
         }
         
         private void Start()
