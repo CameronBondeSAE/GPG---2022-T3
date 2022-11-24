@@ -10,16 +10,19 @@ public class PlantView : MonoBehaviour
     public GrowthState plantGrowth;
     public MatureState plantMature;
     public DyingState plantDeath;
+    public PlantBase plantBase;
     
     private Material body;
     private Color spreadColour = new Color32(0, 180, 19, 255);
     private Color matureColour = new Color32(0, 106, 0, 255);
     private Color deathColour = new Color32(135, 106, 0, 255);
+    private Color burnColour = Color.black;
 
     private void OnEnable()
     {
         plantMature.MatureEvent += Matured;
         plantDeath.DeathEvent += Dying;
+        plantBase.BurningEvent += Burning;
     }
 
     // Start is called before the first frame update
@@ -43,5 +46,12 @@ public class PlantView : MonoBehaviour
     void Dying(float duration)
     {
        body.DOColor(deathColour, duration);
+    }
+
+    void Burning()
+    {
+        //Tween towards black and shrink
+        body.DOColor(burnColour, 3f);
+        transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one / 2, 3f);
     }
 }

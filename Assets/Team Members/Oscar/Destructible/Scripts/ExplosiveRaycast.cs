@@ -26,7 +26,7 @@ public class ExplosiveRaycast : MonoBehaviour, IHeatSource
             {
                 item.GetComponent<IFlammable>().ChangeHeat(theHeatSource, heat);
             }
-            if (item.GetComponent<Marcus.Health>() != null)
+            if (item.GetComponent<Health>() != null)
             {
                 //take the damage my famalamb
             }
