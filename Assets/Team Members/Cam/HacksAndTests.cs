@@ -13,7 +13,6 @@ public class HacksAndTests : MonoBehaviour
 	    yield return new WaitForSeconds(0.5f);
 	    foreach (HQ hq in FindObjectsOfType<HQ>())
 	    {
-		    hq.DestroyLand(12f);
 	    }
     }
 

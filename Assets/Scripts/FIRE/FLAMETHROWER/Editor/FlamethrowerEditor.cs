@@ -32,7 +32,7 @@ namespace Lloyd
                 (target as Lloyd.FlamethrowerModel)?.Kill();
             }
         }
-    }/*
+    }
     
     [CustomEditor(typeof(Flammable))]
     public class FlammableComponentEditor : Editor
@@ -43,26 +43,12 @@ namespace Lloyd
 
             if (GUILayout.Button("Burn"))
             {
-                (target as Flammable)?.ChangeHeat(x, 25f);
+               // (target as Flammable)?.ChangeHeat(IHeatSource x, 25f);
             }
             
             if (GUILayout.Button("Extinguish"))
             {
                 (target as Flammable)?.Extinguish();
-            }
-        }
-    }*/
-    
-    [CustomEditor(typeof(HQ))]
-    public class HQEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            if (GUILayout.Button("Destroy Land"))
-            {
-                (target as HQ)?.DestroyLand(10);
             }
         }
     }

@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Lloyd
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, IControllable
     {
         private Rigidbody _rb;
 
@@ -143,6 +143,31 @@ namespace Lloyd
                 _isAltShooting = true;
             if (context.canceled)
                 _isAltShooting = false;
+        }
+
+        public void Move(Vector2 direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Aim(Vector2 direction)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Action1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Action2()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Action3()
+        {
+            throw new NotImplementedException();
         }
     }
 }

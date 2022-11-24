@@ -74,11 +74,12 @@ public class Flammable : MonoBehaviour, IHeatSource
         if (flamePrefab != null)
         {
             GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
+            fire.transform.SetParent(transform);
             flameModel = fire.GetComponent<FlameModel>();
             if (flameModel != null)
             {
                 flameModel.SetFlameStats(fireDamage, fuel, radius);
-                fire.transform.SetParent(transform);
+                
 
                 fireList.Add(fire);
             }

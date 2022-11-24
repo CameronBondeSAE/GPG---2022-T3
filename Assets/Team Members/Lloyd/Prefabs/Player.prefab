@@ -209,6 +209,8 @@ GameObject:
   - component: {fileID: 7607850963970899828}
   - component: {fileID: 7607850963970899831}
   - component: {fileID: 7607850963970899829}
+  - component: {fileID: 7262822484863063008}
+  - component: {fileID: 959870836863167885}
   m_Layer: 0
   m_Name: PlayerModel
   m_TagString: Untagged
@@ -311,6 +313,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &7262822484863063008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607850963970899837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc7765993eb00342b21a0d0c93d2baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  HP: 0
+--- !u!114 &959870836863167885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607850963970899837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flamePrefab: {fileID: 4092031293610382795, guid: 356b6b1337f47004c80f6626d3ff6fa7, type: 3}
+  fireDamage: 1
+  heatLevel: 0
+  heatThreshold: 100
+  heatMultiplier: 2
+  fuel: 50
+  coolRate: 2
+  radius: 3
 --- !u!1 &7607850963997499759
 GameObject:
   m_ObjectHideFlags: 0

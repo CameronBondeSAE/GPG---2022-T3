@@ -38,11 +38,11 @@ namespace Lloyd
         [SerializeField] private float itemNoiseX;
         [SerializeField] private float itemNoiseY;
 
-        private Vector3 centrePos;
+        private Vector3 centerPos;
 
         private Vector3 humanPos;
 
-        private float distanceFromCentre;
+        private float distanceFromCenter;
 
         [SerializeField] private float minDist;
 
@@ -147,7 +147,7 @@ namespace Lloyd
             {
                 for (float z = 0; z < numCube; z = z + cubeScale)
                 {
-                    centrePos = new Vector3(cubePos.x / 2, cubePos.y / 2, cubePos.z / 2);
+                    centerPos = new Vector3(cubePos.x / 2, cubePos.y / 2, cubePos.z / 2);
 
                     cubePos.x = x;
                     float perlinNoise = Mathf.PerlinNoise(x * zoomNoiseX, z * zoomNoiseY);
@@ -233,7 +233,7 @@ namespace Lloyd
             wall01.transform.localScale = new Vector3(cubePos.x, wallsHeight, 1);
             wall01.transform.SetParent(environmentParent.transform);
             cubeRend = wall01.GetComponent<Renderer>();
-            cubeRend.material.color = Color.blue;
+            cubeRend.material.color = Color.white;
 
             GameObject wall02 = Instantiate(cubePrefab, new Vector3(cubePos.x + 0, cubePos.y, cubePos.z / 2),
                 Quaternion.identity);
@@ -241,7 +241,7 @@ namespace Lloyd
             wall02.transform.localScale = new Vector3(1, wallsHeight, cubePos.z);
             cubeRend = wall02.GetComponent<Renderer>();
             wall02.transform.SetParent(environmentParent.transform);
-            cubeRend.material.color = Color.blue;
+            cubeRend.material.color = Color.white;
 
             GameObject wall03 =
                 Instantiate(cubePrefab, new Vector3(cubePos.x / 2, cubePos.y, 0), Quaternion.identity);
@@ -249,7 +249,7 @@ namespace Lloyd
             wall03.transform.localScale = new Vector3(cubePos.x, wallsHeight, 1);
             wall03.transform.SetParent(environmentParent.transform);
             cubeRend = wall03.GetComponent<Renderer>();
-            cubeRend.material.color = Color.blue;
+            cubeRend.material.color = Color.white;
 
             GameObject wall04 =
                 Instantiate(cubePrefab, new Vector3(0, cubePos.y, cubePos.z / 2), Quaternion.identity);
@@ -257,17 +257,17 @@ namespace Lloyd
             wall04.transform.localScale = new Vector3(1, wallsHeight, cubePos.z);
             wall04.transform.SetParent(environmentParent.transform);
             cubeRend = wall04.GetComponent<Renderer>();
-            cubeRend.material.color = Color.blue;
+            cubeRend.material.color = Color.white;
             GameManager.singleton.SpawnBorderFinished();
         }
 
         void PlaceGround()
         {
-            GameObject ground = Instantiate(cubePrefab, centrePos, Quaternion.identity);
+            GameObject ground = Instantiate(cubePrefab, centerPos, Quaternion.identity);
             ground.name = "Ground";
             ground.transform.localScale = new Vector3(cubePos.x, Mathf.Abs(cubePos.y-cubeScale), cubePos.z);
             cubeRend = ground.GetComponent<Renderer>();
-            cubeRend.material.color = Color.black;
+            cubeRend.material.color = Color.white;
 
             ground.transform.position = new Vector3(cubePos.x/2, 0, cubePos.z/2 );
 
@@ -291,14 +291,27 @@ namespace Lloyd
         private void PlaceHQ()
         {
             GameObject HumanHQprefab = Instantiate(HumanHQ,
-                new Vector3(centrePos.x, (centrePos.y + cubeScale) / 2, centrePos.z), Quaternion.identity);
+                new Vector3(centerPos.x, (centerPos.y + cubeScale) / 2, centerPos.z), Quaternion.identity);
             HumanHQprefab.transform.SetParent(HQParent.transform);
             
             hqscript = HumanHQprefab.GetComponentInChildren<HQ>();
-            hqscript.DestroyLand(destroyRadius);
+            DestroyLand(centerPos, destroyRadius);
 
             /*GameObject player = Instantiate(playerPrefab, HumanHQprefab.transform.position, Quaternion.identity);
             player.transform.SetParent(PlayerParent.transform);*/
+        }
+        
+        public void DestroyLand(Vector3 x, float y)
+        {
+            Collider[] colliders = Physics.OverlapSphere(x, y);
+
+            foreach (Collider obj in colliders)
+            {
+                if (obj.GetComponent<Health>() != null)
+                {
+                    obj.GetComponent<Health>().ChangeHP(-1000000);
+                }
+            }
         }
 
         private void SpawnAlienHQPos()
@@ -309,7 +322,7 @@ namespace Lloyd
 
             if (tempAlienDist > minDist)
             {
-                float tempAlienDistTwo = Vector3.Distance(alienPos, centrePos);
+                float tempAlienDistTwo = Vector3.Distance(alienPos, centerPos);
                 if (tempAlienDistTwo > minDist)
                 {
                     {
@@ -339,7 +352,7 @@ namespace Lloyd
                 alienPeon.transform.SetParent(alienLeader.transform);
 
                 hqscript = AlienHQprefab.GetComponentInChildren<HQ>();
-                hqscript.DestroyLand(destroyRadius);
+                DestroyLand(tempAlienPos, destroyRadius);
                 
             }
             GameManager.singleton.SpawnBasesFinished();

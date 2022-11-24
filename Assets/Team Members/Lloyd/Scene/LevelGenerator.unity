@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -662,8 +662,8 @@ MonoBehaviour:
   zoomNoiseY: 0.072445676
   cubeHeight: 6.91
   wallsHeight: 14
-  cubePrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
-  wallPrefab: {fileID: 8830323646262685556, guid: c3d78f570187722418f95a344845f3eb, type: 3}
+  cubePrefab: {fileID: 8830323646262685556, guid: c3d78f570187722418f95a344845f3eb, type: 3}
+  wallPrefab: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
   _barrelObj: {fileID: 8997907807820932345, guid: 0cf81dc62baea794882e33efb88e7263, type: 3}
   numBarrels: 10
   itemPrefab: {fileID: 4137073510955222978, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
@@ -674,7 +674,7 @@ MonoBehaviour:
   numItems: 5
   HumanHQ: {fileID: 7884631281891504534, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
   playerPrefab: {fileID: 7607850963997499759, guid: dc3a5ef788cff734b9e4e8d143f19e58, type: 3}
-  destroyRadius: 10.02
+  destroyRadius: 10
   numHumanHQ: 1
   alienSmart: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
   alienDumb: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
