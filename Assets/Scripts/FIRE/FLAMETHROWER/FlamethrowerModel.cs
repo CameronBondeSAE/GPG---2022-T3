@@ -54,7 +54,17 @@ namespace Lloyd
 
         public bool locked { get; set; }
 
-        public bool autoPickup { get; set; }
+        public bool autoPickup
+        {
+	        get
+	        {
+		        return false;
+	        }
+	        set
+	        {
+		        
+	        }
+        }
 
         private float angle;
 
