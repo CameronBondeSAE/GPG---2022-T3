@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Lloyd;
 using Sirenix.OdinInspector;
 using Unity.Netcode;
 using Unity.VisualScripting;
@@ -16,7 +17,7 @@ using Random = System.Random;
 /// </summary>
 public class Interact : NetworkBehaviour
 {
-    public GameObject heldObject;
+    public NetworkObject heldObject;
     public Transform equippedMountPos;
     [Serialize] public IPickupable pickupableNearby;
     public int storedItems = 5;
@@ -29,8 +30,16 @@ public class Interact : NetworkBehaviour
     public NetworkObject flamethrower;
     public NetworkObject plant;
 
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.LeftAlt))
+    //     {
+    //         RequestUseItemServerRpc();
+    //     }
+    // }
+
     [ServerRpc]
-    public void RequestInteractWithServerRpc()
+    public void RequestPickUpItemServerRpc()
     {
         if (pickupableNearby != null)
         {
@@ -46,14 +55,20 @@ public class Interact : NetworkBehaviour
                 {
 	                // monoBehaviour.transform.parent = equippedMountPos;
 	                Debug.Log("TrySetParent = "+ monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false));
+                    monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,0);
+                    heldObject = monoBehaviour as NetworkObject;
                 }
-
-
                 pickupableNearby = null;
             }
         }
+    }
+
+    [ServerRpc]
+    public void RequestDropItemServerRpc()
+    {
+        //TODO: need to somehow DROP item
         
-        // else if (equippedItems >= equippedMax)
+        // if (equippedItems >= equippedMax)
         // {
         //     equippedItems--;
         //     Vector3 myPos = transform.position;
@@ -63,9 +78,6 @@ public class Interact : NetworkBehaviour
         //     go.Spawn();
         // }
         
-        
-        
-        
         // Vector3 dropPoint = transform.position + transform.forward * 2;
         // if (storedItems > 0 && heldObject != null)
         // {
@@ -73,6 +85,12 @@ public class Interact : NetworkBehaviour
         //     heldObject.GetComponent<ItemBase>().GetDropPointClientRpc(dropPoint);
         //     heldObject.GetComponent<ItemBase>().GetDroppedClientRpc();
         // }
+    }
+
+    [ServerRpc]
+    public void RequestUseItemServerRpc()
+    {
+        heldObject.GetComponent<FlamethrowerModel>().Interact(this.gameObject);
     }
     
     public void DeathItemRespawn()

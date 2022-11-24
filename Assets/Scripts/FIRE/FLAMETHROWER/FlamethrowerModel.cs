@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
-    public class FlamethrowerModel : MonoBehaviour, IPickup, IInteractable, IHeatSource
+    public class FlamethrowerModel : NetworkBehaviour, IPickupable, IInteractable, IHeatSource
     {
         [Header("FLAME SETTINGS [DAMAGE / SIZE / FIRE RATE]")] [SerializeField]
         private float fireDamage;
@@ -102,6 +103,9 @@ namespace Lloyd
             canShoot = true;
 
             firePointRb = GetComponentInChildren<Rigidbody>();
+            
+            GetComponent<NetworkObject>().Spawn();
+            
         }
 
         private void FixedUpdate()
