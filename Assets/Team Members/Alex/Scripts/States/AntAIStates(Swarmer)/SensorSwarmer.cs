@@ -12,14 +12,15 @@ namespace Alex
 
         public void CollectConditions(AntAIAgent aAgent, AntAICondition aWorldState)
         {
-            aWorldState.Set(Scenario.isAttacking, controllerSwarmer.IsAttacking());
-            aWorldState.Set(Scenario.isSwarming, controllerSwarmer.IsSwarming());
+            aWorldState.Set(Scenario.Attack, controllerSwarmer.IsAttacking());
+            aWorldState.Set(Scenario.Wandering, controllerSwarmer.IsSwarming());
         }
 
         public enum Scenario
         {
-            isAttacking = 1,
-            isSwarming = 2
+	        Attack = 0,
+	        Wandering = 1,
+	        HurtEnemy = 2
         }
     }
 }

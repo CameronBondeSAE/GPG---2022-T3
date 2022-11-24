@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5530932041577439140
 MonoBehaviour:
@@ -56,7 +56,7 @@ MonoBehaviour:
   spawnAI: {fileID: 3411614321170409340}
   spawnItems: {fileID: -685920881112126037}
   borderParent: {fileID: 0}
-  amount: 75
+  amount: 100
   randomMap: 0
   cubeSize: 1
 --- !u!114 &3411614321170409340
@@ -91,7 +91,7 @@ MonoBehaviour:
   humanBase: {fileID: 7884631281891504534, guid: 4ed8e4be5e4e9ae49bd1c620ad6ded05, type: 3}
   alienBase: {fileID: 8749085813108591677, guid: 53bff0fc767e0d44eb20b10e130091f7, type: 3}
   tempBaseDist: 0
-  destroyRadius: 0
+  destroyRadius: 10
 --- !u!114 &717600289217134444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,9 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771cfaa1bf7788e49b3c170afbd6ec19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosive:
-  - {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
-  - {fileID: 6122380363611737215, guid: 0fc8d46c1598f73418525e2a9d9b546b, type: 3}
+  explosive: {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
 --- !u!114 &-685920881112126037
 MonoBehaviour:
   m_ObjectHideFlags: 0

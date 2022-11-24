@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -11,7 +11,15 @@ namespace Oscar
         public Oscar.StateManager stateManager;
         public MonoBehaviour nearlyExplode;
         //effected by fire so needs to respond to being hit by fire.
-        
+
+        private Flammable flammable;
+
+        private void OnEnable()
+        {
+            flammable = GetComponent<Flammable>();
+
+            flammable.SetOnFireEvent += SetOnFire;
+        }
 
         public void ChangeHeat(IHeatSource heatSource, float x)
         {
@@ -20,6 +28,11 @@ namespace Oscar
         public void SetOnFire()
         {
             stateManager.ChangeState(nearlyExplode);
+        }
+
+        private void OnDisable()
+        {
+            flammable.SetOnFireEvent -= SetOnFire;
         }
     }
 }

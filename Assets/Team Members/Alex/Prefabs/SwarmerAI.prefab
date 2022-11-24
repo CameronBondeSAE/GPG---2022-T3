@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8555692990794580215}
   - component: {fileID: 2651532426013251859}
   - component: {fileID: 5809955814551620479}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: TargetCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ Transform:
   - {fileID: 561430403378240219}
   - {fileID: 8555692990794580215}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1794423253392461858
 MeshFilter:
@@ -184,9 +184,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.25
-  m_Height: 2
+  m_Height: 3.15
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.56, z: 0}
 --- !u!114 &1794423253392461862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbours: {fileID: 706897844201177466}
-  force: 50
+  force: 75
 --- !u!114 &8270060209491018145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,9 +371,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d418f90374f4248ba66368c0e02518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwarming: 0
-  isAttacking: 0
+  isSwarmingAgain: 0
+  isAttackingTarget: 0
+  canAttack: 1
+  canSwarm: 1
+  myOwnerAlienAI: {fileID: 0}
   neighbours: {fileID: 5459054142461481995}
+  target: {fileID: 0}
 --- !u!114 &2963014885378717769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,7 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1794423253976717424}
   - component: {fileID: 1794423253976717425}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FeelerL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1794423254282566961}
   - component: {fileID: 1794423254282566958}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FeelerR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +506,7 @@ GameObject:
   - component: {fileID: 5749996088807249338}
   - component: {fileID: 3915014071041367928}
   - component: {fileID: 706897844201177466}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: AlignCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -563,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9052546131963843774}
   - component: {fileID: 1491034629719951476}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FeelerM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +620,7 @@ GameObject:
   - component: {fileID: 635098809454652560}
   - component: {fileID: 6424645778153852261}
   - component: {fileID: 5535151424200543746}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -712,7 +716,7 @@ GameObject:
   - component: {fileID: 561430403378240219}
   - component: {fileID: 8268711834469189821}
   - component: {fileID: 3058932944301065794}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: CohesionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +778,7 @@ GameObject:
   - component: {fileID: 5643263454756364490}
   - component: {fileID: 7891709080601876795}
   - component: {fileID: 5477602151829979742}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SeparationCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

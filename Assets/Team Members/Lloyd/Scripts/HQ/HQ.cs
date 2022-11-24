@@ -22,8 +22,6 @@ namespace Lloyd
 
 		private Renderer rend;
 
-		public float _HQRadius;
-
 		//tracks items deposited
 		private int itemCount;
 
@@ -54,23 +52,6 @@ namespace Lloyd
 			// 	rend.material.color = Color.magenta;
 
 			isActive = true;
-			
-			DestroyLand(_HQRadius);
-		}
-
-		public void DestroyLand(float x)
-		{
-			_HQRadius = x;
-
-			Collider[] colliders = Physics.OverlapSphere(transform.position, _HQRadius);
-
-			foreach (Collider obj in colliders)
-			{
-				if (obj.GetComponent<Health>() != null)
-				{
-					obj.GetComponent<Health>().ChangeHP(-1000000);
-				}
-			}
 		}
 
 		public void ItemDeposited()

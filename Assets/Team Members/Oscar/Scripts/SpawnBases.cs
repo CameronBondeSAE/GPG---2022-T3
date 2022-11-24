@@ -21,8 +21,8 @@ namespace Oscar
         private bool humanHQ = true;
         
         [SerializeField] private float destroyRadius;
-
-
+        
+        
         public void SpawnTheBase(List<Vector3> prefabPosition, GameObject HQParent)
         {
             //minDist = 90 - (amount / 2);
@@ -49,9 +49,14 @@ namespace Oscar
                             HQAmount++;
                             humanHQ = false;
                             
-                            hqScript = humanBase.GetComponentInChildren<HQ>();
-
-                            hqScript.DestroyLand(destroyRadius);
+                            Collider[] obstructions = Physics.OverlapSphere(prefabPosition[i], destroyRadius);
+                            foreach (Collider item in obstructions)
+                            {
+                                if (item.GetComponent<Health>() != null)
+                                {
+                                    item.GetComponent<Health>().ChangeHP(-10000000);
+                                }
+                            }
                         }
                         else
                         {
@@ -66,9 +71,14 @@ namespace Oscar
                             HQAmount++;
                             humanHQ = true;
                             
-                            hqScript = alienBase.GetComponentInChildren<HQ>();
-
-                            hqScript.DestroyLand(destroyRadius);
+                            Collider[] obstructions = Physics.OverlapSphere(prefabPosition[i], destroyRadius);
+                            foreach (Collider item in obstructions)
+                            {
+                                if (item.GetComponent<Health>() != null)
+                                {
+                                    item.GetComponent<Health>().ChangeHP(-10000000);
+                                }
+                            }
                         }
                     }
                 }

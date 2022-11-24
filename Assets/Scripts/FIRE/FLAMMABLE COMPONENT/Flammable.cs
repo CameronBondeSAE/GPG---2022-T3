@@ -4,39 +4,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
 
-public class Flammable : MonoBehaviour
+public class Flammable : MonoBehaviour, IHeatSource
 {
     //Flammable Component assumes gameObj also has a HealthComponent attached
     private Health healthComp;
 
     private FlameModel flameModel;
     public GameObject flamePrefab;
-    
+
     //determines how much is inflicted through ChangeHeat
     //does this go here? does flamethrower hold this info? do different objects' fire hurt more? etc
-    [Header ("Fire Damage")]
-    [SerializeField] private float fireDamage;
-    
+    [Header("Fire Damage")] [SerializeField]
+    private float fireDamage;
+
     [Header("Current Heat Level")]
     //object's current heat level
     public float heatLevel;
-    
-    [Header ("Object Set On Fire Heat Level")]
+
+    [Header("Object Set On Fire Heat Level")]
     //the threshold at which object is actually alight
     //this is where "On Fire" animations, sounds, logic, etc are activated
     //spawns Flame prefab
-    [SerializeField] private float heatThreshold;
-    
+    [SerializeField]
+    private float heatThreshold;
+
     //some objects burn faster than others
     //tracked with this float, multiplies ChangeHeat
     [SerializeField] private float heatMultiplier;
 
     private bool burning;
-    
+
     //effectively the fire's HP / lifespan
     //adds current health to use as fuel
     [SerializeField] private float fuel;
-    
+
     //objects are constantly losing heat every update times coolRate
     [SerializeField] private float coolRate;
 
@@ -48,17 +49,17 @@ public class Flammable : MonoBehaviour
     private void OnEnable()
     {
         healthComp = GetComponent<Health>();
-        
+
         fuel += healthComp.GetHP();
-    }    
-    
+    }
+
     public void FixedUpdate()
-         {
-             if(burning)
-                 healthComp.ChangeHP(-fireDamage*0.2f);
-             
-             Cool();
-         }
+    {
+        if (burning)
+            healthComp.ChangeHP(-fireDamage * 0.2f);
+
+        Cool();
+    }
 
     public void SetOnFire()
     {
@@ -66,6 +67,7 @@ public class Flammable : MonoBehaviour
         {
             return;
         }
+
         SetOnFireFunction();
         heatLevel += fireDamage;
 
@@ -73,10 +75,14 @@ public class Flammable : MonoBehaviour
         {
             GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
             fire.transform.SetParent(transform);
-            flameModel = fire.GetComponentInChildren<FlameModel>();
-            flameModel.SetFlameStats(fireDamage, fuel, radius);
-            
-            fireList.Add(fire);
+            flameModel = fire.GetComponent<FlameModel>();
+            if (flameModel != null)
+            {
+                flameModel.SetFlameStats(fireDamage, fuel, radius);
+                
+
+                fireList.Add(fire);
+            }
         }
     }
 
@@ -84,36 +90,38 @@ public class Flammable : MonoBehaviour
     {
         burning = false;
         heatLevel = 0;
-        
-        foreach (GameObject fire in fireList){
-                flameModel = fire.GetComponentInChildren<FlameModel>();
-                flameModel.SetFlameStats(0, 0, 0);
-                Destroy(fire);
-                fireList.Clear();
+
+        foreach (GameObject fire in fireList)
+        {
+            flameModel = fire.GetComponentInChildren<FlameModel>();
+            flameModel.SetFlameStats(0, 0, 0);
+            Destroy(fire);
         }
+
+        fireList.Clear();
     }
 
 
-    public void ChangeHeat(float x)
+    public void ChangeHeat(IHeatSource x, float y)
     {
         //heatMultiplier is only added for positive change heat input
         //not for water / extinguishers
-        if (x > 0)
+        if (y > 0)
         {
-            heatLevel += x * heatMultiplier;
+            heatLevel += y * heatMultiplier;
         }
 
         else
         {
-            heatLevel += x;
+            heatLevel += y;
         }
-        
+
         if (heatLevel >= heatThreshold && !burning)
         {
             burning = true;
             SetOnFire();
         }
-        
+
         if (heatLevel <= heatThreshold || fuel <= 0)
         {
             burning = false;
@@ -122,18 +130,18 @@ public class Flammable : MonoBehaviour
         if (heatLevel <= 0)
         {
             heatLevel = 0;
-            Extinguish();
+           // Extinguish();
         }
     }
 
     private void Cool()
     {
-        ChangeHeat(-coolRate*.2f);
+        ChangeHeat(this, -coolRate * .2f);
     }
-    
+
     public event Action SetOnFireEvent;
 
-    private void SetOnFireFunction()
+    public void SetOnFireFunction()
     {
         SetOnFireEvent?.Invoke();
     }

@@ -6,6 +6,8 @@ using UnityEngine;
 public class DoTweenTests : MonoBehaviour
 {
 	public AnimationCurve easeCurve;
+
+	public Gradient gradient;
 	
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,6 @@ public class DoTweenTests : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+	    GetComponent<Renderer>().material.color = gradient.Evaluate(Time.timeSinceLevelLoad*0.1f);
     }
 }
