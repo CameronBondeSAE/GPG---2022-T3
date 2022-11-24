@@ -40,7 +40,6 @@ namespace Marcus
         
         void SetOnFire()
         {
-            Debug.Log("OW");
             // Fire tween event on view
             BurningEvent?.Invoke();
         }
