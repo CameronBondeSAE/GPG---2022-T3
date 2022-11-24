@@ -25,7 +25,7 @@ namespace Oscar
         {
             for (int x = 0; x < numFragments; x++)
             {
-                GameObject brokenFragments = Instantiate(explosivefragments, transform.position, quaternion.identity) as GameObject;
+                Instantiate(explosivefragments, transform.position, quaternion.identity);
             }
             
            
@@ -47,8 +47,8 @@ namespace Oscar
                 
                 Rigidbody rb = burnVictims.GetComponent<Rigidbody>();
 
-                if (rb != null)
-                    rb.AddExplosionForce(explodePower, explosionPos, radius, explodeUpPower);
+                 if (rb != null)
+                     rb.AddExplosionForce(explodePower, explosionPos, radius, explodeUpPower);
             }
 
             DestroyExplosiveModel();

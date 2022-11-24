@@ -20,7 +20,7 @@ namespace Oscar
             for (int i = 0; i < prefabPosition.Count; i++)
             {
                 GameObject newCube = Instantiate(perlinPrefab, prefabPosition[i], Quaternion.identity);
-                newCube.transform.SetParent(CubeParent.transform);
+                //newCube.transform.SetParent(CubeParent.transform);
                 newCube.GetComponent<Renderer>().material.color = Color.black;
             }
         }
