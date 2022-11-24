@@ -9,7 +9,7 @@ namespace Oscar
 {
     public class SpawnExplosives : MonoBehaviour
     {
-        public GameObject[] explosive;
+        public GameObject explosive;
 
         private float boomInt = .4f;
         
@@ -26,7 +26,7 @@ namespace Oscar
                 //use new perlin to spawn explosives
                 if (explosivesPerlin < .4 && boomAmount <= 50 && waitAmount >= 110)
                 {
-                    GameObject spawnedItem = Instantiate(explosive[Random.Range(0,2)], prefabPosition[i], quaternion.identity);
+                    GameObject spawnedItem = Instantiate(explosive, prefabPosition[i], quaternion.identity);
                     
                     spawnedItem.transform.SetParent(explosiveParent.transform);
     
