@@ -19,7 +19,7 @@ namespace Alex
         public void OnEnable()
         {
             myTarget = controllerSwarmer.target;
-            enemyHealth = myTarget.GetComponent<Health>();
+            if (myTarget != null) enemyHealth = myTarget.GetComponent<Health>();
         }
 
         public void OnTriggerStay(Collider other)
@@ -31,7 +31,8 @@ namespace Alex
         void DealDamage()
         {
             damageOverTime = damagePerSecond * Time.deltaTime;
-            enemyHealth.ChangeHP(-damageOverTime);
+            if(enemyHealth != null)
+                enemyHealth.ChangeHP(-damageOverTime);
         }
         
     }

@@ -239,7 +239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efeaf7902444d9943ab76c1ac377d497, type: 3}
   m_Name: 
@@ -366,7 +366,7 @@ MonoBehaviour:
   targetTransform: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   directionAndDistance: {x: 0, y: 0, z: 0}
-  movement: {fileID: 0}
+  movement: {fileID: 1794423253392461862}
   justDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &5772701356384670382
 MonoBehaviour:

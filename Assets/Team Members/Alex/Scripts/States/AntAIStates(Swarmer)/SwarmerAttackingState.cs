@@ -53,7 +53,9 @@ namespace Alex
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
-            Finish();
+            
+            if(controllerSwarmer.target == null)
+                Finish();
         }
 
         public override void Exit()
@@ -63,6 +65,8 @@ namespace Alex
             attackSphereAndShader.enabled = false;
             attackSphereAndShader.attackCollider.SetActive(false);
             turnTowards.enabled = false;
+            controllerSwarmer.canAttack = false;
+            controllerSwarmer.canSwarm = true;
             Finish();
         }
     }
