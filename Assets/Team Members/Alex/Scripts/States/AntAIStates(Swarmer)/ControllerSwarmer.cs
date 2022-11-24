@@ -16,6 +16,7 @@ namespace Alex
        
         public Neighbours neighbours;
         public Transform target;
+        public Controller myOwnerAlienAI;
 
         private void Awake()
         {
