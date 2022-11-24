@@ -38,20 +38,30 @@ public class Interact : NetworkBehaviour
             {
                 equippedItems++;
                 pickupableNearby.PickedUp(gameObject);
-                pickupableNearby.DestroySelf();
+                // pickupableNearby.DestroySelf();
+
+				// Parent TODO: Network it
+                MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
+                if (monoBehaviour != null)
+                {
+	                // monoBehaviour.transform.parent = equippedMountPos;
+	                Debug.Log("TrySetParent = "+ monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false));
+                }
+
+
                 pickupableNearby = null;
             }
         }
         
-        else if (equippedItems >= equippedMax)
-        {
-            equippedItems--;
-            Vector3 myPos = transform.position;
-            NetworkObject go = Instantiate(flamethrower);
-            go.transform.position =
-                myPos - transform.forward;
-            go.Spawn();
-        }
+        // else if (equippedItems >= equippedMax)
+        // {
+        //     equippedItems--;
+        //     Vector3 myPos = transform.position;
+        //     NetworkObject go = Instantiate(flamethrower);
+        //     go.transform.position =
+        //         myPos - transform.forward;
+        //     go.Spawn();
+        // }
         
         
         

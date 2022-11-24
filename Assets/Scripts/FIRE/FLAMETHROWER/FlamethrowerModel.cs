@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Lloyd
 {
-    public class FlamethrowerModel : MonoBehaviour, IPickupable, IInteractable, IHeatSource
+    public class FlamethrowerModel : MonoBehaviour, IPickup, IInteractable, IHeatSource
     {
         [Header("FLAME SETTINGS [DAMAGE / SIZE / FIRE RATE]")] [SerializeField]
         private float fireDamage;
@@ -54,7 +54,17 @@ namespace Lloyd
 
         public bool locked { get; set; }
 
-        public bool autoPickup { get; set; }
+        public bool autoPickup
+        {
+	        get
+	        {
+		        return false;
+	        }
+	        set
+	        {
+		        
+	        }
+        }
 
         private float angle;
 

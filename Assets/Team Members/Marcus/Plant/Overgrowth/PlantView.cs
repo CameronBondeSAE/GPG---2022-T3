@@ -38,7 +38,7 @@ public class PlantView : MonoBehaviour
     void Update()
     {
         if (!burning)
-        { 
+        {
             transform.localScale = new Vector3(plantGrowth.age, 0.05f, plantGrowth.age);
         }
         else

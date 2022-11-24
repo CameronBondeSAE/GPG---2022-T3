@@ -8,9 +8,9 @@ namespace Alex
     public class SwarmingState : AntAIStatesSwarmer
     {
         public GameObject owner;
-        [SerializeField] Align align;
-        [SerializeField] Separation separation;
-        [SerializeField] Cohesion cohesion;
+        Align align;
+        Separation separation;
+        Cohesion cohesion;
 
         public override void Create(GameObject aGameObject)
         {
@@ -25,6 +25,7 @@ namespace Alex
         public override void Enter()
         {
             base.Enter();
+            Debug.Log("Swarming state entered");
             align.enabled = true;
             separation.enabled = true;
             cohesion.enabled = true;
