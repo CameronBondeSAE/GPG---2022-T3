@@ -47,7 +47,7 @@ public class Interact : NetworkBehaviour
         {
             equippedItems--;
             Vector3 myPos = transform.position;
-            NetworkObject go = Instantiate(item);
+            NetworkObject go = Instantiate(flamethrower);
             go.transform.position =
                 myPos - transform.forward;
             go.Spawn();
