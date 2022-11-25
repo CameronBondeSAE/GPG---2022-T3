@@ -12,9 +12,15 @@ public class Health : MonoBehaviour
 
     private bool isAlive=true;
 
+    public HealthView healthView;
+
     private void OnEnable()
     {
         HP = maxHP;
+        healthView = GetComponentInChildren<HealthView>();
+        
+        healthView.SetColor(Color.white);
+        healthView.ChangeHP(maxHP);
     }
 
     public void ChangeHP(float amount)
@@ -28,15 +34,24 @@ public class Health : MonoBehaviour
 
             if (HP <= 0)
             {
+                HP = 0;
                 isAlive = false;
                 OnYouDied();
             }
+
+            healthView.ChangeHP(HP);
         }
     }
 
     public float GetHP()
     {
         return HP;
+    }
+
+    [Button]
+    public void ChangeHealthButton()
+    {
+        healthView.ChangeHP(HP);
     }
 
     [Button]
