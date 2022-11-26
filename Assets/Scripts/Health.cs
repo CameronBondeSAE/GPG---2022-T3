@@ -12,15 +12,10 @@ public class Health : MonoBehaviour
 
     private bool isAlive=true;
 
-    public HealthView healthView;
-
     private void OnEnable()
     {
-        HP = maxHP;
-        healthView = GetComponentInChildren<HealthView>();
-        
-        healthView.SetColor(Color.white);
-        healthView.ChangeHP(maxHP);
+        OnSpawn();
+        ChangeHP(maxHP);
     }
 
     public void ChangeHP(float amount)
@@ -39,7 +34,7 @@ public class Health : MonoBehaviour
                 OnYouDied();
             }
 
-            healthView.ChangeHP(HP);
+            OnChangeHealth(HP);
         }
     }
 
@@ -51,13 +46,27 @@ public class Health : MonoBehaviour
     [Button]
     public void ChangeHealthButton()
     {
-        healthView.ChangeHP(HP);
+        ChangeHP(0);
     }
 
     [Button]
     public void Die()
     {
         ChangeHP(-1000000000);
+    }
+
+    public void Respawn()
+    {
+        OnSpawn();
+        isAlive = true;
+        ChangeHP(maxHP);
+    }
+
+    public event Action Spawn; 
+
+    private void OnSpawn()
+    {
+        Spawn?.Invoke();
     }
 
     public event Action<float> ChangeHealth; 
