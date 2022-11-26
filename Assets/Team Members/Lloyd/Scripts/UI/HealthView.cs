@@ -11,12 +11,13 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.Rendering.UI;
 
 public class HealthView : ImmediateModeShapeDrawer
 {
     public Health healthModel;
-    
-    public Color colour;
+
+    public Color color;
 
     [SerializeField] private float lineLength;
 
@@ -27,7 +28,13 @@ public class HealthView : ImmediateModeShapeDrawer
     private float origIntens;
     private float endValue;
 
+    //how long lerping between values lasts
+    [SerializeField] private float lerpDuration;
+    private float origDuration;
+
+    //how long to wait before lerping again :O
     [SerializeField] private float lerpWait;
+    private float origWait;
 
     public Vector3 healthPos;
     public Vector3 endPos;
@@ -35,15 +42,20 @@ public class HealthView : ImmediateModeShapeDrawer
     private float HP;
 
     private bool pulsing;
-    [SerializeField] private float lerpDuration;
-    
+
 
     private void Start()
     {
+        //
         healthModel = GetComponentInParent<Health>();
         origIntens = intensity;
-        colour = Color.white;
-        
+        color = Color.white;
+
+        origWait = lerpWait;
+        origDuration = lerpDuration;
+
+        //Game Over
+
         youDied.enabled = false;
         hintText.enabled = false;
         respawnText.enabled = false;
@@ -52,6 +64,8 @@ public class HealthView : ImmediateModeShapeDrawer
         healthModel.ChangeHealth += ChangeHP;
         healthModel.YouDied += YouDied;
         healthModel.Spawn += Spawn;
+
+        CreateHintsList();
     }
 
     private void Spawn()
@@ -67,21 +81,34 @@ public class HealthView : ImmediateModeShapeDrawer
         HP = x;
         lineLength = HP;
         endPos.x = healthPos.x + lineLength;
+        intensity = origIntens;
+
+        //bar
+        color = Color.white;
+        lerpDuration = origDuration;
+        lerpWait = origWait;
+
+        pulsing = false;
 
         if (HP <= 50)
         {
             pulsing = true;
             StartCoroutine(Pulsing());
+            color = new Color(0.6f, .25f, 0.5f, 0.5f);
 
-            if (HP <= 10)
+            if (HP <= 20)
             {
-                lerpWait = 0.5f;
-                lerpDuration = 0.5f;
+                lerpWait = origWait / 2;
+                lerpDuration = origDuration / 2;
+                color = new Color(1f, 0.25f, 0.25f, 1f);
             }
         }
-        
+
         if (HP <= 0)
+        {
             pulsing = false;
+            HP = 0;
+        }
     }
 
 //Set Line Color 
@@ -101,7 +128,7 @@ public class HealthView : ImmediateModeShapeDrawer
             Draw.Thickness = lineThickness;
             Draw.LineGeometry = LineGeometry.Billboard;
             Draw.ThicknessSpace = ThicknessSpace.Meters;
-            Draw.Color = colour * intensity;
+            Draw.Color = color * intensity;
 
             Draw.Line(healthPos, endPos, lineThickness);
         }
@@ -111,68 +138,78 @@ public class HealthView : ImmediateModeShapeDrawer
     {
         while (pulsing)
         {
-            Debug.Log("pulse1");
             {
-                DOTween.To(()=> intensity, x=> intensity = x, intensityMultiplier, lerpDuration);
+                DOTween.To(() => intensity, x => intensity = x, intensityMultiplier, lerpDuration);
                 currentIntens = intensity;
                 yield return new WaitForSeconds(lerpWait);
-            }
-            {
-                Debug.Log("pulse2");
-                DOTween.To(()=> currentIntens, x=> currentIntens = x, origIntens, lerpDuration);
+
+                DOTween.To(() => currentIntens, x => currentIntens = x, origIntens, lerpDuration);
                 intensity = origIntens;
                 yield return new WaitForSeconds(lerpWait);
             }
         }
     }
-    
+
     //GAME OVER STUFF
     //
-    
+
     public Image youDied;
+
+    [SerializeField] List<string> hintList = new List<string>();
 
     public TMP_Text hintText;
 
     public TMP_Text respawnText;
 
     private string hintString;
+    private string currentString;
 
     public Button respawnButton;
-
+    
     private void YouDied()
     {
-        int random = Random.Range(1, 6);
+        ShuffleHintList();
 
-        switch (random)
-        {
-            case 1:
-                hintString = "HINT [FLAMETHROWER]: Press [LEFT CLICK] to shoot fire! Press [RIGHT CLICK] to shoot an explosive barrel! Burn stuff!";
-                break;
-            
-            case 2:
-                hintString =
-                    "HINT [FLAMETHROWER]: Setting things alight is tight! But be careful! Play with fire and the consequences could be dire!";
-                break;
-            
-            case 3:
-                hintString = "HINT: Check your surroundings! Press [ADD MAP BUTTON HERE] to get a bird's eye view!";
-                break;
-            
-            case 4:
-                hintString = "HINT: HINT: BURN, BABY, BURN! AHAHAHA!";
-                break;
-            
-            case 5:
-                hintString = "HINT: Run over Plants with [WASD] to pick them up! Take them back to your Base and press [E] to deposit them!";
-                break;
-        }
-
-        hintText.text = hintString;
-        
         youDied.enabled = true;
         hintText.enabled = true;
         respawnText.enabled = true;
         respawnButton.interactable = true;
+    }
+
+    private void CreateHintsList()
+    {
+        hintList.Add(
+            "HINT [FLAMETHROWER]: Press [LEFT CLICK] to shoot fire! Press [RIGHT CLICK] to shoot an explosive barrel! Burn stuff!");
+
+        hintList.Add(
+            "HINT [FLAMETHROWER]: Setting things alight is tight! But be careful! Play with fire and the consequences could be dire!");
+
+        hintList.Add("HINT: Check your surroundings! Press [ADD MAP BUTTON HERE] to get a bird's eye view!");
+
+        hintList.Add("HINT: BURN, BABY, BURN! AHAHAHA!");
+
+        hintList.Add(
+            "HINT: Run over Plants with [WASD] to pick them up! Take them back to your Base and press [E] to deposit them!");
+        
+        hintList.Add("REFRESH LIST");
+    }
+
+    private void ShuffleHintList()
+    {
+        if (hintList.Count > 1)
+        {
+            int index = Random.Range(1, hintList.Count - 1);
+            string i = hintList[index];
+            currentString = i;
+            hintText.text = currentString;
+            hintList.RemoveAt(index);
+        }
+        
+        if (hintList.Count <= 1)
+        {
+            CreateHintsList();
+            ShuffleHintList();
+        }
     }
 
     private void OnDisable()
