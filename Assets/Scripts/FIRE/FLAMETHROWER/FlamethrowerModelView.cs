@@ -19,10 +19,10 @@ public class FlamethrowerModelView : MonoBehaviour
         Pulsing?.Invoke();
     }
 
-    public event Action YouDied;
+    public event Action Explode;
 
-    public void OnYouDied()
+    public void OnExplode()
     {
-        YouDied?.Invoke();
+        Explode?.Invoke();
     }
 }

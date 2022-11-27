@@ -247,7 +247,9 @@ namespace Lloyd
             flameModel = fire.GetComponentInChildren<FlameModel>();
             flameModel.SetFlameStats(fireDamage, 10, 2);
             
-            modelView.OnYouDied();
+            modelView.OnExplode();
+            
+            
             
             DestroyImmediate(this.gameObject);
         }

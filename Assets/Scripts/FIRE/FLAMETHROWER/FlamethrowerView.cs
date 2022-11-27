@@ -14,6 +14,8 @@ public class FlamethrowerView : MonoBehaviour
 
     public ParticleSystem Smoke;
 
+    public GameObject fragments;
+
     private void OnEnable()
     {
         modelView = GetComponentInParent<FlamethrowerModelView>();
@@ -22,7 +24,7 @@ public class FlamethrowerView : MonoBehaviour
 
         modelView.Pulsing += Pulsate;
         
-        modelView.YouDied += Explode;
+        modelView.Explode += Explode;
     }
 
     private void ChangeOverheat(float x)

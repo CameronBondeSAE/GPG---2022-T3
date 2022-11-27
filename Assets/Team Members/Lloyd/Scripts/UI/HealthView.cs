@@ -24,7 +24,6 @@ public class HealthView : ImmediateModeShapeDrawer
     [SerializeField] private float lineThickness;
     [SerializeField] private float intensity;
     [SerializeField] private float intensityMultiplier;
-    private float currentIntens;
     private float origIntens;
     private float endValue;
 
@@ -38,14 +37,18 @@ public class HealthView : ImmediateModeShapeDrawer
 
     public Vector3 healthPos;
     public Vector3 endPos;
+    private Vector3 origEndPos;
 
     private float HP;
 
     private bool pulsing;
 
+    private bool light;
+
 
     private void Start()
     {
+        light = true;
         //
         healthModel = GetComponentInParent<Health>();
         origIntens = intensity;
@@ -92,14 +95,16 @@ public class HealthView : ImmediateModeShapeDrawer
 
         if (HP <= 50)
         {
+            lerpWait = origWait / 2;
+            lerpDuration = origDuration / 2;
             pulsing = true;
             StartCoroutine(Pulsing());
             color = new Color(0.6f, .25f, 0.5f, 0.5f);
 
             if (HP <= 20)
             {
-                lerpWait = origWait / 2;
-                lerpDuration = origDuration / 2;
+                lerpWait = origWait / 4;
+                lerpDuration = origDuration / 4;
                 color = new Color(1f, 0.25f, 0.25f, 1f);
             }
         }
@@ -116,21 +121,24 @@ public class HealthView : ImmediateModeShapeDrawer
 //
     public override void DrawShapes(Camera cam)
     {
-        base.DrawShapes(cam);
-
-        using (Draw.Command(Camera.main))
+        if (light)
         {
-            // all immediate mode drawing should happen within these using-statements
+            base.DrawShapes(cam);
 
-            // Set up draw state
-            Draw.ResetAllDrawStates(); // ensure everything is set to their defaults
-            Draw.BlendMode = ShapesBlendMode.Additive;
-            Draw.Thickness = lineThickness;
-            Draw.LineGeometry = LineGeometry.Billboard;
-            Draw.ThicknessSpace = ThicknessSpace.Meters;
-            Draw.Color = color * intensity;
+            using (Draw.Command(Camera.main))
+            {
+                // all immediate mode drawing should happen within these using-statements
 
-            Draw.Line(healthPos, endPos, lineThickness);
+                // Set up draw state
+                Draw.ResetAllDrawStates(); // ensure everything is set to their defaults
+                Draw.BlendMode = ShapesBlendMode.Additive;
+                Draw.Thickness = lineThickness;
+                Draw.LineGeometry = LineGeometry.Billboard;
+                Draw.ThicknessSpace = ThicknessSpace.Meters;
+                Draw.Color = color * intensity;
+
+                Draw.Line(healthPos, endPos, lineThickness);
+            }
         }
     }
 
@@ -140,11 +148,9 @@ public class HealthView : ImmediateModeShapeDrawer
         {
             {
                 DOTween.To(() => intensity, x => intensity = x, intensityMultiplier, lerpDuration);
-                currentIntens = intensity;
                 yield return new WaitForSeconds(lerpWait);
 
-                DOTween.To(() => currentIntens, x => currentIntens = x, origIntens, lerpDuration);
-                intensity = origIntens;
+                DOTween.To(() => intensity, x => intensity = x, origIntens, lerpDuration);
                 yield return new WaitForSeconds(lerpWait);
             }
         }
@@ -196,19 +202,21 @@ public class HealthView : ImmediateModeShapeDrawer
 
     private void ShuffleHintList()
     {
+        if (hintList.Count <= 1)
+        {
+            hintList.Clear();
+            CreateHintsList();
+            ShuffleHintList();
+            return;
+        }
+        
         if (hintList.Count > 1)
         {
-            int index = Random.Range(1, hintList.Count - 1);
+            int index = Random.Range(0, hintList.Count - 1);
             string i = hintList[index];
             currentString = i;
             hintText.text = currentString;
             hintList.RemoveAt(index);
-        }
-        
-        if (hintList.Count <= 1)
-        {
-            CreateHintsList();
-            ShuffleHintList();
         }
     }
 
@@ -217,5 +225,7 @@ public class HealthView : ImmediateModeShapeDrawer
         healthModel.ChangeHealth -= ChangeHP;
         healthModel.YouDied -= YouDied;
         healthModel.Spawn -= Spawn;
+
+        light = false;
     }
 }
