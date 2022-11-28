@@ -5,24 +5,26 @@ using UnityEngine;
 
 public class FlamethrowerModelView : MonoBehaviour
 {
+    //change state by int
+    
+    //idle = 0
+    //idleheld = 1
+    //shoot = 2
+    //pulsating = 3
+    //exploded = 4
+    
+    public event Action<int> ChangeState;
+
+    public void OnChangeState(int x)
+    {
+        ChangeState?.Invoke(x);
+    }
+
+    //change current heat level
     public event Action<float> ChangeOverheat;
 
     public void OnChangeOverheat(float x)
     {
         ChangeOverheat?.Invoke(x);
-    }
-    
-    public event Action Pulsing;
-
-    public void OnPulsing()
-    {
-        Pulsing?.Invoke();
-    }
-
-    public event Action Explode;
-
-    public void OnExplode()
-    {
-        Explode?.Invoke();
     }
 }

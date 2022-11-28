@@ -10,7 +10,7 @@ public class FlameModel : MonoBehaviour, IHeatSource
     private float heat;
  
      //how much fuel it has to burn
-    private float fuel;
+    [SerializeField] private float fuel;
     
     //fire does more damage depending on proximity
     [SerializeField] private float radius;

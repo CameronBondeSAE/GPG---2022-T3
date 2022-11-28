@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class FireballView : MonoBehaviour
 {
-    private Animator _anim;
+    private Animator anim;
 
     private void OnEnable()
     {
-        _anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     public void Death()
     {
-                _anim.SetTrigger("End");
+        anim.SetTrigger("End");
     }
 }

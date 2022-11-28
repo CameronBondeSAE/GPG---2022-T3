@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BurnVictim_Test : MonoBehaviour, IFlame
+public class BurnVictim_Test : MonoBehaviour
 {
     [SerializeField] private float _maxHP;
     public float _HP;
@@ -67,12 +67,12 @@ public class BurnVictim_Test : MonoBehaviour, IFlame
 
     private void BurnAOE()
     { 
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _radius);
-        foreach (var hitCollider in hitColliders)
-        if (hitCollider.GetComponent<IFlame>() != null)
+        /*Collider[] hitColliders = Physics.OverlapSphere(transform.position, _radius);
+        foreach (var hitCollider in hitColliders)*/
+        /*if (hitCollider.GetComponent<IFlame>() != null)
         {
             hitCollider.GetComponent<IFlame>().ChangeHeat(_fireDamage);
-        }
+        }*/
 
     }
 

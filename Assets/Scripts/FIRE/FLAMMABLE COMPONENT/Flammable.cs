@@ -8,10 +8,10 @@ public class Flammable : MonoBehaviour, IHeatSource
 {
     //Flammable Component assumes gameObj also has a HealthComponent attached
     private Health healthComp;
-
+    
+public GameObject flameModelPrefab;
     private FlameModel flameModel;
-    public GameObject flamePrefab;
-
+    
     //determines how much is inflicted through ChangeHeat
     //does this go here? does flamethrower hold this info? do different objects' fire hurt more? etc
     [Header("Fire Damage")] [SerializeField]
@@ -26,7 +26,7 @@ public class Flammable : MonoBehaviour, IHeatSource
     //this is where "On Fire" animations, sounds, logic, etc are activated
     //spawns Flame prefab
     [SerializeField]
-    private float heatThreshold;
+    public float heatThreshold;
 
     //some objects burn faster than others
     //tracked with this float, multiplies ChangeHeat
@@ -68,12 +68,12 @@ public class Flammable : MonoBehaviour, IHeatSource
             return;
         }
 
-        SetOnFireFunction();
+        OnSetOnFire();
         heatLevel += fireDamage;
 
-        if (flamePrefab != null)
+        if (flameModelPrefab != null)
         {
-            GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
+            GameObject fire = Instantiate(flameModelPrefab, transform.position, Quaternion.identity) as GameObject;
             fire.transform.SetParent(transform);
             flameModel = fire.GetComponent<FlameModel>();
             if (flameModel != null)
@@ -141,7 +141,7 @@ public class Flammable : MonoBehaviour, IHeatSource
 
     public event Action SetOnFireEvent;
 
-    public void SetOnFireFunction()
+    public void OnSetOnFire()
     {
         SetOnFireEvent?.Invoke();
     }

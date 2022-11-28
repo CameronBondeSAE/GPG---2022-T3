@@ -6,44 +6,65 @@ using UnityEngine;
 using Lloyd;
 public class FlamethrowerView : MonoBehaviour
 {
+    public FlamethrowerModel model;
+    
     public FlamethrowerModelView modelView;
-
-    private float overheatLevel;
+    
+    private float countDownTimer;
 
     public GameObject flamethrower;
 
     public ParticleSystem Smoke;
 
+    public GameObject smokeObj;
+
     public GameObject fragments;
 
     private void OnEnable()
     {
+        flamethrower = gameObject;
+        
+        model = GetComponentInParent<FlamethrowerModel>();
+        countDownTimer = model.countDownTimer;
+        
         modelView = GetComponentInParent<FlamethrowerModelView>();
 
-        modelView.ChangeOverheat += ChangeOverheat;
-
-        modelView.Pulsing += Pulsate;
-        
-        modelView.Explode += Explode;
+        modelView.ChangeState += ChangeState;
     }
 
-    private void ChangeOverheat(float x)
+    private void ChangeState(int x)
     {
-        overheatLevel = x;
-        //Debug.Log(overheatLevel);
+        switch (x)
+        {
+            case 0:
+
+                break;
+            
+            case 1:
+
+                break;
+            
+            case 2:
+                Pulsate(countDownTimer);
+                break;
+            
+            case 3:
+                Explode();
+                break;
+        }
     }
 
-    private void Pulsate()
+    private void Pulsate(float x)
     {
         Smoke.Play();
         
-        flamethrower.transform.DOShakeScale(3f,
-            new Vector3(.1f,.1f,.1f), 5,5f,false);
+        flamethrower.transform.DOShakeScale(x,
+            new Vector3(.1f,.1f,.1f), 10,5f,false);
     }
 
     private void Explode()
     {
-        //Debug.Log("KABOOM");
-        //explode
+            Smoke.Stop();
+            Instantiate(fragments, transform.position, Quaternion.identity);
     }
 }

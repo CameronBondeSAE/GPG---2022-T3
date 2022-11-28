@@ -11,8 +11,8 @@ namespace Lloyd
     public class FlamethrowerModel : NetworkBehaviour, IPickupable, IInteractable, IHeatSource
     {
         [Header("FLAME SETTINGS [DAMAGE / SIZE / FIRE RATE]")] [SerializeField]
-        private float fireDamage;
-
+        public float fireDamage;
+        
         [SerializeField]
         public enum FlamethrowerType
         {
@@ -23,33 +23,23 @@ namespace Lloyd
 
         private FlamethrowerType myType;
 
-        [Header("FLAME PREFAB")] private GameObject firePrefab;
+        [Header("FLAME PREFAB")] public GameObject fireball;
 
-        private Rigidbody firePrefabRb;
+        [SerializeField] public float force;
 
-        private Rigidbody firePointRb;
-        private Vector3 firePointPos;
-
-        private Coroutine shootCo;
-
-        [SerializeField] private float force;
-
-        public GameObject fireball;
-
-        [SerializeField] private float fireRate;
+        [SerializeField] public float fireRate;
 
         [Header("ALT FIRE")] public GameObject barrel;
 
         [SerializeField] private int altAmmo;
 
-        [SerializeField] private float altForce;
+        [SerializeField] public float altForce;
 
-        [SerializeField] private float altFireRate;
-
-        [SerializeField] private float wobbleMultiplier;
-        [SerializeField] private float xScale;
+        [SerializeField] public float altFireRate;
 
         private Flammable flammable;
+
+        [SerializeField] public float countDownTimer;
 
         public bool isHeld { get; set; }
 
@@ -77,135 +67,73 @@ namespace Lloyd
         private bool canShoot;
 
         [Header("OVERHEAT STATS")] [SerializeField]
-        private float overHeatRate;
+        public float overHeatRate;
 
-        [SerializeField] private float overHeatPoint;
+        [SerializeField] public float overHeatPoint;
         public float overHeatLevel;
 
-        [SerializeField] private float explodeTimer;
-        
-        //
+        public bool overheating;
 
-        private FlameModel flameModel;
+        [SerializeField] public float explodeTimer;
 
-        public GameObject flamePrefab;
+        public bool shooting=false;
 
-        private bool shooting;
+        public bool altShooting=false;
 
         public FlamethrowerModelView modelView;
         
         private void OnEnable()
         {
-            //modelView = GetComponentInChildren<FlamethrowerModelView>(); 
+            modelView = GetComponentInChildren<FlamethrowerModelView>(); 
 
             isHeld = true;
 
             canShoot = true;
-
-            firePointRb = GetComponentInChildren<Rigidbody>();
             
-            GetComponent<NetworkObject>().Spawn();
-            
-        }
+           // GetComponent<NetworkObject>().Spawn();
+            }
 
         private void FixedUpdate()
         {
-            if (shooting)
-            {
-                Wobble();
-            }
-
             HandleOverheat();
-
-            //Debug.Log(fireRate);
         }
 
         public void Interact(GameObject interactor)
         {
+            if(isHeld)
                 ShootFire();
-        }
 
-        //FLAMETHROWER 
-        //
+            else
+                ShootUntilDead();
+        }
+        
+        public void ShootUntilDead()
+        {
+            shooting = !shooting;
+            if(shooting)
+                modelView.OnChangeState(1);
+            
+            else modelView.OnChangeState(0);
+        }
 
         public void ShootFire()
         {
-                if (canShoot && isHeld)
-                    StartCoroutine(SpitFire());
-
-                else if (canShoot && !isHeld)
-                    StartCoroutine(ShootTilDead());
-        }
-        private IEnumerator SpitFire()
-        {
-            shooting = true;
-            canShoot = false;
-
-            firePointPos = firePointRb.transform.position;
-            Vector3 targetDir = firePointPos - transform.position;
-
-            GameObject _fire = Instantiate(fireball, transform.position, Quaternion.identity) as GameObject;
-            firePrefabRb = _fire.GetComponent<Rigidbody>();
-            firePrefabRb.AddForce(targetDir * force, ForceMode.Impulse);
-
-            yield return new WaitForSecondsRealtime(fireRate);
+            shooting = !shooting;
+            if(shooting)
+            modelView.OnChangeState(1);
             
-            shooting = false;
-            canShoot = true;
+            else modelView.OnChangeState(0);
         }
 
-        public void ShootUntilDead()
-        {
-            StartCoroutine(ShootTilDead());
-        }
-
-        private IEnumerator ShootTilDead()
-        {
-                StartCoroutine(SpitFire());
-                yield return new WaitUntil(() => canShoot);
-                StartCoroutine(ShootTilDead());
-        }
-
-        //ALT FIRE GOES HERE
         public void ShootAltFire()
         {
-            if (canShoot && altAmmo > 0)
-                StartCoroutine(AltFire());
-        }
-
-        private IEnumerator AltFire()
-        {
-            shooting = true;
-            canShoot = false;
-
-            firePointPos = firePointRb.transform.position;
-            Vector3 targetDir = firePointPos - transform.position;
-
-            GameObject _barrel = Instantiate(barrel, transform.position, Quaternion.identity) as GameObject;
-            GameObject _fire = Instantiate(fireball, transform.position, Quaternion.identity) as GameObject;
-            _fire.transform.SetParent(_barrel.transform);
-            firePrefabRb = _barrel.GetComponent<Rigidbody>();
-            firePrefabRb.AddForce(targetDir * altForce, ForceMode.Impulse);
-            
-            /*
-
-            Oscar.ExplosiveIdleState explodeState = _barrel.GetComponent<Oscar.ExplosiveIdleState>();
-            explodeState.SetOnFire();
-            
-            if (_barrel.GetComponent<IFlammable>() != null)
+            altShooting = !altShooting;
+            if (altShooting && altAmmo > 0)
             {
-                Debug.Log("pew");
-                _barrel.GetComponent<IFlammable>().ChangeHeat(this, fireDamage);
+                modelView.OnChangeState(1);
+                altAmmo--;
             }
-            flammable = _barrel.GetComponent<Flammable>();
-            flammable.SetOnFireFunction();*/
-
-            altAmmo--;
-
-            yield return new WaitForSecondsRealtime(altFireRate);
-            
-            shooting = false;
-            canShoot = true;
+            else modelView.OnChangeState(0);
         }
 
         //FLAMETHROWER WILL OVERHEAT AND EXPLODE IF FIRED TOO MUCH
@@ -214,7 +142,7 @@ namespace Lloyd
         {
             if (!shooting)
             {
-                overHeatLevel--;
+                overHeatLevel -= 1 * Time.deltaTime;
                 if (overHeatLevel <= 0)
                     overHeatLevel = 0;
             }
@@ -227,32 +155,11 @@ namespace Lloyd
             modelView.OnChangeOverheat(overHeatLevel);
 
             if (overHeatLevel >= overHeatPoint)
-                StartCoroutine(Explode());
+            {
+                DestroySelf();
+            }
         }
-
-        public void Kill()
-        {
-            StartCoroutine(Explode());
-        }
-
-        private IEnumerator Explode()
-        {
-            canShoot = false;
-            //tween, wait and explode
-            modelView.OnPulsing();
-            
-            yield return new WaitForSecondsRealtime(explodeTimer);
-            
-            GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
-            flameModel = fire.GetComponentInChildren<FlameModel>();
-            flameModel.SetFlameStats(fireDamage, 10, 2);
-            
-            modelView.OnExplode();
-            
-            
-            
-            DestroyImmediate(this.gameObject);
-        }
+        
 
         //IPICKUP MANDATORY(S)
 
@@ -268,19 +175,8 @@ namespace Lloyd
 
         public void DestroySelf()
         {
-            StartCoroutine(Explode());
-        }
-
-        //PERLIN WOBBLE EXPERIMENT
-        private void Wobble()
-        {
-            float height = wobbleMultiplier * Mathf.PerlinNoise(Time.time * xScale, 0.0f);
-
-            Vector3 _angleVector = new Vector3(0, height, 0);
-
-            currentRotation.eulerAngles = _angleVector;
-
-            firePointRb.MoveRotation(Quaternion.AngleAxis(height, _angleVector));
+            overheating = true;
+            modelView.OnChangeState(2);
         }
     }
 }

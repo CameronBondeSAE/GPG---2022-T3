@@ -130,9 +130,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f6fa78e1897b542871d65aafe3d3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 0}
   modelView: {fileID: 4110415233479144535}
   flamethrower: {fileID: 1698010616495462052, guid: 6f664e5626dfbab4e8cc36c407cc9cba, type: 3}
   Smoke: {fileID: 682314086895993652}
+  smokeObj: {fileID: 0}
+  fragments: {fileID: 0}
 --- !u!1 &1198204029416104099
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,20 +268,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireDamage: 1
+  firePointPos: {x: 0, y: 0, z: 0}
   force: 100
-  fireball: {fileID: 2097233744307224593, guid: 68d82a5d303fb164ea28c9a6a7be4d4c, type: 3}
   fireRate: 0.02
   barrel: {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
   altAmmo: 3
   altForce: 0
   altFireRate: 3
-  wobbleMultiplier: 0
-  xScale: 0
+  countDownTimer: 0
   overHeatRate: 1
   overHeatPoint: 250
   overHeatLevel: 0
+  overheating: 0
   explodeTimer: 1
-  flamePrefab: {fileID: 4150792052017500699, guid: bd7cf4b4ee68a3841804182734b86b41, type: 3}
+  shooting: 0
+  altShooting: 0
   modelView: {fileID: 4110415233479144535}
 --- !u!135 &2196019229650576461
 SphereCollider:

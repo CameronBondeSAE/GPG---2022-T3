@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2475393479294650671}
   - component: {fileID: 572816804018148213}
   - component: {fileID: 6638503750501149991}
+  - component: {fileID: 9078667241866110530}
   m_Layer: 0
   m_Name: SteamSystem
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1698010616495462052}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.6929628, y: 1.9849744, z: 0.9384196}
+  m_LocalScale: {x: 1.9407955, y: 1.7305841, z: 0.9101289}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4814,3 +4815,21 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1818360610 &9078667241866110530
+ScaleConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698010616495462052}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_ScaleAtRest: {x: 1.9407955, y: 1.7305841, z: 0.9101289}
+  m_ScaleOffset: {x: 1, y: 1, z: 1}
+  m_AffectScalingX: 1
+  m_AffectScalingY: 1
+  m_AffectScalingZ: 1
+  m_Active: 1
+  m_IsLocked: 0
+  m_Sources: []

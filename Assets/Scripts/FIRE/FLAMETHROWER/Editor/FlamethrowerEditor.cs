@@ -29,7 +29,7 @@ namespace Lloyd
             
             if (GUILayout.Button("Explode"))
             {
-                (target as Lloyd.FlamethrowerModel)?.Kill();
+                (target as Lloyd.FlamethrowerModel)?.DestroySelf();
             }
         }
     }
