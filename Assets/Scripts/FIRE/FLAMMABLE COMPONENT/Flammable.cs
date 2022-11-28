@@ -97,8 +97,9 @@ public GameObject flameModelPrefab;
             flameModel.SetFlameStats(0, 0, 0);
             Destroy(fire);
         }
-
+        
         fireList.Clear();
+        Cool();
     }
 
 
@@ -134,9 +135,12 @@ public GameObject flameModelPrefab;
         }
     }
 
+    public event Action CoolDown;
+    
     private void Cool()
     {
         ChangeHeat(this, -coolRate * .2f);
+        CoolDown?.Invoke();
     }
 
     public event Action SetOnFireEvent;

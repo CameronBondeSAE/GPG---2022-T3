@@ -185,7 +185,7 @@ Transform:
   - {fileID: 6522943974831568777}
   - {fileID: 8256449087222599737}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6522943975982661913
 MeshFilter:
@@ -309,6 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateManager: {fileID: 8134697189783218653}
   explodeState: {fileID: 6661313131583358677}
+  idleState: {fileID: 7665765543256430508}
   countDown: 3
 --- !u!114 &6661313131583358677
 MonoBehaviour:

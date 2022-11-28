@@ -46,9 +46,9 @@ namespace Lloyd
         {
             base.OnInspectorGUI();
 
-            if (GUILayout.Button("Burn"))
+            //if (GUILayout.Button("Burn"))
             {
-               // (target as Flammable)?.ChangeHeat(IHeatSource x, 25f);
+               //(target as Flammable)?.ChangeHeat(IHeatSource x, 25f);
             }
             
             if (GUILayout.Button("Extinguish"))
