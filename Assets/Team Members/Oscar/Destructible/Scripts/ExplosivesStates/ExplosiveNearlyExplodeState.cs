@@ -8,11 +8,20 @@ namespace Oscar
     {
         public Oscar.StateManager stateManager;
         public MonoBehaviour explodeState;
+        public MonoBehaviour idleState;
 
         public float countDown;
         public event Action AlmostExplode;
+        
+        private void OnEnable()
+        {
+            stateManager.flammable.CoolDown += FireOff;
+            
+            StartCoroutine(ExplodeCountdown());
+        }
+        
         //used IEnumerator so it will start on start but will wait a few seconds before continuing.
-        IEnumerator Start()
+        IEnumerator ExplodeCountdown()
         {
             AlmostExplode?.Invoke();
 
@@ -20,6 +29,10 @@ namespace Oscar
             stateManager.ChangeState(explodeState);
         }
         
+        void FireOff()
+        {
+            stateManager.ChangeState(idleState);
+        }
     }
 }
 

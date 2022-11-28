@@ -7,9 +7,12 @@ namespace Oscar
 {
     public class StateManager : MonoBehaviour
     {
+        //states for the switching of states
         public MonoBehaviour startingState;
         public MonoBehaviour currentState;
-        
+
+        public Flammable flammable;
+
         // Start is called before the first frame update
         void Start()
         {
