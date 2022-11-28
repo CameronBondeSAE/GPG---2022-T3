@@ -17,7 +17,7 @@ using Random = System.Random;
 /// </summary>
 public class Interact : NetworkBehaviour
 {
-    public NetworkObject heldObject;
+    public FlamethrowerModel heldObject;
     public Transform equippedMountPos;
     [Serialize] public IPickupable pickupableNearby;
     public int storedItems = 5;
@@ -30,13 +30,13 @@ public class Interact : NetworkBehaviour
     public NetworkObject flamethrower;
     public NetworkObject plant;
 
-    // private void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.LeftAlt))
-    //     {
-    //         RequestUseItemServerRpc();
-    //     }
-    // }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            RequestDropItemServerRpc();
+        }
+    }
 
     [ServerRpc]
     public void RequestPickUpItemServerRpc()
@@ -45,7 +45,7 @@ public class Interact : NetworkBehaviour
         {
             if (equippedItems < equippedMax)
             {
-                equippedItems++;
+                
                 pickupableNearby.PickedUp(gameObject);
                 // pickupableNearby.DestroySelf();
 
@@ -56,7 +56,9 @@ public class Interact : NetworkBehaviour
 	                // monoBehaviour.transform.parent = equippedMountPos;
 	                Debug.Log("TrySetParent = "+ monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false));
                     monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,0);
-                    heldObject = monoBehaviour as NetworkObject;
+                    monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
+                    heldObject = GetComponentInChildren<FlamethrowerModel>();
+                    equippedItems++;
                 }
                 pickupableNearby = null;
             }
@@ -67,30 +69,25 @@ public class Interact : NetworkBehaviour
     public void RequestDropItemServerRpc()
     {
         //TODO: need to somehow DROP item
-        
-        // if (equippedItems >= equippedMax)
-        // {
-        //     equippedItems--;
-        //     Vector3 myPos = transform.position;
-        //     NetworkObject go = Instantiate(flamethrower);
-        //     go.transform.position =
-        //         myPos - transform.forward;
-        //     go.Spawn();
-        // }
-        
-        // Vector3 dropPoint = transform.position + transform.forward * 2;
-        // if (storedItems > 0 && heldObject != null)
-        // {
-        //     storedItems--;
-        //     heldObject.GetComponent<ItemBase>().GetDropPointClientRpc(dropPoint);
-        //     heldObject.GetComponent<ItemBase>().GetDroppedClientRpc();
-        // }
+
+        if (heldObject != null)
+        {
+            Destroy(heldObject.gameObject);
+            Vector3 myPos = transform.position;
+            NetworkObject go = Instantiate(flamethrower);
+            go.transform.position = myPos + transform.forward;
+            go.transform.rotation = transform.rotation;
+            //go.Spawn();
+            equippedItems = 0;
+            
+        }
     }
 
     [ServerRpc]
     public void RequestUseItemServerRpc()
     {
-        heldObject.GetComponent<FlamethrowerModel>().Interact(this.gameObject);
+        FlamethrowerModel flamethrower = heldObject.GetComponent<FlamethrowerModel>();
+        flamethrower.Interact(this.gameObject);
     }
     
     public void DeathItemRespawn()
