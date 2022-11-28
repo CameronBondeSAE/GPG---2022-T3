@@ -73,7 +73,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         while (shooting)
         {
-            firePointPos = transform.forward*5;
+            firePointPos = transform.position + transform.forward * 5;
 
             Vector3 targetDir = firePointPos - transform.position;
 
@@ -90,6 +90,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         while (altShooting)
         {
+            firePointPos = transform.position + transform.forward * 5;
+            
             Vector3 targetDir = firePointPos - transform.position;
 
             GameObject _barrel = Instantiate(barrel, transform.position, Quaternion.identity) as GameObject;

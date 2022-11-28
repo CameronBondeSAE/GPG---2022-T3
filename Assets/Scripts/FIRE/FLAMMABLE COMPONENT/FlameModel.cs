@@ -54,23 +54,28 @@ public class FlameModel : MonoBehaviour, IHeatSource
 
     private void CastFire()
     {
-        //change this thru HeatComponent when spawning
+        center = transform.position;
+
+        //would it be more efficient to run two overlap spheres or calculate dist with one sphere?
+        //
+        
         Collider[] hitColliders = Physics.OverlapSphere(center, radius, 9999999, QueryTriggerInteraction.Collide);
         foreach (var hitCollider in hitColliders)
         {
+            //GameObject fire = Instantiate(_fire01Prefab, transform.position, Quaternion.identity) as GameObject;
+
             if (hitCollider.GetComponent<Flammable>() != null)
             {
-                Flammable[] flammables = hitCollider.GetComponents<Flammable>();
-                foreach (Flammable item in flammables)
+                hitCollider.GetComponent<Flammable>().ChangeHeat(this, heat);
+
+                Vector3 burnVictim = hitCollider.transform.position;
+
+                distance = Vector3.Distance(center, burnVictim);
+                if (distance > minDistance)
                 {
-                    flammable = item.GetComponent<Flammable>();
-                    distance = Vector3.Distance(center, burnVictim);
-                    if (distance > minDistance)
-                    {
-                        flammable.ChangeHeat(myself, heat * proximityMultiplier);
-                    }
-                    flammable.ChangeHeat(myself, heat);
+                    hitCollider.GetComponent<Flammable>().ChangeHeat(this, heat * proximityMultiplier);
                 }
+                transform.SetParent(hitCollider.transform);
             }
         }
     }
@@ -79,8 +84,8 @@ public class FlameModel : MonoBehaviour, IHeatSource
     {
         if (fuel > 0 && radius > 0)
         {
-            fuel -= 0.2f;
-            radius -= 0.2f;
+            fuel -= 1 * Time.deltaTime;
+            radius -= 1 * Time.deltaTime;
         }
         else if (fuel <= 0)
         {
