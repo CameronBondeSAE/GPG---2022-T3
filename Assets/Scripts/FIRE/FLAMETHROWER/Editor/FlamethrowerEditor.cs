@@ -16,6 +16,11 @@ namespace Lloyd
             {
                 (target as Lloyd.FlamethrowerModel)?.ShootFire();
             }
+
+            if (GUILayout.Button("Spray Water"))
+            {
+                (target as Lloyd.FlamethrowerModel)?.SprayWater();
+            }
             
             if (GUILayout.Button("Shoot AltFire"))
             {

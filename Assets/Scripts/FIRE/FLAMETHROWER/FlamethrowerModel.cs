@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tanks;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,6 +25,8 @@ namespace Lloyd
         private FlamethrowerType myType;
 
         [Header("FLAME PREFAB")] public GameObject fireball;
+
+        [Header("WaterPrefab")] public GameObject waterball;
 
         [SerializeField] public float force;
 
@@ -78,6 +81,8 @@ namespace Lloyd
 
         public bool shooting=false;
 
+        public bool waterSpraying = false;
+
         public bool altShooting=false;
 
         public FlamethrowerModelView modelView;
@@ -125,6 +130,19 @@ namespace Lloyd
             else modelView.OnChangeState(0);
         }
 
+        public void SprayWater()
+        {
+            waterSpraying = !waterSpraying;
+            if (waterSpraying)
+            {
+                modelView.OnChangeState(1);
+            }
+            else
+            {
+                modelView.OnChangeState(0);
+            }
+        }
+
         public void ShootAltFire()
         {
             altShooting = !altShooting;
@@ -140,7 +158,7 @@ namespace Lloyd
 
         private void HandleOverheat()
         {
-            if (!shooting)
+            if (!shooting && !waterSpraying)
             {
                 overHeatLevel -= 1 * Time.deltaTime;
                 if (overHeatLevel <= 0)
@@ -157,6 +175,11 @@ namespace Lloyd
             if (overHeatLevel >= overHeatPoint)
             {
                 DestroySelf();
+            }
+
+            if (waterSpraying)
+            {
+                overHeatLevel -= overHeatRate * Time.deltaTime;
             }
         }
         
