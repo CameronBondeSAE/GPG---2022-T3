@@ -13,6 +13,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
     public GameObject fireball;
 
+    public GameObject waterball;
+
     public GameObject barrel;
 
     private Rigidbody rb;
@@ -31,6 +33,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
     private bool altShooting;
 
+    private bool waterSpraying;
+
     private bool isHeld;
 
     private void OnEnable()
@@ -38,6 +42,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
         model = GetComponent<FlamethrowerModel>();
 
         fireball = model.fireball;
+        waterball = model.waterball;
         barrel = model.barrel;
 
         force = model.force;
@@ -48,16 +53,18 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
         shooting = model.shooting;
         altShooting = model.altShooting;
+        waterSpraying = model.waterSpraying;
 
         isHeld = model.isHeld;
 
-        ShootFire();
+        Shoot();
     }
+    
+    /// <summary>
+    /// Flamethrower and Water Cannon
+    /// </summary>
 
-    //FLAMETHROWER 
-    //
-
-    public void ShootFire()
+    public void Shoot()
     {
         if (isHeld && shooting)
             StartCoroutine(SpitFire());
@@ -67,6 +74,11 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
         else if (!isHeld)
             ShootTilDead();
+
+        else if (isHeld && waterSpraying)
+        {
+            StartCoroutine(SprayWater());
+        }
     }
 
     private IEnumerator SpitFire()
@@ -112,6 +124,23 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
         }
     }
 
+    private IEnumerator SprayWater()
+    {
+        while (waterSpraying)
+        {
+            firePointPos = transform.position + transform.forward * 5;
+    
+            Vector3 targetDir = firePointPos - transform.position;
+    
+            GameObject waterPrafab = Instantiate(waterball, transform.position, Quaternion.identity) as GameObject;
+            rb = waterPrafab.GetComponent<Rigidbody>();
+            rb.AddForce(targetDir * force, ForceMode.Impulse);
+    
+            yield return new WaitForSeconds(fireRate);
+        }
+        
+    }
+
     private void ShootTilDead()
     {
         shooting = true;
@@ -122,5 +151,6 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         shooting = false;
         altShooting = false;
+        waterSpraying = false;
     }
 }
