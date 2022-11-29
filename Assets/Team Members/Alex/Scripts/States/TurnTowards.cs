@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NodeCanvas.Tasks.Actions;
 using UnityEngine;
 
 namespace Alex
@@ -48,6 +49,7 @@ namespace Alex
                 if (targetTransform)
                 {
                     targetPosition = targetTransform.position;
+                    
                 }
                 
                 Vector3 targetDir = targetPosition - transform.position;
@@ -59,7 +61,7 @@ namespace Alex
                 if(Mathf.Abs(angle) > slowDownAngleThreshhold)
                     rb.AddRelativeForce(0, 0,  -Mathf.Abs(angle * slowingForce));
                 rb.AddRelativeTorque(0, angle * turnSpeed, 0);
-               
+                
         }
     }
 }

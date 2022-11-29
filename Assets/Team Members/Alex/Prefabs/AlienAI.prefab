@@ -299,6 +299,7 @@ MonoBehaviour:
   directionAndDistance: {x: 0, y: 0, z: 0}
   movement: {fileID: 1794423253392461862}
   justDirection: {x: 0, y: 0, z: 0}
+  vision: {fileID: -478265464831815864}
 --- !u!114 &5772701356384670382
 MonoBehaviour:
   m_ObjectHideFlags: 0
