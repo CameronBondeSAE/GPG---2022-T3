@@ -6,6 +6,7 @@ using Kevin;
 using Lloyd;
 using Ollie;
 using Oscar;
+using Unity.Mathematics;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,7 +17,8 @@ namespace Luke
 public class GameManager : NetworkBehaviour
 {
 	public static GameManager singleton;
-
+	public Health health;
+	
     public event Action OnGameStart;
 	public event Action OnGameEnd;
 	public event Action OnGameWaveTimer;
@@ -41,7 +43,8 @@ public class GameManager : NetworkBehaviour
 	public int playersAlive;
 	public int playersInGame;
 	public int amountOfResources;
-
+	public int amountOfAIInGame;
+	public int maxAI;
 	public bool zoomedIn;
 	
 	public NetworkManager myLocalClient;
@@ -66,8 +69,12 @@ public class GameManager : NetworkBehaviour
 	{
 		if (IsServer)
 		{
-			/*GameObject go = Instantiate(aiPrefab);
-			go.GetComponent<NetworkObject>().Spawn();*/
+			/*for (int i = amountOfAIInGame; i < maxAI; i++)
+			{
+				//should i change the ai spawner to be in the game manager or leave it for each map generation?
+				//The position needs to be pulled from the original spawner function
+				NetworkInstantiate(aiPrefab,new Vector3(1,1,1),quaternion.identity);
+			}*/
 			InvokeOnGameWaveTimerClientRPC();
 		}
 	}
@@ -79,6 +86,20 @@ public class GameManager : NetworkBehaviour
 		OnGameWaveTimer?.Invoke();
 	}
 
+	//replace this spawn function with the spawn function called at level load?
+	private void SpawnAI()
+	{
+		/*for (int i = amountOfAIInGame; i < maxAI; i++)
+		{
+			NetworkInstantiate(aiPrefab,new Vector3(1,1,1),quaternion.identity);
+		}*/
+	}
+
+	private void AIDied()
+	{
+		amountOfAIInGame--;
+	}
+	
 	[ClientRpc]
 	private void SetCameraTargetClientRpc()
 	{
@@ -179,13 +200,14 @@ public class GameManager : NetworkBehaviour
     void Awake()
 	{
 		singleton = this;
-    }
+	}
     
     private void Start()
     {
 	    NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
+	    //health.YouDied += AIDied;
     }
-    
+
     public void NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation)
     {
 	    if (!IsServer) return;
