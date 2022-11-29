@@ -12,10 +12,12 @@ namespace Oscar
 
         public float countDown;
         public event Action AlmostExplode;
-        
+
+        private Flammable flammable;
         private void OnEnable()
         {
-            stateManager.flammable.CoolDown += FireOff;
+            flammable = GetComponent<Flammable>();
+            flammable.CoolDown += FireOff;
             
             StartCoroutine(ExplodeCountdown());
         }
