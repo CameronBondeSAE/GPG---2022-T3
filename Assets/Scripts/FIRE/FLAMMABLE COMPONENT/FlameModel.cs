@@ -87,8 +87,13 @@ public class FlameModel : MonoBehaviour, IHeatSource
             fuel -= 1 * Time.deltaTime;
             radius -= 1 * Time.deltaTime;
         }
+
+        if (radius <= 0)
+            radius = 0;
+
         else if (fuel <= 0)
         {
+            fuel = 0;
             FlameOut();
         }
     }

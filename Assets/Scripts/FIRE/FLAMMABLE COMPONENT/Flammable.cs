@@ -9,7 +9,7 @@ public class Flammable : MonoBehaviour, IHeatSource
     //Flammable Component assumes gameObj also has a HealthComponent attached
     private Health healthComp;
     
-public GameObject flameModelPrefab;
+    public GameObject flameModelPrefab;
     private FlameModel flameModel;
     
     //determines how much is inflicted through ChangeHeat
@@ -99,7 +99,6 @@ public GameObject flameModelPrefab;
         }
         
         fireList.Clear();
-        Cool();
     }
 
 
@@ -136,10 +135,14 @@ public GameObject flameModelPrefab;
     }
 
     public event Action CoolDown;
+    public void OnCoolDown()
+    {
+        CoolDown?.Invoke();
+    }
     
     private void Cool()
     {
-        ChangeHeat(this, -coolRate * .2f);
+        ChangeHeat(this, -coolRate * Time.deltaTime);
         CoolDown?.Invoke();
     }
 
