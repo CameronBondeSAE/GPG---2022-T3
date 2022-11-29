@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using Marcus;
 using UnityEngine;
 
@@ -19,6 +21,7 @@ public class PlantView : MonoBehaviour
     private Color burnColour = Color.black;
 
     private bool burning;
+    private Tweener curTween;
 
     private void OnEnable()
     {
@@ -31,7 +34,7 @@ public class PlantView : MonoBehaviour
     void Start()
     {
         body = GetComponent<Renderer>().material;
-        body.DOColor(spreadColour, 5f);
+        curTween = body.DOColor(spreadColour, 5f);
     }
 
     // Update is called once per frame
@@ -49,17 +52,20 @@ public class PlantView : MonoBehaviour
 
     void Matured(float duration)
     {
-       body.DOColor(matureColour, duration);
+       curTween = body.DOColor(matureColour, duration);
     }
 
     void Dying(float duration)
     {
-       body.DOColor(deathColour, duration);
+        curTween = body.DOColor(deathColour, duration);
     }
 
     void Burning()
     {
         burning = true;
+        curTween.Kill();
+        
         body.DOColor(burnColour, 3f);
     }
 }
+   
