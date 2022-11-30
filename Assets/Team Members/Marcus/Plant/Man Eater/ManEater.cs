@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Marcus;
+using NodeCanvas.Tasks.Actions;
 using UnityEngine;
 
 public class ManEater : MonoBehaviour, IFlammable
@@ -9,7 +10,7 @@ public class ManEater : MonoBehaviour, IFlammable
     public ColissionManager colissionManager;
     public Flammable fireness;
 
-    private List<GameObject> plants;
+    [SerializeField] private List<GameObject> plants;
     private float checkTimer = 1f;
     
     private void OnEnable()
@@ -41,11 +42,11 @@ public class ManEater : MonoBehaviour, IFlammable
 
     void CheckListForNull()
     {
-        foreach (GameObject item in plants)
+        for (int i = 0; i < plants.Count; i++)
         {
-            if (item == null)
+            if (plants[i] == null)
             {
-                plants.Remove(item);
+                plants.Remove(plants[i]);
             }
         }
     }
