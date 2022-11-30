@@ -20,10 +20,28 @@ namespace Alex
         Coroutine co;
         public bool debugDraw = false;
         public bool debugScan = false;
+        private PerlinCube_Model perlinCubeModel;
  
        
         
         void Awake()
+        {
+            ScanWorld();
+        }
+
+        public void Update()
+        {
+            //perlinCubeModel.wallDestruction += ScanWorld;
+        }
+        
+
+        public void ActivateCoroutine(Vector3Int _startPos, Vector3Int _endPos)
+        {
+            if (co != null) StopCoroutine(co);
+            co = StartCoroutine(FindPath(_startPos, _endPos));
+        }
+
+        public void ScanWorld()
         {
             if (debugScan == true)
             {
@@ -33,12 +51,6 @@ namespace Alex
             closedNodes = new List<Node>();
         }
 
-        public void ActivateCoroutine(Vector3Int _startPos, Vector3Int _endPos)
-        {
-            if (co != null) StopCoroutine(co);
-            co = StartCoroutine(FindPath(_startPos, _endPos));
-        }
-        
         public IEnumerator FindPath(Vector3Int startPos, Vector3Int endPos)
         {
             openNodes.Clear();

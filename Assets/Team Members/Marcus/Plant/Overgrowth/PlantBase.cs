@@ -8,6 +8,8 @@ namespace Marcus
 {
     public class PlantBase : MonoBehaviour, IFlammable, IResource
     {
+        public MonoBehaviour burnState;
+        
         public Flammable fireness;
         public Health health;
 
@@ -41,6 +43,7 @@ namespace Marcus
         {
             // Fire tween event on view
             BurningEvent?.Invoke();
+            GetComponent<StateManager>().ChangeState(burnState);
         }
 
         void Die()

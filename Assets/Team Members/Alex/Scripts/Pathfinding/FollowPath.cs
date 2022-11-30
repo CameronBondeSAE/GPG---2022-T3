@@ -25,6 +25,7 @@ namespace Alex
         public Vector3 directionAndDistance;
         public Movement movement;
         public Vector3 justDirection;
+        public Vision vision;
 
         // Start is called before the first frame update
         void Start()
@@ -60,9 +61,10 @@ namespace Alex
             myPos = controller.rb.transform.position;
             if (astar.isPathable.Count > 0)
             {
+                
                 nextNodePos = astar.isPathable[0].worldPosition;
                 distanceToTarget = Vector3.Distance(myPos, nextNodePos);
-                
+
                 if (distanceToTarget >= distanceToTargetCheck)
                 {
                     if (targetTransform)
@@ -97,7 +99,6 @@ namespace Alex
                     enabled = false;
                 }
             }
-
         }
     }
 }

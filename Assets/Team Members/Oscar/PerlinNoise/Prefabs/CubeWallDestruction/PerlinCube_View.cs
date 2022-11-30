@@ -12,8 +12,7 @@ public class PerlinCube_View : MonoBehaviour
     public GameObject perlinWallCube;
 
     public ParticleSystem[] crumblingParticles;
-
-    private bool DestroyTheWallNow;
+    
     
     private void OnEnable()
     {
@@ -28,16 +27,7 @@ public class PerlinCube_View : MonoBehaviour
         {
             debree.Play();
         }
-        DestroyTheWallNow = true;
-    }
-
-    public void FixedUpdate()
-    {
-        if (DestroyTheWallNow == true)
-        {
-	        DestroyTheWallNow = false; // CAM: Otherwise it'll retrigger many coroutine
-            StartCoroutine(WallDestroy());
-        }
+        StartCoroutine(WallDestroy());
     }
 
     IEnumerator WallDestroy()

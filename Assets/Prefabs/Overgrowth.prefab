@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 617182278784988819}
   - component: {fileID: -2488204498220542135}
   - component: {fileID: 6026247607994705170}
+  - component: {fileID: 1551717591086350213}
   - component: {fileID: -1437297480577967940}
   - component: {fileID: -4279678345658173338}
   m_Layer: 12
@@ -153,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f653f7c4dde6448a10b903b5ad1b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burnState: {fileID: 6658169835453067230}
   fireness: {fileID: -4279678345658173338}
   health: {fileID: -1437297480577967940}
 --- !u!135 &-2345939443833775618
@@ -250,6 +252,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 3
+--- !u!114 &1551717591086350213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137073510955222978}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4803cebb89d5a474d96d9ca154e3cf90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-1437297480577967940
 MonoBehaviour:
   m_ObjectHideFlags: 0

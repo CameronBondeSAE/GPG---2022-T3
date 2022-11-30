@@ -136,7 +136,7 @@ public class HealthView : ImmediateModeShapeDrawer
                 Draw.LineGeometry = LineGeometry.Billboard;
                 Draw.ThicknessSpace = ThicknessSpace.Meters;
                 Draw.Color = color * intensity;
-
+                
                 Draw.Line(healthPos, endPos, lineThickness);
             }
         }

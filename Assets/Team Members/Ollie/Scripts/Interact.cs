@@ -32,10 +32,15 @@ public class Interact : NetworkBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
-        {
-            RequestDropItemServerRpc();
-        }
+        // if (Input.GetKeyDown(KeyCode.LeftAlt))
+        // {
+        //     RequestDropItemServerRpc();
+        // }
+        //
+        // if (Input.GetKeyDown(KeyCode.M))
+        // {
+        //     RequestUseItemServerRpc();
+        // }
     }
 
     [ServerRpc]
@@ -86,8 +91,21 @@ public class Interact : NetworkBehaviour
     [ServerRpc]
     public void RequestUseItemServerRpc()
     {
-        FlamethrowerModel flamethrower = heldObject.GetComponent<FlamethrowerModel>();
-        flamethrower.Interact(this.gameObject);
+        //if you've got a flamethrower, fire it
+        //if you don't have one AND there's one nearby, fire that on the floor
+        if (heldObject != null)
+        {
+            FlamethrowerModel flamethrower = heldObject.GetComponent<FlamethrowerModel>();
+            if(flamethrower!=null) flamethrower.Interact(this.gameObject);
+        }
+        else if (pickupableNearby != null && pickupableNearby.isHeld == false)
+        {
+            MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
+            if (monoBehaviour != null && monoBehaviour.GetComponent<FlamethrowerModel>() != null)
+            {
+                monoBehaviour.GetComponent<FlamethrowerModel>().Interact(this.gameObject);
+            }
+        }
     }
     
     public void DeathItemRespawn()

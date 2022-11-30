@@ -75,6 +75,8 @@ public class GameManager : NetworkBehaviour
 				//The position needs to be pulled from the original spawner function
 				NetworkInstantiate(aiPrefab,new Vector3(1,1,1),quaternion.identity);
 			}*/
+			if (levelGenerator == null) return;
+			levelGenerator.SpawnAIClientRpc();
 			InvokeOnGameWaveTimerClientRPC();
 		}
 	}
@@ -103,11 +105,16 @@ public class GameManager : NetworkBehaviour
 	[ClientRpc]
 	private void SetCameraTargetClientRpc()
 	{
+		//need to disable cameraTwo, otherwise it defaults to zoomed out view
+		//which is necessary to see the zoomed out level preview in lobby
+		virtualCameraTwo.SetActive(false);
+		
 		GameObject go = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer;
 		if (go == null) return;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 
+		
 		// virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		// virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 	}

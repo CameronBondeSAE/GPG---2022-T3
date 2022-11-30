@@ -9,6 +9,8 @@ namespace Marcus
     {
         public event Action<Collision> OnCollisionEnterEvent;
         public event Action<Collider> OnTriggerEnterEvent;
+        public event Action<Collision> OnCollisionExitEvent;
+        public event Action<Collider> OnTriggerExitEvent;
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -20,5 +22,14 @@ namespace Marcus
             OnTriggerEnterEvent?.Invoke(other);
         }
 
+        private void OnCollisionExit(Collision collision)
+        {
+            OnCollisionExitEvent?.Invoke(collision);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            OnTriggerExitEvent?.Invoke(other);
+        }
     }
 }

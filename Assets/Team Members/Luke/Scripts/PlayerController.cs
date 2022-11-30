@@ -15,9 +15,10 @@ namespace Luke
         public PlayerControls playerControls;
         private InputAction _move;
         private InputAction _aim;
-        private InputAction _action3;
         private InputAction _action1;
         private InputAction _action2;
+        private InputAction _action3;
+        private InputAction _action4;
 
         [SerializeField] private Vector2 _moveDirection;
         private Vector2 _aimDirection;
@@ -31,6 +32,7 @@ namespace Luke
             _action1 = playerControls.Player.Action1;
             _action2 = playerControls.Player.Action2;
             _action3 = playerControls.Player.Action3;
+            _action4 = playerControls.Player.Action4;
 
             _move.performed += MovePerformed;
             _move.canceled += MoveCancelled;
@@ -43,6 +45,8 @@ namespace Luke
             _action2.performed += Action2Performed;
 
             _action3.performed += Action3Performed;
+            
+            _action4.performed += Action4Performed;
         }
 
         private void OnDisable()
@@ -58,6 +62,8 @@ namespace Luke
             _action2.performed -= Action2Performed;
 
             _action3.performed -= Action3Performed;
+            
+            _action4.performed -= Action4Performed;
         }
 
         private void FixedUpdate()
@@ -119,6 +125,13 @@ namespace Luke
             if (!IsLocalPlayer) return;
             if (player == null) return;
             player.GetComponent<IControllable>()?.Action3();
+        }
+        
+        private void Action4Performed(InputAction.CallbackContext context)
+        {
+            if (!IsLocalPlayer) return;
+            if (player == null) return;
+            player.GetComponent<IControllable>()?.Action4();
         }
     }
 }
