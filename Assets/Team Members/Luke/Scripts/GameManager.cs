@@ -87,20 +87,11 @@ public class GameManager : NetworkBehaviour
 		Debug.Log("Wave Spawned!!!");
 		OnGameWaveTimer?.Invoke();
 	}
-
-	//replace this spawn function with the spawn function called at level load?
-	private void SpawnAI()
-	{
-		/*for (int i = amountOfAIInGame; i < maxAI; i++)
-		{
-			NetworkInstantiate(aiPrefab,new Vector3(1,1,1),quaternion.identity);
-		}*/
-	}
-
-	private void AIDied()
+	
+	/*private void AIDied()
 	{
 		amountOfAIInGame--;
-	}
+	}*/
 	
 	[ClientRpc]
 	private void SetCameraTargetClientRpc()
@@ -167,10 +158,8 @@ public class GameManager : NetworkBehaviour
 	    levelGenerator.SpawnExplosivesClientRpc();
 	    levelGenerator.SpawnBasesClientRpc();
 	    levelGenerator.SpawnAIClientRpc();
-	    spawnManager.SpawnBossAI();
 	    levelGenerator.SpawnBorderClientRpc();
-	    
-        foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
+	    foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
         {
 	        // CAM HACK: Find base spawn and spawnpoints
 	        Transform spawnTransform = null;
@@ -190,13 +179,13 @@ public class GameManager : NetworkBehaviour
 		        client.Value.PlayerObject.GetComponent<ClientEntity>()
 			        .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
 	        }
-
 	        playersAlive++;
             playersInGame++;
             /*avatar.GetComponent<PlayerNameTracker>().playerName.text =
 	            client.Value.PlayerObject.GetComponent<ClientInfo>().ClientName.Value.ToString();*/
         }
         SetCameraTargetClientRpc();
+        spawnManager.SpawnBossAI();
         //SetPlayerNameClientRpc();
     }
 

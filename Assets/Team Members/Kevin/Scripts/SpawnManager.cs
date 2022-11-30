@@ -27,7 +27,7 @@ public class SpawnManager : NetworkBehaviour
     {
         for (int j = 0; j < GameManager.singleton.playersInGame; j++)
         {
-            GameManager.singleton.NetworkInstantiate(bossAI, AlienBase().GetComponent<SpawnPoint>().transform.position, Quaternion.identity);
+            GameManager.singleton.NetworkInstantiate(bossAI, AlienBase().transform.position, Quaternion.identity);
         }
     }
     public void SpawnSwarmerAI()
@@ -36,7 +36,7 @@ public class SpawnManager : NetworkBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
-                GameManager.singleton.NetworkInstantiate(swarmerAI, AlienBase().GetComponent<SpawnPoint>().transform.position, Quaternion.identity);
+                GameManager.singleton.NetworkInstantiate(swarmerAI, AlienBase().transform.position, Quaternion.identity);
                 GameManager.singleton.amountOfAIInGame++;
                 
             }
