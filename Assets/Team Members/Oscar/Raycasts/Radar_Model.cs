@@ -48,11 +48,21 @@ namespace Oscar
                 }
             }
         }
+
+        public event Action RadarOnNow;
         
         //Interfaces that Interact with this item.
         public bool isHeld { get; set; }
         public bool locked { get; set; }
-        public bool autoPickup { get; set; }
+
+        public bool autoPickup
+        {
+            get
+            {
+                return false;
+            }
+            set { }
+        }
         
         public bool RadarSwitchOn()
         {
@@ -60,6 +70,7 @@ namespace Oscar
             {
                 radarOn = true;
             }
+            RadarOnNow?.Invoke();
             return radarOn;
         }
 
@@ -69,6 +80,7 @@ namespace Oscar
             {
                 radarOn = false;
             }
+            RadarOnNow?.Invoke();
             return radarOn;
         }
 
