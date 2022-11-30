@@ -69,7 +69,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
         if (isHeld && shooting)
             StartCoroutine(SpitFire());
 
-        else if (isHeld && altShooting)
+        else if (altShooting)
             StartCoroutine(AltFire());
 
         else if (!isHeld)
@@ -91,7 +91,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
             GameObject _fireball = Instantiate(fireball, transform.position, Quaternion.identity) as GameObject;
             rb = _fireball.GetComponent<Rigidbody>();
-            rb.AddForce(targetDir * force, ForceMode.Impulse);
+            rb.velocity = targetDir * force;
+            // rb.AddForce(targetDir * force, ForceMode.Impulse);
 
             yield return new WaitForSecondsRealtime(fireRate);
         }
@@ -107,18 +108,19 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
             Vector3 targetDir = firePointPos - transform.position;
 
             GameObject _barrel = Instantiate(barrel, transform.position, Quaternion.identity) as GameObject;
-            GameObject _fire = Instantiate(fireball, transform.position, Quaternion.identity) as GameObject;
-            _fire.transform.SetParent(_barrel.transform);
+            // GameObject _fire = Instantiate(fireball, transform.position, Quaternion.identity) as GameObject;
+            // _fire.transform.SetParent(_barrel.transform);
 
             /*idleState = _barrel.GetComponent<ExplosiveIdleState>();
             idleState.SetOnFire();*/
             
             
-            /*flammable = _barrel.GetComponent<Flammable>();
-            flammable.ChangeHeat(this, 1000f);*/
+            var flammable = _barrel.GetComponent<Flammable>();
+            flammable.ChangeHeat(this, 1000f);
             
             rb = _barrel.GetComponent<Rigidbody>();
-            rb.AddForce(targetDir * altForce, ForceMode.Impulse);
+            rb.velocity = targetDir * model.altForce;
+            // rb.AddForce(targetDir * altForce, ForceMode.Impulse);
             
             yield return new WaitForSecondsRealtime(altFireRate);
         }
