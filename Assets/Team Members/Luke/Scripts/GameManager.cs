@@ -217,22 +217,24 @@ public class GameManager : NetworkBehaviour
 	    //health.YouDied += AIDied;
     }
 
-    public void NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation)
+    public GameObject NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation)
     {
-	    if (!IsServer) return;
-	    if (prefab.GetComponent<NetworkObject>() == null) return;
+	    if (!IsServer) return null;
+	    if (prefab.GetComponent<NetworkObject>() == null) return null;
 	    GameObject go = Instantiate(prefab, position, rotation);
 	    go.GetComponent<NetworkObject>().Spawn();
+	    return go;
     }
 
-    public void NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
+    public GameObject NetworkInstantiate(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
     {
-	    if (!IsServer) return;
-	    if (prefab.GetComponent<NetworkObject>() == null) return;
+	    if (!IsServer) return null;
+	    if (prefab.GetComponent<NetworkObject>() == null) return null;
 	    GameObject go = Instantiate(prefab, position, rotation);
 	    NetworkObject no = go.GetComponent<NetworkObject>();
 	    no.Spawn();
 	    no.TrySetParent(parent);
+	    return go;
     }
 
     public void SpawnPerlinFinished()
