@@ -18,6 +18,7 @@ using Random = System.Random;
 public class Interact : NetworkBehaviour
 {
     public FlamethrowerModel heldObject;
+    public GameObject clientFlamethrowerModel;
     public Transform equippedMountPos;
     [Serialize] public IPickupable pickupableNearby;
     public int storedItems = 5;
@@ -50,16 +51,14 @@ public class Interact : NetworkBehaviour
         {
             if (equippedItems < equippedMax)
             {
-                
                 pickupableNearby.PickedUp(gameObject);
-                // pickupableNearby.DestroySelf();
-
-				// Parent TODO: Network it
+                
                 MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
                 if (monoBehaviour != null)
                 {
 	                // monoBehaviour.transform.parent = equippedMountPos;
 	                Debug.Log("TrySetParent = "+ monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false));
+                    PickUpItemClientRpc();
                     monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,0);
                     monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
                     heldObject = GetComponentInChildren<FlamethrowerModel>();
@@ -73,14 +72,12 @@ public class Interact : NetworkBehaviour
     [ClientRpc]
     public void PickUpItemClientRpc()
     {
-        
+        if(!IsServer) clientFlamethrowerModel.SetActive(true);
     }
 
     [ServerRpc]
     public void RequestDropItemServerRpc()
     {
-        //TODO: need to somehow DROP item
-
         if (heldObject != null)
         {
             Destroy(heldObject.gameObject);
@@ -97,7 +94,7 @@ public class Interact : NetworkBehaviour
     [ClientRpc]
     public void DropItemClientRpc()
     {
-        
+        if(!IsServer) clientFlamethrowerModel.SetActive(false);
     }
 
     [ServerRpc]
@@ -114,7 +111,9 @@ public class Interact : NetworkBehaviour
     [ClientRpc]
     public void UseItemClientRpc()
     {
-        
+        //client doesn't have a heldObject to interact with
+        //network the results of interact
+        //eg, door open, fireballs shot out, etc
     }
     
     [ServerRpc]
@@ -134,7 +133,9 @@ public class Interact : NetworkBehaviour
     [ClientRpc]
     public void ExternalUseItemClientRpc()
     {
-        
+        //client doesn't have a heldObject to interact with
+        //network the results of interact
+        //eg, door open, fireballs shot out, etc
     }
 
     [ServerRpc]
@@ -160,7 +161,9 @@ public class Interact : NetworkBehaviour
     [ClientRpc]
     public void UseAltItemClientRpc()
     {
-        
+        //client doesn't have a heldObject to interact with
+        //network the results of interact
+        //eg, door open, fireballs shot out, etc
     }
     
     public void DeathItemRespawn()
