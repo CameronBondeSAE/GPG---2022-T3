@@ -140,7 +140,7 @@ Transform:
   m_Children:
   - {fileID: 6968536774408021869}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6658169835453067230
 MonoBehaviour:
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4803cebb89d5a474d96d9ca154e3cf90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matureState: {fileID: -2488204498220542135}
+  growthState: {fileID: 617182278784988819}
   dyingState: {fileID: 6026247607994705170}
   cooling: {fileID: -4279678345658173338}
   health: {fileID: -1437297480577967940}

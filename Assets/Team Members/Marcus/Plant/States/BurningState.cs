@@ -7,7 +7,7 @@ namespace Marcus
 {
     public class BurningState : MonoBehaviour
     {
-        public MonoBehaviour matureState;
+        public MonoBehaviour growthState;
         public MonoBehaviour dyingState;
         
         public Flammable cooling;
@@ -38,7 +38,7 @@ namespace Marcus
             }
             else
             {
-                GetComponent<StateManager>().ChangeState(matureState);
+                GetComponent<StateManager>().ChangeState(growthState);
             }
         }
     }
