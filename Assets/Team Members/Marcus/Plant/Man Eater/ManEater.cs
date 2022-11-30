@@ -14,8 +14,6 @@ public class ManEater : MonoBehaviour, IFlammable
     private void OnEnable()
     {
         colissionManager.OnTriggerEnterEvent += CheckColliderEntered;
-        colissionManager.OnTriggerExitEvent += CheckColliderExited;
-        
         fireness.SetOnFireEvent += SetOnFire;
     }
 
@@ -28,7 +26,15 @@ public class ManEater : MonoBehaviour, IFlammable
     // Update is called once per frame
     void Update()
     {
-        if (plants.Count < 2)
+        foreach (GameObject item in plants)
+        {
+            if (item == null)
+            {
+                plants.Remove(item);
+            }
+        }
+        
+        if (plants.Count <= 2)
         {
             Die();
         }
@@ -47,14 +53,6 @@ public class ManEater : MonoBehaviour, IFlammable
         }
     }
 
-    void CheckColliderExited(Collider other)
-    {
-        if (other.GetComponent<PlantBase>() != null)
-        {
-            SubtractNeighbours(other);
-        }
-    }
-
     void EatThing(Collider player)
     {
         print("Get Nommed");
@@ -67,12 +65,6 @@ public class ManEater : MonoBehaviour, IFlammable
         plants.Add(plant.gameObject);
     }
 
-    void SubtractNeighbours(Collider plant)
-    {
-        print("Sadge fren ded" + this);
-        plants.Remove(plant.gameObject);
-    }
-    
     public void SetOnFire()
     {
         //Well die but more dramatically
