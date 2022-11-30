@@ -14,14 +14,16 @@ namespace Marcus
         public LayerMask evolutionLayer;
     
         public float deathTimer;
+        private int rEvoChance;
         
         public delegate void Matured(float duration);
         public event Matured MatureEvent ;
         
-        // Start is called before the first frame update
-        void Start()
+        void OnEnable()
         {
             deathTimer = Random.Range(4f, 7f);
+            rEvoChance = Random.Range(0, 10);
+            
             MatureEvent?.Invoke(deathTimer);
         }
 
@@ -32,8 +34,6 @@ namespace Marcus
 
             if (deathTimer <= 0)
             {
-                int rEvoChance = Random.Range(0, 10);
-                
                 if (Physics.OverlapSphere(transform.position, 1, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
                 { 
                     //Destroy and spawn manEater prefab

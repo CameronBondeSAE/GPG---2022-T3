@@ -46,7 +46,7 @@ public class PlantView : MonoBehaviour
         }
         else
         {
-            transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(0.5f, 0.05f, 0.5f), 0.002f);
+            transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(plantGrowth.age/2f, 0.05f, plantGrowth.age/2f), 0.002f);
         }
     }
 

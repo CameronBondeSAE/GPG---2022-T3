@@ -14,7 +14,7 @@ namespace Marcus
         public delegate void Death(float duration);
         public event Death DeathEvent;
 
-        private void Start()
+        private void OnEnable()
         {
             timer = Random.Range(3f, 4f);
             DeathEvent?.Invoke(timer);
