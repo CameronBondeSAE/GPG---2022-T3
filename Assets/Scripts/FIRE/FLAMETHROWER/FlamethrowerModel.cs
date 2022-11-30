@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
 using Tanks;
 using Unity.Netcode;
 using Unity.VisualScripting;
@@ -93,7 +94,9 @@ namespace Lloyd
 
             canShoot = true;
             
-            if(IsServer)GetComponent<NetworkObject>().Spawn();
+            //TODO: Ollie HACK
+            //replace this somehow, it's causing errors on the client
+            GetComponent<NetworkObject>().Spawn();
         }
 
         private void FixedUpdate()

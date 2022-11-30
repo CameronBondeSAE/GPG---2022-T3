@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Lloyd;
+using Luke;
 using Sirenix.OdinInspector;
 using Unity.Netcode;
 using Unity.VisualScripting;
@@ -28,7 +29,7 @@ public class Interact : NetworkBehaviour
 
     [Header("Hack Item Spawning")]
     public NetworkObject item;
-    public NetworkObject flamethrower;
+    public GameObject flamethrower;
     public NetworkObject plant;
 
     private void Update()
@@ -58,11 +59,14 @@ public class Interact : NetworkBehaviour
                 {
 	                // monoBehaviour.transform.parent = equippedMountPos;
 	                Debug.Log("TrySetParent = "+ monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false));
-                    PickUpItemClientRpc();
-                    monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
-                    monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
-                    heldObject = GetComponentInChildren<FlamethrowerModel>();
-                    equippedItems++;
+                    if(monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false) == true)
+                    {
+                        PickUpItemClientRpc();
+                        monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
+                        monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
+                        heldObject = GetComponentInChildren<FlamethrowerModel>();
+                        equippedItems++;
+                    }
                 }
                 pickupableNearby = null;
             }
@@ -80,13 +84,16 @@ public class Interact : NetworkBehaviour
     {
         if (heldObject != null)
         {
+            equippedItems = 0;
             Destroy(heldObject.gameObject);
             Vector3 myPos = transform.position;
-            NetworkObject go = Instantiate(flamethrower);
-            go.transform.position = myPos + (transform.forward/2);
-            go.transform.rotation = transform.rotation;
+            GameManager.singleton.NetworkInstantiate(flamethrower, (myPos + (transform.forward / 2)),
+                transform.rotation);
+            // NetworkObject go = Instantiate(flamethrower);
+            // go.transform.position = myPos + (transform.forward/2);
+            // go.transform.rotation = transform.rotation;
             //go.Spawn();
-            equippedItems = 0;
+            
             heldObject = null;
         }
     }
