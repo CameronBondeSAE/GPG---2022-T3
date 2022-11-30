@@ -143,7 +143,6 @@ public class Flammable : MonoBehaviour, IHeatSource
     private void Cool()
     {
         ChangeHeat(this, -coolRate * Time.deltaTime);
-        CoolDown?.Invoke();
     }
 
     public event Action SetOnFireEvent;
