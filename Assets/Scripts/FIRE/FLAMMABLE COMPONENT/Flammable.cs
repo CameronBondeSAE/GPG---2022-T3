@@ -131,7 +131,7 @@ public GameObject flameModelPrefab;
         if (heatLevel <= 0)
         {
             heatLevel = 0;
-           // Extinguish();
+            //Extinguish();
         }
     }
 
@@ -140,6 +140,10 @@ public GameObject flameModelPrefab;
     private void Cool()
     {
         ChangeHeat(this, -coolRate * .2f);
+    }
+
+    public void CoolingDownTheTHing()
+    {
         CoolDown?.Invoke();
     }
 

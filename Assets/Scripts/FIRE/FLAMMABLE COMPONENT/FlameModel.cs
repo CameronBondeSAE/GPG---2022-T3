@@ -93,7 +93,7 @@ public class FlameModel : MonoBehaviour, IHeatSource
         }
     }
 
-    private void FlameOut()
+    public void FlameOut()
     {
         Destroy(this);
     }
