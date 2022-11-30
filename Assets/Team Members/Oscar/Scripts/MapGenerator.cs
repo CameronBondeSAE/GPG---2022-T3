@@ -224,7 +224,8 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
     [ClientRpc]
     public void SpawnAIClientRpc()
     {
-        spawnAI.SpawnAIInTheMaze(totalAI,AIParent, perlinValue);
+        //spawnAI.SpawnAIInTheMaze(totalAI,AIParent, perlinValue);
+        GameManager.singleton.spawnManager.SpawnSwarmerAI();
         //GameManager.singleton.SpawnAIFinished();
     }
 

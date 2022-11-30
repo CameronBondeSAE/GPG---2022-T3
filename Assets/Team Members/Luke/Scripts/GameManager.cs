@@ -18,7 +18,7 @@ public class GameManager : NetworkBehaviour
 {
 	public static GameManager singleton;
 	public Health health;
-	
+	public SpawnManager spawnManager;
     public event Action OnGameStart;
 	public event Action OnGameEnd;
 	public event Action OnGameWaveTimer;
@@ -167,6 +167,7 @@ public class GameManager : NetworkBehaviour
 	    levelGenerator.SpawnExplosivesClientRpc();
 	    levelGenerator.SpawnBasesClientRpc();
 	    levelGenerator.SpawnAIClientRpc();
+	    spawnManager.SpawnBossAI();
 	    levelGenerator.SpawnBorderClientRpc();
 	    
         foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
