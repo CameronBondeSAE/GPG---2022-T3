@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Action5"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ce4c9be-79d5-44f1-916a-4c8aefb5a859"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -305,8 +314,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""94647578-7ceb-4228-bcb6-f393988cc512"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""id"": ""1e1a1391-4a93-4080-baaf-2111b5df85f3"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -327,11 +336,33 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""725ad28b-0b33-4a6f-92c8-05829e9bf203"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Action2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""0cd033ac-fdc0-46b1-bbcd-adb3a3d66612"",
                     ""path"": ""<Keyboard>/leftAlt"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""Action3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bff504c-510b-4815-91b4-1b3c65b4da86"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Action3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -344,6 +375,39 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Action4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5555e5b1-0038-4d7a-bb55-77940d402a21"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Action4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bcd3f92a-7628-425c-a7fc-d13a4a5f7e15"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f91f0142-2b81-418d-b8fc-58d55030b887"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Action5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -722,6 +786,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ef9296cc-5646-4433-90a9-860b0ea90f04"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""82627dcc-3b13-4ba9-841d-e4b746d6553e"",
                     ""path"": ""*/{Cancel}"",
                     ""interactions"": """",
@@ -937,6 +1012,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
         m_Player_Action3 = m_Player.FindAction("Action3", throwIfNotFound: true);
         m_Player_Action4 = m_Player.FindAction("Action4", throwIfNotFound: true);
+        m_Player_Action5 = m_Player.FindAction("Action5", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1014,6 +1090,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Action2;
     private readonly InputAction m_Player_Action3;
     private readonly InputAction m_Player_Action4;
+    private readonly InputAction m_Player_Action5;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1024,6 +1101,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Action2 => m_Wrapper.m_Player_Action2;
         public InputAction @Action3 => m_Wrapper.m_Player_Action3;
         public InputAction @Action4 => m_Wrapper.m_Player_Action4;
+        public InputAction @Action5 => m_Wrapper.m_Player_Action5;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1051,6 +1129,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Action4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
                 @Action4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
                 @Action4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
+                @Action5.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction5;
+                @Action5.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction5;
+                @Action5.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction5;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1073,6 +1154,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Action4.started += instance.OnAction4;
                 @Action4.performed += instance.OnAction4;
                 @Action4.canceled += instance.OnAction4;
+                @Action5.started += instance.OnAction5;
+                @Action5.performed += instance.OnAction5;
+                @Action5.canceled += instance.OnAction5;
             }
         }
     }
@@ -1235,6 +1319,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAction2(InputAction.CallbackContext context);
         void OnAction3(InputAction.CallbackContext context);
         void OnAction4(InputAction.CallbackContext context);
+        void OnAction5(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
