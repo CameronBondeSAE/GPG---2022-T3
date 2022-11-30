@@ -10,6 +10,7 @@ public class ManEater : MonoBehaviour, IFlammable
     public Flammable fireness;
 
     private List<GameObject> plants;
+    private float checkTimer = 1f;
     
     private void OnEnable()
     {
@@ -26,17 +27,26 @@ public class ManEater : MonoBehaviour, IFlammable
     // Update is called once per frame
     void Update()
     {
+        checkTimer -= Time.deltaTime;
+        if (checkTimer <= 0)
+        {
+            CheckListForNull();
+        }
+        
+        if (plants.Count <= 2)
+        {
+            Die();
+        }
+    }
+
+    void CheckListForNull()
+    {
         foreach (GameObject item in plants)
         {
             if (item == null)
             {
                 plants.Remove(item);
             }
-        }
-        
-        if (plants.Count <= 2)
-        {
-            Die();
         }
     }
 
@@ -82,5 +92,4 @@ public class ManEater : MonoBehaviour, IFlammable
     {
         Destroy(gameObject);
     }
-
 }
