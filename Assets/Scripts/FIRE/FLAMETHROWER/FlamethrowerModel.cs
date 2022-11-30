@@ -13,16 +13,14 @@ namespace Lloyd
     {
         [Header("FLAME SETTINGS [DAMAGE / SIZE / FIRE RATE]")] [SerializeField]
         public float fireDamage;
-        
-        [SerializeField]
         public enum FlamethrowerType
         {
             FireballShooter,
-            OverlapBoxFire,
+            Watercannon,
             FunnyThirdKind
         };
 
-        private FlamethrowerType myType;
+        public FlamethrowerType myType;
 
         [Header("FLAME PREFAB")] public GameObject fireball;
 
@@ -34,7 +32,7 @@ namespace Lloyd
 
         [Header("ALT FIRE")] public GameObject barrel;
 
-        [SerializeField] private int altAmmo;
+        [SerializeField] public int altAmmo;
 
         [SerializeField] public float altForce;
 
@@ -105,11 +103,19 @@ namespace Lloyd
 
         public void Interact(GameObject interactor)
         {
-            if(isHeld)
-                ShootFire();
+            if (myType == FlamethrowerType.FireballShooter)
+            {
+                if (isHeld)
+                    ShootFire();
 
-            else
-                ShootUntilDead();
+                else
+                    ShootUntilDead();
+            }
+
+            if (myType == FlamethrowerType.Watercannon)
+            {
+                SprayWater();
+            }
         }
         
         public void AltInteract(GameObject interactor)
@@ -152,7 +158,7 @@ namespace Lloyd
         {
             altShooting = !altShooting;
             if (altAmmo <= 0)
-            {
+            {   
                 //click!
                 return;
             }
@@ -160,7 +166,6 @@ namespace Lloyd
             if (altShooting && altAmmo > 0)
             {
                 modelView.OnChangeState(1);
-                altAmmo--;
             }
             else modelView.OnChangeState(0);
         }
@@ -186,11 +191,6 @@ namespace Lloyd
             if (overHeatLevel >= overHeatPoint)
             {
                 DestroySelf();
-            }
-
-            if (waterSpraying)
-            {
-                overHeatLevel -= overHeatRate * Time.deltaTime;
             }
         }
         

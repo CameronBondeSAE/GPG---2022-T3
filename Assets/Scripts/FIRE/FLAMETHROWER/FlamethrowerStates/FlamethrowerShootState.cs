@@ -23,6 +23,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
     private float force;
 
+    private int altAmmo;
+
     private float altForce;
 
     private float fireRate;
@@ -36,6 +38,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     private bool waterSpraying;
 
     private bool isHeld;
+
+    private FlamethrowerModel.FlamethrowerType myType;
 
     private void OnEnable()
     {
@@ -71,14 +75,14 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
         else if (altShooting)
             StartCoroutine(AltFire());
-
-        else if (!isHeld)
-            ShootTilDead();
-
-        else if (isHeld && waterSpraying)
+        
+        else if (waterSpraying)
         {
             StartCoroutine(SprayWater());
         }
+
+        else if (!isHeld)
+            ShootTilDead();
     }
 
     private IEnumerator SpitFire()
@@ -103,6 +107,12 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         while (altShooting)
         {
+            altAmmo = model.altAmmo;
+            model.altAmmo--;
+            if (altAmmo <= 0)
+                break;
+            
+            
             firePointPos = transform.position + transform.forward * 5;
             
             Vector3 targetDir = firePointPos - transform.position;
@@ -113,7 +123,6 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
             /*idleState = _barrel.GetComponent<ExplosiveIdleState>();
             idleState.SetOnFire();*/
-            
             
             var flammable = _barrel.GetComponent<Flammable>();
             flammable.ChangeHeat(this, 1000f);
