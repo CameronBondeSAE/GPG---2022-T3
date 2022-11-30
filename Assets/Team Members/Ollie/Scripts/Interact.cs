@@ -101,7 +101,7 @@ public class Interact : NetworkBehaviour
         else if (pickupableNearby != null && pickupableNearby.isHeld == false)
         {
             MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
-            if (monoBehaviour != null)
+            if (monoBehaviour != null && monoBehaviour.GetComponent<FlamethrowerModel>() != null)
             {
                 monoBehaviour.GetComponent<FlamethrowerModel>().Interact(this.gameObject);
             }
