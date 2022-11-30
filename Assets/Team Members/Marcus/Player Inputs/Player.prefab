@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 5741892849427296679}
   - component: {fileID: -7174452929782134774}
   - component: {fileID: 6379985445411008246}
+  - component: {fileID: 755776137}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -129,7 +130,7 @@ Transform:
   - {fileID: 5615270028866432864}
   - {fileID: 964396946419768314}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3886047980487374011
 MeshFilter:
@@ -306,8 +307,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5741892849427296679}
-  idealZone: {fileID: 0}
-  falloffZone: {fileID: 0}
+  idealZone: {fileID: 6588467978017552635}
+  falloffZone: {fileID: 6730123798675935324}
 --- !u!54 &6379985445411008246
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -324,6 +325,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &755776137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492349373570453156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc7765993eb00342b21a0d0c93d2baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  HP: 0
 --- !u!1001 &1897485880158018153
 PrefabInstance:
   m_ObjectHideFlags: 0
