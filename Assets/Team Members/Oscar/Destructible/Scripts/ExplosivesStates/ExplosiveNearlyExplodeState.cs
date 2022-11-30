@@ -10,7 +10,7 @@ namespace Oscar
         public MonoBehaviour explodeState;
         public MonoBehaviour idleState;
 
-        private bool yesExplode = true;
+        private bool explode = true;
 
         public float countDown;
         public event Action AlmostExplode;
@@ -18,7 +18,6 @@ namespace Oscar
         private Flammable flammable;
         private void OnEnable()
         {
-            yesExplode = true;
             flammable = GetComponent<Flammable>();
             flammable.CoolDown += FireOff;
             
@@ -32,11 +31,11 @@ namespace Oscar
 
             yield return new WaitForSeconds(countDown);
 
-            if (yesExplode == true)
+            if (explode)
             {
                 stateManager.ChangeState(explodeState);
             }
-            else if (yesExplode == false)
+            else
             {
                 stateManager.ChangeState(idleState);
             }
@@ -44,7 +43,7 @@ namespace Oscar
         
         void FireOff()
         {
-            yesExplode = false;
+            explode = false;
         }
     }
 }
