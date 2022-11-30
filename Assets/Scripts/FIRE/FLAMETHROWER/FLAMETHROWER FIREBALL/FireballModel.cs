@@ -78,7 +78,8 @@ public class FireballModel : MonoBehaviour
                 {
                     hitCollider.GetComponent<Flammable>().ChangeHeat(theHeatSource,_heat * _proximityMultiplier);
                 }
-                StartCoroutine(Death());
+                //StartCoroutine(Death());
+                Destroy(gameObject);
                 transform.SetParent(hitCollider.transform);
                 _rb.isKinematic = true;
             } 
@@ -97,9 +98,9 @@ public class FireballModel : MonoBehaviour
         _isActive = false;
         _fireballView.Death();
 
-        float rand = Random.Range(0.1f, 2.2f);
+        //float rand = Random.Range(0.1f, 2.2f);
 
-        yield return new WaitForSeconds(rand);
+        yield return new WaitForSeconds(1);
 
         GameObject fire = Instantiate(_fire01Prefab, transform.position, Quaternion.identity) as GameObject;
         

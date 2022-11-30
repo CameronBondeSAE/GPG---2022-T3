@@ -54,20 +54,20 @@ namespace Oscar
         public bool locked { get; set; }
         public bool autoPickup { get; set; }
         
-        private bool RadarSwitchOn()
-        {
-            if (radarOn == true)
-            {
-                radarOn = false;
-            }
-            return radarOn;
-        }
-
-        private bool RadarSwitchOff()
+        public bool RadarSwitchOn()
         {
             if (radarOn == false)
             {
                 radarOn = true;
+            }
+            return radarOn;
+        }
+
+        public bool RadarSwitchOff()
+        {
+            if (radarOn == true)
+            {
+                radarOn = false;
             }
             return radarOn;
         }

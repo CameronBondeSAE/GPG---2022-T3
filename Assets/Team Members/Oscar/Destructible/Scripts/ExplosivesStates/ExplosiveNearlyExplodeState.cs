@@ -10,12 +10,15 @@ namespace Oscar
         public MonoBehaviour explodeState;
         public MonoBehaviour idleState;
 
+        private bool yesExplode = true;
+
         public float countDown;
         public event Action AlmostExplode;
 
         private Flammable flammable;
         private void OnEnable()
         {
+            yesExplode = true;
             flammable = GetComponent<Flammable>();
             flammable.CoolDown += FireOff;
             
@@ -28,12 +31,20 @@ namespace Oscar
             AlmostExplode?.Invoke();
 
             yield return new WaitForSeconds(countDown);
-            stateManager.ChangeState(explodeState);
+
+            if (yesExplode == true)
+            {
+                stateManager.ChangeState(explodeState);
+            }
+            else if (yesExplode == false)
+            {
+                stateManager.ChangeState(idleState);
+            }
         }
         
         void FireOff()
         {
-            stateManager.ChangeState(idleState);
+            yesExplode = false;
         }
     }
 }

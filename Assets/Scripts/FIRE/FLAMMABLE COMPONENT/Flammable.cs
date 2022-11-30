@@ -154,6 +154,38 @@ public class Flammable : MonoBehaviour, IHeatSource
         }
         else
         {
+
+            heatLevel += y;
+        }
+
+        if (heatLevel >= heatThreshold && !burning)
+        {
+            burning = true;
+            SetOnFire();
+        }
+
+        if (heatLevel <= heatThreshold || fuel <= 0)
+        {
+            burning = false;
+        }
+
+        if (heatLevel <= 0)
+        {
+            heatLevel = 0;
+            //Extinguish();
+        }
+    }
+
+    public event Action CoolDown;
+    
+    private void Cool()
+    {
+        ChangeHeat(this, -coolRate * .2f);
+    }
+
+    public void CoolingDownTheTHing()
+    {
+        CoolDown?.Invoke();
 	        HeatLevel += amount;
         }
         
