@@ -70,6 +70,7 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
             if (countDownTimer == timesup)
             {
                 Explode();
+                overheating = false;
                 yield return null;
             }
         }
@@ -94,11 +95,6 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
             if (rb != null)
                 rb.AddExplosionForce(explodePower, explosionPos, radius, explodeUpPower);
         }
-        this.AddComponent<Rigidbody>();
-        rb = GetComponent<Rigidbody>();
-        rb.mass = 20;
-        rb.AddForce(new Vector3(0, explodePower, 0));
-
         modelView.OnChangeState(3);
     }
     

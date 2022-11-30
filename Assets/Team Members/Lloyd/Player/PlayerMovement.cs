@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Lloyd
 {
-    public class PlayerMovement : MonoBehaviour, IControllable
+    public class PlayerMovement : MonoBehaviour
     {
         private Rigidbody _rb;
 

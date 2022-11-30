@@ -112,6 +112,11 @@ namespace Lloyd
                 ShootUntilDead();
         }
         
+        public void AltInteract(GameObject interactor)
+        {
+            ShootAltFire();
+        }
+        
         public void ShootUntilDead()
         {
             shooting = !shooting;
@@ -146,6 +151,12 @@ namespace Lloyd
         public void ShootAltFire()
         {
             altShooting = !altShooting;
+            if (altAmmo <= 0)
+            {
+                //click!
+                return;
+            }
+            
             if (altShooting && altAmmo > 0)
             {
                 modelView.OnChangeState(1);

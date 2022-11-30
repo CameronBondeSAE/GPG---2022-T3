@@ -11,6 +11,8 @@ public class FlameModel : MonoBehaviour, IHeatSource
  
      //how much fuel it has to burn
     [SerializeField] private float fuel;
+
+    [SerializeField] private float deteriorateRate;
     
     //fire does more damage depending on proximity
     [SerializeField] private float radius;
@@ -84,8 +86,8 @@ public class FlameModel : MonoBehaviour, IHeatSource
     {
         if (fuel > 0 && radius > 0)
         {
-            fuel -= 1 * Time.deltaTime;
-            radius -= 1 * Time.deltaTime;
+            fuel -= deteriorateRate * Time.deltaTime;
+            radius -= deteriorateRate * Time.deltaTime;
         }
 
         if (radius <= 0)
