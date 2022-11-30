@@ -59,6 +59,12 @@ public class ScanningRadar : MonoBehaviour, IInteractable, IPickupable
         StartScan();
     }
 
+    public void AltInteract(GameObject interactor)
+    {
+        //idf nothing. maybe pulse???
+        //I dont know why i'm bothering This is obsolete
+    }
+
     public void PickedUp(GameObject Interactor)
     {
         //Make a bwep bwep sound
@@ -71,7 +77,7 @@ public class ScanningRadar : MonoBehaviour, IInteractable, IPickupable
 
     public void DestroySelf()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public bool isHeld { get; set; }
