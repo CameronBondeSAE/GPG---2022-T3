@@ -71,7 +71,14 @@ public class Avatar : NetworkBehaviour, IControllable
 
     public void Action1()
     {
-        interact.RequestPickUpItemServerRpc();
+	    if (interact.heldObject)
+	    {
+		    interact.RequestDropItemServerRpc();
+	    }
+	    else
+	    {
+		    interact.RequestPickUpItemServerRpc();
+	    }
     }
 
     public void Action2()
@@ -88,12 +95,16 @@ public class Avatar : NetworkBehaviour, IControllable
     
     public void Action3()
     {
-        interact.RequestDropItemServerRpc();
+	    interact.RequestExternalUseItemServerRpc();
     }
     
     public void Action4()
     {
         interact.RequestUseItemServerRpc();
+    }
+    public void Action5()
+    {
+	    interact.RequestUseAltItemServerRpc();
     }
 
     #endregion

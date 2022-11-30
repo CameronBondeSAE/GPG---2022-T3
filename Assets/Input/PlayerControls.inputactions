@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Action1",
+                    "name": "Action1 - Pickup + Drop",
                     "type": "Button",
                     "id": "9394e497-5df7-4438-a568-4c5254dcb7f7",
                     "expectedControlType": "Button",
@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action2",
+                    "name": "Action2 - Camera",
                     "type": "Button",
                     "id": "be069be6-812c-4e23-86cf-1e418c40b2a8",
                     "expectedControlType": "Button",
@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action3",
+                    "name": "Action3 - External Use",
                     "type": "Button",
                     "id": "765abde9-37e1-454a-9f7f-2639234ed586",
                     "expectedControlType": "Button",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action4",
+                    "name": "Action4 - Use + Fire",
                     "type": "Button",
                     "id": "ea89dc4e-b511-4658-9aed-d947cd6d2620",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Action5",
+                    "name": "Action5 - Alt use + Fire alt",
                     "type": "Button",
                     "id": "7ce4c9be-79d5-44f1-916a-4c8aefb5a859",
                     "expectedControlType": "Button",
@@ -253,7 +253,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Action1",
+                    "action": "Action1 - Pickup + Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -264,7 +264,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Action1",
+                    "action": "Action1 - Pickup + Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -275,7 +275,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Touch",
-                    "action": "Action1",
+                    "action": "Action1 - Pickup + Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -286,7 +286,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Action1",
+                    "action": "Action1 - Pickup + Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -297,18 +297,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Action1",
+                    "action": "Action1 - Pickup + Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "79b820ba-817c-4d62-9384-ff395ac93f53",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action2",
+                    "action": "Action2 - Camera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -319,18 +319,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Action2",
+                    "action": "Action2 - Camera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "0cd033ac-fdc0-46b1-bbcd-adb3a3d66612",
-                    "path": "<Keyboard>/leftAlt",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action3",
+                    "action": "Action3 - External Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -341,7 +341,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Action3",
+                    "action": "Action3 - External Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -352,7 +352,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action4",
+                    "action": "Action4 - Use + Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -363,7 +363,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Action4",
+                    "action": "Action4 - Use + Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -374,7 +374,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action5",
+                    "action": "Action5 - Alt use + Fire alt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -385,7 +385,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Action5",
+                    "action": "Action5 - Alt use + Fire alt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -46,7 +46,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Action1"",
+                    ""name"": ""Action1 - Pickup + Drop"",
                     ""type"": ""Button"",
                     ""id"": ""9394e497-5df7-4438-a568-4c5254dcb7f7"",
                     ""expectedControlType"": ""Button"",
@@ -55,7 +55,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Action2"",
+                    ""name"": ""Action2 - Camera"",
                     ""type"": ""Button"",
                     ""id"": ""be069be6-812c-4e23-86cf-1e418c40b2a8"",
                     ""expectedControlType"": ""Button"",
@@ -64,7 +64,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Action3"",
+                    ""name"": ""Action3 - External Use"",
                     ""type"": ""Button"",
                     ""id"": ""765abde9-37e1-454a-9f7f-2639234ed586"",
                     ""expectedControlType"": ""Button"",
@@ -73,7 +73,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Action4"",
+                    ""name"": ""Action4 - Use + Fire"",
                     ""type"": ""Button"",
                     ""id"": ""ea89dc4e-b511-4658-9aed-d947cd6d2620"",
                     ""expectedControlType"": ""Button"",
@@ -82,7 +82,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Action5"",
+                    ""name"": ""Action5 - Alt use + Fire alt"",
                     ""type"": ""Button"",
                     ""id"": ""7ce4c9be-79d5-44f1-916a-4c8aefb5a859"",
                     ""expectedControlType"": ""Button"",
@@ -275,7 +275,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Action1"",
+                    ""action"": ""Action1 - Pickup + Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -286,7 +286,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Action1"",
+                    ""action"": ""Action1 - Pickup + Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -297,7 +297,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Touch"",
-                    ""action"": ""Action1"",
+                    ""action"": ""Action1 - Pickup + Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -308,7 +308,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Action1"",
+                    ""action"": ""Action1 - Pickup + Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -319,18 +319,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Action1"",
+                    ""action"": ""Action1 - Pickup + Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""79b820ba-817c-4d62-9384-ff395ac93f53"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action2"",
+                    ""action"": ""Action2 - Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -341,18 +341,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Action2"",
+                    ""action"": ""Action2 - Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""0cd033ac-fdc0-46b1-bbcd-adb3a3d66612"",
-                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action3"",
+                    ""action"": ""Action3 - External Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -363,7 +363,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Action3"",
+                    ""action"": ""Action3 - External Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -374,7 +374,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action4"",
+                    ""action"": ""Action4 - Use + Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -385,7 +385,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Action4"",
+                    ""action"": ""Action4 - Use + Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -396,7 +396,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action5"",
+                    ""action"": ""Action5 - Alt use + Fire alt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -407,7 +407,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Action5"",
+                    ""action"": ""Action5 - Alt use + Fire alt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1008,11 +1008,11 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
-        m_Player_Action1 = m_Player.FindAction("Action1", throwIfNotFound: true);
-        m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
-        m_Player_Action3 = m_Player.FindAction("Action3", throwIfNotFound: true);
-        m_Player_Action4 = m_Player.FindAction("Action4", throwIfNotFound: true);
-        m_Player_Action5 = m_Player.FindAction("Action5", throwIfNotFound: true);
+        m_Player_Action1PickupDrop = m_Player.FindAction("Action1 - Pickup + Drop", throwIfNotFound: true);
+        m_Player_Action2Camera = m_Player.FindAction("Action2 - Camera", throwIfNotFound: true);
+        m_Player_Action3ExternalUse = m_Player.FindAction("Action3 - External Use", throwIfNotFound: true);
+        m_Player_Action4UseFire = m_Player.FindAction("Action4 - Use + Fire", throwIfNotFound: true);
+        m_Player_Action5AltuseFirealt = m_Player.FindAction("Action5 - Alt use + Fire alt", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1086,22 +1086,22 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Aim;
-    private readonly InputAction m_Player_Action1;
-    private readonly InputAction m_Player_Action2;
-    private readonly InputAction m_Player_Action3;
-    private readonly InputAction m_Player_Action4;
-    private readonly InputAction m_Player_Action5;
+    private readonly InputAction m_Player_Action1PickupDrop;
+    private readonly InputAction m_Player_Action2Camera;
+    private readonly InputAction m_Player_Action3ExternalUse;
+    private readonly InputAction m_Player_Action4UseFire;
+    private readonly InputAction m_Player_Action5AltuseFirealt;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
-        public InputAction @Action1 => m_Wrapper.m_Player_Action1;
-        public InputAction @Action2 => m_Wrapper.m_Player_Action2;
-        public InputAction @Action3 => m_Wrapper.m_Player_Action3;
-        public InputAction @Action4 => m_Wrapper.m_Player_Action4;
-        public InputAction @Action5 => m_Wrapper.m_Player_Action5;
+        public InputAction @Action1PickupDrop => m_Wrapper.m_Player_Action1PickupDrop;
+        public InputAction @Action2Camera => m_Wrapper.m_Player_Action2Camera;
+        public InputAction @Action3ExternalUse => m_Wrapper.m_Player_Action3ExternalUse;
+        public InputAction @Action4UseFire => m_Wrapper.m_Player_Action4UseFire;
+        public InputAction @Action5AltuseFirealt => m_Wrapper.m_Player_Action5AltuseFirealt;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1117,21 +1117,21 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Action1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
-                @Action1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
-                @Action1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
-                @Action2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
-                @Action2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
-                @Action2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
-                @Action3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3;
-                @Action3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3;
-                @Action3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3;
-                @Action4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
-                @Action4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
-                @Action4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
-                @Action5.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction5;
-                @Action5.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction5;
-                @Action5.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction5;
+                @Action1PickupDrop.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1PickupDrop;
+                @Action1PickupDrop.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1PickupDrop;
+                @Action1PickupDrop.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1PickupDrop;
+                @Action2Camera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2Camera;
+                @Action2Camera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2Camera;
+                @Action2Camera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2Camera;
+                @Action3ExternalUse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3ExternalUse;
+                @Action3ExternalUse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3ExternalUse;
+                @Action3ExternalUse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3ExternalUse;
+                @Action4UseFire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4UseFire;
+                @Action4UseFire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4UseFire;
+                @Action4UseFire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4UseFire;
+                @Action5AltuseFirealt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction5AltuseFirealt;
+                @Action5AltuseFirealt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction5AltuseFirealt;
+                @Action5AltuseFirealt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction5AltuseFirealt;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1142,21 +1142,21 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
-                @Action1.started += instance.OnAction1;
-                @Action1.performed += instance.OnAction1;
-                @Action1.canceled += instance.OnAction1;
-                @Action2.started += instance.OnAction2;
-                @Action2.performed += instance.OnAction2;
-                @Action2.canceled += instance.OnAction2;
-                @Action3.started += instance.OnAction3;
-                @Action3.performed += instance.OnAction3;
-                @Action3.canceled += instance.OnAction3;
-                @Action4.started += instance.OnAction4;
-                @Action4.performed += instance.OnAction4;
-                @Action4.canceled += instance.OnAction4;
-                @Action5.started += instance.OnAction5;
-                @Action5.performed += instance.OnAction5;
-                @Action5.canceled += instance.OnAction5;
+                @Action1PickupDrop.started += instance.OnAction1PickupDrop;
+                @Action1PickupDrop.performed += instance.OnAction1PickupDrop;
+                @Action1PickupDrop.canceled += instance.OnAction1PickupDrop;
+                @Action2Camera.started += instance.OnAction2Camera;
+                @Action2Camera.performed += instance.OnAction2Camera;
+                @Action2Camera.canceled += instance.OnAction2Camera;
+                @Action3ExternalUse.started += instance.OnAction3ExternalUse;
+                @Action3ExternalUse.performed += instance.OnAction3ExternalUse;
+                @Action3ExternalUse.canceled += instance.OnAction3ExternalUse;
+                @Action4UseFire.started += instance.OnAction4UseFire;
+                @Action4UseFire.performed += instance.OnAction4UseFire;
+                @Action4UseFire.canceled += instance.OnAction4UseFire;
+                @Action5AltuseFirealt.started += instance.OnAction5AltuseFirealt;
+                @Action5AltuseFirealt.performed += instance.OnAction5AltuseFirealt;
+                @Action5AltuseFirealt.canceled += instance.OnAction5AltuseFirealt;
             }
         }
     }
@@ -1315,11 +1315,11 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
-        void OnAction1(InputAction.CallbackContext context);
-        void OnAction2(InputAction.CallbackContext context);
-        void OnAction3(InputAction.CallbackContext context);
-        void OnAction4(InputAction.CallbackContext context);
-        void OnAction5(InputAction.CallbackContext context);
+        void OnAction1PickupDrop(InputAction.CallbackContext context);
+        void OnAction2Camera(InputAction.CallbackContext context);
+        void OnAction3ExternalUse(InputAction.CallbackContext context);
+        void OnAction4UseFire(InputAction.CallbackContext context);
+        void OnAction5AltuseFirealt(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
