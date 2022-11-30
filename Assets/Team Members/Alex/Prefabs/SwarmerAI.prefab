@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 6406306476827429921}
   - component: {fileID: 2963014885378717769}
   - component: {fileID: 894009366}
+  - component: {fileID: 6200773846144965217}
   m_Layer: 7
   m_Name: SwarmerAI
   m_TagString: Untagged
@@ -449,6 +450,22 @@ MonoBehaviour:
   myTarget: {fileID: 0}
   controllerSwarmer: {fileID: 6406306476827429921}
   enemyHealth: {fileID: 0}
+--- !u!114 &6200773846144965217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0

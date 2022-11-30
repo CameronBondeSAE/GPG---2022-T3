@@ -75,6 +75,8 @@ public class GameManager : NetworkBehaviour
 				//The position needs to be pulled from the original spawner function
 				NetworkInstantiate(aiPrefab,new Vector3(1,1,1),quaternion.identity);
 			}*/
+			if (levelGenerator == null) return;
+			levelGenerator.SpawnAIClientRpc();
 			InvokeOnGameWaveTimerClientRPC();
 		}
 	}

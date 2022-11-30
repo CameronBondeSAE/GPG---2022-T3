@@ -556,7 +556,7 @@ PrefabInstance:
     - target: {fileID: 8604443078459999940, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
       propertyPath: countdownTimer
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2068962096470880831, guid: c6a9552307192a14ca7f5a8ab256a356, type: 3}
     - target: {fileID: 8604443078459999940, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
       propertyPath: virtualCameraOne
       value: 
@@ -926,7 +926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5336197796539444170}
   m_LocalRotation: {x: 0.5294881, y: -0.0017173972, z: 0.0011483261, w: 0.8483148}
-  m_LocalPosition: {x: 37.869553, y: 89.02466, z: 0.2940092}
+  m_LocalPosition: {x: 50, y: 116, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1014,12 +1014,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
       propertyPath: NetworkConfig.NetworkPrefabs.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
       propertyPath: NetworkConfig.NetworkPrefabs.Array.data[1].Prefab
       value: 
       objectReference: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
+    - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
+      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[2].Prefab
+      value: 
+      objectReference: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
     - target: {fileID: 3639541133573309103, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1393,7 +1397,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5117559936439117430}
   m_LocalRotation: {x: 0.52948815, y: -0.0017173972, z: 0.0011483262, w: 0.8483148}
-  m_LocalPosition: {x: 37.869553, y: 89.02466, z: 0.2940092}
+  m_LocalPosition: {x: 50, y: 116, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
