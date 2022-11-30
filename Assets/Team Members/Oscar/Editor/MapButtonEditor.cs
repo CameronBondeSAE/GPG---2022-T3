@@ -72,11 +72,11 @@ public class AnotherButtonEditor : Editor
 
                 if (GUILayout.Button("Radar Is Equipted") && Application.isPlaying)
                 {
-                        (target as Radar_Model)?.pickedUp100();
+                        (target as Radar_Model)?.RadarSwitchOn();
                 }
                 if (GUILayout.Button("Radar Is Not On") && Application.isPlaying)
                 {
-                        (target as Radar_Model)?.NotOn();
+                        (target as Radar_Model)?.RadarSwitchOff();
                 }
         }
 }

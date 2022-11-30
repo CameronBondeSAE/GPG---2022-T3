@@ -20,8 +20,8 @@ namespace Oscar
         private RaycastHit hitInfo;
         
         public LayerMask pingLayer;
-        private float length = 10f;
-
+        [SerializeField]private float length = 15f;
+        
         void Update()
         {
             //create the loop for the radar using time.deltatime
@@ -49,7 +49,7 @@ namespace Oscar
             }
         }
 
-        public event Action RadarOnNow;
+        public event Action<bool> RadarOnNow;
         
         //Interfaces that Interact with this item.
         public bool isHeld { get; set; }
@@ -70,7 +70,7 @@ namespace Oscar
             {
                 radarOn = true;
             }
-            RadarOnNow?.Invoke();
+            RadarOnNow?.Invoke(radarOn);
             return radarOn;
         }
 
@@ -80,18 +80,8 @@ namespace Oscar
             {
                 radarOn = false;
             }
-            RadarOnNow?.Invoke();
+            RadarOnNow?.Invoke(radarOn);
             return radarOn;
-        }
-
-        public void pickedUp100()
-        {
-            RadarSwitchOn();
-        }
-        
-        public void NotOn()
-        {
-            RadarSwitchOff();
         }
 
         public void PickedUp(GameObject interactor)
