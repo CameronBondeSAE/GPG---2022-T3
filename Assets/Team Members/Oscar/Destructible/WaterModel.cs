@@ -20,7 +20,7 @@ public class WaterModel : MonoBehaviour
                 flammable = item.GetComponent<Flammable>();
                 flammable.ChangeHeat(theHeatSource,-20);
                 flammable.Extinguish();
-                flammable.CoolingDownTheTHing();
+                flammable.OnCoolDown();
                 
             }
         }
