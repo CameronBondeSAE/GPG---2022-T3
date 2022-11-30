@@ -73,7 +73,7 @@ MonoBehaviour:
   clientFlamethrowerModel: {fileID: 6110976125793252356}
   equippedMountPos: {fileID: 5684348334424203728}
   storedItems: 5
-  storedMax: 10
+  storedMax: 9999999
   equippedItems: 0
   equippedMax: 1
   item: {fileID: 1030358358859370405, guid: 2ec874876f0bf47408ad0863e1c4ee5d, type: 3}
