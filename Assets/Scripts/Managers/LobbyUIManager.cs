@@ -42,6 +42,7 @@ namespace Ollie
 
         public TMP_Text clientUI;
         public Button startButton;
+        public Button clientLockButton;
         public Button lobbyButton;
         public TMP_InputField playerNameInputField;
         public TMP_Text levelSelectedDisplayText;
@@ -112,18 +113,23 @@ namespace Ollie
             if (!autoHost)
             {
                 lobbyUICanvas.SetActive(true);
+                startButton.gameObject.SetActive(false);
                 ipAddressCanvas.SetActive(false);
-
-                foreach (Level level in levels)
-                {
-                    GameObject levelButton = Instantiate(levelButtonPrefab, levelHolder.transform);
-                    levelButton.GetComponentInChildren<TMP_Text>().text = level.levelNameOnUI;
-                    levelButton.GetComponent<LevelButton>().myLevel = level.level.name;
-                }
             }
             else
             {
                 //lobbyUICanvas.SetActive(false);
+            }
+        }
+
+        public void GoToLevelSelection()
+        {
+            clientLockButton.gameObject.SetActive(false);
+            foreach (Level level in levels)
+            {
+                GameObject levelButton = Instantiate(levelButtonPrefab, levelHolder.transform);
+                levelButton.GetComponentInChildren<TMP_Text>().text = level.levelNameOnUI;
+                levelButton.GetComponent<LevelButton>().myLevel = level.level.name;
             }
         }
         
@@ -143,6 +149,7 @@ namespace Ollie
         private void SetUpClientUI()
         {
             startButton.gameObject.SetActive(false);
+            clientLockButton.gameObject.SetActive(false);
             lobbyUICanvas.SetActive(true);
             ipAddressCanvas.SetActive(false);
             levelDisplayUI.SetActive(false);
@@ -262,7 +269,7 @@ namespace Ollie
         public void UpdateLevelSelectedText(string levelName)
         {
             levelSelectedDisplayText.text = levelName;
-            
+            startButton.gameObject.SetActive(false);
             //TODO: spawn perlin here somehow
             LobbyLevelPreview();
         }
@@ -274,7 +281,8 @@ namespace Ollie
                 Scene scene = SceneManager.GetSceneAt(i);
                 if (scene == SceneManager.GetActiveScene())
                 {
-                    SceneManager.UnloadSceneAsync(scene);
+                    //SceneManager.UnloadSceneAsync(scene);
+                    UnloadSceneClientRpc(scene.name);
                     //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
                 }
             }
@@ -286,9 +294,22 @@ namespace Ollie
 
         private void OnLoadEventCompleted(string scenename, LoadSceneMode loadscenemode, List<ulong> clientscompleted, List<ulong> clientstimedout)
         {
+            if(IsServer) {startButton.gameObject.SetActive(true);}
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnLoadEventCompleted;
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(scenename));
+            UpdateScenesClientRpc(scenename);
             if(GameManager.singleton.LevelGenerator != null) GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
+        }
+
+        [ClientRpc]
+        public void UnloadSceneClientRpc(string scenename)
+        {
+            SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(scenename));
+        }
+
+        [ClientRpc]
+        public void UpdateScenesClientRpc(string scenename)
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(scenename));
         }
 
         public void UnloadInactiveScenes()
@@ -321,13 +342,15 @@ namespace Ollie
                 Scene scene = SceneManager.GetSceneAt(i);
                 if (scene == SceneManager.GetActiveScene())
                 {
-                    SceneManager.UnloadSceneAsync(scene);
+                    //SceneManager.UnloadSceneAsync(scene);
+                    UnloadSceneClientRpc(scene.name);
                     //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
                 }
             }
             
             NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManagerOnOnSceneEvent;
-            NetworkManager.Singleton.SceneManager.OnLoadComplete += SetNewActiveScene;
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetNewActiveScene;
+            
             
             try
             {
@@ -341,13 +364,16 @@ namespace Ollie
         
         //Sets the newly loaded scene to be the current active scene
         //So all future spawned objects appear in the new scene
-        private void SetNewActiveScene(ulong clientid, string scenename, LoadSceneMode loadscenemode)
+        private void SetNewActiveScene(string scenename, LoadSceneMode loadscenemode, List<ulong> clientscompleted, List<ulong> clientstimedout)
         {
-            NetworkManager.Singleton.SceneManager.OnLoadComplete -= SetNewActiveScene;
+            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SetNewActiveScene;
             Scene scene = (SceneManager.GetSceneByName(scenename));
             SceneManager.SetActiveScene(scene);
             
-            //TODO: does this need clientrpc?
+            
+            //TODO: not successfully updating active scene on client
+            //does it matter?
+            UpdateScenesClientRpc(scene.name);
 
             StartCoroutine(LobbyGameStartDelayCoroutine());
 
