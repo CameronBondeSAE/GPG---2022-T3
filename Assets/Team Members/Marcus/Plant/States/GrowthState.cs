@@ -75,22 +75,32 @@ namespace Marcus
 
         public void PickedUp(GameObject interactor)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void PutDown(GameObject interactor)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void DestroySelf()
         {
-            throw new NotImplementedException();
+            
         }
 
         public bool isHeld { get; set; }
         public bool locked { get; set; }
-        public bool autoPickup { get; set; }
+        public bool autoPickup
+        {
+            get
+            {
+                return true;
+            }
+            set
+            {
+                
+            }
+        }
 
         #endregion
     }   

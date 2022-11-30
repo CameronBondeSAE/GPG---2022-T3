@@ -67,7 +67,18 @@ namespace Marcus
 
         public bool isHeld { get; set; }
         public bool locked { get; set; }
-        public bool autoPickup { get; set; }
+
+        public bool autoPickup
+        {
+            get
+            {
+                return true;
+            }
+            set
+            {
+                
+            }
+        }
 
         #endregion
     }
