@@ -69,6 +69,12 @@ public class Interact : NetworkBehaviour
             }
         }
     }
+    
+    [ClientRpc]
+    public void PickUpItemClientRpc()
+    {
+        
+    }
 
     [ServerRpc]
     public void RequestDropItemServerRpc()
@@ -87,6 +93,12 @@ public class Interact : NetworkBehaviour
             heldObject = null;
         }
     }
+    
+    [ClientRpc]
+    public void DropItemClientRpc()
+    {
+        
+    }
 
     [ServerRpc]
     public void RequestUseItemServerRpc()
@@ -98,6 +110,13 @@ public class Interact : NetworkBehaviour
             if(interactable!=null) interactable.Interact(this.gameObject);
         }
     }
+
+    [ClientRpc]
+    public void UseItemClientRpc()
+    {
+        
+    }
+    
     [ServerRpc]
     public void RequestExternalUseItemServerRpc()
     {
@@ -110,6 +129,11 @@ public class Interact : NetworkBehaviour
 		        monoBehaviour.GetComponent<IInteractable>().Interact(this.gameObject);
 	        }
         }
+    }
+
+    [ClientRpc]
+    public void ExternalUseItemClientRpc()
+    {
         
     }
 
@@ -131,6 +155,12 @@ public class Interact : NetworkBehaviour
                 monoBehaviour.GetComponent<FlamethrowerModel>().ShootAltFire();
             }
         }
+    }
+
+    [ClientRpc]
+    public void UseAltItemClientRpc()
+    {
+        
     }
     
     public void DeathItemRespawn()
