@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: myType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1198204028616787916, guid: 59fae0003407ba540a508eabea132f38, type: 3}
+      propertyPath: fireball
+      value: 
+      objectReference: {fileID: 2097233744307224593, guid: 7d260cc31d1fb3d418fae91750e0942b, type: 3}
     - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
       propertyPath: m_RootOrder
       value: 0

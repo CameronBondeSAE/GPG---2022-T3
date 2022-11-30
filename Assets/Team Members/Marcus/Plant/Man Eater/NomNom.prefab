@@ -5182,7 +5182,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1227
+  m_VersionIndex: 1236
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5443,6 +5443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colissionManager: {fileID: 2115377991730240438}
   fireness: {fileID: -4190843060470435521}
+  plants: []
 --- !u!114 &-8394875228692163360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5469,7 +5470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flamePrefab: {fileID: 0}
+  flameModelPrefab: {fileID: 4092031293610382795, guid: 356b6b1337f47004c80f6626d3ff6fa7, type: 3}
   fireDamage: 5
   heatLevel: 0
   heatThreshold: 35
