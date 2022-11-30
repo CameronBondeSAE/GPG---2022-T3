@@ -71,7 +71,6 @@ public class ManEater : MonoBehaviour, IFlammable
 
     void AddNeighbours(Collider plant)
     {
-        print("New PLant" + this);
         plants.Add(plant.gameObject);
     }
 

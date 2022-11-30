@@ -25,6 +25,7 @@ public class PlantView : MonoBehaviour
 
     private void OnEnable()
     {
+        plantGrowth.GrowEvent += Growing;
         plantMature.MatureEvent += Matured;
         plantDeath.DeathEvent += Dying;
         plantBase.BurningEvent += Burning;
@@ -34,7 +35,6 @@ public class PlantView : MonoBehaviour
     void Start()
     {
         body = GetComponent<Renderer>().material;
-        curTween = body.DOColor(spreadColour, 5f);
     }
 
     // Update is called once per frame
@@ -50,9 +50,15 @@ public class PlantView : MonoBehaviour
         }
     }
 
+    void Growing()
+    {
+        curTween.Kill();
+        curTween = body.DOColor(spreadColour, 5f);
+    }
+    
     void Matured(float duration)
     {
-       curTween = body.DOColor(matureColour, duration);
+        curTween = body.DOColor(matureColour, duration);
     }
 
     void Dying(float duration)
@@ -65,7 +71,7 @@ public class PlantView : MonoBehaviour
         burning = true;
         curTween.Kill();
         
-        body.DOColor(burnColour, 3f);
+        curTween = body.DOColor(burnColour, 3f);
     }
 }
    

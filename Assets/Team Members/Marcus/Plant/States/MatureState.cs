@@ -17,7 +17,7 @@ namespace Marcus
         private int rEvoChance;
         
         public delegate void Matured(float duration);
-        public event Matured MatureEvent ;
+        public event Matured MatureEvent;
         
         void OnEnable()
         {

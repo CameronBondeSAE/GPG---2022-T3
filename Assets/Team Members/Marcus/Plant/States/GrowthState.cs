@@ -23,10 +23,14 @@ namespace Marcus
         private float spreadDistance;
         private Vector3 spreadDirection;
         
+        public delegate void Growing();
+        public event Growing GrowEvent;
+        
         // Start is called before the first frame update
-        void Start()
+        void OnEnable()
         {
             RandomiseTimer();
+            GrowEvent?.Invoke();
         }
 
         void RandomiseTimer()
