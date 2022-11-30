@@ -55,6 +55,8 @@ public class Avatar : NetworkBehaviour, IControllable
 	    _rb.AddTorque(targetAngle, ForceMode.Acceleration);
     }
 
+    #region IControllable Interface
+
     public void Move(Vector2 direction)
     {
         MovePlayer(direction); // Clientside prediction
@@ -63,8 +65,8 @@ public class Avatar : NetworkBehaviour, IControllable
 
     public void Aim(Vector2 direction)
     {
-	    AimPlayer(direction); // Clientside prediction
-	    RequestAimPlayerServerRpc(direction);
+        AimPlayer(direction); // Clientside prediction
+        RequestAimPlayerServerRpc(direction);
     }
 
     public void Action1()
@@ -86,6 +88,13 @@ public class Avatar : NetworkBehaviour, IControllable
     
     public void Action3()
     {
-        interact.DeathItemRespawn();
+        interact.RequestDropItemServerRpc();
     }
+    
+    public void Action4()
+    {
+        interact.RequestUseItemServerRpc();
+    }
+
+    #endregion
 }

@@ -73,9 +73,9 @@ MonoBehaviour:
   storedItems: 5
   storedMax: 10
   equippedItems: 0
-  equippedMax: 10
+  equippedMax: 1
   item: {fileID: 1030358358859370405, guid: 2ec874876f0bf47408ad0863e1c4ee5d, type: 3}
-  flamethrower: {fileID: 3281139992415803641, guid: 59fae0003407ba540a508eabea132f38, type: 3}
+  flamethrower: {fileID: -6714150760321197817, guid: 59fae0003407ba540a508eabea132f38, type: 3}
   plant: {fileID: 2324078963844702446, guid: 50b22efbc57219042b1aeeeda2528002, type: 3}
 --- !u!54 &5296546071687087742
 Rigidbody:

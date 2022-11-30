@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Action4",
+                    "type": "Button",
+                    "id": "ea89dc4e-b511-4658-9aed-d947cd6d2620",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -297,11 +306,22 @@
                 {
                     "name": "",
                     "id": "0cd033ac-fdc0-46b1-bbcd-adb3a3d66612",
-                    "path": "<Keyboard>/t",
+                    "path": "<Keyboard>/leftAlt",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Action3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "84ec8622-59b1-4a54-a427-b067cd818b00",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

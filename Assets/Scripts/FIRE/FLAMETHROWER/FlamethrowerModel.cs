@@ -91,12 +91,12 @@ namespace Lloyd
         {
             modelView = GetComponentInChildren<FlamethrowerModelView>(); 
 
-            isHeld = true;
+            //isHeld = true;
 
             canShoot = true;
             
-           // GetComponent<NetworkObject>().Spawn();
-            }
+            GetComponent<NetworkObject>().Spawn();
+        }
 
         private void FixedUpdate()
         {
