@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 660303154614141586}
   - component: {fileID: 1347663066317525181}
   - component: {fileID: 4378779541382525051}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bulb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5182,7 +5182,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1221
+  m_VersionIndex: 1227
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5331,7 +5331,7 @@ GameObject:
   - component: {fileID: 2749822692284270998}
   - component: {fileID: 3147280091634773374}
   - component: {fileID: 2115377991730240438}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: EatingRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5413,7 +5413,7 @@ Transform:
   - {fileID: 8570415813410072492}
   - {fileID: 2749822692284270998}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8476142898420728742
 CapsuleCollider:
@@ -5469,7 +5469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flameModelPrefab: {fileID: 0}
+  flamePrefab: {fileID: 0}
   fireDamage: 5
   heatLevel: 0
   heatThreshold: 35
