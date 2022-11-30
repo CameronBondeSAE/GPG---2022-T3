@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
+  m_IndirectSpecularColor: {r: 0.17980957, g: 0.17980957, b: 0.17980957, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1258,66 +1258,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 483470733, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 7231
-      objectReference: {fileID: 0}
     - target: {fileID: 944178262, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1785989398}
-    - target: {fileID: 1383001810, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1383001811, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 8191
-      objectReference: {fileID: 0}
-    - target: {fileID: 1513979587, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.39990234
-      objectReference: {fileID: 0}
-    - target: {fileID: 1513979587, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.3000488
-      objectReference: {fileID: 0}
-    - target: {fileID: 301272687528570750, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 301272687528570750, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 301272687528570750, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 301272687528570750, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -246.23352
-      objectReference: {fileID: 0}
-    - target: {fileID: 1779773604012570508, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3846634145313634665, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3846634145313634665, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3846634145313634665, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 3846634145313634665, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -246.23352
-      objectReference: {fileID: 0}
     - target: {fileID: 4347023889492393202, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: m_Name
       value: Lobby UI Manager
@@ -1325,22 +1269,6 @@ PrefabInstance:
     - target: {fileID: 6011517664640636797, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 387995567
-      objectReference: {fileID: 0}
-    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: lobbyCam
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: directionalLight
-      value: 
-      objectReference: {fileID: 2087625146}
-    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: levels.Array.data[1].level
-      value: 
-      objectReference: {fileID: 102900000, guid: ca97eb1b7bbcac440920420cab72cc29, type: 3}
-    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
-      propertyPath: levels.Array.data[1].levelNameOnUI
-      value: Main Test (no system intergration)
       objectReference: {fileID: 0}
     - target: {fileID: 7258408480295207878, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: m_RootOrder
@@ -1386,6 +1314,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8861572165518123702, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1785989398}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
