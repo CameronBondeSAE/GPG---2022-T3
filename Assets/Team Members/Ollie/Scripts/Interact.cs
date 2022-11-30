@@ -59,7 +59,7 @@ public class Interact : NetworkBehaviour
 	                // monoBehaviour.transform.parent = equippedMountPos;
 	                Debug.Log("TrySetParent = "+ monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false));
                     PickUpItemClientRpc();
-                    monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,0);
+                    monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
                     monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
                     heldObject = GetComponentInChildren<FlamethrowerModel>();
                     equippedItems++;
@@ -83,7 +83,7 @@ public class Interact : NetworkBehaviour
             Destroy(heldObject.gameObject);
             Vector3 myPos = transform.position;
             NetworkObject go = Instantiate(flamethrower);
-            go.transform.position = myPos + transform.forward;
+            go.transform.position = myPos + (transform.forward/2);
             go.transform.rotation = transform.rotation;
             //go.Spawn();
             equippedItems = 0;
