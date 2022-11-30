@@ -95,7 +95,7 @@ namespace Lloyd
 
             canShoot = true;
             
-            GetComponent<NetworkObject>().Spawn();
+            if(IsServer)GetComponent<NetworkObject>().Spawn();
         }
 
         private void FixedUpdate()
