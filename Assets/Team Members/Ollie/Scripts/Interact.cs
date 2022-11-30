@@ -84,7 +84,7 @@ public class Interact : NetworkBehaviour
             go.transform.rotation = transform.rotation;
             //go.Spawn();
             equippedItems = 0;
-            
+            heldObject = null;
         }
     }
 
@@ -92,18 +92,43 @@ public class Interact : NetworkBehaviour
     public void RequestUseItemServerRpc()
     {
         //if you've got a flamethrower, fire it
+        if (heldObject != null)
+        {
+            IInteractable interactable = heldObject.GetComponent<IInteractable>();
+            if(interactable!=null) interactable.Interact(this.gameObject);
+        }
+    }
+    [ServerRpc]
+    public void RequestExternalUseItemServerRpc()
+    {
+	    //there's one nearby, fire that on the floor
+        if (pickupableNearby != null && pickupableNearby.isHeld == false)
+        {
+	        MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
+	        if (monoBehaviour != null && monoBehaviour.GetComponent<IInteractable>() != null)
+	        {
+		        monoBehaviour.GetComponent<IInteractable>().Interact(this.gameObject);
+	        }
+        }
+        
+    }
+
+    [ServerRpc]
+    public void RequestUseAltItemServerRpc()
+    {
+        //if you've got a flamethrower, fire it
         //if you don't have one AND there's one nearby, fire that on the floor
         if (heldObject != null)
         {
             FlamethrowerModel flamethrower = heldObject.GetComponent<FlamethrowerModel>();
-            if(flamethrower!=null) flamethrower.Interact(this.gameObject);
+            if(flamethrower!=null) flamethrower.ShootAltFire();
         }
         else if (pickupableNearby != null && pickupableNearby.isHeld == false)
         {
             MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
             if (monoBehaviour != null && monoBehaviour.GetComponent<FlamethrowerModel>() != null)
             {
-                monoBehaviour.GetComponent<FlamethrowerModel>().Interact(this.gameObject);
+                monoBehaviour.GetComponent<FlamethrowerModel>().ShootAltFire();
             }
         }
     }
