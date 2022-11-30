@@ -32,7 +32,7 @@ Material:
   - RayTracingPrepass
   - MOTIONVECTORS
   - GRABPASS
-  m_LockedProperties: 
+  m_LockedProperties: Texture2D_23DD87FD
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:

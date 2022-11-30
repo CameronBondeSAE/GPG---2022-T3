@@ -49,7 +49,6 @@ namespace Alex
                 if (targetTransform)
                 {
                     targetPosition = targetTransform.position;
-                    
                 }
                 
                 Vector3 targetDir = targetPosition - transform.position;
@@ -58,10 +57,11 @@ namespace Alex
                 
                 
                 // Slow down if facing away from target
-                if(Mathf.Abs(angle) > slowDownAngleThreshhold)
-                    rb.AddRelativeForce(0, 0,  -Mathf.Abs(angle * slowingForce));
-                rb.AddRelativeTorque(0, angle * turnSpeed, 0);
-                
+                if (Mathf.Abs(angle) > slowDownAngleThreshhold)
+                {
+                    rb.AddRelativeForce(0, 0, -Mathf.Abs(angle * slowingForce));
+                    rb.AddRelativeTorque(0, angle * turnSpeed, 0);
+                }
         }
     }
 }

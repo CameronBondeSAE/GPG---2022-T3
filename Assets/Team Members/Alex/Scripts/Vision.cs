@@ -119,17 +119,14 @@ namespace Alex
             }
 
             //Sorting all the lists so that the closest will be first in order for AStar to use the closest object. 
-            resourcesInSight = resourcesInSight.OrderBy(
-                resource => Vector3.Distance(this.transform.position,resource.transform.position)
-            ).ToList();
+            if(resourcesInSight != null)
+                resourcesInSight = resourcesInSight.OrderBy(resource => Vector3.Distance(this.transform.position,resource.transform.position)).ToList();
             
-            enemyInSight = enemyInSight.OrderBy(
-                enemy => Vector3.Distance(this.transform.position,enemy.transform.position)
-            ).ToList();
+            if(enemyInSight != null)
+                enemyInSight = enemyInSight.OrderBy(enemy => Vector3.Distance(this.transform.position,enemy.transform.position)).ToList();
             
-            dropOffPointsFound = dropOffPointsFound.OrderBy(
-                resource => Vector3.Distance(this.transform.position,resource.transform.position)
-            ).ToList();
+            if(dropOffPointsFound != null)
+                dropOffPointsFound = dropOffPointsFound.OrderBy(resource => Vector3.Distance(this.transform.position,resource.transform.position)).ToList();
             
             
             testShapes.polygonPath.AddPoint(transform.position.x, transform.position.z);

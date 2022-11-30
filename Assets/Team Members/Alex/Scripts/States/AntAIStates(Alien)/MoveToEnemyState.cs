@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Shapes;
 using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
@@ -48,7 +49,7 @@ namespace Alex
 
             turnTowards.enabled = true;
             followPath.enabled = true;
-            
+            Debug.DrawLine(rb.transform.position, vision.enemyInSight[0].transform.position, Color.red);
             
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
 
