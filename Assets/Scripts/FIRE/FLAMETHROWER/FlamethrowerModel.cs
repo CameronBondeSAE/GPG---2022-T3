@@ -196,6 +196,14 @@ namespace Lloyd
                 DestroySelf();
             }
         }
+
+        public void ChangeOverheat(float x)
+        {
+            overHeatLevel += x;
+
+            if (overHeatLevel < overHeatPoint)
+                overheating = false;
+        }
         
 
         //IPICKUP MANDATORY(S)

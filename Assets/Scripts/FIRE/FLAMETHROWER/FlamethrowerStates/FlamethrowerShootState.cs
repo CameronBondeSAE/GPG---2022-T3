@@ -7,8 +7,6 @@ using Oscar;
 
 public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 {
-    public ExplosiveIdleState idleState;
-    
     public FlamethrowerModel model;
 
     public GameObject fireball;
