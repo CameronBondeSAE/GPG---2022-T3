@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -102,9 +103,11 @@ namespace Luke
             Vector2 aimInput = context.ReadValue<Vector2>();
             if (context.control.parent.name == "Mouse")
             {
-                if (Camera.main == null) return;
-                Vector3 playerPos = Camera.main.WorldToScreenPoint(playerTransform.position);
-                _aimDirection = aimInput - new Vector2(playerPos.x, playerPos.y);
+                Camera cam = Camera.main;
+                if (cam == null) return;
+                Vector2 playerPos = new Vector2(cam.pixelWidth / 2f, cam.pixelHeight / 2f); //Camera.main.WorldToScreenPoint(playerTransform.position);
+                _aimDirection = aimInput - playerPos;
+
                 return;
             }
             _aimDirection = aimInput;
