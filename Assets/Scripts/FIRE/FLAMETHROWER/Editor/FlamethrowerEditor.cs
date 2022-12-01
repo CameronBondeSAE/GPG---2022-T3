@@ -14,17 +14,22 @@ namespace Lloyd
 
             if (GUILayout.Button("Shoot Fire"))
             {
-                (target as Lloyd.FlamethrowerModel)?.ShootFire();
-            }
-
-            if (GUILayout.Button("Spray Water"))
-            {
-                (target as Lloyd.FlamethrowerModel)?.SprayWater();
+                (target as Lloyd.FlamethrowerModel)?.Interact(null);
             }
             
             if (GUILayout.Button("Shoot AltFire"))
             {
-                (target as Lloyd.FlamethrowerModel)?.ShootAltFire();
+                (target as Lloyd.FlamethrowerModel)?.AltInteract(null);
+            }
+            
+            if (GUILayout.Button("Cancel Fire"))
+            {
+                (target as Lloyd.FlamethrowerModel)?.CancelInteract();
+            }
+            
+            if (GUILayout.Button("Cancel AltFire"))
+            {
+                (target as Lloyd.FlamethrowerModel)?.CancelAltInteract();
             }
             
             if (GUILayout.Button("Shoot Until Dead"))

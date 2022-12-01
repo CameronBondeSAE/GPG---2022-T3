@@ -63,11 +63,11 @@ namespace Lloyd
 
             if (_flamethrower != null)
             {
-                if (_isShooting)
-                    _flamethrower.ShootFire();
+               // if (_isShooting)
+                   // _flamethrower.ShootFire();
 
-                if (_isAltShooting)
-                    _flamethrower.ShootAltFire();
+               // if (_isAltShooting)
+                  //  _flamethrower.ShootAltFire();
             }
         }
 
