@@ -8,6 +8,7 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using NetworkObject = Unity.Netcode.NetworkObject;
 using Random = System.Random;
 
 
@@ -26,6 +27,7 @@ public class Interact : NetworkBehaviour
     public int storedMax = 10;
     public int equippedItems;
     public int equippedMax = 1;
+    public bool clientHeldObject = false;
 
     [Header("Hack Item Spawning")]
     public NetworkObject item;
@@ -48,35 +50,36 @@ public class Interact : NetworkBehaviour
     [ServerRpc]
     public void RequestPickUpItemServerRpc()
     {
-        if (pickupableNearby != null)
-        {
-            if (equippedItems < equippedMax)
-            {
-                pickupableNearby.PickedUp(gameObject);
+        if (pickupableNearby == null) return;
+        if (equippedItems >= equippedMax) return;
+        
+        pickupableNearby.PickedUp(gameObject);
                 
-                MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
-                if (monoBehaviour != null)
-                {
-	                // monoBehaviour.transform.parent = equippedMountPos;
-	                Debug.Log("TrySetParent = "+ monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false));
-                    if(monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false) == true)
-                    {
-                        PickUpItemClientRpc();
-                        monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
-                        monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
-                        heldObject = GetComponentInChildren<FlamethrowerModel>();
-                        equippedItems++;
-                    }
-                }
-                pickupableNearby = null;
+        MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
+        if (monoBehaviour != null)
+        {
+            // monoBehaviour.transform.parent = equippedMountPos;
+            Debug.Log("TrySetParent = "+ monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false));
+            if(monoBehaviour.GetComponent<NetworkObject>().TrySetParent(transform, false) == true)
+            {
+                PickUpItemClientRpc();
+                monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
+                monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
+                heldObject = GetComponentInChildren<FlamethrowerModel>();
+                if(heldObject != null) equippedItems++;
             }
         }
+        pickupableNearby = null;
     }
     
     [ClientRpc]
     public void PickUpItemClientRpc()
     {
-        if(!IsServer) clientFlamethrowerModel.SetActive(true);
+        if (!IsServer)
+        {
+            clientFlamethrowerModel.SetActive(true);
+            clientHeldObject = true;
+        }
     }
 
     [ServerRpc]
@@ -85,23 +88,24 @@ public class Interact : NetworkBehaviour
         if (heldObject != null)
         {
             equippedItems = 0;
+            DropItemClientRpc();
             Destroy(heldObject.gameObject);
+            heldObject = null;
             Vector3 myPos = transform.position;
             GameManager.singleton.NetworkInstantiate(flamethrower, (myPos + (transform.forward / 2)),
                 transform.rotation);
-            // NetworkObject go = Instantiate(flamethrower);
-            // go.transform.position = myPos + (transform.forward/2);
-            // go.transform.rotation = transform.rotation;
-            //go.Spawn();
-            
-            heldObject = null;
+            print("respawn flamethrower");
         }
     }
     
     [ClientRpc]
     public void DropItemClientRpc()
     {
-        if(!IsServer) clientFlamethrowerModel.SetActive(false);
+        if (!IsServer)
+        {
+            clientFlamethrowerModel.SetActive(false);
+            clientHeldObject = false;
+        }
     }
 
     [ServerRpc]
