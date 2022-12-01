@@ -102,11 +102,11 @@ namespace Alex
 				        //neighbour.transform.position = new Vector3(vision.enemyInSight[0].transform.position.x + Random.Range(-5, 5), vision.enemyInSight[0].transform.position.y, vision.enemyInSight[0].transform.position.z + Random.Range(-5, 5));
 			        }
 
-			        if (vision.enemyInSight[0] == null)
+			        if (vision.enemyInSight.Count == 0)
 				        Finish();
 		        }
 	        }
-	        else if (vision.enemyInSight[0] == null)
+	        else if (vision.enemyInSight.Count == 0)
 		        Finish();
         }
 
