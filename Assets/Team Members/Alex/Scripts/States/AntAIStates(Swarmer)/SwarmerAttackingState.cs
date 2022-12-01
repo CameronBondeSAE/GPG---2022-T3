@@ -30,7 +30,7 @@ namespace Alex
             neighbours = aGameObject.GetComponent<Neighbours>();
             controllerSwarmer = aGameObject.GetComponent<ControllerSwarmer>();
             turnTowards = aGameObject.GetComponent<TurnTowards>();
-            attackSphereAndShader = aGameObject.GetComponent<AttackSphereAndShader>();
+            attackSphereAndShader = aGameObject.GetComponentInChildren<AttackSphereAndShader>();
         }
 
         public override void Enter()
@@ -40,8 +40,6 @@ namespace Alex
             align.enabled = false;
             separation.enabled = false;
             cohesion.enabled = false;
-            attackSphereAndShader.enabled = true;
-            attackSphereAndShader.attackCollider.SetActive(true);
             turnTowards.enabled = true;
 
             turnTowards.targetTransform = controllerSwarmer.target;
@@ -61,9 +59,6 @@ namespace Alex
         public override void Exit()
         {
             base.Exit();
-            //attackSphereAndShader.gameObject.SetActive(false);
-            attackSphereAndShader.enabled = false;
-            attackSphereAndShader.attackCollider.SetActive(false);
             turnTowards.enabled = false;
             controllerSwarmer.canAttack = false;
             controllerSwarmer.canSwarm = true;
@@ -71,3 +66,4 @@ namespace Alex
         }
     }
 }
+

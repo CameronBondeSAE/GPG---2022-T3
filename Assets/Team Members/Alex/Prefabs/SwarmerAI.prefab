@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1654885018
 Transform:
   m_ObjectHideFlags: 0
@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 156267089695662634}
   - component: {fileID: 6406306476827429921}
   - component: {fileID: 2963014885378717769}
-  - component: {fileID: 894009366}
   - component: {fileID: 6200773846144965217}
   - component: {fileID: 6372642251826983319}
   m_Layer: 7
@@ -435,22 +434,6 @@ MonoBehaviour:
   manualUpdate: 0
   thinkInterval: 2
   scenario: {fileID: 11400000, guid: 865b02933fc1a4d49a89428369966843, type: 2}
---- !u!114 &894009366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77bddc1d16752f149a3348b6cd03526d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCollider: {fileID: 8646363082007320217}
-  myTarget: {fileID: 0}
-  controllerSwarmer: {fileID: 6406306476827429921}
-  enemyHealth: {fileID: 0}
 --- !u!114 &6200773846144965217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,13 +923,14 @@ GameObject:
   - component: {fileID: 9001931371166557945}
   - component: {fileID: 3709800067721153905}
   - component: {fileID: 1207648243237353369}
+  - component: {fileID: 2916408155745049047}
   m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9001931371166557945
 Transform:
   m_ObjectHideFlags: 0
@@ -992,3 +976,22 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &2916408155745049047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8646363082007320217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77bddc1d16752f149a3348b6cd03526d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTarget: {fileID: 0}
+  controllerSwarmer: {fileID: 0}
+  vFX: {fileID: 1654885017}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _targets: []
