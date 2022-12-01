@@ -54,15 +54,18 @@ public class Interact : NetworkBehaviour
         if (equippedItems >= equippedMax) return;
         
         pickupableNearby.PickedUp(gameObject);
-                
+
         MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
         if (monoBehaviour != null)
         {
             // monoBehaviour.transform.parent = equippedMountPos;
-            Debug.Log("TrySetParent = "+ monoBehaviour.GetComponent<NetworkObject>().TrySetParent(GetComponent<NetworkObject>(), false));
-            if(monoBehaviour.GetComponent<NetworkObject>().TrySetParent(transform, false) == true)
+            NetworkObject monoNetObj = monoBehaviour.GetComponent<NetworkObject>();
+            //monoNetObj.Despawn();
+            //Destroy(monoNetObj.gameObject);
+            Debug.Log("TrySetParent = "+ monoNetObj.TrySetParent(transform, false));
+            if(monoNetObj.TrySetParent(transform, false) == true)
             {
-                PickUpItemClientRpc();
+                PickUpItemClientRpc(monoNetObj.NetworkObjectId);
                 monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
                 monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
                 heldObject = GetComponentInChildren<FlamethrowerModel>();
@@ -73,10 +76,11 @@ public class Interact : NetworkBehaviour
     }
     
     [ClientRpc]
-    public void PickUpItemClientRpc()
+    public void PickUpItemClientRpc(ulong netObjectId)
     {
         if (!IsServer)
         {
+            //GetNetworkObject(netObjectId).Despawn();
             clientFlamethrowerModel.SetActive(true);
             clientHeldObject = true;
         }

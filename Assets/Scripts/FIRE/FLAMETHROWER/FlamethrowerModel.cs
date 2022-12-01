@@ -96,7 +96,7 @@ namespace Lloyd
             
             //TODO: Ollie HACK
             //replace this somehow, it's causing errors on the client
-            GetComponent<NetworkObject>().Spawn();
+            //GetComponent<NetworkObject>().Spawn();
         }
 
         private void FixedUpdate()
@@ -203,6 +203,13 @@ namespace Lloyd
         public void PickedUp(GameObject player)
         {
             isHeld = true;
+            //ParentClientRpc(somethingsomething);
+        }
+
+        [ClientRpc]
+        public void ParentClientRpc(ulong networkPlayerId)
+        {
+            transform.parent = NetworkManager.Singleton.ConnectedClients[networkPlayerId].PlayerObject.GetComponent<PlayerController>().playerTransform;
         }
 
         public void PutDown(GameObject player)

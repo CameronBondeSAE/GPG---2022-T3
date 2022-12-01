@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17980957, g: 0.17980957, b: 0.17980957, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1090,26 +1090,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Network Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
-      propertyPath: NetworkConfig.NetworkPrefabs.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
-      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[1].Prefab
-      value: 
-      objectReference: {fileID: 275283118841150105, guid: ff671aef2739242448ffb8add9d881a9, type: 3}
-    - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
-      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[2].Prefab
-      value: 
-      objectReference: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
-    - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
-      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[3].Prefab
-      value: 
-      objectReference: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
-    - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
-      propertyPath: NetworkConfig.NetworkPrefabs.Array.data[4].Prefab
-      value: 
-      objectReference: {fileID: 2068962096470880831, guid: c6a9552307192a14ca7f5a8ab256a356, type: 3}
     - target: {fileID: 3639541133573309103, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
       propertyPath: m_RootOrder
       value: 1
