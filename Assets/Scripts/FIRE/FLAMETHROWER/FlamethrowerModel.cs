@@ -225,7 +225,7 @@ namespace Lloyd
         [ClientRpc]
         public void RemoveParentClientRpc(ulong localClientId)
         {
-            Transform myParent = transform.parent.transform;
+            Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;;
             
             transform.parent = null;
             transform.position = myParent.position + (transform.forward / 2);
