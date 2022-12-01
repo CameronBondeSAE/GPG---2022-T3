@@ -1,18 +1,21 @@
 using System;
 using Shapes;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 namespace Oscar
 {
-    public class Radar_View : Radar_Model
+    public class Radar_View : ImmediateModeShapeDrawer
     {
         //for the drawing of the lines in the game view
         public Color colour = Color.green;
         public float lineThickness = 1f;
         public float intensity = 1f;
 
+        private Vector3 spinDirection;
+        
         public bool radarOn = false;
 
         public Radar_Model radarModel;
@@ -55,13 +58,11 @@ namespace Oscar
                     Draw.Position = transform.position;
                     Draw.Rotation = Quaternion.identity;
 
-                    //draw the lines
-                    for (int i = 0; i < 360; i++)
-                    {
-                        Draw.Line(dir, Vector3.zero);
-                    }
+                    radarModel.GetComponent<Line>().End = radarModel.theDir;
                 }
+                
                 //play sound
+                
             }
         }
     }
