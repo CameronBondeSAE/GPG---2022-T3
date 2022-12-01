@@ -108,6 +108,26 @@ public class MarcusInput : MonoBehaviour, IControllable
        
     }
 
+    public void Action4Performed()
+    {
+        
+    }
+
+    public void Action4Cancelled()
+    {
+
+    }
+
+    public void Action5Performed()
+    {
+
+    }
+
+    public void Action5Cancelled()
+    {
+
+    }
+
     public void Action4()
     {
        

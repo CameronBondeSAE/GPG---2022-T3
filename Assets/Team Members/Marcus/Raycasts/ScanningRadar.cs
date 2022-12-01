@@ -59,10 +59,20 @@ public class ScanningRadar : MonoBehaviour, IInteractable, IPickupable
         StartScan();
     }
 
+    public void CancelInteract()
+    {
+        
+    }
+
     public void AltInteract(GameObject interactor)
     {
         //idf nothing. maybe pulse???
         //I dont know why i'm bothering This is obsolete
+    }
+
+    public void CancelAltInteract()
+    {
+
     }
 
     public void PickedUp(GameObject Interactor)
