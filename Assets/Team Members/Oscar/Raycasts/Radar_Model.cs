@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class Radar_Model : ImmediateModeShapeDrawer, IFlammable,IPickupable
+    public class Radar_Model : MonoBehaviour, IFlammable,IPickupable
     {
         //is it on the player or not
         private bool radarOn = false;
@@ -17,36 +17,45 @@ namespace Oscar
         private float radarSpeed = 100f;
         public Vector3 dir;
 
-        private RaycastHit hitInfo;
+        public RaycastHit hit;
         
         public LayerMask pingLayer;
-        [SerializeField]private float length = 15f;
+        [SerializeField]private float length = 10f;
         
         void Update()
         {
             //create the loop for the radar using time.deltatime
             timer += Time.deltaTime * radarSpeed;
             if (timer >= 360f)
-            {
+            { 
                 timer = 0f;
             }
             
             //defined direction over time
             dir = Quaternion.Euler(0, timer, 0) * transform.forward * length;
-
+            theDir = dir;
+            
             //the actual raycast that will read the collisions if there are any
             Ray ray = new Ray(transform.position, dir);
-            RaycastHit hit;
             if (radarOn == true)
             {
-                if (Physics.Raycast(ray, out hit, length,pingLayer))
+                if (Physics.Raycast(ray, out hit, length))
                 {
-                    if (hit.collider.GetComponent<IAffectedByRadar>() != null)
+                    if (hit.transform.gameObject.layer == pingLayer)
                     {
-                        hit.collider.GetComponent<IAffectedByRadar>().Detection();
+                        if (hit.collider.GetComponent<IAffectedByRadar>() != null)
+                        {
+                            hit.collider.GetComponent<IAffectedByRadar>().Detection();
+                        }
                     }
                 }
             }
+        }
+
+        public Vector3 theDir
+        {
+            get { return dir; }
+            set { dir = value; }
         }
 
         public event Action<bool> RadarOnNow;
