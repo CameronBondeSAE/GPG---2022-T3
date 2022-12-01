@@ -51,16 +51,12 @@ namespace Alex
             targetPosition = astar.isPathable[0].worldPosition;
         }
 
-        private void FixedUpdate()
-        {
-            // if(astar.isPathable.Count > 0)
-                // turntowards.targetPosition = astar.isPathable[currentPathIndex].worldPosition;
-        }
 
-
-        void Update()
+        void FixedUpdate()
         {
-            
+	        // if(astar.isPathable.Count > 0)
+	        // turntowards.targetPosition = astar.isPathable[currentPathIndex].worldPosition;
+
             
             myPos = controller.rb.transform.position;
             if (astar.isPathable.Count > 0)
