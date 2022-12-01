@@ -83,7 +83,7 @@ public class HealthView : ImmediateModeShapeDrawer
     {
         HP = x;
         lineLength = HP;
-        healthPos = healthModel.transform.position;
+
         endPos.x = healthPos.x + lineLength;
         intensity = origIntens;
 
@@ -124,6 +124,8 @@ public class HealthView : ImmediateModeShapeDrawer
     {
 	    if (light)
         {
+            DetectHealthPos();
+            
             base.DrawShapes(cam);
 
             using (Draw.Command(cam))
@@ -143,6 +145,12 @@ public class HealthView : ImmediateModeShapeDrawer
             }
         }
     }
+
+    private void DetectHealthPos()
+    {
+        
+    }
+
 
     IEnumerator Pulsing()
     {

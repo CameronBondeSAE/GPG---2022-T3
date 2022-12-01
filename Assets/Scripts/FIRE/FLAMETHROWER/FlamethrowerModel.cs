@@ -125,6 +125,16 @@ namespace Lloyd
         {
             ShootAltFire();
         }
+
+        public void CancelInteract()
+        {
+            
+        }
+
+        public void CancelAltInteract()
+        {
+            
+        }
         
         public void ShootUntilDead()
         {

@@ -27,6 +27,8 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
 
     private FlamethrowerModelView modelView;
 
+    private Health health;
+
     public bool overheating;
 
     private float heatLevel;
@@ -103,6 +105,12 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
 
             if (rb != null)
                 rb.AddExplosionForce(explodePower, explosionPos, radius, explodeUpPower);
+
+            if (burnVictims.GetComponent<Health>() != null)
+            {
+                health = burnVictims.GetComponent<Health>();
+                health.ChangeHP(-100000);
+            }
         }
         modelView.OnChangeState(3);
     }
