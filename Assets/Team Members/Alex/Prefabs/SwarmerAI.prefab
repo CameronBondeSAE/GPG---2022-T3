@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
+  slideTowardsSpeed: 0
 --- !u!54 &1794423253392461856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -993,5 +994,5 @@ MonoBehaviour:
   vFX: {fileID: 1654885017}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   _targets: []

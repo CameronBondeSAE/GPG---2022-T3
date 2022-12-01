@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using ParadoxNotion;
 using Shapes;
 using Unity.VisualScripting;
 using Random = UnityEngine.Random;
@@ -58,7 +59,7 @@ namespace Alex
             turnTowards.enabled = true;
             
             followPath.enabled = true;
-	            Debug.DrawLine(rb.transform.position, target, Color.red);
+	            //Debug.DrawLine(rb.transform.position, target, Color.red);
 
 	            followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
 
@@ -85,7 +86,28 @@ namespace Alex
         {
 	        base.Execute(aDeltaTime, aTimeScale);
 
-	        turnTowards.targetPosition = target;
+	        if (vision.enemyInSight.Count > 0)
+	        {
+		        if (vision.enemyInSight[0] != null)
+		        {
+			        turnTowards.targetPosition = target;
+
+			        foreach (Transform neighbour in neighbours.neighbours)
+			        {
+				        neighbour.GetComponentInParent<ControllerSwarmer>().canAttack = true;
+				        neighbour.GetComponentInParent<ControllerSwarmer>().canSwarm = false;
+				        neighbour.GetComponentInParent<ControllerSwarmer>().target = vision.enemyInSight[0];
+				        neighbour.GetComponentInParent<ControllerSwarmer>().myOwnerAlienAI = controller;
+				        //new WaitForSeconds(2f);
+				        //neighbour.transform.position = new Vector3(vision.enemyInSight[0].transform.position.x + Random.Range(-5, 5), vision.enemyInSight[0].transform.position.y, vision.enemyInSight[0].transform.position.z + Random.Range(-5, 5));
+			        }
+
+			        if (vision.enemyInSight[0] == null)
+				        Finish();
+		        }
+	        }
+	        else if (vision.enemyInSight[0] == null)
+		        Finish();
         }
 
         private void FollowPathOnPathEndReachedEvent()
