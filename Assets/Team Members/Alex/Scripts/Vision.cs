@@ -124,7 +124,7 @@ namespace Alex
             
             if(enemyInSight != null)
                 enemyInSight = enemyInSight.OrderBy(enemy => Vector3.Distance(this.transform.position,enemy.transform.position)).ToList();
-            
+
             if(dropOffPointsFound != null)
                 dropOffPointsFound = dropOffPointsFound.OrderBy(resource => Vector3.Distance(this.transform.position,resource.transform.position)).ToList();
             

@@ -297,8 +297,8 @@ MonoBehaviour:
   wander: {fileID: 0}
   astar: {fileID: 0}
   followPath: {fileID: 0}
-  slowingForce: 50
-  slowDownAngleThreshhold: 25
+  slowingForce: 5
+  slowDownAngleThreshhold: 5
 --- !u!114 &3167607737926146247
 MonoBehaviour:
   m_ObjectHideFlags: 0
