@@ -71,14 +71,15 @@ public class Avatar : NetworkBehaviour, IControllable
 
     public void Action1()
     {
-	    if (interact.heldObject)
+	    if (interact.heldObject || interact.clientHeldObject)
 	    {
 		    interact.RequestDropItemServerRpc();
+            print("trying to drop");
 	    }
 	    else
 	    {
 		    interact.RequestPickUpItemServerRpc();
-	    }
+        }
     }
 
     public void Action2()
