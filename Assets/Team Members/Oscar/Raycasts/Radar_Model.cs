@@ -33,7 +33,6 @@ namespace Oscar
             
             //defined direction over time
             dir = Quaternion.Euler(0, timer, 0) * transform.forward * length;
-            theDir = dir;
             
             //the actual raycast that will read the collisions if there are any
             Ray ray = new Ray(transform.position, dir);
@@ -41,12 +40,12 @@ namespace Oscar
             {
                 if (Physics.Raycast(ray, out hit, length))
                 {
-                    if (hit.transform.gameObject.layer == pingLayer)
+                    // FIX HITPOINT!
+                    dir = ray.direction;
+                    theDir = dir;
+                    if (hit.collider.GetComponent<IAffectedByRadar>() != null)
                     {
-                        if (hit.collider.GetComponent<IAffectedByRadar>() != null)
-                        {
-                            hit.collider.GetComponent<IAffectedByRadar>().Detection();
-                        }
+                        hit.collider.GetComponent<IAffectedByRadar>().Detection(); 
                     }
                 }
             }

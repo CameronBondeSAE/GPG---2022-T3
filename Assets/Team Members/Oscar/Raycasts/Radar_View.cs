@@ -19,6 +19,7 @@ namespace Oscar
         public bool radarOn = false;
 
         public Radar_Model radarModel;
+        public Line radarLine;
         public override void OnEnable()
         {
             base.OnEnable();
@@ -58,12 +59,22 @@ namespace Oscar
                     Draw.Position = transform.position;
                     Draw.Rotation = Quaternion.identity;
 
-                    radarModel.GetComponent<Line>().End = radarModel.theDir;
+                    radarLine = radarModel.GetComponent<Line>();
+                    radarLine.enabled = true;
+                    radarLine.End = radarModel.theDir;
                 }
                 
                 //play sound
                 
             }
+            
+            if (!radarOn)
+            {
+                base.DrawShapes(cam);
+                
+                radarModel.GetComponent<Line>().enabled = false;
+            }
+            
         }
     }
 }
