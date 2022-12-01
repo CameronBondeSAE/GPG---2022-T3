@@ -42,7 +42,9 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
     private Rigidbody rb;
     
     private void OnEnable()
-    { 
+    {
+        overheating = true;
+        
         modelView = GetComponentInChildren<FlamethrowerModelView>();
 
         modelView.ChangeOverheat += ChangeOverheatLevel;
@@ -79,13 +81,15 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
                 countDownTimer --;
             }
 
-            yield return new WaitForSeconds(countDownTimer);
-        }
-        if (countDownTimer == 0)
-        {
-            Explode();
-            overheating = false;
-            yield return null;
+            
+            if (countDownTimer == 0)
+            {
+                Explode();
+                overheating = false;
+                yield return null;
+            }
+            
+            yield return new WaitForSeconds(1);
         }
     }
 

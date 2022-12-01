@@ -88,7 +88,9 @@ namespace Lloyd
         
         private void OnEnable()
         {
-            modelView = GetComponentInChildren<FlamethrowerModelView>(); 
+            modelView = GetComponentInChildren<FlamethrowerModelView>();
+
+            modelView.ChangeState += FlipOverheat;
 
             isHeld = true;
 
@@ -98,10 +100,27 @@ namespace Lloyd
             //replace this somehow, it's causing errors on the client
             //GetComponent<NetworkObject>().Spawn();
         }
+        
+        private void FlipOverheat(int x)
+        {
+            if (x == 0)
+                overheating = false;
+        }
 
         private void FixedUpdate()
         {
-            HandleOverheat();
+            if (!overheating)
+            {
+                if (!shooting && overHeatLevel > 0)
+                {
+                    ChangeOverheat(-1 * Time.deltaTime);
+                }
+
+                if (shooting)
+                {
+                    ChangeOverheat(overHeatRate * Time.deltaTime);
+                }
+            }
         }
 
         public void Interact(GameObject interactor)
@@ -160,29 +179,6 @@ namespace Lloyd
 
         //FLAMETHROWER WILL OVERHEAT AND EXPLODE IF FIRED TOO MUCH
 
-        private void HandleOverheat()
-        {
-            if (!shooting)
-            {
-                overHeatLevel -= 1 * Time.deltaTime;
-                if (overHeatLevel <= 0)
-                    overHeatLevel = 0;
-            }
-
-            if (shooting)
-            {
-                overHeatLevel += overHeatRate * Time.deltaTime;
-            }
-
-            if (overHeatLevel >= overHeatPoint)
-            {
-                overheating = true;
-                DestroySelf();
-            }
-            
-            modelView.OnChangeOverheat(overHeatLevel);
-        }
-
         public void ChangeOverheat(float x)
         {
             overHeatLevel += x;
@@ -192,16 +188,35 @@ namespace Lloyd
 
             if (overHeatLevel <= 0)
                 overHeatLevel = 0;
+
+            if (overHeatLevel >= overHeatPoint)
+            {
+                overheating = true;
+                StartCoroutine(Exploding());
+            }
             
             modelView.OnChangeOverheat(overHeatLevel);
         }
-        
+
+        private IEnumerator Exploding()
+        {
+            modelView.OnChangeState(2);
+            yield return new WaitUntil(() => overheating == false);
+        }
+
+        public void DestroySelf()
+        {
+            overHeatLevel = 1000f;
+            overheating = true;
+            StartCoroutine(Exploding());
+        }
 
         //IPICKUP MANDATORY(S)
 
         public void PickedUp(GameObject player, ulong localClientId)
         {
             isHeld = true;
+            transform.parent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
             ParentClientRpc(localClientId);
         }
 
@@ -209,6 +224,8 @@ namespace Lloyd
         public void ParentClientRpc(ulong localClientId)
         {
             //TODO: LUKE needs to fix the client entities knowing about other client entities' PlayerAvatar
+            //also an issue with the FT not following the client because of NetworkTransform?
+
             Transform newParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
             
             transform.parent = newParent;
@@ -225,16 +242,16 @@ namespace Lloyd
         [ClientRpc]
         public void RemoveParentClientRpc(ulong localClientId)
         {
-            Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;;
-            
+            Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
+
             transform.parent = null;
             transform.position = myParent.position + (transform.forward / 2);
             transform.rotation = myParent.rotation;
         }
 
-        public void DestroySelf()
+        private void OnDisable()
         {
-            modelView.OnChangeState(2);
+            modelView.ChangeState -= FlipOverheat;
         }
     }
 }
