@@ -224,12 +224,25 @@ namespace Lloyd
 
         //IPICKUP MANDATORY(S)
 
-        public void PickedUp(GameObject player, ulong clientId)
+        public void PickedUp(GameObject player, ulong localClientId)
         {
             isHeld = true;
+            transform.parent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
+            ParentClientRpc(localClientId);
         }
 
-        public void PutDown(GameObject player, ulong clientId)
+        [ClientRpc]
+        public void ParentClientRpc(ulong localClientId)
+        {
+            print("hello");
+            //transform.parent = NetworkManager.Singleton.ConnectedClientsList[(int)networkObjectId].PlayerObject
+                //.GetComponent<PlayerController>().playerTransform;
+                
+            //TODO: LUKE needs to fix the client entities knowing about other client entities' PlayerAvatar
+            transform.parent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
+        }
+
+        public void PutDown(GameObject player, ulong localClientId)
         {
             isHeld = false;
         }

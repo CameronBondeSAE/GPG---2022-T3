@@ -75,12 +75,12 @@ public class ScanningRadar : MonoBehaviour, IInteractable, IPickupable
 
     }
 
-    public void PickedUp(GameObject Interactor, ulong clientId)
+    public void PickedUp(GameObject Interactor, ulong localClientId)
     {
         //Make a bwep bwep sound
     }
 
-    public void PutDown(GameObject Interactor, ulong clientId)
+    public void PutDown(GameObject Interactor, ulong localClientId)
     {
         //Make a beowp sound
     }

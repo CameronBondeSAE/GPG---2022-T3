@@ -48,13 +48,13 @@ public class Interact : NetworkBehaviour
     }
 
     [ServerRpc]
-    public void RequestPickUpItemServerRpc(ulong clientId)
+    public void RequestPickUpItemServerRpc(ulong localClientId)
     {
         if (pickupableNearby == null) return;
         if (equippedItems >= equippedMax) return;
         
         //send through player client id ulong
-        pickupableNearby.PickedUp(gameObject, clientId);
+        pickupableNearby.PickedUp(gameObject, localClientId);
 
         MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
         if (monoBehaviour != null)
@@ -63,15 +63,20 @@ public class Interact : NetworkBehaviour
             NetworkObject monoNetObj = monoBehaviour.GetComponent<NetworkObject>();
             //monoNetObj.Despawn();
             //Destroy(monoNetObj.gameObject);
-            Debug.Log("TrySetParent = "+ monoNetObj.TrySetParent(transform, false));
-            if(monoNetObj.TrySetParent(transform, false) == true)
-            {
-                PickUpItemClientRpc(monoNetObj.NetworkObjectId);
-                monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
-                monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
-                heldObject = GetComponentInChildren<FlamethrowerModel>();
-                if(heldObject != null) equippedItems++;
-            }
+            
+            
+            
+            // Debug.Log("TrySetParent = "+ monoNetObj.TrySetParent(transform, false));
+            // if(monoNetObj.TrySetParent(transform, false) == true)
+            // {
+            //     PickUpItemClientRpc(monoNetObj.NetworkObjectId);
+            //     monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
+            //     monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
+            //     heldObject = GetComponentInChildren<FlamethrowerModel>();
+            //     if(heldObject != null) equippedItems++;
+            // }
+            
+            
         }
         pickupableNearby = null;
     }
@@ -197,7 +202,7 @@ public class Interact : NetworkBehaviour
         MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
         if (monoBehaviour != null && monoBehaviour.GetComponent<IInteractable>() != null)
         {
-            monoBehaviour.GetComponent<IInteractable>().CancelInteract();
+            monoBehaviour.GetComponent<IInteractable>().CancelAltInteract();
         }
     }
 

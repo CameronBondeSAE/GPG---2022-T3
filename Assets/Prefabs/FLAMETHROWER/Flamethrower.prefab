@@ -152,7 +152,6 @@ GameObject:
   - component: {fileID: 7841463451455674389}
   - component: {fileID: 7841463451455674388}
   - component: {fileID: 2196019229650576461}
-  - component: {fileID: -6714150760321197817}
   - component: {fileID: -6994956250330051033}
   m_Layer: 0
   m_Name: Flamethrower
@@ -254,7 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e236e3b3e37b732429d03f61aa7e1fa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleState: {fileID: 0}
   model: {fileID: 0}
   fireball: {fileID: 0}
   waterball: {fileID: 0}
@@ -303,22 +301,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6714150760321197817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441895679611698532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &-6994956250330051033
 MonoBehaviour:
   m_ObjectHideFlags: 0
