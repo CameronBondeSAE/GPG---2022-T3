@@ -56,64 +56,70 @@ public class Interact : NetworkBehaviour
         //send through player client id ulong
         pickupableNearby.PickedUp(gameObject, localClientId);
 
-        MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
+        heldObject = GetComponentInChildren<FlamethrowerModel>();
+        PickUpItemClientRpc(localClientId);
+        //Old parenting with NetworkObject --- OBSOLETE
+        /*MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
         if (monoBehaviour != null)
         {
-            // monoBehaviour.transform.parent = equippedMountPos;
+             monoBehaviour.transform.parent = equippedMountPos;
             NetworkObject monoNetObj = monoBehaviour.GetComponent<NetworkObject>();
-            //monoNetObj.Despawn();
-            //Destroy(monoNetObj.gameObject);
+            monoNetObj.Despawn();
+            Destroy(monoNetObj.gameObject);
             
             
             
-            // Debug.Log("TrySetParent = "+ monoNetObj.TrySetParent(transform, false));
-            // if(monoNetObj.TrySetParent(transform, false) == true)
-            // {
-            //     PickUpItemClientRpc(monoNetObj.NetworkObjectId);
-            //     monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
-            //     monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
-            //     heldObject = GetComponentInChildren<FlamethrowerModel>();
-            //     if(heldObject != null) equippedItems++;
-            // }
+             Debug.Log("TrySetParent = "+ monoNetObj.TrySetParent(transform, false));
+             if(monoNetObj.TrySetParent(transform, false) == true)
+             {
+                 PickUpItemClientRpc(monoNetObj.NetworkObjectId);
+                 monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
+                 monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
+                 heldObject = GetComponentInChildren<FlamethrowerModel>();
+                 if(heldObject != null) equippedItems++;
+             }
             
             
-        }
+        }*/
         pickupableNearby = null;
     }
     
     [ClientRpc]
-    public void PickUpItemClientRpc(ulong netObjectId)
+    public void PickUpItemClientRpc(ulong localClientId)
     {
         if (!IsServer)
         {
-            //GetNetworkObject(netObjectId).Despawn();
-            clientFlamethrowerModel.SetActive(true);
+            //clientFlamethrowerModel.SetActive(true);
             clientHeldObject = true;
         }
     }
 
     [ServerRpc]
-    public void RequestDropItemServerRpc()
+    public void RequestDropItemServerRpc(ulong localClientId)
     {
         if (heldObject != null)
         {
             equippedItems = 0;
-            DropItemClientRpc();
-            Destroy(heldObject.gameObject);
+            heldObject.PutDown(gameObject, localClientId);
+            DropItemClientRpc(localClientId);
+            
             heldObject = null;
-            Vector3 myPos = transform.position;
-            GameManager.singleton.NetworkInstantiate(flamethrower, (myPos + (transform.forward / 2)),
-                transform.rotation);
+            // Destroy(heldObject.gameObject);
+            // heldObject = null;
+            // Vector3 myPos = transform.position;
+            // GameManager.singleton.NetworkInstantiate(flamethrower, (myPos + (transform.forward / 2)),
+            //     transform.rotation);
+            
             print("respawn flamethrower");
         }
     }
     
     [ClientRpc]
-    public void DropItemClientRpc()
+    public void DropItemClientRpc(ulong localClientId)
     {
         if (!IsServer)
         {
-            clientFlamethrowerModel.SetActive(false);
+            //clientFlamethrowerModel.SetActive(false);
             clientHeldObject = false;
         }
     }

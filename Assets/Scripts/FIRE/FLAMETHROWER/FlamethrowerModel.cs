@@ -202,24 +202,34 @@ namespace Lloyd
         public void PickedUp(GameObject player, ulong localClientId)
         {
             isHeld = true;
-            transform.parent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
             ParentClientRpc(localClientId);
         }
 
         [ClientRpc]
         public void ParentClientRpc(ulong localClientId)
         {
-            print("hello");
-            //transform.parent = NetworkManager.Singleton.ConnectedClientsList[(int)networkObjectId].PlayerObject
-                //.GetComponent<PlayerController>().playerTransform;
-                
             //TODO: LUKE needs to fix the client entities knowing about other client entities' PlayerAvatar
-            transform.parent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
+            Transform newParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
+            
+            transform.parent = newParent;
+            transform.rotation = newParent.rotation;
+            transform.localPosition = new Vector3(0,1,-1.12f); //HACK V3 coords
         }
 
         public void PutDown(GameObject player, ulong localClientId)
         {
             isHeld = false;
+            RemoveParentClientRpc(localClientId);
+        }
+
+        [ClientRpc]
+        public void RemoveParentClientRpc(ulong localClientId)
+        {
+            Transform myParent = transform.parent.transform;
+            
+            transform.parent = null;
+            transform.position = myParent.position + (transform.forward / 2);
+            transform.rotation = myParent.rotation;
         }
 
         public void DestroySelf()

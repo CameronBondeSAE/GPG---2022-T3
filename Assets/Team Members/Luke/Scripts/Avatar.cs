@@ -73,7 +73,7 @@ public class Avatar : NetworkBehaviour, IControllable
     {
 	    if (interact.heldObject || interact.clientHeldObject)
 	    {
-		    interact.RequestDropItemServerRpc();
+		    interact.RequestDropItemServerRpc(NetworkManager.LocalClientId);
             print("trying to drop");
 	    }
 	    else
