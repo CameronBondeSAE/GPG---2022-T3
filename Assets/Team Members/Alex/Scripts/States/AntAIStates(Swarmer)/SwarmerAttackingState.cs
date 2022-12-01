@@ -17,6 +17,8 @@ namespace Alex
         Neighbours neighbours;
         ControllerSwarmer controllerSwarmer;
         TurnTowards turnTowards;
+        GameObject vFX;
+        
         
 
         public override void Create(GameObject aGameObject)
@@ -31,6 +33,7 @@ namespace Alex
             controllerSwarmer = aGameObject.GetComponent<ControllerSwarmer>();
             turnTowards = aGameObject.GetComponent<TurnTowards>();
             attackSphereAndShader = aGameObject.GetComponentInChildren<AttackSphereAndShader>();
+            
         }
 
         public override void Enter()
@@ -43,6 +46,8 @@ namespace Alex
             turnTowards.enabled = true;
 
             turnTowards.targetTransform = controllerSwarmer.target;
+            
+            attackSphereAndShader.vFX.SetActive(true);
 
             
             Finish();
@@ -51,6 +56,7 @@ namespace Alex
         public override void Execute(float aDeltaTime, float aTimeScale)
         {
             base.Execute(aDeltaTime, aTimeScale);
+            attackSphereAndShader.vFX.SetActive(true);
             
             if(controllerSwarmer.target == null)
                 Finish();
@@ -62,6 +68,7 @@ namespace Alex
             turnTowards.enabled = false;
             controllerSwarmer.canAttack = false;
             controllerSwarmer.canSwarm = true;
+            attackSphereAndShader.vFX.SetActive(false);
             Finish();
         }
     }

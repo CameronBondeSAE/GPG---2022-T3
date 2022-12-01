@@ -117,13 +117,13 @@ namespace Alex
             }
 
             //Sorting all the lists so that the closest will be first in order for AStar to use the closest object. 
-            if(resourcesInSight != null)
+            if(resourcesInSight.Count > 1)
                 resourcesInSight = resourcesInSight.OrderBy(resource => Vector3.Distance(this.transform.position,resource.transform.position)).ToList();
             
-            if(enemyInSight != null)
+            if(enemyInSight.Count > 1)
                 enemyInSight = enemyInSight.OrderBy(enemy => Vector3.Distance(this.transform.position,enemy.transform.position)).ToList();
 
-            if(dropOffPointsFound != null)
+            if(dropOffPointsFound.Count > 1)
                 dropOffPointsFound = dropOffPointsFound.OrderBy(resource => Vector3.Distance(this.transform.position,resource.transform.position)).ToList();
             
             

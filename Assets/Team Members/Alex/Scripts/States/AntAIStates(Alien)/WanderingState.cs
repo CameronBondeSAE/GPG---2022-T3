@@ -12,13 +12,15 @@ namespace Alex
 
         // Reference to my main GameObject, so I can access all the normal code I have in there.
         public GameObject owner;
+        TurnTowards turnTowards;
 
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
-            wander = aGameObject.GetComponent<Wander>();
-
             owner = aGameObject;
+            wander = aGameObject.GetComponent<Wander>();
+            turnTowards = aGameObject.GetComponent<TurnTowards>();
+            
         }
 
         public override void Enter()
@@ -26,6 +28,7 @@ namespace Alex
             base.Enter();
             wander.enabled = true;
             wander.turnForce = 700;
+            turnTowards.enabled = false;
             Finish();
         }
 

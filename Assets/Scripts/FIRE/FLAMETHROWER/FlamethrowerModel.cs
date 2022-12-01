@@ -90,7 +90,7 @@ namespace Lloyd
         {
             modelView = GetComponentInChildren<FlamethrowerModelView>(); 
 
-            //isHeld = true;
+            isHeld = true;
 
             canShoot = true;
             
@@ -106,34 +106,47 @@ namespace Lloyd
 
         public void Interact(GameObject interactor)
         {
-            if (myType == FlamethrowerType.FireballShooter)
-            {
                 if (isHeld)
-                    ShootFire();
+                    if (myType == FlamethrowerType.FireballShooter)
+                    {
+                        shooting = true;
+                        modelView.OnChangeState(1);
+                    }
+                    else if (myType == FlamethrowerType.Watercannon)
+                    {
+                        waterSpraying = true;
+                        modelView.OnChangeState(1);
+                    }
 
                 else
                     ShootUntilDead();
-            }
-
-            if (myType == FlamethrowerType.Watercannon)
-            {
-                SprayWater();
-            }
         }
-        
+
         public void AltInteract(GameObject interactor)
         {
-            ShootAltFire();
+            if (isHeld)
+            {
+                if (altAmmo <= 0)
+                {   
+                    //click!
+                    return;
+                }
+                altShooting = true;
+                modelView.OnChangeState(1);
+            }
         }
 
         public void CancelInteract()
         {
-            
+            shooting = false;
+            waterSpraying = false;
+            modelView.OnChangeState(0);
         }
 
         public void CancelAltInteract()
         {
-            
+            altShooting = false;
+            modelView.OnChangeState(0);
         }
         
         public void ShootUntilDead()
@@ -142,44 +155,6 @@ namespace Lloyd
             if(shooting)
                 modelView.OnChangeState(1);
             
-            else modelView.OnChangeState(0);
-        }
-
-        public void ShootFire()
-        {
-            shooting = !shooting;
-            if(shooting)
-            modelView.OnChangeState(1);
-            
-            else modelView.OnChangeState(0);
-        }
-
-        public void SprayWater()
-        {
-            waterSpraying = !waterSpraying;
-            if (waterSpraying)
-            {
-                modelView.OnChangeState(1);
-            }
-            else
-            {
-                modelView.OnChangeState(0);
-            }
-        }
-
-        public void ShootAltFire()
-        {
-            altShooting = !altShooting;
-            if (altAmmo <= 0)
-            {   
-                //click!
-                return;
-            }
-            
-            if (altShooting && altAmmo > 0)
-            {
-                modelView.OnChangeState(1);
-            }
             else modelView.OnChangeState(0);
         }
 
