@@ -223,17 +223,30 @@ namespace Lloyd
         [ClientRpc]
         public void ParentClientRpc(ulong localClientId)
         {
-            print("hello");
-            //transform.parent = NetworkManager.Singleton.ConnectedClientsList[(int)networkObjectId].PlayerObject
-                //.GetComponent<PlayerController>().playerTransform;
-                
             //TODO: LUKE needs to fix the client entities knowing about other client entities' PlayerAvatar
-            transform.parent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
+            //also an issue with the FT not following the client because of NetworkTransform?
+
+            Transform newParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
+            
+            transform.parent = newParent;
+            transform.rotation = newParent.rotation;
+            transform.localPosition = new Vector3(0,1,-1.12f); //HACK V3 coords
         }
 
         public void PutDown(GameObject player, ulong localClientId)
         {
             isHeld = false;
+            RemoveParentClientRpc(localClientId);
+        }
+
+        [ClientRpc]
+        public void RemoveParentClientRpc(ulong localClientId)
+        {
+            Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
+
+            transform.parent = null;
+            transform.position = myParent.position + (transform.forward / 2);
+            transform.rotation = myParent.rotation;
         }
 
         private void OnDisable()
