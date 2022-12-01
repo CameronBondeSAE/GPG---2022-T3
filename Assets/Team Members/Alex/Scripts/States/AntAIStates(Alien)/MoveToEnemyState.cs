@@ -25,6 +25,9 @@ namespace Alex
         Neighbours neighbours;
         AttackSphereAndShader attackSphereAndShader;
 
+        // public Transform target;
+        public Vector3 target;
+
         public override void Create(GameObject aGameObject)
         {
             base.Create(aGameObject);
@@ -43,36 +46,46 @@ namespace Alex
         public override void Enter()
         {
             base.Enter();
+
+            if (vision.enemyInSight.Count == 0 && vision.enemyInSight != null) return;
+            
+            target = vision.enemyInSight[0].position;
+            
             controller.renderer.material.shader = agroShader;
             testShapes.colour = Color.red;
             testShapes.intensity = 2;
 
             turnTowards.enabled = true;
-            followPath.enabled = true;
-            Debug.DrawLine(rb.transform.position, vision.enemyInSight[0].transform.position, Color.red);
             
-            followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
+            followPath.enabled = true;
+	            Debug.DrawLine(rb.transform.position, target, Color.red);
 
-            //Exit early if no enemies in sight
-            if (vision.enemyInSight.Count == 0 && vision.enemyInSight != null) return;
-            if (vision.enemyInSight.Count > 0)
-            {
-                followPath.ActivatePathToTarget(vision.enemyInSight[0].transform.position);
+	            followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
 
-                
-                
-                foreach (Transform neighbour in neighbours.neighbours)
-                {
-                    
-                    neighbour.GetComponentInParent<ControllerSwarmer>().canAttack = true;
-                    neighbour.GetComponentInParent<ControllerSwarmer>().canSwarm = false;
-                    neighbour.GetComponentInParent<ControllerSwarmer>().target = vision.enemyInSight[0];
-                    neighbour.GetComponentInParent<ControllerSwarmer>().myOwnerAlienAI = controller;
-                    //new WaitForSeconds(2f);
-                    //neighbour.transform.position = new Vector3(vision.enemyInSight[0].transform.position.x + Random.Range(-5, 5), vision.enemyInSight[0].transform.position.y, vision.enemyInSight[0].transform.position.z + Random.Range(-5, 5));
-                }
-                
-            }
+	            //Exit early if no enemies in sight
+	            if (vision.enemyInSight.Count > 0)
+	            {
+		            followPath.ActivatePathToTarget(target);
+
+
+		            foreach (Transform neighbour in neighbours.neighbours)
+		            {
+			            neighbour.GetComponentInParent<ControllerSwarmer>().canAttack = true;
+			            neighbour.GetComponentInParent<ControllerSwarmer>().canSwarm = false;
+			            neighbour.GetComponentInParent<ControllerSwarmer>().target = vision.enemyInSight[0];
+			            neighbour.GetComponentInParent<ControllerSwarmer>().myOwnerAlienAI = controller;
+			            //new WaitForSeconds(2f);
+			            //neighbour.transform.position = new Vector3(vision.enemyInSight[0].transform.position.x + Random.Range(-5, 5), vision.enemyInSight[0].transform.position.y, vision.enemyInSight[0].transform.position.z + Random.Range(-5, 5));
+		            }
+	            }
+            
+        }
+
+        public override void Execute(float aDeltaTime, float aTimeScale)
+        {
+	        base.Execute(aDeltaTime, aTimeScale);
+
+	        turnTowards.targetPosition = target;
         }
 
         private void FollowPathOnPathEndReachedEvent()

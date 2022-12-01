@@ -83,6 +83,7 @@ public class HealthView : ImmediateModeShapeDrawer
     {
         HP = x;
         lineLength = HP;
+        healthPos = healthModel.transform.position;
         endPos.x = healthPos.x + lineLength;
         intensity = origIntens;
 
@@ -121,11 +122,11 @@ public class HealthView : ImmediateModeShapeDrawer
 //
     public override void DrawShapes(Camera cam)
     {
-        if (light)
+	    if (light)
         {
             base.DrawShapes(cam);
 
-            using (Draw.Command(Camera.main))
+            using (Draw.Command(cam))
             {
                 // all immediate mode drawing should happen within these using-statements
 
@@ -136,6 +137,7 @@ public class HealthView : ImmediateModeShapeDrawer
                 Draw.LineGeometry = LineGeometry.Billboard;
                 Draw.ThicknessSpace = ThicknessSpace.Meters;
                 Draw.Color = color * intensity;
+
                 
                 Draw.Line(healthPos, endPos, lineThickness);
             }

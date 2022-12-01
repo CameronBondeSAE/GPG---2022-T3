@@ -36,6 +36,9 @@ namespace Alex
         public void ActivatePathToTarget(Vector3 targetPos)
         {
             myPos = controller.rb.transform.position;
+            
+            // CAM. Turn off movement because we're hacking the movement to slide to the path
+            movement.enabled = false;
 
             astar.ActivateCoroutine(Vector3Int.FloorToInt(myPos), Vector3Int.FloorToInt(targetPos));
         }
@@ -44,13 +47,14 @@ namespace Alex
         void PathFound()
         {
             //Debug.Log("Pathable " + astar.isPathable[0]);
-            turntowards.targetPosition = astar.isPathable[0].worldPosition;
+            // CAM turntowards.targetPosition = astar.isPathable[0].worldPosition;
+            targetPosition = astar.isPathable[0].worldPosition;
         }
 
         private void FixedUpdate()
         {
-            if(astar.isPathable.Count > 0)
-                turntowards.targetPosition = astar.isPathable[currentPathIndex].worldPosition;
+            // if(astar.isPathable.Count > 0)
+                // turntowards.targetPosition = astar.isPathable[currentPathIndex].worldPosition;
         }
 
 
@@ -67,12 +71,14 @@ namespace Alex
 
                 if (distanceToTarget >= distanceToTargetCheck)
                 {
-                    if (targetTransform)
-                    {
-                        targetPosition = targetTransform.position;
-                    }
+	                // CAM removed
+                    // if (targetTransform)
+                    // {
+                    //     targetPosition = targetTransform.position;
+                    // }
 
-                    directionAndDistance = targetPosition - transform.position;
+                    // directionAndDistance = targetPosition - transform.position;
+                    directionAndDistance = nextNodePos - transform.position;
                   
                   
                   //if (useTurnTowards)
@@ -83,7 +89,8 @@ namespace Alex
                   {
                       // directionAndDistance = targetpos - mypos;
                       justDirection = directionAndDistance.normalized;
-                      controller.rb.AddForce(justDirection * movement.speed);
+                      controller.rb.AddForce(justDirection * movement.slideTowardsSpeed);
+                      Debug.DrawRay(transform.position, justDirection * 10f, Color.red);
                   }
                   
                   //turntowards.targetPosition = astar.isPathable[0].worldPosition;
@@ -95,6 +102,9 @@ namespace Alex
 
                 if (astar.isPathable.Count == 0)
                 {
+	                // CAM. Turn back on movement because we're hacking the movement to slide to the path
+	                movement.enabled = true;
+
                     PathEndReachedEvent?.Invoke();
                     enabled = false;
                 }

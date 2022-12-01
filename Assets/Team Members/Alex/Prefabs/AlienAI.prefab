@@ -54,7 +54,7 @@ Transform:
   - {fileID: 5749996088807249338}
   - {fileID: 561430403378240219}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1794423253392461858
 MeshFilter:
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
+  slideTowardsSpeed: 150
 --- !u!54 &1794423253392461856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,7 +157,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c247682035983d04690b73f6dfeab4d8, type: 3}
   m_Name: 
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manualUpdate: 0
-  thinkInterval: 2
+  thinkInterval: 0.5
   scenario: {fileID: 11400000, guid: 05416ebd0545f5c4fab422f0bdc75b53, type: 2}
 --- !u!114 &5404456835436071769
 MonoBehaviour:
@@ -235,7 +236,7 @@ MonoBehaviour:
   testShapes: {fileID: -8587638066688477751}
   layerMask:
     serializedVersion: 2
-    m_Bits: 8056
+    m_Bits: 6592
 --- !u!114 &5602566739967719583
 MonoBehaviour:
   m_ObjectHideFlags: 0

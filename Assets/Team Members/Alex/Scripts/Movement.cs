@@ -25,6 +25,7 @@ namespace Alex
 
         Rigidbody rb;
         public float speed;
+        public float slideTowardsSpeed;
 
         // Start is called before the first frame update
         void Start()

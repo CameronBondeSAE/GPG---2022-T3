@@ -145,7 +145,7 @@ namespace Alex
             {
                 isPathable.Add(currentNode);
                 currentNode = currentNode.parent;
-                Debug.DrawRay(currentNode.worldPosition ,Vector3.up,Color.green, 2f);
+                // Debug.DrawRay(currentNode.worldPosition ,Vector3.up,Color.green);
             }
             isPathable.Reverse();
 
@@ -163,6 +163,18 @@ namespace Alex
             if (distX > distZ)
                 return 14 * distZ + 10 * (distX - distZ);
             return 14 * distX + 10 * (distZ - distX); 
+        }
+
+        private void OnDrawGizmos()
+        {
+	        if (isPathable.Count>0)
+	        {
+		        Gizmos.color = Color.blue;
+		        for (int i = 0; i < isPathable.Count-2; i++)
+		        {
+			        Gizmos.DrawLine(isPathable[i].worldPosition, isPathable[i+1].worldPosition);
+		        }
+	        }
         }
     }
 }

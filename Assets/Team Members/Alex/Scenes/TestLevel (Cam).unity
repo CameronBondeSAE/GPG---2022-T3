@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.38354, g: 325.1084, b: 430.30957, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -613,15 +613,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4353996765827052438, guid: 9aa018c025868f44797ce0962b919a09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.4
+      value: 38.517063
       objectReference: {fileID: 0}
     - target: {fileID: 4353996765827052438, guid: 9aa018c025868f44797ce0962b919a09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.4700003
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 4353996765827052438, guid: 9aa018c025868f44797ce0962b919a09, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.4000015
+      value: 3.7388897
       objectReference: {fileID: 0}
     - target: {fileID: 4353996765827052438, guid: 9aa018c025868f44797ce0962b919a09, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1008,15 +1008,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1794423253392461859, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 39.07
+      value: 43.5
       objectReference: {fileID: 0}
     - target: {fileID: 1794423253392461859, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1794423253392461859, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.930004
+      value: 46.7
       objectReference: {fileID: 0}
     - target: {fileID: 1794423253392461859, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1083,7 +1083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1201832669
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1593,7 +1593,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 595c778d364530240a5c9e3ad25c79e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
