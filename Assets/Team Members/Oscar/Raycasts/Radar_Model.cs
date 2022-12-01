@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using NodeCanvas.Tasks.Actions;
-using Shapes;
 using UnityEngine;
 
 namespace Oscar
@@ -17,8 +13,8 @@ namespace Oscar
         private float radarSpeed = 100f;
         public Vector3 dir;
 
-        public RaycastHit hit;
-        
+        public Ray ray;
+
         public LayerMask pingLayer;
         [SerializeField]private float length = 10f;
         
@@ -34,19 +30,18 @@ namespace Oscar
             //defined direction over time
             dir = Quaternion.Euler(0, timer, 0) * transform.forward * length;
             theDir = dir;
-            
-            //the actual raycast that will read the collisions if there are any
-            Ray ray = new Ray(transform.position, dir);
+
             if (radarOn == true)
             {
-                if (Physics.Raycast(ray, out hit, length))
+                //the actual raycast that will read the collisions if there are any
+                ray = new Ray(transform.position, transform.forward + dir);
+                RaycastHit hitinfo = new RaycastHit();
+            
+                if (Physics.Raycast(ray,out hitinfo, length))
                 {
-                    if (hit.transform.gameObject.layer == pingLayer)
+                    if (hitinfo.collider.GetComponent<IAffectedByRadar>() != null)
                     {
-                        if (hit.collider.GetComponent<IAffectedByRadar>() != null)
-                        {
-                            hit.collider.GetComponent<IAffectedByRadar>().Detection();
-                        }
+                        hitinfo.collider.GetComponent<IAffectedByRadar>().Detection();
                     }
                 }
             }
