@@ -47,6 +47,8 @@ namespace Alex
         public override void Enter()
         {
             base.Enter();
+            
+            followPath.useTurnTowards = false;
 
             if (vision.enemyInSight.Count == 0 && vision.enemyInSight != null) return;
             

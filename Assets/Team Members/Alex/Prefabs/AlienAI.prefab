@@ -54,7 +54,7 @@ Transform:
   - {fileID: 5749996088807249338}
   - {fileID: 561430403378240219}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1794423253392461858
 MeshFilter:
@@ -348,7 +348,7 @@ MonoBehaviour:
   lineThickness: 1
   intensity: 1
   worldPosition: {x: 0, y: 0, z: 0}
-  controller: {fileID: 1387461434300845896}
+  main: {fileID: 1794423253392461859}
 --- !u!114 &6557381588813361938
 MonoBehaviour:
   m_ObjectHideFlags: 0

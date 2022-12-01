@@ -44,9 +44,9 @@ public class ClientInfo : NetworkBehaviour
             Destroy(lobbyUIRef);
         }
 
-        if (LobbyUIManager.instance != null)
+        if (LobbyUIManager.singleton != null)
         {
-            LobbyUIManager.instance.RequestClientUIUpdateServerRpc();
+            LobbyUIManager.singleton.RequestClientUIUpdateServerRpc();
         }
     }
 }
