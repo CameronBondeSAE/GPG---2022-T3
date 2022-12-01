@@ -186,7 +186,7 @@ MonoBehaviour:
   wander: {fileID: 0}
   astar: {fileID: 5772701356384670382}
   followPath: {fileID: 8175690127105362018}
-  slowingForce: 10
+  slowingForce: 5
   slowDownAngleThreshhold: 50
 --- !u!114 &571341911324433146
 MonoBehaviour:

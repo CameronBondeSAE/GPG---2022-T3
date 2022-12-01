@@ -140,11 +140,13 @@ namespace Alex
             testShapes.intensity = 1;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
             
+            /*
             foreach (Transform neighbour in neighbours.neighbours)
             {
                 neighbour.GetComponentInParent<ControllerSwarmer>().canAttack = false;
                 neighbour.GetComponentInParent<ControllerSwarmer>().canSwarm = true;
             }
+            */
         }
     }
 }

@@ -234,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945381, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: spreadAmount
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945381, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: numberToSpawn
@@ -895,11 +895,11 @@ PrefabInstance:
       objectReference: {fileID: 406841744869549979, guid: 530c2a02bf53de44bb41d11fbbedb065, type: 3}
     - target: {fileID: 7557305625988945381, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: spreadAmount
-      value: 5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945381, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: numberToSpawn
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945386, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_RootOrder
@@ -951,7 +951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557305625988945387, guid: 43994d8768423754eb8781e9054fa0c1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

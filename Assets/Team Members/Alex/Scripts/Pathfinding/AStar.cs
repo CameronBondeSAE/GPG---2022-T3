@@ -20,19 +20,15 @@ namespace Alex
         Coroutine co;
         public bool debugDraw = false;
         public bool debugScan = false;
-        private PerlinCube_Model perlinCubeModel;
- 
-       
-        
+
+
+
         void Awake()
         {
             ScanWorld();
         }
 
-        public void Update()
-        {
-            //perlinCubeModel.wallDestruction += ScanWorld;
-        }
+        
         
 
         public void ActivateCoroutine(Vector3Int _startPos, Vector3Int _endPos)

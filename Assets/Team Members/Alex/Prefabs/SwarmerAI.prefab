@@ -991,6 +991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myTarget: {fileID: 0}
   controllerSwarmer: {fileID: 0}
+  damagePerSecond: 10000
   vFX: {fileID: 1654885017}
   layerMask:
     serializedVersion: 2

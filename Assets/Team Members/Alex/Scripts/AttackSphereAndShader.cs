@@ -9,7 +9,7 @@ namespace Alex
     {
         public Transform myTarget;
         public ControllerSwarmer controllerSwarmer;
-        private float damagePerSecond = 10;
+        public float damagePerSecond = 10;
         public GameObject vFX;
 
         public LayerMask layerMask;
