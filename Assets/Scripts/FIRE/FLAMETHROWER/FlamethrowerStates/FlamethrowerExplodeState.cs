@@ -40,10 +40,14 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
     private Rigidbody rb;
     
     private void OnEnable()
-    {
+    { 
         modelView = GetComponentInChildren<FlamethrowerModelView>();
 
+        modelView.ChangeOverheat += ChangeOverheatLevel;
+
         model = GetComponent<FlamethrowerModel>();
+
+        heatThreshold = model.overHeatPoint;
 
         countDownTimer = model.countDownTimer;
         
@@ -52,11 +56,19 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
         StartCoroutine(TickTock());
     }
 
+    private void ChangeOverheatLevel(float x)
+    {
+        heatLevel += x;
+
+        if (x < heatThreshold)
+            overheating = false;
+        
+        if(!overheating)
+            modelView.OnChangeState(0);
+    }
+
     private IEnumerator TickTock()
     {
-        heatLevel = model.overHeatLevel;
-       
-        overheating = model.overheating;
         while (overheating)
         {
             int timesup = 0;
@@ -66,16 +78,13 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
             }
 
             yield return new WaitForSeconds(countDownTimer);
-
-            if (countDownTimer == timesup)
-            {
-                Explode();
-                overheating = false;
-                yield return null;
-            }
         }
-        if(!overheating)
-            ChangeBack();
+        if (countDownTimer == 0)
+        {
+            Explode();
+            overheating = false;
+            yield return null;
+        }
     }
 
     private void Explode()
@@ -97,14 +106,9 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
         }
         modelView.OnChangeState(3);
     }
-    
-    private void ChangeBack()
-    {
-        modelView.OnChangeState(0);
-    }
 
     private void OnDisable()
     {
-        
+        overheating = false;
     }
 }

@@ -25,6 +25,7 @@ public class FireballModel : MonoBehaviour
 
     //how long the fireball remains active
     [SerializeField] private float _lifespan;
+    
     private bool _isActive=true;
 
     private float _distance;

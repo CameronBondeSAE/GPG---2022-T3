@@ -37,11 +37,13 @@ public class FlamethrowerView : MonoBehaviour
         switch (x)
         {
             case 0:
-
+                flamethrower.transform.localScale = new Vector3(1, 1, 1);
+                Smoke.Stop();
                 break;
             
             case 1:
-
+                flamethrower.transform.localScale = new Vector3(1, 1, 1);
+                Smoke.Stop();
                 break;
             
             case 2:

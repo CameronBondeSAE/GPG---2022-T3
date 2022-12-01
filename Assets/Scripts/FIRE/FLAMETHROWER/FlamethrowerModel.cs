@@ -177,7 +177,7 @@ namespace Lloyd
 
         private void HandleOverheat()
         {
-            if (!shooting && !waterSpraying)
+            if (!shooting)
             {
                 overHeatLevel -= 1 * Time.deltaTime;
                 if (overHeatLevel <= 0)
@@ -189,12 +189,13 @@ namespace Lloyd
                 overHeatLevel += overHeatRate * Time.deltaTime;
             }
 
-            modelView.OnChangeOverheat(overHeatLevel);
-
             if (overHeatLevel >= overHeatPoint)
             {
+                overheating = true;
                 DestroySelf();
             }
+            
+            modelView.OnChangeOverheat(overHeatLevel);
         }
 
         public void ChangeOverheat(float x)
@@ -203,6 +204,11 @@ namespace Lloyd
 
             if (overHeatLevel < overHeatPoint)
                 overheating = false;
+
+            if (overHeatLevel <= 0)
+                overHeatLevel = 0;
+            
+            modelView.OnChangeOverheat(overHeatLevel);
         }
         
 
@@ -211,13 +217,6 @@ namespace Lloyd
         public void PickedUp(GameObject player)
         {
             isHeld = true;
-            //ParentClientRpc(somethingsomething);
-        }
-
-        [ClientRpc]
-        public void ParentClientRpc(ulong networkPlayerId)
-        {
-            transform.parent = NetworkManager.Singleton.ConnectedClients[networkPlayerId].PlayerObject.GetComponent<PlayerController>().playerTransform;
         }
 
         public void PutDown(GameObject player)
@@ -227,7 +226,6 @@ namespace Lloyd
 
         public void DestroySelf()
         {
-            overheating = true;
             modelView.OnChangeState(2);
         }
     }

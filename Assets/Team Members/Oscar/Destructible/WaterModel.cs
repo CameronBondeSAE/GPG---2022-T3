@@ -21,19 +21,18 @@ public class WaterModel : MonoBehaviour
         Collider[] splashColliders = Physics.OverlapSphere(transform.position, radius, 9999999, QueryTriggerInteraction.Collide);
         foreach (Collider item in splashColliders)
         {
-            if (item.GetComponents<Flammable>() != null)
+            if (item.GetComponent<Flammable>() != null)
             {
                 flammable = item.GetComponent<Flammable>();
                 flammable.ChangeHeat(theHeatSource,-changeHeatAmount);
                 flammable.Extinguish();
                 flammable.OnCoolDown();
-                
             }
 
-            if (item.GetComponents<FlamethrowerModel>() != null)
+            if (item.GetComponent<FlamethrowerModel>() != null)
             {
                 flamethrower = item.GetComponent<FlamethrowerModel>();
-                flamethrower.ChangeOverheat(changeHeatAmount);
+                flamethrower.ChangeOverheat(-changeHeatAmount);
             }
         }
     }
