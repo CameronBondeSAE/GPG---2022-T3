@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
-public class MarcusInput : MonoBehaviour
+public class MarcusInput : MonoBehaviour, IControllable
 {
     public Material[] playerColour;
     private MeshRenderer mr;
@@ -81,5 +81,40 @@ public class MarcusInput : MonoBehaviour
         }
         
         firing = !firing;
+    }
+
+    public void Move(Vector2 direction)
+    {
+
+    }
+
+    public void Aim(Vector2 direction)
+    {
+
+    }
+
+    public void Action1()
+    {
+
+    }
+
+    public void Action2()
+    {
+
+    }
+
+    public void Action3()
+    {
+       
+    }
+
+    public void Action4()
+    {
+       
+    }
+
+    public void Action5()
+    {
+        
     }
 }

@@ -10,6 +10,8 @@ public class ManEater : MonoBehaviour, IFlammable
     public ColissionManager colissionManager;
     public Flammable fireness;
 
+    public int damage;
+
     [SerializeField] private List<GameObject> plants;
     private float checkTimer = 1f;
     
@@ -67,7 +69,7 @@ public class ManEater : MonoBehaviour, IFlammable
     void EatThing(Collider player)
     {
         print("Get Nommed");
-        //Send damage to player
+        player.GetComponent<Health>().ChangeHP(damage);
     }
 
     void AddNeighbours(Collider plant)

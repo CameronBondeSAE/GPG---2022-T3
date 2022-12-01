@@ -13,6 +13,8 @@ namespace Marcus
         public Flammable cooling;
         public Health health;
 
+        private float waitTimer = 3f;
+
         private void OnEnable()
         {
             cooling.CoolDown += ExtinguishFlame;
@@ -34,12 +36,18 @@ namespace Marcus
         {
             if (health.HP < 50)
             {
-                GetComponent<StateManager>().ChangeState(dyingState);
+                StartCoroutine(ChangeState(dyingState));
             }
             else
             {
-                GetComponent<StateManager>().ChangeState(growthState);
+                StartCoroutine(ChangeState(growthState));
             }
+        }
+
+        IEnumerator ChangeState(MonoBehaviour destinationState)
+        {
+            yield return new WaitForSeconds(waitTimer);
+            GetComponent<StateManager>().ChangeState(destinationState);
         }
     }
 }

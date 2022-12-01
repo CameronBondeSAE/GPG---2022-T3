@@ -5182,7 +5182,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1236
+  m_VersionIndex: 1239
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5413,7 +5413,7 @@ Transform:
   - {fileID: 8570415813410072492}
   - {fileID: 2749822692284270998}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8476142898420728742
 CapsuleCollider:
@@ -5443,6 +5443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colissionManager: {fileID: 2115377991730240438}
   fireness: {fileID: -4190843060470435521}
+  damage: -10
   plants: []
 --- !u!114 &-8394875228692163360
 MonoBehaviour:
@@ -5456,7 +5457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc7765993eb00342b21a0d0c93d2baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 25
+  maxHP: 250
   HP: 0
 --- !u!114 &-4190843060470435521
 MonoBehaviour:
