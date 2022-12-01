@@ -1,9 +1,5 @@
-using System;
 using Shapes;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UIElements;
 
 namespace Oscar
 {
@@ -15,10 +11,10 @@ namespace Oscar
         public float intensity = 1f;
 
         private Vector3 spinDirection;
-        
         public bool radarOn = false;
-
         public Radar_Model radarModel;
+        public Line radarLine;
+        
         public override void OnEnable()
         {
             base.OnEnable();
@@ -37,14 +33,13 @@ namespace Oscar
                 radarOn = false;
             }
         }
-        
         //override used because it is from the inherited script
         public override void DrawShapes(Camera cam)
         {
             if(radarOn)
             {
                 base.DrawShapes(cam);
-                            
+                
                 //draw the lines in the game space.
                 using (Draw.Command(Camera.main))
                 {
@@ -57,12 +52,19 @@ namespace Oscar
                     Draw.Color = colour * intensity;
                     Draw.Position = transform.position;
                     Draw.Rotation = Quaternion.identity;
-
-                    radarModel.GetComponent<Line>().End = radarModel.theDir;
+                    
+                    radarLine = radarModel.GetComponent<Line>();
+                    radarLine.enabled = true;
+                    radarLine.End = radarModel.theDir;
                 }
-                
                 //play sound
+            }
+
+            if (!radarOn)
+            {
+                base.DrawShapes(cam);
                 
+                radarModel.GetComponent<Line>().enabled = false;
             }
         }
     }
