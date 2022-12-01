@@ -119,7 +119,18 @@ public class Interact : NetworkBehaviour
         if (heldObject != null)
         {
             IInteractable interactable = heldObject.GetComponent<IInteractable>();
-            if(interactable!=null) interactable.Interact(this.gameObject);
+            if(interactable!=null) interactable.Interact(gameObject);
+        }
+    }
+    
+    [ServerRpc]
+    public void RequestUseItemCancelServerRpc()
+    {
+        //if you've got a flamethrower, fire it
+        if (heldObject != null)
+        {
+            IInteractable interactable = heldObject.GetComponent<IInteractable>();
+            if(interactable!=null) interactable.CancelInteract();
         }
     }
 
@@ -160,16 +171,29 @@ public class Interact : NetworkBehaviour
         //if you don't have one AND there's one nearby, fire that on the floor
         if (heldObject != null)
         {
-            FlamethrowerModel flamethrower = heldObject.GetComponent<FlamethrowerModel>();
-            if(flamethrower!=null) flamethrower.ShootAltFire();
+            MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
+            if (monoBehaviour != null && monoBehaviour.GetComponent<IInteractable>() != null)
+            {
+                monoBehaviour.GetComponent<IInteractable>().AltInteract(gameObject);
+            }
         }
         else if (pickupableNearby != null && pickupableNearby.isHeld == false)
         {
             MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
             if (monoBehaviour != null && monoBehaviour.GetComponent<FlamethrowerModel>() != null)
             {
-                monoBehaviour.GetComponent<FlamethrowerModel>().ShootAltFire();
+                monoBehaviour.GetComponent<FlamethrowerModel>().AltInteract(gameObject);
             }
+        }
+    }
+
+    [ServerRpc]
+    public void RequestUseAltItemCancelServerRpc()
+    {
+        MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
+        if (monoBehaviour != null && monoBehaviour.GetComponent<IInteractable>() != null)
+        {
+            monoBehaviour.GetComponent<IInteractable>().CancelInteract();
         }
     }
 

@@ -7,6 +7,8 @@ public interface IControllable
 	public void Action1();
 	public void Action2();
 	public void Action3();
-	public void Action4();
-	public void Action5();
+	public void Action4Performed();
+	public void Action4Cancelled();
+	public void Action5Performed();
+	public void Action5Cancelled();
 }

@@ -99,13 +99,24 @@ public class Avatar : NetworkBehaviour, IControllable
 	    interact.RequestExternalUseItemServerRpc();
     }
     
-    public void Action4()
+    public void Action4Performed()
     {
         interact.RequestUseItemServerRpc();
     }
-    public void Action5()
+
+    public void Action4Cancelled()
+    {
+        
+    }
+
+    public void Action5Performed()
     {
 	    interact.RequestUseAltItemServerRpc();
+    }
+
+    public void Action5Cancelled()
+    {
+        interact.RequestUseAltItemCancelServerRpc();
     }
 
     #endregion

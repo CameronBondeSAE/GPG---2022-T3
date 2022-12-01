@@ -49,8 +49,10 @@ namespace Luke
             _action3.performed += Action3ExternalUsePerformed;
             
             _action4.performed += Action4UseFirePerformed;
+            _action4.canceled += Action4UseFireCancelled;
             
-            _action5.performed += Action5AltuseFirealtPerformed;
+            _action5.performed += Action5AltUseFirePerformed;
+            _action5.canceled += Action5AltUseFireCancelled;
         }
 
         private void OnDisable()
@@ -66,8 +68,12 @@ namespace Luke
             _action2.performed -= Action2CameraPerformed;
 
             _action3.performed -= Action3ExternalUsePerformed;
-            
+
             _action4.performed -= Action4UseFirePerformed;
+            _action4.canceled -= Action4UseFireCancelled;
+
+            _action5.performed -= Action5AltUseFirePerformed;
+            _action5.canceled -= Action5AltUseFireCancelled;
         }
 
         private void FixedUpdate()
@@ -135,13 +141,28 @@ namespace Luke
         {
             if (!IsLocalPlayer) return;
             if (player == null) return;
-            player.GetComponent<IControllable>()?.Action4();
+            player.GetComponent<IControllable>()?.Action4Performed();
         }
-        private void Action5AltuseFirealtPerformed(InputAction.CallbackContext context)
+
+        private void Action4UseFireCancelled(InputAction.CallbackContext context)
         {
             if (!IsLocalPlayer) return;
             if (player == null) return;
-            player.GetComponent<IControllable>()?.Action5();
+            player.GetComponent<IControllable>()?.Action4Cancelled();
+        }
+        
+        private void Action5AltUseFirePerformed(InputAction.CallbackContext context)
+        {
+            if (!IsLocalPlayer) return;
+            if (player == null) return;
+            player.GetComponent<IControllable>()?.Action5Performed();
+        }
+        
+        private void Action5AltUseFireCancelled(InputAction.CallbackContext context)
+        {
+            if (!IsLocalPlayer) return;
+            if (player == null) return;
+            player.GetComponent<IControllable>()?.Action5Cancelled();
         }
     }
 }
