@@ -46,9 +46,7 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
         model = GetComponent<FlamethrowerModel>();
 
         countDownTimer = model.countDownTimer;
-
-        heatLevel = model.overHeatLevel;
-
+        
         heatThreshold = model.overHeatPoint;
         
         StartCoroutine(TickTock());
@@ -56,6 +54,8 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
 
     private IEnumerator TickTock()
     {
+        heatLevel = model.overHeatLevel;
+       
         overheating = model.overheating;
         while (overheating)
         {
