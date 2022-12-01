@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Lloyd;
+using Luke;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -43,7 +44,7 @@ namespace Oscar
                             
                             prevBasePos = tempBasePos;
                             
-                            GameObject HQ = Instantiate(humanBase, prefabPosition[i], quaternion.identity);
+                            GameObject HQ = GameManager.singleton.NetworkInstantiate(humanBase, prefabPosition[i], quaternion.identity);
                             
                             HQ.transform.SetParent(HQParent.transform);
                             HQAmount++;
