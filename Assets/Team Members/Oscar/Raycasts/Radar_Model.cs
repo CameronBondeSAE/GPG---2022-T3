@@ -93,12 +93,12 @@ namespace Oscar
             return radarOn;
         }
 
-        public void PickedUp(GameObject interactor)
+        public void PickedUp(GameObject interactor, ulong clientId)
         {
             RadarSwitchOn();
         }
 
-        public void PutDown(GameObject interactor)
+        public void PutDown(GameObject interactor, ulong clientId)
         {
             RadarSwitchOff();
         }

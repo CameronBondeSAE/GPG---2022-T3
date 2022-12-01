@@ -224,12 +224,12 @@ namespace Lloyd
 
         //IPICKUP MANDATORY(S)
 
-        public void PickedUp(GameObject player)
+        public void PickedUp(GameObject player, ulong clientId)
         {
             isHeld = true;
         }
 
-        public void PutDown(GameObject player)
+        public void PutDown(GameObject player, ulong clientId)
         {
             isHeld = false;
         }

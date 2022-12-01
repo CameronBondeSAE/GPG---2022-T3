@@ -78,7 +78,7 @@ public class Avatar : NetworkBehaviour, IControllable
 	    }
 	    else
 	    {
-		    interact.RequestPickUpItemServerRpc();
+		    interact.RequestPickUpItemServerRpc(NetworkManager.LocalClientId);
         }
     }
 

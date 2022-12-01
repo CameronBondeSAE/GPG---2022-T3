@@ -77,12 +77,12 @@ namespace Marcus
 
         #region Interface Functions
 
-        public void PickedUp(GameObject interactor)
+        public void PickedUp(GameObject interactor, ulong clientId)
         {
             
         }
 
-        public void PutDown(GameObject interactor)
+        public void PutDown(GameObject interactor, ulong clientId)
         {
             
         }

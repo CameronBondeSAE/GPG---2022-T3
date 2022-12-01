@@ -48,12 +48,13 @@ public class Interact : NetworkBehaviour
     }
 
     [ServerRpc]
-    public void RequestPickUpItemServerRpc()
+    public void RequestPickUpItemServerRpc(ulong clientId)
     {
         if (pickupableNearby == null) return;
         if (equippedItems >= equippedMax) return;
         
-        pickupableNearby.PickedUp(gameObject);
+        //send through player client id ulong
+        pickupableNearby.PickedUp(gameObject, clientId);
 
         MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
         if (monoBehaviour != null)
@@ -177,14 +178,17 @@ public class Interact : NetworkBehaviour
                 monoBehaviour.GetComponent<IInteractable>().AltInteract(gameObject);
             }
         }
-        else if (pickupableNearby != null && pickupableNearby.isHeld == false)
-        {
-            MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
-            if (monoBehaviour != null && monoBehaviour.GetComponent<FlamethrowerModel>() != null)
-            {
-                monoBehaviour.GetComponent<FlamethrowerModel>().AltInteract(gameObject);
-            }
-        }
+        
+        //alt use on floor should be disabled
+        
+        // else if (pickupableNearby != null && pickupableNearby.isHeld == false)
+        // {
+        //     MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
+        //     if (monoBehaviour != null && monoBehaviour.GetComponent<FlamethrowerModel>() != null)
+        //     {
+        //         monoBehaviour.GetComponent<FlamethrowerModel>().AltInteract(gameObject);
+        //     }
+        // }
     }
 
     [ServerRpc]
@@ -258,7 +262,7 @@ public class Interact : NetworkBehaviour
             {
                 if (storedItems < storedMax)
                 {
-                    item.PickedUp(gameObject);
+                    item.PickedUp(gameObject,NetworkManager.LocalClientId);
                     item.DestroySelf();
                     storedItems++;
                 }

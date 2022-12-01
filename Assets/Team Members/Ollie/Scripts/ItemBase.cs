@@ -119,14 +119,14 @@ public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     public void GetDroppedClientRpc()
     {
 	    // TODO: TO CHECK: HACK: I (Cam) added a GO var to the interface, so items know who picked them up. But clients can't really use that at all, so I'm just passing null. The implementor will need to check isServer to get the real value
-        PutDown(null);
+        PutDown(null, NetworkManager.LocalClientId);
     }
 
     [ClientRpc]
     public void GetPickedUpClientRpc()
     {
 	    // TODO: TO CHECK: HACK: I (Cam) added a GO var to the interface, so items know who picked them up. But clients can't really use that at all, so I'm just passing null. The implementor will need to check isServer to get the real value
-        PickedUp(null);
+        PickedUp(null, NetworkManager.LocalClientId);
     }
     
     #endregion
@@ -142,7 +142,7 @@ public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     public bool locked { get; set; }
     public bool autoPickup { get; set; }
 
-    public virtual void PickedUp(GameObject interactor)
+    public virtual void PickedUp(GameObject interactor, ulong clientId)
     {
         //parentTransform.gameObject.SetActive(false);
         isHeld = true;
@@ -156,7 +156,7 @@ public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
         // }
     }
 
-    public virtual void PutDown(GameObject interactor)
+    public virtual void PutDown(GameObject interactor, ulong clientId)
     {
         //parentTransform.gameObject.SetActive(true);
         isHeld = false;
