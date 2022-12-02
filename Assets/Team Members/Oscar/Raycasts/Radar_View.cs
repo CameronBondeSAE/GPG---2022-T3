@@ -1,5 +1,6 @@
 using System;
 using Shapes;
+using Unity.Netcode;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -20,6 +21,14 @@ namespace Oscar
 
         public Radar_Model radarModel;
         public Line radarLine;
+
+        private NetworkManager networkManager;
+
+        private void Awake()
+        {
+            networkManager = GetComponent<NetworkManager>();
+        }
+
         public override void OnEnable()
         {
             base.OnEnable();
@@ -44,6 +53,9 @@ namespace Oscar
         {
             if(radarOn)
             {
+                //try networking somehow.
+                //NetworkManager.Singleton.IsServer;
+                
                 base.DrawShapes(cam);
                             
                 //draw the lines in the game space.
@@ -61,7 +73,7 @@ namespace Oscar
 
                     radarLine = radarModel.GetComponent<Line>();
                     radarLine.enabled = true;
-                    radarLine.End = radarModel.theDir;
+                    radarLine.End = radarModel.hit.point;
                 }
                 
                 //play sound

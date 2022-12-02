@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using NodeCanvas.Tasks.Actions;
 using Shapes;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Oscar
 {
-    public class Radar_Model : MonoBehaviour, IFlammable,IPickupable
+    public class Radar_Model : NetworkBehaviour, IFlammable,IPickupable
     {
         //is it on the player or not
         private bool radarOn = false;
@@ -19,7 +20,6 @@ namespace Oscar
 
         public RaycastHit hit;
         
-        public LayerMask pingLayer;
         [SerializeField]private float length = 10f;
         
         void Update()
@@ -40,21 +40,12 @@ namespace Oscar
             {
                 if (Physics.Raycast(ray, out hit, length))
                 {
-                    // FIX HITPOINT!
-                    dir = ray.direction;
-                    theDir = dir;
                     if (hit.collider.GetComponent<IAffectedByRadar>() != null)
                     {
                         hit.collider.GetComponent<IAffectedByRadar>().Detection(); 
                     }
                 }
             }
-        }
-
-        public Vector3 theDir
-        {
-            get { return dir; }
-            set { dir = value; }
         }
 
         public event Action<bool> RadarOnNow;
