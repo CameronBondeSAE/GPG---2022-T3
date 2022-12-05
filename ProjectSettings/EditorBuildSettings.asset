@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Team Members/Luke/Scenes/LukeTest.unity
     guid: 72c88c35f6df17b4b9c5542bf36f9189
   - enabled: 1
-    path: Assets/Team Members/Lloyd/Scene/LloydPerlinTest.unity
+    path: Assets/Team Members/Lloyd/Scene/LevelGenerator.unity
     guid: f5848a0e1fed9db4384ae5c9ec95dd01
   - enabled: 0
     path: Assets/Team Members/Marcus/Perlin/PerlinTest.unity
@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Team Members/Marcus/CompiledTests.unity
     guid: 1eab2e21d47ad6f4a964a0c7fde7acf8
+  - enabled: 1
+    path: Assets/Team Members/Alex/Scenes/TestLevel (Cam).unity
+    guid: 1187f3f9f46f16e46bc39f94d8b0ddc6
+  - enabled: 1
+    path: Assets/Scenes/OscarTinyTest.unity
+    guid: 872a8f6e1e09b504abb03e16300ce61d
   m_configObjects: {}

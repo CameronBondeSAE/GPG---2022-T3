@@ -9,6 +9,7 @@ namespace Unity.Netcode.Samples
     /// </summary>
     public class BootstrapManager : MonoBehaviour
     {
+	    public bool autoHost = false;
 	    private void Awake()
 	    {
 		    Time.timeScale = 0; // HACK to stop everything so you can host/join
@@ -32,7 +33,7 @@ namespace Unity.Netcode.Samples
             var networkManager = NetworkManager.Singleton;
             if (!networkManager.IsClient && !networkManager.IsServer)
             {
-                if (GUILayout.Button("Host"))
+                if (GUILayout.Button("Host") || autoHost == true)
                 {
                     networkManager.StartHost();
                 }

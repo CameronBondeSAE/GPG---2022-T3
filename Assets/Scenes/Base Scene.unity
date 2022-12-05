@@ -1113,6 +1113,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3639541133573309074, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
+      propertyPath: m_MaxPacketQueueSize
+      value: 12800
+      objectReference: {fileID: 0}
     - target: {fileID: 3639541133573309075, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
       propertyPath: m_Name
       value: Network Manager
@@ -1243,6 +1247,42 @@ PrefabInstance:
     - target: {fileID: 6011517664640636797, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 387995567
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: levels.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: levels.Array.data[5].level
+      value: 
+      objectReference: {fileID: 102900000, guid: b7d0c809e3748604ab7cd3c9a01249b8, type: 3}
+    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: levels.Array.data[6].level
+      value: 
+      objectReference: {fileID: 102900000, guid: 872a8f6e1e09b504abb03e16300ce61d, type: 3}
+    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: levels.Array.data[7].level
+      value: 
+      objectReference: {fileID: 102900000, guid: 872a8f6e1e09b504abb03e16300ce61d, type: 3}
+    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: levels.Array.data[8].level
+      value: 
+      objectReference: {fileID: 102900000, guid: 872a8f6e1e09b504abb03e16300ce61d, type: 3}
+    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: levels.Array.data[5].levelNameOnUI
+      value: Oscar's Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: levels.Array.data[6].levelNameOnUI
+      value: Oscar Tiny Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: levels.Array.data[7].levelNameOnUI
+      value: Oscar Tiny Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011517664640636798, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: levels.Array.data[8].levelNameOnUI
+      value: Oscar Tiny Test
       objectReference: {fileID: 0}
     - target: {fileID: 7258408480295207878, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: m_RootOrder
