@@ -372,9 +372,6 @@ namespace Ollie
             Scene scene = (SceneManager.GetSceneByName(scenename));
             SceneManager.SetActiveScene(scene);
             
-            
-            //TODO: not successfully updating active scene on client
-            //does it matter?
             UpdateScenesClientRpc(scene.name);
 
             StartCoroutine(LobbyGameStartDelayCoroutine());

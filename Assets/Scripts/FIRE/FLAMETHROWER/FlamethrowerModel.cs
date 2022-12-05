@@ -41,6 +41,8 @@ namespace Lloyd
 
         private Flammable flammable;
 
+        private SphereCollider sphereCollider;
+
         [SerializeField] public float countDownTimer;
 
         public bool isHeld { get; set; }
@@ -95,7 +97,9 @@ namespace Lloyd
             isHeld = true;
 
             canShoot = true;
-            
+
+            sphereCollider = GetComponent<SphereCollider>();
+
             //TODO: Ollie HACK
             //replace this somehow, it's causing errors on the client
             //GetComponent<NetworkObject>().Spawn();
@@ -228,6 +232,8 @@ namespace Lloyd
 
             Transform newParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
             
+            sphereCollider.enabled = false;
+            
             transform.parent = newParent;
             transform.rotation = newParent.rotation;
             transform.localPosition = new Vector3(0,1,-1.12f); //HACK V3 coords
@@ -244,6 +250,8 @@ namespace Lloyd
         {
             Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
 
+            sphereCollider.enabled = true;
+            
             transform.parent = null;
             transform.position = myParent.position + (transform.forward / 2);
             transform.rotation = myParent.rotation;

@@ -23,7 +23,7 @@ public class Interact : NetworkBehaviour
     public GameObject clientFlamethrowerModel;
     public Transform equippedMountPos;
     [Serialize] public IPickupable pickupableNearby;
-    public int storedItems = 5;
+    public int storedItems = 0;
     public int storedMax = 10;
     public int equippedItems;
     public int equippedMax = 1;

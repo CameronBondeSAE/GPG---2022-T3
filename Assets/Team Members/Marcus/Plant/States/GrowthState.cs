@@ -31,6 +31,7 @@ namespace Marcus
         {
             RandomiseTimer();
             GrowEvent?.Invoke();
+            autoPickup = true;
         }
 
         void RandomiseTimer()
@@ -89,7 +90,7 @@ namespace Marcus
 
         public void DestroySelf()
         {
-            
+            Destroy(gameObject);
         }
 
         public bool isHeld { get; set; }
