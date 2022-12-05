@@ -36,14 +36,14 @@ namespace Kevin
         public GameState State;
         /*public delegate void OnGameStart();
 
-        public static event OnGameStart onGameStart; 
+        public event OnGameStart onGameStart; 
         
         public delegate void OnGameEnd();
 
-        public static event OnGameEnd onGameEnd;*/
+        public event OnGameEnd onGameEnd;*/
 
         //Events
-        public static event Action<GameState> OnGameStateChanged;
+        public event Action<GameState> OnGameStateChanged;
         
         #region Component Startups
 

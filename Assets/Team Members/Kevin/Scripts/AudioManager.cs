@@ -11,13 +11,13 @@ public class AudioManager : NetworkBehaviour
 
     void Awake()
     {
-        GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+        GameManager.singleton.OnGameStateChanged += GameManagerOnOnGameStateChanged;
        
     }
 
     void OnDisable()
     {
-        GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+        GameManager.singleton.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
     }
     private void GameManagerOnOnGameStateChanged(GameManager.GameState state)
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Alex;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -18,6 +19,14 @@ public class PerlinCube_Model : MonoBehaviour
     [ClientRpc]
     public void DestroyTheWallClientRpc()
     {
+	    // TODO: Only server
+	    // World changed. Pathfinding update world
+		// HACK
+	    GetComponent<Collider>().enabled = false;
+	    GridGenerator.singleton.Scan();
+
+	    
+	    
         wallDestruction?.Invoke();
     }
 }

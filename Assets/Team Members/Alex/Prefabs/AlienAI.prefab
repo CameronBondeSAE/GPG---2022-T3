@@ -353,7 +353,7 @@ MonoBehaviour:
   lineThickness: 1
   intensity: 1
   worldPosition: {x: 0, y: 0, z: 0}
-  controller: {fileID: 1387461434300845896}
+  main: {fileID: 1794423253392461859}
 --- !u!114 &6557381588813361938
 MonoBehaviour:
   m_ObjectHideFlags: 0

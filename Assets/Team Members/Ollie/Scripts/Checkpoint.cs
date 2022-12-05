@@ -10,25 +10,32 @@ public class Checkpoint : NetworkBehaviour
     public delegate void ItemPlacedEventAction(int amount);
     public event ItemPlacedEventAction itemPlacedEvent;
     public NetworkVariable<Color> colorRed;
+    private Renderer renderer;
 
     public int amount;
     private void Start()
     {
         colorRed = new NetworkVariable<Color>(Color.red);
-        GetComponent<Renderer>().material.color = colorRed.Value;
+        renderer = GetComponent<Renderer>();
+        renderer.material.color = colorRed.Value;
+        GetComponent<NetworkObject>().Spawn();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (IsServer)
         {
-            Transform otherParent = other.transform.parent;
-            if (otherParent != null && other.transform.parent.GetComponentInChildren<IGoalItem>() != null)
+            Interact player = other.GetComponentInParent<Interact>();
+            if (player != null)
             {
-                GetComponent<Renderer>().material.color = Color.green;
-                otherParent.GetComponentInChildren<ItemBase>().locked = true;
-                itemPlacedEvent?.Invoke(amount);
-                CheckpointUpdateClientRpc();
+                if (player.storedItems > 0)
+                {
+                    amount += player.storedItems;
+                    player.storedItems = 0;
+                    itemPlacedEvent?.Invoke(amount);
+                    print("item Placed Event invoked for item count = " +amount);
+                    CheckpointUpdateClientRpc();
+                }
             }
         }
     }
@@ -36,8 +43,14 @@ public class Checkpoint : NetworkBehaviour
     [ClientRpc]
     void CheckpointUpdateClientRpc()
     {
-        //TODO change this to ITEM colour, not checkpoint
-        //unless we're having one item per checkpoint
-        GetComponent<Renderer>().material.color = Color.green;
+        StartCoroutine(CheckpointReceiveItems());
+    }
+
+    public IEnumerator CheckpointReceiveItems()
+    {
+        //TODO make it something funky
+        renderer.material.color = Color.green;
+        yield return new WaitForSeconds(2f);
+        renderer.material.color = Color.red;
     }
 }

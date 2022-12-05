@@ -14,12 +14,12 @@ namespace Alex
         public float lineThickness = 1f;
         public float intensity = 1;
         public Vector3 worldPosition;
-        public Controller controller;
+        public Transform main;
         
 
         private void FixedUpdate()
         {
-            worldPosition = controller.transform.localPosition;
+            worldPosition = main.localPosition;
         }
 
         public override void DrawShapes(Camera cam)

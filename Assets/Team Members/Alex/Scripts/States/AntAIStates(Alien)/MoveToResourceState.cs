@@ -39,6 +39,9 @@ namespace Alex
         public override void Enter()
         {
             base.Enter();
+
+            followPath.useTurnTowards = true;
+            
             controller.renderer.material.shader = eleShader;
             //movement.enabled = true;
            //renderer.material.shader = eleShader;

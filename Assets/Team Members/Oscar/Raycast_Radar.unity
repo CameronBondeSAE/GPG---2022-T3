@@ -1839,6 +1839,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5941631808518611225, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1641729258
+      objectReference: {fileID: 0}
     - target: {fileID: 6580783833038072679, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
       propertyPath: m_Name
       value: Radar_Model (1)

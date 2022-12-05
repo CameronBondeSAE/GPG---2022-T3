@@ -24,6 +24,8 @@ namespace Ollie
 
     public class LobbyUIManager : NetworkBehaviour
     {
+	    public static LobbyUIManager singleton;
+	    
         [Header("Testing")]
         public bool autoHost;
 
@@ -67,8 +69,8 @@ namespace Ollie
         NetworkObject myLocalClient;
         string        clientName;
 
-        public static event Action LobbyGameStartEvent;
-        public static LobbyUIManager instance;
+        
+        public event Action LobbyGameStartEvent;
         public GameManager gameManager;
 
 
@@ -76,15 +78,15 @@ namespace Ollie
 
         private void Awake()
         {
+	        singleton = this;
+
             if (!autoHost)
             {
                 ipAddressCanvas.SetActive(true);
                 lobbyUICanvas.SetActive(false);
             }
 
-            instance = this;
             gameManager = GameManager.singleton;
-            
             
         }
         
@@ -370,9 +372,6 @@ namespace Ollie
             Scene scene = (SceneManager.GetSceneByName(scenename));
             SceneManager.SetActiveScene(scene);
             
-            
-            //TODO: not successfully updating active scene on client
-            //does it matter?
             UpdateScenesClientRpc(scene.name);
 
             StartCoroutine(LobbyGameStartDelayCoroutine());

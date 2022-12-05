@@ -27,6 +27,8 @@ namespace Alex
         public Vector3 justDirection;
         public Vision vision;
 
+        public bool useTurnTowards = true;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -37,9 +39,6 @@ namespace Alex
         {
             myPos = controller.rb.transform.position;
             
-            // CAM. Turn off movement because we're hacking the movement to slide to the path
-            movement.enabled = false;
-
             astar.ActivateCoroutine(Vector3Int.FloorToInt(myPos), Vector3Int.FloorToInt(targetPos));
         }
 
@@ -67,29 +66,22 @@ namespace Alex
 
                 if (distanceToTarget >= distanceToTargetCheck)
                 {
-	                // CAM removed
-                    // if (targetTransform)
-                    // {
-                    //     targetPosition = targetTransform.position;
-                    // }
+	                if (useTurnTowards)
+	                {
+		                // CAM. Turn off movement because we're hacking the movement to slide to the path
+		                movement.enabled = true;
+	                    turntowards.targetPosition = astar.isPathable[0].worldPosition;
+	                }  
+	                //else
+	                {
+		                // HACK: Just slide because we want to look about
+		                // CAM. Turn off movement because we're hacking the movement to slide to the path
+		                movement.enabled = false;
 
-                    // directionAndDistance = targetPosition - transform.position;
-                    directionAndDistance = nextNodePos - transform.position;
-                  
-                  
-                  //if (useTurnTowards)
-                  {
-                      //turntowards.targetPosition = astar.isPathable[0].worldPosition;
-                  }  
-                  //else
-                  {
-                      // directionAndDistance = targetpos - mypos;
-                      justDirection = directionAndDistance.normalized;
-                      controller.rb.AddForce(justDirection * movement.slideTowardsSpeed);
-                      Debug.DrawRay(transform.position, justDirection * 10f, Color.red);
-                  }
-                  
-                  //turntowards.targetPosition = astar.isPathable[0].worldPosition;
+		                directionAndDistance = nextNodePos - transform.position;
+	                    justDirection = directionAndDistance.normalized;
+	                    controller.rb.AddForce(justDirection * movement.slideTowardsSpeed);
+	                }
                 }
                 else
                 {

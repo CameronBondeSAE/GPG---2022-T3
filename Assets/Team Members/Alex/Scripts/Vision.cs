@@ -14,6 +14,7 @@ namespace Alex
     {
         public int rays = 10;
         public float spacingScale = 1f;
+        public float heightOffset = -0.5f;
         public List<Transform> resourcesInSight;
         public List<Transform> enemyInSight;
         public List<Transform> dropOffPointsFound;
@@ -36,8 +37,9 @@ namespace Alex
             
             //converting the Y space from X coordinates to get flat vision cone
             testShapes.polygonPath.AddPoint(transform.position.x, transform.position.z);
-            
-            
+
+
+            Vector3 offset = new Vector3(0, heightOffset, 0);
             
             for (int i = -rays; i < rays; i++)
             {
@@ -47,7 +49,7 @@ namespace Alex
     
                 //Physics.Raycast(transform.position, dir, out RaycastHit HitInfo);
                 
-                Physics.Raycast(transform.position, dir, out RaycastHit HitInfo, 999f, layerMask, QueryTriggerInteraction.Collide);
+                Physics.Raycast(transform.position + offset, dir, out RaycastHit HitInfo, 999f, layerMask, QueryTriggerInteraction.Collide);
                 
                 if(HitInfo.collider == null) continue;
 

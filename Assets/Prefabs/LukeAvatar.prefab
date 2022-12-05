@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5296546071687087713}
   - component: {fileID: -3345389951856140231}
   - component: {fileID: 4781166731886668140}
+  - component: {fileID: 8362266384036607871}
+  - component: {fileID: 7378137494736373024}
   m_Layer: 0
   m_Name: LukeAvatar
   m_TagString: Untagged
@@ -76,6 +78,7 @@ MonoBehaviour:
   storedMax: 9999999
   equippedItems: 0
   equippedMax: 1
+  clientHeldObject: 0
   item: {fileID: 1030358358859370405, guid: 2ec874876f0bf47408ad0863e1c4ee5d, type: 3}
   flamethrower: {fileID: 1441895679611698532, guid: 59fae0003407ba540a508eabea132f38, type: 3}
   plant: {fileID: 2324078963844702446, guid: 50b22efbc57219042b1aeeeda2528002, type: 3}
@@ -167,6 +170,45 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 0
+--- !u!114 &8362266384036607871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5296546071687087743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756aa0cffc9512340a290166c41507cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rays: 10
+  spacingScale: 1
+  resourcesInSight: []
+  enemyInSight: []
+  dropOffPointsFound: []
+  testShapes: {fileID: 7378137494736373024}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &7378137494736373024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5296546071687087743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5071d749f2be4a54b93be2a28f2cbb6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useCullingMasks: 0
+  colour: {r: 0, g: 1, b: 0, a: 0.49803922}
+  lineThickness: 1
+  intensity: 1
+  worldPosition: {x: 0, y: 0, z: 0}
+  controller: {fileID: 0}
 --- !u!1 &5296546073451224716
 GameObject:
   m_ObjectHideFlags: 0

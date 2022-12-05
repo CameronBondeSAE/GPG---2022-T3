@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Alex;
 using Cinemachine;
 using Kevin;
 using Lloyd;
@@ -19,6 +20,7 @@ public class GameManager : NetworkBehaviour
 	public static GameManager singleton;
 	public Health health;
 	public SpawnManager spawnManager;
+	public GridGenerator gridGenerator;
     public event Action OnGameStart;
 	public event Action OnGameEnd;
 	public event Action OnGameWaveTimer;
@@ -52,8 +54,9 @@ public class GameManager : NetworkBehaviour
 	{
 		if (IsServer)
 		{
-			GameObject go = Instantiate(countdownTimer);
-			go.GetComponent<NetworkObject>().Spawn();
+			// TODO: CAM disabled
+			// GameObject go = Instantiate(countdownTimer);
+			// go.GetComponent<NetworkObject>().Spawn();
 			InvokeOnGameStartClientRPC();
 		}
 	}
@@ -135,7 +138,7 @@ public class GameManager : NetworkBehaviour
 		//Allows Lobby to load scenes in, call their Perlin spawn so level preview can exist
 		//On Start Game, lobby unloads everything but Base scene, then loads the new scene FULLY
 		//then SetupScene runs
-		LobbyUIManager.LobbyGameStartEvent += SetupScene;
+		LobbyUIManager.singleton.LobbyGameStartEvent += SetupScene;
 	}
 
     //private void SetupScene(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
@@ -159,6 +162,10 @@ public class GameManager : NetworkBehaviour
 	    levelGenerator.SpawnBasesClientRpc();
 	    levelGenerator.SpawnAIClientRpc();
 	    levelGenerator.SpawnBorderClientRpc();
+	    
+	    // Pathfinding
+	    gridGenerator.Scan();
+	    
 	    foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
         {
 	        // CAM HACK: Find base spawn and spawnpoints
