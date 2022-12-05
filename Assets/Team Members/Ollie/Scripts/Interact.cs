@@ -19,7 +19,7 @@ using Random = System.Random;
 /// </summary>
 public class Interact : NetworkBehaviour
 {
-    public FlamethrowerModel heldObject;
+    public IPickupable heldObject;
     public GameObject clientFlamethrowerModel;
     public Transform equippedMountPos;
     [Serialize] public IPickupable pickupableNearby;
@@ -130,8 +130,12 @@ public class Interact : NetworkBehaviour
         //if you've got a flamethrower, fire it
         if (heldObject != null)
         {
-            IInteractable interactable = heldObject.GetComponent<IInteractable>();
-            if(interactable!=null) interactable.Interact(gameObject);
+            MonoBehaviour monoBehaviour = heldObject as MonoBehaviour;
+            if (monoBehaviour != null)
+            {
+                IInteractable interactable = monoBehaviour.GetComponent<IInteractable>();
+                if(interactable!=null) interactable.Interact(gameObject);
+            }
         }
     }
     
@@ -141,8 +145,13 @@ public class Interact : NetworkBehaviour
         //if you've got a flamethrower, fire it
         if (heldObject != null)
         {
-            IInteractable interactable = heldObject.GetComponent<IInteractable>();
-            if(interactable!=null) interactable.CancelInteract();
+            MonoBehaviour monoBehaviour = heldObject as MonoBehaviour;
+            if (monoBehaviour != null)
+            {
+                IInteractable interactable = monoBehaviour.GetComponent<IInteractable>();
+                if(interactable!=null) interactable.CancelInteract();
+            }
+            
         }
     }
 
@@ -265,7 +274,7 @@ public class Interact : NetworkBehaviour
     private void OnTriggerEnter(Collider other)
     {
 	    IPickupable pickupable = other.GetComponent<IPickupable>();
-	    if (pickupable != null)
+	    if (pickupable != null && NetworkManager.Singleton != null)
         {
 	        Debug.Log("Pickupable in range : "+pickupable);
             IPickupable item = pickupable;

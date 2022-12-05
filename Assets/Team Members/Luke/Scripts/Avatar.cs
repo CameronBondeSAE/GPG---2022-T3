@@ -71,7 +71,8 @@ public class Avatar : NetworkBehaviour, IControllable
 
     public void Action1()
     {
-	    if (interact.heldObject || interact.clientHeldObject)
+	    //does this work? refactored from heldObject being hardcoded as Flamethrower
+        if (interact.heldObject != null || interact.clientHeldObject)
 	    {
 		    interact.RequestDropItemServerRpc(NetworkManager.LocalClientId);
             print("trying to drop");
