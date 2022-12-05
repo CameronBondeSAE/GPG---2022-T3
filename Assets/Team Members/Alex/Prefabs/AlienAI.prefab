@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1794423253392461861}
   - component: {fileID: 1794423253392461860}
   - component: {fileID: 1794423253392461862}
+  - component: {fileID: 1387461434300845896}
   - component: {fileID: 1794423253392461856}
   - component: {fileID: 132510624617632370}
   - component: {fileID: 1804444449802422546}
@@ -20,13 +21,15 @@ GameObject:
   - component: {fileID: 5404456835436071769}
   - component: {fileID: -478265464831815864}
   - component: {fileID: 5602566739967719583}
-  - component: {fileID: 1387461434300845896}
   - component: {fileID: 8175690127105362018}
   - component: {fileID: 5772701356384670382}
   - component: {fileID: -8587638066688477751}
   - component: {fileID: 6557381588813361938}
   - component: {fileID: 9131732727536397864}
   - component: {fileID: -261534627892239884}
+  - component: {fileID: 6706497371001566970}
+  - component: {fileID: 2611418728445704213}
+  - component: {fileID: 426476028992010051}
   m_Layer: 6
   m_Name: AlienAI
   m_TagString: Untagged
@@ -54,7 +57,7 @@ Transform:
   - {fileID: 5749996088807249338}
   - {fileID: 561430403378240219}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1794423253392461858
 MeshFilter:
@@ -134,6 +137,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   slideTowardsSpeed: 150
+--- !u!114 &1387461434300845896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e6d5ee52bfa864297d7812368a5fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasResource: 0
+  canAttack: 0
+  isAttacking: 0
+  enemyDead: 0
+  vision: {fileID: -478265464831815864}
+  rb: {fileID: 1794423253392461856}
+  collider: {fileID: 1794423253392461860}
+  inventory: {fileID: 5602566739967719583}
+  turnSpeed: 0
+  followingPath: 0
+  aStar: {fileID: 5772701356384670382}
+  renderer: {fileID: 1794423253392461861}
+  defaultShader: {fileID: -6465566751694194690, guid: 4ac1cbcbfa784624e90eb2a6087c373e, type: 3}
+  lowHeatShader: {fileID: -6465566751694194690, guid: c4de5fce59d9b5a47a5094d270f06543, type: 3}
+  turnTowards: {fileID: 1804444449802422546}
+  flammable: {fileID: 6706497371001566970}
 --- !u!54 &1794423253392461856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -251,32 +282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources: 0
   capacityReached: 0
---- !u!114 &1387461434300845896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794423253392461865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6e6d5ee52bfa864297d7812368a5fc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasResource: 0
-  canAttack: 0
-  isAttacking: 0
-  enemyDead: 0
-  vision: {fileID: -478265464831815864}
-  rb: {fileID: 1794423253392461856}
-  collider: {fileID: 1794423253392461860}
-  inventory: {fileID: 5602566739967719583}
-  turnSpeed: 0
-  followingPath: 0
-  aStar: {fileID: 5772701356384670382}
-  renderer: {fileID: 1794423253392461861}
-  defaultShader: {fileID: -6465566751694194690, guid: 4ac1cbcbfa784624e90eb2a6087c373e, type: 3}
-  turnTowards: {fileID: 1804444449802422546}
 --- !u!114 &8175690127105362018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +412,63 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &6706497371001566970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flameModelPrefab: {fileID: 1794423253392461865}
+  fireDamage: 0
+  heatLevel: 90
+  heatThreshold: 100
+  heatMultiplier: 1
+  fuel: 0
+  coolRate: 10
+  radius: 0
+--- !u!114 &2611418728445704213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc7765993eb00342b21a0d0c93d2baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 0
+  HP: 0
+--- !u!114 &426476028992010051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97be0d378e26404a881dcd07294140e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flammable: {fileID: 6706497371001566970}
+  nMaterial: {fileID: 2100000, guid: 524bdbd923546a44eb9a9f73af997981, type: 2}
+  defaultShader: {fileID: -6465566751694194690, guid: 4ac1cbcbfa784624e90eb2a6087c373e, type: 3}
+  agroShader: {fileID: -6465566751694194690, guid: 5fe9feba891dc544784aedec872b24dd, type: 3}
+  lookingForResourceShader: {fileID: 0}
+  defaultMaterial: {fileID: 2100000, guid: 524bdbd923546a44eb9a9f73af997981, type: 2}
+  agroMaterial: {fileID: 2100000, guid: c1f5edaa6c1761448a537e13aa1fdf11, type: 2}
+  lookingForResourceMaterial: {fileID: 0}
+  defaultColor: {r: 0.20087217, g: 0.20087217, b: 0.6981132, a: 0}
+  agroColor: {r: 0.8301887, g: 0.23887502, b: 0.23887502, a: 0}
+  colorChangeTime: 3
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0

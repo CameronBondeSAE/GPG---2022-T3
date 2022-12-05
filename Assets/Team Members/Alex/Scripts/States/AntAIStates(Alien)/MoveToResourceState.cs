@@ -17,6 +17,7 @@ namespace Alex
         TurnTowards turnTowards;
         Renderer renderer;
         public Shader eleShader;
+        Movement movement;
 
 
         Rigidbody rb;
@@ -33,17 +34,19 @@ namespace Alex
             followPath = aGameObject.GetComponent<FollowPath>();
             renderer = aGameObject.GetComponent<Renderer>();
             turnTowards = aGameObject.GetComponent<TurnTowards>();
-            
+            movement = aGameObject.GetComponent<Movement>();
         }
         public override void Enter()
         {
             base.Enter();
             controller.renderer.material.shader = eleShader;
-            
+            //movement.enabled = true;
            //renderer.material.shader = eleShader;
+           
 
            turnTowards.enabled = true;
-            followPath.enabled = true;
+           followPath.enabled = true;
+           
             
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
             if (vision.resourcesInSight.Count == 0 && vision.resourcesInSight != null) return;
@@ -76,4 +79,3 @@ namespace Alex
         }
     }
 }
-
