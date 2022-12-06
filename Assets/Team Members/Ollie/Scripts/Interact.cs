@@ -33,19 +33,7 @@ public class Interact : NetworkBehaviour
     public NetworkObject item;
     public GameObject flamethrower;
     public NetworkObject plant;
-
-    private void Update()
-    {
-        // if (Input.GetKeyDown(KeyCode.LeftAlt))
-        // {
-        //     RequestDropItemServerRpc();
-        // }
-        //
-        // if (Input.GetKeyDown(KeyCode.M))
-        // {
-        //     RequestUseItemServerRpc();
-        // }
-    }
+    
 
     [ServerRpc]
     public void RequestPickUpItemServerRpc(ulong localClientId)
@@ -104,13 +92,6 @@ public class Interact : NetworkBehaviour
             DropItemClientRpc(localClientId);
             
             heldObject = null;
-            // Destroy(heldObject.gameObject);
-            // heldObject = null;
-            // Vector3 myPos = transform.position;
-            // GameManager.singleton.NetworkInstantiate(flamethrower, (myPos + (transform.forward / 2)),
-            //     transform.rotation);
-            
-            print("respawn flamethrower");
         }
     }
     
@@ -276,7 +257,6 @@ public class Interact : NetworkBehaviour
 	    IPickupable pickupable = other.GetComponent<IPickupable>();
 	    if (pickupable != null && NetworkManager.Singleton != null)
         {
-	        Debug.Log("Pickupable in range : "+pickupable);
             IPickupable item = pickupable;
             if (item.autoPickup)
             {
