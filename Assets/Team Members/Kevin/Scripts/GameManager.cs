@@ -180,8 +180,8 @@ namespace Kevin
             {
                 GameObject avatar = Instantiate(avatarPrefab);
                 avatar.GetComponent<NetworkObject>().SpawnWithOwnership(client.Value.ClientId);
-                client.Value.PlayerObject.GetComponent<Luke.ClientEntity>()
-                    .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
+                // client.Value.PlayerObject.GetComponent<Luke.ClientEntity>()
+                //     .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
             }
         }
         

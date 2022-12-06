@@ -385,7 +385,7 @@ Transform:
   - {fileID: 1441895680045031400}
   - {fileID: 1441895680211258913}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &882494828671942839
 MonoBehaviour:
@@ -899,7 +899,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 105052648, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 951099334
+      value: 1739546348
       objectReference: {fileID: 0}
     - target: {fileID: 4127929045178541478, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
       propertyPath: m_RootOrder
@@ -961,7 +961,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 105052648, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
 --- !u!4 &4127929047070628017 stripped

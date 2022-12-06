@@ -46,7 +46,7 @@ namespace Oscar
                             
                             GameObject HQ = GameManager.singleton.NetworkInstantiate(humanBase, prefabPosition[i], quaternion.identity);
                             
-                            HQ.transform.SetParent(HQParent.transform);
+                            // HQ.transform.SetParent(HQParent.transform);
                             HQAmount++;
                             humanHQ = false;
                             

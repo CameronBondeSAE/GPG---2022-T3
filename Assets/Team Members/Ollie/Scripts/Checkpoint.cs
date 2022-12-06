@@ -18,7 +18,7 @@ public class Checkpoint : NetworkBehaviour
         colorRed = new NetworkVariable<Color>(Color.red);
         renderer = GetComponent<Renderer>();
         renderer.material.color = colorRed.Value;
-        GetComponent<NetworkObject>().Spawn();
+        // GetComponent<NetworkObject>().Spawn();
     }
 
     private void OnTriggerEnter(Collider other)

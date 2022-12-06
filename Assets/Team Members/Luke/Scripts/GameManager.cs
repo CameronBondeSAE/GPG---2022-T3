@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Alex;
 using Cinemachine;
 using Kevin;
@@ -48,6 +49,8 @@ public class GameManager : NetworkBehaviour
 	public int amountOfAIInGame;
 	public int maxAI;
 	public bool zoomedIn;
+
+	public ulong[,] entityClientIdAndPlayerNetworkObjectIdPairs;
 	
 	public NetworkManager myLocalClient;
 	public void InvokeOnGameStart()
@@ -165,8 +168,10 @@ public class GameManager : NetworkBehaviour
 	    
 	    // Pathfinding
 	    gridGenerator.Scan();
+
+	    entityClientIdAndPlayerNetworkObjectIdPairs = new ulong[NetworkManager.Singleton.ConnectedClients.Count,2];
 	    
-	    foreach (KeyValuePair<ulong, NetworkClient> client in NetworkManager.Singleton.ConnectedClients)
+	    for (int i=0; i< NetworkManager.Singleton.ConnectedClients.Count; i++)
         {
 	        // CAM HACK: Find base spawn and spawnpoints
 	        Transform spawnTransform = null;
@@ -182,18 +187,31 @@ public class GameManager : NetworkBehaviour
 	        if (spawnTransform != null) // No Spawns found
 	        {
 		        GameObject avatar = Instantiate(avatarPrefab, spawnTransform.position, spawnTransform.rotation);
-		        avatar.GetComponent<NetworkObject>().SpawnWithOwnership(client.Value.ClientId);
-		        client.Value.PlayerObject.GetComponent<ClientEntity>()
-			        .AssignAvatarClientRpc(avatar.GetComponent<NetworkObject>().NetworkObjectId);
+		        NetworkObject no = avatar.GetComponent<NetworkObject>();
+		        avatar.GetComponent<NetworkObject>().SpawnWithOwnership(NetworkManager.Singleton.ConnectedClientsList[i].ClientId);
+		        entityClientIdAndPlayerNetworkObjectIdPairs[i,0] = NetworkManager.Singleton.ConnectedClients.ElementAt(i).Value.PlayerObject.NetworkObjectId;
+		        entityClientIdAndPlayerNetworkObjectIdPairs[i,1] = no.NetworkObjectId;
 	        }
+
 	        playersAlive++;
             playersInGame++;
-            /*avatar.GetComponent<PlayerNameTracker>().playerName.text =
-	            client.Value.PlayerObject.GetComponent<ClientInfo>().ClientName.Value.ToString();*/
         }
-        SetCameraTargetClientRpc();
+
+	    for (int i = 0; i < entityClientIdAndPlayerNetworkObjectIdPairs.GetLength(0); i++)
+	    {
+		    RegisterPlayerAvatarsClientRpc(entityClientIdAndPlayerNetworkObjectIdPairs[i,0], entityClientIdAndPlayerNetworkObjectIdPairs[i,1]);
+	    }
+
+	    SetCameraTargetClientRpc();
         spawnManager.SpawnBossAI();
         //SetPlayerNameClientRpc();
+    }
+
+    [ClientRpc]
+    private void RegisterPlayerAvatarsClientRpc(ulong clientNetworkId,ulong playerNetworkId)
+    {
+	    NetworkManager.Singleton.SpawnManager.SpawnedObjects[clientNetworkId].GetComponent<ClientEntity>()
+			    .ControlledPlayer = NetworkManager.Singleton.SpawnManager.SpawnedObjects[playerNetworkId].gameObject;
     }
 
     /*[ClientRpc]

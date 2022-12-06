@@ -11,7 +11,7 @@ namespace Luke
         public string playerName;
 
         private PlayerController _playerController;
-        private GameObject controlledPlayer;
+        [SerializeField] private GameObject controlledPlayer;
 
         public GameObject ControlledPlayer
         {
@@ -28,16 +28,6 @@ namespace Luke
         public void OnEnable()
         {
             _playerController = GetComponent<PlayerController>();
-        }
-
-        [ClientRpc]
-        public void AssignAvatarClientRpc(ulong avatarNetworkObjectId)
-        {
-            foreach (NetworkObject clientOwnedObject in NetworkManager.LocalClient.OwnedObjects)
-            {
-                if (clientOwnedObject.NetworkObjectId == avatarNetworkObjectId)
-                    ControlledPlayer = clientOwnedObject.gameObject;
-            }
         }
     }
 }

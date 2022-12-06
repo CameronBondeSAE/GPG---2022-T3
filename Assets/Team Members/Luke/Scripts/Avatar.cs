@@ -59,12 +59,14 @@ public class Avatar : NetworkBehaviour, IControllable
 
     public void Move(Vector2 direction)
     {
+	    if (!IsOwner) return;
         MovePlayer(direction); // Clientside prediction
         RequestMovePlayerServerRpc(direction);
     }
 
     public void Aim(Vector2 direction)
     {
+	    if (!IsOwner) return;
         AimPlayer(direction); // Clientside prediction
         RequestAimPlayerServerRpc(direction);
     }
