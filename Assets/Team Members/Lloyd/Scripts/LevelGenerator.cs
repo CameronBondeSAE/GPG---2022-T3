@@ -15,6 +15,7 @@ namespace Lloyd
     {
         [Header("Noise Settings")] [SerializeField]
         private int numCube;
+
         [SerializeField] private float cubeScale;
 
         //perlin noise stuff
@@ -29,7 +30,7 @@ namespace Lloyd
 
         public GameObject _barrelObj;
         [SerializeField] private float numBarrels;
-        
+
         [Header("Plant Prefab")] [SerializeField]
         private GameObject itemPrefab;
 
@@ -110,7 +111,7 @@ namespace Lloyd
 
         public void SpawnItemsClientRpc()
         {
-             SpawnPlants();
+            SpawnPlants();
         }
 
         public void SpawnExplosivesClientRpc()
@@ -168,16 +169,16 @@ namespace Lloyd
                     if (perlinNoise < 0.2)
                     {
                         SpawnItemPos();
-                    } 
+                    }
 
                     if (perlinNoise > 0.5)
                     {
                         GameObject cube = Instantiate(wallPrefab, cubePos, Quaternion.identity) as GameObject;
                         cube.transform.SetParent(terrainParent.transform);
 
-                            //cube.transform.localScale = new Vector3(cubeScale, cubeScale, cubeScale);
+                        //cube.transform.localScale = new Vector3(cubeScale, cubeScale, cubeScale);
 
-                            cubeRend = cube.GetComponent<Renderer>();
+                        cubeRend = cube.GetComponent<Renderer>();
                         cubeRend.material.color = Color.gray;
 
                         if (perlinNoise > .9f)
@@ -189,7 +190,7 @@ namespace Lloyd
 
                         //changes the size of the bottom cubes to stretch towards the ground (ostensibly prevents running underneath & fills gaps)
                         //note Mathf.Abs to fix box collider problem
-                        Resize(cubeScale, new Vector3(0f, Mathf.Abs(-1*cubeHeight), 0f));
+                        Resize(cubeScale, new Vector3(0f, Mathf.Abs(-1 * cubeHeight), 0f));
 
                         void Resize(float amount, Vector3 direction)
                         {
@@ -199,6 +200,7 @@ namespace Lloyd
                     }
                 }
             }
+
             GameManager.singleton.SpawnPerlinFinished();
         }
 
@@ -228,6 +230,7 @@ namespace Lloyd
                 cubeRend = item.GetComponentInChildren<Renderer>();
                 cubeRend.material.color = Color.green;
             }
+
             GameManager.singleton.SpawnItemsFinished();
         }
 
@@ -271,11 +274,11 @@ namespace Lloyd
         {
             GameObject ground = Instantiate(cubePrefab, centerPos, Quaternion.identity);
             ground.name = "Ground";
-            ground.transform.localScale = new Vector3(cubePos.x, Mathf.Abs(cubePos.y-cubeScale), cubePos.z);
+            ground.transform.localScale = new Vector3(cubePos.x, Mathf.Abs(cubePos.y - cubeScale), cubePos.z);
             cubeRend = ground.GetComponent<Renderer>();
             cubeRend.material.color = Color.white;
 
-            ground.transform.position = new Vector3(cubePos.x/2, 0, cubePos.z/2 );
+            ground.transform.position = new Vector3(cubePos.x / 2, 0, cubePos.z / 2);
 
             ground.transform.SetParent(environmentParent.transform);
         }
@@ -299,14 +302,14 @@ namespace Lloyd
             GameObject HumanHQprefab = Instantiate(HumanHQ,
                 new Vector3(centerPos.x, (centerPos.y + cubeScale) / 2, centerPos.z), Quaternion.identity);
             HumanHQprefab.transform.SetParent(HQParent.transform);
-            
+
             hqscript = HumanHQprefab.GetComponentInChildren<HQ>();
             DestroyLand(centerPos, destroyRadius);
 
             /*GameObject player = Instantiate(playerPrefab, HumanHQprefab.transform.position, Quaternion.identity);
             player.transform.SetParent(PlayerParent.transform);*/
         }
-        
+
         public void DestroyLand(Vector3 x, float y)
         {
             Collider[] colliders = Physics.OverlapSphere(x, y);
@@ -350,7 +353,7 @@ namespace Lloyd
             {
                 GameObject AlienHQprefab = Instantiate(AlienHQ, tempAlienPos, Quaternion.identity);
                 AlienHQprefab.transform.SetParent(HQParent.transform);
-                
+
                 GameObject alienLeader = Instantiate(alienSmart, tempAlienPos, Quaternion.identity);
                 GameObject alienPeon = Instantiate(alienDumb, tempAlienPos, Quaternion.identity);
 
@@ -359,8 +362,8 @@ namespace Lloyd
 
                 hqscript = AlienHQprefab.GetComponentInChildren<HQ>();
                 DestroyLand(tempAlienPos, destroyRadius);
-                
             }
+
             GameManager.singleton.SpawnBasesFinished();
         }
     }
