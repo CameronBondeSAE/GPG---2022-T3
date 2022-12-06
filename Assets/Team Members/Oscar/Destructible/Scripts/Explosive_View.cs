@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Oscar;
 using DG.Tweening;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Oscar
 {
-    public class Explosive_View : MonoBehaviour
+    public class Explosive_View : NetworkBehaviour
     {
         public ParticleSystem Smoke;
         public Oscar.ExplosiveNearlyExplodeState AlmostBlowUp;
@@ -19,7 +20,8 @@ namespace Oscar
         {
             AlmostBlowUp.AlmostExplode += ItCouldExplode;
         }
-    
+        
+        
         public void ItCouldExplode()
         {
             Smoke.Play();
