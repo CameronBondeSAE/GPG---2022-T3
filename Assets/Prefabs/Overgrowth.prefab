@@ -297,7 +297,7 @@ MonoBehaviour:
   flameModelPrefab: {fileID: 4092031293610382795, guid: 356b6b1337f47004c80f6626d3ff6fa7, type: 3}
   fireDamage: 1
   heatLevel: 0
-  heatThreshold: 25
+  heatThreshold: 250
   heatMultiplier: 1.5
   fuel: 20
   coolRate: 0.01
