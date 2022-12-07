@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using DG.Tweening;
+using Unity.Netcode;
 using UnityEngine;
 
 public class PerlinCube_View : MonoBehaviour
@@ -35,7 +36,7 @@ public class PerlinCube_View : MonoBehaviour
         yield return new WaitForSeconds(3f);
         perlinCubeModel.transform.DOScale(new Vector3(0f, 0f, 0f),3f);
         yield return new WaitForSeconds(3f);
-        Destroy(perlinWallCube,1f);
+        if(NetworkManager.Singleton.IsServer) Destroy(perlinWallCube,1f);
     }
     
 }

@@ -23,7 +23,7 @@ public class PerlinCube_Model : MonoBehaviour
 	    // World changed. Pathfinding update world
 		// HACK
 	    GetComponent<Collider>().enabled = false;
-	    GridGenerator.singleton.Scan();
+	    if(NetworkManager.Singleton.IsServer) GridGenerator.singleton.Scan();
 
 	    
 	    

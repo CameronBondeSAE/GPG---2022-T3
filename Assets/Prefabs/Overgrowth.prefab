@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 1551717591086350213}
   - component: {fileID: -1437297480577967940}
   - component: {fileID: -4279678345658173338}
+  - component: {fileID: -1095624110795055463}
   m_Layer: 12
   m_Name: Overgrowth
   m_TagString: Untagged
@@ -281,7 +282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
-  HP: 0
 --- !u!114 &-4279678345658173338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,3 +302,19 @@ MonoBehaviour:
   fuel: 20
   coolRate: 0.01
   radius: 1.5
+--- !u!114 &-1095624110795055463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4137073510955222978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

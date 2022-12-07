@@ -66,7 +66,7 @@ namespace Oscar
                             
                             prevBasePos = tempBasePos;
                             
-                            GameObject HQ = Instantiate(alienBase, prefabPosition[i], quaternion.identity);
+                            GameObject HQ = GameManager.singleton.NetworkInstantiate(alienBase, prefabPosition[i], quaternion.identity);
                             
                             HQ.transform.SetParent(HQParent.transform);
                             HQAmount++;
