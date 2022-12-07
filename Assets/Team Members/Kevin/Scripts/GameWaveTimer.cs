@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Lloyd;
 using Luke;
 using TMPro;
 using Unity.Netcode;
@@ -10,10 +11,33 @@ public class GameWaveTimer : NetworkBehaviour
     public bool gameStarted;
     public float time;
     public TMP_Text timeText;
+    public TMP_Text scoreText;
+    private Checkpoint checkpoint;
 
     void OnEnable()
     {
         gameStarted = true;
+        GameManager.singleton.GameHasStartedEvent += AssignCheckpoint;
+    }
+
+    void AssignCheckpoint()
+    {
+        if (IsServer)
+        {
+            foreach (var hq in FindObjectsOfType<HQ>())
+            {
+                if (hq.type == HQ.HQType.Humans)
+                {
+                    checkpoint = hq.GetComponentInChildren<Checkpoint>();
+                }
+            }
+            checkpoint.itemPlacedEvent += UpdateScoreboard;
+        }
+    }
+
+    void UpdateScoreboard(int amount)
+    {
+        scoreText.text = amount.ToString();
     }
     
 

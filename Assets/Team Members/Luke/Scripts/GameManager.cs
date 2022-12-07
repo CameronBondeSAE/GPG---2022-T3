@@ -26,6 +26,8 @@ public class GameManager : NetworkBehaviour
 	public event Action OnGameEnd;
 	public event Action OnGameWaveTimer;
 	
+	public event Action GameHasStartedEvent;
+	
     [SerializeField] private GameObject avatarPrefab;
     [SerializeField] public GameObject virtualCameraOne;
     [SerializeField] public GameObject virtualCameraTwo;
@@ -206,6 +208,7 @@ public class GameManager : NetworkBehaviour
 
 	    SetCameraTargetClientRpc();
         spawnManager.SpawnBossAI();
+        GameHasStartedEvent?.Invoke();
         //SetPlayerNameClientRpc();
     }
 
