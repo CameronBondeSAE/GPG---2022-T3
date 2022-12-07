@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
 using UnityEngine;
 public class Billboard : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Billboard : MonoBehaviour
     void Start()
     {
         _myTransform = transform;
-        _cameraTransform = Camera.main.transform;
+        _cameraTransform = GameManager.singleton.cameraBrain.OutputCamera.transform;
     }
 
     // Update is called once per frame

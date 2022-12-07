@@ -107,7 +107,12 @@ public class Flammable : NetworkBehaviour, IHeatSource
 	    while (HeatLevel > 0)
 	    {
 		    yield return new WaitForSeconds(1f); //Prevents this from being called every frame, also means we don't have to account for fixedDeltaTime;
-		    if (_burning) _healthComp.ChangeHP(-fireDamage); //Burn damage
+		    if (_burning)
+		    {
+			    if (_healthComp != null) _healthComp.ChangeHP(-fireDamage); //Burn damage
+			    else Debug.Log(gameObject.name);
+		    }
+		    
 		    ChangeHeat(this, -coolRate); //Cooling
 		    CoolDown?.Invoke();
 	    }

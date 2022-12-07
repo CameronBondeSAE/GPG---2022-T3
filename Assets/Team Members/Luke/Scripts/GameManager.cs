@@ -61,8 +61,8 @@ public class GameManager : NetworkBehaviour
 		if (IsServer)
 		{
 			// TODO: CAM disabled
-			// GameObject go = Instantiate(countdownTimer);
-			// go.GetComponent<NetworkObject>().Spawn();
+			GameObject go = Instantiate(countdownTimer);
+			go.GetComponent<NetworkObject>().Spawn();
 			InvokeOnGameStartClientRPC();
 		}
 	}
