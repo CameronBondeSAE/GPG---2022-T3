@@ -49,7 +49,7 @@ public class ManEater : MonoBehaviour, IFlammable
         
         if (plants.Count <= 2)
         {
-            health.HP.Value = 0;
+            health.ChangeHP(-1000000);
         }
     }
 

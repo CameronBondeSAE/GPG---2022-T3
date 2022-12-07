@@ -28,7 +28,7 @@ namespace Oscar
                 {
                     GameObject spawnedItem = Instantiate(explosive, prefabPosition[i], quaternion.identity);
                     
-                    spawnedItem.transform.SetParent(explosiveParent.transform);
+                    // spawnedItem.transform.SetParent(explosiveParent.transform);
     
                     boomAmount++;
                     waitAmount = 0;

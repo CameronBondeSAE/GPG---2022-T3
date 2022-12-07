@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
 using Shapes;
 using UnityEngine;
+using Camera = UnityEngine.Camera;
 using Random = UnityEngine.Random;
 
 namespace Alex
@@ -26,7 +28,7 @@ namespace Alex
         {
             base.DrawShapes(cam);
 
-            using (Draw.Command(Camera.main))
+            using (Draw.Command(GameManager.singleton.cameraBrain.OutputCamera))
             {
                 // all immediate mode drawing should happen within these using-statements
 

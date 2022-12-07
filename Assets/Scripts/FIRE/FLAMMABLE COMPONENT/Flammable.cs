@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
+using Unity.Netcode;
 using Random = UnityEngine.Random;
 
-public class Flammable : MonoBehaviour, IHeatSource
+public class Flammable : NetworkBehaviour, IHeatSource
 {
     //Flammable Component assumes gameObj also has a HealthComponent attached
     private Health _healthComp;
@@ -70,12 +71,19 @@ public class Flammable : MonoBehaviour, IHeatSource
     private bool ticking;
 
     public event Action CoolDown;
-    
+
+    public override void OnNetworkSpawn()
+    {
+	    base.OnNetworkSpawn();
+	    
+	    _healthComp = GetComponent<Health>();
+
+	    fuel += _healthComp.HP;
+    }
+
     private void OnEnable()
     {
-        _healthComp = GetComponent<Health>();
-
-        fuel += _healthComp.GetHP();
+	    // CAM: Moved to network start OOO
     }
 
     private void Start()

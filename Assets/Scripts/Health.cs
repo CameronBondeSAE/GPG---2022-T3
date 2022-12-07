@@ -9,45 +9,40 @@ using Sirenix.OdinInspector;
    public class Health : NetworkBehaviour
 {
     [SerializeField] private float maxHP;
-    public NetworkVariable<float> HP;
+    private NetworkVariable<float> hp = new NetworkVariable<float>();
+    public float HP
+    {
+	    get { return hp.Value; }
+    }
 
     private bool isAlive=true;
 
-    private void OnEnable()
+    public override void OnNetworkSpawn()
     {
-        OnSpawn();
-        HP.OnValueChanged += OnValueChanged;
-        ChangeHP(maxHP);
-    }
-
-    private void OnValueChanged(float previousvalue, float newvalue)
-    {
-        ChangeHP(newvalue-previousvalue);
+	    base.OnNetworkSpawn();
+	    
+	    OnSpawn();
+	    ChangeHP(maxHP);
     }
 
     public void ChangeHP(float amount)
     {
         if (isAlive)
         {
-            HP.Value += amount;
+            hp.Value += amount;
 
-            if (HP.Value >= maxHP)
-                HP.Value = maxHP;
+            if (hp.Value >= maxHP)
+	            hp.Value = maxHP;
 
-            if (HP.Value <= 0)
+            if (hp.Value <= 0)
             {
-                HP.Value = 0;
+	            hp.Value = 0;
                 isAlive = false;
                 OnYouDied();
             }
 
-            OnChangeHealth(HP.Value);
+            OnChangeHealth(hp.Value);
         }
-    }
-
-    public float GetHP()
-    {
-        return HP.Value;
     }
 
     [Button]

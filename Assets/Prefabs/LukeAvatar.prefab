@@ -39,7 +39,6 @@ Transform:
   - {fileID: 5296546073451224755}
   - {fileID: 7172724889952469676}
   - {fileID: 5684348334424203728}
-  - {fileID: 1651695499359983903}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71,8 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32e5cb7f8b9482145a4a668bde953a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heldObject: {fileID: 0}
-  clientFlamethrowerModel: {fileID: 6110976125793252356}
+  clientFlamethrowerModel: {fileID: 0}
   equippedMountPos: {fileID: 5684348334424203728}
   storedItems: 5
   storedMax: 9999999
@@ -184,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rays: 10
   spacingScale: 1
+  heightOffset: -0.5
   resourcesInSight: []
   enemyInSight: []
   dropOffPointsFound: []
@@ -208,7 +207,7 @@ MonoBehaviour:
   lineThickness: 1
   intensity: 1
   worldPosition: {x: 0, y: 0, z: 0}
-  controller: {fileID: 0}
+  main: {fileID: 0}
 --- !u!1 &5296546073451224716
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,38 +306,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &6110976125793252356
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1651695499359983903}
-  m_Layer: 0
-  m_Name: ClientFlameThrowerView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1651695499359983903
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6110976125793252356}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.102, z: -1.15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6308514829208992391}
-  m_Father: {fileID: 5296546071687087714}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7738540492972454734
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,96 +452,4 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6026137313275139732, guid: dc13774ea66d330469fb33cd9513461e, type: 3}
   m_PrefabInstance: {fileID: 3471009489275425848}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &4868106058690054118
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 2
-    m_TransformParent: {fileID: 1651695499359983903}
-    m_Modifications:
-    - target: {fileID: -6714150760321197817, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 951099334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1198204028616787916, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1441895679611698532, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_Name
-      value: Flamethrower
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196019229650576461, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2620070057931399857, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3862511307656333270, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7669548258206099321, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7841463451455674384, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_AddedGameObjects: []
-  m_SourcePrefab: {fileID: 100100000, guid: 59fae0003407ba540a508eabea132f38, type: 3}
---- !u!4 &6308514829208992391 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1441895679611698529, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-  m_PrefabInstance: {fileID: 4868106058690054118}
   m_PrefabAsset: {fileID: 0}

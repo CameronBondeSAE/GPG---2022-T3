@@ -29,6 +29,7 @@ public class GameManager : NetworkBehaviour
 	public event Action GameHasStartedEvent;
 	
     [SerializeField] private GameObject avatarPrefab;
+    [SerializeField] public CinemachineBrain cameraBrain;
     [SerializeField] public GameObject virtualCameraOne;
     [SerializeField] public GameObject virtualCameraTwo;
     [SerializeField] private GameObject playerNamePrefab;
