@@ -134,6 +134,7 @@ namespace Marcus
             }
         }
         
+        [ClientRpc]
         public void SpawnItemsClientRpc()
         {
             for (int x = 0; x < amount; x++)
@@ -158,11 +159,13 @@ namespace Marcus
             }
         }
 
+        [ClientRpc]
         public void SpawnExplosivesClientRpc()
         {
             print("I DO NOTHING YET");
         }
 
+        [ClientRpc]
         public void SpawnBasesClientRpc()
         {
             for (int i = 0; i < 4; i++)
