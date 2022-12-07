@@ -18,8 +18,8 @@ namespace Oscar
         private Flammable flammable;
         private void OnEnable()
         {
-            flammable = GetComponent<Flammable>();
-            flammable.CoolDown += FireOff;
+            // flammable = GetComponent<Flammable>();
+            // flammable.CoolDown += FireOff;
             
             StartCoroutine(ExplodeCountdown());
         }

@@ -12,7 +12,6 @@ namespace Oscar
     {
         public ParticleSystem Smoke;
         public Oscar.ExplosiveNearlyExplodeState AlmostBlowUp;
-        public GameObject barrel;
         
         private Color colRed = new Color32(255,0,0,255);
         
@@ -28,11 +27,11 @@ namespace Oscar
             //play hiss sound 
 
             //pulse its size before exploding
-            barrel.transform.DOShakeScale(3f,
+            transform.DOShakeScale(3f,
                 new Vector3(.1f,.1f,.1f), 5,5f,false);
             
             //change colour to red gradually
-            barrel.GetComponent<Renderer>().material.DOColor(colRed, 2f);
+            GetComponent<Renderer>().material.DOColor(colRed, 3f);
         }
     
     }
