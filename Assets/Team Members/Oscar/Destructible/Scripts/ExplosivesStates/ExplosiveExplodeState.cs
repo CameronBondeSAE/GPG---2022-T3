@@ -16,8 +16,8 @@ namespace Oscar
         [Header("How large the explode circle is")]
         [SerializeField] private float radius;
 
-        private Flammable flammable;
-
+        private Health health;
+        
         [Header("How many explosive fragments spawn")]
         [SerializeField] private int numFragments;
         public GameObject explosivefragments;
@@ -39,10 +39,10 @@ namespace Oscar
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
             foreach (Collider burnVictims in colliders)
             {
-                if (burnVictims.GetComponent<Flammable>() != null)
+                if (burnVictims.GetComponent<Health>() != null)
                 {
-                    flammable = burnVictims.GetComponent<Flammable>();
-                    flammable.ChangeHeat(this, fireDamage);
+                    health = burnVictims.GetComponent<Health>();
+                    health.ChangeHP(-999999);
                 }
                 
                 Rigidbody rb = burnVictims.GetComponent<Rigidbody>();
