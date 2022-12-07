@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Luke;
 using Oscar;
+using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Marcus
 {
-    public class NetworkedGenerator : MonoBehaviour, ILevelGenerate
+    public class NetworkedGenerator : NetworkBehaviour, ILevelGenerate
     {
         private GameManager gm;
         
@@ -85,13 +86,14 @@ namespace Marcus
                     }
                     else
                     {
-                        Instantiate(wallPrefab, brickPos, Quaternion.identity);
+                        gm.NetworkInstantiate(wallPrefab, brickPos, Quaternion.identity);
                         perlinGrid[x, z] = 1;
                     }
                 }
             }
         }
 
+        [ClientRpc]
         public void SpawnBorderClientRpc()
         {
             GameObject curBorder;
@@ -109,6 +111,7 @@ namespace Marcus
             curBorder.transform.localScale += new Vector3(0, 0, amount);
         }
 
+        [ClientRpc]
         public void SpawnAIClientRpc()
         {
             for (int x = 0; x < amount; x++)
@@ -130,7 +133,7 @@ namespace Marcus
                 }
             }
         }
-
+        
         public void SpawnItemsClientRpc()
         {
             for (int x = 0; x < amount; x++)
@@ -143,7 +146,7 @@ namespace Marcus
                     {
                         if (Mathf.PerlinNoise(x * itemStep, z * itemStep) >= 0.7f)
                         {
-                            Instantiate(pickup, itemPos, Quaternion.identity);
+                            gm.NetworkInstantiate(pickup, itemPos, Quaternion.identity);
                             itemGrid[x, z] = 1;
                         }
                         else if (Mathf.PerlinNoise(x * itemStep, z * itemStep) <= 0.2f)
@@ -168,11 +171,11 @@ namespace Marcus
 
                 if (i == 0)
                 {
-                    Instantiate(playerHQ, hqPos, Quaternion.identity);
+                    gm.NetworkInstantiate(playerHQ, hqPos, Quaternion.identity);
                 }
                 else
                 {
-                    Instantiate(alienHQ, hqPos, Quaternion.identity);
+                    gm.NetworkInstantiate(alienHQ, hqPos, Quaternion.identity);
                 }
             }
         }

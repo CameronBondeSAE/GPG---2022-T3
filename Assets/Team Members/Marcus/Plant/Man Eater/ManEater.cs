@@ -16,18 +16,19 @@ public class ManEater : MonoBehaviour, IFlammable
     [SerializeField] private List<GameObject> plants;
     private float checkTimer = 1f;
     private float deathTimer = 3f;
-    private bool isBurning;
     
     private void OnEnable()
     {
         colissionManager.OnTriggerEnterEvent += CheckColliderEntered;
         fireness.SetOnFireEvent += SetOnFire;
+        health.YouDied += Die;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         plants = new List<GameObject>();
+        StartCoroutine(CheckTimer());
     }
 
     public delegate void ManeaterDeath();
@@ -35,32 +36,6 @@ public class ManEater : MonoBehaviour, IFlammable
 
     public delegate void ManeaterBurning();
     public event ManeaterBurning maneaterBurnEvent;
-    
-    // Update is called once per frame
-    void Update()
-    {
-        checkTimer -= Time.deltaTime;
-        if (checkTimer <= 0)
-        {
-            CheckListForNull();
-        }
-        
-        if (plants.Count <= 2 || health.HP.Value == 0)
-        {
-            maneaterDeathEvent?.Invoke();
-            
-            deathTimer -= Time.deltaTime;
-            if (deathTimer <= 0)
-            {
-                Die();
-            }
-        }
-
-        if (isBurning)
-        {
-            maneaterBurnEvent?.Invoke();
-        }
-    }
 
     void CheckListForNull()
     {
@@ -72,7 +47,10 @@ public class ManEater : MonoBehaviour, IFlammable
             }
         }
         
-        checkTimer = 1f;
+        if (plants.Count <= 2)
+        {
+            health.HP.Value = 0;
+        }
     }
 
     void CheckColliderEntered(Collider other)
@@ -102,7 +80,7 @@ public class ManEater : MonoBehaviour, IFlammable
     public void SetOnFire()
     {
         print("GGGRRR ANGRY DEATH NOISES!!!");
-        isBurning = true;
+        maneaterBurnEvent?.Invoke();
     }
 
     public void ChangeHeat(IHeatSource heatSource, float x)
@@ -112,6 +90,20 @@ public class ManEater : MonoBehaviour, IFlammable
 
     void Die()
     {
+        maneaterDeathEvent?.Invoke();
+        StartCoroutine(DeathTimer());
+    }
+
+    IEnumerator CheckTimer()
+    {
+        yield return new WaitForSeconds(checkTimer);
+        CheckListForNull();
+    }
+
+    IEnumerator DeathTimer()
+    {
+        yield return new WaitForSeconds(deathTimer);
         Destroy(gameObject);
+        //SERVER ONLY
     }
 }

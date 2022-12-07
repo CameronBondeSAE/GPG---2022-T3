@@ -22,6 +22,12 @@ public class PlantView : MonoBehaviour
 
     private bool burning;
     private Tweener curTween;
+    Transform t;
+
+    private void Awake()
+    {
+        t = transform;
+    }
 
     private void OnEnable()
     {
@@ -42,11 +48,11 @@ public class PlantView : MonoBehaviour
     {
         if (!burning)
         {
-            transform.localScale = new Vector3(plantGrowth.age, 0.05f, plantGrowth.age);
+            t.localScale = new Vector3(plantGrowth.age, 0.05f, plantGrowth.age);
         }
         else
         {
-            transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(plantGrowth.age/2f, 0.05f, plantGrowth.age/2f), 0.002f);
+            t.localScale = Vector3.MoveTowards(t.localScale, new Vector3(plantGrowth.age/2f, 0.05f, plantGrowth.age/2f), 0.002f);
         }
     }
 
