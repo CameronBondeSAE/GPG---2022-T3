@@ -103,7 +103,7 @@ namespace Luke
             Vector2 aimInput = context.ReadValue<Vector2>();
             if (context.control.parent.name == "Mouse")
             {
-                Camera cam = Camera.main;
+                Camera cam = GameManager.singleton.cameraBrain.OutputCamera;
                 if (cam == null) return;
                 Vector2 playerPos = new Vector2(cam.pixelWidth / 2f, cam.pixelHeight / 2f); //Camera.main.WorldToScreenPoint(playerTransform.position);
                 _aimDirection = aimInput - playerPos;
