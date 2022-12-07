@@ -159,7 +159,7 @@ public class GameManager : NetworkBehaviour
 	    }
 	    
 	    // TODO: Wait for level generation callback to be sure it's finished.
-	    levelGenerator.SpawnPerlinClientRpc();
+	    levelGenerator.SpawnPerlinClientRpc(); // not actually a client RPC
 	    levelGenerator.SpawnItemsClientRpc();
 	    levelGenerator.SpawnExplosivesClientRpc();
 	    levelGenerator.SpawnBasesClientRpc();
@@ -189,7 +189,9 @@ public class GameManager : NetworkBehaviour
 		        GameObject avatar = Instantiate(avatarPrefab, spawnTransform.position, spawnTransform.rotation);
 		        NetworkObject no = avatar.GetComponent<NetworkObject>();
 		        avatar.GetComponent<NetworkObject>().SpawnWithOwnership(NetworkManager.Singleton.ConnectedClientsList[i].ClientId);
-		        entityClientIdAndPlayerNetworkObjectIdPairs[i,0] = NetworkManager.Singleton.ConnectedClients.ElementAt(i).Value.PlayerObject.NetworkObjectId;
+                NetworkObject clientEntity = NetworkManager.Singleton.ConnectedClients.ElementAt(i).Value.PlayerObject;
+                clientEntity.GetComponent<ClientEntity>().ControlledPlayer = avatar;
+                entityClientIdAndPlayerNetworkObjectIdPairs[i,0] = clientEntity.NetworkObjectId;
 		        entityClientIdAndPlayerNetworkObjectIdPairs[i,1] = no.NetworkObjectId;
 	        }
 

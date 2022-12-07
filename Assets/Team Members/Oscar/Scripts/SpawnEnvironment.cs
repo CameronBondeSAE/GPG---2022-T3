@@ -19,7 +19,7 @@ namespace Oscar
         {
             for (int i = 0; i < prefabPosition.Count; i++)
             {
-                GameObject newCube = Instantiate(perlinPrefab, prefabPosition[i], Quaternion.identity);
+                GameObject newCube = Luke.GameManager.singleton.NetworkInstantiate(perlinPrefab, prefabPosition[i], Quaternion.identity);
                 //newCube.transform.SetParent(CubeParent.transform);
                 newCube.GetComponent<Renderer>().material.color = Color.black;
             }
@@ -28,7 +28,7 @@ namespace Oscar
         public void SpawnTheEnvironment(Vector3 prefabPosition, int amount, float scale, GameObject borderParent)
         {
             //spawn all the walls
-            GameObject firstWall = Instantiate(borderPrefab,
+            GameObject firstWall =Instantiate(borderPrefab,
                 new Vector3(-1, prefabPosition.y, (amount / 2)), Quaternion.identity);
             firstWall.name = "firstWall";
             firstWall.transform.localScale = new Vector3(1, prefabPosition.y * scale * 2, prefabPosition.z + 2);
