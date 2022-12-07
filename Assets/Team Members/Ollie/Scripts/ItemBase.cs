@@ -142,7 +142,7 @@ public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
     public bool locked { get; set; }
     public bool autoPickup { get; set; }
 
-    public virtual void PickedUp(GameObject interactor, ulong localClientId)
+    public virtual void PickedUp(GameObject interactor, ulong networkObjectId)
     {
         //parentTransform.gameObject.SetActive(false);
         isHeld = true;
@@ -156,7 +156,7 @@ public class ItemBase : NetworkBehaviour, IGoalItem, IPickupable, IFlammable
         // }
     }
 
-    public virtual void PutDown(GameObject interactor, ulong localClientId)
+    public virtual void PutDown(GameObject interactor, ulong networkObjectId)
     {
         //parentTransform.gameObject.SetActive(true);
         isHeld = false;

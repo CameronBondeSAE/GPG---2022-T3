@@ -36,16 +36,16 @@ public class Interact : NetworkBehaviour
     
 
     [ServerRpc]
-    public void RequestPickUpItemServerRpc(ulong localClientId)
+    public void RequestPickUpItemServerRpc(ulong networkObjectId)
     {
         if (pickupableNearby == null) return;
         if (equippedItems >= equippedMax) return;
         
         //send through player client id ulong
-        pickupableNearby.PickedUp(gameObject, localClientId);
+        pickupableNearby.PickedUp(gameObject, networkObjectId);
 
         heldObject = GetComponentInChildren<FlamethrowerModel>();
-        PickUpItemClientRpc(localClientId);
+        PickUpItemClientRpc(networkObjectId);
         //Old parenting with NetworkObject --- OBSOLETE
         /*MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
         if (monoBehaviour != null)
@@ -73,7 +73,7 @@ public class Interact : NetworkBehaviour
     }
     
     [ClientRpc]
-    public void PickUpItemClientRpc(ulong localClientId)
+    public void PickUpItemClientRpc(ulong networkObjectId)
     {
         if (!IsServer)
         {
@@ -83,20 +83,20 @@ public class Interact : NetworkBehaviour
     }
 
     [ServerRpc]
-    public void RequestDropItemServerRpc(ulong localClientId)
+    public void RequestDropItemServerRpc(ulong networkObjectId)
     {
         if (heldObject != null)
         {
             equippedItems = 0;
-            heldObject.PutDown(gameObject, localClientId);
-            DropItemClientRpc(localClientId);
+            heldObject.PutDown(gameObject, networkObjectId);
+            DropItemClientRpc(networkObjectId);
             
             heldObject = null;
         }
     }
     
     [ClientRpc]
-    public void DropItemClientRpc(ulong localClientId)
+    public void DropItemClientRpc(ulong networkObjectId)
     {
         if (!IsServer)
         {

@@ -217,20 +217,21 @@ namespace Lloyd
 
         //IPICKUP MANDATORY(S)
 
-        public void PickedUp(GameObject player, ulong localClientId)
+        public void PickedUp(GameObject player, ulong networkObjectId)
         {
             isHeld = true;
-            transform.parent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
-            ParentClientRpc(localClientId);
+            
+            ParentClientRpc(networkObjectId);
         }
 
         [ClientRpc]
-        public void ParentClientRpc(ulong localClientId)
+        public void ParentClientRpc(ulong networkObjectId)
         {
             //TODO: LUKE needs to fix the client entities knowing about other client entities' PlayerAvatar
             //also an issue with the FT not following the client because of NetworkTransform?
 
-            Transform newParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
+            //Transform newParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(networkObjectId).GetComponent<PlayerController>().playerTransform;
+            Transform newParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
             
             sphereCollider.enabled = false;
             
@@ -239,17 +240,18 @@ namespace Lloyd
             transform.localPosition = new Vector3(0,1,-1.12f); //HACK V3 coords
         }
 
-        public void PutDown(GameObject player, ulong localClientId)
+        public void PutDown(GameObject player, ulong networkObjectId)
         {
             isHeld = false;
-            RemoveParentClientRpc(localClientId);
+            RemoveParentClientRpc(networkObjectId);
         }
 
         [ClientRpc]
-        public void RemoveParentClientRpc(ulong localClientId)
+        public void RemoveParentClientRpc(ulong networkObjectId)
         {
-            Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(localClientId).GetComponent<PlayerController>().playerTransform;
-
+            //Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(networkObjectId).GetComponent<PlayerController>().playerTransform;
+            Transform myParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
+            
             sphereCollider.enabled = true;
             
             transform.parent = null;
