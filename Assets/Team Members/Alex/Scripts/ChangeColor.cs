@@ -30,21 +30,21 @@ public class ChangeColor : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (flammable.heatLevel <= 1)
+        if (flammable.HeatLevel <= 1)
         {
             setColorToDefault();
         }
 
-        if (flammable.heatLevel > 1 && flammable.heatLevel <= 30)
+        if (flammable.HeatLevel > 1 && flammable.HeatLevel <= 30)
         {
             setColorToRed();
         }
 
-        if (flammable.heatLevel > 31 && flammable.heatLevel <= 60)
+        if (flammable.HeatLevel > 31 && flammable.HeatLevel <= 60)
         {
             setColorToYellow();
         }
-        if (flammable.heatLevel > 61 && flammable.heatLevel <= 100)
+        if (flammable.HeatLevel > 61 && flammable.HeatLevel <= 100)
         {
             setColorToWhite();
         }
