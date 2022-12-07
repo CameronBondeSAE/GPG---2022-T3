@@ -38,15 +38,16 @@ public class Avatar : NetworkBehaviour, IControllable
 
     private void MovePlayer(Vector2 direction)
     {
-        Vector3 velocity = _rb.velocity;
-        Vector3 dragVector3 = new Vector3(-velocity.x*drag, 0, -velocity.z*drag);
-        _rb.AddForce(dragVector3, ForceMode.Acceleration);
-        Vector3 heading = new (direction.x*acceleration, 0,direction.y*acceleration);
-        _rb.AddForce(heading, ForceMode.Acceleration);
-        _rb.velocity = new(Mathf.Clamp(velocity.x,-maxSpeed, maxSpeed),velocity.y,
-            Mathf.Clamp(velocity.z,-maxSpeed, maxSpeed));
-        
+        // Vector3 velocity = _rb.velocity;
+        // Vector3 dragVector3 = new Vector3(-velocity.x*drag, 0, -velocity.z*drag);
+        // _rb.AddForce(dragVector3, ForceMode.Acceleration);
+        // Vector3 heading = new (direction.x*acceleration, 0,direction.y*acceleration);
+        // _rb.AddForce(heading, ForceMode.Acceleration);
+        // _rb.velocity = new(Mathf.Clamp(velocity.x,-maxSpeed, maxSpeed),velocity.y,
+        //     Mathf.Clamp(velocity.z,-maxSpeed, maxSpeed));
         // account for direction player facing here
+
+        _rb.velocity = new Vector3(direction.x, 0, direction.y) * acceleration;
     }
 
     private void AimPlayer(Vector2 direction)
