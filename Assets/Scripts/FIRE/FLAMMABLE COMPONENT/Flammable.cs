@@ -31,6 +31,11 @@ public class Flammable : MonoBehaviour, IHeatSource
 		    else
 		    {
 			    heatLevel = value;
+                if (heatLevel > heatThreshold && !_burning)
+                {
+                    _burning = true;
+                    SetOnFire();
+                }
 			    if (ticking) return;
 			    ticking = true;
 			    StartCoroutine(FireTick());
@@ -143,15 +148,7 @@ public class Flammable : MonoBehaviour, IHeatSource
     {
         //heatMultiplier is only added for positive change heat input
         //not for water / extinguishers
-        if (amount > 0)
-        {
-	        HeatLevel += amount * heatMultiplier;
-            if (HeatLevel > heatThreshold && !_burning)
-            {
-	            _burning = true;
-	            SetOnFire();
-            }
-        }
+        if (amount > 0) HeatLevel += amount * heatMultiplier;
         else
         {
 	        HeatLevel += amount;
