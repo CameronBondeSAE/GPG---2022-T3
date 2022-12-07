@@ -64,7 +64,7 @@ namespace Marcus
             itemStep = Random.Range(0.05f, 0.15f);
         }
 
-        public void SpawnPerlinClientRpc()
+        public void SpawnPerlin()
         {
             float floorPos = amount / 2f;
 

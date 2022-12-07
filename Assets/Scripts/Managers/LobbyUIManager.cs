@@ -299,7 +299,7 @@ namespace Ollie
             if(IsServer) {startButton.gameObject.SetActive(true);}
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnLoadEventCompleted;
             UpdateScenesClientRpc(scenename);
-            if(GameManager.singleton.LevelGenerator != null) GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
+            if(GameManager.singleton.LevelGenerator != null) GameManager.singleton.LevelGenerator.SpawnPerlin();
         }
 
         [ClientRpc]

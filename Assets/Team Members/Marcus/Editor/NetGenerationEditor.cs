@@ -13,7 +13,7 @@ public class NetGenerationEditor : Editor
 
         if (GUILayout.Button("Generate Perlin") && Application.isPlaying)
         {
-            (target as NetworkedGenerator)?.SpawnPerlinClientRpc();
+            (target as NetworkedGenerator)?.SpawnPerlin();
         }
         
         if (GUILayout.Button("Generate Bases") && Application.isPlaying)

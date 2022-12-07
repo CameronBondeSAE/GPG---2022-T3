@@ -45,7 +45,7 @@ public class ManEater : MonoBehaviour, IFlammable
             CheckListForNull();
         }
         
-        if (plants.Count <= 2 || health.HP == 0)
+        if (plants.Count <= 2 || health.HP.Value == 0)
         {
             maneaterDeathEvent?.Invoke();
             

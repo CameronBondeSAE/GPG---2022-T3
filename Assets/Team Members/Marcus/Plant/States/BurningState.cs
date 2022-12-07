@@ -34,7 +34,7 @@ namespace Marcus
 
         void ExtinguishFlame()
         {
-            if (health.HP < 50)
+            if (health.HP.Value < 50)
             {
                 StartCoroutine(ChangeState(dyingState));
             }

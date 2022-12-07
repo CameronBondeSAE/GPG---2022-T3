@@ -19,6 +19,7 @@ namespace Luke
             set
             {
                 controlledPlayer = value;
+                if (!IsServer) return;
                 _playerController.player = value;
                 _playerController.playerTransform = value.transform;
                 // _playerController.playerControls.Player.Enable();

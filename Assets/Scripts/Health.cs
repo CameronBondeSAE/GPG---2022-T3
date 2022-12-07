@@ -4,43 +4,50 @@ using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
 using Sirenix.OdinInspector;
+   using Unity.Netcode;
 
-public class Health : MonoBehaviour
+   public class Health : NetworkBehaviour
 {
     [SerializeField] private float maxHP;
-    public float HP;
+    public NetworkVariable<float> HP;
 
     private bool isAlive=true;
 
     private void OnEnable()
     {
         OnSpawn();
+        HP.OnValueChanged += OnValueChanged;
         ChangeHP(maxHP);
+    }
+
+    private void OnValueChanged(float previousvalue, float newvalue)
+    {
+        ChangeHP(newvalue-previousvalue);
     }
 
     public void ChangeHP(float amount)
     {
         if (isAlive)
         {
-            HP += amount;
+            HP.Value += amount;
 
-            if (HP >= maxHP)
-                HP = maxHP;
+            if (HP.Value >= maxHP)
+                HP.Value = maxHP;
 
-            if (HP <= 0)
+            if (HP.Value <= 0)
             {
-                HP = 0;
+                HP.Value = 0;
                 isAlive = false;
                 OnYouDied();
             }
 
-            OnChangeHealth(HP);
+            OnChangeHealth(HP.Value);
         }
     }
 
     public float GetHP()
     {
-        return HP;
+        return HP.Value;
     }
 
     [Button]
