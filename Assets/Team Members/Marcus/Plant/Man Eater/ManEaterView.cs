@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,21 +6,26 @@ using DG.Tweening;
 
 public class ManEaterView : MonoBehaviour
 {
+    public Animator maneaterAnim;
+    
     public ManEater manEater;
     public GameObject bulb;
     public GameObject stalk;
 
-    private Material[] body;
-    private float curDirection = -1;
+    private Material[] bodyMaterial;
+
+    private void OnEnable()
+    {
+        manEater.maneaterDeathEvent += Dying;
+        manEater.maneaterBurnEvent += Burning;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        body = new Material[2];
-        body[0] = bulb.GetComponent<Renderer>().material;
-        body[1] = stalk.GetComponent<Renderer>().material;
-        
-        Idle();
+        bodyMaterial = new Material[2];
+        bodyMaterial[0] = bulb.GetComponent<Renderer>().material;
+        bodyMaterial[1] = stalk.GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
@@ -28,17 +34,21 @@ public class ManEaterView : MonoBehaviour
         
     }
 
-    void Idle()
+    void Dying()
     {
-        bulb.transform.DOLocalJump((Vector3.left * curDirection)/2f, -0.1f, 1, 1f, false);
-        StartCoroutine(NextBounce());
+        maneaterAnim.SetBool("isDying", true);
+        
+        //Shrink and shake
+        transform.DOShakePosition(2f, 0.25f, 1, 25f);
+        transform.DOScale(new Vector3(0.5f, 0, 0.5f), 3f);
     }
 
-    IEnumerator NextBounce()
+    void Burning()
     {
-        curDirection *= -1f;
-        yield return new WaitForSeconds(1f);
-        
-        Idle();
+        //Tween to black
+        foreach (Material item in bodyMaterial)
+        {
+            item.DOColor(Color.black, 5f);
+        }
     }
 }

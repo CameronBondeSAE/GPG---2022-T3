@@ -9,11 +9,14 @@ public class ManEater : MonoBehaviour, IFlammable
 {
     public ColissionManager colissionManager;
     public Flammable fireness;
+    public Health health;
 
     public int damage;
 
     [SerializeField] private List<GameObject> plants;
     private float checkTimer = 1f;
+    private float deathTimer = 3f;
+    private bool isBurning;
     
     private void OnEnable()
     {
@@ -27,6 +30,12 @@ public class ManEater : MonoBehaviour, IFlammable
         plants = new List<GameObject>();
     }
 
+    public delegate void ManeaterDeath();
+    public event ManeaterDeath maneaterDeathEvent;
+
+    public delegate void ManeaterBurning();
+    public event ManeaterBurning maneaterBurnEvent;
+    
     // Update is called once per frame
     void Update()
     {
@@ -36,9 +45,20 @@ public class ManEater : MonoBehaviour, IFlammable
             CheckListForNull();
         }
         
-        if (plants.Count <= 2)
+        if (plants.Count <= 2 || health.HP == 0)
         {
-            Die();
+            maneaterDeathEvent?.Invoke();
+            
+            deathTimer -= Time.deltaTime;
+            if (deathTimer <= 0)
+            {
+                Die();
+            }
+        }
+
+        if (isBurning)
+        {
+            maneaterBurnEvent?.Invoke();
         }
     }
 
@@ -51,6 +71,8 @@ public class ManEater : MonoBehaviour, IFlammable
                 plants.Remove(plants[i]);
             }
         }
+        
+        checkTimer = 1f;
     }
 
     void CheckColliderEntered(Collider other)
@@ -79,10 +101,8 @@ public class ManEater : MonoBehaviour, IFlammable
 
     public void SetOnFire()
     {
-        //Well die but more dramatically
-        //Maybe spread some man eater virus to nearby plants
         print("GGGRRR ANGRY DEATH NOISES!!!");
-        Die();
+        isBurning = true;
     }
 
     public void ChangeHeat(IHeatSource heatSource, float x)
