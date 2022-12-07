@@ -1,12 +1,12 @@
 using System.Collections;
 using Unity.Mathematics;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Oscar
 {
     public class ExplosiveExplodeState : MonoBehaviour, IHeatSource
     {
-       
         [Header("EXPLODE POWER")]
         [SerializeField] private float explodePower;
         [Header("EXPLODE FIRE DAMAGE")] 
@@ -25,7 +25,7 @@ namespace Oscar
         {
             for (int x = 0; x < numFragments; x++)
             {
-                Instantiate(explosivefragments, transform.position, quaternion.identity);
+                if(NetworkManager.Singleton.IsServer) Instantiate(explosivefragments, transform.position, quaternion.identity);
             }
             
            
@@ -56,7 +56,7 @@ namespace Oscar
         
         void DestroyExplosiveModel()
         {
-            Destroy(gameObject, .01f);
+            if(NetworkManager.Singleton.IsServer) Destroy(gameObject, .01f);
         }
     }
 }
