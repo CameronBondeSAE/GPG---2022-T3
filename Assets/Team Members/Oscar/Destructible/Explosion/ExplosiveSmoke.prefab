@@ -4829,3 +4829,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Smoke: {fileID: 6530026891734634799}
   AlmostBlowUp: {fileID: 86582184059768784, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
+  barrel: {fileID: 0}
