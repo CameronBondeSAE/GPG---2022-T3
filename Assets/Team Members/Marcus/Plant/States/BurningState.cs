@@ -17,7 +17,7 @@ namespace Marcus
 
         private void OnEnable()
         {
-            cooling.CoolDown += ExtinguishFlame;
+            // cooling.CoolDown += ExtinguishFlame;
         }
 
         // Start is called before the first frame update
