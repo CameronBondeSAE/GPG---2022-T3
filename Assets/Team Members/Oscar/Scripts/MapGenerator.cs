@@ -206,7 +206,7 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
         spawnBases.tempBaseDist = 0;
     }
     
-    public void SpawnPerlinClientRpc()
+    public void SpawnPerlin()
     {
         spawnEnvironment.SpawnPerlinWalls(totalCubes, CubeParent, perlinValue);
         //GameManager.singleton.SpawnPerlinFinished();

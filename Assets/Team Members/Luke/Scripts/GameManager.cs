@@ -159,7 +159,7 @@ public class GameManager : NetworkBehaviour
 	    }
 	    
 	    // TODO: Wait for level generation callback to be sure it's finished.
-	    levelGenerator.SpawnPerlinClientRpc(); // not actually a client RPC
+	    levelGenerator.SpawnPerlin(); // not actually a client RPC
 	    levelGenerator.SpawnItemsClientRpc();
 	    levelGenerator.SpawnExplosivesClientRpc();
 	    levelGenerator.SpawnBasesClientRpc();

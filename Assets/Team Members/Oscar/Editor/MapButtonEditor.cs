@@ -19,7 +19,7 @@ public class MapButtonEditor : Editor
                 
                 if (GUILayout.Button("Perlin Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnPerlinClientRpc();
+                        (target as MapGenerator)?.SpawnPerlin();
                 }
                 
                 if (GUILayout.Button("Border Spawn") && Application.isPlaying)

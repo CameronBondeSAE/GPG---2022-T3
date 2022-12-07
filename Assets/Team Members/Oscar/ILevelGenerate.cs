@@ -7,7 +7,7 @@ namespace Oscar
 	    /// <summary>
 	    /// You'll need the [ClientRpc] attribute in implementations
 	    /// </summary>
-        public void SpawnPerlinClientRpc();
+        public void SpawnPerlin();
 
         public void SpawnBorderClientRpc();
 
