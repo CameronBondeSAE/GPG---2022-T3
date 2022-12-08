@@ -87,7 +87,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         while (shooting)
         {
-            firePointPos = transform.position + transform.forward * 5;
+            firePointPos = transform.position + transform.forward * 25;
 
             Vector3 targetDir = firePointPos - transform.position;
 

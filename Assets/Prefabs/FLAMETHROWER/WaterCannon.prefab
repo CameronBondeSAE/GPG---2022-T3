@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterCannon
       objectReference: {fileID: 0}
+    - target: {fileID: 1978049859064654596, guid: 59fae0003407ba540a508eabea132f38, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: da8e72ef384bf614ba3b547bb2872ab5, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 59fae0003407ba540a508eabea132f38, type: 3}

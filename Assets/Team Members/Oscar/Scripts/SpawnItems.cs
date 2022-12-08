@@ -13,7 +13,7 @@ namespace Oscar
             for (int i = 0; i < prefabPosition.Count; i++)
             {
                 GameObject newCube = Instantiate(item, new Vector3(prefabPosition[i].x,1f,prefabPosition[i].z), Quaternion.identity);
-                newCube.transform.SetParent(itemParent.transform);
+                //newCube.transform.SetParent(itemParent.transform);
             }
             
         }
