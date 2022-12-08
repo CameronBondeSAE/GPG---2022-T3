@@ -286,7 +286,7 @@ namespace Ollie
 			        if (scene == SceneManager.GetActiveScene())
 			        {
 				        //SceneManager.UnloadSceneAsync(scene);
-				        //UnloadSceneClientRpc(scene.name);
+				        // UnloadSceneClientRpc(scene.name);
 				        NetworkManager.Singleton.SceneManager.UnloadScene(scene);
 			        }
 		        }
@@ -342,37 +342,34 @@ namespace Ollie
                 print("You must select a level to load.");
                 return;
             }
+
+            NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManagerOnOnSceneEvent;
+            
             for (int i = 0; i < SceneManager.sceneCount; i++)
             {
-                Scene scene = SceneManager.GetSceneAt(i);
-                if (scene == SceneManager.GetActiveScene())
-                {
-                    //SceneManager.UnloadSceneAsync(scene);
-                    // UnloadSceneClientRpc(scene.name);
-                    NetworkManager.Singleton.SceneManager.UnloadScene(scene);
-                }
+	            Scene scene = SceneManager.GetSceneAt(i);
+	            if (scene == SceneManager.GetActiveScene())
+	            {
+		            //SceneManager.UnloadSceneAsync(scene);
+		            // UnloadSceneClientRpc(scene.name);
+		            NetworkManager.Singleton.SceneManager.UnloadScene(scene);
+	            }
             }
-            
-            NetworkManager.Singleton.SceneManager.OnSceneEvent += SceneManagerOnOnSceneEvent;
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += SetNewActiveScene;
+
             
             
-            try
-            {
-                NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e,this);
-            }
+            
+            
         }
         
         //Sets the newly loaded scene to be the current active scene
         //So all future spawned objects appear in the new scene
-        private void SetNewActiveScene(string scenename, LoadSceneMode loadscenemode, List<ulong> clientscompleted, List<ulong> clientstimedout)
+        private void SetNewActiveScene(SceneEvent sceneEvent)
         {
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= SetNewActiveScene;
-            Scene scene = (SceneManager.GetSceneByName(scenename));
+	        if (sceneEvent.SceneEventType != SceneEventType.LoadEventCompleted) return;
+	        
+	        NetworkManager.Singleton.SceneManager.OnSceneEvent -= SetNewActiveScene;
+            Scene scene = SceneManager.GetSceneByName(sceneEvent.SceneName);
             SceneManager.SetActiveScene(scene);
             
             UpdateScenesClientRpc(scene.name);
@@ -399,13 +396,31 @@ namespace Ollie
             SceneManager.SetActiveScene(scene);
         }
         
-        private void SceneManagerOnOnSceneEvent(SceneEvent sceneEvent)
+        private void SceneManagerOnOnSceneEvent(SceneEvent sceneEvent) 
         {
-            if (sceneEvent.SceneEventType != SceneEventType.Load) return;
+	        if (sceneEvent.SceneEventType == SceneEventType.UnloadComplete) // Preview needs to be fully unloaded before the same scene is attempted to be loaded again.
+	        {
+		        StartCoroutine(LoadScene());
+	        }
+	        if (sceneEvent.SceneEventType != SceneEventType.Load) return;
             NetworkManager.Singleton.SceneManager.OnSceneEvent -= SceneManagerOnOnSceneEvent;
             Scene scene = sceneEvent.Scene;
             
             BroadcastLobbyUIStateClientRpc(true);
+        }
+
+        IEnumerator LoadScene()
+        {
+	        yield return 0;
+	        try
+	        {
+		        NetworkManager.Singleton.SceneManager.OnSceneEvent += SetNewActiveScene;
+		        NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+	        }
+	        catch (Exception e)
+	        {
+		        Debug.LogException(e,this);
+	        }
         }
 
         [ClientRpc]
