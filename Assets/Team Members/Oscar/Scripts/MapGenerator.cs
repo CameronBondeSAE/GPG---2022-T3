@@ -171,30 +171,26 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
         //GameManager.singleton.SpawnBorderFinished();
     }
 
-    [ClientRpc]
-    public void SpawnAIClientRpc()
+    public void SpawnAI()
     {
         //spawnAI.SpawnAIInTheMaze(totalAI,AIParent, perlinValue);
         GameManager.singleton.spawnManager.SpawnSwarmerAI();
         //GameManager.singleton.SpawnAIFinished();
     }
 
-    [ClientRpc]
-    public void SpawnItemsClientRpc()
+    public void SpawnItems()
     {
         spawnItems.SpawnTheItems(totalItems);
         //GameManager.singleton.SpawnItemsFinished();
     }
 
-    [ClientRpc]
-    public void SpawnExplosivesClientRpc()
+    public void SpawnExplosives()
     {
         spawnExplosives.SpawningTheExplosives(totalExplosives, perlinValue);
         //GameManager.singleton.SpawnExplosivesFinished();
     }
 
-    [ClientRpc]
-    public void SpawnBasesClientRpc()
+    public void SpawnBases()
     {
         spawnBases.SpawnTheBase(totalHQ);
         //GameManager.singleton.SpawnBasesFinished();
