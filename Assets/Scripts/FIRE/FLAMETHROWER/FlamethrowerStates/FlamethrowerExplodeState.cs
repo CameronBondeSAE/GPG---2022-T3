@@ -121,6 +121,8 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
 
     private void OnDisable()
     {
+        modelView.ChangeOverheat -= ChangeOverheatLevel;
+        
         overheating = false;
     }
 }

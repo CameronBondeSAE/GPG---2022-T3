@@ -70,6 +70,7 @@ MonoBehaviour:
   _minDistance: 0.5
   _lifespan: 2.5
   _fireballView: {fileID: 563901314552804959}
+  maxRoundRobin: 5
 --- !u!54 &2097233744307224603
 Rigidbody:
   m_ObjectHideFlags: 0

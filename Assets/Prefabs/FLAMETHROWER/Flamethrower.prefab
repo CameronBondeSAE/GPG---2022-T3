@@ -200,6 +200,7 @@ MonoBehaviour:
   altAmmo: 3
   altForce: 2.5
   altFireRate: 3
+  barrelLength: 5
   countDownTimer: 5
   overHeatRate: 10
   overHeatPoint: 50

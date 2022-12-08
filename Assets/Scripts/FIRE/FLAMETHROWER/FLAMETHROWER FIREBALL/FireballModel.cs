@@ -41,6 +41,18 @@ public class FireballModel : MonoBehaviour
     private Rigidbody _rb;
 
     private IHeatSource theHeatSource;
+    
+    [SerializeField]private int maxRoundRobin;
+    private float roundRobin;
+
+    private float randomRobin;
+
+    public void SetStats(float heat, float radius, float lifespan)
+    {
+        _heat = heat;
+        _radius = radius;
+        _lifespan = lifespan;
+    }
 
     private void OnEnable()
     {
@@ -57,6 +69,19 @@ public class FireballModel : MonoBehaviour
     }
 
     private void FixedUpdate()
+    {
+            roundRobin++;
+            if (roundRobin <= maxRoundRobin)
+            {
+                CastFire();
+
+                TickTock();
+                roundRobin = 0;
+            }
+        
+    }
+
+    private void CastFire()
     {
         _center = transform.position;
 

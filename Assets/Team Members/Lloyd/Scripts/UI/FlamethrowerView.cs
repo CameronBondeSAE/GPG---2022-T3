@@ -65,7 +65,6 @@ namespace UI
                     
                 //colorVector = new Vector3.Lerp(currentColor, color, lerpTime);
                 
-
                 color = currentColor;
             }
             

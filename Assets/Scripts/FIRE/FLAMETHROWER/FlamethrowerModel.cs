@@ -39,6 +39,8 @@ namespace Lloyd
 
         [SerializeField] public float altFireRate;
 
+        [SerializeField] public int barrelLength;
+
         private Flammable flammable;
 
         private SphereCollider sphereCollider;
@@ -191,7 +193,7 @@ namespace Lloyd
             if (overHeatLevel <= 0)
                 overHeatLevel = 0;
 
-            if (overHeatLevel >= overHeatPoint)
+            if (overHeatLevel >= overHeatPoint && overheating != true)
             {
                 overheating = true;
                 StartCoroutine(Exploding());

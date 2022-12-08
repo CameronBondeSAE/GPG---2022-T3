@@ -37,6 +37,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
     private bool isHeld;
 
+    private int barrelLength;
+
     private FlamethrowerModel.FlamethrowerType myType;
 
     private void OnEnable()
@@ -56,6 +58,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
         shooting = model.shooting;
         altShooting = model.altShooting;
         waterSpraying = model.waterSpraying;
+
+        barrelLength = model.barrelLength;
 
         isHeld = model.isHeld;
 
@@ -87,7 +91,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         while (shooting)
         {
-            firePointPos = transform.position + transform.forward * 25;
+            firePointPos = transform.position + transform.forward * barrelLength;
 
             Vector3 targetDir = firePointPos - transform.position;
 
@@ -96,7 +100,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
             rb.velocity = targetDir * force;
             // rb.AddForce(targetDir * force, ForceMode.Impulse);
 
-            yield return new WaitForSecondsRealtime(fireRate);
+            yield return new WaitForSeconds(fireRate);
         }
     }
 
@@ -109,9 +113,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
             model.altAmmo--;
             if (altAmmo <= 0)
                 break;
-            
-            
-            firePointPos = transform.position + transform.forward * 5;
+
+            firePointPos = transform.position + transform.forward * barrelLength;
             
             Vector3 targetDir = firePointPos - transform.position;
 
@@ -129,7 +132,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
             rb.velocity = targetDir * model.altForce;
             // rb.AddForce(targetDir * altForce, ForceMode.Impulse);
             
-            yield return new WaitForSecondsRealtime(altFireRate);
+            yield return new WaitForSeconds(altFireRate);
         }
     }
 
@@ -137,7 +140,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         while (waterSpraying)
         {
-            firePointPos = transform.position + transform.forward * 5;
+            firePointPos = transform.position + transform.forward * barrelLength;
     
             Vector3 targetDir = firePointPos - transform.position;
     

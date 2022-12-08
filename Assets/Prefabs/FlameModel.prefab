@@ -143,7 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuel: 0
+  deteriorateRate: 0
   radius: 0.5
   center: {x: 0, y: 0, z: 0}
   minDistance: 0.5
   proximityMultiplier: 2
+  maxRoundRobin: 5

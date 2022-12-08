@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FlameModel : MonoBehaviour, IHeatSource
 {   
@@ -24,7 +25,18 @@ public class FlameModel : MonoBehaviour, IHeatSource
     private Vector3 burnVictim;
 
     private Flammable flammable;
-    
+
+    [SerializeField]private int maxRoundRobin;
+    private float roundRobin;
+
+    private float randomRobin;
+
+    private void OnEnable()
+    {
+        randomRobin = Random.Range(0, 0.1f);
+        roundRobin += randomRobin;
+    }
+
     //Setters
     //fire stats are set by HeatComponent
     //
@@ -39,19 +51,16 @@ public class FlameModel : MonoBehaviour, IHeatSource
         transform.localScale = new Vector3(radius, radius, radius);
     }
 
-    private IHeatSource myself;
-
-    private void OnEnable()
-    {
-        myself = GetComponent<IHeatSource>();
-        center = transform.position;
-    }
-
     private void FixedUpdate()
     {
-        CastFire();
+        roundRobin++;
+        if (roundRobin <= maxRoundRobin)
+        {
+            CastFire();
 
-        TickTock();
+            TickTock();
+            roundRobin = 0;
+        }
     }
 
     private void CastFire()
@@ -77,7 +86,7 @@ public class FlameModel : MonoBehaviour, IHeatSource
                 {
                     hitCollider.GetComponent<Flammable>().ChangeHeat(this, heat * proximityMultiplier);
                 }
-                transform.SetParent(hitCollider.transform);
+                //transform.SetParent(hitCollider.transform);
             }
         }
     }
