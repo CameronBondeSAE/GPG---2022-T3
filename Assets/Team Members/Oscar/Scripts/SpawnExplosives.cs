@@ -16,7 +16,7 @@ namespace Oscar
         private int boomAmount = 0;
         private int waitAmount = 0;
 
-        public void SpawningTheExplosives(List<Vector3> prefabPosition, GameObject explosiveParent, float perlinValue)
+        public void SpawningTheExplosives(List<Vector3> prefabPosition, float perlinValue)
         {            
             //create spawn location with new perlin then 
             float explosivesPerlin = Mathf.PerlinNoise((boomInt), (boomInt));

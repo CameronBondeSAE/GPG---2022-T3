@@ -15,15 +15,7 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
     public Oscar.SpawnExplosives spawnExplosives;
     public Oscar.SpawnAI spawnAI;
     public Oscar.SpawnItems spawnItems;
-    
-    //all the spawned object parents, and making them fit nicely in the hierarchy
-    GameObject CubeParent; 
-    GameObject BarrelParent;
-    GameObject AIParent;
-    public GameObject borderParent;
-    GameObject HQParent;
-    GameObject ItemParent;
-    
+
     //Perlin noise values and required elements to spawn the maze.
     public int amount;
 
@@ -52,26 +44,19 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
     {
 	    // Register my generator with the main GameManager because they call everything
 	    GameManager.singleton.LevelGenerator = this;
-	    
-	    CubeParent = new GameObject("CubeParent");
-	    BarrelParent = new GameObject("ItemParent");
-	    AIParent = new GameObject("AIParent");
-	    borderParent = new GameObject("borderParent");
-	    HQParent = new GameObject("HQParent");
-	    ItemParent = new GameObject("itemParent");
-	    
-	    //GameManager.singleton.OnGameStart += Spawner;
+
+        //GameManager.singleton.OnGameStart += Spawner;
 	    // GameManager.singleton.OnGameEnd += DeleteMap;
         
         
-	    if (randomMap == true)
+	    if (randomMap)
 	    {
 		    //randoms
 		    zoomX = Random.Range(0.1f, 0.3f);
 		    zoomZ = Random.Range(0.1f, 0.3f);
 		    PrecalculateTerrain(zoomX,zoomZ);
 	    }
-	    else if (randomMap == false)
+	    else if (!randomMap)
 	    {
 		    //standard averages
 		    zoomX = 0.15f;
@@ -86,20 +71,15 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
         GameManager.singleton.LevelGenerator = null;
     }
 
-    public void Start()
-    {
-
-    }
-    
     public void Spawner()
     {
-        if (randomMap == true)
+        if (randomMap)
         {
             zoomX = Random.Range(0.1f, 0.3f);
             zoomZ = Random.Range(0.1f, 0.3f);
             PrecalculateTerrain(zoomX, zoomZ);
         }
-        else if (randomMap == false)
+        else if (!randomMap)
         {
             PrecalculateTerrain(zoomX, zoomZ);
         }
@@ -111,9 +91,9 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
         
         print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         
-        for (int positionX = 0; positionX < amount; positionX=positionX+cubeSize)
+        for (int positionX = 0; positionX < amount; positionX+=cubeSize)
         { 
-            for (int positionZ = 0; positionZ < amount; positionZ=positionZ+cubeSize)
+            for (int positionZ = 0; positionZ < amount; positionZ+=cubeSize)
             {
                 perlinValue = Mathf.PerlinNoise((positionX * zoomX), (positionZ * zoomZ));
                 
@@ -153,20 +133,6 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
     }
     public void ResetTheMap()
         {
-            Destroy(CubeParent);
-            Destroy(BarrelParent);
-            Destroy(AIParent);
-            Destroy(borderParent);
-            Destroy(HQParent);
-            Destroy(ItemParent);
-            
-            CubeParent = new GameObject("CubeParent");
-            BarrelParent = new GameObject("ItemParent");
-            AIParent = new GameObject("AIParent");
-            borderParent = new GameObject("borderParent");
-            HQParent = new GameObject("HQParent");
-            ItemParent = new GameObject("itemParent");
-            
             totalCubes = new List<Vector3>();
             totalAI = new List<Vector3>();
             totalItems = new List<Vector3>();
@@ -181,20 +147,6 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
 
     private void DeleteMap()
     {
-        Destroy(CubeParent);
-        Destroy(BarrelParent);
-        Destroy(AIParent);
-        Destroy(borderParent);
-        Destroy(HQParent);
-        Destroy(ItemParent);
-        
-        CubeParent = new GameObject("CubeParent");
-        BarrelParent = new GameObject("ItemParent");
-        AIParent = new GameObject("AIParent");
-        borderParent = new GameObject("borderParent");
-        HQParent = new GameObject("HQParent");
-        ItemParent = new GameObject("itemParent");
-
         totalCubes = new List<Vector3>();
         totalAI = new List<Vector3>();
         totalItems = new List<Vector3>();
@@ -208,14 +160,14 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
     
     public void SpawnPerlin()
     {
-        spawnEnvironment.SpawnPerlinWalls(totalCubes, CubeParent, perlinValue);
+        spawnEnvironment.SpawnPerlinWalls(totalCubes, perlinValue);
         //GameManager.singleton.SpawnPerlinFinished();
     }
 
     [ClientRpc]
     public void SpawnBorderClientRpc()
     {
-        spawnEnvironment.SpawnTheEnvironment(prefabPosition, amount, scale, borderParent);
+        spawnEnvironment.SpawnTheEnvironment(prefabPosition, amount, scale);
         //GameManager.singleton.SpawnBorderFinished();
     }
 
@@ -230,21 +182,21 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
     [ClientRpc]
     public void SpawnItemsClientRpc()
     {
-        spawnItems.SpawnTheItems(totalItems, ItemParent);
+        spawnItems.SpawnTheItems(totalItems);
         //GameManager.singleton.SpawnItemsFinished();
     }
 
     [ClientRpc]
     public void SpawnExplosivesClientRpc()
     {
-        spawnExplosives.SpawningTheExplosives(totalExplosives, BarrelParent, perlinValue);
+        spawnExplosives.SpawningTheExplosives(totalExplosives, perlinValue);
         //GameManager.singleton.SpawnExplosivesFinished();
     }
 
     [ClientRpc]
     public void SpawnBasesClientRpc()
     {
-        spawnBases.SpawnTheBase(totalHQ, HQParent);
+        spawnBases.SpawnTheBase(totalHQ);
         //GameManager.singleton.SpawnBasesFinished();
     }
 }
