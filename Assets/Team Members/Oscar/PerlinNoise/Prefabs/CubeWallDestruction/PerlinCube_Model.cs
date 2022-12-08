@@ -5,14 +5,36 @@ using Alex;
 using Unity.Netcode;
 using UnityEngine;
 
-public class PerlinCube_Model : MonoBehaviour
+public class PerlinCube_Model : NetworkBehaviour
 {
     public event Action wallDestruction;
-    
-    // Start is called before the first frame update
-    void Awake()
+
+    private PerlinCube_View view;
+
+
+    public override void OnNetworkSpawn()
     {
-	    GetComponent<Health>().YouDied += DestroyTheWallClientRpc;
+	    base.OnNetworkSpawn();
+	    
+	    if (!IsServer) return;
+	    view = GetComponentInChildren<PerlinCube_View>();
+	    GetComponent<Health>().YouDied += DestroyTheWall;
+    }
+
+    void DestroyTheWall()
+    {
+	    GetComponent<Collider>().enabled = false;
+	    DestroyTheWallClientRpc();
+	    if (!NetworkManager.Singleton.IsServer) return;
+	    GridGenerator.singleton.Scan();
+	    wallDestruction?.Invoke();
+	    if(IsServer) StartCoroutine(DestroyObject());
+    }
+
+    IEnumerator DestroyObject()
+    {
+	    yield return new WaitForSeconds(view.firstDelay + view.secondDelay);
+	    Destroy(gameObject);
     }
 
     //destroy the wall
@@ -23,10 +45,6 @@ public class PerlinCube_Model : MonoBehaviour
 	    // World changed. Pathfinding update world
 		// HACK
 	    GetComponent<Collider>().enabled = false;
-	    if(NetworkManager.Singleton.IsServer) GridGenerator.singleton.Scan();
-
 	    
-	    
-        wallDestruction?.Invoke();
     }
 }

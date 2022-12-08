@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NodeCanvas.Tasks.Actions;
+using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,20 +17,21 @@ namespace Marcus
 
         private void OnEnable()
         {
-            timer = Random.Range(3f, 4f);
-            DeathEvent?.Invoke(timer);
+	        NetworkManager nm = NetworkManager.Singleton;
+	        if (nm.IsServer)
+	        {
+		        timer = Random.Range(3f, 4f);
+		        StartCoroutine(Timer());
+	        }
+            if(nm.IsClient) DeathEvent?.Invoke(timer);
         }
 
         //Change colour to brown and do other dying things
-        private void Update()
+        IEnumerator Timer()
         {
-            timer -= Time.deltaTime;
-            //Call to view for colour change
-
-            if (timer <= 0)
-            {
-                Destroy(gameObject);
-            }
+	        //Call to view for colour change
+	        yield return new WaitForSeconds(timer);
+	        Destroy(gameObject);
         }
     }
 }

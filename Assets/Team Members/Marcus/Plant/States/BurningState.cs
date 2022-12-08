@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Marcus
 {
-    public class BurningState : MonoBehaviour
+    public class BurningState : NetworkBehaviour
     {
         public MonoBehaviour growthState;
         public MonoBehaviour dyingState;
@@ -20,18 +21,7 @@ namespace Marcus
             // cooling.CoolDown += ExtinguishFlame;
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        // Not Networked yet
         void ExtinguishFlame()
         {
             if (health.HP < 50)

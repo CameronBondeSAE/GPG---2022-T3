@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
+using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,51 +20,53 @@ namespace Marcus
         
         public float maxAge;
         public float age;
-        
+
+        private const bool AutoPickup = true;
+
         private float spreadTimer;
         private float spreadDistance;
         private Vector3 spreadDirection;
-        
+
         public delegate void Growing();
         public event Growing GrowEvent;
-        
-        // Start is called before the first frame update
+
+        private NetworkBehaviour _stateManager;
+
         void OnEnable()
         {
-            RandomiseTimer();
-            GrowEvent?.Invoke();
-            autoPickup = true;
+	        NetworkManager nm = NetworkManager.Singleton;
+	        if (nm.IsServer) StartCoroutine(Age());
+	        if(nm.IsClient) GrowEvent?.Invoke();
         }
 
+        IEnumerator Age()
+        {
+	        yield return new WaitForSeconds(maxAge);
+	        RandomiseTimer();
+        }
+        
         void RandomiseTimer()
         {
-            spreadTimer = Random.Range(2f, 5f);
+	        spreadTimer = Random.Range(2f, 5f);
+	        StartCoroutine(RandomTimer());
         }
-        
-        // Update is called once per frame
-        void Update()
+
+        IEnumerator RandomTimer()
         {
-            age = Mathf.MoveTowards(age, maxAge, 0.002f);
-
-            if (age >= maxAge)
-            {
-                spreadTimer -= Time.deltaTime;
-
-                if (spreadTimer <= 0 && spreadNumber < spreadLimit)
-                {
-                    spreadDistance = Random.Range(1f, 3f);
-                    spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
-
-                    Spread(spreadDistance, spreadDirection);
-                }
-                else if (spreadNumber == spreadLimit)
-                {
-                    //Change to Mature state
-                    GetComponent<StateManager>().ChangeState(matureState);
-                }
-            }
+	        yield return new WaitForSeconds(spreadTimer);
+	        if (spreadNumber < spreadLimit)
+	        {
+		        spreadDistance = Random.Range(1f, 3f);
+		        spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
+		        Spread(spreadDistance, spreadDirection);
+		        RandomiseTimer();
+	        }
+	        else
+	        {
+		        GetComponent<StateManager>().ChangeState(matureState);
+	        }
         }
-        
+
         void Spread(float distance, Vector3 direction)
         {
             Vector3 pos = transform.position + direction * distance;
@@ -97,14 +101,8 @@ namespace Marcus
         public bool locked { get; set; }
         public bool autoPickup
         {
-            get
-            {
-                return true;
-            }
-            set
-            {
-                
-            }
+            get => AutoPickup;
+            set {}
         }
 
         #endregion

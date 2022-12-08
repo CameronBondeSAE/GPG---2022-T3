@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
+using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,36 +18,42 @@ namespace Marcus
         public float deathTimer;
         private int rEvoChance;
         
+        private const bool AutoPickup = true;
+
         public delegate void Matured(float duration);
         public event Matured MatureEvent;
         
         void OnEnable()
         {
-            deathTimer = Random.Range(4f, 7f);
-            rEvoChance = Random.Range(0, 10);
-            
-            MatureEvent?.Invoke(deathTimer);
+	        NetworkManager nm = NetworkManager.Singleton;
+	        if (nm.IsServer)
+	        {
+		        deathTimer = Random.Range(4f, 7f);
+		        rEvoChance = Random.Range(0, 10);
+		        StartCoroutine(DeathTimer());
+	        }
+	        if(nm.IsClient) MatureEvent?.Invoke(deathTimer);
+        }
+        
+        private void Start()
+        {
+	        // in here to allow enabling/disabling
         }
 
-        // Update is called once per frame
-        void Update()
+        IEnumerator DeathTimer()
         {
-            deathTimer -= Time.deltaTime;
-
-            if (deathTimer <= 0)
-            {
-                if (Physics.OverlapSphere(transform.position, 1, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
-                { 
-                    //Destroy and spawn manEater prefab
-                    Instantiate(manEater, transform.position, Quaternion.identity);
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    //Change to dying State
-                    GetComponent<StateManager>().ChangeState(dyingState);
-                }
-            }
+	        yield return new WaitForSeconds(deathTimer);
+	        if (Physics.OverlapSphere(transform.position, 1, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
+	        { 
+		        //Destroy and spawn manEater prefab
+		        GameManager.singleton.NetworkInstantiate(manEater, transform.position, Quaternion.identity);
+		        Destroy(gameObject);
+	        }
+	        else
+	        {
+		        //Change to dying State
+		        GetComponent<StateManager>().ChangeState(dyingState);
+	        }
         }
 
         #region Interface Functions
@@ -62,7 +70,7 @@ namespace Marcus
 
         public void DestroySelf()
         {
-            
+	        Destroy(gameObject);
         }
 
         public bool isHeld { get; set; }
@@ -70,14 +78,8 @@ namespace Marcus
 
         public bool autoPickup
         {
-            get
-            {
-                return true;
-            }
-            set
-            {
-                
-            }
+	        get => AutoPickup;
+            set { }
         }
 
         #endregion
