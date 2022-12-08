@@ -278,20 +278,23 @@ namespace Ollie
 
         public void LobbyLevelPreview()
         {
-            for (int i = 0; i < SceneManager.sceneCount; i++)
-            {
-                Scene scene = SceneManager.GetSceneAt(i);
-                if (scene == SceneManager.GetActiveScene())
-                {
-                    //SceneManager.UnloadSceneAsync(scene);
-                    UnloadSceneClientRpc(scene.name);
-                    //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
-                }
-            }
-            NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
-            NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnLoadEventCompleted;
-            //yield return new WaitForSeconds(1f);
-            //GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
+	        if (SceneManager.sceneCount > 1)
+	        {
+		        for (int i = 0; i < SceneManager.sceneCount; i++)
+		        {
+			        Scene scene = SceneManager.GetSceneAt(i);
+			        if (scene == SceneManager.GetActiveScene())
+			        {
+				        //SceneManager.UnloadSceneAsync(scene);
+				        //UnloadSceneClientRpc(scene.name);
+				        NetworkManager.Singleton.SceneManager.UnloadScene(scene);
+			        }
+		        }
+	        }
+	        NetworkManager.Singleton.SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+	        NetworkManager.Singleton.SceneManager.OnLoadEventCompleted += OnLoadEventCompleted;
+	        //yield return new WaitForSeconds(1f);
+	        //GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
         }
 
         private void OnLoadEventCompleted(string scenename, LoadSceneMode loadscenemode, List<ulong> clientscompleted, List<ulong> clientstimedout)
