@@ -104,22 +104,22 @@ namespace Lloyd
             PlaceWalls();
         }
 
-        public void SpawnAIClientRpc()
+        public void SpawnAI()
         {
             GameManager.singleton.SpawnAIFinished();
         }
 
-        public void SpawnItemsClientRpc()
+        public void SpawnItems()
         {
             SpawnPlants();
         }
 
-        public void SpawnExplosivesClientRpc()
+        public void SpawnExplosives()
         {
             GameManager.singleton.SpawnExplosivesFinished();
         }
 
-        public void SpawnBasesClientRpc()
+        public void SpawnBases()
         {
             PlaceHQ();
 

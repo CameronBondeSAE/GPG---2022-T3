@@ -33,8 +33,8 @@ public class PerlinCube_View : MonoBehaviour
 
     IEnumerator WallDestroy()
     {
-        yield return new WaitForSeconds(3f);
-        perlinCubeModel.transform.DOScale(new Vector3(0f, 0f, 0f),3f);
+        yield return new WaitForSeconds(1f);
+        perlinCubeModel.transform.DOMoveY(-1f,3f).SetEase(Ease.InOutBack);
         yield return new WaitForSeconds(3f);
         if(NetworkManager.Singleton.IsServer) Destroy(perlinWallCube,1f);
     }

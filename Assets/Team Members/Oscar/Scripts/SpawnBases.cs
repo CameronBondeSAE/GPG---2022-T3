@@ -24,7 +24,7 @@ namespace Oscar
         [SerializeField] private float destroyRadius;
         
         
-        public void SpawnTheBase(List<Vector3> prefabPosition, GameObject HQParent)
+        public void SpawnTheBase(List<Vector3> prefabPosition)
         {
             //minDist = 90 - (amount / 2);
             //calculate distances between potential created object and the previously spawned one

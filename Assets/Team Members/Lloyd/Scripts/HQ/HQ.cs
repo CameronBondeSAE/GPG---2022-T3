@@ -1,3 +1,4 @@
+using System;
 using Marcus;
 using Unity.Netcode;
 using Unity.VisualScripting;
@@ -15,17 +16,15 @@ namespace Lloyd
 			Neutral,
 			Humans,
 			Aliens
-		};
+		}
 
 		public HQType type;
-
-		private GameObject myself;
 
 		private Renderer rend;
 
 		//tracks items deposited
 		private int itemCount;
-
+ 
 		//when this many items have been deposited, fire victory event
 		public int itemVictory;
 
@@ -35,11 +34,20 @@ namespace Lloyd
 		private int HQInt;
 		private string HQString;
 
+		private void Awake()
+		{
+			Collider[] obstructions = Physics.OverlapSphere(transform.position, 10);
+			foreach (Collider item in obstructions)
+			{
+				if (item.GetComponent<Health>() != null)
+				{
+					item.GetComponent<Health>().ChangeHP(-10000000);
+				}
+			}
+		}
+
 		private void Start()
 		{
-
-			myself = this.GameObject();
-
 			HQInt = (int) type;
 			HQString = type.ToString();
 			itemCount = 0;
@@ -104,7 +112,7 @@ namespace Lloyd
 
 		public void KillSelf()
 		{
-			Destroy(myself);
+			Destroy(gameObject);
 		}
 
 

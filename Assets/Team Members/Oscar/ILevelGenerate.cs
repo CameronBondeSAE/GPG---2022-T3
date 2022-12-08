@@ -11,12 +11,12 @@ namespace Oscar
 
         public void SpawnBorderClientRpc();
 
-        public void SpawnAIClientRpc();
+        public void SpawnAI();
 
-        public void SpawnItemsClientRpc();
+        public void SpawnItems();
 
-        public void SpawnExplosivesClientRpc();
+        public void SpawnExplosives();
         
-        public void SpawnBasesClientRpc();
+        public void SpawnBases();
     }
 }

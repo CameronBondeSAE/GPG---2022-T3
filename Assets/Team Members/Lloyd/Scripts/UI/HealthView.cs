@@ -43,13 +43,8 @@ public class HealthView : ImmediateModeShapeDrawer
 
     private bool pulsing;
 
-    private bool light;
-
-
     private void Start()
     {
-        light = true;
-        //
         healthModel = GetComponentInParent<Health>();
         origIntens = intensity;
         color = Color.white;
@@ -122,8 +117,6 @@ public class HealthView : ImmediateModeShapeDrawer
 //
     public override void DrawShapes(Camera cam)
     {
-	    if (light)
-        {
             DetectHealthPos();
             
             base.DrawShapes(cam);
@@ -143,7 +136,6 @@ public class HealthView : ImmediateModeShapeDrawer
                 
                 Draw.Line(healthPos, endPos, lineThickness);
             }
-        }
     }
 
     private void DetectHealthPos()
@@ -230,12 +222,12 @@ public class HealthView : ImmediateModeShapeDrawer
         }
     }
 
-    private void OnDisable()
+    public override void OnDisable()
     {
+        base.OnDisable();
+
         healthModel.ChangeHealth -= ChangeHP;
         healthModel.YouDied -= YouDied;
         healthModel.Spawn -= Spawn;
-
-        light = false;
     }
 }
