@@ -348,8 +348,8 @@ namespace Ollie
                 if (scene == SceneManager.GetActiveScene())
                 {
                     //SceneManager.UnloadSceneAsync(scene);
-                    UnloadSceneClientRpc(scene.name);
-                    //NetworkManager.Singleton.SceneManager.UnloadScene(scene);
+                    // UnloadSceneClientRpc(scene.name);
+                    NetworkManager.Singleton.SceneManager.UnloadScene(scene);
                 }
             }
             
