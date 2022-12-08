@@ -25,7 +25,7 @@ namespace Lloyd
 
 		//tracks items deposited
 		private int itemCount;
-
+ 
 		//when this many items have been deposited, fire victory event
 		public int itemVictory;
 
