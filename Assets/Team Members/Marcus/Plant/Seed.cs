@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
+using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Seed : MonoBehaviour
 {
     public GameObject plant;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
-        Instantiate(plant, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+	    GameManager.singleton.NetworkInstantiate(plant, transform.position, Quaternion.identity);
+	    Destroy(gameObject);
     }
 }

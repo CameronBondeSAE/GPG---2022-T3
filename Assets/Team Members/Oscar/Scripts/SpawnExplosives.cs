@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Luke;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -26,7 +27,7 @@ namespace Oscar
                 //use new perlin to spawn explosives
                 if (explosivesPerlin < .4 && boomAmount <= 50 && waitAmount >= 110)
                 {
-                    GameObject spawnedItem = Instantiate(explosive, prefabPosition[i], quaternion.identity);
+                    GameObject spawnedItem = GameManager.singleton.NetworkInstantiate(explosive, prefabPosition[i], quaternion.identity);
                     
                     // spawnedItem.transform.SetParent(explosiveParent.transform);
     

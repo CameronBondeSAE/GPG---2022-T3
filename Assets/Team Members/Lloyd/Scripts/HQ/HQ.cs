@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Lloyd
 {
 
-	public class HQ : MonoBehaviour
+	public class HQ : NetworkBehaviour
 	{
 		private bool isActive;
 
@@ -34,8 +34,9 @@ namespace Lloyd
 		private int HQInt;
 		private string HQString;
 
-		private void Awake()
+		public override void OnNetworkSpawn()
 		{
+			if (!IsServer) return;
 			Collider[] obstructions = Physics.OverlapSphere(transform.position, 10);
 			foreach (Collider item in obstructions)
 			{

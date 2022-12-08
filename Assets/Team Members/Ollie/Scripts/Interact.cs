@@ -304,6 +304,7 @@ public class Interact : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+	    if (!IsServer) return;
 	    IPickupable pickupable = other.GetComponent<IPickupable>();
 	    if (pickupable != null && NetworkManager.Singleton != null)
         {

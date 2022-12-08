@@ -13,7 +13,9 @@ public class PerlinCube_View : MonoBehaviour
     public GameObject perlinWallCube;
 
     public ParticleSystem[] crumblingParticles;
-    
+
+    public float firstDelay = 1;
+    public float secondDelay = 3;
     
     private void OnEnable()
     {
@@ -33,10 +35,9 @@ public class PerlinCube_View : MonoBehaviour
 
     IEnumerator WallDestroy()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(firstDelay);
         perlinCubeModel.transform.DOMoveY(-1f,3f).SetEase(Ease.InOutBack);
-        yield return new WaitForSeconds(3f);
-        if(NetworkManager.Singleton.IsServer) Destroy(perlinWallCube,1f);
+        yield return new WaitForSeconds(secondDelay);
     }
     
 }

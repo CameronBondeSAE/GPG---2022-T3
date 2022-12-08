@@ -22,7 +22,7 @@ using Sirenix.OdinInspector;
 	    base.OnNetworkSpawn();
 	    
 	    OnSpawn();
-	    ChangeHP(maxHP);
+	    if (IsServer) ChangeHP(maxHP);
     }
 
     public void ChangeHP(float amount)

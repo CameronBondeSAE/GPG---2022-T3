@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Marcus
 {
-    public class StateManager : MonoBehaviour
+    public class StateManager : NetworkBehaviour
     {
         public MonoBehaviour startingState;
         public MonoBehaviour currentState;
- 
-        // Set a default state
-        private void Start()
+
+        public override void OnNetworkSpawn()
         {
-            ChangeState(startingState);
+	        ChangeState(startingState);
         }
 
         // This works for ANY STATE
