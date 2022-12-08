@@ -40,7 +40,7 @@ public class Checkpoint : NetworkBehaviour
                 if (player.storedItems > 0)
                 {
                     amount += player.storedItems;
-                    player.UpdateHeadScore();
+                    player.ResetHeadScore();
                     itemPlacedEvent?.Invoke(amount);
                     print("item Placed Event invoked for item count = " +amount);
                     CheckpointUpdateClientRpc();

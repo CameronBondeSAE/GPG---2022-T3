@@ -1,3 +1,4 @@
+using Luke;
 using Shapes;
 using Unity.Netcode;
 using UnityEngine;
@@ -55,7 +56,7 @@ namespace Oscar
                 base.DrawShapes(cam);
                             
                 //draw the lines in the game space.
-                using (Draw.Command(Camera.main))
+                using (Draw.Command(GameManager.singleton.cameraBrain.OutputCamera))
                 {
                     //aspects for the lines
                     Draw.ResetAllDrawStates();

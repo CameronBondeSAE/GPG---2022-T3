@@ -19,7 +19,7 @@ using Random = System.Random;
 /// allows them to pickup plants & items
 /// also to open doors and use items
 /// </summary>
-public class Interact : NetworkBehaviour
+public class tempInteractBackUp : NetworkBehaviour
 {
     public IPickupable heldObject;
     public GameObject clientFlamethrowerModel;

@@ -237,7 +237,7 @@ namespace Lloyd
             
             transform.parent = newParent;
             transform.rotation = newParent.rotation;
-            transform.localPosition = new Vector3(0,1,-1.12f); //HACK V3 coords
+            transform.localPosition = new Vector3(0,1,0.5f); //HACK V3 coords
         }
 
         public void PutDown(GameObject player, ulong networkObjectId)

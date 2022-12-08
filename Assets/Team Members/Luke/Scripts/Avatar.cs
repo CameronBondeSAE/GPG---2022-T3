@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Luke;
 using Tanks;
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,12 +18,25 @@ public class Avatar : NetworkBehaviour, IControllable
     public float maxSpeed = 15f;
     public float turnSpeed = 5f;
     public float drag = 7f;
+    public TMP_Text nameText;
 
     private void OnEnable()
     {
 	    _transform = transform;
         _rb = GetComponent<Rigidbody>();
         interact = GetComponent<Interact>();
+    }
+
+    public void SetName(string name)
+    {
+        nameText.text = name;
+        SetNameClientRpc(nameText.text);
+    }
+
+    [ClientRpc]
+    public void SetNameClientRpc(string name)
+    {
+        nameText.text = name;
     }
 
     [ServerRpc]

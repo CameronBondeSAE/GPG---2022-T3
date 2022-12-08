@@ -10,6 +10,9 @@ using GameManager = Luke.GameManager;
 
 public class LookAtCamera : MonoBehaviour
 {
+    //TODO: Ollie
+    //look at making this a clientRpc somehow - clients will see other players' score rotating to the other player's camera
+    //rather than them ALL looking at client's camera
     private void LateUpdate()
     {
         transform.LookAt(GameManager.singleton.cameraBrain.OutputCamera.transform);

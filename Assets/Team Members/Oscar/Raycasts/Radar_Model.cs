@@ -86,6 +86,8 @@ namespace Oscar
         public void PickedUp(GameObject interactor, ulong networkObjectId)
         {
             RadarSwitchOn();
+            //TODO: OLLIE
+            //copy the flamethrower PickUp/PutDown client rpcs to get this to actually be picked up
         }
 
         public void PutDown(GameObject interactor, ulong networkObjectId)

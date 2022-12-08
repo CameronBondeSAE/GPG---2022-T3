@@ -194,6 +194,8 @@ public class GameManager : NetworkBehaviour
 		        avatar.GetComponent<NetworkObject>().SpawnWithOwnership(NetworkManager.Singleton.ConnectedClientsList[i].ClientId);
                 NetworkObject clientEntity = NetworkManager.Singleton.ConnectedClients.ElementAt(i).Value.PlayerObject;
                 clientEntity.GetComponent<ClientEntity>().ControlledPlayer = avatar;
+                avatar.GetComponent<Avatar>().SetName(clientEntity.GetComponent<ClientInfo>().ClientName
+	                .Value.ToString());
                 entityClientIdAndPlayerNetworkObjectIdPairs[i,0] = clientEntity.NetworkObjectId;
 		        entityClientIdAndPlayerNetworkObjectIdPairs[i,1] = no.NetworkObjectId;
 	        }

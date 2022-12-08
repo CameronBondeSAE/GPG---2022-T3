@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace Luke
     {
         public string playerName;
 
+        private ClientInfo _clientInfo;
+        
+        
         private PlayerController _playerController;
         [SerializeField] private GameObject controlledPlayer;
 
@@ -29,6 +33,9 @@ namespace Luke
         public void OnEnable()
         {
             _playerController = GetComponent<PlayerController>();
+            _clientInfo = GetComponent<ClientInfo>();
         }
+
+        
     }
 }
