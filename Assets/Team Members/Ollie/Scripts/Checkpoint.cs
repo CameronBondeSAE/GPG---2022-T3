@@ -10,14 +10,14 @@ public class Checkpoint : NetworkBehaviour
     public delegate void ItemPlacedEventAction(int amount);
     public event ItemPlacedEventAction itemPlacedEvent;
     public NetworkVariable<Color> colorRed;
-    private Renderer renderer;
+    private Renderer rend;
 
     public int amount;
     private void Start()
     {
         colorRed = new NetworkVariable<Color>(Color.red);
-        renderer = GetComponent<Renderer>();
-        renderer.material.color = colorRed.Value;
+        rend = GetComponent<Renderer>();
+        rend.material.color = colorRed.Value;
         // GetComponent<NetworkObject>().Spawn();
     }
 
@@ -49,8 +49,8 @@ public class Checkpoint : NetworkBehaviour
     public IEnumerator CheckpointReceiveItems()
     {
         //TODO make it something funky
-        renderer.material.color = Color.green;
+        rend.material.color = Color.green;
         yield return new WaitForSeconds(2f);
-        renderer.material.color = Color.red;
+        rend.material.color = Color.red;
     }
 }

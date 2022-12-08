@@ -68,7 +68,7 @@ namespace Lloyd
         Quaternion currentRotation;
 
         //am I allowed to shoot? ticks depending on fire rate and ammo
-        private bool canShoot;
+        //private bool canShoot;
 
         [Header("OVERHEAT STATS")] [SerializeField]
         public float overHeatRate;
@@ -95,8 +95,6 @@ namespace Lloyd
             modelView.ChangeState += FlipOverheat;
 
             isHeld = true;
-
-            canShoot = true;
 
             sphereCollider = GetComponent<SphereCollider>();
 

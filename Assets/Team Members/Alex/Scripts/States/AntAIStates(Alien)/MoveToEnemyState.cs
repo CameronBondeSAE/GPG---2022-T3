@@ -18,7 +18,6 @@ namespace Alex
         Vision vision;
         Rigidbody rb;
         Controller controller;
-        Renderer renderer;
         public Shader agroShader;
         FollowPath followPath;
         TurnTowards turnTowards;
@@ -37,7 +36,6 @@ namespace Alex
             controller = aGameObject.GetComponent<Controller>();
             vision = aGameObject.GetComponent<Vision>();
             rb = aGameObject.GetComponent<Rigidbody>();
-            renderer = aGameObject.GetComponent<Renderer>();
             turnTowards = aGameObject.GetComponent<TurnTowards>();
             followPath = aGameObject.GetComponent<FollowPath>();
             testShapes = aGameObject.GetComponent<TestShapes>();
@@ -54,7 +52,7 @@ namespace Alex
             
             target = vision.enemyInSight[0].position;
             
-            controller.renderer.material.shader = agroShader;
+            controller.rend.material.shader = agroShader;
             testShapes.colour = Color.red;
             testShapes.intensity = 2;
 
@@ -137,7 +135,7 @@ namespace Alex
         public override void Exit()
         {
             base.Exit();
-            controller.renderer.material.shader = controller.defaultShader;
+            controller.rend.material.shader = controller.defaultShader;
             testShapes.colour = Color.green;
             testShapes.intensity = 1;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;

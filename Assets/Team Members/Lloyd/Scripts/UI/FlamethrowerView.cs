@@ -32,7 +32,7 @@ namespace UI
 
         private void Update()
         {
-            HandleColor();
+           // HandleColor();
         }
 
         private void HandleColor()
@@ -62,8 +62,6 @@ namespace UI
                 //
                 //how to avoid copy paste using maths?
                 //
-
-                Vector3 colorVector;
                     
                 //colorVector = new Vector3.Lerp(currentColor, color, lerpTime);
                 
