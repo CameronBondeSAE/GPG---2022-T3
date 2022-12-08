@@ -1,10 +1,6 @@
-using System;
 using Shapes;
 using Unity.Netcode;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.UIElements;
 
 namespace Oscar
 {

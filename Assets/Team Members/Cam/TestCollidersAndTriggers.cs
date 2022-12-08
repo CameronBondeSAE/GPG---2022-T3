@@ -18,14 +18,10 @@ public class TestCollidersAndTriggers : MonoBehaviour
 		}
 
 
-		for (int i = 0; i < 360; i=i+16)
+		for (int i = 0; i < 360; i += 16)
 		{
 			Vector3 euler = Quaternion.Euler(0,i,0) * Vector3.forward;
 			Debug.DrawRay(transform.position + euler, Vector3.up * 10f, Color.magenta, 10f);
-			if (true)
-			{
-				break;
-			}
 		}
 		
 	}

@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Shapes;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class RaycastScannerTest : ImmediateModeShapeDrawer
 {

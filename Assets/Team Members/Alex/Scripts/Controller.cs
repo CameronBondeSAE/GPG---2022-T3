@@ -24,12 +24,11 @@ namespace Alex
     [SerializeField] public Vision vision;
 
     public Rigidbody rb;
-    public Collider collider;
     public Inventory inventory;
     public int turnSpeed;
     public bool followingPath;
     public AStar aStar;
-    public Renderer renderer;
+    public Renderer rend;
     public Shader defaultShader;
     public Shader lowHeatShader;
     public TurnTowards turnTowards;
