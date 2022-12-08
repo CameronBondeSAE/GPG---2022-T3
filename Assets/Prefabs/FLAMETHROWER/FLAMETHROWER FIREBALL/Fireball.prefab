@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 2097233744307224593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fire01Prefab: {fileID: 8997907807820932345, guid: 0cf81dc62baea794882e33efb88e7263, type: 3}
   _heat: 25
-  _radius: 5
+  _radius: 2
   _proximityMultiplier: 2
   _minDistance: 0.5
   _lifespan: 2.5
