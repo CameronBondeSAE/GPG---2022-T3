@@ -41,10 +41,10 @@ namespace Oscar
             }
         }
         
-        void FireOff()
-        {
-            explode = false;
-        }
+        // void FireOff()
+        // {
+        //     explode = false;
+        // }
     }
 }
 
