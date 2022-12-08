@@ -8,7 +8,7 @@ namespace Oscar
     public class SpawnItems : MonoBehaviour
     {
         public GameObject item;
-        public void SpawnTheItems(List<Vector3> prefabPosition, GameObject itemParent)
+        public void SpawnTheItems(List<Vector3> prefabPosition)
         {
             for (int i = 0; i < prefabPosition.Count; i++)
             {

@@ -29,7 +29,7 @@ namespace Oscar
 
             return spawnPointObject;
         }
-        public void SpawnAIInTheMaze(List<Vector3> prefabPosition, GameObject AIParent, float perlinValue)
+        public void SpawnAIInTheMaze(List<Vector3> prefabPosition, float perlinValue)
         {
             float AIPerlin = Mathf.PerlinNoise((AIInt), (AIInt));
             //create spawn location with new perlin then 
