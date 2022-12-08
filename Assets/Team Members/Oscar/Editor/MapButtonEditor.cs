@@ -29,22 +29,22 @@ public class MapButtonEditor : Editor
                 
                 if (GUILayout.Button("AI Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnAIClientRpc();
+                        (target as MapGenerator)?.SpawnAI();
                 }
                 
                 if (GUILayout.Button("Explosives Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnExplosivesClientRpc();
+                        (target as MapGenerator)?.SpawnExplosives();
                 }
                 
                 if (GUILayout.Button("Items Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnItemsClientRpc();
+                        (target as MapGenerator)?.SpawnItems();
                 }
                 
                 if (GUILayout.Button("HQ Spawn") && Application.isPlaying)
                 {
-                        (target as MapGenerator)?.SpawnBasesClientRpc();
+                        (target as MapGenerator)?.SpawnBases();
                 }
         }
 }

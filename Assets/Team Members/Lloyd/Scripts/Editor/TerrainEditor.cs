@@ -28,12 +28,12 @@ public class TerrainEditor : Editor
         
         if (GUILayout.Button("Spawn Plants (Play Mode Only)") && Application.isPlaying)
         {
-            (target as Lloyd.LevelGenerator)?.SpawnItemsClientRpc();
+            (target as Lloyd.LevelGenerator)?.SpawnItems();
         }
         
         if (GUILayout.Button("Spawn Bases (Play Mode Only)") && Application.isPlaying)
         {
-            (target as Lloyd.LevelGenerator)?.SpawnBasesClientRpc();
+            (target as Lloyd.LevelGenerator)?.SpawnBases();
         }
     }
 }

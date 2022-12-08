@@ -85,7 +85,7 @@ public class GameManager : NetworkBehaviour
 				NetworkInstantiate(aiPrefab,new Vector3(1,1,1),quaternion.identity);
 			}*/
 			if (levelGenerator == null) return;
-			levelGenerator.SpawnAIClientRpc();
+			levelGenerator.SpawnAI();
 			InvokeOnGameWaveTimerClientRPC();
 		}
 	}
@@ -163,10 +163,10 @@ public class GameManager : NetworkBehaviour
 	    
 	    // TODO: Wait for level generation callback to be sure it's finished.
 	    levelGenerator.SpawnPerlin(); // not actually a client RPC
-	    levelGenerator.SpawnItemsClientRpc();
-	    levelGenerator.SpawnExplosivesClientRpc();
-	    levelGenerator.SpawnBasesClientRpc();
-	    levelGenerator.SpawnAIClientRpc();
+	    levelGenerator.SpawnItems();
+	    levelGenerator.SpawnExplosives();
+	    levelGenerator.SpawnBases();
+	    levelGenerator.SpawnAI();
 	    levelGenerator.SpawnBorderClientRpc();
 	    
 	    // Pathfinding

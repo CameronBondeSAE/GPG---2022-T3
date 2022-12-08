@@ -111,8 +111,7 @@ namespace Marcus
             curBorder.transform.localScale += new Vector3(0, 0, amount);
         }
 
-        [ClientRpc]
-        public void SpawnAIClientRpc()
+        public void SpawnAI()
         {
             for (int x = 0; x < amount; x++)
             {
@@ -124,7 +123,7 @@ namespace Marcus
                     {
                         if (aiLimit == 5)
                         {
-                            Instantiate(swarmer, aiPos, Quaternion.identity);
+                            gm.NetworkInstantiate(swarmer, aiPos, Quaternion.identity);
                             aiLimit = 0;
                         }
 
@@ -134,8 +133,7 @@ namespace Marcus
             }
         }
         
-        [ClientRpc]
-        public void SpawnItemsClientRpc()
+        public void SpawnItems()
         {
             for (int x = 0; x < amount; x++)
             {
@@ -159,14 +157,12 @@ namespace Marcus
             }
         }
 
-        [ClientRpc]
-        public void SpawnExplosivesClientRpc()
+        public void SpawnExplosives()
         {
             print("I DO NOTHING YET");
         }
 
-        [ClientRpc]
-        public void SpawnBasesClientRpc()
+        public void SpawnBases()
         {
             for (int i = 0; i < 4; i++)
             {
