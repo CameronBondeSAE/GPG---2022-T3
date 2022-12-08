@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Lloyd;
 using Luke;
 using Sirenix.OdinInspector;
+using TMPro;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -33,7 +34,16 @@ public class Interact : NetworkBehaviour
     public NetworkObject item;
     public GameObject flamethrower;
     public NetworkObject plant;
-    
+
+    [Header("Plants Counter")]
+    public TMP_Text scoreText;
+    public GameWaveTimer gameWaveTimer;
+
+
+    private void Start()
+    {
+        gameWaveTimer = FindObjectOfType<GameWaveTimer>();
+    }
 
     [ServerRpc]
     public void RequestPickUpItemServerRpc(ulong networkObjectId)
@@ -132,7 +142,6 @@ public class Interact : NetworkBehaviour
                 IInteractable interactable = monoBehaviour.GetComponent<IInteractable>();
                 if(interactable!=null) interactable.CancelInteract();
             }
-            
         }
     }
 
@@ -209,6 +218,18 @@ public class Interact : NetworkBehaviour
         //network the results of interact
         //eg, door open, fireballs shot out, etc
     }
+
+    public void UpdateHeadScore()
+    {
+        UpdateHeadScoreClientRpc();
+    }
+
+    [ClientRpc]
+    public void UpdateHeadScoreClientRpc()
+    {
+        storedItems = 0;
+        scoreText.text = (storedItems.ToString() + "/" + storedMax.ToString());
+    }
     
     public void DeathItemRespawn()
     {
@@ -252,6 +273,8 @@ public class Interact : NetworkBehaviour
         //child.transform.parent = equippedMountPos;
     }
 
+
+
     private void OnTriggerEnter(Collider other)
     {
 	    IPickupable pickupable = other.GetComponent<IPickupable>();
@@ -265,6 +288,7 @@ public class Interact : NetworkBehaviour
                     item.PickedUp(gameObject,NetworkManager.LocalClientId);
                     item.DestroySelf();
                     storedItems++;
+                    if(scoreText!=null) scoreText.text = (storedItems.ToString() + " / " +storedMax.ToString());
                 }
                 else
                 {

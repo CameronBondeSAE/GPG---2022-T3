@@ -31,20 +31,23 @@ public class GameWaveTimer : NetworkBehaviour
                     checkpoint = hq.GetComponentInChildren<Checkpoint>();
                 }
             }
-            checkpoint.itemPlacedEvent += UpdateScoreboard;
+            checkpoint.itemPlacedEvent += UpdateDepositedScore;
         }
     }
 
-    void UpdateScoreboard(int amount)
+    void UpdateDepositedScore(int amount)
+    {
+        UpdateDepositedScoreClientRpc(amount);
+    }
+
+    [ClientRpc]
+    void UpdateDepositedScoreClientRpc(int amount)
     {
         scoreText.text = amount.ToString();
     }
-    
 
     void Update()
     {
-        /*if (IsServer)
-        {*/
         if (IsServer)
         {
             if (time > 0 && gameStarted)

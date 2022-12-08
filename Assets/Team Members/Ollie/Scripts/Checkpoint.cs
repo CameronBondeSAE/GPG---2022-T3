@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Lloyd;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Checkpoint : NetworkBehaviour
     public event ItemPlacedEventAction itemPlacedEvent;
     public NetworkVariable<Color> colorRed;
     private Renderer renderer;
+    private HQ.HQType hqType;
 
     public int amount;
     private void Start()
@@ -19,11 +21,15 @@ public class Checkpoint : NetworkBehaviour
         renderer = GetComponent<Renderer>();
         renderer.material.color = colorRed.Value;
         // GetComponent<NetworkObject>().Spawn();
+        if (IsServer)
+        {
+            hqType = GetComponentInParent<HQ>().type;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (IsServer)
+        if (IsServer && hqType == HQ.HQType.Humans)
         {
             Interact player = other.GetComponentInParent<Interact>();
             if (player != null)
@@ -31,7 +37,7 @@ public class Checkpoint : NetworkBehaviour
                 if (player.storedItems > 0)
                 {
                     amount += player.storedItems;
-                    player.storedItems = 0;
+                    player.UpdateHeadScore();
                     itemPlacedEvent?.Invoke(amount);
                     print("item Placed Event invoked for item count = " +amount);
                     CheckpointUpdateClientRpc();
