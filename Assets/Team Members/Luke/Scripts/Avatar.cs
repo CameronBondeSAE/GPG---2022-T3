@@ -125,7 +125,7 @@ public class Avatar : NetworkBehaviour, IControllable
 
     public void Action4Cancelled()
     {
-        
+        interact.RequestUseItemCancelServerRpc();
     }
 
     public void Action5Performed()
