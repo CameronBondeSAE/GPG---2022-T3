@@ -61,8 +61,7 @@ public class GameManager : NetworkBehaviour
 		if (IsServer)
 		{
 			// TODO: CAM disabled
-			GameObject go = Instantiate(countdownTimer);
-			go.GetComponent<NetworkObject>().Spawn();
+			GameObject go = NetworkInstantiate(countdownTimer, countdownTimer.transform.position, countdownTimer.transform.rotation);
 			InvokeOnGameStartClientRPC();
 		}
 	}
@@ -150,6 +149,7 @@ public class GameManager : NetworkBehaviour
     //private void SetupScene(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     private void SetupScene()
     {
+	    GameHasStartedEvent += InvokeOnGameStart;
 	    //Ollie Hack: Enabled this camera in base scene by default, so the level preview can be seen
 	    //sets back to false when level actually starts
 	    virtualCameraTwo.SetActive(false);

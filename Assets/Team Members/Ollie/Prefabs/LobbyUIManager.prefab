@@ -1535,18 +1535,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Luke.GameManager, Assembly-CSharp
-        m_MethodName: InvokeOnGameStart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1012591775
 GameObject:
   m_ObjectHideFlags: 0
@@ -3739,12 +3727,10 @@ MonoBehaviour:
     levelNameOnUI: Lloyd's Level
   - level: {fileID: 102900000, guid: 1eab2e21d47ad6f4a964a0c7fde7acf8, type: 3}
     levelNameOnUI: Marcus's Level
-  - level: {fileID: 102900000, guid: 43849588c6be19445b7e2fe685058378, type: 3}
-    levelNameOnUI: John's Level
-  - level: {fileID: 102900000, guid: 7759905957c5f6d40be209d6bfc51f74, type: 3}
-    levelNameOnUI: Cam's MazeGen Level
   - level: {fileID: 102900000, guid: b7d0c809e3748604ab7cd3c9a01249b8, type: 3}
     levelNameOnUI: Oscar's Level
+  - level: {fileID: 102900000, guid: 872a8f6e1e09b504abb03e16300ce61d, type: 3}
+    levelNameOnUI: Oscar Tiny Test
   levelHolder: {fileID: 7837023427682337152}
   levelButtonPrefab: {fileID: 4527488320937704448, guid: 6132f761d6c617045b04d4f91c191dbe, type: 3}
   lobbyUICanvas: {fileID: 1383001810}

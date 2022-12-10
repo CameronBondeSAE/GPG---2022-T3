@@ -14,25 +14,24 @@ public class GameWaveTimer : NetworkBehaviour
     public TMP_Text scoreText;
     private Checkpoint checkpoint;
 
-    void OnEnable()
+    public override void OnNetworkSpawn()
     {
-        gameStarted = true;
-        GameManager.singleton.GameHasStartedEvent += AssignCheckpoint;
+	    base.OnNetworkSpawn();
+	    
+	    gameStarted = true;
+	    if (IsServer) AssignCheckpoint();
     }
 
     void AssignCheckpoint()
     {
-        if (IsServer)
-        {
-            foreach (var hq in FindObjectsOfType<HQ>())
-            {
-                if (hq.type == HQ.HQType.Humans)
-                {
-                    checkpoint = hq.GetComponentInChildren<Checkpoint>();
-                }
-            }
-            checkpoint.itemPlacedEvent += UpdateDepositedScore;
-        }
+	    foreach (var hq in FindObjectsOfType<HQ>())
+	    {
+		    if (hq.type == HQ.HQType.Humans)
+		    {
+			    checkpoint = hq.GetComponentInChildren<Checkpoint>();
+		    }
+	    }
+	    checkpoint.itemPlacedEvent += UpdateDepositedScore;
     }
 
     void UpdateDepositedScore(int amount)
