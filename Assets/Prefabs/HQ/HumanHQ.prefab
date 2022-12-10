@@ -900,25 +900,9 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 4310262376535627008}
     m_Modifications:
-    - target: {fileID: 105052648, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 1739546348
-      objectReference: {fileID: 0}
     - target: {fileID: 4127929045178541478, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
       propertyPath: m_RootOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4127929045178541478, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.7138734
-      objectReference: {fileID: 0}
-    - target: {fileID: 4127929045178541478, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.050000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 4127929045178541478, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5.0685396
       objectReference: {fileID: 0}
     - target: {fileID: 4127929045178541478, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -964,8 +948,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 105052648, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 89d062a10135d404ab90092f86f9cbce, type: 3}
 --- !u!4 &4127929047070628017 stripped
@@ -1197,10 +1180,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 4310262376535627008}
     m_Modifications:
-    - target: {fileID: 5941631808518611225, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
-      propertyPath: GlobalObjectIdHash
-      value: 951099334
-      objectReference: {fileID: 0}
     - target: {fileID: 6580783833038072679, guid: 137ed6f7db5a29e4f93d677a2410cb2f, type: 3}
       propertyPath: m_Name
       value: Radar_Model
