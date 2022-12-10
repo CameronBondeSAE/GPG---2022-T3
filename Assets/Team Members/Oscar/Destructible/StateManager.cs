@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
 namespace Oscar
 {
-    public class StateManager : MonoBehaviour
+    public class StateManager : NetworkBehaviour
     {
         //states for the switching of states
         public MonoBehaviour startingState;
         public MonoBehaviour currentState;
-        
-        // Start is called before the first frame update
-        void Start()
+
+        public override void OnNetworkSpawn()
         {
-            ChangeState(startingState);
+	        base.OnNetworkSpawn();
+	        
+	        ChangeState(startingState);
         }
 
         public void ChangeState(MonoBehaviour newState)

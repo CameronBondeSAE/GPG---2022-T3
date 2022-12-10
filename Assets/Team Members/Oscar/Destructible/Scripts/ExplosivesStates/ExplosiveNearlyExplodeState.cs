@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Oscar
@@ -10,18 +11,19 @@ namespace Oscar
         public MonoBehaviour explodeState;
         public MonoBehaviour idleState;
 
-        private bool explode = true;
+        public bool explode = true;
 
         public float countDown;
         public event Action AlmostExplode;
 
         private Flammable flammable;
+        
         private void OnEnable()
         {
             // flammable = GetComponent<Flammable>();
             // flammable.CoolDown += FireOff;
-            
-            StartCoroutine(ExplodeCountdown());
+
+            if(NetworkManager.Singleton.IsServer) StartCoroutine(ExplodeCountdown());
         }
         
         //used IEnumerator so it will start on start but will wait a few seconds before continuing.

@@ -5,9 +5,20 @@ using UnityEngine;
 
 public class ExplosiveFragments : MonoBehaviour
 {
-    IEnumerator Start()
+	public float explosionForce;
+	public Vector3 explosionEpicenter;
+	public float explosionRadius;
+
+	void Start()
     {
-        yield return new WaitForSeconds(3);
-        if(NetworkManager.Singleton.IsServer) Destroy(gameObject);
+        Destroy(gameObject,3f);
     }
+
+	public void Explode()
+	{
+		foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
+		{
+			rb.AddExplosionForce(explosionForce, explosionEpicenter, explosionRadius);
+		}
+	}
 }

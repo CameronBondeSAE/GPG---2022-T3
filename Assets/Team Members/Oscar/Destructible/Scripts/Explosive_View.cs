@@ -17,11 +17,11 @@ namespace Oscar
         
         private void OnEnable()
         {
-            AlmostBlowUp.AlmostExplode += ItCouldExplode;
+            AlmostBlowUp.AlmostExplode += ItCouldExplodeClientRpc;
         }
         
-        
-        public void ItCouldExplode()
+        [ClientRpc]
+        public void ItCouldExplodeClientRpc()
         {
             Smoke.Play();
             //play hiss sound 

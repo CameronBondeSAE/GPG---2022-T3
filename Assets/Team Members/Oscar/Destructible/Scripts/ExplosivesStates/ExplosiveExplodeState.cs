@@ -17,25 +17,39 @@ namespace Oscar
         [SerializeField] private float radius;
 
         private Health health;
+
+        private Transform t;
         
         [Header("How many explosive fragments spawn")]
         [SerializeField] private int numFragments;
         public GameObject explosivefragments;
         void OnEnable()
         {
-            for (int x = 0; x < numFragments; x++)
-            {
-                if(NetworkManager.Singleton.IsServer) Instantiate(explosivefragments, transform.position, quaternion.identity);
-            }
-            
-           
-            //then as we dont need the barrel anymore then just delete it.
-            Explode();
+	        t = transform;
+	        NetworkManager nm = NetworkManager.Singleton;
+	        if (nm.IsClient)
+	        {
+		        for (int x = 0; x < numFragments; x++)
+		        {
+			        Vector3 position = t.position;
+			        ExplosiveFragments fragments = Instantiate(explosivefragments, position, quaternion.identity)
+				        .GetComponent<ExplosiveFragments>();
+			        fragments.explosionForce = explodePower;
+			        fragments.explosionEpicenter = position;
+			        fragments.explosionRadius = radius;
+			        fragments.Explode();
+		        }
+	        }
+	        if (nm.IsServer)
+	        {
+		        //then as we dont need the barrel anymore then just delete it.
+		        Explode();
+	        }
         }
 
         private void Explode()
         {
-            Vector3 explosionPos = transform.position;
+            Vector3 explosionPos = t.position;
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
             foreach (Collider burnVictims in colliders)
             {
@@ -47,8 +61,7 @@ namespace Oscar
                 
                 Rigidbody rb = burnVictims.GetComponent<Rigidbody>();
 
-                 if (rb != null)
-                     rb.AddExplosionForce(explodePower, explosionPos, radius, explodeUpPower);
+	            if (rb != null) rb.AddExplosionForce(explodePower, explosionPos, radius, explodeUpPower);
             }
 
             DestroyExplosiveModel();
@@ -56,7 +69,7 @@ namespace Oscar
         
         void DestroyExplosiveModel()
         {
-            if(NetworkManager.Singleton.IsServer) Destroy(gameObject, .01f);
+            if(NetworkManager.Singleton.IsServer) Destroy(gameObject, 0.01f);
         }
     }
 }
