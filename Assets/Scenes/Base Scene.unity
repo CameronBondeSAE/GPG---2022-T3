@@ -1108,7 +1108,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3639541133573309074, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
       propertyPath: m_MaxSendQueueSize
-      value: 358304
+      value: 558304
       objectReference: {fileID: 0}
     - target: {fileID: 3639541133573309074, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
       propertyPath: m_MaxPacketQueueSize

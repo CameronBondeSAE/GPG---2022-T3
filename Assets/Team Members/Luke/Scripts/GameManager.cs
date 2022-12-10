@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Alex;
 using Cinemachine;
+using DG.Tweening;
 using Kevin;
 using Lloyd;
 using Ollie;
@@ -235,6 +236,9 @@ public class GameManager : NetworkBehaviour
     
     private void Start()
     {
+	    // Set max Tweeners to 4000 and max Sequences to 100
+	    DOTween.SetTweensCapacity(4500, 100);
+	    
 	    NetworkManager.Singleton.OnServerStarted += SubscribeToSceneEvent;
 	    //health.YouDied += AIDied;
     }

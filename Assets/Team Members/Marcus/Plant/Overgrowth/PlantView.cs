@@ -31,10 +31,17 @@ public class PlantView : MonoBehaviour
 
     private void OnEnable()
     {
-        plantGrowth.GrowEvent += Growing;
-        plantMature.MatureEvent += Matured;
-        plantDeath.DeathEvent += Dying;
-        plantBase.BurningEvent += Burning;
+	    plantGrowth.GrowEvent += Growing;
+	    plantMature.MatureEvent += Matured;
+	    plantDeath.DeathEvent += Dying;
+	    plantBase.BurningEvent += Burning;
+    }
+    private void OnDisable()
+    {
+	    plantGrowth.GrowEvent -= Growing;
+	    plantMature.MatureEvent -= Matured;
+	    plantDeath.DeathEvent -= Dying;
+	    plantBase.BurningEvent -= Burning;
     }
 
     // Start is called before the first frame update
@@ -46,38 +53,39 @@ public class PlantView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!burning)
+	    float plantGrowthAge = Mathf.Clamp(plantGrowth.age, 0.5f, 5f);
+	    if (!burning)
         {
-            t.localScale = new Vector3(plantGrowth.age, 0.05f, plantGrowth.age);
+	        t.localScale = new Vector3(plantGrowthAge, 0.05f, plantGrowthAge);
         }
         else
         {
-            t.localScale = Vector3.MoveTowards(t.localScale, new Vector3(plantGrowth.age/2f, 0.05f, plantGrowth.age/2f), 0.002f);
+            t.localScale = Vector3.MoveTowards(t.localScale, new Vector3(plantGrowthAge/2f, 0.05f, plantGrowthAge/2f), 0.002f);
         }
     }
 
     void Growing()
     {
-        curTween.Kill();
-        curTween = body.DOColor(spreadColour, 5f);
+        // curTween.Kill();
+        // curTween = body.DOColor(spreadColour, 5f);
     }
     
     void Matured(float duration)
     {
-        curTween = body.DOColor(matureColour, duration);
+        // curTween = body.DOColor(matureColour, duration);
     }
 
     void Dying(float duration)
     {
-        curTween = body.DOColor(deathColour, duration);
+        // curTween = body.DOColor(deathColour, duration);
     }
 
     void Burning()
     {
         burning = true;
-        curTween.Kill();
+        // curTween.Kill();
         
-        curTween = body.DOColor(burnColour, 3f);
+        // curTween = body.DOColor(burnColour, 3f);
     }
 }
    

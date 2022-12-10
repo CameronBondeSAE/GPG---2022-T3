@@ -47,7 +47,7 @@ namespace Marcus
         
         void RandomiseTimer()
         {
-	        spreadTimer = Random.Range(2f, 5f);
+	        spreadTimer = Random.Range(12f, 15f);
 	        StartCoroutine(RandomTimer());
         }
 
@@ -56,7 +56,7 @@ namespace Marcus
 	        yield return new WaitForSeconds(spreadTimer);
 	        if (spreadNumber < spreadLimit)
 	        {
-		        spreadDistance = Random.Range(1f, 3f);
+		        spreadDistance = Random.Range(0.5f, 1.5f);
 		        spreadDirection = Quaternion.Euler(0, Random.Range(0f, 360f), 0) * transform.forward;
 		        Spread(spreadDistance, spreadDirection);
 		        RandomiseTimer();

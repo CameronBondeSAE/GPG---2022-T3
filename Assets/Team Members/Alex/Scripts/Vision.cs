@@ -129,7 +129,8 @@ namespace Alex
                 dropOffPointsFound = dropOffPointsFound.OrderBy(resource => Vector3.Distance(this.transform.position,resource.transform.position)).ToList();
             
             
-            testShapes.polygonPath.AddPoint(transform.position.x, transform.position.z);
+            if(testShapes.polygonPath.Count > 2) // CAM: I think when it starts above walls, it doesn't set the points as no raycast hit anything
+	            testShapes.polygonPath.AddPoint(transform.position.x, transform.position.z);
             
         }
         // CAM BIT
