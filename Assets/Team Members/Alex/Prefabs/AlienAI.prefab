@@ -155,12 +155,11 @@ MonoBehaviour:
   enemyDead: 0
   vision: {fileID: -478265464831815864}
   rb: {fileID: 1794423253392461856}
-  collider: {fileID: 1794423253392461860}
   inventory: {fileID: 5602566739967719583}
   turnSpeed: 0
   followingPath: 0
   aStar: {fileID: 5772701356384670382}
-  renderer: {fileID: 1794423253392461861}
+  rend: {fileID: 1794423253392461861}
   defaultShader: {fileID: -6465566751694194690, guid: 4ac1cbcbfa784624e90eb2a6087c373e, type: 3}
   lowHeatShader: {fileID: -6465566751694194690, guid: c4de5fce59d9b5a47a5094d270f06543, type: 3}
   turnTowards: {fileID: 1804444449802422546}
@@ -261,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rays: 10
   spacingScale: 1
+  heightOffset: -0.5
   resourcesInSight: []
   enemyInSight: []
   dropOffPointsFound: []
@@ -308,6 +308,7 @@ MonoBehaviour:
   movement: {fileID: 1794423253392461862}
   justDirection: {x: 0, y: 0, z: 0}
   vision: {fileID: -478265464831815864}
+  useTurnTowards: 1
 --- !u!114 &5772701356384670382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flameModelPrefab: {fileID: 1794423253392461865}
+  flamePrefab: {fileID: 0}
   fireDamage: 0
   heatLevel: 90
   heatThreshold: 100
@@ -445,7 +446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 0
-  HP: 0
 --- !u!114 &426476028992010051
 MonoBehaviour:
   m_ObjectHideFlags: 0
