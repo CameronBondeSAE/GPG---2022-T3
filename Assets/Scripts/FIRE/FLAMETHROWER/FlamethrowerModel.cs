@@ -93,6 +93,8 @@ namespace Lloyd
         public override void OnNetworkSpawn()
         {
 	        base.OnNetworkSpawn();
+	        
+	        capsuleCollider = GetComponent<CapsuleCollider>();
 
 	        if (!IsServer) return;
 	        modelView = GetComponentInChildren<FlamethrowerModelView>();
@@ -101,7 +103,7 @@ namespace Lloyd
 
 	        isHeld = true;
 
-	        capsuleCollider = GetComponent<CapsuleCollider>();
+	        
         }
 
         private void FlipOverheat(FlamethrowerView.FlamethrowerStates flamethrowerState)
@@ -219,10 +221,6 @@ namespace Lloyd
         [ClientRpc]
         public void ParentClientRpc(ulong networkObjectId)
         {
-            //TODO: LUKE needs to fix the client entities knowing about other client entities' PlayerAvatar
-            //also an issue with the FT not following the client because of NetworkTransform?
-
-            //Transform newParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(networkObjectId).GetComponent<PlayerController>().playerTransform;
             Transform newParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
             
             capsuleCollider.enabled = false;
@@ -242,7 +240,6 @@ namespace Lloyd
         [ClientRpc]
         private void RemoveParentClientRpc(ulong networkObjectId)
         {
-            //Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(networkObjectId).GetComponent<PlayerController>().playerTransform;
             Transform myParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
             
             capsuleCollider.enabled = true;

@@ -104,10 +104,11 @@ namespace Oscar
             Transform newParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
             
             capsuleCollider.enabled = false;
-            
-            transform.parent = newParent;
-            transform.rotation = newParent.rotation;
-            transform.localPosition = new Vector3(0,1,0f); //HACK V3 coords
+
+            Transform t = transform;
+            t.parent = newParent;
+            t.rotation = newParent.rotation;
+            t.localPosition = new Vector3(0,1,0f); //HACK V3 coords
         }
 
         public void PutDown(GameObject interactor, ulong networkObjectId)
@@ -122,10 +123,11 @@ namespace Oscar
         {
             Transform myParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
             capsuleCollider.enabled = true;
-            
-            transform.parent = null;
-            transform.position = myParent.position + (transform.forward / 2);
-            transform.rotation = myParent.rotation;
+
+            Transform t = transform;
+            t.parent = null;
+            t.position = myParent.position + (transform.forward / 2);
+            t.rotation = myParent.rotation;
         }
 
         public void DestroySelf()

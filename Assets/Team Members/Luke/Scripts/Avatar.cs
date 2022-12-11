@@ -93,8 +93,7 @@ public class Avatar : NetworkBehaviour, IControllable
         if (interact.heldObject != null || interact.clientHeldObject)
 	    {
 		    interact.RequestDropItemServerRpc(NetworkObjectId);
-            print("trying to drop");
-	    }
+        }
 	    else
 	    {
 		    interact.RequestPickUpItemServerRpc(NetworkObjectId);
