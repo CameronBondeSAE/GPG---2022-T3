@@ -119,6 +119,7 @@ namespace Alex
             }
 
             //Sorting all the lists so that the closest will be first in order for AStar to use the closest object. 
+            if (resourcesInSight == null) return;
             if(resourcesInSight.Count > 1)
                 resourcesInSight = resourcesInSight.OrderBy(resource => Vector3.Distance(this.transform.position,resource.transform.position)).ToList();
             

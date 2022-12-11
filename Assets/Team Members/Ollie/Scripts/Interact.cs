@@ -309,7 +309,7 @@ public class Interact : NetworkBehaviour
 	    if (pickupable != null && NetworkManager.Singleton != null)
         {
             IPickupable item = pickupable;
-            if (item.autoPickup)
+            if (item.autoPickup && storedItems < storedMax)
             {
                 item.PickedUp(gameObject,NetworkManager.LocalClientId);
                 item.DestroySelf();
