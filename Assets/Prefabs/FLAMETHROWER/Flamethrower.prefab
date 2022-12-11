@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 7841463451455674388}
   - component: {fileID: -6994956250330051033}
   - component: {fileID: 5256839576480473602}
-  - component: {fileID: -1551682309709847049}
+  - component: {fileID: 7345397283738122574}
   m_Layer: 0
   m_Name: Flamethrower
   m_TagString: Untagged
@@ -331,7 +331,7 @@ CapsuleCollider:
   m_Height: 3.3972325
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0.2}
---- !u!114 &-1551682309709847049
+--- !u!114 &7345397283738122574
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
