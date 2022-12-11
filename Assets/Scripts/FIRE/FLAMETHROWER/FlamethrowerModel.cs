@@ -43,7 +43,7 @@ namespace Lloyd
 
         private Flammable flammable;
 
-        private SphereCollider sphereCollider;
+        private CapsuleCollider capsuleCollider;
 
         [SerializeField] public float countDownTimer;
 
@@ -98,7 +98,7 @@ namespace Lloyd
 
             isHeld = true;
 
-            sphereCollider = GetComponent<SphereCollider>();
+            capsuleCollider = GetComponent<CapsuleCollider>();
 
             //TODO: Ollie HACK
             //replace this somehow, it's causing errors on the client
@@ -233,7 +233,7 @@ namespace Lloyd
             //Transform newParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(networkObjectId).GetComponent<PlayerController>().playerTransform;
             Transform newParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
             
-            sphereCollider.enabled = false;
+            capsuleCollider.enabled = false;
             
             transform.parent = newParent;
             transform.rotation = newParent.rotation;
@@ -252,7 +252,7 @@ namespace Lloyd
             //Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(networkObjectId).GetComponent<PlayerController>().playerTransform;
             Transform myParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
             
-            sphereCollider.enabled = true;
+            capsuleCollider.enabled = true;
             
             transform.parent = null;
             transform.position = myParent.position + (transform.forward / 2);

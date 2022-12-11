@@ -152,8 +152,8 @@ GameObject:
   - component: {fileID: 7841463451455674390}
   - component: {fileID: 7841463451455674389}
   - component: {fileID: 7841463451455674388}
-  - component: {fileID: 2196019229650576461}
   - component: {fileID: -6994956250330051033}
+  - component: {fileID: 5256839576480473602}
   m_Layer: 0
   m_Name: Flamethrower
   m_TagString: Untagged
@@ -290,19 +290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa950270b7665f48b5b0c180838f0e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &2196019229650576461
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441895679611698532}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-6994956250330051033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +316,20 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 0
+--- !u!136 &5256839576480473602
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441895679611698532}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.89427966
+  m_Height: 3.3972325
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.2}
 --- !u!1 &1738072046414167532
 GameObject:
   m_ObjectHideFlags: 0

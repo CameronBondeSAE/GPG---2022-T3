@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4781166731886668140}
   - component: {fileID: 8362266384036607871}
   - component: {fileID: 7378137494736373024}
+  - component: {fileID: 7454312489224375124}
   m_Layer: 0
   m_Name: LukeAvatar
   m_TagString: Untagged
@@ -212,6 +213,20 @@ MonoBehaviour:
   intensity: 1
   worldPosition: {x: 0, y: 0, z: 0}
   main: {fileID: 0}
+--- !u!136 &7454312489224375124
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5296546071687087743}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.11
+  m_Height: 1.96
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5296546073451224716
 GameObject:
   m_ObjectHideFlags: 0
