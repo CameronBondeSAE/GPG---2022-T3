@@ -107,7 +107,7 @@ namespace Oscar
             
             transform.parent = newParent;
             transform.rotation = newParent.rotation;
-            transform.localPosition = new Vector3(0,1,0.5f); //HACK V3 coords
+            transform.localPosition = new Vector3(0,1,0f); //HACK V3 coords
         }
 
         public void PutDown(GameObject interactor, ulong networkObjectId)
@@ -121,7 +121,6 @@ namespace Oscar
         public void RemoveParentClientRpc(ulong networkObjectId)
         {
             Transform myParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
-            
             capsuleCollider.enabled = true;
             
             transform.parent = null;

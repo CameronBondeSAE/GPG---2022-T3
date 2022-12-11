@@ -56,31 +56,9 @@ public class Interact : NetworkBehaviour
         //send through player client id ulong
         pickupableNearby.PickedUp(gameObject, networkObjectId);
 
-        heldObject = GetComponentInChildren<FlamethrowerModel>();
+        heldObject = GetComponentInChildren<IPickupable>();
         PickUpItemClientRpc(networkObjectId);
-        //Old parenting with NetworkObject --- OBSOLETE
-        /*MonoBehaviour monoBehaviour = pickupableNearby as MonoBehaviour;
-        if (monoBehaviour != null)
-        {
-             monoBehaviour.transform.parent = equippedMountPos;
-            NetworkObject monoNetObj = monoBehaviour.GetComponent<NetworkObject>();
-            monoNetObj.Despawn();
-            Destroy(monoNetObj.gameObject);
-            
-            
-            
-             Debug.Log("TrySetParent = "+ monoNetObj.TrySetParent(transform, false));
-             if(monoNetObj.TrySetParent(transform, false) == true)
-             {
-                 PickUpItemClientRpc(monoNetObj.NetworkObjectId);
-                 monoBehaviour.GetComponent<Transform>().localPosition = new Vector3(0,1,-1.12f);
-                 monoBehaviour.GetComponent<Transform>().rotation = transform.rotation;
-                 heldObject = GetComponentInChildren<FlamethrowerModel>();
-                 if(heldObject != null) equippedItems++;
-             }
-            
-            
-        }*/
+        
         pickupableNearby = null;
     }
     
