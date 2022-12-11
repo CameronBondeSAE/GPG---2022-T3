@@ -68,8 +68,7 @@ public class ManEater : MonoBehaviour, IFlammable
 
     void EatThing(Collider player)
     {
-        print("Get Nommed");
-        player.GetComponent<Health>().ChangeHP(damage);
+        if(player.GetComponent<Health>() != null) player.GetComponent<Health>().ChangeHP(damage);
     }
 
     void AddNeighbours(Collider plant)
@@ -79,7 +78,6 @@ public class ManEater : MonoBehaviour, IFlammable
 
     public void SetOnFire()
     {
-        print("GGGRRR ANGRY DEATH NOISES!!!");
         maneaterBurnEvent?.Invoke();
     }
 

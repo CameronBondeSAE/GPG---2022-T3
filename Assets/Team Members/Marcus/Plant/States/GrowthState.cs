@@ -36,7 +36,7 @@ namespace Marcus
         {
 	        NetworkManager nm = NetworkManager.Singleton;
 	        if (nm.IsServer) StartCoroutine(Age());
-	        if(nm.IsClient) GrowEvent?.Invoke();
+	        if (nm.IsClient) GrowEvent?.Invoke();
         }
 
         IEnumerator Age()

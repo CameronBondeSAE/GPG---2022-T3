@@ -11,8 +11,7 @@ public class Checkpoint : NetworkBehaviour
     public delegate void ItemPlacedEventAction(int amount);
     public event ItemPlacedEventAction itemPlacedEvent;
     public NetworkVariable<Color> colorRed;
-
-    private Renderer renderer;
+    
     private HQ.HQType hqType;
 
     private Renderer rend;

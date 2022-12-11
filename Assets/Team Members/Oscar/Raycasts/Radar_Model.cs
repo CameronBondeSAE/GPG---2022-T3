@@ -19,9 +19,16 @@ namespace Oscar
         public Vector3 dir;
 
         public RaycastHit hit;
+
+        private CapsuleCollider capsuleCollider;
         
         [SerializeField]private float length = 10f;
-        
+
+        private void OnEnable()
+        {
+            capsuleCollider = GetComponent<CapsuleCollider>();
+        }
+
         void Update()
         {
             //create the loop for the radar using time.deltatime
@@ -86,13 +93,40 @@ namespace Oscar
         public void PickedUp(GameObject interactor, ulong networkObjectId)
         {
             RadarSwitchOn();
-            //TODO: OLLIE
-            //copy the flamethrower PickUp/PutDown client rpcs to get this to actually be picked up
+            isHeld = true;
+            
+            ParentClientRpc(networkObjectId);
+        }
+        
+        [ClientRpc]
+        public void ParentClientRpc(ulong networkObjectId)
+        {
+            Transform newParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
+            
+            capsuleCollider.enabled = false;
+            
+            transform.parent = newParent;
+            transform.rotation = newParent.rotation;
+            transform.localPosition = new Vector3(0,1,0.5f); //HACK V3 coords
         }
 
         public void PutDown(GameObject interactor, ulong networkObjectId)
         {
             RadarSwitchOff();
+            isHeld = false;
+            RemoveParentClientRpc(networkObjectId);
+        }
+
+        [ClientRpc]
+        public void RemoveParentClientRpc(ulong networkObjectId)
+        {
+            Transform myParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
+            
+            capsuleCollider.enabled = true;
+            
+            transform.parent = null;
+            transform.position = myParent.position + (transform.forward / 2);
+            transform.rotation = myParent.rotation;
         }
 
         public void DestroySelf()

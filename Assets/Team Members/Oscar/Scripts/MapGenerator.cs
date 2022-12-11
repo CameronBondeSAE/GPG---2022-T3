@@ -68,7 +68,7 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
     //OLLIE HACK: Need this to allow lobby level previews
     private void OnDisable()
     {
-        GameManager.singleton.LevelGenerator = null;
+        if(GameManager.singleton.LevelGenerator != null) GameManager.singleton.LevelGenerator = null;
     }
 
     public void Spawner()
@@ -89,7 +89,7 @@ public class MapGenerator : NetworkBehaviour, ILevelGenerate
     {
         //Luke.GameManager.singleton.LevelFinishedLoading();
         
-        print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
+        //print("scale = " + scale + " zoomX = " + zoomX + " zoomZ = " + zoomZ);
         
         for (int positionX = 0; positionX < amount; positionX+=cubeSize)
         { 

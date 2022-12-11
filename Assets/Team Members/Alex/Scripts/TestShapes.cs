@@ -49,7 +49,7 @@ namespace Alex
                         Draw.Rotation = Quaternion.Euler(90f,0,0);
                         Draw.Position = new Vector3(0, 0.5f, 0);
 
-                        Draw.Polygon(polygonPath);
+                        if(polygonPath.Count > 2) Draw.Polygon(polygonPath);
                 //}
             }
         }

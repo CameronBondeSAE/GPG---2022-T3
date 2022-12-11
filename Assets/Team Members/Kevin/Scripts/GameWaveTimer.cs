@@ -12,6 +12,7 @@ public class GameWaveTimer : NetworkBehaviour
     public float time;
     public TMP_Text timeText;
     public TMP_Text scoreText;
+    public int goalScore;
     private Checkpoint checkpoint;
 
     public override void OnNetworkSpawn()
@@ -29,20 +30,22 @@ public class GameWaveTimer : NetworkBehaviour
 		    if (hq.type == HQ.HQType.Humans)
 		    {
 			    checkpoint = hq.GetComponentInChildren<Checkpoint>();
+                
 		    }
 	    }
 	    checkpoint.itemPlacedEvent += UpdateDepositedScore;
+        goalScore = GameManager.singleton.targetEndResources;
     }
 
     void UpdateDepositedScore(int amount)
     {
-        UpdateDepositedScoreClientRpc(amount);
+        UpdateDepositedScoreClientRpc(amount, goalScore);
     }
 
     [ClientRpc]
-    void UpdateDepositedScoreClientRpc(int amount)
+    void UpdateDepositedScoreClientRpc(int amount, int goalAmount)
     {
-        scoreText.text = amount.ToString() + "/" + checkpoint.goalAmount.ToString();
+        scoreText.text = amount.ToString() + "/" + goalAmount.ToString();
     }
 
     void Update()

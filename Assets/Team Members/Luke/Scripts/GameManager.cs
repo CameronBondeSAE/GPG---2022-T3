@@ -70,7 +70,6 @@ public class GameManager : NetworkBehaviour
 	[ClientRpc]
 	private void InvokeOnGameStartClientRPC()
 	{
-		Debug.Log("Game Started!!!");
 		OnGameStart?.Invoke();
 	}
 
@@ -87,7 +86,6 @@ public class GameManager : NetworkBehaviour
 	[ClientRpc]
 	private void InvokeOnGameWaveTimerClientRPC()
 	{
-		Debug.Log("Wave Spawned!!!");
 		OnGameWaveTimer?.Invoke();
 	}
 
