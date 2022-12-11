@@ -122,40 +122,64 @@ public class Flammable : NetworkBehaviour, IHeatSource
 
     private void SetOnFire()
     {
-        if (fireList.Count > 0)
-        {
-            return;
-        }
+	    if (IsServer)
+	    {
+		    if (fireList.Count > 0)
+		    {
+			    return;
+		    }
 
-        SetOnFireFunction();
-        HeatLevel += fireDamage;
+		    SetOnFireFunction();
+		    HeatLevel += fireDamage;
 
-        if (flamePrefab == null) return;
-        GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
-        fire.transform.SetParent(transform);
-        _flameModel = fire.GetComponent<FlameModel>();
+		    if (flamePrefab == null) return;
+		    GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
+		    fire.transform.SetParent(transform);
+		    _flameModel = fire.GetComponent<FlameModel>();
+		    SetOnFireClientRPC();
         
-        if (_flameModel == null) return;
-        _flameModel.SetFlameStats(fireDamage, fuel, radius);
-                
+		    if (_flameModel == null) return;
+		    _flameModel.SetFlameStats(fireDamage, fuel, radius);
+		    
+		    fireList.Add(fire);
+	    }
+    }
 
-        fireList.Add(fire);
+    [ClientRpc]
+    private void SetOnFireClientRPC()
+    {
+	    if (flamePrefab == null) return;
+	    GameObject fire = Instantiate(flamePrefab, transform.position, Quaternion.identity) as GameObject;
+	    fire.transform.SetParent(transform);
     }
 
     public void Extinguish()
     {
-        _burning = false;
-        HeatLevel = 0;
+	    if (IsServer)
+	    {
+		    _burning = false;
+		    HeatLevel = 0;
 
-        foreach (GameObject fire in fireList)
-        {
-            _flameModel = fire.GetComponentInChildren<FlameModel>();
-            _flameModel.SetFlameStats(0, 0, 0);
-            Destroy(fire);
-        }
-
-        fireList.Clear();
+		    foreach (GameObject fire in fireList)
+		    {
+			    _flameModel = fire.GetComponentInChildren<FlameModel>();
+			    _flameModel.SetFlameStats(0, 0, 0);
+			    Destroy(fire);
+		    }
+		    ExtinguishClientRPC();
+		    fireList.Clear();
+	    }
     }
+
+    [ClientRpc]
+    private void ExtinguishClientRPC()
+    {
+	    foreach (GameObject fire in fireList)
+	    {
+		    Destroy(fire);
+	    }
+    }
+    
 
     public void ChangeHeat(IHeatSource source, float amount)
     {
