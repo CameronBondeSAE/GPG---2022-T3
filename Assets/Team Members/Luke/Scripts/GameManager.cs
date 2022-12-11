@@ -61,7 +61,6 @@ public class GameManager : NetworkBehaviour
 	{
 		if (IsServer)
 		{
-			// TODO: CAM disabled
 			GameObject go = NetworkInstantiate(countdownTimer, countdownTimer.transform.position, countdownTimer.transform.rotation);
 			InvokeOnGameStartClientRPC();
 		}
@@ -78,12 +77,6 @@ public class GameManager : NetworkBehaviour
 	{
 		if (IsServer)
 		{
-			/*for (int i = amountOfAIInGame; i < maxAI; i++)
-			{
-				//should i change the ai spawner to be in the game manager or leave it for each map generation?
-				//The position needs to be pulled from the original spawner function
-				NetworkInstantiate(aiPrefab,new Vector3(1,1,1),quaternion.identity);
-			}*/
 			if (levelGenerator == null) return;
 			levelGenerator.SpawnAI();
 			InvokeOnGameWaveTimerClientRPC();
@@ -96,12 +89,7 @@ public class GameManager : NetworkBehaviour
 		Debug.Log("Wave Spawned!!!");
 		OnGameWaveTimer?.Invoke();
 	}
-	
-	/*private void AIDied()
-	{
-		amountOfAIInGame--;
-	}*/
-	
+
 	[ClientRpc]
 	private void SetCameraTargetClientRpc()
 	{
@@ -113,11 +101,6 @@ public class GameManager : NetworkBehaviour
 		if (go == null) return;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 		virtualCameraOne.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
-
-		
-
-		// virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().Follow = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
-		// virtualCameraTwo.GetComponent<CinemachineVirtualCamera>().LookAt = NetworkManager.LocalClient.PlayerObject.GetComponent<ClientEntity>().ControlledPlayer.transform;
 	}
 
 	public void InvokeOnGameEnd()
@@ -213,7 +196,6 @@ public class GameManager : NetworkBehaviour
 	    SetCameraTargetClientRpc();
         spawnManager.SpawnBossAI();
         GameHasStartedEvent?.Invoke();
-        //SetPlayerNameClientRpc();
     }
 
     [ClientRpc]
@@ -222,13 +204,6 @@ public class GameManager : NetworkBehaviour
 	    NetworkManager.Singleton.SpawnManager.SpawnedObjects[clientNetworkId].GetComponent<ClientEntity>()
 			    .ControlledPlayer = NetworkManager.Singleton.SpawnManager.SpawnedObjects[playerNetworkId].gameObject;
     }
-
-    /*[ClientRpc]
-    private void SetPlayerNameClientRpc()
-    {
-	    
-    }*/
-    
     void Awake()
 	{
 		singleton = this;
@@ -298,10 +273,4 @@ public class GameManager : NetworkBehaviour
 	    //This will be removed, but I don't want to cause errors on github
     }
 }
-//Things to add
-//Game end logic
-//Adding player names onto player prefabs
-//Total time alive as a human
-//Total resources in the world
-//
 }
