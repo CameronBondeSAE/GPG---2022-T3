@@ -45,7 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca07f907b7063c48aa4b6803e3107e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
+  spawnManager: {fileID: 0}
+  gridGenerator: {fileID: 0}
   avatarPrefab: {fileID: 5296546071687087743, guid: 1651e280b4d1f0549bc34b02b51f5cf0, type: 3}
+  cameraBrain: {fileID: 0}
   virtualCameraOne: {fileID: 0}
   virtualCameraTwo: {fileID: 0}
   playerNamePrefab: {fileID: 0}
@@ -53,7 +57,10 @@ MonoBehaviour:
   aiPrefab: {fileID: 0}
   playersAlive: 0
   playersInGame: 0
+  targetEndResources: 100
   amountOfResources: 0
+  amountOfAIInGame: 0
+  maxAI: 0
   zoomedIn: 1
   myLocalClient: {fileID: 0}
 --- !u!114 &1785989400

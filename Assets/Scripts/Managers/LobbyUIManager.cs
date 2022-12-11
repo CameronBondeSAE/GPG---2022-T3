@@ -56,6 +56,8 @@ namespace Ollie
         [Header("IP Canvas Setup")]
         public GameObject ipAddressCanvas;
 
+        public GameObject endGameUI;
+
         public TMP_InputField serverIPInputField;
         
         [Header("Hack for now/Ignore")]
@@ -155,6 +157,7 @@ namespace Ollie
             lobbyUICanvas.SetActive(true);
             ipAddressCanvas.SetActive(false);
             levelDisplayUI.SetActive(false);
+            endGameUI.SetActive(false);
         }
         
         public void OnNewServerIPAddress()
@@ -356,11 +359,36 @@ namespace Ollie
 	            }
             }
 
-            
-            
-            
-            
+            GameManager.singleton.OnGameEnd += OnGameEnd;
         }
+
+        private void OnGameEnd()
+        {
+            //disable active scene and enable base scene
+            if (SceneManager.sceneCount > 1)
+            {
+                for (int i = 0; i < SceneManager.sceneCount; i++)
+                {
+                    Scene scene = SceneManager.GetSceneAt(i);
+                    if (scene == SceneManager.GetActiveScene())
+                    {
+                        NetworkManager.Singleton.SceneManager.UnloadScene(scene);
+                    }
+                }
+            }
+            
+            //turn on end game ui for all clients
+            OnGameEndClientRpc();
+        }
+
+        [ClientRpc]
+        public void OnGameEndClientRpc()
+        {
+            lobbyUICanvas.SetActive(false);
+            ipAddressCanvas.SetActive(false);
+            endGameUI.SetActive(true);
+        }
+        
         
         //Sets the newly loaded scene to be the current active scene
         //So all future spawned objects appear in the new scene

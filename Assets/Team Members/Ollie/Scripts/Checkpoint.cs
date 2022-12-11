@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Lloyd;
+using Luke;
 using Unity.Netcode;
 using UnityEngine;
 
 public class Checkpoint : NetworkBehaviour
 {
-    //called when item placed, maybe player listens to show score?
     public delegate void ItemPlacedEventAction(int amount);
     public event ItemPlacedEventAction itemPlacedEvent;
     public NetworkVariable<Color> colorRed;
@@ -18,16 +18,21 @@ public class Checkpoint : NetworkBehaviour
     private Renderer rend;
 
     public int amount;
+    public int goalAmount;
     private void Start()
     {
         colorRed = new NetworkVariable<Color>(Color.red);
         rend = GetComponent<Renderer>();
         rend.material.color = colorRed.Value;
-        // GetComponent<NetworkObject>().Spawn();
         if (IsServer)
         {
             hqType = GetComponentInParent<HQ>().type;
         }
+
+        goalAmount = GameManager.singleton.targetEndResources;
+
+        //HACK: just to get the UI score denominator
+        itemPlacedEvent?.Invoke(amount);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,8 +47,11 @@ public class Checkpoint : NetworkBehaviour
                     amount += player.storedItems;
                     player.ResetHeadScore();
                     itemPlacedEvent?.Invoke(amount);
-                    print("item Placed Event invoked for item count = " +amount);
                     CheckpointUpdateClientRpc();
+                    if (amount >= goalAmount)
+                    {
+                        GameManager.singleton.InvokeOnGameEnd();
+                    }
                 }
             }
         }

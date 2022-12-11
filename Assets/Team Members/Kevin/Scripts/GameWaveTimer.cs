@@ -42,7 +42,7 @@ public class GameWaveTimer : NetworkBehaviour
     [ClientRpc]
     void UpdateDepositedScoreClientRpc(int amount)
     {
-        scoreText.text = amount.ToString();
+        scoreText.text = amount.ToString() + "/" + checkpoint.goalAmount.ToString();
     }
 
     void Update()

@@ -589,14 +589,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1484110583}
     - target: {fileID: 8604443078459999940, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
-      propertyPath: countdownTimer
-      value: 
-      objectReference: {fileID: 2068962096470880831, guid: c6a9552307192a14ca7f5a8ab256a356, type: 3}
-    - target: {fileID: 8604443078459999940, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
-      propertyPath: targetResources
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8604443078459999940, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
       propertyPath: virtualCameraOne
       value: 
       objectReference: {fileID: 1320205824981652459}
