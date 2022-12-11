@@ -49,6 +49,7 @@ public class GameManager : NetworkBehaviour
     //In Game Counts
 	public int playersAlive;
 	public int playersInGame;
+	public int targetEndResources;
 	public int amountOfResources;
 	public int amountOfAIInGame;
 	public int maxAI;
@@ -195,6 +196,7 @@ public class GameManager : NetworkBehaviour
 
 	    SetCameraTargetClientRpc();
         spawnManager.SpawnBossAI();
+        targetEndResources = playersInGame * targetEndResources; 
         GameHasStartedEvent?.Invoke();
     }
 
