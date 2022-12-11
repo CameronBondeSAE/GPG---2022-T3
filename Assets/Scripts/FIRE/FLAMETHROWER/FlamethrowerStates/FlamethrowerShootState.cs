@@ -150,8 +150,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 	        Vector3 forward = t.forward;
 	        firePointPos = position + forward * barrelLength;
 
-	        GameObject waterPrafab = GameManager.singleton.NetworkInstantiate(waterball, position, t.rotation);
-            rb = waterPrafab.GetComponent<Rigidbody>();
+	        GameObject waterPrefab = GameManager.singleton.NetworkInstantiate(waterball, position, t.rotation);
+            rb = waterPrefab.GetComponent<Rigidbody>();
             rb.AddForce(forward * force, ForceMode.Impulse);
     
             yield return new WaitForSeconds(fireRate);
