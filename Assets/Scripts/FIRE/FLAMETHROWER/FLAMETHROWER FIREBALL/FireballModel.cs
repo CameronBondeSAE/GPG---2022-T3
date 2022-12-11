@@ -59,7 +59,7 @@ public class FireballModel : NetworkBehaviour
     {
 	    base.OnNetworkSpawn();
 	    
-	    StartCoroutine(TickTock());
+	    if(IsServer) StartCoroutine(TickTock());
     }
 
     private void OnEnable()
