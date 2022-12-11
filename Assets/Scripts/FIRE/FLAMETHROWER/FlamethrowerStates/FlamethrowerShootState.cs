@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Lloyd;
+using Luke;
 using Oscar;
+using Unity.Netcode;
 
 public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 {
@@ -20,8 +22,6 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     public Vector3 firePointPos;
 
     private float force;
-
-    private int altAmmo;
 
     private float altForce;
 
@@ -41,8 +41,12 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
     private FlamethrowerModel.FlamethrowerType myType;
 
+    private NetworkManager _nm;
+
     private void OnEnable()
     {
+	    _nm = NetworkManager.Singleton;
+	    if (!_nm.IsServer) return;
         model = GetComponent<FlamethrowerModel>();
 
         fireball = model.fireball;
@@ -70,7 +74,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     /// Flamethrower and Water Cannon
     /// </summary>
 
-    public void Shoot()
+    private void Shoot()
     {
         if (isHeld && shooting)
             StartCoroutine(SpitFire());
@@ -91,13 +95,14 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         while (shooting)
         {
-            firePointPos = transform.position + transform.forward * barrelLength;
+	        Transform t = transform;
+	        Vector3 position = t.position;
+	        Vector3 forward = t.forward;
+            firePointPos = position + forward * barrelLength;
 
-            Vector3 targetDir = firePointPos - transform.position;
-
-            GameObject _fireball = Instantiate(fireball, transform.position, Quaternion.identity) as GameObject;
+            GameObject _fireball = GameManager.singleton.NetworkInstantiate(fireball, position, t.rotation);
             rb = _fireball.GetComponent<Rigidbody>();
-            rb.velocity = targetDir * force;
+            rb.velocity = forward * force;
             // rb.AddForce(targetDir * force, ForceMode.Impulse);
 
             yield return new WaitForSeconds(fireRate);
@@ -109,27 +114,27 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         while (altShooting)
         {
-            altAmmo = model.altAmmo;
             model.altAmmo--;
-            if (altAmmo <= 0)
+            if (model.altAmmo <= 0)
                 break;
 
-            firePointPos = transform.position + transform.forward * barrelLength;
-            
-            Vector3 targetDir = firePointPos - transform.position;
+            Transform t = transform;
+            Vector3 position = t.position;
+            Vector3 forward = t.forward;
+            firePointPos = position + forward * barrelLength;
 
-            GameObject _barrel = Instantiate(barrel, transform.position, Quaternion.identity) as GameObject;
+            GameObject _barrel = GameManager.singleton.NetworkInstantiate(barrel, position, t.rotation);
             // GameObject _fire = Instantiate(fireball, transform.position, Quaternion.identity) as GameObject;
             // _fire.transform.SetParent(_barrel.transform);
 
             /*idleState = _barrel.GetComponent<ExplosiveIdleState>();
             idleState.SetOnFire();*/
             
-            var flammable = _barrel.GetComponent<Flammable>();
+            Flammable flammable = _barrel.GetComponent<Flammable>();
             flammable.ChangeHeat(this, 1000f);
             
             rb = _barrel.GetComponent<Rigidbody>();
-            rb.velocity = targetDir * model.altForce;
+            rb.velocity = forward * model.altForce;
             // rb.AddForce(targetDir * altForce, ForceMode.Impulse);
             
             yield return new WaitForSeconds(altFireRate);
@@ -140,13 +145,14 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
     {
         while (waterSpraying)
         {
-            firePointPos = transform.position + transform.forward * barrelLength;
-    
-            Vector3 targetDir = firePointPos - transform.position;
-    
-            GameObject waterPrafab = Instantiate(waterball, transform.position, Quaternion.identity) as GameObject;
+	        Transform t = transform;
+	        Vector3 position = t.position;
+	        Vector3 forward = t.forward;
+	        firePointPos = position + forward * barrelLength;
+
+	        GameObject waterPrafab = GameManager.singleton.NetworkInstantiate(waterball, position, t.rotation);
             rb = waterPrafab.GetComponent<Rigidbody>();
-            rb.AddForce(targetDir * force, ForceMode.Impulse);
+            rb.AddForce(forward * force, ForceMode.Impulse);
     
             yield return new WaitForSeconds(fireRate);
         }
@@ -161,6 +167,7 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
     private void OnDisable()
     {
+	    if (!_nm.IsServer) return;
         shooting = false;
         altShooting = false;
         waterSpraying = false;

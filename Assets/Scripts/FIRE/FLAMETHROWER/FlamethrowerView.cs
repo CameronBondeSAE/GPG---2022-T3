@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using Lloyd;
-public class FlamethrowerView : MonoBehaviour
+using Unity.Netcode;
+
+public class FlamethrowerView : NetworkBehaviour
 {
     public FlamethrowerModel model;
     
@@ -20,6 +22,14 @@ public class FlamethrowerView : MonoBehaviour
 
     public GameObject fragments;
 
+    public enum FlamethrowerStates
+    {
+	    Neutral,
+	    Shooting,
+	    Pulsate,
+	    Explode
+    }
+    
     private void OnEnable()
     {
         flamethrower = gameObject;
@@ -32,41 +42,49 @@ public class FlamethrowerView : MonoBehaviour
         modelView.ChangeState += ChangeState;
     }
 
-    private void ChangeState(int x)
+    // TODO: LUKE Do I need to clientRpc this?
+
+    private void ChangeState(FlamethrowerStates flamethrowerState)
     {
-        switch (x)
+	    ChangeStateClientRpc(flamethrowerState);
+    }
+    
+    [ClientRpc]
+    private void ChangeStateClientRpc(FlamethrowerStates flamethrowerState)
+    {
+        switch (flamethrowerState)
         {
-            case 0:
+            case FlamethrowerStates.Neutral:
                 flamethrower.transform.localScale = new Vector3(1, 1, 1);
                 Smoke.Stop();
                 break;
             
-            case 1:
+            case FlamethrowerStates.Shooting:
                 flamethrower.transform.localScale = new Vector3(1, 1, 1);
                 Smoke.Stop();
                 break;
             
-            case 2:
+            case FlamethrowerStates.Pulsate:
                 Pulsate(countDownTimer);
                 break;
             
-            case 3:
+            case FlamethrowerStates.Explode:
                 Explode();
                 break;
         }
     }
 
-    private void Pulsate(float x)
+    private void Pulsate(float countdownTimer)
     {
         Smoke.Play();
         
-        flamethrower.transform.DOShakeScale(x,
+        flamethrower.transform.DOShakeScale(countdownTimer,
             new Vector3(.1f,.1f,.1f), 10,5f,false);
     }
 
     private void Explode()
     {
-            Smoke.Stop();
-            Instantiate(fragments, transform.position, Quaternion.identity);
+	    Smoke.Stop();
+        Instantiate(fragments, transform.position, Quaternion.identity);
     }
 }

@@ -13,11 +13,11 @@ public class FlamethrowerModelView : MonoBehaviour
     //pulsating = 3
     //exploded = 4
     
-    public event Action<int> ChangeState;
+    public event Action<FlamethrowerView.FlamethrowerStates> ChangeState;
 
-    public void OnChangeState(int x)
+    public void OnChangeState(FlamethrowerView.FlamethrowerStates flamethrowerState)
     {
-        ChangeState?.Invoke(x);
+        ChangeState?.Invoke(flamethrowerState);
     }
 
     //change current heat level

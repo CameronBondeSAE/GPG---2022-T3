@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FlamethrowerStateManager : MonoBehaviour
+public class FlamethrowerStateManager : NetworkBehaviour
 {
     public FlamethrowerModelView modelView;
     
@@ -16,29 +17,33 @@ public class FlamethrowerStateManager : MonoBehaviour
     public MonoBehaviour shootState;
     public MonoBehaviour explodeState;
     public MonoBehaviour destroyedState;
-		
-    private void Start()
+
+    public override void OnNetworkSpawn()
     {
-        modelView = GetComponentInChildren<FlamethrowerModelView>();
-
-        idleState = GetComponent<FlamethrowerIdleState>();
-        shootState = GetComponent<FlamethrowerShootState>();
-        explodeState = GetComponent<FlamethrowerExplodeState>();
-        destroyedState = GetComponent<FlamethrowerDestroyedState>();
-        
-        stateList.Add(idleState);
-        stateList.Add(shootState);
-        stateList.Add(explodeState);
-        stateList.Add(destroyedState);
-
-        modelView.ChangeState += ChangeStateInt;
-        
-        ChangeStateInt(0);
+	    base.OnNetworkSpawn();
+	    
+	    if(!IsServer) return;
+	    
+	    modelView = GetComponentInChildren<FlamethrowerModelView>();
+	    
+	    idleState = GetComponent<FlamethrowerIdleState>();
+	    shootState = GetComponent<FlamethrowerShootState>();
+	    explodeState = GetComponent<FlamethrowerExplodeState>();
+	    destroyedState = GetComponent<FlamethrowerDestroyedState>();
+	    
+	    stateList.Add(idleState);
+	    stateList.Add(shootState);
+	    stateList.Add(explodeState);
+	    stateList.Add(destroyedState);
+	    
+	    modelView.ChangeState += ChangeStateInt;
+	    
+	    ChangeStateInt(FlamethrowerView.FlamethrowerStates.Neutral);
     }
 
-    private void ChangeStateInt(int x)
+    private void ChangeStateInt(FlamethrowerView.FlamethrowerStates flamethrowerState)
     {
-        nextState = stateList[x];
+        nextState = stateList[(int)flamethrowerState];
         ChangeState(nextState);
     }
 

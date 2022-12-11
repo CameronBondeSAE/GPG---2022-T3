@@ -89,103 +89,95 @@ namespace Lloyd
         public bool altShooting=false;
 
         public FlamethrowerModelView modelView;
-        
-        private void OnEnable()
+
+        public override void OnNetworkSpawn()
         {
-            modelView = GetComponentInChildren<FlamethrowerModelView>();
+	        base.OnNetworkSpawn();
 
-            modelView.ChangeState += FlipOverheat;
+	        if (!IsServer) return;
+	        modelView = GetComponentInChildren<FlamethrowerModelView>();
 
-            isHeld = true;
+	        modelView.ChangeState += FlipOverheat;
 
-            capsuleCollider = GetComponent<CapsuleCollider>();
+	        isHeld = true;
 
-            //TODO: Ollie HACK
-            //replace this somehow, it's causing errors on the client
-            //GetComponent<NetworkObject>().Spawn();
+	        capsuleCollider = GetComponent<CapsuleCollider>();
         }
-        
-        private void FlipOverheat(int x)
+
+        private void FlipOverheat(FlamethrowerView.FlamethrowerStates flamethrowerState)
         {
-            if (x == 0)
-                overheating = false;
+            if (flamethrowerState == 0) overheating = false;
         }
 
         private void FixedUpdate()
         {
-            if (!overheating)
-            {
-                if (!shooting && overHeatLevel > 0)
-                {
-                    ChangeOverheat(-1 * Time.deltaTime);
-                }
-
-                if (shooting)
-                {
-                    ChangeOverheat(overHeatRate * Time.deltaTime);
-                }
-            }
+	        if (!IsServer) return;
+	        if (overheating) return;
+	        if (!shooting && overHeatLevel > 0)
+	        {
+		        ChangeOverheat(-Time.deltaTime);
+	        }
+	        if (shooting)
+	        {
+		        ChangeOverheat(overHeatRate * Time.deltaTime);
+	        }
         }
 
         public void Interact(GameObject interactor)
         {
-                if (isHeld)
-                    if (myType == FlamethrowerType.FireballShooter)
-                    {
-                        shooting = true;
-                        modelView.OnChangeState(1);
-                    }
-                    else if (myType == FlamethrowerType.Watercannon)
-                    {
-                        waterSpraying = true;
-                        modelView.OnChangeState(1);
-                    }
-
-                else
-                    ShootUntilDead();
+	        if (isHeld)
+	        {
+		        if (myType == FlamethrowerType.FireballShooter)
+		        {
+			        shooting = true;
+			        modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Shooting);
+		        }
+		        else if (myType == FlamethrowerType.Watercannon)
+		        {
+			        waterSpraying = true;
+			        modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Shooting);
+		        }
+	        }
+	        else ShootUntilDead();
         }
 
         public void AltInteract(GameObject interactor)
         {
-            if (isHeld)
-            {
-                if (altAmmo <= 0)
-                {   
-                    //click!
-                    return;
-                }
-                altShooting = true;
-                modelView.OnChangeState(1);
-            }
+	        if (!isHeld) return;
+	        if (altAmmo <= 0)
+	        {   
+		        //click!
+		        return;
+	        }
+	        altShooting = true;
+	        modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Shooting);
         }
 
         public void CancelInteract()
         {
             shooting = false;
             waterSpraying = false;
-            modelView.OnChangeState(0);
+            modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Neutral);
         }
 
         public void CancelAltInteract()
         {
             altShooting = false;
-            modelView.OnChangeState(0);
+            modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Neutral);
         }
         
         public void ShootUntilDead()
         {
             shooting = !shooting;
-            if(shooting)
-                modelView.OnChangeState(1);
-            
-            else modelView.OnChangeState(0);
+            if(shooting) modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Shooting);
+            else modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Neutral);
         }
 
         //FLAMETHROWER WILL OVERHEAT AND EXPLODE IF FIRED TOO MUCH
 
-        public void ChangeOverheat(float x)
+        public void ChangeOverheat(float amount)
         {
-            overHeatLevel += x;
+            overHeatLevel += amount;
 
             if (overHeatLevel < overHeatPoint)
                 overheating = false;
@@ -204,7 +196,7 @@ namespace Lloyd
 
         private IEnumerator Exploding()
         {
-            modelView.OnChangeState(2);
+            modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Pulsate);
             yield return new WaitUntil(() => overheating == false);
         }
 
@@ -234,10 +226,11 @@ namespace Lloyd
             Transform newParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
             
             capsuleCollider.enabled = false;
-            
-            transform.parent = newParent;
-            transform.rotation = newParent.rotation;
-            transform.localPosition = new Vector3(0,1,0.5f); //HACK V3 coords
+
+            Transform t = transform;
+            t.parent = newParent;
+            t.rotation = newParent.rotation;
+            t.localPosition = new Vector3(0,1,0.5f); //HACK V3 coords
         }
 
         public void PutDown(GameObject player, ulong networkObjectId)
@@ -247,21 +240,22 @@ namespace Lloyd
         }
 
         [ClientRpc]
-        public void RemoveParentClientRpc(ulong networkObjectId)
+        private void RemoveParentClientRpc(ulong networkObjectId)
         {
             //Transform myParent = NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(networkObjectId).GetComponent<PlayerController>().playerTransform;
             Transform myParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
             
             capsuleCollider.enabled = true;
-            
-            transform.parent = null;
-            transform.position = myParent.position + (transform.forward / 2);
-            transform.rotation = myParent.rotation;
+
+            Transform t = transform;
+            t.parent = null;
+            t.position = myParent.position + t.forward / 2;
+            t.rotation = myParent.rotation;
         }
 
         private void OnDisable()
         {
-            modelView.ChangeState -= FlipOverheat;
+            if (IsServer) modelView.ChangeState -= FlipOverheat;
         }
     }
 }

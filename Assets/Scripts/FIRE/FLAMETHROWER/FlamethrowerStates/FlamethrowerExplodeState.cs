@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using Lloyd;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine.XR;
 
@@ -40,10 +41,16 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
     [SerializeField] private float countDownTimer;
 
     private Rigidbody rb;
+
+    private NetworkManager _nm;
     
     private void OnEnable()
     {
-        overheating = true;
+	    _nm = NetworkManager.Singleton;
+
+	    if (!_nm.IsServer) return;
+
+	    overheating = true;
         
         modelView = GetComponentInChildren<FlamethrowerModelView>();
 
@@ -60,29 +67,26 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
         StartCoroutine(TickTock());
     }
 
-    private void ChangeOverheatLevel(float x)
+    private void ChangeOverheatLevel(float amount)
     {
-        heatLevel += x;
+        heatLevel += amount;
 
-        if (x < heatThreshold)
+        if (amount < heatThreshold)
             overheating = false;
         
         if(!overheating)
-            modelView.OnChangeState(0);
+            modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Neutral);
     }
 
     private IEnumerator TickTock()
     {
         while (overheating)
         {
-            int timesup = 0;
-            if (timesup < countDownTimer)
+	        if (0 < countDownTimer)
             {
                 countDownTimer --;
             }
-
-            
-            if (countDownTimer == 0)
+	        else
             {
                 Explode();
                 overheating = false;
@@ -116,11 +120,13 @@ public class FlamethrowerExplodeState : MonoBehaviour, IHeatSource
                 health.ChangeHP(-100000);
             }
         }
-        modelView.OnChangeState(3);
+        modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Explode);
     }
 
     private void OnDisable()
     {
+	    if (!_nm.IsServer) return;
+	    
         modelView.ChangeOverheat -= ChangeOverheatLevel;
         
         overheating = false;

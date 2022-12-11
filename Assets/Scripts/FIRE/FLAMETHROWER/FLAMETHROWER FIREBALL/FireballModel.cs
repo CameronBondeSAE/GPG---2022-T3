@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-public class FireballModel : MonoBehaviour
+public class FireballModel : NetworkBehaviour
 {
     //this is what the flamethrower shoots
     
@@ -54,6 +55,13 @@ public class FireballModel : MonoBehaviour
         _lifespan = lifespan;
     }
 
+    public override void OnNetworkSpawn()
+    {
+	    base.OnNetworkSpawn();
+	    
+	    StartCoroutine(TickTock());
+    }
+
     private void OnEnable()
     {
         _rend = GetComponent<Renderer>();
@@ -62,28 +70,25 @@ public class FireballModel : MonoBehaviour
 
         Physics.IgnoreLayerCollision(0,9);
         Physics.IgnoreLayerCollision(9, 9);
-
-        StartCoroutine(TickTock());
-
+        
         _rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
-            roundRobin++;
-            if (roundRobin <= maxRoundRobin)
-            {
-                CastFire();
-
-                TickTock();
-                roundRobin = 0;
-            }
-        
+	    if(!IsServer) return;
+	    roundRobin++;
+	    if (roundRobin <= maxRoundRobin)
+	    {
+		    CastFire();
+		    roundRobin = 0;
+	    }
     }
 
     private void CastFire()
     {
-        _center = transform.position;
+	    Transform t = transform;
+        _center = t.position;
 
         //would it be more efficient to run two overlap spheres or calculate dist with one sphere?
         //
@@ -105,9 +110,9 @@ public class FireballModel : MonoBehaviour
                     hitCollider.GetComponent<Flammable>().ChangeHeat(theHeatSource,_heat * _proximityMultiplier);
                 }
                 //StartCoroutine(Death());
-                Destroy(gameObject);
+                /*Destroy(gameObject);
                 transform.SetParent(hitCollider.transform);
-                _rb.isKinematic = true;
+                _rb.isKinematic = true;*/
             } 
         }
     }
@@ -115,8 +120,7 @@ public class FireballModel : MonoBehaviour
     private IEnumerator TickTock()
     {
         yield return new WaitForSeconds(_lifespan);
-        if(_isActive)
-        StartCoroutine(Death());
+        if(_isActive) StartCoroutine(Death());
     }
 
     private IEnumerator Death()
@@ -128,9 +132,16 @@ public class FireballModel : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        GameObject fire = Instantiate(_fire01Prefab, transform.position, Quaternion.identity) as GameObject;
-        
-        Destroy(this.gameObject);
+        SpawnFireClientRpc();
+
+        Destroy(gameObject);
+    }
+
+    [ClientRpc]
+    void SpawnFireClientRpc()
+    {
+	    Transform t = transform;
+	    Instantiate(_fire01Prefab, t.position, t.rotation);
     }
 
     private void OnDisable()
