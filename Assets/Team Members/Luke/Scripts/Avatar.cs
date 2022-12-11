@@ -62,7 +62,7 @@ public class Avatar : NetworkBehaviour, IControllable
         //     Mathf.Clamp(velocity.z,-maxSpeed, maxSpeed));
         // account for direction player facing here
 
-        _rb.velocity = new Vector3(direction.x, 0, direction.y) * acceleration;
+        _rb.velocity = new Vector3(direction.x, _rb.velocity.y, direction.y) * acceleration;
     }
 
     private void AimPlayer(Vector2 direction)
