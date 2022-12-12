@@ -15,7 +15,7 @@ using Sirenix.OdinInspector;
 	    get { return hp.Value; }
     }
 
-    private bool isAlive=true;
+    public bool isAlive=true;
 
     public override void OnNetworkSpawn()
     {
@@ -78,11 +78,11 @@ using Sirenix.OdinInspector;
         ChangeHealth?.Invoke(x);
     }
     
-    public event Action YouDied;
+    public event Action<GameObject> YouDied;
 
     private void OnYouDied()
     {
-        YouDied?.Invoke();
+        YouDied?.Invoke(gameObject);
     }
 
 }

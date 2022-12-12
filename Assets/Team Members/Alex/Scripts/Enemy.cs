@@ -21,16 +21,16 @@ namespace Alex
             //isPickedUp = false;
         }
 
-        private void killYourself()
+        private void killYourself(GameObject go)
         {
-            Destroy(gameObject);
+	        GetComponent<Health>().ChangeHP(-100000);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.layer == 6)
             {
-                Destroy(gameObject);
+	            GetComponent<Health>().ChangeHP(-100000);
             }
         }
     }

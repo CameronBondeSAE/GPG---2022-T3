@@ -21,7 +21,7 @@ public class PerlinCube_Model : NetworkBehaviour
 	    GetComponent<Health>().YouDied += DestroyTheWall;
     }
 
-    void DestroyTheWall()
+    void DestroyTheWall(GameObject go)
     {
 	    GetComponent<Collider>().enabled = false;
 	    DestroyTheWallClientRpc();

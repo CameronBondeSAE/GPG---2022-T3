@@ -25,6 +25,28 @@ public class Avatar : NetworkBehaviour, IControllable
 	    _transform = transform;
         _rb = GetComponent<Rigidbody>();
         interact = GetComponent<Interact>();
+        GetComponent<Health>().YouDied += Die;
+    }
+
+    private void Die(GameObject go)
+    {
+	    if (interact.heldObject != null || interact.clientHeldObject)
+	    {
+		    interact.RequestDropItemServerRpc(NetworkObjectId);
+	    }
+
+	    interact.DeathItemRespawn();
+	    // Can client RPC death noise/animations here
+	    ToggleMeshRenderersClientRpc(false);
+    }
+
+    [ClientRpc]
+    public void ToggleMeshRenderersClientRpc(bool newState)
+    {
+	    foreach (MeshRenderer rend in GetComponentsInChildren<MeshRenderer>())
+	    {
+		    rend.enabled = newState;
+	    }
     }
 
     public void SetName(string name)
