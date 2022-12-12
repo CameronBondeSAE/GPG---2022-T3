@@ -265,7 +265,7 @@ MonoBehaviour:
   turnSpeed: 0
   followingPath: 0
   aStar: {fileID: 5772701356384670382}
-  rend: {fileID: 0}
+  rend: {fileID: 54572923861674277}
   defaultShader: {fileID: -6465566751694194690, guid: 4ac1cbcbfa784624e90eb2a6087c373e, type: 3}
   lowHeatShader: {fileID: -6465566751694194690, guid: c4de5fce59d9b5a47a5094d270f06543, type: 3}
   turnTowards: {fileID: 1804444449802422546}
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flamePrefab: {fileID: 0}
+  flamePrefab: {fileID: 4092031293610382795, guid: 356b6b1337f47004c80f6626d3ff6fa7, type: 3}
   fireDamage: 0
   heatLevel: 90
   heatThreshold: 100
