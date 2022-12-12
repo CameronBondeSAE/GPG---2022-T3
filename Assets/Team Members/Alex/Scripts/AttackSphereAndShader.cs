@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Alex
@@ -58,7 +59,7 @@ namespace Alex
 	        {
 		        if (_targets[i] != null)
 		        {
-			        _targets[i].ChangeHP(-damagePerSecond);
+			        if (NetworkManager.Singleton.IsServer) _targets[i].ChangeHP(-damagePerSecond);
 		        }
 		        else
 		        {

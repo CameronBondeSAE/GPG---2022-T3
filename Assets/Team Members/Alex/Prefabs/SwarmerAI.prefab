@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 6200773846144965217}
   - component: {fileID: 6372642251826983319}
   - component: {fileID: 4108752074494532085}
+  - component: {fileID: 3367989630669829896}
   m_Layer: 7
   m_Name: SwarmerAI
   m_TagString: Untagged
@@ -523,6 +524,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 1248830690197061480}
+--- !u!114 &3367989630669829896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flamePrefab: {fileID: 4092031293610382795, guid: 356b6b1337f47004c80f6626d3ff6fa7, type: 3}
+  fireDamage: 20
+  heatLevel: 0
+  heatThreshold: 110
+  heatMultiplier: 1.5
+  fuel: 0
+  coolRate: 0
+  radius: 0
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
