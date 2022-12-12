@@ -39,7 +39,9 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private GameObject aiPrefab;
 
     public List<GameObject> hqSpawnPointObject;
-
+    public List<GameObject> flamethrowerSpawnPointObject;
+    public List<GameObject> waterCannonSpawnPointObject;
+    
     private ILevelGenerate levelGenerator;
 
     public ILevelGenerate LevelGenerator
@@ -195,6 +197,10 @@ public class GameManager : NetworkBehaviour
 
 	    SetCameraTargetClientRpc();
 	    SpawnPointPos();
+	    FlamethrowerSpawnPointPos();
+	    WaterCannonSpawnPointPos();
+	    spawnManager.SpawnFlameThrowers();
+	    spawnManager.SpawnWaterCannon();
 	    levelGenerator.SpawnAI();
         spawnManager.SpawnBossAI();
         targetEndResources = playersInGame * targetEndResources; 
@@ -203,21 +209,40 @@ public class GameManager : NetworkBehaviour
 
     private void SpawnPointPos()
     {
-	    
-	    foreach (HQ hq in FindObjectsOfType<HQ>())
-	    {
-		    if (hq.type == HQ.HQType.Aliens)
-		    { 
-			    foreach (SpawnPoint spawnPoint in FindObjectsOfType<SpawnPoint>())
-			    {
-				    if (spawnPoint.GetComponentInParent<HQ>().type == HQ.HQType.Aliens)
-				    {
-					    hqSpawnPointObject.Add(spawnPoint.gameObject);
-				    }
-			    }
+	    foreach (SpawnPoint spawnPoint in FindObjectsOfType<SpawnPoint>())
+	    { 
+		    if (spawnPoint.GetComponentInParent<HQ>().type == HQ.HQType.Aliens)
+		    {
+			    hqSpawnPointObject.Add(spawnPoint.gameObject); 
 		    }
 	    }
     }
+
+    private void FlamethrowerSpawnPointPos()
+    {
+	    foreach (SpawnPoint spawnPoint in FindObjectsOfType<SpawnPoint>())
+	    {
+		    if (spawnPoint.GetComponentInParent<HQ>().type == HQ.HQType.Humans)
+		    {
+				    flamethrowerSpawnPointObject.Add(spawnPoint.gameObject);
+		    }
+	    }
+	    
+    }
+    
+    private void WaterCannonSpawnPointPos()
+    {
+	    foreach (WaterSpawnPoint waterSpawnPoint in FindObjectsOfType<WaterSpawnPoint>())
+	    {
+		    if (waterSpawnPoint.GetComponentInParent<HQ>().type == HQ.HQType.Humans)
+		    {
+			    waterCannonSpawnPointObject.Add(waterSpawnPoint.gameObject);
+		    }
+	    }
+	    
+    }
+    
+    
 
     [ClientRpc]
     private void RegisterPlayerAvatarsClientRpc(ulong clientNetworkId,ulong playerNetworkId)
