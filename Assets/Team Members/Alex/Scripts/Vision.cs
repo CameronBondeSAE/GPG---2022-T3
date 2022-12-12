@@ -23,6 +23,7 @@ namespace Alex
         public TestShapes testShapes;
         public LayerMask layerMask;
 
+        public bool affectsOnScreenVisibility = false;
 
 
         private void FixedUpdate()
@@ -54,7 +55,15 @@ namespace Alex
                 
                 if(HitInfo.collider == null) continue;
 
-                
+
+                if (affectsOnScreenVisibility)
+                {
+	                if (HitInfo.collider.GetComponent<IAffectedByVisibility>() != null)
+	                {
+		                HitInfo.collider.GetComponent<IAffectedByVisibility>().Detection(); 
+	                }
+                }
+
                 
                 testShapes.polygonPath.AddPoint(HitInfo.point.x,HitInfo.point.z);
                 // CAM BIT
@@ -86,8 +95,7 @@ namespace Alex
                             resourcesInSight.Add(resource);
                         }
                     }
-
-                    if (HitInfo.collider.GetComponent<Checkpoint>() != null)
+                    else if (HitInfo.collider.GetComponent<Checkpoint>() != null)
                     {
                         Transform hq = HitInfo.transform;
 
@@ -95,9 +103,8 @@ namespace Alex
                         {
                             dropOffPointsFound.Add(hq);
                         }
-                    }
-
-                    if (HitInfo.collider.GetComponent<Enemy>() != null)
+                    } 
+                    else if (HitInfo.collider.GetComponent<Enemy>() != null)
                     {
                         Debug.DrawLine(transform.position, HitInfo.point, Color.red);
                         Transform enemy = HitInfo.transform;
