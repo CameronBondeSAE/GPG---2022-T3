@@ -5414,7 +5414,7 @@ Transform:
   - {fileID: 8570415813410072492}
   - {fileID: 2749822692284270998}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &8476142898420728742
 CapsuleCollider:
@@ -5460,6 +5460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 250
+  isAlive: 1
 --- !u!114 &-4190843060470435521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5473,7 +5474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flamePrefab: {fileID: 0}
-  fireDamage: 5
+  fireDamage: 65
   heatLevel: 0
   heatThreshold: 35
   heatMultiplier: 1.2
