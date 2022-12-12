@@ -1293,6 +1293,46 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 483470732, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383001810, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 301272687528570750, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 301272687528570750, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 301272687528570750, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 301272687528570750, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -400.49506
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846634145313634665, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846634145313634665, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846634145313634665, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3846634145313634665, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -400.49506
+      objectReference: {fileID: 0}
     - target: {fileID: 4347023889492393202, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: m_Name
       value: Lobby UI Manager
@@ -1348,6 +1388,10 @@ PrefabInstance:
     - target: {fileID: 7258408480295207878, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8712692847388069990, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 172.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
