@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756aa0cffc9512340a290166c41507cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rays: 10
+  rays: 15
   spacingScale: 3
   heightOffset: -0.5
   resourcesInSight: []
