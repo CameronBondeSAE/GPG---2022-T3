@@ -195,7 +195,7 @@ MonoBehaviour:
   myType: 0
   fireball: {fileID: 2097233744307224593, guid: 68d82a5d303fb164ea28c9a6a7be4d4c, type: 3}
   waterball: {fileID: 4092031293610382795, guid: 29b71b313393e1c45885434e70eaec6d, type: 3}
-  force: 5
+  force: 10
   fireRate: 0.2
   barrel: {fileID: 6522943975982661894, guid: dd2c1789419a1af448d2178e5ab848e0, type: 3}
   altAmmo: 3

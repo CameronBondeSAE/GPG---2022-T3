@@ -9,7 +9,8 @@ public class FireballView : MonoBehaviour
 
     private void OnEnable()
     {
-        anim = GetComponent<Animator>();
+	    GetComponent<Renderer>().material.SetColor("_BaseColor", new Color(1f, 0, 0, .5f));;
+	    anim = GetComponent<Animator>();
     }
 
     public void Death()

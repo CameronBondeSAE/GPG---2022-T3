@@ -19,6 +19,6 @@ public class Billboard : MonoBehaviour
     {
             _myTransform.forward = _cameraTransform.forward;
             
-            _myTransform.LookAt(_cameraTransform, Vector3.forward);
+            if(transform.parent != null) _myTransform.LookAt(_cameraTransform, transform.parent.right);
     }
 }

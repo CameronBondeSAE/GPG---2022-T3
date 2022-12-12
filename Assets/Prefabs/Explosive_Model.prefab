@@ -325,6 +325,7 @@ MonoBehaviour:
   stateManager: {fileID: 8134697189783218653}
   explodeState: {fileID: 6661313131583358677}
   idleState: {fileID: 7665765543256430508}
+  explode: 1
   countDown: 3
 --- !u!114 &6661313131583358677
 MonoBehaviour:
@@ -377,6 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 1
+  isAlive: 1
 --- !u!114 &2663119495396838201
 MonoBehaviour:
   m_ObjectHideFlags: 0
