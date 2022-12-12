@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 5
-  maxSpeed: 15
+  maxSpeed: 25
   turnSpeed: 5
   drag: 7
   nameText: {fileID: 1447335282494193350}
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rays: 10
-  spacingScale: 3
+  spacingScale: 2
   heightOffset: -0.5
   resourcesInSight: []
   enemyInSight: []
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8319f002e6a6a4b4b9188fe3c242d8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flamePrefab: {fileID: 4092031293610382795, guid: 356b6b1337f47004c80f6626d3ff6fa7, type: 3}
+  flamePrefab: {fileID: 0}
   fireDamage: 0
   heatLevel: 0
   heatThreshold: 220
@@ -405,7 +405,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7d8c0302940de4b40a019ea94a5c148c, type: 2}
+  - {fileID: 2100010, guid: a9853556c4fc4d44087cd153918f7305, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

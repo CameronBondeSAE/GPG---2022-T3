@@ -375,7 +375,7 @@ MonoBehaviour:
   testShapes: {fileID: -8587638066688477751}
   layerMask:
     serializedVersion: 2
-    m_Bits: 6592
+    m_Bits: 14784
   affectsOnScreenVisibility: 0
 --- !u!114 &5602566739967719583
 MonoBehaviour:

@@ -48,7 +48,7 @@ namespace Alex
     
                 //Physics.Raycast(transform.position, dir, out RaycastHit HitInfo);
                 
-                Physics.Raycast(transform.position + offset, dir, out RaycastHit HitInfo, 999f, layerMask, QueryTriggerInteraction.Collide);
+                Physics.Raycast(transform.position + offset, dir, out RaycastHit HitInfo, 999f, layerMask, QueryTriggerInteraction.Ignore);
                 
                 if(HitInfo.collider == null) continue;
 
@@ -60,7 +60,7 @@ namespace Alex
 	                {
 		                foreach (var visibility in affectedByVisibilities)
 		                {
-			                visibility.Detection(1);
+			                visibility.Detection(0);
 		                }
 	                }
                 }
@@ -86,10 +86,11 @@ namespace Alex
                 {
                     Debug.DrawLine(transform.position, HitInfo.point, Color.green);
 
-                    if (HitInfo.collider.GetComponent<IResource>() != null)
+                    // HACK: View has a solid collider for FX, but we still want the root to be able to walk through, it's annoying
+                    IResource componentsInParent = HitInfo.collider.GetComponentInParent<IResource>();
+                    if (componentsInParent != null)
                     {
-
-                        Transform resource = HitInfo.transform;
+	                    Transform resource = (componentsInParent as MonoBehaviour)?.transform;
 
                         if (!resourcesInSight.Contains(resource))
                         {
