@@ -18,6 +18,7 @@ namespace Alex
         public List<Transform> resourcesInSight;
         public List<Transform> enemyInSight;
         public List<Transform> dropOffPointsFound;
+        public List<Transform> thingsToRemove;
         public Array[] arrayOfThingsHit;
         public TestShapes testShapes;
         public LayerMask layerMask;
@@ -86,13 +87,13 @@ namespace Alex
                         }
                     }
 
-                    if (HitInfo.collider.GetComponent<DropOffPoint>() != null)
+                    if (HitInfo.collider.GetComponent<Checkpoint>() != null)
                     {
-                        Transform resource = HitInfo.transform;
+                        Transform hq = HitInfo.transform;
 
-                        if (!dropOffPointsFound.Contains(resource))
+                        if (!dropOffPointsFound.Contains(hq))
                         {
-                            dropOffPointsFound.Add(resource);
+                            dropOffPointsFound.Add(hq);
                         }
                     }
 
@@ -118,13 +119,27 @@ namespace Alex
                 }
             }
 
+            /*
+            List<int> thingsToRemove = new List<int>();
+            for (var index = 0; index < (resourcesInSight).Count; index++)
+            {
+                var resource = resourcesInSight[index];
+                if(resource == null)
+                    thingsToRemove.Add(index);
+            }
+            */
+            
             //Sorting all the lists so that the closest will be first in order for AStar to use the closest object. 
             if (resourcesInSight == null) return;
+            resourcesInSight.RemoveAll(transformToTest => transformToTest == null);
+            
+            /*
             foreach (Transform resource in (resourcesInSight))
             {
                 if (resource == null)
                     resourcesInSight.Remove(resource);
             }
+            */
             if(resourcesInSight.Count > 1)
                 resourcesInSight = resourcesInSight.OrderBy(resource => Vector3.Distance(this.transform.position,resource.transform.position)).ToList();
             

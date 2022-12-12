@@ -237,6 +237,7 @@ MonoBehaviour:
   lowHeatShader: {fileID: -6465566751694194690, guid: c4de5fce59d9b5a47a5094d270f06543, type: 3}
   turnTowards: {fileID: 1804444449802422546}
   flammable: {fileID: 6706497371001566970}
+  interact: {fileID: 0}
 --- !u!54 &1794423253392461856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -337,6 +338,7 @@ MonoBehaviour:
   resourcesInSight: []
   enemyInSight: []
   dropOffPointsFound: []
+  thingsToRemove: []
   testShapes: {fileID: -8587638066688477751}
   layerMask:
     serializedVersion: 2

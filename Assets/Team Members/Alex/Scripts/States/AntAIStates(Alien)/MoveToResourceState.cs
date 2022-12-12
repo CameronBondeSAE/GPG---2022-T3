@@ -51,9 +51,11 @@ namespace Alex
             
             followPath.PathEndReachedEvent += FollowPathOnPathEndReachedEvent;
             if (vision.resourcesInSight.Count == 0 && vision.resourcesInSight != null) return;
+            
             if (vision.resourcesInSight.Count > 0)
             {
                 followPath.ActivatePathToTarget(vision.resourcesInSight[0].transform.position);
+                vision.resourcesInSight.RemoveAll(transformToTest => transformToTest == null);
             }
 
            

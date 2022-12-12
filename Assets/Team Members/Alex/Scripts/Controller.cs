@@ -34,13 +34,32 @@ namespace Alex
     public TurnTowards turnTowards;
     public Flammable flammable;
     Color lerpedColor1 = Color.red;
-    
+
+    public Transform myBase;
 
     public void Awake()
     {
         hasResource = false;
         vision = FindObjectOfType<Vision>();
         turnTowards.enabled = false;
+        //interact = FindObjectOfType<Interact>();
+
+        myBase = AlienBase().transform;
+        vision.dropOffPointsFound.Add(myBase);
+        //FindObjectsOfType<Checkpoint>();
+    }
+    
+    private GameObject AlienBase()
+    {
+        GameObject spawnPointObject = null;
+        foreach (HQ hq in FindObjectsOfType<HQ>())
+        {
+            if (hq.type == HQ.HQType.Aliens)
+            {
+                spawnPointObject = hq.GetComponentInChildren<Checkpoint>().gameObject;
+            }
+        }
+        return spawnPointObject;
     }
 
     /*
@@ -105,6 +124,7 @@ namespace Alex
         //return false;
         if (vision.resourcesInSight.Count > 0)
         {
+            vision.resourcesInSight.RemoveAll(transformToTest => transformToTest == null);
             return Vector3.Distance(vision.resourcesInSight[0].transform.position, rb.transform.position) < 2f;
         }
         else return false;
@@ -112,7 +132,8 @@ namespace Alex
 
     public bool HasResource()
     {
-        return inventory.capacityReached;
+        return GetComponentInChildren<Interact>().storedItems == GetComponentInChildren<Interact>().storedMax;
+
     }
 
     public bool AtDropOffPoint()
