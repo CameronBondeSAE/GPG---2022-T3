@@ -16,6 +16,7 @@ namespace Alex
         public float lineThickness = 1f;
         public float intensity = 1;
         public Vector3 worldPosition;
+        public float yOffSet = 0.5f;
         public Transform main;
         
 
@@ -47,7 +48,7 @@ namespace Alex
                     
                  
                         Draw.Rotation = Quaternion.Euler(90f,0,0);
-                        Draw.Position = new Vector3(0, 0.5f, 0);
+                        Draw.Position = new Vector3(0, yOffSet, 0);
 
                         if(polygonPath.Count > 2) Draw.Polygon(polygonPath);
                 //}

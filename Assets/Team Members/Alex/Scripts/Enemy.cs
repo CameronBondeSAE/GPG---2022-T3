@@ -14,9 +14,9 @@ namespace Alex
 
         private void Awake()
         {
-            vision = GetComponent<Vision>();
-            inventory = GetComponent<Inventory>();
-            rb = GetComponent<Rigidbody>();
+            //vision = GetComponent<Vision>();
+            //inventory = GetComponent<Inventory>();
+            //rb = GetComponent<Rigidbody>();
             GetComponent<Health>().YouDied += killYourself;
             //isPickedUp = false;
         }
