@@ -83,16 +83,21 @@ public class Interact : NetworkBehaviour
     [ServerRpc]
     public void RequestDropItemServerRpc(ulong networkObjectId)
     {
-        if (heldObject != null)
-        {
-            equippedItems = 0;
-            heldObject.PutDown(gameObject, networkObjectId);
-            DropItemClientRpc(networkObjectId);
-            
-            heldObject = null;
-        }
+	    DropItem(networkObjectId);
     }
-    
+
+    public void DropItem(ulong networkObjectId)
+    {
+	    if (heldObject != null)
+	    {
+		    equippedItems = 0;
+		    heldObject.PutDown(gameObject, networkObjectId);
+		    DropItemClientRpc(networkObjectId);
+
+		    heldObject = null;
+	    }
+    }
+
     [ClientRpc]
     public void DropItemClientRpc(ulong networkObjectId)
     {

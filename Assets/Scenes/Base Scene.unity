@@ -596,6 +596,10 @@ PrefabInstance:
       propertyPath: virtualCameraTwo
       value: 
       objectReference: {fileID: 5336197796539444170}
+    - target: {fileID: 8604443078459999940, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
+      propertyPath: targetEndResources
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 8604443078459999941, guid: 952abc9d280211a4e96761a0295d83fa, type: 3}
       propertyPath: m_Name
       value: GameManager

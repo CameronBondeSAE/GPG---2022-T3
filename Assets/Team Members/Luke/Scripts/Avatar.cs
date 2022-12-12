@@ -32,7 +32,7 @@ public class Avatar : NetworkBehaviour, IControllable
     {
 	    if (interact.heldObject != null || interact.clientHeldObject)
 	    {
-		    interact.RequestDropItemServerRpc(NetworkObjectId);
+		    interact.DropItem(NetworkObjectId);
 	    }
 
 	    interact.DeathItemRespawn();
