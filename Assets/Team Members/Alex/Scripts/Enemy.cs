@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace Alex
@@ -30,7 +31,7 @@ namespace Alex
         {
             if (collision.gameObject.layer == 6)
             {
-	            GetComponent<Health>().ChangeHP(-100000);
+	            if(NetworkManager.Singleton.IsServer) GetComponent<Health>().ChangeHP(-100000);
             }
         }
     }

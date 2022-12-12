@@ -174,7 +174,7 @@ MonoBehaviour:
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
-  Interpolate: 0
+  Interpolate: 1
 --- !u!114 &8362266384036607871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +193,7 @@ MonoBehaviour:
   resourcesInSight: []
   enemyInSight: []
   dropOffPointsFound: []
+  thingsToRemove: []
   testShapes: {fileID: 7378137494736373024}
   layerMask:
     serializedVersion: 2
