@@ -143,7 +143,7 @@ MonoBehaviour:
   clientFlamethrowerModel: {fileID: 0}
   equippedMountPos: {fileID: 0}
   storedItems: 0
-  storedMax: 20
+  storedMax: 100
   equippedItems: 0
   equippedMax: 1
   clientHeldObject: 0
