@@ -277,9 +277,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useCullingMasks: 0
-  colour: {r: 0, g: 1, b: 0, a: 0.49803922}
+  colour: {r: 1, g: 1, b: 1, a: 0.49803922}
   lineThickness: 1
-  intensity: 1
+  intensity: 0.5
   worldPosition: {x: 0, y: 0, z: 0}
   yOffSet: 1.5
   main: {fileID: 5296546071687087714}
