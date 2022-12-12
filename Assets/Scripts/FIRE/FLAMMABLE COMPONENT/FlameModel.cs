@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -30,9 +31,13 @@ public class FlameModel : MonoBehaviour, IHeatSource
     private float roundRobin;
 
     private float randomRobin;
-
+    
+    private NetworkManager _nm;
+    
     private void OnEnable()
     {
+	    _nm = NetworkManager.Singleton;
+	    if (!_nm.IsServer) return;
         randomRobin = Random.Range(0, 0.1f);
         roundRobin += randomRobin;
     }
@@ -40,11 +45,11 @@ public class FlameModel : MonoBehaviour, IHeatSource
     //Setters
     //fire stats are set by HeatComponent
     //
-    public void SetFlameStats(float x, float y, float z)
+    public void SetFlameStats(float _heat, float _fuel, float _radius)
     {
-        heat = x;
-        fuel = y;
-        radius = z;
+        heat = _heat;
+        fuel = _fuel;
+        radius = _radius;
 
         minDistance = radius / 2;
 
@@ -53,7 +58,8 @@ public class FlameModel : MonoBehaviour, IHeatSource
 
     private void FixedUpdate()
     {
-        roundRobin++;
+	    if (!_nm.IsServer) return;
+	    roundRobin++;
         if (roundRobin <= maxRoundRobin)
         {
             CastFire();
@@ -111,6 +117,6 @@ public class FlameModel : MonoBehaviour, IHeatSource
 
     public void FlameOut()
     {
-        Destroy(this);
+	    Destroy(this);
     }
 }
