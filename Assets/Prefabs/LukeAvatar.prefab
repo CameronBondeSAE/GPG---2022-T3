@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rays: 10
-  spacingScale: 2
+  spacingScale: 3
   heightOffset: -0.5
   resourcesInSight: []
   enemyInSight: []
