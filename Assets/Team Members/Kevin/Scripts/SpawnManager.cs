@@ -29,19 +29,19 @@ public class SpawnManager : NetworkBehaviour
 	    if (alienBase == null) return;
         for (int j = 0; j < GameManager.singleton.playersInGame; j++)
         {
-            GameManager.singleton.NetworkInstantiate(bossAI, AlienBase().transform.position, Quaternion.identity);
+            GameManager.singleton.NetworkInstantiate(bossAI, GameManager.singleton.hqSpawnPointObject[j].transform.position, Quaternion.identity);
         }
     }
     public void SpawnSwarmerAI()
     {
+        GameObject alienBase = AlienBase();
+        if (alienBase == null) return;
         if (GameManager.singleton.amountOfAIInGame < 100)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < GameManager.singleton.hqSpawnPointObject.Count; i++)
             {
-	            GameObject alienBase = AlienBase();
-	            if (alienBase != null) GameManager.singleton.NetworkInstantiate(swarmerAI, AlienBase().transform.position, Quaternion.identity);
+                GameManager.singleton.NetworkInstantiate(swarmerAI, GameManager.singleton.hqSpawnPointObject[i].transform.position, Quaternion.identity);
                 GameManager.singleton.amountOfAIInGame++;
-                
             }
         }
 

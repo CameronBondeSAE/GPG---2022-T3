@@ -37,7 +37,9 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] private GameObject countdownTimer;
     [SerializeField] private GameObject aiPrefab;
-    
+
+    public List<GameObject> hqSpawnPointObject;
+
     private ILevelGenerate levelGenerator;
 
     public ILevelGenerate LevelGenerator
@@ -145,13 +147,12 @@ public class GameManager : NetworkBehaviour
 	    }
 	    
 	    // TODO: Wait for level generation callback to be sure it's finished.
+	    
 	    levelGenerator.SpawnPerlin(); // not actually a client RPC
 	    levelGenerator.SpawnItems();
 	    levelGenerator.SpawnExplosives();
-	    levelGenerator.SpawnBases();
-	    levelGenerator.SpawnAI();
 	    levelGenerator.SpawnBorderClientRpc();
-	    
+	    levelGenerator.SpawnBases();
 	    // Pathfinding
 	    gridGenerator.Scan();
 
@@ -193,9 +194,29 @@ public class GameManager : NetworkBehaviour
 	    }
 
 	    SetCameraTargetClientRpc();
+	    SpawnPointPos();
+	    levelGenerator.SpawnAI();
         spawnManager.SpawnBossAI();
         targetEndResources = playersInGame * targetEndResources; 
         GameHasStartedEvent?.Invoke();
+    }
+
+    private void SpawnPointPos()
+    {
+	    
+	    foreach (HQ hq in FindObjectsOfType<HQ>())
+	    {
+		    if (hq.type == HQ.HQType.Aliens)
+		    { 
+			    foreach (SpawnPoint spawnPoint in FindObjectsOfType<SpawnPoint>())
+			    {
+				    if (spawnPoint.GetComponentInParent<HQ>().type == HQ.HQType.Aliens)
+				    {
+					    hqSpawnPointObject.Add(spawnPoint.gameObject);
+				    }
+			    }
+		    }
+	    }
     }
 
     [ClientRpc]
