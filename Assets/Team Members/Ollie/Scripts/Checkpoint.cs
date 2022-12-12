@@ -5,6 +5,7 @@ using Alex;
 using Lloyd;
 using Luke;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Checkpoint : NetworkBehaviour
@@ -39,6 +40,8 @@ public class Checkpoint : NetworkBehaviour
     {
         if (IsServer && hqType == HQ.HQType.Humans)
         {
+            Avatar playerAvatar = other.GetComponentInParent<Avatar>();
+            if (playerAvatar == null) return;
             Interact player = other.GetComponentInParent<Interact>();
             if (player != null)
             {
