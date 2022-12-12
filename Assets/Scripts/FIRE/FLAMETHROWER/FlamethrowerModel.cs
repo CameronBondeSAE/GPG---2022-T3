@@ -214,21 +214,13 @@ namespace Lloyd
         public void PickedUp(GameObject player, ulong networkObjectId)
         {
             isHeld = true;
-            
-            ParentClientRpc(networkObjectId);
-        }
 
-        [ClientRpc]
-        public void ParentClientRpc(ulong networkObjectId)
-        {
-            Transform newParent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
-            
-            capsuleCollider.enabled = false;
-
+            Transform parent = NetworkManager.Singleton.SpawnManager.SpawnedObjects[networkObjectId].transform;
+            NetworkObject.TrySetParent(parent);
             Transform t = transform;
-            t.parent = newParent;
-            t.rotation = newParent.rotation;
-            t.localPosition = new Vector3(0,1,0.5f); //HACK V3 coords
+            t.rotation = parent.rotation;
+            t.localPosition = new Vector3(0,1,0.5f);
+            capsuleCollider.enabled = false;
         }
 
         public void PutDown(GameObject player, ulong networkObjectId)
