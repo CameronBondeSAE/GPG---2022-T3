@@ -9,11 +9,13 @@ using Kevin;
 using Lloyd;
 using Ollie;
 using Oscar;
+using ParadoxNotion;
 using Unity.Mathematics;
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace Luke
 {
@@ -62,6 +64,9 @@ public class GameManager : NetworkBehaviour
 	public ulong[,] entityClientIdAndPlayerNetworkObjectIdPairs;
 	
 	public NetworkManager myLocalClient;
+	[SerializeField]
+	private float respawnDelay = 3f;
+
 	public void InvokeOnGameStart()
 	{
 		if (IsServer)
@@ -168,7 +173,8 @@ public class GameManager : NetworkBehaviour
 	        {
 		        if (hq.type == HQ.HQType.Humans)
 		        {
-			        spawnTransform = hq.GetComponentInChildren<SpawnPoint>().transform;
+			        SpawnPoint[] spawnPoints = hq.GetComponentsInChildren<SpawnPoint>();
+			        spawnTransform = spawnPoints[i % spawnPoints.Length].transform;
 		        }
 	        }
 
@@ -184,11 +190,53 @@ public class GameManager : NetworkBehaviour
 	                .Value.ToString());
                 entityClientIdAndPlayerNetworkObjectIdPairs[i,0] = clientEntity.NetworkObjectId;
 		        entityClientIdAndPlayerNetworkObjectIdPairs[i,1] = no.NetworkObjectId;
+		        playersAlive++;
+		        playersInGame++;
+		        avatar.GetComponent<Health>().YouDied += PlayerDied;
 	        }
-
-	        playersAlive++;
-            playersInGame++;
         }
+	    
+	    void PlayerDied(GameObject go)
+	    {
+		    if (go.GetComponent<Avatar>() == null) return;
+
+		    StartCoroutine(RespawnPlayer(go));
+	    }
+
+	    IEnumerator RespawnPlayer(GameObject go)
+	    {
+		    PlayerController pc = NetworkManager.Singleton
+			    .ConnectedClients[go.GetComponent<NetworkObject>().OwnerClientId].PlayerObject
+			    .GetComponent<PlayerController>();
+		    pc.playerControls.Player.Disable();
+
+		    Avatar avatar = go.GetComponent<Avatar>();
+
+		    yield return new WaitForSeconds(respawnDelay);
+
+		    Checkpoint checkpoint = null;
+		    
+		    foreach (HQ hq in FindObjectsOfType<HQ>())
+		    {
+			    if (hq.type == HQ.HQType.Humans)
+			    {
+				    checkpoint = hq.GetComponentInChildren<Checkpoint>();
+				    SpawnPoint[] spawnPoints = hq.GetComponentsInChildren<SpawnPoint>();
+				    Transform avatarTransform = avatar.transform;
+				    Transform spawn = spawnPoints[Random.Range(0, spawnPoints.Length)].transform;
+				    avatarTransform.position = spawn.position;
+				    avatarTransform.rotation = spawn.rotation;
+				    break;
+			    }
+		    }
+
+		    avatar.ToggleMeshRenderersClientRpc(true);
+		    if (checkpoint != null) checkpoint.PlayerDied();
+		    Health health = go.GetComponent<Health>();
+		    health.ChangeHP(100000);
+		    health.isAlive = true;
+		    pc.playerControls.Player.Enable();
+	    }
 
 	    for (int i = 0; i < entityClientIdAndPlayerNetworkObjectIdPairs.GetLength(0); i++)
 	    {

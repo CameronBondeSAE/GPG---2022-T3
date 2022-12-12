@@ -55,6 +55,8 @@ public class Checkpoint : NetworkBehaviour
                 }
             }
         }
+        
+        
 
         if (IsServer && hqType == HQ.HQType.Aliens)
         {
@@ -81,6 +83,12 @@ public class Checkpoint : NetworkBehaviour
         }
     }
 
+    public void PlayerDied()
+    {
+	    amount /= 2;
+	    itemPlacedEvent?.Invoke(amount);
+    }
+    
     [ClientRpc]
     void CheckpointUpdateClientRpc()
     {

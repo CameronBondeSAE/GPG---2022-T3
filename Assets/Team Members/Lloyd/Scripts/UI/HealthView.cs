@@ -174,7 +174,7 @@ public class HealthView : ImmediateModeShapeDrawer
 
     public Button respawnButton;
     
-    private void YouDied()
+    private void YouDied(GameObject go)
     {
         ShuffleHintList();
 

@@ -46,7 +46,7 @@ namespace Marcus
             GetComponent<StateManager>().ChangeState(burnState);
         }
 
-        void Die()
+        void Die(GameObject go)
         {
             Destroy(gameObject);
         }

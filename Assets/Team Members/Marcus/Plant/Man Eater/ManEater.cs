@@ -86,7 +86,7 @@ public class ManEater : MonoBehaviour, IFlammable
         
     }
 
-    void Die()
+    void Die(GameObject go)
     {
         maneaterDeathEvent?.Invoke();
         StartCoroutine(DeathTimer());

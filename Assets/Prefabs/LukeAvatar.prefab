@@ -84,7 +84,7 @@ MonoBehaviour:
   clientHeldObject: 0
   item: {fileID: 1030358358859370405, guid: 2ec874876f0bf47408ad0863e1c4ee5d, type: 3}
   flamethrower: {fileID: 1441895679611698532, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-  plant: {fileID: 2324078963844702446, guid: 50b22efbc57219042b1aeeeda2528002, type: 3}
+  plant: {fileID: 4137073510955222978, guid: 995b4d234448e0d4ab9a7e91c595a03a, type: 3}
   scoreText: {fileID: 8190716250718446902}
   gameWaveTimer: {fileID: 0}
 --- !u!54 &5296546071687087742
@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  isAlive: 1
 --- !u!1 &5296546073451224716
 GameObject:
   m_ObjectHideFlags: 0

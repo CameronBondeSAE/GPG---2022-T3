@@ -34,7 +34,7 @@ public class Interact : NetworkBehaviour
     [Header("Hack Item Spawning")]
     public NetworkObject item;
     public GameObject flamethrower;
-    public NetworkObject plant;
+    public GameObject plant;
 
     [Header("Plants Counter")]
     public TMP_Text scoreText;
@@ -201,26 +201,23 @@ public class Interact : NetworkBehaviour
 
     public void IncreaseHeadScore()
     {
-        IncreaseHeadScoreClientRpc();
+        IncreaseHeadScoreClientRpc(storedItems);
     }
 
     [ClientRpc]
-    public void IncreaseHeadScoreClientRpc()
+    public void IncreaseHeadScoreClientRpc(int score)
     {
-        if (storedItems < storedMax)
+        if (score < storedMax)
         {
             scoreText.color = Color.white;
-            storedItems++;
         }
-        if(scoreText!=null) scoreText.text = (storedItems.ToString() + " / " +storedMax.ToString());
+        if(scoreText!=null) scoreText.text = (score.ToString() + " / " +storedMax.ToString());
         if (storedItems >= storedMax)
         {
-            storedItems = storedMax;
             scoreText.color = Color.red;
             scoreText.transform.DOPunchScale((Vector3.one) * 2, 0.1f, 2, 0f);
         }
         scoreText.transform.localScale = Vector3.one;
-        
     }
     
     public void ResetHeadScore()
@@ -246,17 +243,15 @@ public class Interact : NetworkBehaviour
         if (storedItems > 0)
         {
             storedItems--;
+            IncreaseHeadScore();
             Vector3 myPos = transform.position;
             float randomX = (UnityEngine.Random.Range(-10, 10));
             float randomY = (UnityEngine.Random.Range(0, 0));
             float randomZ = (UnityEngine.Random.Range(-10, 10));
             Vector3 randomForce = new Vector3(randomX, randomY, randomZ);
-            NetworkObject go = Instantiate(plant);
-            go.Spawn();
-            go.transform.position =
-                myPos + transform.up;
+            GameObject go = GameManager.singleton.NetworkInstantiate(plant, myPos + transform.up, Quaternion.identity);
             Rigidbody rb = go.GetComponent<Rigidbody>();
-        
+            
             //TODO: Coolness
             //fuck with the constraints and the timer to make it look cooler
             RigidbodyConstraints tempConstraints = rb.constraints;
@@ -277,9 +272,7 @@ public class Interact : NetworkBehaviour
     {
         //child.transform.parent = equippedMountPos;
     }
-
-
-
+    
     private void OnTriggerEnter(Collider other)
     {
 	    if (!IsServer) return;
@@ -291,6 +284,7 @@ public class Interact : NetworkBehaviour
             {
                 item.PickedUp(gameObject,NetworkManager.LocalClientId);
                 item.DestroySelf();
+                storedItems++;
                 IncreaseHeadScore();
             }
             else //ie, not a plant
