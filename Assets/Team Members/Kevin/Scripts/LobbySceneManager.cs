@@ -90,7 +90,7 @@ namespace Kevin
             }
             else
             {
-                GameManager.singleton.UpdateGameStates(GameManager.GameState.InGameLobby);
+                KGameManager.singleton.UpdateGameStates(KGameManager.GameState.InGameLobby);
                 NetworkManager.Singleton.StartHost();
                 ipCanvas.SetActive(false);
                 lobbyCanvas.SetActive(true);
@@ -114,7 +114,7 @@ namespace Kevin
             }
             else
             {
-                GameManager.singleton.UpdateGameStates(GameManager.GameState.InGameLobby);
+                KGameManager.singleton.UpdateGameStates(KGameManager.GameState.InGameLobby);
                 NetworkManager.Singleton.StartClient();
                 ClientLobby();
                 Debug.Log("Player just joined!");
@@ -136,7 +136,7 @@ namespace Kevin
             //GameManager.singleton.InvokeOnGameStart();
             //GameManager.singleton.OnGameStarted();
             OnGameStart?.Invoke();
-            GameManager.singleton.UpdateGameStates(GameManager.GameState.GameStart);
+            KGameManager.singleton.UpdateGameStates(KGameManager.GameState.GameStart);
             //OnStart?.Invoke();
             if (selectedLevel == "")
             {

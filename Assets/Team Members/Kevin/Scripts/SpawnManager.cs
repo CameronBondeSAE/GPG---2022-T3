@@ -23,6 +23,7 @@ public class SpawnManager : NetworkBehaviour
         }
         return spawnPointObject;
     }
+    
 
     public void SpawnBossAI()
     {
@@ -45,9 +46,7 @@ public class SpawnManager : NetworkBehaviour
                 GameManager.singleton.amountOfAIInGame++;
             }
         }
-
     }
-
     public void SpawnFlameThrowers()
     {
         for (int i = 0; i < GameManager.singleton.flamethrowerSpawnPointObject.Count; i++)
@@ -56,7 +55,6 @@ public class SpawnManager : NetworkBehaviour
                 Quaternion.Euler(0,-90,0));
         }
     }
-
     public void SpawnWaterCannon()
     {
         for (int i = 0; i < GameManager.singleton.waterCannonSpawnPointObject.Count; i++)

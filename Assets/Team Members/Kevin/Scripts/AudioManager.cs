@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Kevin;
 using Luke;
 using Unity.Netcode;
 using UnityEngine;
-using GameManager = Kevin.GameManager;
 
 public class AudioManager : NetworkBehaviour
 {
@@ -11,17 +11,17 @@ public class AudioManager : NetworkBehaviour
 
     void Awake()
     {
-        GameManager.singleton.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+        KGameManager.singleton.OnGameStateChanged += GameManagerOnOnGameStateChanged;
        
     }
 
     void OnDisable()
     {
-        GameManager.singleton.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+        KGameManager.singleton.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
     }
-    private void GameManagerOnOnGameStateChanged(GameManager.GameState state)
+    private void GameManagerOnOnGameStateChanged(KGameManager.GameState state)
     {
-        if (state == GameManager.GameState.InGameLobby)
+        if (state == KGameManager.GameState.InGameLobby)
         {
             _audioSource[0].Play();
             RequestClientAudioPlayClientRpc();

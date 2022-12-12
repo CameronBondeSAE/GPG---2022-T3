@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace Kevin
 {
-    public class GameManager : NetworkBehaviour
+    public class KGameManager : NetworkBehaviour
     {
         //Keep track of total points/parts collected
         //Keep track of Amount of players left
@@ -16,7 +16,7 @@ namespace Kevin
         //Spawner maybe
         
         public int playersInLobby;
-        public static GameManager singleton;
+        public static KGameManager singleton;
         
         //Other Components
         public LobbySceneManager lobbySceneManager;
