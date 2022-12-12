@@ -1135,6 +1135,10 @@ PrefabInstance:
       value: Network Manager
       objectReference: {fileID: 0}
     - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
+      propertyPath: NetworkConfig.TickRate
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639541133573309101, guid: ea6883e2307a80c4d9d684ea2692c7e0, type: 3}
       propertyPath: NetworkConfig.NetworkPrefabs.Array.size
       value: 15
       objectReference: {fileID: 0}
