@@ -262,7 +262,7 @@ public class Interact : NetworkBehaviour
             float randomY = (UnityEngine.Random.Range(0, 0));
             float randomZ = (UnityEngine.Random.Range(-10, 10));
             Vector3 randomForce = new Vector3(randomX, randomY, randomZ);
-            GameObject go = GameManager.singleton.NetworkInstantiate(plant, myPos + transform.up*3, Quaternion.identity);
+            GameObject go = GameManager.singleton.NetworkInstantiate(plant, myPos + transform.up, Quaternion.identity);
             Rigidbody rb = go.GetComponent<Rigidbody>();
             
             //TODO: Coolness

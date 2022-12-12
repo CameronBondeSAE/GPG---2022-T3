@@ -210,7 +210,9 @@ public class GameManager : NetworkBehaviour
 		    pc.playerControls.Player.Disable();
 
 		    Avatar avatar = go.GetComponent<Avatar>();
-
+		    Interact interact = go.GetComponent<Interact>();
+		    
+		    yield return new WaitUntil(() => interact.storedItems <= 0);
 		    yield return new WaitForSeconds(respawnDelay);
 
 		    gridGenerator.Scan();
