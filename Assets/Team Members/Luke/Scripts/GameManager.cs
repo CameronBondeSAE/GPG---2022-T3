@@ -177,8 +177,7 @@ public class GameManager : NetworkBehaviour
 			        spawnTransform = spawnPoints[i % spawnPoints.Length].transform;
 		        }
 	        }
-
-
+	        
 	        if (spawnTransform != null) // No Spawns found
 	        {
 		        GameObject avatar = Instantiate(avatarPrefab, spawnTransform.position, spawnTransform.rotation);

@@ -5,7 +5,7 @@ using DG.Tweening;
 using Oscar;
 
 [RequireComponent(typeof(Renderer))]
-public class ScanMatChange : MonoBehaviour, IAffectedByVisibilty
+public class ScanMatChange : MonoBehaviour, IAffectedByVisibility
 {
     private Material mat;
 

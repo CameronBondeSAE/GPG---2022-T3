@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Visibility : MonoBehaviour, IAffectedByVisibilty
+public class Visibility : MonoBehaviour, IAffectedByVisibility
 {
 	public MeshRenderer rend;
 	
