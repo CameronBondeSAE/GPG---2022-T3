@@ -67,7 +67,7 @@ MonoBehaviour:
   clientHeldObject: 0
   item: {fileID: 1030358358859370405, guid: 2ec874876f0bf47408ad0863e1c4ee5d, type: 3}
   flamethrower: {fileID: 1441895679611698532, guid: 59fae0003407ba540a508eabea132f38, type: 3}
-  plant: {fileID: 2324078963844702446, guid: 50b22efbc57219042b1aeeeda2528002, type: 3}
+  plant: {fileID: 0}
   scoreText: {fileID: 312561167937279867}
   gameWaveTimer: {fileID: 0}
 --- !u!1 &1794423253392461865
@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 6706497371001566970}
   - component: {fileID: 2611418728445704213}
   - component: {fileID: 426476028992010051}
+  - component: {fileID: 4494108102790791589}
   m_Layer: 6
   m_Name: AlienAI
   m_TagString: Untagged
@@ -237,7 +238,7 @@ MonoBehaviour:
   lowHeatShader: {fileID: -6465566751694194690, guid: c4de5fce59d9b5a47a5094d270f06543, type: 3}
   turnTowards: {fileID: 1804444449802422546}
   flammable: {fileID: 6706497371001566970}
-  interact: {fileID: 0}
+  myBase: {fileID: 0}
 --- !u!54 &1794423253392461856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -343,6 +344,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 6592
+  affectsOnScreenVisibility: 0
 --- !u!114 &5602566739967719583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,6 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 0
+  isAlive: 1
 --- !u!114 &426476028992010051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,6 +548,19 @@ MonoBehaviour:
   defaultColor: {r: 0.20087217, g: 0.20087217, b: 0.6981132, a: 0}
   agroColor: {r: 0.8301887, g: 0.23887502, b: 0.23887502, a: 0}
   colorChangeTime: 3
+--- !u!114 &4494108102790791589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51e01532050fa341ba7b2a082b5a18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend: {fileID: 1794423253392461861}
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
