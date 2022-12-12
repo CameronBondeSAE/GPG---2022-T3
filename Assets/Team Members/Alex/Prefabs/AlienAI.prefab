@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 6706497371001566970}
   - component: {fileID: 2611418728445704213}
   - component: {fileID: 426476028992010051}
+  - component: {fileID: 8702890972523197654}
   m_Layer: 6
   m_Name: AlienAI
   m_TagString: Untagged
@@ -268,6 +269,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 6592
+  dropOffPoint: 
 --- !u!114 &5602566739967719583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -469,6 +471,30 @@ MonoBehaviour:
   defaultColor: {r: 0.20087217, g: 0.20087217, b: 0.6981132, a: 0}
   agroColor: {r: 0.8301887, g: 0.23887502, b: 0.23887502, a: 0}
   colorChangeTime: 3
+--- !u!114 &8702890972523197654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e5cb7f8b9482145a4a668bde953a0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientFlamethrowerModel: {fileID: 0}
+  equippedMountPos: {fileID: 0}
+  storedItems: 0
+  storedMax: 10
+  equippedItems: 0
+  equippedMax: 1
+  clientHeldObject: 0
+  item: {fileID: 0}
+  flamethrower: {fileID: 0}
+  plant: {fileID: 0}
+  scoreText: {fileID: 0}
+  gameWaveTimer: {fileID: 0}
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
