@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rays: 10
-  spacingScale: 1
+  spacingScale: 3
   heightOffset: -0.5
   resourcesInSight: []
   enemyInSight: []
@@ -263,7 +263,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 2240
-  affectsOnScreenVisibility: 0
+  affectsOnScreenVisibility: 1
 --- !u!114 &7378137494736373024
 MonoBehaviour:
   m_ObjectHideFlags: 0
