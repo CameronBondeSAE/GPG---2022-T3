@@ -9,6 +9,11 @@ public class Visibility : MonoBehaviour, IAffectedByVisibilty
 	
 	private float _timer;
 
+	private void OnEnable()
+	{
+		rend.enabled = false;
+	}
+
 	public void Detection(float timeOnScreen)
 	{
 		_timer = timeOnScreen;
