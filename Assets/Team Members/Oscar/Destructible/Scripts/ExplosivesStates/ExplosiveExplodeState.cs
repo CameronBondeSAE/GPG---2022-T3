@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.Mathematics;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Oscar
@@ -53,13 +54,13 @@ namespace Oscar
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
             foreach (Collider burnVictims in colliders)
             {
-                if (burnVictims.GetComponent<Health>() != null)
+                if (burnVictims.GetComponentInParent<Health>() != null)
                 {
-                    health = burnVictims.GetComponent<Health>();
+                    health = burnVictims.GetComponentInParent<Health>();
                     health.ChangeHP(-999999);
                 }
                 
-                Rigidbody rb = burnVictims.GetComponent<Rigidbody>();
+                Rigidbody rb = burnVictims.GetComponentInParent<Rigidbody>();
 
 	            if (rb != null) rb.AddExplosionForce(explodePower, explosionPos, radius, explodeUpPower);
             }
