@@ -82,11 +82,8 @@ namespace Ollie
         {
 	        singleton = this;
 
-            if (!autoHost)
-            {
-                ipAddressCanvas.SetActive(true);
-                lobbyUICanvas.SetActive(false);
-            }
+            ipAddressCanvas.SetActive(true);
+            lobbyUICanvas.SetActive(false);
 
             gameManager = GameManager.singleton;
             
@@ -114,16 +111,9 @@ namespace Ollie
             NetworkManager.Singleton.StartHost();
             
 
-            if (!autoHost)
-            {
-                lobbyUICanvas.SetActive(true);
-                startButton.gameObject.SetActive(false);
-                ipAddressCanvas.SetActive(false);
-            }
-            else
-            {
-                //lobbyUICanvas.SetActive(false);
-            }
+            lobbyUICanvas.SetActive(true);
+            startButton.gameObject.SetActive(false);
+            ipAddressCanvas.SetActive(false);
         }
 
         public void GoToLevelSelection()
@@ -270,7 +260,16 @@ namespace Ollie
                 .Value = name;
             HandleClientNameChange();
         }
-        
+
+        public void CAMHACKQuickLoadTestLevelAndHost()
+        {
+	        autoHost = true;
+	        HostGame();
+	        LobbyUIManager.singleton.sceneToLoad = "OscarTinyTest";
+	        LobbyUIManager.singleton.UpdateLevelSelectedText("OscarTinyTest");
+	        GoToLevelSelection();
+        }
+
         public void UpdateLevelSelectedText(string levelName)
         {
             levelSelectedDisplayText.text = levelName;
@@ -299,13 +298,33 @@ namespace Ollie
 	        //yield return new WaitForSeconds(1f);
 	        //GameManager.singleton.LevelGenerator.SpawnPerlinClientRpc();
         }
-
+        
         private void OnLoadEventCompleted(string scenename, LoadSceneMode loadscenemode, List<ulong> clientscompleted, List<ulong> clientstimedout)
         {
             if(IsServer) {startButton.gameObject.SetActive(true);}
             NetworkManager.Singleton.SceneManager.OnLoadEventCompleted -= OnLoadEventCompleted;
             UpdateScenesClientRpc(scenename);
-            if(GameManager.singleton.LevelGenerator != null) GameManager.singleton.LevelGenerator.SpawnPerlin();
+
+            // CAM HACK: Quick test load
+            if (!autoHost)
+            {
+	            if(GameManager.singleton.LevelGenerator != null) GameManager.singleton.LevelGenerator.SpawnPerlin();
+            }
+            else
+            {
+	            if (IsServer)
+	            {
+		            StartGame();
+	            }
+	            // if(IsServer)
+					// StartCoroutine(HackWaitForABitForSomeReason());
+            }
+        }
+
+        IEnumerator HackWaitForABitForSomeReason()
+        {
+	        yield return new WaitForSeconds(0.5f);
+	        StartGame();
         }
 
         [ClientRpc]
