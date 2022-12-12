@@ -40,11 +40,19 @@ public class Interact : NetworkBehaviour
     public TMP_Text scoreText;
     public GameWaveTimer gameWaveTimer;
 
+    private Health playerHealth = null; //Luke HACK
+
+    public override void OnNetworkSpawn()
+    {
+	    base.OnNetworkSpawn();
+
+	    if (!IsServer) return;
+	    if(GetComponent<Avatar>() != null) playerHealth = GetComponent<Health>();
+    }
 
     private void Start()
     {
         gameWaveTimer = FindObjectOfType<GameWaveTimer>();
-        
     }
 
     [ServerRpc]
@@ -249,7 +257,7 @@ public class Interact : NetworkBehaviour
             float randomY = (UnityEngine.Random.Range(0, 0));
             float randomZ = (UnityEngine.Random.Range(-10, 10));
             Vector3 randomForce = new Vector3(randomX, randomY, randomZ);
-            GameObject go = GameManager.singleton.NetworkInstantiate(plant, myPos + transform.up, Quaternion.identity);
+            GameObject go = GameManager.singleton.NetworkInstantiate(plant, myPos + transform.up*3, Quaternion.identity);
             Rigidbody rb = go.GetComponent<Rigidbody>();
             
             //TODO: Coolness
@@ -276,6 +284,10 @@ public class Interact : NetworkBehaviour
     private void OnTriggerEnter(Collider other)
     {
 	    if (!IsServer) return;
+	    if (playerHealth != null)
+	    {
+		    if (!playerHealth.isAlive) return;
+	    }
 	    IPickupable pickupable = other.GetComponent<IPickupable>();
 	    if (pickupable != null && NetworkManager.Singleton != null)
         {

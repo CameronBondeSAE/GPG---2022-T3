@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5935014336652757958}
   - component: {fileID: 6154229321405791885}
   - component: {fileID: 72292446829008601}
-  m_Layer: 12
+  - component: {fileID: 6050901787896424070}
+  m_Layer: 13
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +101,20 @@ MonoBehaviour:
   plantMature: {fileID: -2488204498220542135}
   plantDeath: {fileID: 6026247607994705170}
   plantBase: {fileID: 6658169835453067230}
+--- !u!64 &6050901787896424070
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682575242188365714}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4137073510955222978
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +198,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -282,6 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  isAlive: 1
 --- !u!114 &-4279678345658173338
 MonoBehaviour:
   m_ObjectHideFlags: 0
