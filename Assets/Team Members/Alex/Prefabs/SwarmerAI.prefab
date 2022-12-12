@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 6372642251826983319}
   - component: {fileID: 4108752074494532085}
   - component: {fileID: 3367989630669829896}
+  - component: {fileID: 3952942583503320789}
   m_Layer: 7
   m_Name: SwarmerAI
   m_TagString: Untagged
@@ -544,6 +545,20 @@ MonoBehaviour:
   fuel: 0
   coolRate: 0
   radius: 0
+--- !u!114 &3952942583503320789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dc7765993eb00342b21a0d0c93d2baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  isAlive: 1
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
