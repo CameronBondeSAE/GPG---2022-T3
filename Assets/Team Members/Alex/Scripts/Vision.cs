@@ -9,7 +9,9 @@ namespace Alex
 
     public class Vision : MonoBehaviour
     {
-        public int rays = 10;
+	    public QueryTriggerInteraction queryTriggerInteraction = QueryTriggerInteraction.Ignore;
+
+	    public int rays = 10;
         public float spacingScale = 1f;
         public float heightOffset = -0.5f;
         public List<Transform> resourcesInSight;
@@ -47,8 +49,8 @@ namespace Alex
                 Vector3 dir = Quaternion.Euler(0, i*spacingScale, 0) * transform.forward;
     
                 //Physics.Raycast(transform.position, dir, out RaycastHit HitInfo);
-                
-                Physics.Raycast(transform.position + offset, dir, out RaycastHit HitInfo, 999f, layerMask, QueryTriggerInteraction.Ignore);
+
+                Physics.Raycast(transform.position + offset, dir, out RaycastHit HitInfo, 999f, layerMask, queryTriggerInteraction);
                 
                 if(HitInfo.collider == null) continue;
 

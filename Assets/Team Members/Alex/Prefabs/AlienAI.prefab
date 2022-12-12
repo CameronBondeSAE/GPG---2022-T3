@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2277492705802382861}
   - component: {fileID: 917740867012030817}
   - component: {fileID: 682327708696277148}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PickupPlantCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756aa0cffc9512340a290166c41507cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  queryTriggerInteraction: 2
   rays: 10
   spacingScale: 1
   heightOffset: -0.5
@@ -375,7 +376,7 @@ MonoBehaviour:
   testShapes: {fileID: -8587638066688477751}
   layerMask:
     serializedVersion: 2
-    m_Bits: 14784
+    m_Bits: 6592
   affectsOnScreenVisibility: 0
 --- !u!114 &5602566739967719583
 MonoBehaviour:
