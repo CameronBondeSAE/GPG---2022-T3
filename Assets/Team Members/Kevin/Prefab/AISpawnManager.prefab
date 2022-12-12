@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3268032859831235821
 MonoBehaviour:
@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossAI: {fileID: 1794423253392461865, guid: fefbbf03fac3f534eb25555b7dfdb74c, type: 3}
   swarmerAI: {fileID: 1794423253392461865, guid: 2b2ffe793dea33a46a681afcb1bf18a2, type: 3}
-  alienBases: []
+  flamethrowerPrefab: {fileID: 1441895679611698532, guid: 59fae0003407ba540a508eabea132f38, type: 3}
+  waterCannonPrefab: {fileID: 4585365106125260265, guid: 0b6c383aeb5ab0140ae9c7f6edbf9be3, type: 3}
 --- !u!114 &3268032859831235820
 MonoBehaviour:
   m_ObjectHideFlags: 0

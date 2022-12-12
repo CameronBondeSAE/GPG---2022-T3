@@ -9,7 +9,8 @@ public class SpawnManager : NetworkBehaviour
 {
     public GameObject bossAI;
     public GameObject swarmerAI;
-    
+    public GameObject flamethrowerPrefab;
+    public GameObject waterCannonPrefab;
     private GameObject AlienBase()
     {
         GameObject spawnPointObject = null;
@@ -45,6 +46,24 @@ public class SpawnManager : NetworkBehaviour
             }
         }
 
+    }
+
+    public void SpawnFlameThrowers()
+    {
+        for (int i = 0; i < GameManager.singleton.flamethrowerSpawnPointObject.Count; i++)
+        {
+            GameManager.singleton.NetworkInstantiate(flamethrowerPrefab, GameManager.singleton.flamethrowerSpawnPointObject[i].transform.position, 
+                Quaternion.Euler(0,-90,0));
+        }
+    }
+
+    public void SpawnWaterCannon()
+    {
+        for (int i = 0; i < GameManager.singleton.waterCannonSpawnPointObject.Count; i++)
+        {
+            GameManager.singleton.NetworkInstantiate(waterCannonPrefab,
+                GameManager.singleton.waterCannonSpawnPointObject[i].transform.position, Quaternion.identity);
+        }
     }
 }
 
