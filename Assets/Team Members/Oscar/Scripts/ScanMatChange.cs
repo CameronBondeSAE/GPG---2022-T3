@@ -5,7 +5,7 @@ using DG.Tweening;
 using Oscar;
 
 [RequireComponent(typeof(Renderer))]
-public class ScanMatChange : MonoBehaviour, IAffectedByRadar
+public class ScanMatChange : MonoBehaviour, IAffectedByVisibilty
 {
     private Material mat;
 
@@ -22,7 +22,7 @@ public class ScanMatChange : MonoBehaviour, IAffectedByRadar
         SetHeight(matHeight);
     }
     
-    public void Detection()
+    public void Detection(float timeOnScreen)
     {
         print("changed colour");
         print("changed back");

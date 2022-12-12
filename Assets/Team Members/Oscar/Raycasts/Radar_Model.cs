@@ -47,9 +47,9 @@ namespace Oscar
             {
                 if (Physics.Raycast(ray, out hit, length))
                 {
-                    if (hit.collider.GetComponent<IAffectedByRadar>() != null)
+                    if (hit.collider.GetComponent<IAffectedByVisibilty>() != null)
                     {
-                        hit.collider.GetComponent<IAffectedByRadar>().Detection(); 
+                        hit.collider.GetComponent<IAffectedByVisibilty>().Detection(1); 
                     }
                 }
             }
