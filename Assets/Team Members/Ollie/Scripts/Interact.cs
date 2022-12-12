@@ -262,17 +262,14 @@ public class Interact : NetworkBehaviour
             
             //TODO: Coolness
             //fuck with the constraints and the timer to make it look cooler
-            RigidbodyConstraints tempConstraints = rb.constraints;
-            rb.constraints = RigidbodyConstraints.None;
             rb.AddForce(randomForce,ForceMode.Impulse);
             yield return new WaitForSeconds(0.1f);
             StartCoroutine(DeathItemRespawnCoroutine());
-            yield return new WaitForSeconds(2);
-            rb.constraints = tempConstraints;
         }
         else
         {
             storedItems = 0;
+            
         }
     }
 
