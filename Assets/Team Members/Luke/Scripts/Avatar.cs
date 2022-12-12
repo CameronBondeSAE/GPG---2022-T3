@@ -89,8 +89,8 @@ public class Avatar : NetworkBehaviour, IControllable
 
     private void AimPlayer(Vector2 direction)
     {
-	    Vector3 targetAngle = new Vector3(0,turnSpeed*Vector3.SignedAngle(_transform.forward, new Vector3(direction.x, 0, direction.y), Vector3.up),0);
-	    _rb.AddTorque(targetAngle, ForceMode.Acceleration);
+	    Vector3 targetAngle = new Vector3(0,Vector3.SignedAngle(_transform.forward, new Vector3(direction.x, 0, direction.y), Vector3.up),0);
+	    _transform.Rotate(targetAngle);
     }
 
     #region IControllable Interface
