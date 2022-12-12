@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Alex;
 using Lloyd;
 using Luke;
 using Unity.Netcode;
@@ -50,6 +51,27 @@ public class Checkpoint : NetworkBehaviour
                     if (amount >= goalAmount)
                     {
                         GameManager.singleton.InvokeOnGameEnd();
+                    }
+                }
+            }
+        }
+
+        if (IsServer && hqType == HQ.HQType.Aliens)
+        {
+            //HACK: Only AI have Wander script, so prevents Humans dropping in alien base
+            if (other.GetComponentInParent<Wander>() != null)
+            {
+                Interact player = other.GetComponentInParent<Interact>();
+                if (player.storedItems > 0)
+                {
+                    amount += player.storedItems;
+                    player.ResetHeadScore();
+                    itemPlacedEvent?.Invoke(amount);
+                    CheckpointUpdateClientRpc();
+                    if (amount >= goalAmount)
+                    {
+                        //TODO: Uncomment this when figured out Alien's wincon
+                        //GameManager.singleton.InvokeOnGameEnd();
                     }
                 }
             }

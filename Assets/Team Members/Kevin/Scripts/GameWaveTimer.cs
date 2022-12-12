@@ -12,8 +12,11 @@ public class GameWaveTimer : NetworkBehaviour
     public float time;
     public TMP_Text timeText;
     public TMP_Text scoreText;
+    public TMP_Text alienScoreText;
     public int goalScore;
-    private Checkpoint checkpoint;
+    public int alienGoalScore;
+    private Checkpoint humanCheckpoint;
+    private Checkpoint alienCheckpoint;
 
     public override void OnNetworkSpawn()
     {
@@ -29,21 +32,41 @@ public class GameWaveTimer : NetworkBehaviour
 	    {
 		    if (hq.type == HQ.HQType.Humans)
 		    {
-			    checkpoint = hq.GetComponentInChildren<Checkpoint>();
-                
-		    }
+			    humanCheckpoint = hq.GetComponentInChildren<Checkpoint>();
+            }
+
+            if (hq.type == HQ.HQType.Aliens)
+            {
+                alienCheckpoint = hq.GetComponentInChildren<Checkpoint>();
+            }
 	    }
-	    checkpoint.itemPlacedEvent += UpdateDepositedScore;
+
+        alienCheckpoint.itemPlacedEvent += UpdateAlienDepositedScore;
+	    humanCheckpoint.itemPlacedEvent += UpdateHumanDepositedScore;
         goalScore = GameManager.singleton.targetEndResources;
+        
+        //HACK: replace * 3 with a smarter score
+        alienGoalScore = GameManager.singleton.targetEndResources * 3;
     }
 
-    void UpdateDepositedScore(int amount)
+    void UpdateAlienDepositedScore(int amount)
     {
-        UpdateDepositedScoreClientRpc(amount, goalScore);
+        UpdateAlienDepositedScoreClientRpc(amount, alienGoalScore);
     }
 
     [ClientRpc]
-    void UpdateDepositedScoreClientRpc(int amount, int goalAmount)
+    void UpdateAlienDepositedScoreClientRpc(int amount, int alienGoalScore)
+    {
+        alienScoreText.text = amount.ToString() + "/" + alienGoalScore.ToString();
+    }
+    
+    void UpdateHumanDepositedScore(int amount)
+    {
+        UpdateHumanDepositedScoreClientRpc(amount, goalScore);
+    }
+
+    [ClientRpc]
+    void UpdateHumanDepositedScoreClientRpc(int amount, int goalAmount)
     {
         scoreText.text = amount.ToString() + "/" + goalAmount.ToString();
     }
