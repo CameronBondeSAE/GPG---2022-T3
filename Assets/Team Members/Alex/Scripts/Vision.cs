@@ -60,7 +60,7 @@ namespace Alex
 	                {
 		                foreach (var visibility in affectedByVisibilities)
 		                {
-			                visibility.Detection(0);
+			                visibility.Detection(0.1f);
 		                }
 	                }
                 }
