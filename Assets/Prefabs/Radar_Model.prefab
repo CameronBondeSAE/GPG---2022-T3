@@ -138,7 +138,7 @@ Transform:
   m_Children:
   - {fileID: 1502486656}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2125517878056931356
 CapsuleCollider:
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 0
   dir: {x: 0, y: 0, z: 0}
-  length: 15
+  length: 79.32
 --- !u!23 &1631705170
 MeshRenderer:
   m_ObjectHideFlags: 0

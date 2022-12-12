@@ -1297,6 +1297,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lobby UI Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4347023889492393202, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6011517664640636797, guid: 841f07031e8c48d4093a8a168002cb72, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 387995567
