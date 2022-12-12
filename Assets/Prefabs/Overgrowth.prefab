@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flamePrefab: {fileID: 4092031293610382795, guid: 356b6b1337f47004c80f6626d3ff6fa7, type: 3}
-  fireDamage: 1
+  fireDamage: 35
   heatLevel: 0
   heatThreshold: 110
   heatMultiplier: 1.5
