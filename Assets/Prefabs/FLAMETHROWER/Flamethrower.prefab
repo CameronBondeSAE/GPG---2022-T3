@@ -316,7 +316,7 @@ MonoBehaviour:
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
-  Interpolate: 0
+  Interpolate: 1
 --- !u!136 &5256839576480473602
 CapsuleCollider:
   m_ObjectHideFlags: 0
