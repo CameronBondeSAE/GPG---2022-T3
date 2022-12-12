@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Shapes;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using System.Linq;
@@ -58,9 +55,13 @@ namespace Alex
 
                 if (affectsOnScreenVisibility)
                 {
-	                if (HitInfo.collider.GetComponent<IAffectedByVisibility>() != null)
+	                IAffectedByVisibility[] affectedByVisibilities = HitInfo.collider.GetComponents<IAffectedByVisibility>();
+	                if (affectedByVisibilities != null)
 	                {
-		                HitInfo.collider.GetComponent<IAffectedByVisibility>().Detection(); 
+		                foreach (var visibility in affectedByVisibilities)
+		                {
+			                visibility.Detection(1);
+		                }
 	                }
                 }
 

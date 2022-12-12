@@ -110,7 +110,7 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1794423253392461865
+--- !u!1 &1248830690197061480
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,70 +118,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1794423253392461859}
-  - component: {fileID: 1794423253392461858}
-  - component: {fileID: 1794423253392461861}
-  - component: {fileID: 1794423253392461860}
-  - component: {fileID: 1794423253392461862}
-  - component: {fileID: 1794423253392461856}
-  - component: {fileID: 132510624617632370}
-  - component: {fileID: 1804444449802422546}
-  - component: {fileID: 3167607737926146247}
-  - component: {fileID: 40213192657109042}
-  - component: {fileID: 8270060209491018145}
-  - component: {fileID: 8744244824783631288}
-  - component: {fileID: 5459054142461481995}
-  - component: {fileID: 6043905188681356340}
-  - component: {fileID: 156267089695662634}
-  - component: {fileID: 6406306476827429921}
-  - component: {fileID: 2963014885378717769}
-  - component: {fileID: 6200773846144965217}
-  - component: {fileID: 6372642251826983319}
+  - component: {fileID: 4167028933087399033}
+  - component: {fileID: 2638225813645423810}
+  - component: {fileID: 8118736430967013248}
   m_Layer: 7
-  m_Name: SwarmerAI
+  m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1794423253392461859
+  m_IsActive: 1
+--- !u!4 &4167028933087399033
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794423253392461865}
+  m_GameObject: {fileID: 1248830690197061480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1794423254282566961}
-  - {fileID: 9052546131963843774}
-  - {fileID: 1794423253976717424}
   - {fileID: 4007927848077702805}
-  - {fileID: 5643263454756364490}
-  - {fileID: 5749996088807249338}
-  - {fileID: 561430403378240219}
-  - {fileID: 9001931371166557945}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 1794423253392461859}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1794423253392461858
+--- !u!33 &2638225813645423810
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794423253392461865}
+  m_GameObject: {fileID: 1248830690197061480}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1794423253392461861
+--- !u!23 &8118736430967013248
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794423253392461865}
+  m_GameObject: {fileID: 1248830690197061480}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -217,6 +194,62 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1794423253392461865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1794423253392461859}
+  - component: {fileID: 1794423253392461860}
+  - component: {fileID: 1794423253392461862}
+  - component: {fileID: 1794423253392461856}
+  - component: {fileID: 132510624617632370}
+  - component: {fileID: 1804444449802422546}
+  - component: {fileID: 3167607737926146247}
+  - component: {fileID: 40213192657109042}
+  - component: {fileID: 8270060209491018145}
+  - component: {fileID: 8744244824783631288}
+  - component: {fileID: 5459054142461481995}
+  - component: {fileID: 6043905188681356340}
+  - component: {fileID: 156267089695662634}
+  - component: {fileID: 6406306476827429921}
+  - component: {fileID: 2963014885378717769}
+  - component: {fileID: 6200773846144965217}
+  - component: {fileID: 6372642251826983319}
+  - component: {fileID: 4108752074494532085}
+  m_Layer: 7
+  m_Name: SwarmerAI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1794423253392461859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1794423254282566961}
+  - {fileID: 9052546131963843774}
+  - {fileID: 1794423253976717424}
+  - {fileID: 4167028933087399033}
+  - {fileID: 5643263454756364490}
+  - {fileID: 5749996088807249338}
+  - {fileID: 561430403378240219}
+  - {fileID: 9001931371166557945}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1794423253392461860
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -477,6 +510,19 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
+--- !u!114 &4108752074494532085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51e01532050fa341ba7b2a082b5a18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view: {fileID: 1248830690197061480}
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,12 +764,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6654157507890702779}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.287, z: 0.505}
   m_LocalScale: {x: 0.41501248, y: 0.41501248, z: 0.41501248}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1794423253392461859}
+  m_Father: {fileID: 4167028933087399033}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &635098809454652560
