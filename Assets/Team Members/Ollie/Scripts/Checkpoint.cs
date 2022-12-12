@@ -62,16 +62,19 @@ public class Checkpoint : NetworkBehaviour
             if (other.GetComponentInParent<Wander>() != null)
             {
                 Interact player = other.GetComponentInParent<Interact>();
-                if (player.storedItems > 0)
+                if (player != null)
                 {
-                    amount += player.storedItems;
-                    player.ResetHeadScore();
-                    itemPlacedEvent?.Invoke(amount);
-                    CheckpointUpdateClientRpc();
-                    if (amount >= goalAmount)
+                    if (player.storedItems > 0)
                     {
-                        //TODO: Uncomment this when figured out Alien's wincon
-                        //GameManager.singleton.InvokeOnGameEnd();
+                        amount += player.storedItems;
+                        player.ResetHeadScore();
+                        itemPlacedEvent?.Invoke(amount);
+                        CheckpointUpdateClientRpc();
+                        if (amount >= goalAmount)
+                        {
+                            //TODO: Uncomment this when figured out Alien's wincon
+                            //GameManager.singleton.InvokeOnGameEnd();
+                        }
                     }
                 }
             }
