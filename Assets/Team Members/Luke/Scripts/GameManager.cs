@@ -214,6 +214,8 @@ public class GameManager : NetworkBehaviour
 
 		    yield return new WaitForSeconds(respawnDelay);
 
+		    gridGenerator.Scan();
+		    
 		    Checkpoint checkpoint = null;
 		    
 		    foreach (HQ hq in FindObjectsOfType<HQ>())
