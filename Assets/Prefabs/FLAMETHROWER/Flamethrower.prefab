@@ -264,6 +264,9 @@ MonoBehaviour:
   waterball: {fileID: 0}
   barrel: {fileID: 0}
   firePointPos: {x: 0, y: 0, z: 0}
+  flamethrowerTurnedOn: {fileID: 2782707870542471497}
+  flamethrowerKeptOn: {fileID: -4003389341614326187}
+  flamethrowerTurnedOff: {fileID: 2771588461295137247}
 --- !u!114 &7841463451455674389
 MonoBehaviour:
   m_ObjectHideFlags: 0
