@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using Lloyd;
+using Unity.Netcode;
 
 namespace Alex
 {
@@ -15,14 +16,24 @@ namespace Alex
         public Transform target;
         public Controller myOwnerAlienAI;
 
-        Health health;
+        public Health health;
 
         private void Awake()
         {
             canAttack = false;
             canSwarm = true;
-        }
             
+            health.YouDied += HealthOnYouDied;
+        }
+
+        private void HealthOnYouDied(GameObject obj)
+        {
+	        if (NetworkManager.Singleton.IsServer)
+	        {
+		        Destroy(gameObject);
+	        }
+        }
+
 
         public bool IsAttacking()
         {

@@ -10,14 +10,14 @@ using UnityEngine.InputSystem;
 
 public class Avatar : NetworkBehaviour, IControllable
 {
-    private Vector2 _moveInput;
+	public Vector2 moveInput;
     private Interact interact;
     private Transform _transform;
     private Rigidbody _rb;
     public float acceleration = 100f;
-    public float maxSpeed = 15f;
-    public float turnSpeed = 5f;
-    public float drag = 7f;
+    // public float maxSpeed = 15f;
+    // public float turnSpeed = 5f;
+    // public float drag = 7f;
     public TMP_Text nameText;
 
     private void OnEnable()
@@ -75,6 +75,7 @@ public class Avatar : NetworkBehaviour, IControllable
 
     private void MovePlayer(Vector2 direction)
     {
+	    moveInput = direction;
         // Vector3 velocity = _rb.velocity;
         // Vector3 dragVector3 = new Vector3(-velocity.x*drag, 0, -velocity.z*drag);
         // _rb.AddForce(dragVector3, ForceMode.Acceleration);
