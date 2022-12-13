@@ -84,7 +84,6 @@ namespace Ollie
 
             ipAddressCanvas.SetActive(true);
             lobbyUICanvas.SetActive(false);
-
             gameManager = GameManager.singleton;
             
         }
@@ -357,6 +356,10 @@ namespace Ollie
         //TODO: Rip this region into a Game Mode script, IF TIME PERMITS
         #region Game Mode Manager Stuff
 
+        public void ExitToLobby()
+        {
+            print("trying to exit from lobby ui mgr");
+        }
         public void StartGame()
         {
             if (sceneToLoad == "")
