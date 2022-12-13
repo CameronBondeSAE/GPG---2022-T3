@@ -264,7 +264,7 @@ public class Interact : NetworkBehaviour
             Vector3 randomForce = new Vector3(randomX, randomY, randomZ);
             GameObject go = GameManager.singleton.NetworkInstantiate(plant, myPos + transform.up, Quaternion.identity);
             Rigidbody rb = go.GetComponent<Rigidbody>();
-            
+            rb.isKinematic = false;
             //TODO: Coolness
             //fuck with the constraints and the timer to make it look cooler
             rb.AddForce(randomForce,ForceMode.Impulse);
