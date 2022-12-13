@@ -11,10 +11,16 @@ namespace Alex
         public List<Transform> neighbours = new List<Transform>();
         public LayerMask layerMask;
 
+        private void FixedUpdate()
+        {
+            neighbours.RemoveAll(transformToTest => transformToTest == null);
+        }
+
         public void OnTriggerEnter(Collider other)
         {
+            
 	        if (neighbours.Contains(other.transform)) return;
-	        
+            
             if (other.gameObject.layer == LayerMask.NameToLayer("AlienAI"))
                 neighbours.Add(other.transform);
             
