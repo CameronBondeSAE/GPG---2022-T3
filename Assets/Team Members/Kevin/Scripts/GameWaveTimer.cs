@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Lloyd;
 using Luke;
+using Ollie;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class GameWaveTimer : NetworkBehaviour
     public int alienGoalScore;
     private Checkpoint humanCheckpoint;
     private Checkpoint alienCheckpoint;
+    public GameObject exitToLobbyButton;
 
     public override void OnNetworkSpawn()
     {
@@ -24,6 +26,12 @@ public class GameWaveTimer : NetworkBehaviour
 	    
 	    gameStarted = true;
 	    if (IsServer) AssignCheckpoint();
+        if(!IsServer) exitToLobbyButton.SetActive(false);
+    }
+
+    public void ExitToLobby()
+    {
+        if(IsServer) LobbyUIManager.singleton.ExitToLobby();
     }
 
     void AssignCheckpoint()
