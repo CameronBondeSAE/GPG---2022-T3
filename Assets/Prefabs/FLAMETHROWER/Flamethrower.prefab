@@ -264,9 +264,6 @@ MonoBehaviour:
   waterball: {fileID: 0}
   barrel: {fileID: 0}
   firePointPos: {x: 0, y: 0, z: 0}
-  flamethrowerTurnedOn: {fileID: 2782707870542471497}
-  flamethrowerKeptOn: {fileID: -4003389341614326187}
-  flamethrowerTurnedOff: {fileID: 2771588461295137247}
 --- !u!114 &7841463451455674389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,7 +777,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7669548258206099321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.16}
+  m_LocalPosition: {x: 0, y: 0.309, z: 1.999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
