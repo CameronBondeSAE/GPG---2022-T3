@@ -156,7 +156,7 @@ Transform:
   m_Children:
   - {fileID: 6968536774408021869}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6658169835453067230
 MonoBehaviour:
@@ -313,7 +313,7 @@ MonoBehaviour:
   flamePrefab: {fileID: 4092031293610382795, guid: 356b6b1337f47004c80f6626d3ff6fa7, type: 3}
   fireDamage: 35
   heatLevel: 0
-  heatThreshold: 110
+  heatThreshold: 300
   heatMultiplier: 1.5
   fuel: 20
   coolRate: 0.01
