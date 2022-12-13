@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NodeCanvas.Tasks.Actions;
 using Shapes;
+using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -57,6 +58,7 @@ namespace Oscar
                     }
                 }
             }
+            transform.rotation = Quaternion.identity;
         }
 
         public event Action<bool> RadarOnNow;
