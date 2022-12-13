@@ -366,8 +366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   queryTriggerInteraction: 2
-  rays: 10
-  spacingScale: 1
+  rays: 15
+  spacingScale: 3
   heightOffset: -0.5
   resourcesInSight: []
   enemyInSight: []
