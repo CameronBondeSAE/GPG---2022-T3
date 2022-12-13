@@ -257,7 +257,9 @@ public class Interact : NetworkBehaviour
         {
             storedItems--;
             IncreaseHeadScore();
-            Vector3 myPos = transform.position;
+            
+            //TODO: Fix below, it's crashing too hard
+            /*Vector3 myPos = transform.position;
             float randomX = (UnityEngine.Random.Range(-10, 10));
             float randomY = (UnityEngine.Random.Range(0, 0));
             float randomZ = (UnityEngine.Random.Range(-10, 10));
@@ -268,7 +270,9 @@ public class Interact : NetworkBehaviour
             //TODO: Coolness
             //fuck with the constraints and the timer to make it look cooler
             rb.AddForce(randomForce,ForceMode.Impulse);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f);*/
+
+            yield return new WaitForSeconds(0.001f);
             StartCoroutine(DeathItemRespawnCoroutine());
         }
         else
