@@ -224,7 +224,7 @@ namespace Lloyd
             NetworkObject.TrySetParent(parent);
             Transform t = transform;
             t.rotation = parent.rotation;
-            t.localPosition = new Vector3(0,1,0.5f);
+            t.localPosition = new Vector3(-0.35f,0,0.85f);
             capsuleCollider.enabled = false;
         }
 

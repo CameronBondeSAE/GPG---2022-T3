@@ -380,6 +380,7 @@ namespace Ollie
             startButton.gameObject.SetActive(false);
             levelSelectedDisplayText.text = "";
             lobbyUICanvas.SetActive(true);
+            endGameUI.SetActive(false);
             ReturnToLobbyClientRpc();
             //unload scene
             //set base scene
