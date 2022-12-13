@@ -42,10 +42,11 @@ namespace Alex
             //Vector3 myPosition = transform.position;
             //Vector3 targetPosition = vision.resourcesInSight[0].position;
 
+            vision.resourcesInSight.RemoveAll(transformToTest => transformToTest == null);
             if (vision.resourcesInSight.Count > 0)
             {
                 Vector3 myPosition = transform.position;
-                vision.resourcesInSight.RemoveAll(transformToTest => transformToTest == null);
+                
                 Vector3 targetPosition = vision.resourcesInSight[0].transform.position;
 
 

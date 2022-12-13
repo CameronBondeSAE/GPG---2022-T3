@@ -29,6 +29,9 @@ namespace Alex
 
         public bool useTurnTowards = true;
 
+        public float bailOutTime = 2f;
+        public float timer = 0f;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -56,6 +59,7 @@ namespace Alex
 	        // if(astar.isPathable.Count > 0)
 	        // turntowards.targetPosition = astar.isPathable[currentPathIndex].worldPosition;
 
+	        
             
             myPos = controller.rb.transform.position;
             if (astar.isPathable.Count > 0)
@@ -82,10 +86,20 @@ namespace Alex
 	                    justDirection = directionAndDistance.normalized;
 	                    controller.rb.AddForce(justDirection * movement.slideTowardsSpeed);
 	                }
+	                
+	                /*
+	                timer += Time.deltaTime;
+	                if (timer > bailOutTime)
+	                {
+		                timer -= bailOutTime;
+		                Debug.Log("Time to bail");
+	                }
+	                */
                 }
                 else
                 {
                     astar.isPathable.Remove(astar.isPathable[0]);
+                    //timer = 0f;
                 }
 
                 if (astar.isPathable.Count == 0)

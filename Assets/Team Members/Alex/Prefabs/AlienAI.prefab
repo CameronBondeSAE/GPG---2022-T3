@@ -419,6 +419,8 @@ MonoBehaviour:
   justDirection: {x: 0, y: 0, z: 0}
   vision: {fileID: -478265464831815864}
   useTurnTowards: 1
+  bailOutTime: 5
+  timer: 0
 --- !u!114 &5772701356384670382
 MonoBehaviour:
   m_ObjectHideFlags: 0

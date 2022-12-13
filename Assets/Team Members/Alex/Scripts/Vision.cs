@@ -119,6 +119,7 @@ namespace Alex
                             enemyInSight.Add(enemy);
                         }
                     }
+                    
                 }
             }
 
@@ -141,8 +142,7 @@ namespace Alex
             */
             
             //Sorting all the lists so that the closest will be first in order for AStar to use the closest object. 
-            if (resourcesInSight == null) return;
-            resourcesInSight.RemoveAll(transformToTest => transformToTest == null);
+            
             
             /*
             foreach (Transform resource in (resourcesInSight))
@@ -151,6 +151,9 @@ namespace Alex
                     resourcesInSight.Remove(resource);
             }
             */
+            
+            if (resourcesInSight == null) return;
+            resourcesInSight.RemoveAll(transformToTest => transformToTest == null);
             if(resourcesInSight.Count > 1)
                 resourcesInSight = resourcesInSight.OrderBy(resource => Vector3.Distance(this.transform.position,resource.transform.position)).ToList();
             
