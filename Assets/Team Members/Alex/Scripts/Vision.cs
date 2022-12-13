@@ -27,10 +27,9 @@ namespace Alex
 
         private void FixedUpdate()
         {
-            
-            //enemyInSight.Clear();
-            //resourcesInSight.Clear();
-            //dropOffPointsFound.Clear();
+            enemyInSight.Clear();
+            // resourcesInSight.Clear();
+            // dropOffPointsFound.Clear();
 
 
 
