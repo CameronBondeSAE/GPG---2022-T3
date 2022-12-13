@@ -31,7 +31,7 @@ namespace Alex
 	        if (NetworkManager.Singleton.IsServer)
 	        {
 		        Destroy(gameObject);
-	        }
+            }
         }
 
 

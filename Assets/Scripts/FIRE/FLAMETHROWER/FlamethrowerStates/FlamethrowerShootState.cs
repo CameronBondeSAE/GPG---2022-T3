@@ -43,6 +43,10 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
     private NetworkManager _nm;
 
+    public AudioSource flamethrowerTurnedOn;
+    public AudioSource flamethrowerKeptOn;
+    public AudioSource flamethrowerTurnedOff;
+
     private void OnEnable()
     {
 	    _nm = NetworkManager.Singleton;
@@ -76,6 +80,8 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
 
     private void Shoot()
     {
+        flamethrowerTurnedOn.Play();;
+        
         if (isHeld && shooting)
             StartCoroutine(SpitFire());
 
@@ -105,7 +111,9 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
             rb.velocity = forward * force;
             // rb.AddForce(targetDir * force, ForceMode.Impulse);
 
+            
             yield return new WaitForSeconds(fireRate);
+            flamethrowerKeptOn.Play();
         }
     }
 
@@ -171,5 +179,6 @@ public class FlamethrowerShootState : MonoBehaviour, IHeatSource
         shooting = false;
         altShooting = false;
         waterSpraying = false;
+        flamethrowerTurnedOff.Play();
     }
 }
