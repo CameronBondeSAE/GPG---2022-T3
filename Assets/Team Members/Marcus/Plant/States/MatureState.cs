@@ -43,7 +43,7 @@ namespace Marcus
         IEnumerator DeathTimer()
         {
 	        yield return new WaitForSeconds(deathTimer);
-	        if (Physics.OverlapSphere(transform.position, 1, evolutionLayer, QueryTriggerInteraction.Collide).Length >=5 && rEvoChance == 1)
+	        if (Physics.OverlapSphere(transform.position, 1, evolutionLayer, QueryTriggerInteraction.Collide).Length >=7 && rEvoChance == 1)
 	        { 
 		        //Destroy and spawn manEater prefab
 		        GameManager.singleton.NetworkInstantiate(manEater, transform.position, Quaternion.identity);
