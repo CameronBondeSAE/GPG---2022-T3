@@ -72,6 +72,7 @@ namespace Alex
             if (neighbours.neighbours.Count == 0)
                 return Vector3.zero;
 
+            neighbours.neighbours.RemoveAll(transformToTest => transformToTest == null);
             #region Ollie's Jobify Attempt
             if (runningAsJob)
             {

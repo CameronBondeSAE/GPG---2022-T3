@@ -35,6 +35,7 @@ public class Separation : SteeringBase
         if (neighbours.neighbours.Count == 0)
             return Vector3.zero;
 
+        neighbours.neighbours.RemoveAll(transformToTest => transformToTest == null);
         Vector3 separationMove = Vector3.zero;
 
         #region Kevin's Job Work
@@ -63,6 +64,7 @@ public class Separation : SteeringBase
         {
             foreach (Transform item in neighbours.neighbours)
             {
+                
                 separationMove += item.position;
             }
 

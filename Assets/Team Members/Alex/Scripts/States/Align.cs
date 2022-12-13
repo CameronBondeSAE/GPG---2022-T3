@@ -28,6 +28,8 @@ namespace Alex
 		{
 			if (neighbours.neighbours.Count == 0) return;
 			
+			
+			
 			// Some are Torque, some are Force		
 			CalculateMove();
 
@@ -39,7 +41,9 @@ namespace Alex
 		{
 			float3 forwardVector = transform.forward;
 
+			neighbours.neighbours.RemoveAll(transformToTest => transformToTest == null);
 			int numberOfNeighbours = neighbours.neighbours.Count;
+			
 			
 			for (int i=0; i<numberOfNeighbours; i++)
 			{
