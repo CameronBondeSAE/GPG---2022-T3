@@ -31,7 +31,10 @@ public class GameWaveTimer : NetworkBehaviour
 
     public void ExitToLobby()
     {
-        if(IsServer) LobbyUIManager.singleton.ExitToLobby();
+        if (IsServer)
+        {
+            LobbyUIManager.singleton.ExitToLobby();
+        }
     }
 
     void AssignCheckpoint()

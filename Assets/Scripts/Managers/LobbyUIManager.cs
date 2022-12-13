@@ -358,7 +358,39 @@ namespace Ollie
 
         public void ExitToLobby()
         {
-            print("trying to exit from lobby ui mgr");
+            if (SceneManager.sceneCount > 1)
+            {
+                for (int i = 0; i < SceneManager.sceneCount; i++)
+                {
+                    Scene scene = SceneManager.GetSceneAt(i);
+                    if (scene == SceneManager.GetActiveScene())
+                    {
+                        //SceneManager.UnloadSceneAsync(scene);
+                        // UnloadSceneClientRpc(scene.name);
+                        NetworkManager.Singleton.SceneManager.UnloadScene(scene);
+                    }
+                }
+            }
+
+            GameManager.singleton.flamethrowerSpawnPointObject.Clear();
+            GameManager.singleton.waterCannonSpawnPointObject.Clear();
+            GameManager.singleton.hqSpawnPointObject.Clear();
+            GameManager.singleton.targetEndResources = 1000;
+
+            startButton.gameObject.SetActive(false);
+            levelSelectedDisplayText.text = "";
+            lobbyUICanvas.SetActive(true);
+            ReturnToLobbyClientRpc();
+            //unload scene
+            //set base scene
+            //same as switching level previews, but not adding in a level preview
+        }
+
+        [ClientRpc]
+        void ReturnToLobbyClientRpc()
+        {
+            if (IsServer) return; //HACK: don't do it on the server because it already happens
+            SetUpClientUI();
         }
         public void StartGame()
         {
@@ -378,7 +410,7 @@ namespace Ollie
 		            //SceneManager.UnloadSceneAsync(scene);
 		            // UnloadSceneClientRpc(scene.name);
 		            NetworkManager.Singleton.SceneManager.UnloadScene(scene);
-	            }
+                }
             }
 
             GameManager.singleton.OnGameEnd += OnGameEnd;

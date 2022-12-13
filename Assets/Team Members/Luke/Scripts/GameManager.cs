@@ -71,7 +71,7 @@ public class GameManager : NetworkBehaviour
 	{
 		if (IsServer)
 		{
-			GameObject go = NetworkInstantiate(countdownTimer, countdownTimer.transform.position, countdownTimer.transform.rotation);
+			//GameObject go = NetworkInstantiate(countdownTimer, countdownTimer.transform.position, countdownTimer.transform.rotation);
 			InvokeOnGameStartClientRPC();
 		}
 	}
@@ -141,12 +141,13 @@ public class GameManager : NetworkBehaviour
     //private void SetupScene(string sceneName, LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     private void SetupScene()
     {
+	    playersInGame = 0;
 	    GameHasStartedEvent += InvokeOnGameStart;
 	    //Ollie Hack: Enabled this camera in base scene by default, so the level preview can be seen
 	    //sets back to false when level actually starts
 	    virtualCameraTwo.SetActive(false);
 	    if (!IsServer) return;
-
+	    
 	    if (levelGenerator == null)
 	    {
 		    Debug.Log("No Level");
@@ -256,6 +257,7 @@ public class GameManager : NetworkBehaviour
         spawnManager.SpawnBossAI();
         targetEndResources = playersInGame * targetEndResources; 
         GameHasStartedEvent?.Invoke();
+        GameObject go = NetworkInstantiate(countdownTimer, countdownTimer.transform.position, countdownTimer.transform.rotation);
     }
 
     private void SpawnPointPos()
