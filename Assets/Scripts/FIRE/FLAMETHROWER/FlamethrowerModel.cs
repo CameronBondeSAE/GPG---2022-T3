@@ -200,6 +200,11 @@ namespace Lloyd
         {
             modelView.OnChangeState(FlamethrowerView.FlamethrowerStates.Pulsate);
             yield return new WaitUntil(() => overheating == false);
+            /*Interact interact = GetComponentInParent<Interact>();
+            if (interact != null)
+            {
+	            interact.equippedItems = 0;
+            }*/
         }
 
         public void DestroySelf()
