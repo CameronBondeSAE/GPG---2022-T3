@@ -1,18 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FlameModelView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //
+    public event Action<bool> ChangeVisibility;
 
-    // Update is called once per frame
-    void Update()
+    public void OnChangeVisibility(bool x)
     {
-        
+        ChangeVisibility?.Invoke(x);
     }
 }
