@@ -12,6 +12,7 @@ namespace Alex
         public Node[,] gridNodeReferences;
         public Vector3Int gridSpaceSize;
         public Vector3Int totalGridSize;
+        public Vector3Int smallGridSize;
         public float alpha = .5f;
         public float textOffSet = .2f;
         public float yOffSet = 1f;
@@ -23,6 +24,8 @@ namespace Alex
         {
             singleton = this;
 
+            gridNodeReferences = new Node[totalGridSize.x, totalGridSize.z];
+            
             if (debugScan)
             {
 	            Scan();
@@ -39,7 +42,7 @@ namespace Alex
 
         public void Scan()
         {
-            gridNodeReferences = new Node[totalGridSize.x, totalGridSize.z];
+            
 
             for (int x = 0; x < totalGridSize.x; x++)
             {
@@ -70,6 +73,46 @@ namespace Alex
             }
         }
 
+        public void ScanSmallArea(Vector3 worldPosition, float xSize, float zSize)
+        {
+            Vector3Int worldPosInt = ConvertVector3ToVector3Int(worldPosition);
+
+            int resultX = Mathf.FloorToInt(xSize / 2);
+            int resultZ = Mathf.FloorToInt(zSize / 2);
+            
+            for (int x = -resultX + worldPosInt.x; x < resultX + worldPosInt.x; x++)
+            {
+                for (int z = -resultZ + worldPosInt.z; z < resultZ + worldPosInt.z; z++)
+                {
+                    if(x < 0) continue;
+                    if(z < 0) continue;
+                    if (totalGridSize.x < x) continue;
+                    if(totalGridSize.z < z) continue;
+                    gridNodeReferences[x, z] = new Node();
+                    gridNodeReferences[x, z].gridPosition = new Vector2Int(x, z);
+                    gridNodeReferences[x, z].worldPosition = new Vector3(x, 0, z);
+                    gridNodeReferences[x, z].isPathNode = false;
+
+                    if (Physics.OverlapBox(  worldPosition + new Vector3(x * gridSpaceSize.x, yOffSet, z * gridSpaceSize.z),
+                            new Vector3(gridSpaceSize.x, gridSpaceSize.y, gridSpaceSize.z) / 2, Quaternion.identity,
+                            layerMask).Length != 0)
+                    {
+                        gridNodeReferences[x, z].isBlocked = true;
+                        if (gridNodeReferences[x, z].isBlocked)
+                        {
+                            gridNodeReferences[x, z].gCost = 0;
+                            gridNodeReferences[x, z].hCost = 0;
+                        }
+                    }
+
+                    else
+                    {
+                        gridNodeReferences[x, z].isBlocked = false;
+                    }
+                }
+            }
+        }
+
 
         private void OnDrawGizmos()
         {
@@ -80,6 +123,7 @@ namespace Alex
                 foreach (Node node in gridNodeReferences)
                 {
 
+                    
                     if (node.isBlocked)
                     {
                         Gizmos.color = new Color(1, 0, 0, alpha);

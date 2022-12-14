@@ -26,7 +26,7 @@ public class PerlinCube_Model : NetworkBehaviour
 	    GetComponent<Collider>().enabled = false;
 	    DestroyTheWallClientRpc();
 	    if (!NetworkManager.Singleton.IsServer) return;
-	    GridGenerator.singleton.Scan();
+	    GridGenerator.singleton.ScanSmallArea(go.transform.position, 10, 10);
 	    wallDestruction?.Invoke();
 	    if(IsServer) StartCoroutine(DestroyObject());
     }

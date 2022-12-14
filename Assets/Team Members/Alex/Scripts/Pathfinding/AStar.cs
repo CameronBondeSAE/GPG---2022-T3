@@ -33,7 +33,7 @@ namespace Alex
 
         public void ActivateCoroutine(Vector3Int _startPos, Vector3Int _endPos)
         {
-            if (co != null) StopCoroutine(co);
+            if (co != null) StopCoroutine(co); 
             co = StartCoroutine(FindPath(_startPos, _endPos));
         }
 
