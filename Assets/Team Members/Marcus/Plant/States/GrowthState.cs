@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Luke;
+using NodeCanvas.Tasks.Actions;
 using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -41,8 +42,20 @@ namespace Marcus
 
         IEnumerator Age()
         {
-	        yield return new WaitForSeconds(maxAge);
+	        yield return new WaitUntil(AtMaxAge);
 	        RandomiseTimer();
+        }
+
+        bool AtMaxAge()
+        {
+	        age += Time.deltaTime / 5;
+
+	        while (age < maxAge)
+	        {
+		        return false;
+	        }
+
+	        return true;
         }
         
         void RandomiseTimer()
