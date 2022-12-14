@@ -36,7 +36,11 @@ namespace Marcus
         void OnEnable()
         {
 	        NetworkManager nm = NetworkManager.Singleton;
-	        if (nm.IsServer) StartCoroutine(Age());
+	        if (nm.IsServer)
+	        {
+		        AtMaxAge();
+		        StartCoroutine(Age());
+	        }
 	        if (nm.IsClient) GrowEvent?.Invoke();
         }
 
@@ -48,14 +52,15 @@ namespace Marcus
 
         bool AtMaxAge()
         {
-	        age += Time.deltaTime / 5;
-
-	        while (age < maxAge)
+	        if (age >= maxAge)
 	        {
-		        return false;
+		        return true;
 	        }
 
-	        return true;
+	        age += 0.02f;
+	        AtMaxAge();
+	        
+	        return false;
         }
         
         void RandomiseTimer()

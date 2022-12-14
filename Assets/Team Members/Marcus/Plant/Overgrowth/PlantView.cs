@@ -55,9 +55,10 @@ public class PlantView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float plantAge = (plantGrowth.age / 2) + 0.5f;
+        
         if (isVisable)
         {
-            float plantAge = (plantGrowth.age / 2) + 0.5f;
             if (!burning)
             {
                 t.localScale = new Vector3(plantAge, 0.05f, plantAge);
@@ -96,11 +97,13 @@ public class PlantView : MonoBehaviour
     private void OnBecameVisible()
     {
         isVisable = true;
+        print("visible");
     }
 
     private void OnBecameInvisible()
     {
         isVisable = false;
+        print("invisible");
     }
 }
    
