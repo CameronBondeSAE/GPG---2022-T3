@@ -57,14 +57,14 @@ public class PlantView : MonoBehaviour
     {
         if (isVisable)
         {
-            float plantGrowthAge = Mathf.Clamp(plantGrowth.age, 0.5f, 5f);
+            float plantAge = (plantGrowth.age / 2) + 0.5f;
             if (!burning)
             {
-                t.localScale = new Vector3(plantGrowthAge, 0.05f, plantGrowthAge);
+                t.localScale = new Vector3(plantAge, 0.05f, plantAge);
             }
             else
             {
-                t.localScale = Vector3.MoveTowards(t.localScale, new Vector3(plantGrowthAge/2f, 0.05f, plantGrowthAge/2f), 0.002f);
+                t.localScale = Vector3.MoveTowards(t.localScale, new Vector3(plantAge/2f, 0.05f, plantAge/2f), 0.002f);
             }
         }
     }
