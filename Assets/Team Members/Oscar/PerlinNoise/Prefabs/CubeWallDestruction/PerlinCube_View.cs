@@ -10,13 +10,20 @@ public class PerlinCube_View : MonoBehaviour
 {
     public PerlinCube_Model perlinCubeModel;
     
-    public GameObject perlinWallCube;
-
     public ParticleSystem[] crumblingParticles;
 
     public float firstDelay = 1;
     public float secondDelay = 3;
-    
+
+    private void OnBecameVisible()
+    {
+        GetComponent<Renderer>().enabled = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        GetComponent<Renderer>().enabled = false;
+    }
     private void OnEnable()
     {
         perlinCubeModel.wallDestruction += WallCrumble;
@@ -24,8 +31,8 @@ public class PerlinCube_View : MonoBehaviour
 
     void WallCrumble()
     {
-        perlinWallCube.GetComponent<Renderer>().material.color = Color.blue;
-        perlinCubeModel.transform.DOShakeScale(3f);
+        GetComponent<Renderer>().material.color = Color.blue;
+        transform.DOShakeScale(3f);
         foreach (ParticleSystem debree in crumblingParticles)
         {
             debree.Play();
@@ -36,7 +43,7 @@ public class PerlinCube_View : MonoBehaviour
     IEnumerator WallDestroy()
     {
         yield return new WaitForSeconds(firstDelay);
-        perlinCubeModel.transform.DOMoveY(-1f,3f).SetEase(Ease.InOutBack);
+        transform.DOMoveY(-1f,3f).SetEase(Ease.InOutBack);
         yield return new WaitForSeconds(secondDelay);
     }
     
