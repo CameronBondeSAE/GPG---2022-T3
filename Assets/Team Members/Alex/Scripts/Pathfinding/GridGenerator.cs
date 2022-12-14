@@ -124,7 +124,7 @@ namespace Alex
                 {
 
                     
-                    if (node.isBlocked)
+                    if (node != null && node.isBlocked)
                     {
                         Gizmos.color = new Color(1, 0, 0, alpha);
                         Gizmos.DrawCube(transform.position + new Vector3(node.worldPosition.x, yOffSet, node.worldPosition.z), Vector3.one);
