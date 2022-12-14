@@ -14,6 +14,8 @@ public class ManEaterView : MonoBehaviour
 
     private Material[] bodyMaterial;
 
+    private bool isVisable;
+
     private void OnEnable()
     {
         manEater.maneaterDeathEvent += Dying;
@@ -36,19 +38,35 @@ public class ManEaterView : MonoBehaviour
 
     void Dying()
     {
-        maneaterAnim.SetBool("isDying", true);
+        if (isVisable)
+        {
+            maneaterAnim.SetBool("isDying", true);
         
-        //Shrink and shake
-        transform.DOShakePosition(2f, 0.25f, 1, 25f);
-        transform.DOScale(new Vector3(0.5f, 0, 0.5f), 3f);
+            //Shrink and shake
+            transform.DOShakePosition(2f, 0.25f, 1, 25f);
+            transform.DOScale(new Vector3(0.5f, 0, 0.5f), 3f);
+        }
     }
 
     void Burning()
     {
-        //Tween to black
-        foreach (Material item in bodyMaterial)
+        if (isVisable)
         {
-            item.DOColor(Color.black, 5f);
+            //Tween to black
+            foreach (Material item in bodyMaterial)
+            {
+                item.DOColor(Color.black, 5f);
+            }
         }
+    }
+    
+    private void OnBecameVisible()
+    {
+        isVisable = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isVisable = false;
     }
 }
