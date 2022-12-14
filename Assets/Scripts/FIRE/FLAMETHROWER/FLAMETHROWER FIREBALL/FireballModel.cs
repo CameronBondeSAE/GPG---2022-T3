@@ -105,10 +105,15 @@ public class FireballModel : NetworkBehaviour
                 {
                     hitCollider.GetComponent<Flammable>().ChangeHeat(theHeatSource,_heat * _proximityMultiplier);
                 }
-                //StartCoroutine(Death());
-                /*Destroy(gameObject);
-                transform.SetParent(hitCollider.transform);
-                _rb.isKinematic = true;*/
+
+                if (_isActive)
+                {
+                    StartCoroutine(Death());
+                }
+
+                //Destroy(gameObject);
+                //transform.SetParent(hitCollider.transform);
+                _rb.isKinematic = true;
             } 
         }
     }

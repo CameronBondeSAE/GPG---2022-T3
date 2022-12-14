@@ -70,7 +70,7 @@ namespace Oscar
 
                     radarLine = radarModel.GetComponent<Line>();
                     radarLine.enabled = true;
-                    radarLine.End = radarModel.hit.point;
+                    radarLine.End = radarModel.dir;//.hit.point;
                 }
                 
                 //play sound

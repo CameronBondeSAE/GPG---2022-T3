@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Luke;
+using NodeCanvas.Tasks.Actions;
 using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -35,14 +36,31 @@ namespace Marcus
         void OnEnable()
         {
 	        NetworkManager nm = NetworkManager.Singleton;
-	        if (nm.IsServer) StartCoroutine(Age());
+	        if (nm.IsServer)
+	        {
+		        AtMaxAge();
+		        StartCoroutine(Age());
+	        }
 	        if (nm.IsClient) GrowEvent?.Invoke();
         }
 
         IEnumerator Age()
         {
-	        yield return new WaitForSeconds(maxAge);
+	        yield return new WaitUntil(AtMaxAge);
 	        RandomiseTimer();
+        }
+
+        bool AtMaxAge()
+        {
+	        if (age >= maxAge)
+	        {
+		        return true;
+	        }
+
+	        age += 0.02f;
+	        AtMaxAge();
+	        
+	        return false;
         }
         
         void RandomiseTimer()

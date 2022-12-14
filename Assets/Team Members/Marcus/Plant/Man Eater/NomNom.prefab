@@ -5480,7 +5480,7 @@ MonoBehaviour:
   heatMultiplier: 1.2
   fuel: 30
   coolRate: 0.05
-  radius: 1
+  radius: 1.5
 --- !u!114 &-2139139400399399455
 MonoBehaviour:
   m_ObjectHideFlags: 0

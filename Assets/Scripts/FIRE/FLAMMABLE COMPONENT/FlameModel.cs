@@ -7,7 +7,9 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class FlameModel : MonoBehaviour, IHeatSource
-{   
+{
+    private FlameModelView modelView;
+    
     //how much damage flame does
     private float heat;
  
@@ -27,17 +29,27 @@ public class FlameModel : MonoBehaviour, IHeatSource
 
     private Flammable flammable;
 
-    [SerializeField]private int maxRoundRobin;
+    [SerializeField]private float maxRoundRobin;
     private float roundRobin;
 
     private float randomRobin;
+
+    private float setRobin;
     
     private NetworkManager _nm;
+
+    private void Awake()
+    {
+        setRobin = maxRoundRobin;
+    }
     
     private void OnEnable()
     {
-	    _nm = NetworkManager.Singleton;
-	    if (!_nm.IsServer) return;
+	  //  _nm = NetworkManager.Singleton;
+	  //  if (!_nm.IsServer) return;
+
+        modelView = GetComponentInChildren<FlameModelView>();
+        
         randomRobin = Random.Range(0, 0.1f);
         roundRobin += randomRobin;
     }
@@ -58,7 +70,7 @@ public class FlameModel : MonoBehaviour, IHeatSource
 
     private void FixedUpdate()
     {
-	    if (!_nm.IsServer) return;
+       // if (!_nm.IsServer) return;
 	    roundRobin++;
         if (roundRobin <= maxRoundRobin)
         {
@@ -95,6 +107,17 @@ public class FlameModel : MonoBehaviour, IHeatSource
                 //transform.SetParent(hitCollider.transform);
             }
         }
+    }
+    
+    //
+    void OnBecameVisible()
+    {
+        maxRoundRobin = setRobin;
+    }
+
+    void OnBecameInvisible()
+    {
+        maxRoundRobin = setRobin * 2;
     }
 
     private void TickTock()

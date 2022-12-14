@@ -24,6 +24,8 @@ public class PlantView : MonoBehaviour
     private Tweener curTween;
     Transform t;
 
+    private bool isVisable;
+
     private void Awake()
     {
         t = transform;
@@ -53,14 +55,18 @@ public class PlantView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-	    float plantGrowthAge = Mathf.Clamp(plantGrowth.age, 0.5f, 5f);
-	    if (!burning)
+        float plantAge = (plantGrowth.age / 2) + 0.5f;
+        
+        if (isVisable)
         {
-	        t.localScale = new Vector3(plantGrowthAge, 0.05f, plantGrowthAge);
-        }
-        else
-        {
-            t.localScale = Vector3.MoveTowards(t.localScale, new Vector3(plantGrowthAge/2f, 0.05f, plantGrowthAge/2f), 0.002f);
+            if (!burning)
+            {
+                t.localScale = new Vector3(plantAge, 0.05f, plantAge);
+            }
+            else
+            {
+                t.localScale = Vector3.MoveTowards(t.localScale, new Vector3(plantAge/2f, 0.05f, plantAge/2f), 0.002f);
+            }
         }
     }
 
@@ -86,6 +92,18 @@ public class PlantView : MonoBehaviour
         // curTween.Kill();
         
         // curTween = body.DOColor(burnColour, 3f);
+    }
+
+    private void OnBecameVisible()
+    {
+        isVisable = true;
+        print("visible");
+    }
+
+    private void OnBecameInvisible()
+    {
+        isVisable = false;
+        print("invisible");
     }
 }
    
