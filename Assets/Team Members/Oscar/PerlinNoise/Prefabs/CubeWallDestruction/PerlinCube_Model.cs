@@ -20,14 +20,14 @@ public class PerlinCube_Model : NetworkBehaviour
 	    view = GetComponentInChildren<PerlinCube_View>();
 	    GetComponent<Health>().YouDied += DestroyTheWall;
     }
-
+	
     void DestroyTheWall(GameObject go)
     {
 	    GetComponent<Collider>().enabled = false;
 	    DestroyTheWallClientRpc();
 	    if (!NetworkManager.Singleton.IsServer) return;
 	    GridGenerator.singleton.Scan();
-	    wallDestruction?.Invoke();
+	    
 	    if(IsServer) StartCoroutine(DestroyObject());
     }
 
@@ -44,6 +44,7 @@ public class PerlinCube_Model : NetworkBehaviour
 	    // TODO: Only server
 	    // World changed. Pathfinding update world
 		// HACK
+		wallDestruction?.Invoke();
 	    GetComponent<Collider>().enabled = false;
 	    
     }
