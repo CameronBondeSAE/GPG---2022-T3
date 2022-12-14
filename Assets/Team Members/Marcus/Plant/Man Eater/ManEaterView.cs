@@ -63,12 +63,10 @@ public class ManEaterView : MonoBehaviour
     private void OnBecameVisible()
     {
         isVisable = true;
-        print("visible");
     }
 
     private void OnBecameInvisible()
     {
         isVisable = false;
-        print("invisible");
     }
 }
