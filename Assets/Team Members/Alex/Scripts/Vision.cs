@@ -77,7 +77,9 @@ namespace Alex
                 
                 // Check if the target is in a bad spot on the grid
                 Vector3Int posInt = GridGenerator.singleton.ConvertVector3ToVector3Int(HitInfo.transform.position);
-                if (GridGenerator.singleton.gridNodeReferences[posInt.x, posInt.z].isBlocked == true)
+                if (GridGenerator.singleton.gridNodeReferences != null 
+                    && GridGenerator.singleton.gridNodeReferences[posInt.x, posInt.z] != null 
+					&& GridGenerator.singleton.gridNodeReferences[posInt.x, posInt.z].isBlocked == true)
                 {
 					continue;
                 }
