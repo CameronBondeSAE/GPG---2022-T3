@@ -27,7 +27,6 @@ public class PerlinCube_Model : NetworkBehaviour
 	    DestroyTheWallClientRpc();
 	    if (!NetworkManager.Singleton.IsServer) return;
 	    GridGenerator.singleton.ScanSmallArea(go.transform.position, 10, 10);
-	    wallDestruction?.Invoke();
 	    if(IsServer) StartCoroutine(DestroyObject());
     }
 
@@ -45,6 +44,6 @@ public class PerlinCube_Model : NetworkBehaviour
 	    // World changed. Pathfinding update world
 		// HACK
 	    GetComponent<Collider>().enabled = false;
-	    
+	    wallDestruction?.Invoke();
     }
 }
