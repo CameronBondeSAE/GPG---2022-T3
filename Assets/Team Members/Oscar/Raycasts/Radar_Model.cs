@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Oscar
 {
-    public class Radar_Model : NetworkBehaviour, IFlammable,IPickupable
+    public class Radar_Model : NetworkBehaviour, IFlammable,IPickupable, IInteractable
     {
         //is it on the player or not
         private bool radarOn = false;
@@ -100,7 +100,6 @@ namespace Oscar
         {
             RadarSwitchOn();
             isHeld = true;
-            
             ParentClientRpc(networkObjectId);
         }
         
@@ -119,8 +118,7 @@ namespace Oscar
 
         public void PutDown(GameObject interactor, ulong networkObjectId)
         {
-            RadarSwitchOff();
-            isHeld = false;
+	        isHeld = false;
             RemoveParentClientRpc(networkObjectId);
         }
 
@@ -144,6 +142,28 @@ namespace Oscar
         public void ChangeHeat(IHeatSource heatSource, float x)
         {
             
+        }
+
+        public void Interact(GameObject interactor)
+        {
+	        if (isHeld) return;
+	        if (radarOn) RadarSwitchOff();
+	        else RadarSwitchOn();
+        }
+
+        public void CancelInteract()
+        {
+	        
+        }
+
+        public void AltInteract(GameObject interactor)
+        {
+	        
+        }
+
+        public void CancelAltInteract()
+        {
+	        
         }
     }
 }
