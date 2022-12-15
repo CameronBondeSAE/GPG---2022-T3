@@ -6,7 +6,7 @@ using UnityEngine;
 public class HearingComponent : MonoBehaviour
 {
     public SoundEmitter lastHeard;
-
+    
 
     public void HeardSomething(SoundEmitter thingThatEmittedSound, float radius)
     {
