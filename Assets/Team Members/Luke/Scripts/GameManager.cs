@@ -235,6 +235,7 @@ public class GameManager : NetworkBehaviour
 		    }
 
 		    avatar.ToggleMeshRenderersClientRpc(true);
+		    avatar.ActivateHatRandomiser();
 		    if (checkpoint != null) checkpoint.PlayerDied();
 		    Health health = go.GetComponent<Health>();
 		    health.ChangeHP(100000);

@@ -7,6 +7,7 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class Avatar : NetworkBehaviour, IControllable
 {
@@ -20,12 +21,15 @@ public class Avatar : NetworkBehaviour, IControllable
     // public float drag = 7f;
     public TMP_Text nameText;
 
+    private HatRandomiser hats;
+
     private void OnEnable()
     {
 	    _transform = transform;
         _rb = GetComponent<Rigidbody>();
         interact = GetComponent<Interact>();
         GetComponent<Health>().YouDied += Die;
+        hats = GetComponentInChildren<HatRandomiser>();
     }
 
     private void Die(GameObject go)
@@ -43,16 +47,30 @@ public class Avatar : NetworkBehaviour, IControllable
     [ClientRpc]
     public void ToggleMeshRenderersClientRpc(bool newState)
     {
-	    /*foreach (MeshRenderer rend in GetComponentsInChildren<MeshRenderer>())
+	    foreach (MeshRenderer rend in hats.GetComponentsInChildren<MeshRenderer>())
 	    {
-		    rend.enabled = newState;
-	    }*/
+		    Transform rendTransform = rend.transform;
+		    GameObject go = Instantiate(rend.gameObject, rendTransform.position, rendTransform.rotation);
+		    go.AddComponent<Rigidbody>();
+		    go.AddComponent<BoxCollider>();
+		    go.layer = 13;
+		    go.GetComponent<Rigidbody>().angularVelocity =
+			    new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+		    go.GetComponent<Rigidbody>().velocity =
+			    new Vector3(0, Random.Range(1f, 10f), 0);
+		    rend.gameObject.SetActive(false);
+	    }
 	    foreach (SkinnedMeshRenderer rend in GetComponentsInChildren<SkinnedMeshRenderer>())
 	    {
 		    rend.enabled = newState;
 	    }
     }
 
+    public void ActivateHatRandomiser()
+    {
+	    hats.ActivateHatClientRpc(Random.Range(0, hats.hats.Count));
+    }
+    
     public void SetName(string name)
     {
         nameText.text = name;

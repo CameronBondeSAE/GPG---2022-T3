@@ -16,7 +16,7 @@ public class HatRandomiser : NetworkBehaviour
     }
 
     [ClientRpc]
-    void ActivateHatClientRpc(int i)
+    public void ActivateHatClientRpc(int i)
     {
         hats[i].SetActive(true);
     }

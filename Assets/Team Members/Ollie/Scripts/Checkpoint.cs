@@ -88,7 +88,7 @@ public class Checkpoint : NetworkBehaviour
 
     public void PlayerDied()
     {
-	    amount /= 2;
+	    amount *= 3/4;
 	    itemPlacedEvent?.Invoke(amount);
     }
     
