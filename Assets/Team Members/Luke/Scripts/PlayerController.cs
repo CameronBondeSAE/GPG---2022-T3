@@ -144,7 +144,14 @@ namespace Luke
         {
             if (!IsLocalPlayer) return;
             if (player == null) return;
-            player.GetComponent<IControllable>()?.Action4Performed();
+            if (player.GetComponent<Interact>().heldObject == null)
+            {
+	            player.GetComponent<IControllable>()?.Action4Performed();
+            }
+            else
+            {
+	            player.GetComponent<IControllable>()?.Action3();
+            }
         }
 
         private void Action4UseFireCancelled(InputAction.CallbackContext context)
