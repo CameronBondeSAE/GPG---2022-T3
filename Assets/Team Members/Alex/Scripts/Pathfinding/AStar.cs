@@ -14,6 +14,7 @@ namespace Alex
         public float alpha = .5f;
         public Node currentNode;
         public event Action PathFoundEvent;
+        public event Action PathNotFoundEvent;
         
         public Vector3Int startPos;
         public Vector3Int endPos;
@@ -65,7 +66,7 @@ namespace Alex
                 if (currentNode == endNode)
                 {
                     RetracePath(startNode, endNode);
-                    break;
+                    yield break; // Same as return
                 }
                 
                 if(!closedNodes.Contains(currentNode))
@@ -106,6 +107,8 @@ namespace Alex
                 
                 yield return new WaitForSeconds(.01f);
             }
+                
+            PathNotFoundEvent?.Invoke();
         }
         
         public List<Node>GetNeighbors(Node node)

@@ -72,6 +72,16 @@ namespace Alex
                 // Add point for later rendering
                 // testShapesViewModel.polygonPath.AddPoint(new Vector2()); // X and Z from ray
                 
+                // If the thing we see isn't standing on a valid grid position (isObstacle)
+                // Then continue to the next raycast in the loop
+                
+                // Check if the target is in a bad spot on the grid
+                Vector3Int posInt = GridGenerator.singleton.ConvertVector3ToVector3Int(HitInfo.transform.position);
+                if (GridGenerator.singleton.gridNodeReferences[posInt.x, posInt.z].isBlocked == true)
+                {
+					continue;
+                }
+                
                 if (HitInfo.collider.GetComponent<Target>() != null)
                 {
                     Debug.DrawLine(transform.position, HitInfo.point, Color.red);

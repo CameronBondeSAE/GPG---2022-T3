@@ -13,6 +13,8 @@ namespace Alex
         public Vector3Int gridSpaceSize;
         public Vector3Int totalGridSize;
         public Vector3Int smallGridSize;
+		public float slightlySmallerFudgeFactor = 0.05f;
+
         public float alpha = .5f;
         public float textOffSet = .2f;
         public float yOffSet = 1f;
@@ -54,8 +56,8 @@ namespace Alex
                     gridNodeReferences[x, z].isPathNode = false;
 
                     if (Physics.OverlapBox(  transform.position + new Vector3(x * gridSpaceSize.x, yOffSet, z * gridSpaceSize.z),
-                            new Vector3(gridSpaceSize.x, gridSpaceSize.y, gridSpaceSize.z) / 2, Quaternion.identity,
-                            layerMask).Length != 0)
+	                        new Vector3(gridSpaceSize.x-slightlySmallerFudgeFactor, 10f, gridSpaceSize.z-slightlySmallerFudgeFactor) / 2, Quaternion.identity,
+	                        layerMask).Length != 0)
                     {
                         gridNodeReferences[x, z].isBlocked = true;
                         if (gridNodeReferences[x, z].isBlocked)
@@ -75,6 +77,8 @@ namespace Alex
 
         public void ScanSmallArea(Vector3 worldPosition, float xSize, float zSize)
         {
+	        Debug.DrawRay(worldPosition, Vector3.up * 10f, Color.green, 10f);
+	        
             Vector3Int worldPosInt = ConvertVector3ToVector3Int(worldPosition);
 
             int resultX = Mathf.FloorToInt(xSize / 2);
@@ -93,9 +97,12 @@ namespace Alex
                     gridNodeReferences[x, z].worldPosition = new Vector3(x, 0, z);
                     gridNodeReferences[x, z].isPathNode = false;
 
-                    if (Physics.OverlapBox(  worldPosition + new Vector3(x * gridSpaceSize.x, yOffSet, z * gridSpaceSize.z),
-                            new Vector3(gridSpaceSize.x, gridSpaceSize.y, gridSpaceSize.z) / 2, Quaternion.identity,
-                            layerMask).Length != 0)
+                    // if (Physics.OverlapBox(  worldPosition + new Vector3(x * gridSpaceSize.x, yOffSet, z * gridSpaceSize.z),
+		                        // new Vector3(gridSpaceSize.x-slightlySmallerFudgeFactor, 10f, gridSpaceSize.z-slightlySmallerFudgeFactor) / 2, Quaternion.identity,
+		                        // layerMask).Length != 0)
+                    if (Physics.OverlapBox(  new Vector3(x * gridSpaceSize.x, yOffSet, z * gridSpaceSize.z),
+		                        new Vector3(gridSpaceSize.x-slightlySmallerFudgeFactor, 10f, gridSpaceSize.z-slightlySmallerFudgeFactor) / 2, Quaternion.identity,
+		                        layerMask).Length != 0)
                     {
                         gridNodeReferences[x, z].isBlocked = true;
                         if (gridNodeReferences[x, z].isBlocked)
