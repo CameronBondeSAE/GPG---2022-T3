@@ -11,6 +11,10 @@ namespace Marcus
 {
     public class GrowthState : MonoBehaviour, IPickupable
     {
+	    public NetworkVariable<float> age;
+	    
+	    
+	    
         public MonoBehaviour matureState;
         
         public GameObject seedling;
@@ -20,7 +24,6 @@ namespace Marcus
         public int spreadNumber;
         
         public float maxAge;
-        public float age;
 
         private const bool AutoPickup = true;
 
@@ -38,7 +41,7 @@ namespace Marcus
 	        NetworkManager nm = NetworkManager.Singleton;
 	        if (nm.IsServer)
 	        {
-		        AtMaxAge();
+		        // AtMaxAge();
 		        StartCoroutine(Age());
 	        }
 	        if (nm.IsClient) GrowEvent?.Invoke();
@@ -47,18 +50,18 @@ namespace Marcus
         IEnumerator Age()
         {
 	        yield return new WaitUntil(AtMaxAge);
-	        RandomiseTimer();
+	        StartCoroutine(WaitForSeed());
         }
 
         bool AtMaxAge()
         {
-	        if (age >= maxAge)
+	        if (age.Value >= maxAge)
 	        {
 		        return true;
 	        }
 
-	        age += 0.02f;
-	        AtMaxAge();
+	        age.Value += 0.2f * Time.deltaTime;
+	        // AtMaxAge();
 	        
 	        return false;
         }
@@ -66,10 +69,10 @@ namespace Marcus
         void RandomiseTimer()
         {
 	        spreadTimer = Random.Range(12f, 15f);
-	        StartCoroutine(RandomTimer());
+	        StartCoroutine(WaitForSeed());
         }
 
-        IEnumerator RandomTimer()
+        IEnumerator WaitForSeed()
         {
 	        yield return new WaitForSeconds(spreadTimer);
 	        if (spreadNumber < spreadLimit)
@@ -95,7 +98,7 @@ namespace Marcus
                 Instantiate(seedling, pos, Quaternion.identity);
             }
             spreadNumber++;
-            RandomiseTimer();
+            // RandomiseTimer();
         }
 
         #region Interface Functions

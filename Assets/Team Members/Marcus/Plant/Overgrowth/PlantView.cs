@@ -55,7 +55,7 @@ public class PlantView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float plantAge = (plantGrowth.age / 2) + 0.5f;
+        float plantAge = (plantGrowth.age.Value / 2) + 0.5f;
         
         if (isVisable)
         {
@@ -97,13 +97,11 @@ public class PlantView : MonoBehaviour
     private void OnBecameVisible()
     {
         isVisable = true;
-        print("visible");
     }
 
     private void OnBecameInvisible()
     {
         isVisable = false;
-        print("invisible");
     }
 }
    
