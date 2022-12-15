@@ -48,9 +48,9 @@ namespace Alex
 
         void PathFound()
         {
-            //Debug.Log("Pathable " + astar.isPathable[0]);
+	        //Debug.Log("Pathable " + astar.isPathable[0]);
             // CAM turntowards.targetPosition = astar.isPathable[0].worldPosition;
-            targetPosition = astar.isPathable[0].worldPosition;
+            if (astar.isPathable != null && astar.isPathable.Count > 0) targetPosition = astar.isPathable[0].worldPosition;
         }
 
 
