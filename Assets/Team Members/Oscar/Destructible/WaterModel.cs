@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Lloyd;
 using UnityEngine;
 using Oscar;
+using Unity.Netcode;
 
 public class WaterModel : MonoBehaviour
 {
@@ -35,5 +36,6 @@ public class WaterModel : MonoBehaviour
                 flamethrower.ChangeOverheat(-changeHeatAmount);
             }
         }
+        if(NetworkManager.Singleton.IsServer) Destroy(gameObject,2f);
     }
 }
