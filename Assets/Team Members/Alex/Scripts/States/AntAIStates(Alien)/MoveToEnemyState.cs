@@ -53,7 +53,7 @@ namespace Alex
             target = vision.enemyInSight[0].position;
             
             controller.rend.material.shader = agroShader;
-            testShapes.colour = Color.red;
+            testShapes.colour = new Color(1f,0,0,0.5f);
             testShapes.intensity = 2;
 
             turnTowards.enabled = true;
@@ -136,7 +136,7 @@ namespace Alex
         {
             base.Exit();
             controller.rend.material.shader = controller.defaultShader;
-            testShapes.colour = Color.green;
+            testShapes.colour = new Color(0,1f,0,0.25f);
             testShapes.intensity = 1;
             followPath.PathEndReachedEvent -= FollowPathOnPathEndReachedEvent;
             

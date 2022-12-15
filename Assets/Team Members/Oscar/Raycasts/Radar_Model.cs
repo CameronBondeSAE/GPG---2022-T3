@@ -14,9 +14,10 @@ namespace Oscar
         //is it on the player or not
         private bool radarOn = false;
 
+        public float timeOnScreen = 4f;
         //for the actual raycast
         public float timer;
-        private float radarSpeed = 100f;
+        public float radarSpeed = 100f;
         public Vector3 dir;
 
         public RaycastHit hit;
@@ -53,7 +54,7 @@ namespace Oscar
                     {
 	                    foreach (var visibility in affectedByVisibilities)
 	                    {
-		                    visibility.Detection(1);
+		                    visibility.Detection(timeOnScreen);
 	                    }
                     }
                 }
