@@ -167,5 +167,17 @@ namespace Luke
             if (player == null) return;
             player.GetComponent<IControllable>()?.Action5Cancelled();
         }
+
+        [ClientRpc]
+        public void EnableControlsClientRpc()
+        {
+	        playerControls.Player.Enable();
+        }
+        
+        [ClientRpc]
+        public void DisableControlsClientRpc()
+        {
+	        playerControls.Player.Disable();
+        }
     }
 }

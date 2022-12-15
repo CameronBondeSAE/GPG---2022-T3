@@ -208,7 +208,7 @@ public class GameManager : NetworkBehaviour
 		    PlayerController pc = NetworkManager.Singleton
 			    .ConnectedClients[go.GetComponent<NetworkObject>().OwnerClientId].PlayerObject
 			    .GetComponent<PlayerController>();
-		    pc.playerControls.Player.Disable();
+		    pc.DisableControlsClientRpc();
 
 		    Avatar avatar = go.GetComponent<Avatar>();
 		    Interact interact = go.GetComponent<Interact>();
@@ -240,7 +240,7 @@ public class GameManager : NetworkBehaviour
 		    Health health = go.GetComponent<Health>();
 		    health.ChangeHP(100000);
 		    health.isAlive = true;
-		    pc.playerControls.Player.Enable();
+		    pc.EnableControlsClientRpc();
 	    }
 
 	    for (int i = 0; i < entityClientIdAndPlayerNetworkObjectIdPairs.GetLength(0); i++)
