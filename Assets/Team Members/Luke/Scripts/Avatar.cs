@@ -43,7 +43,11 @@ public class Avatar : NetworkBehaviour, IControllable
     [ClientRpc]
     public void ToggleMeshRenderersClientRpc(bool newState)
     {
-	    foreach (MeshRenderer rend in GetComponentsInChildren<MeshRenderer>())
+	    /*foreach (MeshRenderer rend in GetComponentsInChildren<MeshRenderer>())
+	    {
+		    rend.enabled = newState;
+	    }*/
+	    foreach (SkinnedMeshRenderer rend in GetComponentsInChildren<SkinnedMeshRenderer>())
 	    {
 		    rend.enabled = newState;
 	    }
