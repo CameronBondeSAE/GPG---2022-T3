@@ -50,7 +50,7 @@ namespace Marcus
         IEnumerator Age()
         {
 	        yield return new WaitUntil(AtMaxAge);
-	        RandomiseTimer();
+	        StartCoroutine(WaitForSeed());
         }
 
         bool AtMaxAge()
@@ -60,7 +60,7 @@ namespace Marcus
 		        return true;
 	        }
 
-	        age.Value += 0.02f;
+	        age.Value += 0.2f * Time.deltaTime;
 	        // AtMaxAge();
 	        
 	        return false;
