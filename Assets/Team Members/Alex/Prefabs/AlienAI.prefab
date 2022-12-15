@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 2611418728445704213}
   - component: {fileID: 426476028992010051}
   - component: {fileID: 4494108102790791589}
+  - component: {fileID: 5816360129498771006}
   m_Layer: 6
   m_Name: AlienAI
   m_TagString: Untagged
@@ -596,6 +597,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   view: {fileID: 1052991220805348444}
+--- !u!114 &5816360129498771006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794423253392461865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79e7d2ce144c29409c132d975d56c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastHeard: {fileID: 0}
 --- !u!1 &1794423253976717427
 GameObject:
   m_ObjectHideFlags: 0

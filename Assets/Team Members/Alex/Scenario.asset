@@ -26,6 +26,8 @@ MonoBehaviour:
       name: seeEnemy
     - id: 5
       name: resourceCollected
+    - id: 6
+      name: hearEnemy
   actions:
   - name: Gather Resource
     isDefault: 0
@@ -90,6 +92,8 @@ MonoBehaviour:
     position: {x: 470.5169, y: 41.211617}
     pre:
     - id: 4
+      value: 1
+    - id: 6
       value: 1
     post:
     - id: 4

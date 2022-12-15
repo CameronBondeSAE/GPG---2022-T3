@@ -18,6 +18,7 @@ namespace Alex
             aWorldState.Set(Scenario.atBase, controller.AtDropOffPoint());
             aWorldState.Set(Scenario.resourceCollected, controller.ResourceCollected());
             aWorldState.Set(Scenario.seeEnemy, controller.CanSeeEnemy());
+            aWorldState.Set(Scenario.hearEnemy, controller.CanSeeEnemy());
             //aWorldState.Set(Scenario.canAttack, controller.CanAttack());
             //aWorldState.Set(Scenario.isAttacking, controller.IsAttacking());
             //aWorldState.Set(Scenario.enemyDead, controller.EnemyDead());
@@ -33,7 +34,8 @@ namespace Alex
             hasResource = 2,
             atBase = 3,
             seeEnemy = 4,
-            resourceCollected = 5
+            resourceCollected = 5,
+            hearEnemy = 6
         }
     }
 }
